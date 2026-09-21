@@ -67,6 +67,33 @@ class Phase35ExperimentConfig:
     outputs: Mapping[str, str]
 
 
+@dataclass(frozen=True, slots=True)
+class CBGPConfig:
+    """Frozen controls for deterministic CBGP local placement search."""
+
+    bottleneck_utilization_threshold: float
+    max_boundary_shift: int
+    max_iterations: int
+    min_relative_improvement: float
+    solver_tolerance: float
+    placement_gap_thresholds: tuple[float, ...]
+    random_seed: int
+
+    def __post_init__(self) -> None:
+        if not 0.0 < self.bottleneck_utilization_threshold <= 1.0:
+            raise ValueError("bottleneck_utilization_threshold must be in (0, 1]")
+        if self.max_boundary_shift <= 0 or self.max_iterations <= 0:
+            raise ValueError("CBGP shift and iteration limits must be positive")
+        if not 0.0 <= self.min_relative_improvement < 1.0:
+            raise ValueError("min_relative_improvement must be in [0, 1)")
+        if self.solver_tolerance <= 0.0:
+            raise ValueError("solver_tolerance must be positive")
+        if not self.placement_gap_thresholds or any(
+            not 0.0 < value < 1.0 for value in self.placement_gap_thresholds
+        ):
+            raise ValueError("placement_gap_thresholds must be values in (0, 1)")
+
+
 def _mapping(value: Any, label: str) -> Mapping[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"{label} must be a mapping")
@@ -258,4 +285,23 @@ def load_phase35_experiment(config_dir: str | Path) -> Phase35ExperimentConfig:
         ),
         boundary_degeneracy_tolerance=tolerance,
         outputs=outputs,
+    )
+
+
+def load_cbgp_config(config_dir: str | Path) -> CBGPConfig:
+    """Load deterministic CBGP search controls."""
+
+    data = load_yaml(Path(config_dir) / "challenge2_cbgp.yaml")
+    return CBGPConfig(
+        bottleneck_utilization_threshold=float(
+            data["bottleneck_utilization_threshold"]
+        ),
+        max_boundary_shift=int(data["max_boundary_shift"]),
+        max_iterations=int(data["max_iterations"]),
+        min_relative_improvement=float(data["min_relative_improvement"]),
+        solver_tolerance=float(data["solver_tolerance"]),
+        placement_gap_thresholds=tuple(
+            float(value) for value in data["placement_gap_thresholds"]
+        ),
+        random_seed=int(data["random_seed"]),
     )

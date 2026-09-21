@@ -1,0 +1,12 @@
+# Frozen after predeclared small-scale sanity checks.  These are simulator
+# controls, not values fitted to individual Phase 3.5 result points.
+bottleneck_utilization_threshold: 0.85
+
+# The profiled serving model supports 8/16/24-layer intervals, so an 8-layer
+# shift is the smallest non-zero boundary move usable by every GPU type.
+max_boundary_shift: 8
+max_iterations: 4
+min_relative_improvement: 0.0001
+solver_tolerance: 1.0e-8
+placement_gap_thresholds: [0.01, 0.03, 0.05]
+random_seed: 20260921
