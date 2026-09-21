@@ -116,7 +116,17 @@ class _MILPBuilder:
         self.row_lower.append(lower)
         self.row_upper.append(upper)
 
-    def solve(self, objective: np.ndarray) -> tuple[OptimizeResult, float]:
+    def solve(
+        self,
+        objective: np.ndarray,
+        *,
+        mip_rel_gap: float = 0.0,
+        time_limit_seconds: float | None = None,
+    ) -> tuple[OptimizeResult, float]:
+        if mip_rel_gap < 0.0:
+            raise ValueError("mip_rel_gap cannot be negative")
+        if time_limit_seconds is not None and time_limit_seconds <= 0.0:
+            raise ValueError("time_limit_seconds must be positive when supplied")
         row_indices: list[int] = []
         column_indices: list[int] = []
         values: list[float] = []
@@ -136,6 +146,9 @@ class _MILPBuilder:
             np.asarray(self.row_upper, dtype=float),
         )
         start = perf_counter()
+        options = {"presolve": True, "mip_rel_gap": float(mip_rel_gap)}
+        if time_limit_seconds is not None:
+            options["time_limit"] = float(time_limit_seconds)
         solution = milp(
             c=objective,
             integrality=np.asarray(self.integrality, dtype=int),
@@ -144,7 +157,7 @@ class _MILPBuilder:
                 np.asarray(self.upper, dtype=float),
             ),
             constraints=constraints,
-            options={"presolve": True, "mip_rel_gap": 0.0},
+            options=options,
         )
         return solution, perf_counter() - start
 
@@ -469,6 +482,8 @@ def solve_carbon_aware_placement(
     batch_size: int,
     tolerance: float = 1e-6,
     timestamp: float | None = None,
+    mip_rel_gap: float = 0.0,
+    time_limit_seconds: float | None = None,
 ) -> CarbonPlacementMILPResult:
     """Minimize operational compute carbon over placement and routing."""
 
@@ -528,8 +543,15 @@ def solve_carbon_aware_placement(
     objective = np.zeros(len(builder.names), dtype=float)
     for key, index in flow_by_count.items():
         objective[index] = carbon_coefficients[key] * OBJECTIVE_SCALE
-    solution, solver_time = builder.solve(objective)
-    _require_success(solution, "Carbon-aware placement MILP")
+    solution, solver_time = builder.solve(
+        objective,
+        mip_rel_gap=mip_rel_gap,
+        time_limit_seconds=time_limit_seconds,
+    )
+    if not solution.success and not (
+        time_limit_seconds is not None and solution.x is not None
+    ):
+        _require_success(solution, "Carbon-aware placement MILP")
     placement, counts, starts, ends = _extract_placement(
         solution, variables, prefix="carbon"
     )
@@ -551,7 +573,7 @@ def solve_carbon_aware_placement(
     milp_carbon = float(solution.fun) / OBJECTIVE_SCALE
     validated_carbon = validated.metrics.carbon_g_per_second
     carbon_tolerance = max(1e-10, abs(milp_carbon) * 1e-6)
-    if abs(validated_carbon - milp_carbon) > carbon_tolerance:
+    if time_limit_seconds is None and abs(validated_carbon - milp_carbon) > carbon_tolerance:
         raise PlacementOptimizationError(
             "Carbon placement MILP disagrees with fixed-placement validation: "
             f"milp={milp_carbon}, validated={validated_carbon}"

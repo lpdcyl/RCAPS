@@ -1,0 +1,40 @@
+# Frozen synthetic Challenge 3 design. Values are simulator parameters, not
+# production measurements.
+scheduling_interval_seconds: 60
+placement_check_interval_seconds: 240
+placement_persistence_intervals: 2
+minimum_placement_dwell_seconds: 240
+solver_tolerance: 1.0e-8
+# Keep the comparator as a joint carbon placement-and-routing MILP while
+# bounding the synthetic 135-point study runtime. Historical defaults remain
+# exact (mip_rel_gap=0.0).
+joint_oracle_mip_rel_gap: 0.01
+joint_oracle_time_limit_seconds: 2.0
+request_tokens: 1.0
+random_seed: 20260921
+
+trace_duration_intervals: 8
+trace_files:
+  constant: configs/traces/constant.csv
+  step: configs/traces/step.csv
+  periodic: configs/traces/periodic.csv
+  slow_drift: configs/traces/slow_drift.csv
+  noisy_boundary: configs/traces/noisy_boundary.csv
+
+load_profiles:
+  low: 0.40
+  medium: 0.75
+  high: 0.95
+
+gpu_scenarios:
+  - commodity_region
+  - moderate_asymmetric
+  - high_asymmetric
+
+network_capacities_tokens_per_second:
+  non_bottleneck: 50.0
+  moderate: 20.0
+  constrained: 5.0
+
+dispatch_policy: deterministic_quota
+scheduler_mode: dynamic_carbon_flow
