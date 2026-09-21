@@ -1,0 +1,42 @@
+gpu_types:
+  A100:
+    memory_gb: 80
+    effective_compute_units_per_second: 1920
+    tokens_per_second:
+      8: 220
+      16: 120
+      24: 82
+  L4:
+    memory_gb: 24
+    effective_compute_units_per_second: 1280
+    tokens_per_second:
+      8: 145
+      16: 80
+      24: 54
+  T4:
+    memory_gb: 16
+    effective_compute_units_per_second: 800
+    tokens_per_second:
+      8: 88
+      16: 50
+      24: 34
+
+gpus:
+  - id: c1
+    region: A
+    gpu_type: A100
+  - id: c2
+    region: A
+    gpu_type: L4
+  - id: c3
+    region: A
+    gpu_type: T4
+  - id: c4
+    region: B
+    gpu_type: A100
+  - id: c5
+    region: B
+    gpu_type: L4
+  - id: c6
+    region: B
+    gpu_type: T4

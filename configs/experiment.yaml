@@ -1,0 +1,38 @@
+model: phase1_transformer
+throughput_provider: analytical
+allow_partial_inference: false
+random_seed: 0
+placement: placement_a
+
+placements:
+  placement_a:
+    c1: [0, 16]
+    c2: [0, 16]
+    c3: [16, 32]
+    c4: [16, 32]
+    c5: [32, 48]
+    c6: [32, 48]
+  placement_b:
+    c1: [0, 16]
+    c4: [0, 16]
+    c2: [16, 32]
+    c5: [16, 32]
+    c3: [32, 48]
+    c6: [32, 48]
+
+validation_cases:
+  - name: placement_a_cross_30
+    placement: placement_a
+    network_topology: network_topology.yaml
+    expected_max_flow: 110.0
+    expected_min_cut: 110.0
+  - name: placement_b_cross_30
+    placement: placement_b
+    network_topology: network_topology.yaml
+    expected_max_flow: 100.0
+    expected_min_cut: 100.0
+  - name: placement_a_cross_20
+    placement: placement_a
+    network_topology: network_topology_low_cross.yaml
+    expected_max_flow: 80.0
+    expected_min_cut: 80.0

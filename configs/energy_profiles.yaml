@@ -1,0 +1,26 @@
+metadata:
+  accounting_scope: operational_gpu_compute_carbon_proxy
+  parameter_status: simulator_assumption_not_hardware_measurement
+  tdp_used_as_energy_per_token: false
+  notes: Values are configurable sensitivity parameters, not measured production energy.
+
+provider: configured_linear
+gpu_types:
+  A100:
+    phases:
+      decode:
+        batch_sizes:
+          1:
+            joules_per_token_per_layer: 0.100
+  L4:
+    phases:
+      decode:
+        batch_sizes:
+          1:
+            joules_per_token_per_layer: 0.055
+  T4:
+    phases:
+      decode:
+        batch_sizes:
+          1:
+            joules_per_token_per_layer: 0.085
