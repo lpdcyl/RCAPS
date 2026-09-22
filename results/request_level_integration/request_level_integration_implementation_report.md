@@ -82,9 +82,9 @@ reported here.
 
 ## Verification
 
-The focused integration tests pass (`7 passed`). The full suite should be run
-with the repository's documented interpreter before merging; this phase adds
-no changes to existing simulator or scheduler tests.
+The focused integration tests pass (`7 passed`) and the full repository suite
+passes (`88 passed`) with the documented interpreter. This phase adds no
+changes to existing simulator or scheduler tests.
 
 ## Stop point / next stage suggestion
 
