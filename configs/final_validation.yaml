@@ -1,0 +1,45 @@
+# Final Validation controls. Stage energy values are parameterized simulator
+# assumptions; they are not hardware measurements or production SLOs.
+request_level:
+  slo_enabled: false
+  ttft_seconds: null
+  tbt_seconds: null
+  end_to_end_latency_seconds: null
+
+stage_aware:
+  phase_names: [prefill, decode]
+  batch_size: 1
+  workloads:
+    prefill_heavy:
+      prefill_tokens: 8.0
+      decode_tokens: 1.0
+    balanced:
+      prefill_tokens: 4.0
+      decode_tokens: 4.0
+    decode_heavy:
+      prefill_tokens: 1.0
+      decode_tokens: 8.0
+  gpu_scenarios:
+    - commodity_region
+    - moderate_asymmetric
+    - high_asymmetric
+  network_capacity_tokens_per_second: 20.0
+  carbon_intensity_g_per_kwh:
+    A: 100.0
+    B: 200.0
+
+historical_ci:
+  source_name: UK National Grid Carbon Intensity API
+  source_url: https://api.carbonintensity.org.uk/intensity/date/2025-01-01
+  raw_file: data/carbon/raw/uk_grid_intensity_2025-01-01.json
+  processed_file: data/carbon/processed/uk_grid_intensity_2025-01-01.csv
+  region_mapping:
+    A: GB
+    B: GB
+  # The source API provides 30-minute observations; preserve that cadence.
+  scheduler_interval_seconds: 1800
+  network_capacity_tokens_per_second: 20.0
+  load_profiles:
+    low: 0.40
+    medium: 0.75
+    high: 0.95
