@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-22",
+  "auditor": "local-static-audit; external-reviewer-mcp-unavailable",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "checks": {
+    "gt_provenance": {"status": "pass", "details": "Simulation inputs are labeled; one real GB CI source has metadata."},
+    "score_normalization": {"status": "pass", "details": "Reductions use fixed named baselines at equal throughput and horizon."},
+    "result_existence": {"status": "pass", "details": "Formal and final-validation CSVs exist and independent checks pass."},
+    "dead_code": {"status": "pass", "details": "Final experiment entry points and new provider tests were executed."},
+    "scope": {"status": "warn", "details": "No request simulator; historical data covers one GB signal."},
+    "eval_type": "simulation_only_plus_one_real_historical_ci_source"
+  },
+  "claims": [
+    {"id": "aggregate_carbon_flow", "impact": "supported_within_simulator"},
+    {"id": "dynamic_carbon_scheduling", "impact": "supported_for_declared_grids"},
+    {"id": "stage_aware_energy", "impact": "supported_as_parameterized_model"},
+    {"id": "request_latency_and_slo", "impact": "unsupported"},
+    {"id": "multi_region_historical_generalization", "impact": "unsupported"},
+    {"id": "exact_joint_oracle", "impact": "needs_qualifier_bounded_milp"}
+  ]
+}
