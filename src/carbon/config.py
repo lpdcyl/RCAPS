@@ -115,18 +115,50 @@ def load_energy_provider(
     raw_types = _mapping(data.get("gpu_types"), "energy gpu_types")
     profiles: dict[str, dict[str, dict[int, float]]] = {}
     for gpu_type, raw_gpu in raw_types.items():
-        phases = _mapping(_mapping(raw_gpu, str(gpu_type)).get("phases"), "phases")
+        raw_gpu_mapping = _mapping(raw_gpu, str(gpu_type))
+        raw_phases = raw_gpu_mapping.get("phases")
+        if raw_phases is None:
+            # Backward-compatible legacy form: one scalar/profile applies to
+            # both stages. This keeps old decode-only experiments exact.
+            legacy_value = raw_gpu_mapping.get("joules_per_token")
+            if legacy_value is None:
+                legacy_value = raw_gpu_mapping.get("joules_per_token_per_layer")
+            if legacy_value is None:
+                raise ValueError(
+                    f"Energy GPU type {gpu_type!r} requires phases or legacy joules_per_token"
+                )
+            if isinstance(legacy_value, Mapping):
+                legacy_batches = {
+                    int(batch): float(value)
+                    for batch, value in legacy_value.items()
+                }
+            else:
+                legacy_batches = {1: float(legacy_value)}
+            phases = {
+                "prefill": {"batch_sizes": legacy_batches},
+                "decode": {"batch_sizes": legacy_batches},
+            }
+        else:
+            phases = _mapping(raw_phases, "phases")
         gpu_phases: dict[str, dict[int, float]] = {}
         for phase, raw_phase in phases.items():
-            batches = _mapping(
-                _mapping(raw_phase, str(phase)).get("batch_sizes"), "batch_sizes"
-            )
+            raw_phase_mapping = _mapping(raw_phase, str(phase))
+            raw_batches = raw_phase_mapping.get("batch_sizes")
+            if raw_batches is None and "joules_per_token_per_layer" in raw_phase_mapping:
+                raw_batches = {1: raw_phase_mapping["joules_per_token_per_layer"]}
+            batches = _mapping(raw_batches, "batch_sizes")
+
+            def _batch_value(raw_value: Any) -> float:
+                if isinstance(raw_value, Mapping):
+                    return float(
+                        _mapping(raw_value, "batch energy")[
+                            "joules_per_token_per_layer"
+                        ]
+                    )
+                return float(raw_value)
+
             gpu_phases[str(phase)] = {
-                int(batch_size): float(
-                    _mapping(raw_value, "batch energy")[
-                        "joules_per_token_per_layer"
-                    ]
-                )
+                int(batch_size): _batch_value(raw_value)
                 for batch_size, raw_value in batches.items()
             }
         profiles[str(gpu_type)] = gpu_phases

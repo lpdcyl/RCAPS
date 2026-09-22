@@ -8,18 +8,30 @@ provider: configured_linear
 gpu_types:
   A100:
     phases:
+      prefill:
+        batch_sizes:
+          1:
+            joules_per_token_per_layer: 0.140
       decode:
         batch_sizes:
           1:
             joules_per_token_per_layer: 0.100
   L4:
     phases:
+      prefill:
+        batch_sizes:
+          1:
+            joules_per_token_per_layer: 0.080
       decode:
         batch_sizes:
           1:
             joules_per_token_per_layer: 0.055
   T4:
     phases:
+      prefill:
+        batch_sizes:
+          1:
+            joules_per_token_per_layer: 0.110
       decode:
         batch_sizes:
           1:
