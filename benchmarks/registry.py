@@ -9,6 +9,7 @@ from typing import Callable
 from baselines import helix
 from rcaps import ablations
 from rcaps import method as rcaps
+from rcaps import v2_method
 
 
 @dataclass(frozen=True)
@@ -36,6 +37,15 @@ for name in (*ablations.SCHEDULERS, *ablations.LAYOUT_VARIANTS):
         lambda scenario, offered, duration, warmup, seed, solution, cluster,
         _name=name: ablations.evaluate(_name, scenario, offered, duration,
                                         warmup, seed, solution, cluster),
+    )
+
+for name, role in (("rcaps_v2", "experimental"),
+                   ("rcaps_v2_fixed_structure", "ablation")):
+    METHODS[name] = MethodSpec(
+        name, "V2 adaptive shared-stem placement" if name == "rcaps_v2" else
+        "V2 search constrained to a one-GPU stem and two suffixes", role,
+        lambda scenario, root, _name=name: v2_method.layout(_name, scenario, root),
+        v2_method.evaluate,
     )
 
 DEFAULT_METHODS = [name for name, spec in METHODS.items()
