@@ -40,6 +40,7 @@ python -m benchmarks.run --methods rcaps rcaps_no_queue rcaps_no_session rcaps_n
 python -m benchmarks.run --methods rcaps_capacity --scenarios single multi --seeds 0 1 2 --workers 6
 python -m benchmarks.run --methods rcaps_alt_demand --scenarios multi --seeds 0 1 2 --workers 3
 python -m benchmarks.compare --baselines rcaps_no_coalesce --scenarios single multi --seeds 0 1 2
+python -m benchmarks.compare --main-method rcaps_coarse --baselines rcaps_capacity --seeds 0 1 2
 ```
 
 Predeclared claims, run counts, failure handling, and statistical analysis are

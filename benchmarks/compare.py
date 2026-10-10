@@ -60,12 +60,14 @@ def common_cohort(candidate: dict, reference: dict) -> dict:
 
 
 def paired_summary(results_dir: Path, scenario: str, seeds: list[int],
-                   baseline: str) -> dict:
-    pairs = [(read_record(results_dir, scenario, seed, MAIN_METHOD),
+                   baseline: str, main_method: str = MAIN_METHOD) -> dict:
+    if main_method == baseline:
+        raise ValueError("The two compared methods must differ")
+    pairs = [(read_record(results_dir, scenario, seed, main_method),
               read_record(results_dir, scenario, seed, baseline)) for seed in seeds]
     for candidate, reference in pairs:
         if any(candidate.get(key) != reference.get(key) for key in MATCH_FIELDS):
-            raise ValueError(f"Unpaired {MAIN_METHOD}/{baseline} run: "
+            raise ValueError(f"Unpaired {main_method}/{baseline} run: "
                              f"{scenario}, seed {candidate['seed']}")
     metrics = {}
     for key, direction in METRICS.items():
@@ -98,7 +100,7 @@ def paired_summary(results_dir: Path, scenario: str, seeds: list[int],
         "main_backlog_at_end": candidate["backlog_at_window_end"],
         "baseline_backlog_at_end": reference["backlog_at_window_end"],
     } for candidate, reference in pairs]
-    return {"scenario": scenario, "main_method": MAIN_METHOD,
+    return {"scenario": scenario, "main_method": main_method,
             "baseline": baseline, "seeds": seeds,
             "metrics": metrics, "measurement_population_by_seed": populations,
             "common_cohort_by_seed": cohorts}
@@ -110,13 +112,16 @@ def main() -> None:
     parser.add_argument("--scenarios", nargs="+", choices=("single", "multi"),
                         default=["single", "multi"])
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
+    parser.add_argument("--main-method", choices=sorted(METHODS),
+                        default=MAIN_METHOD)
     parser.add_argument("--baselines", nargs="+",
-                        choices=[name for name in METHODS if name != MAIN_METHOD],
+                        choices=sorted(METHODS),
                         default=[name for name, spec in METHODS.items()
                                  if spec.role == "baseline"])
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    report = [paired_summary(args.results_dir, scenario, args.seeds, baseline)
+    report = [paired_summary(args.results_dir, scenario, args.seeds, baseline,
+                             args.main_method)
               for scenario in args.scenarios for baseline in args.baselines]
     encoded = json.dumps(report, indent=2) + "\n"
     if args.output:

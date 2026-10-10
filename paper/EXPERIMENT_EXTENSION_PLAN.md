@@ -43,6 +43,7 @@ python -m benchmarks.run --methods rcaps helix rcaps_no_queue rcaps_no_session r
 python -m benchmarks.run --methods rcaps_capacity --scenarios single multi --seeds 0 1 2 --workers 6
 python -m benchmarks.run --methods rcaps_alt_demand --scenarios multi --seeds 0 1 2 --workers 3
 python -m benchmarks.compare --baselines helix rcaps_capacity rcaps_coarse rcaps_no_queue rcaps_no_session rcaps_no_coalesce --seeds 0 1 2 --output paper/THREE_SEED_COMPARISON.json
+python -m benchmarks.compare --main-method rcaps_coarse --baselines rcaps_capacity --seeds 0 1 2 --output paper/TOPOLOGY_INCREMENT.json
 python -m benchmarks.compare --baselines rcaps_alt_demand --scenarios multi --seeds 0 1 2 --output paper/THREE_SEED_ALT_DEMAND.json
 python -m benchmarks.paired_stats --source benchmark --seeds 0 1 2 --output paper/THREE_SEED_PAIRED_STATS.json
 python -m benchmarks.manifest
