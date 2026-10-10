@@ -28,21 +28,23 @@ def objective(graph: GraphMetrics, queue: QueuePrediction,
 
 
 def measure(model: TopologyModel, state: dict, load: float,
-            mode: str) -> tuple[GraphMetrics, QueuePrediction]:
-    return model.measure(state, demand_mode=mode), predict(model, state, load)
+            mode: str, *, service_mode: str = "legacy") -> tuple[GraphMetrics, QueuePrediction]:
+    return model.measure(state, demand_mode=mode), predict(
+        model, state, load, service_mode=service_mode)
 
 
 def refine_queue(model: TopologyModel, initial: dict, load: float,
-                 *, max_steps: int = 16) -> tuple[dict, list[dict]]:
+                 *, max_steps: int = 16, service_mode: str = "legacy") -> tuple[dict, list[dict]]:
     state = copy.deepcopy(initial)
     mode = "ensemble" if len(topology_groups(model)) == 1 else "canonical"
-    reference = measure(model, state, load, mode)
+    reference = measure(model, state, load, mode, service_mode=service_mode)
     current = reference
     current_score = objective(*current, reference)
     started = time.perf_counter()
     evaluations = 0
     trace = [{"step": 0, "move": "coarse partition", "score": current_score,
               "demand_mode": "queue_flow", "event_demand_mode": mode,
+              "service_mode": service_mode,
               "search_mode": "full", "offered_tokens_per_s": load,
               "ttft_s": current[0].ttft_s, "tpot_s": current[0].tpot_s,
               "max_queue_pressure": current[1].max_queue_pressure,
@@ -55,7 +57,7 @@ def refine_queue(model: TopologyModel, initial: dict, load: float,
             evaluations += 1
             try:
                 candidate_graph, candidate_queue = measure(
-                    model, candidate, load, mode)
+                    model, candidate, load, mode, service_mode=service_mode)
             except ValueError:
                 continue
             candidate_score = objective(candidate_graph, candidate_queue, reference)

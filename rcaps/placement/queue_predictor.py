@@ -53,7 +53,10 @@ def workload_means() -> tuple[float, float]:
 
 
 def edges_for(model: TopologyModel, state: dict,
-              input_tokens: float, output_tokens: float) -> tuple[list[str | int], list[Edge]]:
+              input_tokens: float, output_tokens: float,
+              *, service_mode: str = "legacy") -> tuple[list[str | int], list[Edge]]:
+    if service_mode not in ("legacy", "phase"):
+        raise ValueError(f"Unknown service mode: {service_mode}")
     spans = model.intervals(state)
     nodes: list[str | int] = ["source", *sorted(spans,
                                                 key=lambda node: (spans[node][1], node)),
@@ -86,12 +89,15 @@ def edges_for(model: TopologyModel, state: dict,
                 decode_token = length * profile_at(profile.decode_bs2time,
                                                    model.decode_batch) / model.decode_batch
                 compute_route = prompt + decode_token
-                # Match the existing per-token resource-demand convention;
-                # prompt and decode overlap through dynamic batching, so their
-                # isolated durations cannot simply be added as exclusive GPU
-                # work for every token of a request.
-                compute_work = (input_tokens + output_tokens) * max(
-                    prompt / input_tokens, decode_token)
+                if service_mode == "phase":
+                    # One prompt pass, then one batched decode pass per
+                    # generated token. The legacy max-times-total convention
+                    # counts the expensive decode unit cost for input tokens.
+                    compute_work = prompt + output_tokens * decode_token
+                else:
+                    # Preserve the prior experiment exactly for reproduction.
+                    compute_work = (input_tokens + output_tokens) * max(
+                        prompt / input_tokens, decode_token)
             edges.append(Edge(left, right, f"{left}->{right}",
                               link_route + compute_route, compute_work, link_work))
     return nodes, edges
@@ -161,12 +167,14 @@ def waits_from_flow(edges: list[Edge], probabilities: list[float],
 
 
 def predict(model: TopologyModel, state: dict, offered_tokens_per_s: float,
-            *, temperature_s: float = 0.2, iterations: int = 96) -> QueuePrediction:
+            *, temperature_s: float = 0.2, iterations: int = 96,
+            service_mode: str = "legacy") -> QueuePrediction:
     if offered_tokens_per_s <= 0 or temperature_s <= 0 or iterations < 1:
         raise ValueError("Positive load, temperature and iteration count required")
     input_tokens, output_tokens = workload_means()
     arrival_rate = offered_tokens_per_s / (input_tokens + output_tokens)
-    nodes, edges = edges_for(model, state, input_tokens, output_tokens)
+    nodes, edges = edges_for(model, state, input_tokens, output_tokens,
+                             service_mode=service_mode)
     probabilities, _ = route_flow(nodes, edges, {}, {}, temperature_s)
     # Method of successive averages avoids the two-branch oscillation caused
     # by directly feeding a congested branch's wait into the next softmax.
