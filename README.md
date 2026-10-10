@@ -2,7 +2,7 @@
 
 **Resource Contention-Aware Placement and Scheduling for Heterogeneous LLM Serving**
 
-RCAPS combines a resource-dependent event graph, capacity- and topology-constrained shared-prefix/two-suffix placement, and queue-aware routing over the exported layer-compatible DAG. Its measurements use the Helix event simulator on heterogeneous 24-GPU LLaMA-70B configurations.
+RCAPS V1 addresses three connected decisions: matching heterogeneous GPU and network resources, balancing layer sharing with replicated execution paths, and routing requests under current resource contention. It combines topology- and capacity-constrained shared-prefix/two-suffix placement with online routing over a layer-compatible DAG. The event graph and critical-resource search refine placement; ready decode-transfer coalescing is an execution optimization. Measurements use the Helix event simulator on heterogeneous 24-GPU LLaMA-70B configurations.
 
 ## Project structure
 
@@ -14,7 +14,7 @@ RCAPS combines a resource-dependent event graph, capacity- and topology-constrai
 | [`experiments/`](experiments/) | Historical experiments, paper result JSON, analysis, figures, and compatibility entry points |
 | [`simulator/`](simulator/) | Original Helix simulator used by all methods |
 
-The current implementation is described in [the method framework](experiments/METHOD_FRAMEWORK.md). See [experiment navigation](experiments/README.md), [three-seed results](experiments/multiseed/RESULTS.md), [placement versus scheduler crossover](experiments/validation_2026/CROSS_RESULTS.md), [execution-path structure ablation](experiments/structure_ablation_2026/RESULTS.md), [additional validation](experiments/ccfa_validation/RESULTS.md), [the paper figure guide](experiments/paper_figures/FIGURE_GUIDE.md), and [the benchmark protocol](benchmarks/README.md). Chinese drafts of the [Introduction](paper/INTRODUCTION_CN.md) and [experimental setup](paper/EXPERIMENTAL_SETUP_CN.md), plus an [evidence-extension plan](paper/EXPERIMENT_EXTENSION_PLAN.md), record the paper claims and remaining experiments.
+The V1 research claims and their limits are fixed in [the Chinese framework](paper/RESEARCH_FRAMEWORK_V1_CN.md), with implementation details in [the method framework](experiments/METHOD_FRAMEWORK.md). See [experiment navigation](experiments/README.md), [three-seed results](experiments/multiseed/RESULTS.md), [placement versus scheduler crossover](experiments/validation_2026/CROSS_RESULTS.md), [execution-path structure ablation](experiments/structure_ablation_2026/RESULTS.md), [additional validation](experiments/ccfa_validation/RESULTS.md), [the paper figure guide](experiments/paper_figures/FIGURE_GUIDE.md), and [the benchmark protocol](benchmarks/README.md). Chinese drafts of the [Introduction](paper/INTRODUCTION_CN.md) and [experimental setup](paper/EXPERIMENTAL_SETUP_CN.md) record the paper claims and protocol.
 
 ## Run
 
