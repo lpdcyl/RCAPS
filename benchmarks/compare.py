@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from statistics import mean, stdev
 
@@ -41,7 +42,11 @@ def common_cohort(candidate: dict, reference: dict) -> dict:
         raise ValueError("Paired runs have different query identifiers")
     for uid in left:
         for field in ("arrival_s", "input_tokens", "output_tokens"):
-            if left[uid][field] != right[uid][field]:
+            same = (math.isclose(left[uid][field], right[uid][field],
+                                 rel_tol=0, abs_tol=1e-9)
+                    if field == "arrival_s" else
+                    left[uid][field] == right[uid][field])
+            if not same:
                 raise ValueError(f"Paired query {uid} differs in {field}")
     result = {"seed": candidate["seed"], "arrivals": len(left),
               "both_completed": sum(left[uid]["completed"] and

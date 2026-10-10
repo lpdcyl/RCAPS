@@ -14,6 +14,7 @@ python -m benchmarks.run --dry-run
 python -m benchmarks.run --methods rcaps helix --seeds 0 1 2 --workers 12
 python -m benchmarks.compare --baselines helix --seeds 0 1 2
 python -m benchmarks.paired_stats --source benchmark --seeds 0 1 2
+python -m benchmarks.audit
 ```
 
 Each new run also records per-query first-token time, mean inter-token time,
