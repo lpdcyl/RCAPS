@@ -60,3 +60,37 @@ python -m experiments.validation_2026.figures
 `run_batch.py` can run independent simulator processes with bounded workers.
 Results are paired by seed; three seeds support descriptive consistency, not
 a claim of statistical significance.
+
+## Placement × online scheduler crossover
+
+The 2×2 crossover fixes the physical topology, 70B model, offered load, seed,
+request trace, 1800-second window, and metric definitions. Its four cells are
+Helix layout + Helix max-flow scheduler (HH), Helix layout + RCAPS scheduler
+(HR), RCAPS layout + Helix max-flow scheduler (RH), and RCAPS layout + RCAPS
+scheduler (RR). The existing HH and RR results are reused; `run_cross.py`
+evaluates HR and RH. Both off-diagonal combinations passed 60-second
+compatibility pilots on both topologies. The runner verifies each new trace
+hash against HH and RR before saving. `summarize_cross.py` verifies the layout
+file hashes within each pair and reports the placement effect under either
+scheduler, the scheduler effect under either layout, and their interaction.
+Symmetric averages of the two conditional effects partition the total gain
+descriptively; they are not treated as unique causal contributions.
+
+The single-cluster RH run fails on seed 1 because Helix's online max-flow
+scheduler reaches an assertion with no eligible next node. It has no complete
+window metric. `summarize_cross.py` requires the three complete HH/HR/RR cells
+per seed and reports RH/interaction only for seeds where RH finished. See
+`cross_failures.json` and `CROSS_RESULTS.md`. To reproduce successful cells:
+
+```text
+python -m experiments.validation_2026.run_cross_batch --scenarios multi --workers 4
+python -m experiments.validation_2026.run_cross_batch --scenarios single --seeds 0 2 --workers 4
+python -m experiments.validation_2026.run_cross --scenario single --seed 1 --arm helix_layout_rcaps_scheduler
+python -m experiments.validation_2026.summarize_cross
+python -m experiments.validation_2026.figure_cross
+```
+
+The failed RH cell can be reproduced directly with `run_cross.py --scenario
+single --seed 1 --arm rcaps_layout_helix_scheduler`; it exits with the
+assertion described above. The batch runner returns nonzero if any selected
+cell fails.
