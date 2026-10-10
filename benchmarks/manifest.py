@@ -30,7 +30,10 @@ CONFIGS = (
     "rcaps/layouts/single/simulator_cluster.ini",
     "rcaps/layouts/multi/solution.ini",
     "rcaps/layouts/multi/simulator_cluster.ini",
-)
+) + tuple(f"rcaps/variant_layouts/{variant}/{name}"
+          for variant in ("single_capacity", "multi_capacity", "single_coarse",
+                          "multi_coarse", "multi_ensemble")
+          for name in ("placement.json", "solution.ini", "simulator_cluster.ini"))
 
 
 def fingerprint(path: Path) -> dict:
