@@ -137,40 +137,11 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
                                             separators=(",", ":")).encode()).hexdigest()
     if checkpoint is not None and checkpoint["trace_sha256"] != trace_sha256:
         raise ValueError("Checkpoint request trace does not match this run")
-    gpu_busy_s: dict[str, float] = defaultdict(float)
-    link_occupied_s: dict[str, float] = defaultdict(float)
+    resource_profile = None
     if profile_resources:
-        # Read-only accounting wrappers. They leave the returned simulator
-        # objects and event times unchanged, and clip work to the fixed window.
-        def overlap(start_s: float, duration_s: float) -> float:
-            return max(0.0, min(start_s + duration_s, ending) - max(start_s, beginning))
-
-        for node in simulator.compute_nodes.values():
-            original = node.start_execution
-            label = node.entity_name
-
-            def start_execution(*args, _original=original, _label=label, **kwargs):
-                batch = _original(*args, **kwargs)
-                gpu_busy_s[_label] += overlap(simulator.current_time, batch.duration)
-                return batch
-
-            node.start_execution = start_execution
-        for link in simulator.links.values():
-            original = link.start_sending
-            label = f"{link.node_in.entity_name}->{link.node_out.entity_name}"
-            capacity = link.bandwidth
-            latency = link.latency
-
-            def start_sending(*args, _original=original, _label=label,
-                              _capacity=capacity, _latency=latency, **kwargs):
-                transmission = _original(*args, **kwargs)
-                link_occupied_s[_label] += (
-                    overlap(simulator.current_time,
-                            transmission.duration - _latency) *
-                    transmission.bandwidth_usage / _capacity)
-                return transmission
-
-            link.start_sending = start_sending
+        from benchmarks.resource_profile import ResourceProfile
+        resource_profile = ResourceProfile(simulator, beginning, ending)
+        resource_profile.install()
     manager = simulator.query_manager
     accumulator = None
     if compact:
@@ -335,11 +306,8 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         result["query_samples"] = ttft_outliers
     elif record_query_samples:
         result["query_samples"] = accumulator.query_samples
-    if profile_resources:
-        result["gpu_busy_fraction"] = {
-            name: busy / window for name, busy in sorted(gpu_busy_s.items())}
-        result["link_occupied_fraction"] = {
-            name: busy / window for name, busy in sorted(link_occupied_s.items())}
+    if resource_profile is not None:
+        result.update(resource_profile.summary())
     if checkpoint_file is not None:
         checkpoint_file.unlink(missing_ok=True)
     return result

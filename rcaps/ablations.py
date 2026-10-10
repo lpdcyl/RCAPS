@@ -33,6 +33,9 @@ SCHEDULERS = {
 LAYOUT_VARIANTS = {
     "rcaps_capacity": {"single": "single_capacity", "multi": "multi_capacity"},
     "rcaps_coarse": {"single": "single_coarse", "multi": "multi_coarse"},
+    "rcaps_full_search": {"single": "single_full_search", "multi": "multi_full_search"},
+    "rcaps_static_no_graph": {"single": "single_static_no_graph",
+                              "multi": "multi_static_no_graph"},
     # In the single cluster canonical mode makes no accepted move; it is
     # byte-equivalent to rcaps_coarse and needs no duplicate simulation.
     "rcaps_alt_demand": {"multi": "multi_ensemble"},

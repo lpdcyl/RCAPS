@@ -32,6 +32,8 @@ The registered ablations keep the common runner and trace generator:
 | `rcaps_no_session` | Ignore active KV-session decode service in routing cost |
 | `rcaps_no_coalesce` | Transfer ready decodes individually; preserve routing cost |
 | `rcaps_coarse` | Use the initial shared-prefix/two-suffix layout before local refinement |
+| `rcaps_full_search` | Evaluate every legal local move using the same event-graph objective as RCAPS |
+| `rcaps_static_no_graph` | Search the same neighborhood with isolated-route latency, without event-graph or critical-resource analysis |
 | `rcaps_alt_demand` | Use ensemble path demand on the three-cluster layout; this is not a distinct single-cluster layout |
 
 For example:

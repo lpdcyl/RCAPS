@@ -12,6 +12,7 @@ import argparse
 import ast
 import copy
 import json
+import time
 from configparser import ConfigParser
 from heapq import heappop, heappush
 from pathlib import Path
@@ -187,14 +188,18 @@ def score(metrics: GraphMetrics, reference: GraphMetrics) -> float:
             0.25 * metrics.bottleneck_s / reference.bottleneck_s)
 
 
-def boundary_moves(state: dict, model: TopologyModel, metrics: GraphMetrics):
-    """Emit only moves incident to a critical or throughput-limiting resource."""
-    active = set(metrics.critical_resources) | {metrics.bottleneck_resource}
+def boundary_moves(state: dict, model: TopologyModel, metrics: GraphMetrics | None,
+                   *, guided: bool = True):
+    """Emit the same legal neighborhood, optionally filtered by critical resources."""
+    if guided and metrics is None:
+        raise ValueError("Guided search requires resource metrics")
+    active = (set(metrics.critical_resources) | {metrics.bottleneck_resource}
+              if metrics is not None else set())
     for branch, path in enumerate(state["paths"]):
         for position in range(len(path) - 1):
             left, right = path[position:position + 2]
             neighborhood = {f"gpu:{left}", f"gpu:{right}", f"link:{left}->{right}"}
-            if not neighborhood & active:
+            if guided and not neighborhood & active:
                 continue
             for donor, receiver in ((left, right), (right, left)):
                 if state["lengths"][donor] <= 1 or state["lengths"][receiver] >= model.capacity[receiver]:
@@ -209,7 +214,7 @@ def boundary_moves(state: dict, model: TopologyModel, metrics: GraphMetrics):
     if state["shared_length"] > 1:
         first_nodes = [path[0] for path in state["paths"]]
         if (all(state["lengths"][node] < model.capacity[node] for node in first_nodes) and
-                (f"gpu:{state['shared']}" in active or
+                (not guided or f"gpu:{state['shared']}" in active or
                  any(f"gpu:{node}" in active for node in first_nodes))):
             candidate = copy.deepcopy(state)
             candidate["shared_length"] -= 1
@@ -226,7 +231,7 @@ def boundary_moves(state: dict, model: TopologyModel, metrics: GraphMetrics):
 
 
 def refine(model: TopologyModel, initial: dict, *, max_steps: int = 16,
-           demand_mode: str | None = None
+           demand_mode: str | None = None, guided: bool = True
            ) -> tuple[dict, list[dict]]:
     state = copy.deepcopy(initial)
     # Uniform low-latency topology admits many stitched routes and their join
@@ -237,17 +242,22 @@ def refine(model: TopologyModel, initial: dict, *, max_steps: int = 16,
     if demand_mode not in ("ensemble", "canonical"):
         raise ValueError(f"Unknown demand mode: {demand_mode}")
     reference = model.measure(state, demand_mode=demand_mode)
+    started = time.perf_counter()
+    evaluations = 1
     current = reference
     current_score = score(current, reference)
     trace = [{"step": 0, "move": "coarse partition", "score": current_score,
               "demand_mode": demand_mode,
+              "search_mode": "guided" if guided else "full",
               "ttft_s": current.ttft_s, "tpot_s": current.tpot_s,
               "bottleneck_s": current.bottleneck_s,
               "bottleneck_resource": current.bottleneck_resource}]
     for step in range(1, max_steps + 1):
         gains = []
-        for sequence, (move, candidate) in enumerate(boundary_moves(state, model, current)):
+        for sequence, (move, candidate) in enumerate(
+                boundary_moves(state, model, current, guided=guided)):
             try:
+                evaluations += 1
                 estimate = model.measure(candidate, demand_mode=demand_mode)
             except ValueError:
                 continue
@@ -264,6 +274,66 @@ def refine(model: TopologyModel, initial: dict, *, max_steps: int = 16,
                       "tpot_s": current.tpot_s,
                       "bottleneck_s": current.bottleneck_s,
                       "bottleneck_resource": current.bottleneck_resource})
+    trace[0]["candidate_evaluations"] = evaluations - 1
+    trace[0]["planning_s"] = time.perf_counter() - started
+    return state, trace
+
+
+def static_route_costs(model: TopologyModel, state: dict) -> tuple[float, float]:
+    """Mean isolated-route prefill/decode times without event or queue modeling."""
+    model.intervals(state)
+    prompt, decode = [], []
+    for path in state["paths"]:
+        stages = model._stages(state, path)
+        prompt.append(sum(stage["prefill_s"] + stage["incoming_latency_s"] +
+                          stage["payload_bytes"] * model.prompt_tokens /
+                          stage["incoming_bytes_per_s"] for stage in stages))
+        decode.append(sum(stage["decode_s"] + stage["incoming_latency_s"] +
+                          stage["payload_bytes"] /
+                          stage["incoming_bytes_per_s"] for stage in stages))
+    return sum(prompt) / len(prompt), sum(decode) / len(decode)
+
+
+def refine_static(model: TopologyModel, initial: dict, *, max_steps: int = 16
+                  ) -> tuple[dict, list[dict]]:
+    """Use the full legal neighborhood and isolated-route latency alone."""
+    state = copy.deepcopy(initial)
+    started = time.perf_counter()
+    reference = static_route_costs(model, state)
+    evaluations = 0
+
+    def objective(costs: tuple[float, float]) -> float:
+        # Renormalize the two latency terms of the original 0.40/0.35/0.25
+        # score after removing its bottleneck-demand component.
+        return (0.40 * costs[0] / reference[0] +
+                0.35 * costs[1] / reference[1]) / 0.75
+
+    current = reference
+    current_score = objective(current)
+    trace = [{"step": 0, "move": "coarse partition", "score": current_score,
+              "search_mode": "static", "demand_mode": "none",
+              "static_prefill_s": current[0], "static_decode_s": current[1]}]
+    for step in range(1, max_steps + 1):
+        gains = []
+        for sequence, (move, candidate) in enumerate(
+                boundary_moves(state, model, None, guided=False)):
+            evaluations += 1
+            try:
+                estimate = static_route_costs(model, candidate)
+            except ValueError:
+                continue
+            gain = current_score - objective(estimate)
+            if gain > 1e-9:
+                heappush(gains, (-gain, sequence, move, candidate, estimate))
+        if not gains:
+            break
+        neg_gain, _, move, state, current = heappop(gains)
+        current_score += neg_gain
+        trace.append({"step": step, "move": move, "gain": -neg_gain,
+                      "score": current_score, "static_prefill_s": current[0],
+                      "static_decode_s": current[1]})
+    trace[0]["candidate_evaluations"] = evaluations
+    trace[0]["planning_s"] = time.perf_counter() - started
     return state, trace
 
 
@@ -335,6 +405,8 @@ def main() -> None:
                         default="auto")
     parser.add_argument("--initial-mode", choices=("topology", "capacity"),
                         default="topology")
+    parser.add_argument("--search-mode", choices=("guided", "full", "static"),
+                        default="guided")
     args = parser.parse_args()
     cluster, template = scenario(args.scenario)
     model = TopologyModel(cluster)
@@ -347,10 +419,17 @@ def main() -> None:
         algorithm = "VRAM-only balanced shared-prefix/two-suffix partition"
     else:
         state = initial_partition(model)
-        refined, trace = refine(model, state, max_steps=args.max_steps,
-                                demand_mode=None if args.demand_mode == "auto"
-                                else args.demand_mode)
-        algorithm = "topology-conditioned critical-path/path-ensemble graph partition"
+        if args.search_mode == "static":
+            refined, trace = refine_static(model, state, max_steps=args.max_steps)
+            algorithm = "topology-conditioned full-neighborhood isolated-route search"
+        else:
+            refined, trace = refine(model, state, max_steps=args.max_steps,
+                                    demand_mode=None if args.demand_mode == "auto"
+                                    else args.demand_mode,
+                                    guided=args.search_mode == "guided")
+            algorithm = ("topology-conditioned critical-path/path-ensemble graph partition"
+                         if args.search_mode == "guided" else
+                         "topology-conditioned full-neighborhood greedy graph partition")
     result = save(model, template, refined, args.output_dir, trace,
                   algorithm=algorithm)
     print(json.dumps({"scenario": args.scenario, "steps": len(trace) - 1,
