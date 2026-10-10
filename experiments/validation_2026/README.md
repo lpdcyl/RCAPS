@@ -26,6 +26,9 @@ initial and final layouts within each topology. Because the topologies also
 have different offered loads, differences across topologies are descriptive.
 `verify_protocol.py` checks that adding passive profiling does not change
 previously saved simulator outcomes or the request-trace hash.
+`hotspot_audit.py` compares tie-aware offline demand rankings with measured
+busy and queue rankings across the existing three seeds; see
+`HOTSPOT_AUDIT.md`. It is retrospective and does not train a predictor.
 
 ## Event-graph and resource-analysis removal
 
