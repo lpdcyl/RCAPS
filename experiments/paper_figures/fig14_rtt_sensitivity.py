@@ -19,7 +19,7 @@ def main():
     for index, (ax, (key, label)) in enumerate(zip(axes, metrics)):
         for method, color, marker, name in (
             ("helix", HELIX, "o", "Helix"),
-            ("green", OURS, "s", "Ours"),
+            ("green", OURS, "s", "RCAPS"),
         ):
             values = [item[method][key]["mean"] for item in settings]
             errors = [item[method][key]["sd"] for item in settings]

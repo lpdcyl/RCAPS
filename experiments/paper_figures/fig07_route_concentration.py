@@ -11,7 +11,7 @@ def main():
     for ax, s, letter in zip(axes, ("single", "multi"), "ab"):
         for method, color, linestyle, label in (
             ("helix", HELIX, "-", "Helix"),
-            ("integrated", OURS, "--", "Ours"),
+            ("integrated", OURS, "--", "RCAPS"),
         ):
             data = official(s, method)
             values = sorted(data["route_counts"].values(), reverse=True)

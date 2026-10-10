@@ -1,4 +1,4 @@
-# Helix-GREEN：整体方法框架
+# RCAPS：整体方法框架
 
 > 本文档描述**当前已经实现并完成仿真验证的版本**。方法面向异构 GPU、可能跨集群的 LLaMA-70B 流水线推理；系统目标是提高输出吞吐、降低请求延迟。能耗与碳排放不在当前优化目标或实验指标中。
 
@@ -34,17 +34,17 @@
 F(e)=d(e)+\max_{p\in\operatorname{pred}(e)}F(p),
 \]
 
-其中 $d(e)$ 是事件持续时间。由终点回溯最长路，可以指出延长完成时间的 GPU 或链路，而不是只给出一个不可解释的总延迟。当前放置代理使用**固定的四个交错请求、每个八个输出 token**作为代表性并发工作负载；它不读取待测实验的未来到达序列。[`event_graph.py`](critical_graph/event_graph.py) 实现事件图及关键路径，[`topology.py`](critical_graph/topology.py) 把 GPU/网络画像转换为阶段代价。
+其中 $d(e)$ 是事件持续时间。由终点回溯最长路，可以指出延长完成时间的 GPU 或链路，而不是只给出一个不可解释的总延迟。当前放置代理使用**固定的四个交错请求、每个八个输出 token**作为代表性并发工作负载；它不读取待测实验的未来到达序列。[`event_graph.py`](../rcaps/placement/event_graph.py) 实现事件图及关键路径，[`topology.py`](../rcaps/placement/topology.py) 把 GPU/网络画像转换为阶段代价。
 
 ### 3.2 路径集合需求
 
-导出的层兼容 DAG 可以形成比两条设计后缀更多的合法“拼接路径”。仅分析一条代表路径，可能低估几条路径汇入同一 GPU 的负载。单集群最终放置因此使用[前后向 log-sum-exp 动态规划](critical_graph/path_ensemble.py)计算边的软路径权重和 GPU/链路的边际需求；不显式枚举所有完整请求路线。这些权重是**离线解释与放置代理**，不是线上真实选路概率，也不是未来流量预测。
+导出的层兼容 DAG 可以形成比两条设计后缀更多的合法“拼接路径”。仅分析一条代表路径，可能低估几条路径汇入同一 GPU 的负载。单集群最终放置因此使用[前后向 log-sum-exp 动态规划](../rcaps/placement/path_ensemble.py)计算边的软路径权重和 GPU/链路的边际需求；不显式枚举所有完整请求路线。这些权重是**离线解释与放置代理**，不是线上真实选路概率，也不是未来流量预测。
 
 三集群最终放置采用代表性关键路径需求：物理拓扑存在明显的跨集群时延间隙，放置更强调阶段顺序与跨区域传输。当前“单集群用路径集合、三集群用典型关键路径”的规则由拓扑分组触发；这项配置是在开发实验后确定的，需要独立种子继续检验泛化性。
 
 ## 4. 离线阶段：关键路径反馈的模型放置
 
-放置算法先根据链路时延中最大的相邻比例间隙划分“快连接”设备组，再构造显存容量可行的共享前缀和两条后缀。后缀内的 GPU 顺序同时考虑传播时延与激活传输时间。然后仅在**当前关键路径或最大需求资源的邻域**提出局部变更：相邻阶段之间移动一层边界、交换相邻 GPU 顺序，或调整共享前缀边界。每次选择代理分数下降最大的合法变更，直到没有正收益或达到步数上限。[`partition.py`](critical_graph/partition.py) 保存最终层区间、仿真布局和搜索轨迹。
+放置算法先根据链路时延中最大的相邻比例间隙划分“快连接”设备组，再构造显存容量可行的共享前缀和两条后缀。后缀内的 GPU 顺序同时考虑传播时延与激活传输时间。然后仅在**当前关键路径或最大需求资源的邻域**提出局部变更：相邻阶段之间移动一层边界、交换相邻 GPU 顺序，或调整共享前缀边界。每次选择代理分数下降最大的合法变更，直到没有正收益或达到步数上限。[`partition.py`](../rcaps/placement/partition.py) 保存最终层区间、仿真布局和搜索轨迹。
 
 代理分数是相对粗放置的三个量的加权和：
 
@@ -54,7 +54,7 @@ J(P)=0.40\frac{\widehat{T}_{\mathrm{TTFT}}(P)}{\widehat{T}_{\mathrm{TTFT}}(P_0)}
     +0.25\frac{\widehat{B}(P)}{\widehat{B}(P_0)}.
 \]
 
-$P_0$ 是容量可行的粗放置，$\widehat{B}$ 是最大资源需求代理。权重只用于**离线局部搜索**；不能把 $J$ 解释成真实 P95、吞吐或最优性证明。它使计算延迟、传输及瓶颈服务需求共同影响层边界，而显存与完整层覆盖始终是硬约束。最终文件为[单集群放置](critical_graph/runs/single_final/placement.json)和[三集群放置](critical_graph/runs/multi_final/placement.json)。
+$P_0$ 是容量可行的粗放置，$\widehat{B}$ 是最大资源需求代理。权重只用于**离线局部搜索**；不能把 $J$ 解释成真实 P95、吞吐或最优性证明。它使计算延迟、传输及瓶颈服务需求共同影响层边界，而显存与完整层覆盖始终是硬约束。最终文件为[单集群放置](../rcaps/layouts/single/placement.json)和[三集群放置](../rcaps/layouts/multi/placement.json)。
 
 ## 5. 在线阶段：队列感知的分层 DAG 调度
 
@@ -70,7 +70,7 @@ c(v,u)=W_{\mathrm{link}}(v,u)+T_{\mathrm{transfer}}(v,u)
        +N_{\mathrm{KV}}(u)T_{\mathrm{decode1}}(u).
 \]
 
-在这里，$W$ 来自**到达时的资源快照**，不是对未来请求数或输出长度的预测。选择从源点到第 $L$ 层汇点代价最小的合法路径；由于状态按层边界前进，动态规划无需枚举全部路线。提示阶段将路径登记到会话，后续 decode token 复用该路径以避免 KV 迁移。最终版本对仿真器 batch=1 decode 服务时间的倍时规则做了对应修正；实现入口为[`QueueAwareDagScheduler`](queue_dag/scheduler_final.py)，基础搜索和资源快照见[`scheduler_queue_cost.py`](queue_dag/scheduler_queue_cost.py)与[`routing_dag.py`](queue_dag/routing_dag.py)。
+在这里，$W$ 来自**到达时的资源快照**，不是对未来请求数或输出长度的预测。选择从源点到第 $L$ 层汇点代价最小的合法路径；由于状态按层边界前进，动态规划无需枚举全部路线。提示阶段将路径登记到会话，后续 decode token 复用该路径以避免 KV 迁移。最终版本对仿真器 batch=1 decode 服务时间的倍时规则做了对应修正；实现入口为[`QueueAwareDagScheduler`](../rcaps/scheduling/scheduler_final.py)，基础搜索和资源快照见[`scheduler_queue_cost.py`](../rcaps/scheduling/scheduler_queue_cost.py)与[`routing_dag.py`](../rcaps/scheduling/routing_dag.py)。
 
 ### 5.2 已就绪 decode 的即时传输合并
 

@@ -41,7 +41,7 @@ def main():
     ax.bar(x - 0.17, [100 * baseline[k] / total_a for k in keys], 0.34,
            label="Helix", color=HELIX)
     ax.bar(x + 0.17, [100 * candidate[k] / total_b for k in keys], 0.34,
-           label="Ours", color=OURS, hatch="//", edgecolor="white", linewidth=0.4)
+           label="RCAPS", color=OURS, hatch="//", edgecolor="white", linewidth=0.4)
     ax.set_xticks(x, keys)
     ax.set_xlabel("Cross-cluster hops per routed request")
     ax.set_ylabel("Requests (%)")

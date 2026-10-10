@@ -21,7 +21,7 @@ def main():
             ax = axes[row, column]
             for method, color, marker, legend in (
                 ("helix", HELIX, "o", "Helix"),
-                ("green", OURS, "s", "Ours"),
+                ("green", OURS, "s", "RCAPS"),
             ):
                 values = [item[method][key]["mean"] for item in settings]
                 errors = [item[method][key]["sd"] for item in settings]

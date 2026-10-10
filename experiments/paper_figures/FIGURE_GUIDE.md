@@ -1,8 +1,8 @@
-# Helix-GREEN paper figures
+# RCAPS paper figures
 
 All PDFs are vector figures; PNGs are 300 dpi previews. Rebuild with
-`python experiments/paper_figures/build_all.py` from the repository root and
-check with `python experiments/paper_figures/verify_figures.py`. Each numbered
+`python -m experiments.paper_figures.build_all` from the repository root and
+check with `python -m experiments.paper_figures.verify_figures`. Each numbered
 figure has its own Python source. The figures read experiment records from the
 repository; plotted measurements are not typed into scripts.
 
@@ -23,7 +23,7 @@ It is a schematic; exact layer intervals are in Figs. 04 and 05.
 | [04 Single-cluster placement](fig04_single_placement.pdf) | Layer intervals assigned to each GPU type | Official Helix layout versus final partition; zero-based layer IDs |
 | [05 Three-cluster placement](fig05_multi_placement.pdf) | Layer intervals and physical cluster boundaries | Official Helix layout versus final partition; physical clusters C1/C2/C3 from `3cluster24.ini` |
 | [06 Controlled component effects](fig06_component_attribution.pdf) | Attribute improvements separately to placement and scheduling | Seeds 0/1/2, 1800 s measurement after 180 s warmup; paired benefit means and sample SD; placement fixes early scheduler, scheduling fixes final placement; **panels are independent controls and percentages must not be added** |
-| [08 Cross-cluster hops](fig08_cross_cluster_hops.pdf) | Direct topology mechanism in the three-cluster case | Official-load routed requests with a first token in window (582 per arm); each consecutive route pair in different physical partitions adds one hop; mean 3.59 Helix versus 1.03 ours |
+| [08 Cross-cluster hops](fig08_cross_cluster_hops.pdf) | Direct topology mechanism in the three-cluster case | Official-load routed requests with a first token in window (582 per arm); each consecutive route pair in different physical partitions adds one hop; mean 3.59 Helix versus 1.03 RCAPS |
 | [10 Artifact-compatible latency](fig10_paper_latency.pdf) | Show prompt/decode request latency under published Helix definitions | Three-seed official-load runs; mean and sample SD; distinct from TTFT and TPOT |
 | [13 Offered-load sweep](fig13_load_sweep.pdf) | Show throughput and P95 latency across three comparable offered-load points | 0.7/1/1.1 times official load; seeds 0/1/2; 1800 s, zero warmup; mean and sample SD; raw records in `ccfa_validation/runs/` and `multiseed/runs/` |
 | [14 RTT sensitivity](fig14_rtt_sensitivity.pdf) | Test three-cluster performance as cross-cluster RTT changes | 0.5/1/2 times original WAN RTT; seeds 0/1/2; 1800 s, zero warmup; mean and sample SD; GPU, bandwidth and layer intervals unchanged |
@@ -62,7 +62,7 @@ It is a schematic; exact layer intervals are in Figs. 04 and 05.
 - The 1.3-times official-load multi-cluster Helix arm fails to route within the
   window in all three seeds; Fig. 13 uses the completed 1.1-times load instead.
   The failure logs are retained in `ccfa_validation/runs/load/high/`.
-- Replanning GREEN at the 0.5- and 2-times RTTs produced the same layer
+- Replanning RCAPS at the 0.5- and 2-times RTTs produced the same layer
   intervals as the original topology. Fig. 14 therefore tests RTT sensitivity
   with fixed placements, not adaptive layer-boundary changes.
 

@@ -1,4 +1,4 @@
-"""Unified control/data-plane overview for the Helix-GREEN paper."""
+"""Unified control/data-plane overview for the RCAPS paper."""
 
 from __future__ import annotations
 

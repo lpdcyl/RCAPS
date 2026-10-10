@@ -1,4 +1,4 @@
-"""Shared, reproducible plotting utilities for the Helix-GREEN paper figures."""
+"""Shared, reproducible plotting utilities for the RCAPS paper figures."""
 
 from __future__ import annotations
 
@@ -72,7 +72,7 @@ def paired_bars(ax, categories, baseline, candidate, ylabel, labels=True,
     error_style = {"elinewidth": 0.8, "capsize": 2, "capthick": 0.8}
     a = ax.bar(x - width / 2, baseline, width, color=HELIX, label="Helix",
                yerr=baseline_errors, error_kw=error_style)
-    b = ax.bar(x + width / 2, candidate, width, color=OURS, label="Ours",
+    b = ax.bar(x + width / 2, candidate, width, color=OURS, label="RCAPS",
                hatch="//", edgecolor="white", linewidth=0.5,
                yerr=candidate_errors, error_kw=error_style)
     ax.set_xticks(x, categories)

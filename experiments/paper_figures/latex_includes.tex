@@ -51,7 +51,7 @@
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.48\textwidth]{experiments/paper_figures/fig08_cross_cluster_hops.pdf}
-\caption{Number of physical-cluster transitions along each routed request path in the three-cluster official-load run. A transition is counted when consecutive compute stages reside in different partitions of the cluster configuration. The 582 first-token requests in each arm yield means of 3.59 (Helix) and 1.03 (ours) transitions per path. This describes the selected routes and does not measure network bytes or energy.}
+\caption{Number of physical-cluster transitions along each routed request path in the three-cluster official-load run. A transition is counted when consecutive compute stages reside in different partitions of the cluster configuration. The 582 first-token requests in each arm yield means of 3.59 (Helix) and 1.03 (RCAPS) transitions per path. This describes the selected routes and does not measure network bytes or energy.}
 \label{fig:cross-cluster-hops}
 \end{figure}
 
@@ -72,7 +72,7 @@
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.95\textwidth]{experiments/paper_figures/fig14_rtt_sensitivity.pdf}
-\caption{Three-cluster sensitivity to cross-cluster propagation delay. Only WAN RTT is scaled to 0.5, 1, or 2 times the original configuration; GPU profiles, bandwidth, offered load, and request traces are held fixed. (a) Output-token throughput; (b) P95 TTFT; (c) P95 TPOT. Each point is a three-seed mean with sample-standard-deviation error bars. GREEN's regenerated layer intervals are identical at all three RTTs, so the comparison shows runtime sensitivity under fixed placements.}
+\caption{Three-cluster sensitivity to cross-cluster propagation delay. Only WAN RTT is scaled to 0.5, 1, or 2 times the original configuration; GPU profiles, bandwidth, offered load, and request traces are held fixed. (a) Output-token throughput; (b) P95 TTFT; (c) P95 TPOT. Each point is a three-seed mean with sample-standard-deviation error bars. RCAPS regenerated layer intervals are identical at all three RTTs, so the comparison shows runtime sensitivity under fixed placements.}
 \label{fig:rtt-sensitivity}
 \end{figure*}
 

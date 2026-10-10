@@ -1,5 +1,7 @@
 # 项目文件导航与清理清单
 
+> 历史清理快照。当前代码结构已重构为顶层 `rcaps/`、`baselines/`、`benchmarks/`；下文旧路径和删除建议仅作历史记录。以[根目录 README](README.md)为准。
+
 当前代码与结果的阅读顺序见 [`experiments/README.md`](experiments/README.md)。以下是经代码引用核对的**删除候选清单**；本次只列清单，没有删除文件。
 
 ## 当前论文主线（保留）
