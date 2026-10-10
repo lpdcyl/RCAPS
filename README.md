@@ -14,7 +14,7 @@ RCAPS combines a resource-dependent event graph, capacity- and topology-constrai
 | [`experiments/`](experiments/) | Historical experiments, paper result JSON, analysis, figures, and compatibility entry points |
 | [`simulator/`](simulator/) | Original Helix simulator used by all methods |
 
-The current implementation is described in [the method framework](experiments/METHOD_FRAMEWORK.md). See [experiment navigation](experiments/README.md), [three-seed results](experiments/multiseed/RESULTS.md), [additional validation](experiments/ccfa_validation/RESULTS.md), [the paper figure guide](experiments/paper_figures/FIGURE_GUIDE.md), and [the benchmark protocol](benchmarks/README.md). Chinese drafts of the [Introduction](paper/INTRODUCTION_CN.md) and [experimental setup](paper/EXPERIMENTAL_SETUP_CN.md), plus an [evidence-extension plan](paper/EXPERIMENT_EXTENSION_PLAN.md), record the paper claims and remaining experiments.
+The current implementation is described in [the method framework](experiments/METHOD_FRAMEWORK.md). See [experiment navigation](experiments/README.md), [three-seed results](experiments/multiseed/RESULTS.md), [placement versus scheduler crossover](experiments/validation_2026/CROSS_RESULTS.md), [execution-path structure ablation](experiments/structure_ablation_2026/RESULTS.md), [additional validation](experiments/ccfa_validation/RESULTS.md), [the paper figure guide](experiments/paper_figures/FIGURE_GUIDE.md), and [the benchmark protocol](benchmarks/README.md). Chinese drafts of the [Introduction](paper/INTRODUCTION_CN.md) and [experimental setup](paper/EXPERIMENTAL_SETUP_CN.md), plus an [evidence-extension plan](paper/EXPERIMENT_EXTENSION_PLAN.md), record the paper claims and remaining experiments.
 
 ## Run
 

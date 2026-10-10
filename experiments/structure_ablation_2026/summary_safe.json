@@ -1,0 +1,1625 @@
+{
+  "model": "LLaMa70B",
+  "window_s": 1800,
+  "warmup_s": 0,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "scheduler": "QueueAwareDagScheduler",
+  "scenarios": {
+    "single": {
+      "offered_tokens_per_s": 200.0,
+      "arms": {
+        "s1_all24": {
+          "capacity": {
+            "active_gpu_count": 24,
+            "physical_gpu_count": 24,
+            "assigned_layer_replicas": 80,
+            "active_layer_capacity": 152,
+            "pool_layer_capacity": 152,
+            "active_capacity_utilization": 0.5263157894736842,
+            "pool_capacity_utilization": 0.5263157894736842,
+            "branch_capacities": [
+              140
+            ],
+            "canonical_path_count": 1
+          },
+          "enabled_layout_edges": 25,
+          "shared_prefix_length": null,
+          "canonical_path_count": 1
+        },
+        "s2_prefix12": {
+          "capacity": {
+            "active_gpu_count": 24,
+            "physical_gpu_count": 24,
+            "assigned_layer_replicas": 148,
+            "active_layer_capacity": 152,
+            "pool_layer_capacity": 152,
+            "active_capacity_utilization": 0.9736842105263158,
+            "pool_capacity_utilization": 0.9736842105263158,
+            "branch_capacities": [
+              69,
+              71
+            ],
+            "canonical_path_count": 2
+          },
+          "enabled_layout_edges": 47,
+          "shared_prefix_length": 12,
+          "canonical_path_count": 2
+        }
+      },
+      "outcomes": {
+        "s1_all24": {
+          "output_throughput_tokens_per_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              42.69444444444444,
+              42.61277777777778,
+              41.63666666666666
+            ],
+            "n": 3,
+            "mean": 42.31462962962963,
+            "sd": 0.5885513533016922
+          },
+          "ttft_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              3.8518653868045476,
+              4.219054816785466,
+              3.6818308304016227
+            ],
+            "n": 3,
+            "mean": 3.917583677997212,
+            "sd": 0.27457525969121793
+          },
+          "tpot_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.5318792462234297,
+              0.5530671876928455,
+              0.5349136919454045
+            ],
+            "n": 3,
+            "mean": 0.5399533752872265,
+            "sd": 0.011457793071408895
+          },
+          "completion_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.9473684210526315,
+              0.9222222222222223,
+              0.9418282548476454
+            ],
+            "n": 3,
+            "mean": 0.9371396327074998,
+            "sd": 0.013212502112938984
+          },
+          "backlog_at_window_end": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              19,
+              28,
+              21
+            ],
+            "n": 3,
+            "mean": 22.666666666666668,
+            "sd": 4.725815626252608
+          },
+          "distinct_routes": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              1,
+              1,
+              1
+            ],
+            "n": 3,
+            "mean": 1,
+            "sd": 0.0
+          },
+          "routed_queries": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              361,
+              359,
+              361
+            ],
+            "n": 3,
+            "mean": 360.3333333333333,
+            "sd": 1.1547005383792515
+          },
+          "mean_route_gpu_count": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              24.0,
+              24.0,
+              24.0
+            ],
+            "n": 3,
+            "mean": 24.0,
+            "sd": 0.0
+          },
+          "mean_gpu_queue_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              23.85236425343462,
+              24.862838172763997,
+              21.575609188384597
+            ],
+            "n": 3,
+            "mean": 23.430270538194403,
+            "sd": 1.683772825315212
+          },
+          "shared_gpu_queue_s_per_arrival": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "shared_gpu_busy_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "mean_outbound_wait_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              1.6783363385431114,
+              1.7880539467981136,
+              1.473035643984345
+            ],
+            "n": 3,
+            "mean": 1.64647530977519,
+            "sd": 0.1599077128925604
+          },
+          "mean_link_propagation_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              5.347623268583507,
+              5.351916666552531,
+              5.215451523437318
+            ],
+            "n": 3,
+            "mean": 5.304997152857785,
+            "sd": 0.07757849655517189
+          },
+          "mean_cross_region_hops_per_route": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "n": 3,
+            "mean": 0.0,
+            "sd": 0.0
+          },
+          "branch0_used_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "branch1_used_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "stitched_route_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          }
+        },
+        "s2_prefix12": {
+          "output_throughput_tokens_per_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              43.06111111111111,
+              43.31611111111111,
+              41.96277777777778
+            ],
+            "n": 3,
+            "mean": 42.78,
+            "sd": 0.7191282016235828
+          },
+          "ttft_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              3.507727326414397,
+              3.604755346123363,
+              3.5649343415958583
+            ],
+            "n": 3,
+            "mean": 3.559139004711206,
+            "sd": 0.048772928960293414
+          },
+          "tpot_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.5552733758445532,
+              0.5654790401395949,
+              0.5583199414633513
+            ],
+            "n": 3,
+            "mean": 0.5596907858158331,
+            "sd": 0.005239113150602985
+          },
+          "completion_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.9501385041551247,
+              0.9444444444444444,
+              0.9501385041551247
+            ],
+            "n": 3,
+            "mean": 0.9482404842515646,
+            "sd": 0.003287466906743054
+          },
+          "backlog_at_window_end": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              18,
+              20,
+              18
+            ],
+            "n": 3,
+            "mean": 18.666666666666668,
+            "sd": 1.1547005383792515
+          },
+          "distinct_routes": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              111,
+              120,
+              112
+            ],
+            "n": 3,
+            "mean": 114.33333333333333,
+            "sd": 4.932882862316247
+          },
+          "routed_queries": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              361,
+              359,
+              361
+            ],
+            "n": 3,
+            "mean": 360.3333333333333,
+            "sd": 1.1547005383792515
+          },
+          "mean_route_gpu_count": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              12.986149584487535,
+              13.094707520891365,
+              13.00831024930748
+            ],
+            "n": 3,
+            "mean": 13.029722451562126,
+            "sd": 0.05735911604191571
+          },
+          "mean_gpu_queue_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              15.350393769121727,
+              15.569368866994937,
+              13.717548978964127
+            ],
+            "n": 3,
+            "mean": 14.879103871693596,
+            "sd": 1.011876894681351
+          },
+          "shared_gpu_queue_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.82675564317128,
+              0.8235254128037648,
+              0.7599667219143991
+            ],
+            "n": 3,
+            "mean": 0.8034159259631479,
+            "sd": 0.03766276140180334
+          },
+          "shared_gpu_busy_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.5086046988083128,
+              0.5028858592348049,
+              0.48029986876918174
+            ],
+            "n": 3,
+            "mean": 0.49726347560409984,
+            "sd": 0.014966604463075106
+          },
+          "mean_outbound_wait_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.026993639777522935,
+              0.028349768165185217,
+              0.024265034009314717
+            ],
+            "n": 3,
+            "mean": 0.026536147317340955,
+            "sd": 0.002080441730589033
+          },
+          "mean_link_propagation_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              2.9813324099087994,
+              3.0157333332694716,
+              2.906285318499905
+            ],
+            "n": 3,
+            "mean": 2.9677836872260586,
+            "sd": 0.055967784474643706
+          },
+          "mean_cross_region_hops_per_route": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "n": 3,
+            "mean": 0.0,
+            "sd": 0.0
+          },
+          "branch0_used_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "n": 3,
+            "mean": 1.0,
+            "sd": 0.0
+          },
+          "branch1_used_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "n": 3,
+            "mean": 1.0,
+            "sd": 0.0
+          },
+          "stitched_route_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "n": 3,
+            "mean": 1.0,
+            "sd": 0.0
+          }
+        }
+      },
+      "comparisons": {
+        "s2_prefix12_vs_s1_all24": {
+          "output_throughput_tokens_per_s": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0.36666666666666714,
+                0.7033333333333331,
+                0.3261111111111177
+              ],
+              "n": 3,
+              "mean": 0.46537037037037265,
+              "sd": 0.20707720076867056
+            },
+            "ratio_of_means_percent": 1.0997859946870747
+          },
+          "ttft_p95_s": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -0.3441380603901507,
+                -0.614299470662103,
+                -0.11689648880576442
+              ],
+              "n": 3,
+              "mean": -0.35844467328600604,
+              "sd": 0.2490099214274567
+            },
+            "ratio_of_means_percent": -9.149636682917105
+          },
+          "tpot_p95_s": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0.023394129621123416,
+                0.012411852446749472,
+                0.023406249517946787
+              ],
+              "n": 3,
+              "mean": 0.019737410528606558,
+              "sd": 0.0063441222900391045
+            },
+            "ratio_of_means_percent": 3.6553916378626816
+          },
+          "completion_fraction": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0.0027700831024931594,
+                0.022222222222222143,
+                0.008310249307479256
+              ],
+              "n": 3,
+              "mean": 0.011100851544064852,
+              "sd": 0.010021827413972468
+            },
+            "ratio_of_means_percent": 1.184546161172717
+          },
+          "backlog_at_window_end": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -1,
+                -8,
+                -3
+              ],
+              "n": 3,
+              "mean": -4,
+              "sd": 3.605551275463989
+            },
+            "ratio_of_means_percent": -17.647058823529417
+          },
+          "distinct_routes": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                110,
+                119,
+                111
+              ],
+              "n": 3,
+              "mean": 113.33333333333333,
+              "sd": 4.932882862316247
+            },
+            "ratio_of_means_percent": 11333.333333333332
+          },
+          "routed_queries": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0,
+                0,
+                0
+              ],
+              "n": 3,
+              "mean": 0,
+              "sd": 0.0
+            },
+            "ratio_of_means_percent": 0.0
+          },
+          "mean_route_gpu_count": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -11.013850415512465,
+                -10.905292479108635,
+                -10.99168975069252
+              ],
+              "n": 3,
+              "mean": -10.970277548437874,
+              "sd": 0.05735911604191571
+            },
+            "ratio_of_means_percent": -45.70948978515781
+          },
+          "mean_gpu_queue_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -8.501970484312892,
+                -9.29346930576906,
+                -7.85806020942047
+              ],
+              "n": 3,
+              "mean": -8.551166666500807,
+              "sd": 0.7189680220472038
+            },
+            "ratio_of_means_percent": -36.496235297673095
+          },
+          "shared_gpu_queue_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "shared_gpu_busy_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "mean_outbound_wait_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -1.6513426987655884,
+                -1.7597041786329284,
+                -1.4487706099750304
+              ],
+              "n": 3,
+              "mean": -1.619939162457849,
+              "sd": 0.1578276198865635
+            },
+            "ratio_of_means_percent": -98.3883057851038
+          },
+          "mean_link_propagation_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -2.3662908586747076,
+                -2.336183333283059,
+                -2.309166204937413
+              ],
+              "n": 3,
+              "mean": -2.3372134656317267,
+              "sd": 0.028576255801683964
+            },
+            "ratio_of_means_percent": -44.05682789806357
+          },
+          "mean_cross_region_hops_per_route": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "n": 3,
+              "mean": 0.0,
+              "sd": 0.0
+            },
+            "ratio_of_means_percent": null
+          },
+          "branch0_used_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "branch1_used_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "stitched_route_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          }
+        }
+      },
+      "trace_sha256_by_seed": {
+        "0": "720cb46e340741f6b3b4df7171ebf977ec617fd2cfb0894ef35fc418b9ab3bf7",
+        "1": "b2d4910c2006d4a7ea3d339112eb1fd6e2d801b30c028cba162b6c8dad733eb2",
+        "2": "19e82ef6ec4bc177cbc003ffc3fbfe03fa56dcc2fd54ea7d8ebf26342dbd6cfa"
+      },
+      "arrivals_by_seed": {
+        "0": 361,
+        "1": 360,
+        "2": 361
+      },
+      "missing_cells_by_seed": {
+        "0": [],
+        "1": [],
+        "2": []
+      },
+      "infeasible_fixed_branch_prefix_lengths": [
+        10
+      ]
+    },
+    "multi": {
+      "offered_tokens_per_s": 80.0,
+      "arms": {
+        "s1_all24": {
+          "capacity": {
+            "active_gpu_count": 24,
+            "physical_gpu_count": 24,
+            "assigned_layer_replicas": 80,
+            "active_layer_capacity": 152,
+            "pool_layer_capacity": 152,
+            "active_capacity_utilization": 0.5263157894736842,
+            "pool_capacity_utilization": 0.5263157894736842,
+            "branch_capacities": [
+              140
+            ],
+            "canonical_path_count": 1
+          },
+          "enabled_layout_edges": 25,
+          "shared_prefix_length": null,
+          "canonical_path_count": 1
+        },
+        "s2_prefix12": {
+          "capacity": {
+            "active_gpu_count": 24,
+            "physical_gpu_count": 24,
+            "assigned_layer_replicas": 148,
+            "active_layer_capacity": 152,
+            "pool_layer_capacity": 152,
+            "active_capacity_utilization": 0.9736842105263158,
+            "pool_capacity_utilization": 0.9736842105263158,
+            "branch_capacities": [
+              70,
+              70
+            ],
+            "canonical_path_count": 2
+          },
+          "enabled_layout_edges": 47,
+          "shared_prefix_length": 12,
+          "canonical_path_count": 2
+        }
+      },
+      "outcomes": {
+        "s1_all24": {
+          "output_throughput_tokens_per_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              17.823333333333334,
+              17.511111111111113,
+              15.442777777777778
+            ],
+            "n": 3,
+            "mean": 16.925740740740743,
+            "sd": 1.2937368515862355
+          },
+          "ttft_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              7.641823626157609,
+              7.69870103259139,
+              9.848114659147171
+            ],
+            "n": 3,
+            "mean": 8.39621310596539,
+            "sd": 1.25770519198237
+          },
+          "tpot_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.8663297372623169,
+              0.9425323929409366,
+              0.8849410816372804
+            ],
+            "n": 3,
+            "mean": 0.8979344039468447,
+            "sd": 0.03972821417580626
+          },
+          "completion_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.896551724137931,
+              0.8951048951048951,
+              0.9315068493150684
+            ],
+            "n": 3,
+            "mean": 0.9077211561859648,
+            "sd": 0.02061171333942481
+          },
+          "backlog_at_window_end": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              15,
+              15,
+              10
+            ],
+            "n": 3,
+            "mean": 13.333333333333334,
+            "sd": 2.886751345948129
+          },
+          "distinct_routes": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              1,
+              1,
+              1
+            ],
+            "n": 3,
+            "mean": 1,
+            "sd": 0.0
+          },
+          "routed_queries": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              144,
+              143,
+              146
+            ],
+            "n": 3,
+            "mean": 144.33333333333334,
+            "sd": 1.5275252316519468
+          },
+          "mean_route_gpu_count": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              24.0,
+              24.0,
+              24.0
+            ],
+            "n": 3,
+            "mean": 24.0,
+            "sd": 0.0
+          },
+          "mean_gpu_queue_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              16.592592184919834,
+              17.321974133234747,
+              14.194996165024023
+            ],
+            "n": 3,
+            "mean": 16.0365208277262,
+            "sd": 1.6359735080792701
+          },
+          "shared_gpu_queue_s_per_arrival": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "shared_gpu_busy_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "mean_outbound_wait_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              30.171063131626912,
+              31.392923932381,
+              25.625137357090694
+            ],
+            "n": 3,
+            "mean": 29.063041473699535,
+            "sd": 3.039346062947072
+          },
+          "mean_link_propagation_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              51.345351724033314,
+              51.15462976430682,
+              44.214552914959135
+            ],
+            "n": 3,
+            "mean": 48.904844801099756,
+            "sd": 4.063031159045901
+          },
+          "mean_cross_region_hops_per_route": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "n": 3,
+            "mean": 2.0,
+            "sd": 0.0
+          },
+          "branch0_used_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "branch1_used_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          },
+          "stitched_route_fraction": {
+            "seed_ids": [],
+            "by_seed": [],
+            "n": 0,
+            "mean": null,
+            "sd": null
+          }
+        },
+        "s2_prefix12": {
+          "output_throughput_tokens_per_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              18.209444444444443,
+              18.023333333333333,
+              15.661111111111111
+            ],
+            "n": 3,
+            "mean": 17.297962962962963,
+            "sd": 1.4206063230546593
+          },
+          "ttft_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              5.676548166216025,
+              5.565891606488856,
+              6.6741322994932375
+            ],
+            "n": 3,
+            "mean": 5.972190690732706,
+            "sd": 0.6104119388860731
+          },
+          "tpot_p95_s": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.6063279088588577,
+              0.6107330289273318,
+              0.6068027351497989
+            ],
+            "n": 3,
+            "mean": 0.6079545576453295,
+            "sd": 0.0024179106683924795
+          },
+          "completion_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.9241379310344827,
+              0.9230769230769231,
+              0.952054794520548
+            ],
+            "n": 3,
+            "mean": 0.933089882877318,
+            "sd": 0.016432660761366152
+          },
+          "backlog_at_window_end": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              11,
+              11,
+              7
+            ],
+            "n": 3,
+            "mean": 9.666666666666666,
+            "sd": 2.309401076758503
+          },
+          "distinct_routes": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              5,
+              8,
+              5
+            ],
+            "n": 3,
+            "mean": 6,
+            "sd": 1.7320508075688772
+          },
+          "routed_queries": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              144,
+              143,
+              146
+            ],
+            "n": 3,
+            "mean": 144.33333333333334,
+            "sd": 1.5275252316519468
+          },
+          "mean_route_gpu_count": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              12.097222222222221,
+              12.125874125874127,
+              12.061643835616438
+            ],
+            "n": 3,
+            "mean": 12.094913394570929,
+            "sd": 0.03217732991547393
+          },
+          "mean_gpu_queue_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              7.661477327326172,
+              7.890175440494321,
+              6.4497903896915805
+            ],
+            "n": 3,
+            "mean": 7.333814385837358,
+            "sd": 0.7740797930852026
+          },
+          "shared_gpu_queue_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.49097308939324574,
+              0.5412684826412275,
+              0.4595973169880505
+            ],
+            "n": 3,
+            "mean": 0.4972796296741746,
+            "sd": 0.04119920099374991
+          },
+          "shared_gpu_busy_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.16612648563629087,
+              0.1669603501698412,
+              0.16988000302348275
+            ],
+            "n": 3,
+            "mean": 0.16765561294320494,
+            "sd": 0.0019709809580528686
+          },
+          "mean_outbound_wait_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              3.5259894186110174,
+              3.6878933371562854,
+              2.863236485203084
+            ],
+            "n": 3,
+            "mean": 3.359039746990129,
+            "sd": 0.4369426455601272
+          },
+          "mean_link_propagation_s_per_arrival": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              33.603085898268304,
+              33.896810625289966,
+              28.721147612550446
+            ],
+            "n": 3,
+            "mean": 32.07368137870291,
+            "sd": 2.9070914233491663
+          },
+          "mean_cross_region_hops_per_route": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              1.0,
+              1.020979020979021,
+              1.0
+            ],
+            "n": 3,
+            "mean": 1.006993006993007,
+            "sd": 0.012112243409572607
+          },
+          "branch0_used_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.8611111111111112,
+              0.8811188811188811,
+              0.8287671232876712
+            ],
+            "n": 3,
+            "mean": 0.8569990385058879,
+            "sd": 0.02641701142895206
+          },
+          "branch1_used_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.9166666666666666,
+              0.9440559440559441,
+              0.8835616438356164
+            ],
+            "n": 3,
+            "mean": 0.9147614181860757,
+            "sd": 0.030292120569817803
+          },
+          "stitched_route_fraction": {
+            "seed_ids": [
+              0,
+              1,
+              2
+            ],
+            "by_seed": [
+              0.7777777777777778,
+              0.8251748251748252,
+              0.7123287671232876
+            ],
+            "n": 3,
+            "mean": 0.7717604566919636,
+            "sd": 0.05666316545367092
+          }
+        }
+      },
+      "comparisons": {
+        "s2_prefix12_vs_s1_all24": {
+          "output_throughput_tokens_per_s": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0.3861111111111093,
+                0.5122222222222206,
+                0.2183333333333337
+              ],
+              "n": 3,
+              "mean": 0.3722222222222212,
+              "sd": 0.1474359036293807
+            },
+            "ratio_of_means_percent": 2.199148787185834
+          },
+          "ttft_p95_s": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -1.9652754599415836,
+                -2.1328094261025337,
+                -3.173982359653934
+              ],
+              "n": 3,
+              "mean": -2.4240224152326837,
+              "sd": 0.6548639905596032
+            },
+            "ratio_of_means_percent": -28.870425090931185
+          },
+          "tpot_p95_s": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -0.2600018284034592,
+                -0.33179936401360477,
+                -0.2781383464874815
+              ],
+              "n": 3,
+              "mean": -0.28997984630151513,
+              "sd": 0.03733480103478321
+            },
+            "ratio_of_means_percent": -32.294101331557975
+          },
+          "completion_fraction": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0.027586206896551668,
+                0.027972027972028024,
+                0.020547945205479534
+              ],
+              "n": 3,
+              "mean": 0.025368726691353077,
+              "sd": 0.00417937376606547
+            },
+            "ratio_of_means_percent": 2.794770896157872
+          },
+          "backlog_at_window_end": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -4,
+                -4,
+                -3
+              ],
+              "n": 3,
+              "mean": -3.6666666666666665,
+              "sd": 0.5773502691896257
+            },
+            "ratio_of_means_percent": -27.500000000000004
+          },
+          "distinct_routes": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                4,
+                7,
+                4
+              ],
+              "n": 3,
+              "mean": 5,
+              "sd": 1.7320508075688772
+            },
+            "ratio_of_means_percent": 500.0
+          },
+          "routed_queries": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                0,
+                0,
+                0
+              ],
+              "n": 3,
+              "mean": 0,
+              "sd": 0.0
+            },
+            "ratio_of_means_percent": 0.0
+          },
+          "mean_route_gpu_count": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -11.902777777777779,
+                -11.874125874125873,
+                -11.938356164383562
+              ],
+              "n": 3,
+              "mean": -11.905086605429071,
+              "sd": 0.03217732991547393
+            },
+            "ratio_of_means_percent": -49.60452752262113
+          },
+          "mean_gpu_queue_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -8.931114857593663,
+                -9.431798692740426,
+                -7.745205775332442
+              ],
+              "n": 3,
+              "mean": -8.702706441888843,
+              "sd": 0.8661851537265473
+            },
+            "ratio_of_means_percent": -54.26804564018883
+          },
+          "shared_gpu_queue_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "shared_gpu_busy_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "mean_outbound_wait_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -26.645073713015893,
+                -27.705030595224713,
+                -22.761900871887608
+              ],
+              "n": 3,
+              "mean": -25.704001726709404,
+              "sd": 2.6024690637916947
+            },
+            "ratio_of_means_percent": -88.44222911070791
+          },
+          "mean_link_propagation_s_per_arrival": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -17.74226582576501,
+                -17.257819139016853,
+                -15.49340530240869
+              ],
+              "n": 3,
+              "mean": -16.831163422396852,
+              "sd": 1.1835834312675264
+            },
+            "ratio_of_means_percent": -34.41614729757481
+          },
+          "mean_cross_region_hops_per_route": {
+            "absolute": {
+              "seed_ids": [
+                0,
+                1,
+                2
+              ],
+              "by_seed": [
+                -1.0,
+                -0.979020979020979,
+                -1.0
+              ],
+              "n": 3,
+              "mean": -0.993006993006993,
+              "sd": 0.012112243409572607
+            },
+            "ratio_of_means_percent": -49.650349650349646
+          },
+          "branch0_used_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "branch1_used_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          },
+          "stitched_route_fraction": {
+            "absolute": {
+              "seed_ids": [],
+              "by_seed": [],
+              "n": 0,
+              "mean": null,
+              "sd": null
+            },
+            "ratio_of_means_percent": null
+          }
+        }
+      },
+      "trace_sha256_by_seed": {
+        "0": "834b3d421507c68fc9e8c5b20bb1b4d627c4d175e4207ec29d0bc558789d8f4e",
+        "1": "6fad166ec33fb18d5be8b28dc7573d6f98337964adc3dec0d561758984969a1c",
+        "2": "3547bb785013dcd51218a362697bb76ebf20bb5b3ff7fe6b3a99f4e0d80d476e"
+      },
+      "arrivals_by_seed": {
+        "0": 145,
+        "1": 143,
+        "2": 146
+      },
+      "missing_cells_by_seed": {
+        "0": [],
+        "1": [],
+        "2": []
+      },
+      "infeasible_fixed_branch_prefix_lengths": []
+    }
+  },
+  "interpretation": "All comparisons are paired within each topology. S1 changes replication and per-request hop count in addition to route redundancy; route use and queue data are reported separately.",
+  "statistical_significance_claimed": false
+}
