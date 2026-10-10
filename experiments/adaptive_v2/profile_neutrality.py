@@ -1,9 +1,13 @@
-"""Check that passive resource profiling leaves short-run execution unchanged."""
+"""Rerun short paired traces to check profiling leaves execution unchanged."""
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
+import json
+
+from benchmarks.fixed_window import run
+from rcaps.scheduling.scheduler_final import QueueAwareDagScheduler
+from rcaps.v2_method import layout
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,9 +20,15 @@ def main() -> None:
     report = {}
     for scenario in ("single", "multi"):
         for method in ("rcaps_v2", "rcaps_v2_fixed_structure"):
-            path = Path(scenario) / "seed0" / f"{method}.json"
-            before = json.loads((ROOT / "benchmarks/v2_smoke" / path).read_text())
-            after = json.loads((ROOT / "benchmarks/v2_smoke_profiled" / path).read_text())
+            solution, cluster = layout(method, scenario, ROOT)
+            offered = 700.0 if scenario == "single" else 320.0
+            common = dict(name=scenario, method="queue_dag", offered=offered,
+                          duration=60, warmup=0, seed=0, solution=solution,
+                          sim_cluster=cluster,
+                          scheduler_factory=QueueAwareDagScheduler,
+                          compact=True, record_query_samples=True)
+            before = run(**common, profile_resources=False)
+            after = run(**common, profile_resources=True)
             matches = {field: before[field] == after[field] for field in FIELDS}
             if not all(matches.values()) or not after.get("gpu_queue_request_s"):
                 raise ValueError(f"Profiling changed the short run: {scenario} {method}")

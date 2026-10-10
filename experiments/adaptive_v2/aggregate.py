@@ -79,6 +79,12 @@ def normalized_queue(record: dict) -> float:
     return sum(record["gpu_queue_request_s"].values()) / record["arrivals"]
 
 
+def stem_queue_share(record: dict, stem: list[int]) -> float:
+    total = sum(record["gpu_queue_request_s"].values())
+    return (sum(record["gpu_queue_request_s"].get(f"Compute-{node + 2}", 0.0)
+                for node in stem) / total if total else 0.0)
+
+
 def paired_percent(batch: dict, candidate: str, baseline: str, key: str) -> float:
     left = batch[candidate][key]
     right = batch[baseline][key]
@@ -99,8 +105,16 @@ def summarize() -> tuple[dict, str]:
                                for variant in ("fixed", "adaptive")},
                    "seeds": {}, "paired": {}}
         lines += [f"## {scenario}", "",
-                  f"固定结构：`{summary['layouts']['fixed']}`", "",
-                  f"自适应结构：`{summary['layouts']['adaptive']}`", ""]
+                  "| 结构 | 共享 GPU | 前缀层数 | 后缀数 | 层副本总数 | 放置 GPU | 事件图候选评估 | 放置耗时 s | 代理分数 |",
+                  "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
+        for variant in ("fixed", "adaptive"):
+            layout = summary["layouts"][variant]
+            lines.append(f"| {variant} | {','.join(map(str, layout['stem']))} | "
+                         f"{layout['prefix_layers']} | {layout['branches']} | "
+                         f"{layout['layer_copies']} | {layout['active_gpus']} | "
+                         f"{layout['candidate_evaluations']} | {layout['planning_s']:.2f} | "
+                         f"{layout['placement_score']:.3f} |")
+        lines += [""]
         lines += ["| 种子 | 方法 | 吞吐 | P95 TTFT | P95 TPOT | 完成率 | 积压 | GPU 排队 s/到达 | 每请求 GPU 数 | 实际执行 GPU 数 |",
                   "| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
         for seed in SEEDS:
@@ -115,6 +129,10 @@ def summarize() -> tuple[dict, str]:
                              "gpu_queue_request_s_per_arrival": queue,
                              "route_gpu_count": route_gpu_count(record),
                              "used_gpus": used_gpus(record)})
+                if method != "rcaps":
+                    variant = "adaptive" if method == "rcaps_v2" else "fixed"
+                    item["stem_gpu_queue_share"] = stem_queue_share(
+                        record, summary["layouts"][variant]["stem"])
                 summary["seeds"][str(seed)][method] = item
                 queue_text = f"{queue:.3f}" if queue is not None else "—"
                 lines.append(f"| {seed} | {method} | "
@@ -137,9 +155,31 @@ def summarize() -> tuple[dict, str]:
                 summary["paired"][label][key] = per_seed
                 values.append(f"{mean(per_seed):+.2f} ± {stdev(per_seed):.2f}%")
             lines.append("| " + label + " | " + " | ".join(values) + " |")
+        queue_changes = [
+            (normalized_queue(runs[(scenario, seed)]["rcaps_v2"]) /
+             normalized_queue(runs[(scenario, seed)]["rcaps_v2_fixed_structure"]) - 1) * 100
+            for seed in SEEDS
+        ]
+        summary["paired"]["rcaps_v2 vs rcaps_v2_fixed_structure"][
+            "gpu_queue_change_percent"] = queue_changes
+        lines += ["", f"V2 相对固定结构的 GPU 排队 request-s／到达变化："
+                  f"{mean(queue_changes):+.2f} ± {stdev(queue_changes):.2f}%（负值表示减少）。"]
+        shared_shares = [summary["seeds"][str(seed)]["rcaps_v2"][
+            "stem_gpu_queue_share"] for seed in SEEDS]
+        lines += ["", f"V2 共享前缀 GPU 承担的实测 GPU 排队占比平均为"
+                  f" {mean(shared_shares) * 100:.1f}%；共享设备确实存在竞争，"
+                  "但该占比不能单独说明它限制了整体吞吐。"]
         lines += ["", "V1 历史结果未启用资源画像，因此 GPU 排队仅在 V2 的两个变体间直接比较。结构变化同时改变复制量和每请求路径长度；归因以固定结构消融为准。", ""]
         output[scenario] = summary
-    return output, "\n".join(lines) + "\n"
+    lines += ["## 解释与边界", "",
+              "两种拓扑的搜索都选择了 48 层、四张 A100 组成的共享前缀和三条后缀；全部 24 张 GPU 均被实际执行路径使用。V2 的层副本总数为 144，V1 与固定结构消融均为 148。",
+              "",
+              "V2 相对冻结 V1 的吞吐、P95 TTFT 和 P95 TPOT 在每种拓扑的三个配对种子中均同向改善。固定结构 V2 对照低于 V1，因此 V2 与固定结构的差异不能替代 V2 与强 V1 基线的比较。独立的 `benchmarks.compare` 共同请求群体核对见 [compare.json](compare.json)，尾延迟方向仍一致。",
+              "",
+              "本实验检验的是**允许选择前缀设备数、前缀长度及后缀数的联合结构搜索**。同时变化的还有设备分组、层边界、层副本量和每请求经过 GPU 数，不能把改进单独归因于第三条后缀或某一层共享边界。固定六请求离线代理并未被验证为在线热点预测器。",
+              "",
+              "所有数据来自 70B Helix 事件仿真器的两种 24-GPU 拓扑、三个已有种子及官方负载；种子 1 参与过开发。结果属于有方向一致性的探索性证据，不宣称统计显著、真实集群可直接复现或结构全局最优。", ""]
+    return output, "\n".join(lines).rstrip() + "\n"
 
 
 def main() -> None:
