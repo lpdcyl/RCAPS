@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 from statistics import mean
 
+import numpy as np
+
 from .registry import MAIN_METHOD, METHODS
 from .run import DEFAULT_RESULTS, output_file
 
@@ -17,7 +19,9 @@ METRICS = {
     "tpot_p95_s": "lower",
 }
 MATCH_FIELDS = ("scenario", "seed", "offered_tokens_per_s", "duration_s",
-                "warmup_s", "evaluation_protocol", "trace_sha256")
+                "warmup_s", "evaluation_protocol", "trace_sha256",
+                "query_samples_schema", "python_version", "numpy_version",
+                "arrivals")
 
 
 def read_record(results_dir: Path, scenario: str, seed: int,
@@ -27,6 +31,32 @@ def read_record(results_dir: Path, scenario: str, seed: int,
     if record.get("system") != method:
         raise ValueError(f"Method identity mismatch: {path}")
     return record
+
+
+def common_cohort(candidate: dict, reference: dict) -> dict:
+    """Compare observed latency on exactly the same request IDs."""
+    left = candidate["query_samples"]
+    right = reference["query_samples"]
+    if set(left) != set(right) or len(left) != candidate["arrivals"]:
+        raise ValueError("Paired runs have different query identifiers")
+    for uid in left:
+        for field in ("arrival_s", "input_tokens", "output_tokens"):
+            if left[uid][field] != right[uid][field]:
+                raise ValueError(f"Paired query {uid} differs in {field}")
+    result = {"seed": candidate["seed"], "arrivals": len(left),
+              "both_completed": sum(left[uid]["completed"] and
+                                    right[uid]["completed"] for uid in left)}
+    for field in ("ttft_s", "tpot_s"):
+        ids = [uid for uid in left if left[uid][field] is not None and
+               right[uid][field] is not None]
+        result[field] = {
+            "both_observed": len(ids),
+            "main_p95_s": float(np.percentile([left[uid][field] for uid in ids], 95))
+            if ids else None,
+            "baseline_p95_s": float(np.percentile([right[uid][field] for uid in ids], 95))
+            if ids else None,
+        }
+    return result
 
 
 def paired_summary(results_dir: Path, scenario: str, seeds: list[int],
@@ -51,9 +81,11 @@ def paired_summary(results_dir: Path, scenario: str, seeds: list[int],
             "paired_improvement_percent_mean": mean(gains),
             "paired_improvement_percent_by_seed": dict(zip(seeds, gains)),
         }
+    cohorts = [common_cohort(candidate, reference)
+               for candidate, reference in pairs]
     return {"scenario": scenario, "main_method": MAIN_METHOD,
             "baseline": baseline, "seeds": seeds,
-            "metrics": metrics}
+            "metrics": metrics, "common_cohort_by_seed": cohorts}
 
 
 def main() -> None:
@@ -64,7 +96,8 @@ def main() -> None:
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
     parser.add_argument("--baselines", nargs="+",
                         choices=[name for name in METHODS if name != MAIN_METHOD],
-                        default=[name for name in METHODS if name != MAIN_METHOD])
+                        default=[name for name, spec in METHODS.items()
+                                 if spec.role == "baseline"])
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     report = [paired_summary(args.results_dir, scenario, args.seeds, baseline)

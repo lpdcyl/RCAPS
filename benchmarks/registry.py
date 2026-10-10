@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Callable
 
 from baselines import helix
+from rcaps import ablations
 from rcaps import method as rcaps
 
 
@@ -26,6 +27,18 @@ METHODS = {
     helix.NAME: MethodSpec(helix.NAME, helix.DESCRIPTION, "baseline",
                            helix.layout, helix.evaluate),
 }
+for name in (*ablations.SCHEDULERS, *ablations.LAYOUT_VARIANTS):
+    METHODS[name] = MethodSpec(
+        name, f"RCAPS scheduling ablation: {name}", "ablation",
+        lambda scenario, root, _name=name:
+            ablations.variant_layout(_name, scenario, root),
+        lambda scenario, offered, duration, warmup, seed, solution, cluster,
+        _name=name: ablations.evaluate(_name, scenario, offered, duration,
+                                        warmup, seed, solution, cluster),
+    )
+
+DEFAULT_METHODS = [name for name, spec in METHODS.items()
+                   if spec.role in ("main", "baseline")]
 
 
 def register_baseline(spec: MethodSpec) -> None:

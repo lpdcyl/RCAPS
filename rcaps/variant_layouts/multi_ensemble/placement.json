@@ -1,0 +1,277 @@
+{
+  "algorithm": "topology-conditioned critical-path/path-ensemble graph partition",
+  "demand_mode": "ensemble",
+  "cluster_file": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+  "shared": 1,
+  "branches": [
+    [
+      3,
+      15,
+      17,
+      14,
+      22,
+      20,
+      21,
+      23,
+      16,
+      19,
+      18
+    ],
+    [
+      0,
+      2,
+      8,
+      9,
+      13,
+      10,
+      7,
+      6,
+      4,
+      11,
+      12,
+      5
+    ]
+  ],
+  "intervals": {
+    "0": [
+      12,
+      24
+    ],
+    "1": [
+      0,
+      12
+    ],
+    "2": [
+      24,
+      36
+    ],
+    "3": [
+      12,
+      24
+    ],
+    "4": [
+      60,
+      67
+    ],
+    "5": [
+      73,
+      80
+    ],
+    "6": [
+      56,
+      60
+    ],
+    "7": [
+      52,
+      56
+    ],
+    "8": [
+      36,
+      40
+    ],
+    "9": [
+      40,
+      44
+    ],
+    "10": [
+      48,
+      52
+    ],
+    "11": [
+      67,
+      71
+    ],
+    "12": [
+      71,
+      73
+    ],
+    "13": [
+      44,
+      48
+    ],
+    "14": [
+      38,
+      45
+    ],
+    "15": [
+      24,
+      31
+    ],
+    "16": [
+      61,
+      68
+    ],
+    "17": [
+      31,
+      38
+    ],
+    "18": [
+      74,
+      80
+    ],
+    "19": [
+      68,
+      74
+    ],
+    "20": [
+      49,
+      53
+    ],
+    "21": [
+      53,
+      57
+    ],
+    "22": [
+      45,
+      49
+    ],
+    "23": [
+      57,
+      61
+    ]
+  },
+  "solution": "rcaps/variant_layouts/multi_ensemble/solution.ini",
+  "simulator_cluster": "rcaps/variant_layouts/multi_ensemble/simulator_cluster.ini",
+  "trace": [
+    {
+      "step": 0,
+      "move": "coarse partition",
+      "score": 1.0,
+      "demand_mode": "ensemble",
+      "ttft_s": 5.325763847426478,
+      "tpot_s": 0.7075831296270378,
+      "bottleneck_s": 0.0052224672052807114,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 1,
+      "move": "branch0: topology swap 22<->15",
+      "gain": 0.016854554467173433,
+      "score": 0.9831454455328266,
+      "ttft_s": 5.325763847426478,
+      "tpot_s": 0.7072979749816407,
+      "bottleneck_s": 0.004873324275410293,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 2,
+      "move": "branch0: topology swap 17<->15",
+      "gain": 0.04636645792357863,
+      "score": 0.9367789876092479,
+      "ttft_s": 5.325763847426478,
+      "tpot_s": 0.7019902368544705,
+      "bottleneck_s": 0.003959579891818926,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 3,
+      "move": "branch1: boundary 12->5",
+      "gain": 0.010112660543180163,
+      "score": 0.9266663270660678,
+      "ttft_s": 5.304763847426477,
+      "tpot_s": 0.6989902368544706,
+      "bottleneck_s": 0.0038122750357212788,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 4,
+      "move": "branch1: boundary 12->5",
+      "gain": 0.009468217251015543,
+      "score": 0.9171981098150522,
+      "ttft_s": 5.295182087943004,
+      "tpot_s": 0.6959902368544707,
+      "bottleneck_s": 0.0036605176733155212,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 5,
+      "move": "branch1: topology swap 9<->8",
+      "gain": 0.0036484522209027093,
+      "score": 0.9135496575941495,
+      "ttft_s": 5.295182087943004,
+      "tpot_s": 0.6950785569282601,
+      "bottleneck_s": 0.0035937223706175437,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 6,
+      "move": "branch0: topology swap 18<->16",
+      "gain": 0.0018565722168957244,
+      "score": 0.9116930853772538,
+      "ttft_s": 5.282202683877944,
+      "tpot_s": 0.6839357174390621,
+      "bottleneck_s": 0.0036904419995132972,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 7,
+      "move": "branch0: topology swap 21<->14",
+      "gain": 0.000999881858437912,
+      "score": 0.9106932035188159,
+      "ttft_s": 5.282598887599127,
+      "tpot_s": 0.6839360570422517,
+      "bottleneck_s": 0.0036689294589862136,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 8,
+      "move": "branch0: topology swap 19<->23",
+      "gain": 0.000606598604102282,
+      "score": 0.9100866049147136,
+      "ttft_s": 5.284152912912574,
+      "tpot_s": 0.6839373890639482,
+      "bottleneck_s": 0.0036538057155675514,
+      "bottleneck_resource": "gpu:14"
+    },
+    {
+      "step": 9,
+      "move": "branch0: topology swap 20<->14",
+      "gain": 0.0007038533440013595,
+      "score": 0.9093827515707122,
+      "ttft_s": 5.2848869235211895,
+      "tpot_s": 0.6839380182158983,
+      "bottleneck_s": 0.0036379441721217966,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 10,
+      "move": "branch0: topology swap 22<->14",
+      "gain": 0.0006603292637400449,
+      "score": 0.9087224223069722,
+      "ttft_s": 5.2863654357845,
+      "tpot_s": 0.6839392855121244,
+      "bottleneck_s": 0.0036218171485606194,
+      "bottleneck_resource": "gpu:18"
+    },
+    {
+      "step": 11,
+      "move": "branch0: boundary 18->16",
+      "gain": 0.00020715961846151654,
+      "score": 0.9085152626885107,
+      "ttft_s": 5.286365435784499,
+      "tpot_s": 0.6839392855121236,
+      "bottleneck_s": 0.003617489611305934,
+      "bottleneck_resource": "gpu:19"
+    },
+    {
+      "step": 12,
+      "move": "branch0: topology swap 19<->16",
+      "gain": 0.00012654694756131235,
+      "score": 0.9083887157409494,
+      "ttft_s": 5.287771511870499,
+      "tpot_s": 0.6839404907201967,
+      "bottleneck_s": 0.0036126275218345562,
+      "bottleneck_resource": "gpu:19"
+    },
+    {
+      "step": 13,
+      "move": "branch0: boundary 19->16",
+      "gain": 0.0007015583351156485,
+      "score": 0.9076871574058337,
+      "ttft_s": 5.287771511870499,
+      "tpot_s": 0.6839404907201967,
+      "bottleneck_s": 0.003597972060243626,
+      "bottleneck_resource": "gpu:16"
+    }
+  ]
+}

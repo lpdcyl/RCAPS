@@ -9,7 +9,7 @@ from simulator.event_simulator.request import RequestPhase
 
 
 class WindowAccumulator:
-    def __init__(self):
+    def __init__(self, record_queries=False):
         self.output_count = 0
         self.completed_count = 0
         self.finished_total = 0
@@ -22,6 +22,8 @@ class WindowAccumulator:
         self.route_counts = Counter()
         self.route_latencies = {}
         self.compacted_until = {}
+        self.record_queries = record_queries
+        self.query_samples = {}
 
     def _observe_query(self, query, beginning, ending, finish=None):
         route_key = None
@@ -46,6 +48,16 @@ class WindowAccumulator:
                     "tpot"].append(self.tpots[-1])
         if finish is not None and beginning <= finish < ending:
             self.e2es.append(finish - query.creation_time)
+        if self.record_queries:
+            self.query_samples[str(query.query_uid)] = {
+                "arrival_s": query.creation_time - beginning,
+                "input_tokens": query.input_seq_length,
+                "output_tokens": query.output_seq_length,
+                "ttft_s": decode_ends[0] - query.creation_time if decode_ends else None,
+                "tpot_s": (mean(b - a for a, b in zip(decode_ends, decode_ends[1:]))
+                           if len(decode_ends) >= 2 else None),
+                "completed": finish is not None and beginning <= finish < ending,
+            }
 
     def collect(self, simulator, beginning, ending):
         # The simulator keeps every processed Event for its optional debug

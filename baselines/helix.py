@@ -24,4 +24,4 @@ def evaluate(scenario: str, offered: float, duration: int, warmup: int,
     from benchmarks.fixed_window import run
 
     return run(scenario, "helix", offered, duration, warmup, seed,
-               solution, sim_cluster, compact=True)
+               solution, sim_cluster, compact=True, record_query_samples=True)

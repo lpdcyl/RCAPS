@@ -56,7 +56,7 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         profile_resources: bool = False, scheduler_factory=None,
         checkpoint_file: Path | None = None, checkpoint_every: int = 25,
         compact: bool = False, physical_cluster: Path | None = None,
-        profile_scheduler: bool = False) -> dict:
+        profile_scheduler: bool = False, record_query_samples: bool = False) -> dict:
     cluster, profile, helix_solution, helix_sim_cluster = scenario(name)
     cluster = physical_cluster or cluster
     solution = solution or helix_solution
@@ -176,7 +176,12 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
     if compact:
         from benchmarks.accumulator import WindowAccumulator
         accumulator = (checkpoint.get("accumulator") if checkpoint is not None
-                       else None) or WindowAccumulator()
+                       else None) or WindowAccumulator(record_queries=record_query_samples)
+        if not hasattr(accumulator, "record_queries"):
+            accumulator.record_queries = False
+            accumulator.query_samples = {}
+        if record_query_samples and not accumulator.record_queries:
+            raise ValueError("Checkpoint lacks query samples; use a fresh checkpoint")
         if not hasattr(accumulator, "paper_prompt_latencies"):
             raise ValueError("Compact checkpoint predates request-latency metrics; use a fresh checkpoint")
         if not hasattr(accumulator, "compacted_until"):
@@ -328,6 +333,8 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         result["ttft_outliers"] = sorted(
             ttft_outliers, key=lambda entry: entry["ttft_s"], reverse=True)[:10]
         result["query_samples"] = ttft_outliers
+    elif record_query_samples:
+        result["query_samples"] = accumulator.query_samples
     if profile_resources:
         result["gpu_busy_fraction"] = {
             name: busy / window for name, busy in sorted(gpu_busy_s.items())}

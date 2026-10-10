@@ -188,13 +188,17 @@ def boundary_moves(state: dict, model: TopologyModel, metrics: GraphMetrics):
         yield "shared boundary +1", candidate
 
 
-def refine(model: TopologyModel, initial: dict, *, max_steps: int = 16
+def refine(model: TopologyModel, initial: dict, *, max_steps: int = 16,
+           demand_mode: str | None = None
            ) -> tuple[dict, list[dict]]:
     state = copy.deepcopy(initial)
     # Uniform low-latency topology admits many stitched routes and their join
     # hotspots matter. Across contracted regions, the critical-path proxy
     # retains emphasis on inter-region stage order and transfer latency.
-    demand_mode = "ensemble" if len(topology_groups(model)) == 1 else "canonical"
+    if demand_mode is None:
+        demand_mode = "ensemble" if len(topology_groups(model)) == 1 else "canonical"
+    if demand_mode not in ("ensemble", "canonical"):
+        raise ValueError(f"Unknown demand mode: {demand_mode}")
     reference = model.measure(state, demand_mode=demand_mode)
     current = reference
     current_score = score(current, reference)
@@ -289,11 +293,15 @@ def main() -> None:
     parser.add_argument("--scenario", choices=("single", "multi"), required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--max-steps", type=int, default=16)
+    parser.add_argument("--demand-mode", choices=("auto", "canonical", "ensemble"),
+                        default="auto")
     args = parser.parse_args()
     cluster, template = scenario(args.scenario)
     model = TopologyModel(cluster)
     state = initial_partition(model)
-    refined, trace = refine(model, state, max_steps=args.max_steps)
+    refined, trace = refine(model, state, max_steps=args.max_steps,
+                            demand_mode=None if args.demand_mode == "auto"
+                            else args.demand_mode)
     result = save(model, template, refined, args.output_dir, trace)
     print(json.dumps({"scenario": args.scenario, "steps": len(trace) - 1,
                       "initial_score": trace[0]["score"],

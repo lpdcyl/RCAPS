@@ -6,9 +6,12 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
+import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from .registry import MAIN_METHOD, METHODS
+from .registry import DEFAULT_METHODS, MAIN_METHOD, METHODS
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,10 +28,35 @@ def output_file(results_dir: Path, scenario: str, seed: int,
     return results_dir / scenario / f"seed{seed}" / f"{method}.json"
 
 
+def run_child(results_dir: Path, scenario: str, seed: int, method: str,
+              args: argparse.Namespace) -> tuple[str, int, Path]:
+    output = output_file(results_dir, scenario, seed, method)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    log = output.with_suffix(".log")
+    command = [sys.executable, "-u", "-m", "benchmarks.run",
+               "--methods", method, "--scenarios", scenario, "--seeds", str(seed),
+               "--offered-single", str(args.offered_single),
+               "--offered-multi", str(args.offered_multi),
+               "--duration", str(args.duration), "--warmup", str(args.warmup),
+               "--results-dir", str(results_dir), "--workers", "1"]
+    if args.force:
+        command.append("--force")
+    environment = os.environ.copy()
+    environment["PYTHONHASHSEED"] = "0"
+    environment["MPLBACKEND"] = "Agg"
+    with log.open("w", encoding="utf-8") as stream:
+        stream.write("Command: " + subprocess.list2cmdline(command) + "\n\n")
+        stream.flush()
+        result = subprocess.run(command, cwd=ROOT, env=environment,
+                                stdout=stream, stderr=subprocess.STDOUT,
+                                check=False)
+    return method, result.returncode, log
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--methods", nargs="+", choices=sorted(METHODS),
-                        default=list(METHODS))
+                        default=DEFAULT_METHODS)
     parser.add_argument("--scenarios", nargs="+", choices=PAPER_LOAD,
                         default=list(PAPER_LOAD))
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
@@ -37,12 +65,37 @@ def main() -> None:
     parser.add_argument("--duration", type=int, default=1800)
     parser.add_argument("--warmup", type=int, default=0)
     parser.add_argument("--results-dir", type=Path, default=DEFAULT_RESULTS)
+    parser.add_argument("--workers", type=int, default=1,
+                        help="Independent simulator processes; each writes a log")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force", action="store_true",
                         help="Replace results from an earlier protocol or layout")
     args = parser.parse_args()
     if args.duration <= args.warmup or args.warmup < 0:
         parser.error("duration must exceed a nonnegative warmup")
+    if args.workers < 1:
+        parser.error("workers must be positive")
+
+    if args.workers > 1 and not args.dry_run:
+        jobs = [(scenario, seed, method) for scenario in args.scenarios
+                for seed in args.seeds for method in args.methods]
+        failures = []
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures = {pool.submit(run_child, args.results_dir.resolve(),
+                                   scenario, seed, method, args):
+                       (scenario, seed, method)
+                       for scenario, seed, method in jobs}
+            for future in as_completed(futures):
+                scenario, seed, method = futures[future]
+                _, code, log = future.result()
+                print(f"{scenario} seed={seed} {method}: "
+                      f"{'done' if code == 0 else f'failed ({code})'}; {log}",
+                      flush=True)
+                if code != 0:
+                    failures.append(str(log))
+        if failures:
+            raise SystemExit(f"{len(failures)} run(s) failed: " + ", ".join(failures))
+        return
 
     loads = {"single": args.offered_single, "multi": args.offered_multi}
     for scenario in args.scenarios:
@@ -57,6 +110,7 @@ def main() -> None:
                     "system": name, "scenario": scenario, "seed": seed,
                     "offered_tokens_per_s": loads[scenario],
                     "duration_s": args.duration, "warmup_s": args.warmup,
+                    "query_samples_schema": 1,
                     "solution_sha256": digest(solution),
                     "sim_cluster_sha256": digest(cluster),
                 }
@@ -83,4 +137,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    if os.environ.get("PYTHONHASHSEED") != "0":
+        environment = os.environ.copy()
+        environment["PYTHONHASHSEED"] = "0"
+        raise SystemExit(subprocess.run(
+            [sys.executable, "-m", "benchmarks.run", *sys.argv[1:]],
+            cwd=ROOT, env=environment, check=False).returncode)
     main()

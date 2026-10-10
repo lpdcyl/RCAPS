@@ -23,4 +23,4 @@ def evaluate(scenario: str, offered: float, duration: int, warmup: int,
 
     return run(scenario, "queue_dag", offered, duration, warmup, seed,
                solution, sim_cluster, scheduler_factory=QueueAwareDagScheduler,
-               compact=True)
+               compact=True, record_query_samples=True)
