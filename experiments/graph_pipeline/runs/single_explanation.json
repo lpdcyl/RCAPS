@@ -1,0 +1,352 @@
+{
+  "scenario": "single",
+  "prompt_tokens": 1000,
+  "decode_batch": 8,
+  "branches": [
+    {
+      "critical_path_s": 2.4718440000000004,
+      "bottleneck_stage_s": 0.283384,
+      "stages": [
+        {
+          "node": 6,
+          "type": "A100",
+          "layers": [
+            0,
+            12
+          ],
+          "compute_s": 0.096,
+          "decode_batch_s": 0.0168,
+          "transfer_s": 0.001002,
+          "queue_s": 0.0
+        },
+        {
+          "node": 9,
+          "type": "A100",
+          "layers": [
+            12,
+            24
+          ],
+          "compute_s": 0.096,
+          "decode_batch_s": 0.0168,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 10,
+          "type": "A100",
+          "layers": [
+            24,
+            36
+          ],
+          "compute_s": 0.096,
+          "decode_batch_s": 0.0168,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 0,
+          "type": "L4",
+          "layers": [
+            36,
+            43
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 3,
+          "type": "L4",
+          "layers": [
+            43,
+            50
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 5,
+          "type": "L4",
+          "layers": [
+            50,
+            57
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 11,
+          "type": "L4",
+          "layers": [
+            57,
+            64
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 1,
+          "type": "T4",
+          "layers": [
+            64,
+            68
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 2,
+          "type": "T4",
+          "layers": [
+            68,
+            72
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 4,
+          "type": "T4",
+          "layers": [
+            72,
+            76
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 7,
+          "type": "T4",
+          "layers": [
+            76,
+            80
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": "sink",
+          "compute_s": 0.0,
+          "decode_batch_s": 0.0,
+          "transfer_s": 0.001002,
+          "queue_s": 0.0
+        }
+      ],
+      "path_nodes": [
+        6,
+        9,
+        10,
+        0,
+        3,
+        5,
+        11,
+        1,
+        2,
+        4,
+        7
+      ],
+      "bottleneck_node": 0
+    },
+    {
+      "critical_path_s": 3.1186120000000006,
+      "bottleneck_stage_s": 0.283384,
+      "stages": [
+        {
+          "node": 6,
+          "type": "A100",
+          "layers": [
+            0,
+            12
+          ],
+          "compute_s": 0.096,
+          "decode_batch_s": 0.0168,
+          "transfer_s": 0.001002,
+          "queue_s": 0.0
+        },
+        {
+          "node": 17,
+          "type": "A100",
+          "layers": [
+            12,
+            24
+          ],
+          "compute_s": 0.096,
+          "decode_batch_s": 0.0168,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 14,
+          "type": "L4",
+          "layers": [
+            24,
+            31
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 18,
+          "type": "L4",
+          "layers": [
+            31,
+            38
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 21,
+          "type": "L4",
+          "layers": [
+            38,
+            45
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 23,
+          "type": "L4",
+          "layers": [
+            45,
+            52
+          ],
+          "compute_s": 0.266,
+          "decode_batch_s": 0.049,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 8,
+          "type": "T4",
+          "layers": [
+            52,
+            56
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 12,
+          "type": "T4",
+          "layers": [
+            56,
+            60
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 13,
+          "type": "T4",
+          "layers": [
+            60,
+            64
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 15,
+          "type": "T4",
+          "layers": [
+            64,
+            68
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 16,
+          "type": "T4",
+          "layers": [
+            68,
+            72
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 19,
+          "type": "T4",
+          "layers": [
+            72,
+            76
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": 20,
+          "type": "T4",
+          "layers": [
+            76,
+            80
+          ],
+          "compute_s": 0.23600000000000002,
+          "decode_batch_s": 0.03,
+          "transfer_s": 0.017384,
+          "queue_s": 0.0
+        },
+        {
+          "node": "sink",
+          "compute_s": 0.0,
+          "decode_batch_s": 0.0,
+          "transfer_s": 0.001002,
+          "queue_s": 0.0
+        }
+      ],
+      "path_nodes": [
+        6,
+        17,
+        14,
+        18,
+        21,
+        23,
+        8,
+        12,
+        13,
+        15,
+        16,
+        19,
+        20
+      ],
+      "bottleneck_node": 14
+    }
+  ],
+  "note": "Queue-free reference estimate; online routing adds measured occupancy."
+}

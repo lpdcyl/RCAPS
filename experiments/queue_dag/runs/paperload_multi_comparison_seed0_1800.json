@@ -1,0 +1,107 @@
+{
+  "scenario": "multi",
+  "baseline_source": "paper_artifact",
+  "protocol": {
+    "scenario": "multi",
+    "offered_tokens_per_s": 320.0,
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "seed": 0,
+    "evaluation_protocol": "fixed_window_no_tail_drain",
+    "python_version": "3.10.20",
+    "numpy_version": "2.2.6",
+    "trace_sha256": "b62ab4fcb5534f9b34c85ba99ef5d261a8dbfab56e21567caa8eec60da3bfc33",
+    "arrivals": 584
+  },
+  "inputs": {
+    "helix": "experiments\\queue_dag\\runs\\paperload_multi_helix_seed0_1800.json",
+    "integrated": "experiments\\queue_dag\\runs\\paperload_multi_integrated_seed0_1800.json"
+  },
+  "layout_sha256": {
+    "helix": {
+      "solution": "dfb0aabfd36592236cf3be79f35dfe5a84f23aeb0b84e4f776251630cce227a7",
+      "sim_cluster": "1733392a562d7a860415fed0932826a59b6c5a6b9caec6e45e380762e9e031f0"
+    },
+    "integrated": {
+      "solution": "0554d805c0531dbb9f4328547e383a21f3b67cf82abe033e6b7938d18e0b8a8e",
+      "sim_cluster": "ded50a2a248b927c27b982437f865cd64f2d69b80376a2df6e90d842d0b14e7b"
+    }
+  },
+  "metrics": {
+    "output_throughput_tokens_per_s": {
+      "helix": 59.324444444444445,
+      "integrated": 70.40611111111112,
+      "improvement_percent": 18.67976475876536,
+      "improved": true
+    },
+    "ttft_p95_s": {
+      "helix": 15.867151985799817,
+      "integrated": 7.177424534059125,
+      "improvement_percent": 54.76551469045923,
+      "improved": true
+    },
+    "tpot_p95_s": {
+      "helix": 3.2296279199337863,
+      "integrated": 0.9264021178351329,
+      "improvement_percent": 71.31551557016122,
+      "improved": true
+    },
+    "completed_request_throughput_per_s": {
+      "helix": 0.22166666666666668,
+      "integrated": 0.29055555555555557,
+      "improvement_percent": 31.07769423558897,
+      "improved": true
+    },
+    "e2e_p95_s": {
+      "helix": 1251.2610359537753,
+      "integrated": 369.8960947147172,
+      "improvement_percent": 70.4381352822384,
+      "improved": true
+    },
+    "completion_fraction": {
+      "helix": 0.6832191780821918,
+      "integrated": 0.8955479452054794,
+      "improvement_percent": 31.07769423558897,
+      "improved": true
+    },
+    "paper_prompt_request_p95_s": {
+      "helix": 9.411245905680062,
+      "integrated": 5.208013665790872,
+      "improvement_percent": 44.661804420096715,
+      "improved": true
+    },
+    "paper_decode_request_p95_s": {
+      "helix": 7.7181909597491085,
+      "integrated": 3.375251715601962,
+      "improvement_percent": 56.26887526877569,
+      "improved": true
+    }
+  },
+  "sample_counts": {
+    "first_tokens_in_window": {
+      "helix": 582,
+      "integrated": 582
+    },
+    "queries_with_tpot_samples": {
+      "helix": 582,
+      "integrated": 582
+    },
+    "backlog_at_window_start": {
+      "helix": 0,
+      "integrated": 0
+    },
+    "backlog_at_window_end": {
+      "helix": 185,
+      "integrated": 61
+    },
+    "paper_prompt_request_count": {
+      "helix": 582,
+      "integrated": 582
+    },
+    "paper_decode_request_count": {
+      "helix": 106784,
+      "integrated": 126731
+    }
+  },
+  "all_three_target_metrics_improved": true
+}

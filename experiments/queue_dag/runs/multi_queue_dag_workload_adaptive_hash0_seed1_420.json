@@ -1,0 +1,137 @@
+{
+  "scenario": "multi",
+  "method": "queue_dag",
+  "solution": "experiments\\critical_graph\\runs\\multi_final\\solution.ini",
+  "sim_cluster": "experiments\\critical_graph\\runs\\multi_final\\simulator_cluster.ini",
+  "offered_tokens_per_s": 160.0,
+  "duration_s": 600,
+  "warmup_s": 180,
+  "seed": 1,
+  "arrivals": 67,
+  "evaluation_protocol": "fixed_window_no_tail_drain",
+  "python_version": "3.10.20",
+  "numpy_version": "2.2.6",
+  "trace_sha256": "37ffff19037838234577c17d9452394c13a1734d583d42361df23daa63578369",
+  "output_throughput_tokens_per_s": 34.76904761904762,
+  "completed_request_throughput_per_s": 0.14047619047619048,
+  "ttft_p95_s": 6.991555309232574,
+  "tpot_p95_s": 0.8118724166445559,
+  "e2e_p95_s": 320.4610709895935,
+  "completion_fraction": 0.6119402985074627,
+  "backlog_at_window_start": 18,
+  "backlog_at_window_end": 26,
+  "first_tokens_in_window": 67,
+  "queries_with_tpot_samples": 67,
+  "route_counts": {
+    "3-2-4-10-11-15-12-9-8-6-13-14-7": 21,
+    "3-2-4-23-17-16-25-22-18-21-20": 29,
+    "3-5-19-24-23-17-16-25-22-18-21-20": 3,
+    "3-5-4-10-11-15-12-9-8-6-13-14-7": 28,
+    "3-5-4-23-17-16-25-22-18-21-20": 15
+  },
+  "route_latency_p95": {
+    "3-2-4-10-11-15-12-9-8-6-13-14-7": {
+      "ttft": 6.294690719421411,
+      "tpot": 0.6906033168713408
+    },
+    "3-2-4-23-17-16-25-22-18-21-20": {
+      "ttft": 8.16015054258536,
+      "tpot": 0.8269860626964963
+    },
+    "3-5-19-24-23-17-16-25-22-18-21-20": {
+      "ttft": 3.3024593503358743,
+      "tpot": 0.7592931799358845
+    },
+    "3-5-4-10-11-15-12-9-8-6-13-14-7": {
+      "ttft": 5.367736860431933,
+      "tpot": 0.7168395591966008
+    },
+    "3-5-4-23-17-16-25-22-18-21-20": {
+      "ttft": 4.935161535200743,
+      "tpot": 0.8311890846472746
+    }
+  },
+  "ttft_outliers": [
+    {
+      "query_uid": 30000082,
+      "arrival_s": 513.9817242440614,
+      "input_tokens": 1992,
+      "output_tokens": 50,
+      "route": "3-2-4-23-17-16-25-22-18-21-20",
+      "ttft_s": 8.185117481599264
+    },
+    {
+      "query_uid": 30000032,
+      "arrival_s": 204.74867767696026,
+      "input_tokens": 1046,
+      "output_tokens": 564,
+      "route": "3-2-4-23-17-16-25-22-18-21-20",
+      "ttft_s": 8.15737643825048
+    },
+    {
+      "query_uid": 30000038,
+      "arrival_s": 245.6994555010681,
+      "input_tokens": 1067,
+      "output_tokens": 427,
+      "route": "3-2-4-10-11-15-12-9-8-6-13-14-7",
+      "ttft_s": 7.70570606469056
+    },
+    {
+      "query_uid": 30000054,
+      "arrival_s": 345.7996063532186,
+      "input_tokens": 1820,
+      "output_tokens": 109,
+      "route": "3-2-4-23-17-16-25-22-18-21-20",
+      "ttft_s": 7.491785182761532
+    },
+    {
+      "query_uid": 30000089,
+      "arrival_s": 560.3286269489578,
+      "input_tokens": 1010,
+      "output_tokens": 388,
+      "route": "3-2-4-10-11-15-12-9-8-6-13-14-7",
+      "ttft_s": 5.824352270998361
+    },
+    {
+      "query_uid": 30000075,
+      "arrival_s": 475.173807158618,
+      "input_tokens": 1369,
+      "output_tokens": 109,
+      "route": "3-2-4-23-17-16-25-22-18-21-20",
+      "ttft_s": 5.799209856948096
+    },
+    {
+      "query_uid": 30000034,
+      "arrival_s": 221.8558729552063,
+      "input_tokens": 408,
+      "output_tokens": 73,
+      "route": "3-5-4-10-11-15-12-9-8-6-13-14-7",
+      "ttft_s": 5.794286922798392
+    },
+    {
+      "query_uid": 30000072,
+      "arrival_s": 457.65062725365334,
+      "input_tokens": 1316,
+      "output_tokens": 135,
+      "route": "3-2-4-23-17-16-25-22-18-21-20",
+      "ttft_s": 5.7554267584618515
+    },
+    {
+      "query_uid": 30000048,
+      "arrival_s": 304.38255747045986,
+      "input_tokens": 1171,
+      "output_tokens": 402,
+      "route": "3-5-4-10-11-15-12-9-8-6-13-14-7",
+      "ttft_s": 5.367736860431933
+    },
+    {
+      "query_uid": 30000033,
+      "arrival_s": 208.0332685922895,
+      "input_tokens": 1254,
+      "output_tokens": 419,
+      "route": "3-2-4-23-17-16-25-22-18-21-20",
+      "ttft_s": 5.3239971442958165
+    }
+  ],
+  "routing_policy": "workload_adaptive"
+}

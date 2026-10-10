@@ -1,0 +1,50 @@
+{
+  "scenario": "multi",
+  "method": "queue_dag",
+  "solution": "experiments\\critical_graph\\runs\\multi_final\\solution.ini",
+  "sim_cluster": "experiments\\critical_graph\\runs\\multi_final\\simulator_cluster.ini",
+  "offered_tokens_per_s": 160.0,
+  "duration_s": 600,
+  "warmup_s": 180,
+  "seed": 1,
+  "arrivals": 67,
+  "evaluation_protocol": "fixed_window_no_tail_drain",
+  "python_version": "3.10.20",
+  "numpy_version": "2.2.6",
+  "trace_sha256": "37ffff19037838234577c17d9452394c13a1734d583d42361df23daa63578369",
+  "output_throughput_tokens_per_s": 30.295238095238094,
+  "completed_request_throughput_per_s": 0.12142857142857143,
+  "ttft_p95_s": 8.452215792874851,
+  "tpot_p95_s": 1.193472656725846,
+  "e2e_p95_s": 154.3464106570671,
+  "completion_fraction": 0.44776119402985076,
+  "backlog_at_window_start": 22,
+  "backlog_at_window_end": 38,
+  "first_tokens_in_window": 67,
+  "queries_with_tpot_samples": 67,
+  "route_counts": {
+    "3-2-4-10-11-15-12-9-8-6-13-14-7": 1,
+    "3-2-4-23-17-16-25-22-18-21-20": 92,
+    "3-5-19-24-23-17-16-25-22-18-21-20": 2,
+    "3-5-4-23-17-16-25-22-18-21-20": 1
+  },
+  "route_latency_p95": {
+    "3-2-4-10-11-15-12-9-8-6-13-14-7": {
+      "ttft": 0.7516681563367342,
+      "tpot": 0.5214087483724632
+    },
+    "3-2-4-23-17-16-25-22-18-21-20": {
+      "ttft": 8.514481435608657,
+      "tpot": 1.1978965921110432
+    },
+    "3-5-19-24-23-17-16-25-22-18-21-20": {
+      "ttft": 3.557203231204767,
+      "tpot": 0.8307780562162721
+    },
+    "3-5-4-23-17-16-25-22-18-21-20": {
+      "ttft": 2.2976594896411484,
+      "tpot": 0.9171543089594613
+    }
+  },
+  "routing_policy": "finish_immediate"
+}
