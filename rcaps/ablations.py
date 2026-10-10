@@ -31,6 +31,7 @@ SCHEDULERS = {
     "rcaps_no_session": NoSessionCostScheduler,
 }
 LAYOUT_VARIANTS = {
+    "rcaps_capacity": {"single": "single_capacity", "multi": "multi_capacity"},
     "rcaps_coarse": {"single": "single_coarse", "multi": "multi_coarse"},
     # In the single cluster canonical mode makes no accepted move; it is
     # byte-equivalent to rcaps_coarse and needs no duplicate simulation.

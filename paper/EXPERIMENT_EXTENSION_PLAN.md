@@ -18,9 +18,13 @@
 | --- | --- | --- | --- |
 | 公平性复核 | RCAPS 正式方案 vs Helix 官方 ILP 放置和 MaxFlow 调度 | 0、1、2；两拓扑共 12 次 | 轨迹哈希、请求身份、共同可观测请求的 P95、完成率和积压；核对历史端到端结果 |
 | 调度消融 | RCAPS vs `rcaps_no_queue`、`rcaps_no_session`、`rcaps_no_coalesce` | 0、1、2；两拓扑共 18 次新增变体运行 | 当前队列释放时间、活跃 KV 会话代价和就绪解码合并在同一放置上的作用 |
-| 放置消融 | RCAPS vs `rcaps_coarse`；三集群另比 `rcaps_alt_demand` | 0、1、2；共 9 次新增变体运行 | 局部细化与路径集合需求在相同调度器下的作用 |
+| 放置消融 | `rcaps_capacity` → `rcaps_coarse` → RCAPS；三集群另比 `rcaps_alt_demand` | 0、1、2；共 15 次新增变体运行 | 容量构造、拓扑感知初始化、关键资源细化的逐级作用；替代路径需求的敏感性 |
 
 这些消融只改变表述中的对应实现项。不同消融的百分比不可相加，也不能将开发负载的组件收益直接解释为官方负载端到端增益。若消融指标方向不一致，报告完整的吞吐、两类 P95、完成率和积压，而非只挑选改善项。
+
+最核心的**放置阶梯**固定同一个 RCAPS 在线调度器、请求轨迹、24 台物理 GPU 与双后缀结构。`rcaps_capacity` 只按显存容量选择共享设备、平衡两支路并确定设备顺序，所有 24 台 GPU 各放至少一层，不读取 RTT 或带宽；`rcaps_coarse` 在容量约束上加入 RTT 连通分组和链路代价引导的设备顺序，但不做局部细化；正式 RCAPS 在这个粗布局上加入事件图关键资源反馈和局部移动。因此第一段差异估计**拓扑感知初始化整体**的作用，第二段差异估计**关键资源细化在拓扑初始化之上**的增量作用。三种布局均由相同规则导出合法拼接边，且使用相同调度器。共享设备及层放置不同是所研究的处理变量。
+
+“完整 RCAPS”就是第三档放置加 RCAPS 调度，不能再把它作为放置阶梯的第四个独立组件。完整系统与 Helix 的比较另成一表；它同时改变放置和调度，不可用来直接归因于关键路径。若关键资源细化在三集群仅改善 TPOT，论文贡献应写成资源瓶颈解释与条件性细化，不能称其主导整体吞吐增益。
 
 ## 公平性、截尾与统计
 
@@ -36,8 +40,9 @@
 
 ```powershell
 python -m benchmarks.run --methods rcaps helix rcaps_no_queue rcaps_no_session rcaps_no_coalesce rcaps_coarse --scenarios single multi --seeds 0 1 2 --workers 12
+python -m benchmarks.run --methods rcaps_capacity --scenarios single multi --seeds 0 1 2 --workers 6
 python -m benchmarks.run --methods rcaps_alt_demand --scenarios multi --seeds 0 1 2 --workers 3
-python -m benchmarks.compare --baselines helix rcaps_no_queue rcaps_no_session rcaps_no_coalesce rcaps_coarse --seeds 0 1 2 --output paper/THREE_SEED_COMPARISON.json
+python -m benchmarks.compare --baselines helix rcaps_capacity rcaps_coarse rcaps_no_queue rcaps_no_session rcaps_no_coalesce --seeds 0 1 2 --output paper/THREE_SEED_COMPARISON.json
 python -m benchmarks.compare --baselines rcaps_alt_demand --scenarios multi --seeds 0 1 2 --output paper/THREE_SEED_ALT_DEMAND.json
 python -m benchmarks.paired_stats --source benchmark --seeds 0 1 2 --output paper/THREE_SEED_PAIRED_STATS.json
 python -m benchmarks.manifest

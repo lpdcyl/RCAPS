@@ -26,6 +26,7 @@ The registered ablations keep the common runner and trace generator:
 
 | Name | Single change |
 | --- | --- |
+| `rcaps_capacity` | Use VRAM-only initial partition, all 24 GPUs active; ignore RTT and bandwidth in placement |
 | `rcaps_no_queue` | Ignore current GPU/link release times in routing cost |
 | `rcaps_no_session` | Ignore active KV-session decode service in routing cost |
 | `rcaps_no_coalesce` | Transfer ready decodes individually; preserve routing cost |
@@ -36,6 +37,7 @@ For example:
 
 ```powershell
 python -m benchmarks.run --methods rcaps rcaps_no_queue rcaps_no_session rcaps_no_coalesce rcaps_coarse --scenarios single multi --seeds 0 1 2 --workers 12
+python -m benchmarks.run --methods rcaps_capacity --scenarios single multi --seeds 0 1 2 --workers 6
 python -m benchmarks.run --methods rcaps_alt_demand --scenarios multi --seeds 0 1 2 --workers 3
 python -m benchmarks.compare --baselines rcaps_no_coalesce --scenarios single multi --seeds 0 1 2
 ```

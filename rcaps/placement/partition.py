@@ -67,6 +67,43 @@ def topology_groups(model: TopologyModel) -> list[list[int]]:
     return sorted((sorted(group) for group in groups.values()), key=lambda group: group[0])
 
 
+def capacity_partition(model: TopologyModel) -> dict:
+    """VRAM-only two-branch construction; do not inspect RTT or bandwidth.
+
+    The same physical GPU pool and shared-prefix/two-suffix family are used as
+    in ``initial_partition``. All non-shared GPUs are assigned to one branch,
+    so gains cannot be attributed to activating more devices.
+    """
+    shared = min(model.types, key=lambda node: (-model.capacity[node], node))
+    remaining = model.layers - model.capacity[shared]
+    devices = sorted((node for node in model.types if node != shared),
+                     key=lambda node: (-model.capacity[node], node))
+    paths: list[list[int]] = [[], []]
+    capacities = [0, 0]
+    for node in devices:
+        target = min(range(2), key=lambda index: (capacities[index], index))
+        paths[target].append(node)
+        capacities[target] += model.capacity[node]
+    if min(capacities) < remaining:
+        raise ValueError("VRAM-only split cannot cover both complete suffixes")
+    lengths: dict[int, int] = {}
+    for path in paths:
+        unplaced = remaining
+        for index, node in enumerate(path):
+            reserve = len(path) - index - 1
+            length = min(model.capacity[node], unplaced - reserve)
+            if length < 1:
+                raise ValueError("VRAM-only split cannot give every GPU a layer")
+            lengths[node] = length
+            unplaced -= length
+        if unplaced:
+            raise ValueError("VRAM-only branch does not cover all layers")
+    state = {"shared": shared, "shared_length": model.capacity[shared],
+             "paths": paths, "lengths": lengths}
+    model.intervals(state)
+    return state
+
+
 def initial_partition(model: TopologyModel) -> dict:
     """Form two complete replicas using contracted topology and VRAM capacity."""
     groups = topology_groups(model)
@@ -231,7 +268,8 @@ def refine(model: TopologyModel, initial: dict, *, max_steps: int = 16,
 
 
 def save(model: TopologyModel, template: Path, state: dict, destination: Path,
-         trace: list[dict]) -> dict:
+         trace: list[dict], *, algorithm: str =
+         "topology-conditioned critical-path/path-ensemble graph partition") -> dict:
     spans = model.intervals(state)
     destination.mkdir(parents=True, exist_ok=True)
     solution = ConfigParser()
@@ -275,7 +313,7 @@ def save(model: TopologyModel, template: Path, state: dict, destination: Path,
     sim_file = destination / "simulator_cluster.ini"
     with sim_file.open("w", encoding="utf-8") as handle:
         sim.write(handle)
-    result = {"algorithm": "topology-conditioned critical-path/path-ensemble graph partition",
+    result = {"algorithm": algorithm,
               "demand_mode": trace[0]["demand_mode"],
               "cluster_file": model.cluster_file.relative_to(ROOT).as_posix(),
               "shared": state["shared"],
@@ -295,14 +333,26 @@ def main() -> None:
     parser.add_argument("--max-steps", type=int, default=16)
     parser.add_argument("--demand-mode", choices=("auto", "canonical", "ensemble"),
                         default="auto")
+    parser.add_argument("--initial-mode", choices=("topology", "capacity"),
+                        default="topology")
     args = parser.parse_args()
     cluster, template = scenario(args.scenario)
     model = TopologyModel(cluster)
-    state = initial_partition(model)
-    refined, trace = refine(model, state, max_steps=args.max_steps,
-                            demand_mode=None if args.demand_mode == "auto"
-                            else args.demand_mode)
-    result = save(model, template, refined, args.output_dir, trace)
+    if args.initial_mode == "capacity":
+        if args.max_steps != 0:
+            parser.error("capacity-only placement requires --max-steps 0")
+        refined = capacity_partition(model)
+        trace = [{"step": 0, "move": "VRAM-only construction",
+                  "demand_mode": "none", "score": None}]
+        algorithm = "VRAM-only balanced shared-prefix/two-suffix partition"
+    else:
+        state = initial_partition(model)
+        refined, trace = refine(model, state, max_steps=args.max_steps,
+                                demand_mode=None if args.demand_mode == "auto"
+                                else args.demand_mode)
+        algorithm = "topology-conditioned critical-path/path-ensemble graph partition"
+    result = save(model, template, refined, args.output_dir, trace,
+                  algorithm=algorithm)
     print(json.dumps({"scenario": args.scenario, "steps": len(trace) - 1,
                       "initial_score": trace[0]["score"],
                       "final_score": trace[-1]["score"],

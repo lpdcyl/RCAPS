@@ -28,8 +28,9 @@ METHODS = {
                            helix.layout, helix.evaluate),
 }
 for name in (*ablations.SCHEDULERS, *ablations.LAYOUT_VARIANTS):
+    kind = "scheduling" if name in ablations.SCHEDULERS else "placement"
     METHODS[name] = MethodSpec(
-        name, f"RCAPS scheduling ablation: {name}", "ablation",
+        name, f"RCAPS {kind} ablation: {name}", "ablation",
         lambda scenario, root, _name=name:
             ablations.variant_layout(_name, scenario, root),
         lambda scenario, offered, duration, warmup, seed, solution, cluster,
