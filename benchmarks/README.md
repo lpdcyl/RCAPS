@@ -11,9 +11,9 @@ TTFT/TPOT samples, completion fraction, and end-of-window backlog.
 ```powershell
 python -m benchmarks.manifest
 python -m benchmarks.run --dry-run
-python -m benchmarks.run --methods rcaps helix --seeds 20 21 22 23 24 25 26 27 28 29
-python -m benchmarks.compare --baselines helix --seeds 20 21 22 23 24 25 26 27 28 29
-python -m benchmarks.paired_stats --source benchmark --seeds 20 21 22 23 24 25 26 27 28 29
+python -m benchmarks.run --methods rcaps helix --seeds 0 1 2 --workers 12
+python -m benchmarks.compare --baselines helix --seeds 0 1 2
+python -m benchmarks.paired_stats --source benchmark --seeds 0 1 2
 ```
 
 Each new run also records per-query first-token time, mean inter-token time,
@@ -35,9 +35,9 @@ The registered ablations keep the common runner and trace generator:
 For example:
 
 ```powershell
-python -m benchmarks.run --methods rcaps rcaps_no_queue rcaps_no_session rcaps_no_coalesce rcaps_coarse --scenarios single multi --seeds 3 4 5 6 7
-python -m benchmarks.run --methods rcaps_alt_demand --scenarios multi --seeds 3 4 5 6 7
-python -m benchmarks.compare --baselines rcaps_no_coalesce --scenarios single multi --seeds 3 4 5 6 7
+python -m benchmarks.run --methods rcaps rcaps_no_queue rcaps_no_session rcaps_no_coalesce rcaps_coarse --scenarios single multi --seeds 0 1 2 --workers 12
+python -m benchmarks.run --methods rcaps_alt_demand --scenarios multi --seeds 0 1 2 --workers 3
+python -m benchmarks.compare --baselines rcaps_no_coalesce --scenarios single multi --seeds 0 1 2
 ```
 
 Predeclared claims, run counts, failure handling, and statistical analysis are

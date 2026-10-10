@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from statistics import mean
+from statistics import mean, stdev
 
 import numpy as np
 
@@ -79,13 +79,29 @@ def paired_summary(results_dir: Path, scenario: str, seeds: list[int],
             "main_method_mean": mean(a for a, _ in values),
             "baseline_mean": mean(b for _, b in values),
             "paired_improvement_percent_mean": mean(gains),
+            "paired_improvement_percent_sample_sd": (stdev(gains)
+                                                     if len(gains) > 1 else None),
+            "paired_improvement_percent_range": [min(gains), max(gains)],
             "paired_improvement_percent_by_seed": dict(zip(seeds, gains)),
         }
     cohorts = [common_cohort(candidate, reference)
                for candidate, reference in pairs]
+    populations = [{
+        "seed": candidate["seed"],
+        "arrivals": candidate["arrivals"],
+        "main_first_token_samples": candidate["first_tokens_in_window"],
+        "baseline_first_token_samples": reference["first_tokens_in_window"],
+        "main_tpot_samples": candidate["queries_with_tpot_samples"],
+        "baseline_tpot_samples": reference["queries_with_tpot_samples"],
+        "main_completion_fraction": candidate["completion_fraction"],
+        "baseline_completion_fraction": reference["completion_fraction"],
+        "main_backlog_at_end": candidate["backlog_at_window_end"],
+        "baseline_backlog_at_end": reference["backlog_at_window_end"],
+    } for candidate, reference in pairs]
     return {"scenario": scenario, "main_method": MAIN_METHOD,
             "baseline": baseline, "seeds": seeds,
-            "metrics": metrics, "common_cohort_by_seed": cohorts}
+            "metrics": metrics, "measurement_population_by_seed": populations,
+            "common_cohort_by_seed": cohorts}
 
 
 def main() -> None:

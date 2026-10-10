@@ -67,8 +67,8 @@ def manifest() -> dict:
             "duration_s": 1800,
             "warmup_s": 0,
             "evaluation": "fixed_window_no_tail_drain",
-            "exploratory_seeds": [0, 1, 2, 3, 4, 5, 6, 7],
-            "heldout_seeds": list(range(20, 30)),
+            "seeds": [0, 1, 2],
+            "independent_holdout": False,
         },
         "input_files": {path.relative_to(ROOT).as_posix(): fingerprint(path)
                         for path in files},
