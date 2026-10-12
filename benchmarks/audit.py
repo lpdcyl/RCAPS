@@ -9,7 +9,7 @@ import math
 from pathlib import Path
 
 from .compare import common_cohort
-from .registry import METHODS
+from .registry import MAIN_METHOD, METHODS
 from .run import DEFAULT_RESULTS, ROOT, digest, output_file
 
 
@@ -22,8 +22,7 @@ def verify(results_dir: Path) -> dict:
     records = {}
     checks = []
     for scenario, offered in SCENARIOS.items():
-        names = [name for name in METHODS
-                 if name != "rcaps_alt_demand" or scenario == "multi"]
+        names = list(METHODS)
         for seed in SEEDS:
             group = {}
             for name in names:
@@ -53,7 +52,7 @@ def verify(results_dir: Path) -> dict:
                     "trace_sha256": record["trace_sha256"],
                     "arrivals": record["arrivals"],
                 }
-            main = group["rcaps"]
+            main = group[MAIN_METHOD]
             for name, record in group.items():
                 if (record["trace_sha256"] != main["trace_sha256"] or
                         record["arrivals"] != main["arrivals"]):
@@ -72,9 +71,9 @@ def verify(results_dir: Path) -> dict:
                            "trace_sha256": main["trace_sha256"],
                            "arrivals": main["arrivals"],
                            "methods_verified": names,
-                           "historical_main_and_helix_metrics_exact": True})
+                           "historical_v1_and_helix_metrics_exact": True})
     return {"status": "passed", "record_count": len(records),
-            "expected_record_count": 45,
+            "expected_record_count": len(METHODS) * len(SCENARIOS) * len(SEEDS),
             "checks": checks, "record_sha256": records,
             "arrival_comparison_abs_tolerance_s": 1e-9,
             "historical_metrics": list(METRICS)}
@@ -84,7 +83,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--results-dir", type=Path, default=DEFAULT_RESULTS)
     parser.add_argument("--output", type=Path,
-                        default=ROOT / "paper" / "THREE_SEED_AUDIT.json")
+                        default=ROOT / "paper" / "V2_THREE_SEED_AUDIT.json")
     args = parser.parse_args()
     report = verify(args.results_dir.resolve())
     if report["record_count"] != report["expected_record_count"]:

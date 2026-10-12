@@ -7,8 +7,7 @@ from pathlib import Path
 from typing import Callable
 
 from baselines import helix
-from rcaps import ablations
-from rcaps import method as rcaps
+from rcaps import method as rcaps_v1
 from rcaps import v2_method
 
 
@@ -21,32 +20,24 @@ class MethodSpec:
     evaluate: Callable[[str, float, int, int, int, Path, Path], dict]
 
 
-MAIN_METHOD = rcaps.NAME
+MAIN_METHOD = v2_method.NAME
 METHODS = {
-    rcaps.NAME: MethodSpec(rcaps.NAME, rcaps.DESCRIPTION, "main",
-                           rcaps.layout, rcaps.evaluate),
+    MAIN_METHOD: MethodSpec(
+        MAIN_METHOD, "V2 adaptive shared-stem and replicated-suffix placement",
+        "main", lambda scenario, root: v2_method.layout(MAIN_METHOD, scenario, root),
+        v2_method.evaluate),
     helix.NAME: MethodSpec(helix.NAME, helix.DESCRIPTION, "baseline",
                            helix.layout, helix.evaluate),
+    rcaps_v1.NAME: MethodSpec(
+        rcaps_v1.NAME, rcaps_v1.DESCRIPTION, "comparison",
+        rcaps_v1.layout, rcaps_v1.evaluate),
+    "rcaps_v2_fixed_structure": MethodSpec(
+        "rcaps_v2_fixed_structure",
+        "V2 search constrained to a one-GPU stem and two suffixes", "ablation",
+        lambda scenario, root: v2_method.layout(
+            "rcaps_v2_fixed_structure", scenario, root),
+        v2_method.evaluate),
 }
-for name in (*ablations.SCHEDULERS, *ablations.LAYOUT_VARIANTS):
-    kind = "scheduling" if name in ablations.SCHEDULERS else "placement"
-    METHODS[name] = MethodSpec(
-        name, f"RCAPS {kind} ablation: {name}", "ablation",
-        lambda scenario, root, _name=name:
-            ablations.variant_layout(_name, scenario, root),
-        lambda scenario, offered, duration, warmup, seed, solution, cluster,
-        _name=name: ablations.evaluate(_name, scenario, offered, duration,
-                                        warmup, seed, solution, cluster),
-    )
-
-for name, role in (("rcaps_v2", "experimental"),
-                   ("rcaps_v2_fixed_structure", "ablation")):
-    METHODS[name] = MethodSpec(
-        name, "V2 adaptive shared-stem placement" if name == "rcaps_v2" else
-        "V2 search constrained to a one-GPU stem and two suffixes", role,
-        lambda scenario, root, _name=name: v2_method.layout(_name, scenario, root),
-        v2_method.evaluate,
-    )
 
 DEFAULT_METHODS = [name for name, spec in METHODS.items()
                    if spec.role in ("main", "baseline")]

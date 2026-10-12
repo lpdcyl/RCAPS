@@ -1,15 +1,18 @@
-"""V2 adaptive-placement methods with the unchanged V1 online scheduler."""
+"""V2 adaptive-placement adapters using the shared online DAG scheduler."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
+NAME = "rcaps_v2"
+
+
 def layout(variant: str, scenario: str, root: Path) -> tuple[Path, Path]:
     if scenario not in ("single", "multi"):
         raise ValueError(f"Unknown scenario: {scenario}")
-    if variant not in ("rcaps_v2", "rcaps_v2_fixed_structure"):
+    if variant not in (NAME, "rcaps_v2_fixed_structure"):
         raise ValueError(f"Unknown V2 variant: {variant}")
-    suffix = "adaptive" if variant == "rcaps_v2" else "fixed"
+    suffix = "adaptive" if variant == NAME else "fixed"
     directory = root / "rcaps" / "v2_layouts" / f"{scenario}_{suffix}"
     return directory / "solution.ini", directory / "simulator_cluster.ini"
 

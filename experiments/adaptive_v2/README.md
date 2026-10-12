@@ -1,5 +1,7 @@
 # 自适应共享与复制结构：V2 实验
 
+`rcaps_v2` 现在是默认主方法；`rcaps` 是显式调用的 V1 双后缀对照，`rcaps_v2_fixed_structure` 是 V2 搜索的固定结构消融。下面记录的是角色调整之前完成的实验，已有 JSON 中的 `role` 和 `main_method` 字段保留原值，不改写测量结果。
+
 本实验从冻结的 `v1.0.0-research` 标签出发，仅改变离线放置。`rcaps_v2` 自动选择 A100 共享前缀设备数、前缀层数及两条或三条完整后缀；`rcaps_v2_fixed_structure` 使用同一 V2 搜索和代理，但限制为单 GPU、12 层共享前缀及两条后缀。两者与 V1 `rcaps` 均使用相同的 `QueueAwareDagScheduler`。
 
 三种子配对数据与谨慎解释见[结果报告](RESULTS.md)、[机器可读汇总](summary.json)和[独立共同请求群体对照](compare.json)；[布局审计](layout_audit.json)及[画像中性检查](profile_neutrality.json)记录输入与测量核对。[创新性核对范围](NOVELTY_SCOPE.md)界定目前不能声称的先例覆盖内容。

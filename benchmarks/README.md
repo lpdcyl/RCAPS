@@ -11,11 +11,21 @@ TTFT/TPOT samples, completion fraction, and end-of-window backlog.
 ```powershell
 python -m benchmarks.manifest
 python -m benchmarks.run --dry-run
-python -m benchmarks.run --methods rcaps helix --seeds 0 1 2 --workers 12
+python -m benchmarks.run --seeds 0 1 2 --workers 12
 python -m benchmarks.compare --baselines helix --seeds 0 1 2
-python -m benchmarks.paired_stats --source benchmark --seeds 0 1 2
+python -m benchmarks.compare --baselines rcaps --seeds 0 1 2
+python -m benchmarks.paired_stats --seeds 0 1 2
 python -m benchmarks.audit
 ```
+
+The default run executes `rcaps_v2` and `helix`; the default comparison uses
+V2 as the main method. The historical `rcaps` V1 shared-prefix/two-suffix
+adapter is available explicitly for comparison. `rcaps_v2_fixed_structure`
+is a V2 search constrained to a one-GPU prefix and two suffixes; it is an
+ablation of the V2 structure search, not the same method as V1. Existing
+result JSON files keep their original registry metadata for provenance.
+The formal layout INI files have fixed byte hashes; `.gitattributes` prevents
+Git line-ending conversion from changing those hashes on a fresh checkout.
 
 Each new run also records per-query first-token time, mean inter-token time,
 arrival length, and completion status. `benchmarks.compare` verifies paired
@@ -23,28 +33,23 @@ query IDs and inputs before reporting P95 latency on the cohort observed in
 both methods. This sensitivity analysis complements the original fixed-window
 P95; it does not remove censoring of requests without an output sample.
 
-The registered ablations keep the common runner and trace generator:
+The active methods are:
 
-| Name | Single change |
+| Name | Role |
 | --- | --- |
-| `rcaps_capacity` | Use VRAM-only initial partition, all 24 GPUs active; ignore RTT and bandwidth in placement |
-| `rcaps_no_queue` | Ignore current GPU/link release times in routing cost |
-| `rcaps_no_session` | Ignore active KV-session decode service in routing cost |
-| `rcaps_no_coalesce` | Transfer ready decodes individually; preserve routing cost |
-| `rcaps_coarse` | Use the initial shared-prefix/two-suffix layout before local refinement |
-| `rcaps_full_search` | Evaluate every legal local move using the same event-graph objective as RCAPS |
-| `rcaps_static_no_graph` | Search the same neighborhood with isolated-route latency, without event-graph or critical-resource analysis |
-| `rcaps_alt_demand` | Use ensemble path demand on the three-cluster layout; this is not a distinct single-cluster layout |
+| `rcaps_v2` | Default main method |
+| `helix` | Default external baseline |
+| `rcaps` | Explicit V1 two-suffix comparison |
+| `rcaps_v2_fixed_structure` | Explicit V2 structure ablation |
 
-For example:
+To run the two internal comparisons explicitly:
 
 ```powershell
-python -m benchmarks.run --methods rcaps rcaps_no_queue rcaps_no_session rcaps_no_coalesce rcaps_coarse --scenarios single multi --seeds 0 1 2 --workers 12
-python -m benchmarks.run --methods rcaps_capacity --scenarios single multi --seeds 0 1 2 --workers 6
-python -m benchmarks.run --methods rcaps_alt_demand --scenarios multi --seeds 0 1 2 --workers 3
-python -m benchmarks.compare --baselines rcaps_no_coalesce --scenarios single multi --seeds 0 1 2
-python -m benchmarks.compare --main-method rcaps_coarse --baselines rcaps_capacity --seeds 0 1 2
+python -m benchmarks.run --methods rcaps rcaps_v2_fixed_structure --scenarios single multi --seeds 0 1 2
+python -m benchmarks.compare --baselines rcaps rcaps_v2_fixed_structure --seeds 0 1 2
 ```
 
-Predeclared claims, run counts, failure handling, and statistical analysis are
-in [`paper/EXPERIMENT_EXTENSION_PLAN.md`](../paper/EXPERIMENT_EXTENSION_PLAN.md).
+V1-specific ablation code and result files remain for historical provenance,
+but they are no longer registered as current benchmark methods. The V2
+structure comparison is documented in
+[the V2 experiment](../experiments/adaptive_v2/README.md).

@@ -14,6 +14,7 @@ from statistics import mean, stdev
 
 from scipy.stats import binomtest, t
 
+from .registry import MAIN_METHOD
 from .run import DEFAULT_RESULTS, ROOT, output_file
 
 
@@ -60,11 +61,12 @@ def holm_adjust(p_values: list[float]) -> list[float]:
 def summarize(source: str, directory: Path, seeds: list[int]) -> dict:
     if len(seeds) != len(set(seeds)) or len(seeds) < 2:
         raise ValueError("Provide at least two distinct seeds")
+    main_method = "rcaps" if source == "historical" else MAIN_METHOD
     cells = []
     for scenario in ("single", "multi"):
         paired = []
         for seed in seeds:
-            main_path = record_path(source, directory, scenario, seed, "rcaps")
+            main_path = record_path(source, directory, scenario, seed, main_method)
             base_path = record_path(source, directory, scenario, seed, "helix")
             main, base = read(main_path), read(base_path)
             if any(main.get(key) != base.get(key) for key in MATCH_FIELDS):
@@ -84,13 +86,13 @@ def summarize(source: str, directory: Path, seeds: list[int]) -> dict:
                 effect = 100 * (a / b - 1 if direction == "higher" else 1 - a / b)
                 effects.append(effect)
                 raw.append({
-                    "seed": seed, "rcaps": a, "helix": b,
+                    "seed": seed, main_method: a, "helix": b,
                     "improvement_percent": effect,
-                    "first_tokens_rcaps": main["first_tokens_in_window"],
+                    f"first_tokens_{main_method}": main["first_tokens_in_window"],
                     "first_tokens_helix": base["first_tokens_in_window"],
-                    "tpot_samples_rcaps": main["queries_with_tpot_samples"],
+                    f"tpot_samples_{main_method}": main["queries_with_tpot_samples"],
                     "tpot_samples_helix": base["queries_with_tpot_samples"],
-                    "completion_fraction_rcaps": main["completion_fraction"],
+                    f"completion_fraction_{main_method}": main["completion_fraction"],
                     "completion_fraction_helix": base["completion_fraction"],
                     "main_record": display_path(main_path),
                     "base_record": display_path(base_path),
@@ -117,7 +119,8 @@ def summarize(source: str, directory: Path, seeds: list[int]) -> dict:
     for cell, value in zip(cells, adjusted):
         cell["holm_adjusted_sign_p"] = value
     return {
-        "source": source, "seeds": seeds,
+        "source": source, "main_method": main_method,
+        "baseline": "helix", "seeds": seeds,
         "inference_unit": "request-generation seed",
         "scope": "fixed-layout Helix event simulation; no hardware uncertainty",
         "tests": "six predeclared scenario-metric cells; one-sided exact sign test with Holm correction",
@@ -128,7 +131,7 @@ def summarize(source: str, directory: Path, seeds: list[int]) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", choices=("historical", "benchmark"),
-                        default="historical")
+                        default="benchmark")
     parser.add_argument("--results-dir", type=Path)
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
     parser.add_argument("--output", type=Path)

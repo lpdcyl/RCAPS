@@ -1,4 +1,4 @@
-"""RCAPS placement and online scheduling adapter for common evaluation."""
+"""Historical V1 two-suffix adapter, retained for comparison with V2."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 NAME = "rcaps"
-DESCRIPTION = "Resource contention-aware placement and scheduling"
+DESCRIPTION = "V1 shared-prefix/two-suffix placement and DAG scheduling"
 
 
 def layout(scenario: str, root: Path) -> tuple[Path, Path]:

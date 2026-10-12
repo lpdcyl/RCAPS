@@ -13,6 +13,7 @@ from pathlib import Path
 import numpy
 import scipy
 
+from .registry import DEFAULT_METHODS, MAIN_METHOD
 from .run import ROOT
 
 
@@ -30,10 +31,15 @@ CONFIGS = (
     "rcaps/layouts/single/simulator_cluster.ini",
     "rcaps/layouts/multi/solution.ini",
     "rcaps/layouts/multi/simulator_cluster.ini",
-) + tuple(f"rcaps/variant_layouts/{variant}/{name}"
-          for variant in ("single_capacity", "multi_capacity", "single_coarse",
-                          "multi_coarse", "multi_ensemble")
-          for name in ("placement.json", "solution.ini", "simulator_cluster.ini"))
+    "rcaps/v2_layouts/single_adaptive/solution.ini",
+    "rcaps/v2_layouts/single_adaptive/simulator_cluster.ini",
+    "rcaps/v2_layouts/multi_adaptive/solution.ini",
+    "rcaps/v2_layouts/multi_adaptive/simulator_cluster.ini",
+    "rcaps/v2_layouts/single_fixed/solution.ini",
+    "rcaps/v2_layouts/single_fixed/simulator_cluster.ini",
+    "rcaps/v2_layouts/multi_fixed/solution.ini",
+    "rcaps/v2_layouts/multi_fixed/simulator_cluster.ini",
+)
 
 
 def fingerprint(path: Path) -> dict:
@@ -65,6 +71,8 @@ def manifest() -> dict:
             "architecture": platform.machine(),
         },
         "protocol": {
+            "main_method": MAIN_METHOD,
+            "default_methods": DEFAULT_METHODS,
             "scenarios": ["single", "multi"],
             "offered_tokens_per_s": {"single": 700, "multi": 320},
             "duration_s": 1800,
@@ -80,7 +88,8 @@ def manifest() -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "paper" / "RUN_MANIFEST.json")
+    parser.add_argument("--output", type=Path,
+                        default=ROOT / "paper" / "V2_RUN_MANIFEST.json")
     args = parser.parse_args()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(manifest(), indent=2) + "\n",
