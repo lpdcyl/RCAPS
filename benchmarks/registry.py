@@ -10,6 +10,7 @@ from baselines import helix, separate, swarm
 from rcaps import method as rcaps_v1
 from rcaps import v2_method
 from experiments.v2_method_ablation import adapters as v2_ablation
+from experiments.v2_core_ablations import adapters as v2_core
 
 
 @dataclass(frozen=True)
@@ -67,6 +68,22 @@ METHODS = {
         "Adaptive V2 layout with capacity-safe static legal paths",
         "ablation", v2_ablation.adaptive_safe_static_layout,
         v2_ablation.evaluate_safe_static),
+    **{
+        name: MethodSpec(
+            name, f"V2 common candidate pool selected by {evaluator}", "ablation",
+            lambda scenario, root, method=name: v2_core.modeling_layout(method, scenario, root),
+            v2_core.evaluate)
+        for name, evaluator in v2_core.MODEL_METHODS.items()
+    },
+    v2_core.FIXED_BRANCHES: MethodSpec(
+        v2_core.FIXED_BRANCHES, "V2 event-DAG search constrained to two suffixes",
+        "ablation", v2_core.fixed_branches_layout, v2_core.evaluate),
+    v2_core.STATIC_DAG: MethodSpec(
+        v2_core.STATIC_DAG, "Static-cost legal DAG routing with V2 transfer batching",
+        "ablation", v2_core.v2_layout, v2_core.evaluate_static_dag),
+    v2_core.QUEUE_DAG: MethodSpec(
+        v2_core.QUEUE_DAG, "Queue-only legal DAG routing with V2 transfer batching",
+        "ablation", v2_core.v2_layout, v2_core.evaluate_queue_dag),
 }
 
 DEFAULT_METHODS = [name for name, spec in METHODS.items()

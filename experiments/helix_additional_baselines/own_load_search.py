@@ -16,8 +16,8 @@ from benchmarks.registry import METHODS
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 GRIDS = {
-    "single": (100, 150, 200, 250, 300, 350, 400, 500, 600, 700, 800, 900),
-    "multi": (40, 60, 80, 100, 120, 140, 160, 200, 240, 280, 320, 360, 400),
+    "single": (50, 75, 100, 150, 200, 250, 300, 350, 400, 500, 600, 700, 800, 900),
+    "multi": (20, 30, 40, 60, 80, 100, 120, 140, 160, 200, 240, 280, 320, 360, 400),
 }
 METHOD_NAMES = ("helix", "swarm", "separate", "rcaps_v2")
 SEEDS = (100, 101)
@@ -113,8 +113,17 @@ def search(scenario: str) -> None:
              "scenario": scenario, "grid": GRIDS[scenario], "methods": {}}
     if output.is_file():
         state = json.loads(output.read_text(encoding="utf-8"))
-        if (state["scenario"] != scenario or tuple(state["grid"]) != GRIDS[scenario]):
-            raise ValueError("Existing selection uses a different grid")
+        if state["scenario"] != scenario:
+            raise ValueError("Existing selection uses a different scenario")
+        old_grid = tuple(state["grid"])
+        if old_grid != GRIDS[scenario]:
+            if GRIDS[scenario][-len(old_grid):] != old_grid:
+                raise ValueError("Existing selection grid is not a suffix of the extended grid")
+            state["grid"] = GRIDS[scenario]
+            for choice in state["methods"].values():
+                if choice["status"] == "no_grid_load_passed":
+                    choice["status"] = "searching"
+            save(output, state)
     for method in METHOD_NAMES:
         if state["methods"].get(method, {}).get("status") in (
                 "selected", "grid_ceiling", "no_grid_load_passed"):

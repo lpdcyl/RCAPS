@@ -12,6 +12,8 @@ import sys
 import time
 from pathlib import Path
 
+from .own_load_search import GRIDS
+
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -35,6 +37,8 @@ def selections_ready() -> bool:
         selection = json.loads(path.read_text(encoding="utf-8"))
         if set(selection["methods"]) != METHODS:
             return False
+        if tuple(selection["grid"]) != GRIDS[scenario]:
+            return False
         statuses = {method: choice["status"]
                     for method, choice in selection["methods"].items()}
         if "no_grid_load_passed" in statuses.values():
@@ -45,10 +49,38 @@ def selections_ready() -> bool:
     return True
 
 
+def resume_extended_grids() -> None:
+    """Resume only once the old-grid search has finished all methods."""
+    terminal = {"selected", "grid_ceiling", "no_grid_load_passed"}
+    for scenario in SCENARIOS:
+        path = HERE / "own_load_development" / scenario / "selection.json"
+        if not path.is_file():
+            continue
+        selection = json.loads(path.read_text(encoding="utf-8"))
+        if tuple(selection["grid"]) == GRIDS[scenario]:
+            continue
+        methods = selection["methods"]
+        if set(methods) != METHODS or not all(
+                choice["status"] in terminal for choice in methods.values()):
+            continue
+        result = subprocess.run(
+            [sys.executable, "-u", "-m",
+             "experiments.helix_additional_baselines.own_load_search",
+             "--scenario", scenario], cwd=ROOT, capture_output=True,
+            text=True, check=False)
+        with LOG.open("a", encoding="utf-8") as stream:
+            stream.write(result.stdout + result.stderr)
+        if result.returncode != 0:
+            write_status("failed", reason=f"Extended search failed: {scenario}",
+                         log=str(LOG))
+            raise RuntimeError(f"Extended search failed: {scenario}")
+
+
 def main() -> None:
     started = time.monotonic()
     write_status("waiting_for_development_selections")
     while not selections_ready():
+        resume_extended_grids()
         if time.monotonic() - started > 8 * 3600:
             write_status("failed", reason="Development selection timeout")
             raise TimeoutError("Development selection timeout")
