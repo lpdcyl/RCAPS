@@ -93,10 +93,7 @@ def main() -> None:
             for scenario in SCENARIOS}
         codes = {scenario: process.wait() for scenario, process in processes.items()}
         stream.write(f"Formal runner exit codes: {codes}\n")
-    if any(code != 0 for code in codes.values()):
-        write_status("failed", formal_exit_codes=codes, log=str(LOG))
-        raise RuntimeError(f"Formal runner failed: {codes}")
-    write_status("auditing")
+    write_status("auditing", formal_exit_codes=codes)
     result = subprocess.run(
         [sys.executable, "-m",
          "experiments.helix_additional_baselines.summarize_own_load"],
@@ -106,7 +103,9 @@ def main() -> None:
     if result.returncode != 0:
         write_status("failed", audit_exit_code=result.returncode, log=str(LOG))
         raise RuntimeError("Own-load audit failed; see pipeline log")
-    write_status("complete", report=str(HERE / "OWN_LOAD_RESULTS_CN.md"))
+    write_status("complete_with_failed_windows" if any(codes.values()) else "complete",
+                 formal_exit_codes=codes,
+                 report=str(HERE / "OWN_LOAD_RESULTS_CN.md"))
 
 
 if __name__ == "__main__":
