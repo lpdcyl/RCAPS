@@ -1,0 +1,1138 @@
+[
+  {
+    "scenario": "single",
+    "main_method": "rcaps_v2",
+    "baseline": "helix",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 155.91833333333332,
+        "baseline_mean": 142.27296296296296,
+        "paired_improvement_percent_mean": 9.585101398221248,
+        "paired_improvement_percent_sample_sd": 0.4955757994609498,
+        "paired_improvement_percent_range": [
+          9.141282934754447,
+          10.119843255532345
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 9.141282934754447,
+          "1": 10.119843255532345,
+          "2": 9.494178004376952
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 3.6893539448590094,
+        "baseline_mean": 6.574545353825928,
+        "paired_improvement_percent_mean": 43.878754548581576,
+        "paired_improvement_percent_sample_sd": 1.2326548117956977,
+        "paired_improvement_percent_range": [
+          43.00044369080749,
+          45.2878921488925
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 43.00044369080749,
+          "1": 45.2878921488925,
+          "2": 43.34792780604473
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.5651700577919152,
+        "baseline_mean": 1.7056602250936364,
+        "paired_improvement_percent_mean": 66.85653538850346,
+        "paired_improvement_percent_sample_sd": 0.5764932312696747,
+        "paired_improvement_percent_range": [
+          66.32784771765007,
+          67.47118117327595
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 66.32784771765007,
+          "1": 66.77057727458435,
+          "2": 67.47118117327595
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "main_first_token_samples": 1291,
+        "baseline_first_token_samples": 1291,
+        "main_tpot_samples": 1291,
+        "baseline_tpot_samples": 1287,
+        "main_completion_fraction": 0.9350348027842227,
+        "baseline_completion_fraction": 0.8275328692962104,
+        "main_backlog_at_end": 84,
+        "baseline_backlog_at_end": 223
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "main_first_token_samples": 1289,
+        "baseline_first_token_samples": 1288,
+        "main_tpot_samples": 1288,
+        "baseline_tpot_samples": 1284,
+        "main_completion_fraction": 0.9264136328427576,
+        "baseline_completion_fraction": 0.8086754453911696,
+        "main_backlog_at_end": 95,
+        "baseline_backlog_at_end": 247
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "main_first_token_samples": 1265,
+        "baseline_first_token_samples": 1264,
+        "main_tpot_samples": 1264,
+        "baseline_tpot_samples": 1263,
+        "main_completion_fraction": 0.925808997632202,
+        "baseline_completion_fraction": 0.8224151539068666,
+        "main_backlog_at_end": 94,
+        "baseline_backlog_at_end": 225
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "both_completed": 1070,
+        "ttft_s": {
+          "both_observed": 1291,
+          "main_p95_s": 3.647357023354388,
+          "baseline_p95_s": 6.398921780319483
+        },
+        "tpot_s": {
+          "both_observed": 1287,
+          "main_p95_s": 0.5611180973338566,
+          "baseline_p95_s": 1.6664643282103238
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "both_completed": 1044,
+        "ttft_s": {
+          "both_observed": 1288,
+          "main_p95_s": 3.610620625853198,
+          "baseline_p95_s": 6.599190518599925
+        },
+        "tpot_s": {
+          "both_observed": 1284,
+          "main_p95_s": 0.5676225823047368,
+          "baseline_p95_s": 1.7076062446955207
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "both_completed": 1042,
+        "ttft_s": {
+          "both_observed": 1264,
+          "main_p95_s": 3.810656717947983,
+          "baseline_p95_s": 6.725523762558377
+        },
+        "tpot_s": {
+          "both_observed": 1263,
+          "main_p95_s": 0.566897958635111,
+          "baseline_p95_s": 1.7429101023750648
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "single",
+    "main_method": "rcaps_v2",
+    "baseline": "rcaps_v2_capacity_only",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 155.91833333333332,
+        "baseline_mean": 153.9398148148148,
+        "paired_improvement_percent_mean": 1.2848565272101615,
+        "paired_improvement_percent_sample_sd": 0.10476582842692965,
+        "paired_improvement_percent_range": [
+          1.1639919102562235,
+          1.34972584846762
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 1.1639919102562235,
+          "1": 1.3408518229066413,
+          "2": 1.34972584846762
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 3.6893539448590094,
+        "baseline_mean": 4.368916151229034,
+        "paired_improvement_percent_mean": 15.513283606605395,
+        "paired_improvement_percent_sample_sd": 1.9117167532374262,
+        "paired_improvement_percent_range": [
+          13.30592223724465,
+          16.63506908068073
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 13.30592223724465,
+          "1": 16.598859501890807,
+          "2": 16.63506908068073
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.5651700577919152,
+        "baseline_mean": 0.6965985423410692,
+        "paired_improvement_percent_mean": 18.863997794721275,
+        "paired_improvement_percent_sample_sd": 0.49208828181907177,
+        "paired_improvement_percent_range": [
+          18.502514064038866,
+          19.424407951393995
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 18.502514064038866,
+          "1": 18.665071368730967,
+          "2": 19.424407951393995
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "main_first_token_samples": 1291,
+        "baseline_first_token_samples": 1291,
+        "main_tpot_samples": 1291,
+        "baseline_tpot_samples": 1291,
+        "main_completion_fraction": 0.9350348027842227,
+        "baseline_completion_fraction": 0.9180201082753287,
+        "main_backlog_at_end": 84,
+        "baseline_backlog_at_end": 106
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "main_first_token_samples": 1289,
+        "baseline_first_token_samples": 1288,
+        "main_tpot_samples": 1288,
+        "baseline_tpot_samples": 1287,
+        "main_completion_fraction": 0.9264136328427576,
+        "baseline_completion_fraction": 0.9085979860573199,
+        "main_backlog_at_end": 95,
+        "baseline_backlog_at_end": 118
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "main_first_token_samples": 1265,
+        "baseline_first_token_samples": 1265,
+        "main_tpot_samples": 1264,
+        "baseline_tpot_samples": 1264,
+        "main_completion_fraction": 0.925808997632202,
+        "baseline_completion_fraction": 0.9155485398579322,
+        "main_backlog_at_end": 94,
+        "baseline_backlog_at_end": 107
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "both_completed": 1187,
+        "ttft_s": {
+          "both_observed": 1291,
+          "main_p95_s": 3.647357023354388,
+          "baseline_p95_s": 4.207158225196935
+        },
+        "tpot_s": {
+          "both_observed": 1291,
+          "main_p95_s": 0.56113440632602,
+          "baseline_p95_s": 0.6885297133790687
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "both_completed": 1173,
+        "ttft_s": {
+          "both_observed": 1288,
+          "main_p95_s": 3.610620625853198,
+          "baseline_p95_s": 4.3291449160917725
+        },
+        "tpot_s": {
+          "both_observed": 1287,
+          "main_p95_s": 0.567476418727787,
+          "baseline_p95_s": 0.6976433213679908
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "both_completed": 1160,
+        "ttft_s": {
+          "both_observed": 1265,
+          "main_p95_s": 3.810148577386189,
+          "baseline_p95_s": 4.570445312398396
+        },
+        "tpot_s": {
+          "both_observed": 1264,
+          "main_p95_s": 0.5669480695142556,
+          "baseline_p95_s": 0.7036225922761483
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "single",
+    "main_method": "rcaps_v2",
+    "baseline": "rcaps_v2_fixed_structure",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 155.91833333333332,
+        "baseline_mean": 152.73574074074074,
+        "paired_improvement_percent_mean": 2.0824008982516387,
+        "paired_improvement_percent_sample_sd": 0.20333272973276398,
+        "paired_improvement_percent_range": [
+          1.8504887150584404,
+          2.23008636811981
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 1.8504887150584404,
+          "1": 2.23008636811981,
+          "2": 2.166627611576666
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 3.6893539448590094,
+        "baseline_mean": 4.997799899305016,
+        "paired_improvement_percent_mean": 26.16218414262207,
+        "paired_improvement_percent_sample_sd": 1.524866192172569,
+        "paired_improvement_percent_range": [
+          24.561521663374954,
+          27.597831543443128
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 24.561521663374954,
+          "1": 27.597831543443128,
+          "2": 26.327199221048126
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.5651700577919152,
+        "baseline_mean": 0.8175691584895182,
+        "paired_improvement_percent_mean": 30.86944480757285,
+        "paired_improvement_percent_sample_sd": 0.38109769861149795,
+        "paired_improvement_percent_range": [
+          30.554783694819577,
+          31.29318997311654
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 30.554783694819577,
+          "1": 30.760360754782432,
+          "2": 31.29318997311654
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "main_first_token_samples": 1291,
+        "baseline_first_token_samples": 1291,
+        "main_tpot_samples": 1291,
+        "baseline_tpot_samples": 1290,
+        "main_completion_fraction": 0.9350348027842227,
+        "baseline_completion_fraction": 0.9118329466357309,
+        "main_backlog_at_end": 84,
+        "baseline_backlog_at_end": 114
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "main_first_token_samples": 1289,
+        "baseline_first_token_samples": 1287,
+        "main_tpot_samples": 1288,
+        "baseline_tpot_samples": 1286,
+        "main_completion_fraction": 0.9264136328427576,
+        "baseline_completion_fraction": 0.8977536793183578,
+        "main_backlog_at_end": 95,
+        "baseline_backlog_at_end": 132
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "main_first_token_samples": 1265,
+        "baseline_first_token_samples": 1264,
+        "main_tpot_samples": 1264,
+        "baseline_tpot_samples": 1264,
+        "main_completion_fraction": 0.925808997632202,
+        "baseline_completion_fraction": 0.9029202841357538,
+        "main_backlog_at_end": 94,
+        "baseline_backlog_at_end": 123
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "both_completed": 1179,
+        "ttft_s": {
+          "both_observed": 1291,
+          "main_p95_s": 3.647357023354388,
+          "baseline_p95_s": 4.834876184907898
+        },
+        "tpot_s": {
+          "both_observed": 1290,
+          "main_p95_s": 0.561134718232883,
+          "baseline_p95_s": 0.8080245640824087
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "both_completed": 1159,
+        "ttft_s": {
+          "both_observed": 1287,
+          "main_p95_s": 3.610685017869946,
+          "baseline_p95_s": 4.986806763947789
+        },
+        "tpot_s": {
+          "both_observed": 1286,
+          "main_p95_s": 0.5675251399201036,
+          "baseline_p95_s": 0.8195127873585257
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "both_completed": 1144,
+        "ttft_s": {
+          "both_observed": 1264,
+          "main_p95_s": 3.810656717947983,
+          "baseline_p95_s": 5.17171674905936
+        },
+        "tpot_s": {
+          "both_observed": 1264,
+          "main_p95_s": 0.5669480695142556,
+          "baseline_p95_s": 0.8251701240276201
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "single",
+    "main_method": "rcaps_v2",
+    "baseline": "rcaps_v2_static_routes",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 155.91833333333332,
+        "baseline_mean": 153.14555555555555,
+        "paired_improvement_percent_mean": 1.8083727051185254,
+        "paired_improvement_percent_sample_sd": 0.27651099972392357,
+        "paired_improvement_percent_range": [
+          1.5010784553453727,
+          2.0370932341545744
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 1.5010784553453727,
+          "1": 2.0370932341545744,
+          "2": 1.886946425855629
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 3.6893539448590094,
+        "baseline_mean": 3.954631164011945,
+        "paired_improvement_percent_mean": 6.615178387452044,
+        "paired_improvement_percent_sample_sd": 4.935698031200583,
+        "paired_improvement_percent_range": [
+          2.125333209791924,
+          11.900180377494996
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 5.820021575069212,
+          "1": 11.900180377494996,
+          "2": 2.125333209791924
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.5651700577919152,
+        "baseline_mean": 0.7799919293566069,
+        "paired_improvement_percent_mean": 27.506742714607604,
+        "paired_improvement_percent_sample_sd": 1.8465749342042708,
+        "paired_improvement_percent_range": [
+          26.10617450772673,
+          29.599379327665265
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 26.81467430843082,
+          "1": 29.599379327665265,
+          "2": 26.10617450772673
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "main_first_token_samples": 1291,
+        "baseline_first_token_samples": 1291,
+        "main_tpot_samples": 1291,
+        "baseline_tpot_samples": 1291,
+        "main_completion_fraction": 0.9350348027842227,
+        "baseline_completion_fraction": 0.9164733178654292,
+        "main_backlog_at_end": 84,
+        "baseline_backlog_at_end": 108
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "main_first_token_samples": 1289,
+        "baseline_first_token_samples": 1289,
+        "main_tpot_samples": 1288,
+        "baseline_tpot_samples": 1288,
+        "main_completion_fraction": 0.9264136328427576,
+        "baseline_completion_fraction": 0.8985282726568552,
+        "main_backlog_at_end": 95,
+        "baseline_backlog_at_end": 131
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "main_first_token_samples": 1265,
+        "baseline_first_token_samples": 1266,
+        "main_tpot_samples": 1264,
+        "baseline_tpot_samples": 1265,
+        "main_completion_fraction": 0.925808997632202,
+        "baseline_completion_fraction": 0.9076558800315706,
+        "main_backlog_at_end": 94,
+        "baseline_backlog_at_end": 117
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 1293,
+        "both_completed": 1185,
+        "ttft_s": {
+          "both_observed": 1291,
+          "main_p95_s": 3.647357023354388,
+          "baseline_p95_s": 3.8727520268669764
+        },
+        "tpot_s": {
+          "both_observed": 1291,
+          "main_p95_s": 0.56113440632602,
+          "baseline_p95_s": 0.766730763337522
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 1291,
+        "both_completed": 1160,
+        "ttft_s": {
+          "both_observed": 1289,
+          "main_p95_s": 3.6105562338364505,
+          "baseline_p95_s": 4.098256102347499
+        },
+        "tpot_s": {
+          "both_observed": 1288,
+          "main_p95_s": 0.5674276975354702,
+          "baseline_p95_s": 0.8059981462044861
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 1267,
+        "both_completed": 1150,
+        "ttft_s": {
+          "both_observed": 1265,
+          "main_p95_s": 3.810148577386189,
+          "baseline_p95_s": 3.8929613110403465
+        },
+        "tpot_s": {
+          "both_observed": 1264,
+          "main_p95_s": 0.5669480695142556,
+          "baseline_p95_s": 0.7672682687765303
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "multi",
+    "main_method": "rcaps_v2",
+    "baseline": "helix",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 70.63296296296296,
+        "baseline_mean": 58.255,
+        "paired_improvement_percent_mean": 21.25604015923211,
+        "paired_improvement_percent_sample_sd": 1.6072325047705418,
+        "paired_improvement_percent_range": [
+          19.797819281837235,
+          22.979328765532458
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 20.990972430326636,
+          "1": 22.979328765532458,
+          "2": 19.797819281837235
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 5.332144168345685,
+        "baseline_mean": 15.58307399483325,
+        "paired_improvement_percent_mean": 65.77851410809242,
+        "paired_improvement_percent_sample_sd": 0.7896123878326725,
+        "paired_improvement_percent_range": [
+          64.89598695308739,
+          66.41813869115765
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 66.02141668003225,
+          "1": 64.89598695308739,
+          "2": 66.41813869115765
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.6936993017632614,
+        "baseline_mean": 3.194467887291615,
+        "paired_improvement_percent_mean": 78.28222897493589,
+        "paired_improvement_percent_sample_sd": 0.2961610927144695,
+        "paired_improvement_percent_range": [
+          77.95844180042772,
+          78.53942624551775
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 78.34881887886222,
+          "1": 78.53942624551775,
+          "2": 77.95844180042772
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "main_first_token_samples": 582,
+        "baseline_first_token_samples": 582,
+        "main_tpot_samples": 582,
+        "baseline_tpot_samples": 582,
+        "main_completion_fraction": 0.922945205479452,
+        "baseline_completion_fraction": 0.6832191780821918,
+        "main_backlog_at_end": 45,
+        "baseline_backlog_at_end": 185
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "main_first_token_samples": 569,
+        "baseline_first_token_samples": 569,
+        "main_tpot_samples": 569,
+        "baseline_tpot_samples": 569,
+        "main_completion_fraction": 0.9173989455184535,
+        "baseline_completion_fraction": 0.6994727592267135,
+        "main_backlog_at_end": 47,
+        "baseline_backlog_at_end": 171
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "main_first_token_samples": 585,
+        "baseline_first_token_samples": 582,
+        "main_tpot_samples": 584,
+        "baseline_tpot_samples": 581,
+        "main_completion_fraction": 0.9146757679180887,
+        "baseline_completion_fraction": 0.7235494880546075,
+        "main_backlog_at_end": 50,
+        "baseline_backlog_at_end": 162
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "both_completed": 399,
+        "ttft_s": {
+          "both_observed": 582,
+          "main_p95_s": 5.391433458000909,
+          "baseline_p95_s": 15.867151985799817
+        },
+        "tpot_s": {
+          "both_observed": 582,
+          "main_p95_s": 0.6992525904836989,
+          "baseline_p95_s": 3.2296279199337863
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "both_completed": 398,
+        "ttft_s": {
+          "both_observed": 569,
+          "main_p95_s": 5.401722995762796,
+          "baseline_p95_s": 15.387764893273005
+        },
+        "tpot_s": {
+          "both_observed": 569,
+          "main_p95_s": 0.6880075961431531,
+          "baseline_p95_s": 3.2059142687154667
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "both_completed": 424,
+        "ttft_s": {
+          "both_observed": 582,
+          "main_p95_s": 5.181780959658413,
+          "baseline_p95_s": 15.494305105426928
+        },
+        "tpot_s": {
+          "both_observed": 581,
+          "main_p95_s": 0.6936468100261501,
+          "baseline_p95_s": 3.147861473225592
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "multi",
+    "main_method": "rcaps_v2",
+    "baseline": "rcaps_v2_capacity_only",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 70.63296296296296,
+        "baseline_mean": 66.30092592592592,
+        "paired_improvement_percent_mean": 6.53647652261485,
+        "paired_improvement_percent_sample_sd": 1.0172271544089997,
+        "paired_improvement_percent_range": [
+          5.606845685159234,
+          7.623056336596767
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 6.379527546088548,
+          "1": 7.623056336596767,
+          "2": 5.606845685159234
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 5.332144168345685,
+        "baseline_mean": 11.070290848611375,
+        "paired_improvement_percent_mean": 51.83351886302245,
+        "paired_improvement_percent_sample_sd": 0.6293389359992148,
+        "paired_improvement_percent_range": [
+          51.116005141163356,
+          52.292015588462434
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 51.116005141163356,
+          "1": 52.09253585944155,
+          "2": 52.292015588462434
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.6936993017632614,
+        "baseline_mean": 1.4006747672141844,
+        "paired_improvement_percent_mean": 50.458255785652334,
+        "paired_improvement_percent_sample_sd": 1.2538692131623308,
+        "paired_improvement_percent_range": [
+          49.65190483477592,
+          51.9028421366492
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 49.82002038553188,
+          "1": 51.9028421366492,
+          "2": 49.65190483477592
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "main_first_token_samples": 582,
+        "baseline_first_token_samples": 582,
+        "main_tpot_samples": 582,
+        "baseline_tpot_samples": 582,
+        "main_completion_fraction": 0.922945205479452,
+        "baseline_completion_fraction": 0.833904109589041,
+        "main_backlog_at_end": 45,
+        "baseline_backlog_at_end": 97
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "main_first_token_samples": 569,
+        "baseline_first_token_samples": 569,
+        "main_tpot_samples": 569,
+        "baseline_tpot_samples": 569,
+        "main_completion_fraction": 0.9173989455184535,
+        "baseline_completion_fraction": 0.8260105448154658,
+        "main_backlog_at_end": 47,
+        "baseline_backlog_at_end": 99
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "main_first_token_samples": 585,
+        "baseline_first_token_samples": 583,
+        "main_tpot_samples": 584,
+        "baseline_tpot_samples": 582,
+        "main_completion_fraction": 0.9146757679180887,
+        "baseline_completion_fraction": 0.8498293515358362,
+        "main_backlog_at_end": 50,
+        "baseline_backlog_at_end": 88
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "both_completed": 487,
+        "ttft_s": {
+          "both_observed": 582,
+          "main_p95_s": 5.391433458000909,
+          "baseline_p95_s": 11.02903613661254
+        },
+        "tpot_s": {
+          "both_observed": 582,
+          "main_p95_s": 0.6992525904836989,
+          "baseline_p95_s": 1.3934891880308522
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "both_completed": 470,
+        "ttft_s": {
+          "both_observed": 569,
+          "main_p95_s": 5.401722995762796,
+          "baseline_p95_s": 11.275326491743273
+        },
+        "tpot_s": {
+          "both_observed": 569,
+          "main_p95_s": 0.6880075961431531,
+          "baseline_p95_s": 1.430453745516225
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "both_completed": 498,
+        "ttft_s": {
+          "both_observed": 583,
+          "main_p95_s": 5.20566130672998,
+          "baseline_p95_s": 10.906509917478312
+        },
+        "tpot_s": {
+          "both_observed": 582,
+          "main_p95_s": 0.6935966287180978,
+          "baseline_p95_s": 1.378081368095476
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "multi",
+    "main_method": "rcaps_v2",
+    "baseline": "rcaps_v2_fixed_structure",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 70.63296296296296,
+        "baseline_mean": 67.7074074074074,
+        "paired_improvement_percent_mean": 4.321261896964475,
+        "paired_improvement_percent_sample_sd": 0.728886591295273,
+        "paired_improvement_percent_range": [
+          3.6389836684665333,
+          5.089188988033699
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 4.235613034393193,
+          "1": 5.089188988033699,
+          "2": 3.6389836684665333
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 5.332144168345685,
+        "baseline_mean": 8.360972140485485,
+        "paired_improvement_percent_mean": 36.15822222304494,
+        "paired_improvement_percent_sample_sd": 3.1098850821490847,
+        "paired_improvement_percent_range": [
+          32.77746532944389,
+          38.89705064192337
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 32.77746532944389,
+          "1": 36.800150697767556,
+          "2": 38.89705064192337
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.6936993017632614,
+        "baseline_mean": 1.1572668051145993,
+        "paired_improvement_percent_mean": 40.054903361456695,
+        "paired_improvement_percent_sample_sd": 0.741951701845361,
+        "paired_improvement_percent_range": [
+          39.242998901298655,
+          40.69771143071398
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 39.242998901298655,
+          "1": 40.69771143071398,
+          "2": 40.22399975235744
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "main_first_token_samples": 582,
+        "baseline_first_token_samples": 582,
+        "main_tpot_samples": 582,
+        "baseline_tpot_samples": 582,
+        "main_completion_fraction": 0.922945205479452,
+        "baseline_completion_fraction": 0.8561643835616438,
+        "main_backlog_at_end": 45,
+        "baseline_backlog_at_end": 84
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "main_first_token_samples": 569,
+        "baseline_first_token_samples": 569,
+        "main_tpot_samples": 569,
+        "baseline_tpot_samples": 569,
+        "main_completion_fraction": 0.9173989455184535,
+        "baseline_completion_fraction": 0.8523725834797891,
+        "main_backlog_at_end": 47,
+        "baseline_backlog_at_end": 84
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "main_first_token_samples": 585,
+        "baseline_first_token_samples": 583,
+        "main_tpot_samples": 584,
+        "baseline_tpot_samples": 583,
+        "main_completion_fraction": 0.9146757679180887,
+        "baseline_completion_fraction": 0.8720136518771331,
+        "main_backlog_at_end": 50,
+        "baseline_backlog_at_end": 75
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "both_completed": 500,
+        "ttft_s": {
+          "both_observed": 582,
+          "main_p95_s": 5.391433458000909,
+          "baseline_p95_s": 8.020276956861597
+        },
+        "tpot_s": {
+          "both_observed": 582,
+          "main_p95_s": 0.6992525904836989,
+          "baseline_p95_s": 1.1509004358983168
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "both_completed": 485,
+        "ttft_s": {
+          "both_observed": 569,
+          "main_p95_s": 5.401722995762796,
+          "baseline_p95_s": 8.547050436672462
+        },
+        "tpot_s": {
+          "both_observed": 569,
+          "main_p95_s": 0.6880075961431531,
+          "baseline_p95_s": 1.1601703960199061
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "both_completed": 511,
+        "ttft_s": {
+          "both_observed": 583,
+          "main_p95_s": 5.20566130672998,
+          "baseline_p95_s": 8.515589027922395
+        },
+        "tpot_s": {
+          "both_observed": 583,
+          "main_p95_s": 0.6938489485827429,
+          "baseline_p95_s": 1.160729583425575
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "multi",
+    "main_method": "rcaps_v2",
+    "baseline": "rcaps_v2_static_routes",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "metrics": {
+      "output_throughput_tokens_per_s": {
+        "main_method_mean": 70.63296296296296,
+        "baseline_mean": 68.68296296296296,
+        "paired_improvement_percent_mean": 2.839771607755844,
+        "paired_improvement_percent_sample_sd": 0.5308500275445199,
+        "paired_improvement_percent_range": [
+          2.417586014993267,
+          3.4357296346942734
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 2.6659991735799915,
+          "1": 3.4357296346942734,
+          "2": 2.417586014993267
+        }
+      },
+      "ttft_p95_s": {
+        "main_method_mean": 5.332144168345685,
+        "baseline_mean": 7.123315272282984,
+        "paired_improvement_percent_mean": 25.116003512463944,
+        "paired_improvement_percent_sample_sd": 2.4262318862473338,
+        "paired_improvement_percent_range": [
+          22.400684981945297,
+          27.071061408630502
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 22.400684981945297,
+          "1": 25.87626414681603,
+          "2": 27.071061408630502
+        }
+      },
+      "tpot_p95_s": {
+        "main_method_mean": 0.6936993017632614,
+        "baseline_mean": 1.0110239002936536,
+        "paired_improvement_percent_mean": 31.380811819922723,
+        "paired_improvement_percent_sample_sd": 1.088413746453131,
+        "paired_improvement_percent_range": [
+          30.33712283366675,
+          32.50902209246453
+        ],
+        "paired_improvement_percent_by_seed": {
+          "0": 30.33712283366675,
+          "1": 32.50902209246453,
+          "2": 31.296290533636896
+        }
+      }
+    },
+    "measurement_population_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "main_first_token_samples": 582,
+        "baseline_first_token_samples": 582,
+        "main_tpot_samples": 582,
+        "baseline_tpot_samples": 582,
+        "main_completion_fraction": 0.922945205479452,
+        "baseline_completion_fraction": 0.8767123287671232,
+        "main_backlog_at_end": 45,
+        "baseline_backlog_at_end": 72
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "main_first_token_samples": 569,
+        "baseline_first_token_samples": 569,
+        "main_tpot_samples": 569,
+        "baseline_tpot_samples": 569,
+        "main_completion_fraction": 0.9173989455184535,
+        "baseline_completion_fraction": 0.8717047451669596,
+        "main_backlog_at_end": 47,
+        "baseline_backlog_at_end": 73
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "main_first_token_samples": 585,
+        "baseline_first_token_samples": 584,
+        "main_tpot_samples": 584,
+        "baseline_tpot_samples": 584,
+        "main_completion_fraction": 0.9146757679180887,
+        "baseline_completion_fraction": 0.8873720136518771,
+        "main_backlog_at_end": 50,
+        "baseline_backlog_at_end": 66
+      }
+    ],
+    "common_cohort_by_seed": [
+      {
+        "seed": 0,
+        "arrivals": 584,
+        "both_completed": 512,
+        "ttft_s": {
+          "both_observed": 582,
+          "main_p95_s": 5.391433458000909,
+          "baseline_p95_s": 6.947784857052549
+        },
+        "tpot_s": {
+          "both_observed": 582,
+          "main_p95_s": 0.6992525904836989,
+          "baseline_p95_s": 1.0037664519857565
+        }
+      },
+      {
+        "seed": 1,
+        "arrivals": 569,
+        "both_completed": 496,
+        "ttft_s": {
+          "both_observed": 569,
+          "main_p95_s": 5.401722995762796,
+          "baseline_p95_s": 7.287440296401043
+        },
+        "tpot_s": {
+          "both_observed": 569,
+          "main_p95_s": 0.6880075961431531,
+          "baseline_p95_s": 1.0194067673545089
+        }
+      },
+      {
+        "seed": 2,
+        "arrivals": 586,
+        "both_completed": 520,
+        "ttft_s": {
+          "both_observed": 584,
+          "main_p95_s": 5.204468679001668,
+          "baseline_p95_s": 7.134720663395359
+        },
+        "tpot_s": {
+          "both_observed": 584,
+          "main_p95_s": 0.6938377186629322,
+          "baseline_p95_s": 1.0098984815406957
+        }
+      }
+    ]
+  }
+]

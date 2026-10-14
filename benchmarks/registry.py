@@ -9,6 +9,7 @@ from typing import Callable
 from baselines import helix
 from rcaps import method as rcaps_v1
 from rcaps import v2_method
+from experiments.v2_method_ablation import adapters as v2_ablation
 
 
 @dataclass(frozen=True)
@@ -37,6 +38,31 @@ METHODS = {
         lambda scenario, root: v2_method.layout(
             "rcaps_v2_fixed_structure", scenario, root),
         v2_method.evaluate),
+    v2_ablation.NAME_CAPACITY: MethodSpec(
+        v2_ablation.NAME_CAPACITY,
+        "V2 adaptive structure selected with capacity and connectivity only",
+        "ablation", v2_ablation.capacity_layout,
+        v2_ablation.evaluate_capacity),
+    v2_ablation.NAME_STATIC: MethodSpec(
+        v2_ablation.NAME_STATIC,
+        "V2 placement with static legal-path rotation and serial transfers",
+        "ablation", v2_ablation.static_layout,
+        v2_ablation.evaluate_static),
+    v2_ablation.NAME_BASE: MethodSpec(
+        v2_ablation.NAME_BASE,
+        "Capacity-only fixed structure with capacity-safe static legal paths",
+        "ablation", v2_ablation.base_layout,
+        v2_ablation.evaluate_safe_static),
+    v2_ablation.NAME_A: MethodSpec(
+        v2_ablation.NAME_A,
+        "Resource-aware fixed V2 structure with capacity-safe static legal paths",
+        "ablation", v2_ablation.fixed_static_layout,
+        v2_ablation.evaluate_safe_static),
+    v2_ablation.NAME_AB: MethodSpec(
+        v2_ablation.NAME_AB,
+        "Adaptive V2 layout with capacity-safe static legal paths",
+        "ablation", v2_ablation.adaptive_safe_static_layout,
+        v2_ablation.evaluate_safe_static),
 }
 
 DEFAULT_METHODS = [name for name, spec in METHODS.items()
