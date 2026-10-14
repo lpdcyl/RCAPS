@@ -90,3 +90,7 @@
 来源：[Helix artifact 单集群 70B 在线实验](../../artifact_evaluation/ae_readme.md)（第 293–379 行）与[三集群 70B 在线实验](../../artifact_evaluation/ae_readme.md)（第 1665–1751 行）；负载配置见 `artifact_evaluation/{single_cluster,distributed_clusters}/step3_simulation.py`。SP 的三套子集群各自生成请求，不能把该行与 Helix/V2 视为同一请求群体的配对比较。
 
 **主表取舍。**当前主表使用单集群 700、三集群 320 token/s 的共同负载和三个种子。Helix 原 artifact 对 Swarm 使用 350/160，对 SP 则分别向三套子集群投送请求；因此上表不能填入主表。我们按主表负载直接运行原版 Swarm 与 SP，未加入 KV 准入保护；SP 为共用同一轨迹而按原子集群负载比例分配请求，分配不读取目标输出长度。[逐窗口核查](../helix_additional_baselines/RAW_BASELINE_AUDIT_CN.md)显示：Swarm 仅三集群种子 2 完成，其余五个窗口及 SP 的六个窗口均触发 KV 容量断言。两者都无法形成两个拓扑各三个完整窗口的汇总，失败窗口不填补指标，也不计算 V2 相对 Swarm/SP 的三种子提升。核心主表保留协议一致的 V2–Helix 与递进消融。
+
+## 四方法共同负载补充实验
+
+另按原 artifact 的 Swarm 提供负载设置单集群 **350**、三集群 **160** token/s，让 V2、Helix、Swarm、SP 在各自拓扑上使用共同轨迹与种子 0/1/2。24 个 1800 秒正式窗口全部完成；[完整绝对数值、配对改善及审计](../helix_additional_baselines/COMMON_LOW_SUMMARY_CN.md)独立成表。单集群 V2 与 SP 的吞吐分别为 **75.619 ± 0.740** 与 **75.636 ± 1.183 token/s**，不能声称 V2 在该档吞吐优于所有基线；V2 的 P95 TTFT/TPOT 为 **3.375 ± 0.059 / 0.455 ± 0.004 s**，SP 为 **4.354 ± 0.081 / 1.065 ± 0.029 s**。三集群 V2 在吞吐及两项 P95 延迟上均优于另外三种方法。此补充表不与上面的 700/320 主表跨负载相减。
