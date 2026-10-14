@@ -34,6 +34,8 @@ def optimize(model: TopologyModel, scenario: str, max_steps: int = 16) -> tuple[
     for step in range(1, max_steps + 1):
         best = None
         for move, candidate in adaptive.neighbors(model, state, allow_prefix=True):
+            if len(candidate["branches"]) != 2:
+                continue
             try:
                 adaptive.intervals(model, candidate)
                 metrics = adaptive.measure(model, candidate)
