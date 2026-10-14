@@ -1,0 +1,49 @@
+{
+  "scenario": "single",
+  "methods": [
+    "rcaps_v2_model_compute",
+    "rcaps_v2_fixed_branches",
+    "rcaps_v2_static_dag",
+    "rcaps_v2_queue_dag"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "offered_tokens_per_s": 700.0,
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "command": [
+    "D:\\software\\miniconda\\python.exe",
+    "-u",
+    "-m",
+    "benchmarks.run",
+    "--methods",
+    "rcaps_v2_model_compute",
+    "rcaps_v2_fixed_branches",
+    "rcaps_v2_static_dag",
+    "rcaps_v2_queue_dag",
+    "--scenarios",
+    "single",
+    "--seeds",
+    "0",
+    "1",
+    "2",
+    "--offered-single",
+    "700.0",
+    "--offered-multi",
+    "700.0",
+    "--duration",
+    "1800",
+    "--warmup",
+    "0",
+    "--workers",
+    "2",
+    "--results-dir",
+    "D:\\PythonProject\\Helix-GREEN\\experiments\\v2_core_ablations\\runs"
+  ],
+  "exit_code": 0,
+  "wall_s": 5613.057922100008,
+  "log": "experiments\\v2_core_ablations\\formal_single.log"
+}

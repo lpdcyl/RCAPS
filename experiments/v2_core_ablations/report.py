@@ -267,6 +267,32 @@ def main() -> None:
                 lines.append("| " + " | ".join(
                     [label] + [formatted(result[key]) for key, _, _ in METRICS]) + " |")
             lines.append("")
+            lines.extend(["| 完整方案相对对照：逐种子配对变化 | 吞吐提升 % | TTFT 降低 % | "
+                          "TPOT 降低 % | 完成率相对提升 % | 积压降低 % |",
+                          "| --- | ---: | ---: | ---: | ---: | ---: |"])
+            for label, method in rows[:-1]:
+                gains = values[method]["full_vs_control"]
+                lines.append("| " + " | ".join(
+                    [f"相对 {label}"] +
+                    [formatted(gains[key]) for key, _, _ in METRICS]) + " |")
+            lines.append("")
+            lines.extend(["| 配对（完整方案 vs 对照） | 共同 TTFT 请求数 | 共同 P95 TTFT s | "
+                          "共同 TPOT 请求数 | 共同 P95 TPOT s |",
+                          "| --- | ---: | ---: | ---: | ---: |"])
+            for label, method in rows[:-1]:
+                cohort = values[method]["full_vs_control"]["common_cohort_by_seed"]
+                cells = []
+                for field in ("ttft_s", "tpot_s"):
+                    observed = sum(item[field]["both_observed"] for item in cohort)
+                    main = [item[field]["main_p95_s"] for item in cohort]
+                    control = [item[field]["baseline_p95_s"] for item in cohort]
+                    if any(value is None for value in (*main, *control)):
+                        comparison = "未定义"
+                    else:
+                        comparison = f"{formatted(mean_sd(main))} vs {formatted(mean_sd(control))}"
+                    cells.extend([str(observed), comparison])
+                lines.append("| " + " | ".join([f"完整方案 vs {label}", *cells]) + " |")
+            lines.append("")
             if table == "placement":
                 lines.extend(["| 配置 | 共享层数 | 后缀数 | 模型层副本数 | 共享 GPU 排队请求秒／到达请求 |",
                               "| --- | ---: | ---: | ---: | ---: |"])
