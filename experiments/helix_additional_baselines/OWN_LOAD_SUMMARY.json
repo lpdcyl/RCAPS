@@ -1,0 +1,961 @@
+{
+  "protocol": "own_load_75pct_of_development_L90_grid",
+  "sp_physical_device_mapping": {
+    "single": {
+      "a100": [
+        6,
+        9,
+        10,
+        17
+      ],
+      "l4": [
+        0,
+        3,
+        5,
+        11,
+        14,
+        18,
+        21,
+        23
+      ],
+      "t4": [
+        1,
+        2,
+        4,
+        7,
+        8,
+        12,
+        13,
+        15,
+        16,
+        19,
+        20,
+        22
+      ]
+    },
+    "multi": {
+      "a100": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "l4": [
+        4,
+        5,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "t4": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        20,
+        21,
+        22,
+        23
+      ]
+    }
+  },
+  "scenarios": {
+    "single": {
+      "selection": "experiments\\helix_additional_baselines\\own_load_development\\single\\selection.json",
+      "methods": {
+        "helix": {
+          "selection": {
+            "status": "selected",
+            "tested": {
+              "350": {
+                "passed_l90": false,
+                "wall_s": 800.5708319999976,
+                "completion_by_seed": {
+                  "100": 0.8949919224555735,
+                  "101": 0.8697749196141479
+                }
+              },
+              "200": {
+                "passed_l90": false,
+                "wall_s": 631.581935299997,
+                "completion_by_seed": {
+                  "100": 0.88268156424581,
+                  "101": 0.8980169971671388
+                }
+              },
+              "100": {
+                "passed_l90": true,
+                "wall_s": 372.169470599998,
+                "completion_by_seed": {
+                  "100": 0.9329608938547486,
+                  "101": 0.9142857142857143
+                }
+              },
+              "150": {
+                "passed_l90": true,
+                "wall_s": 546.3261463999952,
+                "completion_by_seed": {
+                  "100": 0.9080882352941176,
+                  "101": 0.9438202247191011
+                }
+              }
+            },
+            "l90_grid_tokens_per_s": 150,
+            "formal_offered_tokens_per_s": 112.5,
+            "next_grid_tokens_per_s": 200
+          },
+          "search": {
+            "boundary_probes": {
+              "150": "experiments\\helix_additional_baselines\\own_load_development\\single\\helix\\load150\\probe.json",
+              "200": "experiments\\helix_additional_baselines\\own_load_development\\single\\helix\\load200\\probe.json"
+            },
+            "probe_count": 4,
+            "search_wall_s": 2350.648384299988,
+            "observed_pass_fail": {
+              "100": true,
+              "150": true,
+              "200": false,
+              "350": false
+            }
+          },
+          "formal_by_seed": {
+            "0": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\helix\\results\\single\\seed0\\helix.json",
+              "result_sha256": "4435e01b7f0bdd8b59d56ee070a0343e4dbe45e02780e59ea08e615cb4edd00c",
+              "trace_sha256": "b67192669c7a1b4e09f90a134c2c43d087468dfe29e7dc96224bc769039589f5",
+              "arrivals": 199,
+              "metrics": {
+                "output_throughput_tokens_per_s": 26.140555555555554,
+                "ttft_p95_s": 4.574170290194547,
+                "tpot_p95_s": 0.5680998080849035,
+                "completion_fraction": 94.47236180904522,
+                "backlog_at_window_end": 11
+              }
+            },
+            "1": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\helix\\results\\single\\seed1\\helix.json",
+              "result_sha256": "22831a485e3a814ba5c6e8503036d583a5a2923e8079674f073fd46c6336b76e",
+              "trace_sha256": "76876638b96e03860a2431b6c3d2d88fa40f7db94214c9d30311d307996a21fd",
+              "arrivals": 204,
+              "metrics": {
+                "output_throughput_tokens_per_s": 22.61,
+                "ttft_p95_s": 4.8275099257962895,
+                "tpot_p95_s": 0.5647763181632091,
+                "completion_fraction": 94.6078431372549,
+                "backlog_at_window_end": 11
+              }
+            },
+            "2": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\helix\\results\\single\\seed2\\helix.json",
+              "result_sha256": "a554a3ab761cdf78681c1fdcb92860e88eecb6772f1ccbe9cbc1b1b906f9ed90",
+              "trace_sha256": "97671476f254bf8d40b8d3496a8709d1c3ff1486dcb3dd9fcb3404d99d4a8670",
+              "arrivals": 204,
+              "metrics": {
+                "output_throughput_tokens_per_s": 22.34,
+                "ttft_p95_s": 4.990673054215232,
+                "tpot_p95_s": 0.552263977408903,
+                "completion_fraction": 95.09803921568627,
+                "backlog_at_window_end": 10
+              }
+            }
+          },
+          "summary": {
+            "output_throughput_tokens_per_s": {
+              "mean": 23.69685185185185,
+              "sample_sd": 2.1206109599880403
+            },
+            "ttft_p95_s": {
+              "mean": 4.79745109006869,
+              "sample_sd": 0.20987207606823682
+            },
+            "tpot_p95_s": {
+              "mean": 0.5617133678856718,
+              "sample_sd": 0.00835042703110077
+            },
+            "completion_fraction": {
+              "mean": 94.7260813873288,
+              "sample_sd": 0.32917057452127924
+            },
+            "backlog_at_window_end": {
+              "mean": 10.666666666666666,
+              "sample_sd": 0.5773502691896257
+            }
+          }
+        },
+        "swarm": {
+          "selection": {
+            "status": "selected",
+            "tested": {
+              "350": {
+                "passed_l90": false,
+                "wall_s": 599.1367365000042,
+                "completion_by_seed": {
+                  "100": 0.8384491114701131,
+                  "101": 0.8183279742765274
+                }
+              },
+              "200": {
+                "passed_l90": false,
+                "wall_s": 393.6318692000059,
+                "completion_by_seed": {
+                  "100": 0.8575418994413407,
+                  "101": 0.8611898016997167
+                }
+              },
+              "100": {
+                "passed_l90": true,
+                "wall_s": 248.61395329999505,
+                "completion_by_seed": {
+                  "100": 0.9106145251396648,
+                  "101": 0.9085714285714286
+                }
+              },
+              "150": {
+                "passed_l90": false,
+                "wall_s": 356.18059620000713,
+                "completion_by_seed": {
+                  "100": 0.8823529411764706,
+                  "101": 0.898876404494382
+                }
+              }
+            },
+            "l90_grid_tokens_per_s": 100,
+            "formal_offered_tokens_per_s": 75.0,
+            "next_grid_tokens_per_s": 150
+          },
+          "search": {
+            "boundary_probes": {
+              "100": "experiments\\helix_additional_baselines\\own_load_development\\single\\swarm\\load100\\probe.json",
+              "150": "experiments\\helix_additional_baselines\\own_load_development\\single\\swarm\\load150\\probe.json"
+            },
+            "probe_count": 4,
+            "search_wall_s": 1597.5631552000123,
+            "observed_pass_fail": {
+              "100": true,
+              "150": false,
+              "200": false,
+              "350": false
+            }
+          },
+          "formal_by_seed": {
+            "0": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\swarm\\results\\single\\seed0\\swarm.json",
+              "result_sha256": "68757db34b66981b55300f5a834fc9610a1e22190b864dbe8884c7065fda5cbd",
+              "trace_sha256": "f24182dbac0d795300a0a6b551f37ec37c43565326f52bf7b735876961519125",
+              "arrivals": 137,
+              "metrics": {
+                "output_throughput_tokens_per_s": 17.695,
+                "ttft_p95_s": 5.450936246499651,
+                "tpot_p95_s": 0.6018783952611284,
+                "completion_fraction": 91.97080291970804,
+                "backlog_at_window_end": 11
+              }
+            },
+            "1": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\swarm\\results\\single\\seed1\\swarm.json",
+              "result_sha256": "c05033eb6d513cb3d041419cc0729e6ebc154054d8bd37d705d3f817fc9c60c7",
+              "trace_sha256": "0fc4154b555ae0baa183e59d24aed5ae49f7f5300a4f4e549518f2837be84736",
+              "arrivals": 136,
+              "metrics": {
+                "output_throughput_tokens_per_s": 16.483888888888888,
+                "ttft_p95_s": 5.342495602499753,
+                "tpot_p95_s": 0.5943436709012457,
+                "completion_fraction": 93.38235294117648,
+                "backlog_at_window_end": 9
+              }
+            },
+            "2": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\swarm\\results\\single\\seed2\\swarm.json",
+              "result_sha256": "7d2a81f2177c085d9260070fdcfc827ed36e801aeff5f5a0590449cea8512124",
+              "trace_sha256": "e8275bc53a95f461aca65ed182da0c86bc737d47804e600b95f0291154d6141e",
+              "arrivals": 136,
+              "metrics": {
+                "output_throughput_tokens_per_s": 15.902777777777779,
+                "ttft_p95_s": 5.374819256003235,
+                "tpot_p95_s": 0.6128788225957653,
+                "completion_fraction": 94.85294117647058,
+                "backlog_at_window_end": 7
+              }
+            }
+          },
+          "summary": {
+            "output_throughput_tokens_per_s": {
+              "mean": 16.69388888888889,
+              "sample_sd": 0.9143796385838816
+            },
+            "ttft_p95_s": {
+              "mean": 5.389417035000879,
+              "sample_sd": 0.05567463229807848
+            },
+            "tpot_p95_s": {
+              "mean": 0.6030336295860464,
+              "sample_sd": 0.00932142085970882
+            },
+            "completion_fraction": {
+              "mean": 93.40203234578503,
+              "sample_sd": 1.4411699039314798
+            },
+            "backlog_at_window_end": {
+              "mean": 9,
+              "sample_sd": 2.0
+            }
+          }
+        },
+        "separate": {
+          "selection": {
+            "status": "selected",
+            "tested": {
+              "350": {
+                "passed_l90": true,
+                "wall_s": 429.2386899999983,
+                "completion_by_seed": {
+                  "100": 0.9466882067851373,
+                  "101": 0.9260450160771704
+                }
+              },
+              "600": {
+                "passed_l90": false,
+                "wall_s": 35.873950799999875,
+                "completion_by_seed": {
+                  "100": null,
+                  "101": null
+                }
+              },
+              "400": {
+                "passed_l90": true,
+                "wall_s": 580.7500254999904,
+                "completion_by_seed": {
+                  "100": 0.9354838709677419,
+                  "101": 0.9350282485875706
+                }
+              },
+              "500": {
+                "passed_l90": false,
+                "wall_s": 48.24699480000709,
+                "completion_by_seed": {
+                  "100": null,
+                  "101": null
+                }
+              }
+            },
+            "l90_grid_tokens_per_s": 400,
+            "formal_offered_tokens_per_s": 300.0,
+            "next_grid_tokens_per_s": 500
+          },
+          "search": {
+            "boundary_probes": {
+              "400": "experiments\\helix_additional_baselines\\own_load_development\\single\\separate\\load400\\probe.json",
+              "500": "experiments\\helix_additional_baselines\\own_load_development\\single\\separate\\load500\\probe.json"
+            },
+            "probe_count": 4,
+            "search_wall_s": 1094.1096610999957,
+            "observed_pass_fail": {
+              "350": true,
+              "400": true,
+              "500": false,
+              "600": false
+            }
+          },
+          "formal_by_seed": {
+            "0": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\separate\\results\\single\\seed0\\separate.json",
+              "result_sha256": "4a66e4922d2f35ab74e3ee166de50484cfbd1ffe91474501f800004598533bf3",
+              "trace_sha256": "fa16ab73bf3d989b4f4f4cddcd019b52a9a4fecb22c7cedfeff961cf73d193cc",
+              "arrivals": 548,
+              "metrics": {
+                "output_throughput_tokens_per_s": 69.38111111111111,
+                "ttft_p95_s": 4.659099163547394,
+                "tpot_p95_s": 0.9827776665317715,
+                "completion_fraction": 94.7080291970803,
+                "backlog_at_window_end": 29
+              }
+            },
+            "1": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\separate\\results\\single\\seed1\\separate.json",
+              "result_sha256": "5f76973fb5b27c06f282c5d14f7463c227ccded9a6d7c6353fd320805e8446c3",
+              "trace_sha256": "b8a507c1788b669bca844552aee5d27b58baf6ae0ef7844e5dd04a3836475857",
+              "arrivals": 529,
+              "metrics": {
+                "output_throughput_tokens_per_s": 64.01333333333334,
+                "ttft_p95_s": 4.717080344416467,
+                "tpot_p95_s": 0.9411847145733895,
+                "completion_fraction": 94.3289224952741,
+                "backlog_at_window_end": 30
+              }
+            },
+            "2": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\separate\\results\\single\\seed2\\separate.json",
+              "result_sha256": "eb376498bef7cb2f3c75ea9506fd7a4fb5565b55130ca332ae51e7287702ee75",
+              "trace_sha256": "5039426aea533fb4fd7e2ea6c9603b5af084fee5b2740b3ca51d42e564e516b3",
+              "arrivals": 544,
+              "metrics": {
+                "output_throughput_tokens_per_s": 64.96666666666667,
+                "ttft_p95_s": 4.752342255735579,
+                "tpot_p95_s": 0.9464466933576181,
+                "completion_fraction": 94.66911764705883,
+                "backlog_at_window_end": 29
+              }
+            }
+          },
+          "summary": {
+            "output_throughput_tokens_per_s": {
+              "mean": 66.12037037037037,
+              "sample_sd": 2.8638320036021594
+            },
+            "ttft_p95_s": {
+              "mean": 4.70950725456648,
+              "sample_sd": 0.0470805939598322
+            },
+            "tpot_p95_s": {
+              "mean": 0.9568030248209264,
+              "sample_sd": 0.02264803775576372
+            },
+            "completion_fraction": {
+              "mean": 94.5686897798044,
+              "sample_sd": 0.2085540463034609
+            },
+            "backlog_at_window_end": {
+              "mean": 29.333333333333332,
+              "sample_sd": 0.5773502691896257
+            }
+          }
+        },
+        "rcaps_v2": {
+          "selection": {
+            "status": "grid_ceiling",
+            "tested": {
+              "350": {
+                "passed_l90": true,
+                "wall_s": 936.9764818999975,
+                "completion_by_seed": {
+                  "100": 0.9531502423263328,
+                  "101": 0.9292604501607717
+                }
+              },
+              "600": {
+                "passed_l90": true,
+                "wall_s": 1158.2267244999966,
+                "completion_by_seed": {
+                  "100": 0.9363057324840764,
+                  "101": 0.942110177404295
+                }
+              },
+              "800": {
+                "passed_l90": true,
+                "wall_s": 1273.7578467999992,
+                "completion_by_seed": {
+                  "100": 0.9293067947838023,
+                  "101": 0.9278206026629292
+                }
+              },
+              "900": {
+                "passed_l90": true,
+                "wall_s": 1357.4935247999965,
+                "completion_by_seed": {
+                  "100": 0.9236363636363636,
+                  "101": 0.9190680564071122
+                }
+              }
+            },
+            "l90_grid_tokens_per_s": 900,
+            "formal_offered_tokens_per_s": 675.0,
+            "next_grid_tokens_per_s": null
+          },
+          "search": {
+            "boundary_probes": {
+              "900": "experiments\\helix_additional_baselines\\own_load_development\\single\\rcaps_v2\\load900\\probe.json"
+            },
+            "probe_count": 4,
+            "search_wall_s": 4726.45457799999,
+            "observed_pass_fail": {
+              "350": true,
+              "600": true,
+              "800": true,
+              "900": true
+            }
+          },
+          "formal_by_seed": {
+            "0": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\rcaps_v2\\results\\single\\seed0\\rcaps_v2.json",
+              "result_sha256": "c9d38d702967452469ec825b503f351c3e088547ea1b62476e29740d1210fb03",
+              "trace_sha256": "4ae40050182f6e13fd80bd8e07d4ef4de66aeca83dbf447070e8324bc9077eab",
+              "arrivals": 1221,
+              "metrics": {
+                "output_throughput_tokens_per_s": 149.46444444444444,
+                "ttft_p95_s": 3.7756087408097243,
+                "tpot_p95_s": 0.5564068570209597,
+                "completion_fraction": 94.18509418509419,
+                "backlog_at_window_end": 71
+              }
+            },
+            "1": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\rcaps_v2\\results\\single\\seed1\\rcaps_v2.json",
+              "result_sha256": "37095188945f9bfca3ac52cc3e1be41c5212fbad8d3c1231f64744696042f043",
+              "trace_sha256": "01bebadc690bf2feeb7769915f6753fbcc769b0bf0c30f8297cdc0e275e2e28a",
+              "arrivals": 1251,
+              "metrics": {
+                "output_throughput_tokens_per_s": 150.59333333333333,
+                "ttft_p95_s": 3.617849565294523,
+                "tpot_p95_s": 0.5688776813267412,
+                "completion_fraction": 92.56594724220624,
+                "backlog_at_window_end": 93
+              }
+            },
+            "2": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\single\\rcaps_v2\\results\\single\\seed2\\rcaps_v2.json",
+              "result_sha256": "14438b6e266ae8a58d48c97676a2330e1d9ceee58d75de20511ca515767a11b0",
+              "trace_sha256": "ad78b8cdea330ce3bad61508dcc507bd2d9e4c67f23890e54049ac6816709865",
+              "arrivals": 1237,
+              "metrics": {
+                "output_throughput_tokens_per_s": 148.77,
+                "ttft_p95_s": 3.784576656282212,
+                "tpot_p95_s": 0.5618612098366317,
+                "completion_fraction": 93.61358124494745,
+                "backlog_at_window_end": 79
+              }
+            }
+          },
+          "summary": {
+            "output_throughput_tokens_per_s": {
+              "mean": 149.60925925925926,
+              "sample_sd": 0.9202524702783962
+            },
+            "ttft_p95_s": {
+              "mean": 3.7260116541288197,
+              "sample_sd": 0.09377837689323255
+            },
+            "tpot_p95_s": {
+              "mean": 0.5623819160614442,
+              "sample_sd": 0.0062516970452699125
+            },
+            "completion_fraction": {
+              "mean": 93.45487422408263,
+              "sample_sd": 0.8211578073182352
+            },
+            "backlog_at_window_end": {
+              "mean": 81,
+              "sample_sd": 11.135528725660043
+            }
+          }
+        }
+      }
+    },
+    "multi": {
+      "selection": "experiments\\helix_additional_baselines\\own_load_development\\multi\\selection.json",
+      "methods": {
+        "helix": {
+          "selection": {
+            "status": "selected",
+            "tested": {
+              "160": {
+                "passed_l90": false,
+                "wall_s": 433.24671199999284,
+                "completion_by_seed": {
+                  "100": 0.8321678321678322,
+                  "101": 0.8617021276595744
+                }
+              },
+              "80": {
+                "passed_l90": false,
+                "wall_s": 295.53340270000626,
+                "completion_by_seed": {
+                  "100": 0.903448275862069,
+                  "101": 0.8958333333333334
+                }
+              },
+              "40": {
+                "passed_l90": true,
+                "wall_s": 136.58113800000865,
+                "completion_by_seed": {
+                  "100": 0.9444444444444444,
+                  "101": 0.9154929577464789
+                }
+              },
+              "60": {
+                "passed_l90": false,
+                "wall_s": 184.41819750001014,
+                "completion_by_seed": {
+                  "100": 0.9174311926605505,
+                  "101": 0.8888888888888888
+                }
+              }
+            },
+            "l90_grid_tokens_per_s": 40,
+            "formal_offered_tokens_per_s": 30.0,
+            "next_grid_tokens_per_s": 60
+          },
+          "search": {
+            "boundary_probes": {
+              "40": "experiments\\helix_additional_baselines\\own_load_development\\multi\\helix\\load40\\probe.json",
+              "60": "experiments\\helix_additional_baselines\\own_load_development\\multi\\helix\\load60\\probe.json"
+            },
+            "probe_count": 4,
+            "search_wall_s": 1049.779450200018,
+            "observed_pass_fail": {
+              "160": false,
+              "40": true,
+              "60": false,
+              "80": false
+            }
+          },
+          "formal_by_seed": {
+            "0": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\helix\\results\\multi\\seed0\\helix.json",
+              "result_sha256": "b800b3e6b82c6597dca4eb50e624d2a6fc04d023356b9845ffc99b3facddb579",
+              "trace_sha256": "ab762dc4d56964cd7cf7b2282d564b0826713fda53874f457af97831e8996027",
+              "arrivals": 53,
+              "metrics": {
+                "output_throughput_tokens_per_s": 6.214444444444444,
+                "ttft_p95_s": 9.384947861531463,
+                "tpot_p95_s": 0.7138886693645085,
+                "completion_fraction": 92.45283018867924,
+                "backlog_at_window_end": 4
+              }
+            },
+            "1": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\helix\\results\\multi\\seed1\\helix.json",
+              "result_sha256": "a25556a86600809519bd8052febb6ea9a50ce6a1b77c65629a3a692cc13cbc2a",
+              "trace_sha256": "14ff1fc3c603242ea863c01a418f31bd6f79c8b551feb21327e51e5fc46227cd",
+              "arrivals": 54,
+              "metrics": {
+                "output_throughput_tokens_per_s": 6.0216666666666665,
+                "ttft_p95_s": 10.032355790481466,
+                "tpot_p95_s": 0.7206444301449667,
+                "completion_fraction": 90.74074074074075,
+                "backlog_at_window_end": 5
+              }
+            },
+            "2": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\helix\\results\\multi\\seed2\\helix.json",
+              "result_sha256": "960af4e9b1d2d0bdc16d0261ae7f11072ad5011186a809191bbb62f15264bd2e",
+              "trace_sha256": "99ede61d3564788298b2c65b496df26a57691facababcde0f0f9088716b914c0",
+              "arrivals": 55,
+              "metrics": {
+                "output_throughput_tokens_per_s": 7.002222222222223,
+                "ttft_p95_s": 9.03354517912355,
+                "tpot_p95_s": 0.7189399856740918,
+                "completion_fraction": 87.27272727272727,
+                "backlog_at_window_end": 7
+              }
+            }
+          },
+          "summary": {
+            "output_throughput_tokens_per_s": {
+              "mean": 6.4127777777777775,
+              "sample_sd": 0.5194943529202697
+            },
+            "ttft_p95_s": {
+              "mean": 9.483616277045494,
+              "sample_sd": 0.5066628578308562
+            },
+            "tpot_p95_s": {
+              "mean": 0.7178243617278557,
+              "sample_sd": 0.0035133372344191634
+            },
+            "completion_fraction": {
+              "mean": 90.15543273404909,
+              "sample_sd": 2.639186551190834
+            },
+            "backlog_at_window_end": {
+              "mean": 5.333333333333333,
+              "sample_sd": 1.5275252316519468
+            }
+          }
+        },
+        "swarm": {
+          "selection": {
+            "status": "no_grid_load_passed",
+            "tested": {
+              "140": {
+                "passed_l90": false,
+                "wall_s": 266.6580265000084,
+                "completion_by_seed": {
+                  "100": 0.7817460317460317,
+                  "101": 0.724
+                }
+              },
+              "60": {
+                "passed_l90": false,
+                "wall_s": 146.70091719999618,
+                "completion_by_seed": {
+                  "100": 0.8807339449541285,
+                  "101": 0.8518518518518519
+                }
+              },
+              "30": {
+                "passed_l90": false,
+                "wall_s": 79.6222878999979,
+                "completion_by_seed": {
+                  "100": 0.8727272727272727,
+                  "101": 0.9245283018867925
+                }
+              },
+              "20": {
+                "passed_l90": false,
+                "wall_s": 57.34143469999253,
+                "completion_by_seed": {
+                  "100": 0.8611111111111112,
+                  "101": 0.8888888888888888
+                }
+              }
+            }
+          },
+          "search": {
+            "boundary_probes": {
+              "20": "experiments\\helix_additional_baselines\\own_load_development\\multi\\swarm\\load20\\probe.json"
+            },
+            "probe_count": 7,
+            "search_wall_s": 1490.6943541999935,
+            "observed_pass_fail": {
+              "140": false,
+              "160": false,
+              "20": false,
+              "30": false,
+              "40": false,
+              "60": false,
+              "80": false
+            }
+          },
+          "formal_by_seed": {},
+          "summary": null
+        },
+        "separate": {
+          "selection": {
+            "status": "selected",
+            "tested": {
+              "160": {
+                "passed_l90": false,
+                "wall_s": 282.0305759999901,
+                "completion_by_seed": {
+                  "100": 0.7867132867132867,
+                  "101": 0.776595744680851
+                }
+              },
+              "80": {
+                "passed_l90": false,
+                "wall_s": 212.73349499999313,
+                "completion_by_seed": {
+                  "100": 0.8620689655172413,
+                  "101": 0.8472222222222222
+                }
+              },
+              "40": {
+                "passed_l90": true,
+                "wall_s": 67.1271909000061,
+                "completion_by_seed": {
+                  "100": 0.9027777777777778,
+                  "101": 0.9154929577464789
+                }
+              },
+              "60": {
+                "passed_l90": false,
+                "wall_s": 90.4501225999993,
+                "completion_by_seed": {
+                  "100": 0.908256880733945,
+                  "101": 0.8703703703703703
+                }
+              }
+            },
+            "l90_grid_tokens_per_s": 40,
+            "formal_offered_tokens_per_s": 30.0,
+            "next_grid_tokens_per_s": 60
+          },
+          "search": {
+            "boundary_probes": {
+              "40": "experiments\\helix_additional_baselines\\own_load_development\\multi\\separate\\load40\\probe.json",
+              "60": "experiments\\helix_additional_baselines\\own_load_development\\multi\\separate\\load60\\probe.json"
+            },
+            "probe_count": 4,
+            "search_wall_s": 652.3413844999886,
+            "observed_pass_fail": {
+              "160": false,
+              "40": true,
+              "60": false,
+              "80": false
+            }
+          },
+          "formal_by_seed": {
+            "0": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\separate\\results\\multi\\seed0\\separate.json",
+              "result_sha256": "b3982e0fd46633a9e7832b88ff6fbbe61ebea112e968c8d14687d5ca1fbb4c56",
+              "trace_sha256": "ab762dc4d56964cd7cf7b2282d564b0826713fda53874f457af97831e8996027",
+              "arrivals": 53,
+              "metrics": {
+                "output_throughput_tokens_per_s": 6.078888888888889,
+                "ttft_p95_s": 16.479932321538445,
+                "tpot_p95_s": 1.0587295922127302,
+                "completion_fraction": 90.56603773584906,
+                "backlog_at_window_end": 5
+              }
+            },
+            "1": {
+              "status": "failed_or_missing",
+              "log": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\separate\\results\\multi\\seed1\\separate.log",
+              "log_sha256": "23ac08ac55786cb4bc94b56723241a834f8084c514faabe5a822b9cfc185d5ce",
+              "reason": "KV 容量断言"
+            },
+            "2": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\separate\\results\\multi\\seed2\\separate.json",
+              "result_sha256": "fd406086702a36aef93307018f84910f250e619303bd9d6208c15a41af101a72",
+              "trace_sha256": "99ede61d3564788298b2c65b496df26a57691facababcde0f0f9088716b914c0",
+              "arrivals": 55,
+              "metrics": {
+                "output_throughput_tokens_per_s": 6.78,
+                "ttft_p95_s": 16.718712106464185,
+                "tpot_p95_s": 1.096065032502373,
+                "completion_fraction": 85.45454545454545,
+                "backlog_at_window_end": 8
+              }
+            }
+          },
+          "summary": null
+        },
+        "rcaps_v2": {
+          "selection": {
+            "status": "grid_ceiling",
+            "tested": {
+              "160": {
+                "passed_l90": true,
+                "wall_s": 224.7940685000067,
+                "completion_by_seed": {
+                  "100": 0.9300699300699301,
+                  "101": 0.9290780141843972
+                }
+              },
+              "280": {
+                "passed_l90": true,
+                "wall_s": 300.5352140999894,
+                "completion_by_seed": {
+                  "100": 0.9321357285429142,
+                  "101": 0.9050505050505051
+                }
+              },
+              "360": {
+                "passed_l90": true,
+                "wall_s": 337.34862740000244,
+                "completion_by_seed": {
+                  "100": 0.9152542372881356,
+                  "101": 0.9180834621329211
+                }
+              },
+              "400": {
+                "passed_l90": true,
+                "wall_s": 355.41265079998993,
+                "completion_by_seed": {
+                  "100": 0.9102384291725105,
+                  "101": 0.902542372881356
+                }
+              }
+            },
+            "l90_grid_tokens_per_s": 400,
+            "formal_offered_tokens_per_s": 300.0,
+            "next_grid_tokens_per_s": null
+          },
+          "search": {
+            "boundary_probes": {
+              "400": "experiments\\helix_additional_baselines\\own_load_development\\multi\\rcaps_v2\\load400\\probe.json"
+            },
+            "probe_count": 4,
+            "search_wall_s": 1218.0905607999885,
+            "observed_pass_fail": {
+              "160": true,
+              "280": true,
+              "360": true,
+              "400": true
+            }
+          },
+          "formal_by_seed": {
+            "0": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\rcaps_v2\\results\\multi\\seed0\\rcaps_v2.json",
+              "result_sha256": "bc0352c645c3652e73b8e998055cb7ad914a90581a3083dcd605283e3da4a7a8",
+              "trace_sha256": "fa16ab73bf3d989b4f4f4cddcd019b52a9a4fecb22c7cedfeff961cf73d193cc",
+              "arrivals": 548,
+              "metrics": {
+                "output_throughput_tokens_per_s": 68.32944444444445,
+                "ttft_p95_s": 5.87291861416378,
+                "tpot_p95_s": 0.6917971564706419,
+                "completion_fraction": 92.15328467153284,
+                "backlog_at_window_end": 43
+              }
+            },
+            "1": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\rcaps_v2\\results\\multi\\seed1\\rcaps_v2.json",
+              "result_sha256": "7a8c2bfa27f2e41b6e02cd2967b7cdc5a2958201eefc7e0457b32c8274c0cb5e",
+              "trace_sha256": "b8a507c1788b669bca844552aee5d27b58baf6ae0ef7844e5dd04a3836475857",
+              "arrivals": 529,
+              "metrics": {
+                "output_throughput_tokens_per_s": 62.952777777777776,
+                "ttft_p95_s": 5.501600681693478,
+                "tpot_p95_s": 0.6849722379754957,
+                "completion_fraction": 93.19470699432893,
+                "backlog_at_window_end": 36
+              }
+            },
+            "2": {
+              "status": "complete",
+              "result": "experiments\\helix_additional_baselines\\own_load_formal\\multi\\rcaps_v2\\results\\multi\\seed2\\rcaps_v2.json",
+              "result_sha256": "cd90b4f51e86270eac617cade52906bbccd660053f699821bbdbf22d954d3da7",
+              "trace_sha256": "5039426aea533fb4fd7e2ea6c9603b5af084fee5b2740b3ca51d42e564e516b3",
+              "arrivals": 544,
+              "metrics": {
+                "output_throughput_tokens_per_s": 63.839444444444446,
+                "ttft_p95_s": 5.252745144409659,
+                "tpot_p95_s": 0.6680551166785721,
+                "completion_fraction": 92.46323529411765,
+                "backlog_at_window_end": 41
+              }
+            }
+          },
+          "summary": {
+            "output_throughput_tokens_per_s": {
+              "mean": 65.04055555555556,
+              "sample_sd": 2.8825573779262488
+            },
+            "ttft_p95_s": {
+              "mean": 5.542421480088972,
+              "sample_sd": 0.3120953962059524
+            },
+            "tpot_p95_s": {
+              "mean": 0.6816081703749032,
+              "sample_sd": 0.012223290329860992
+            },
+            "completion_fraction": {
+              "mean": 92.60374231999315,
+              "sample_sd": 0.534739919815958
+            },
+            "backlog_at_window_end": {
+              "mean": 40,
+              "sample_sd": 3.605551275463989
+            }
+          }
+        }
+      }
+    }
+  }
+}

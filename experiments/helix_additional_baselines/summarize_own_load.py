@@ -199,7 +199,12 @@ def main() -> None:
                          f"{data['search']['search_wall_s'] / 60:.1f} min | "
                          f"{boundary} |")
         lines.append("")
-    lines.extend(["请求身份、轨迹哈希（同负载时）、布局与物理拓扑哈希、协议字段均逐结果校验；"
+    lines.extend(["## 解释范围", "",
+                  "网格 L90 是本实验的操作性门槛，不是精确峰值：单集群 V2 与三集群 V2 达到网格上限，"
+                  "其真实边界仍未由这张表测出。三集群 Swarm 在最低探测点未通过，不能据此确定其最大容量；"
+                  "SP 三集群正式种子 1 的 KV 容量失败使该格无法给出三种子性能均值。"
+                  "不同运行点的延迟、吞吐不作同负载优劣排名。", "",
+                  "请求身份、轨迹哈希（同负载时）、布局与物理拓扑哈希、协议字段均逐结果校验；"
                   "SP 三个子集群的设备覆盖及链路参数另行核验。三种子只描述波动，不作显著性或真实集群性能声明。", ""])
     (HERE / "OWN_LOAD_SUMMARY.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
