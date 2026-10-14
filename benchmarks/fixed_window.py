@@ -12,11 +12,13 @@ import argparse
 import hashlib
 import json
 import os
+import random
 import sys
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
 from statistics import mean
+from types import SimpleNamespace
 
 import numpy as np
 
@@ -56,21 +58,29 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         profile_resources: bool = False, scheduler_factory=None,
         checkpoint_file: Path | None = None, checkpoint_every: int = 25,
         compact: bool = False, physical_cluster: Path | None = None,
-        profile_scheduler: bool = False, record_query_samples: bool = False) -> dict:
+        profile_scheduler: bool = False, record_query_samples: bool = False,
+        machine_counts: dict[str, int] | None = None,
+        machine_profile: Path | None = None,
+        trace_override: list[tuple[float, int, int]] | None = None,
+        allow_force_set: bool = False,
+        include_distributions: bool = False) -> dict:
     cluster, profile, helix_solution, helix_sim_cluster = scenario(name)
     cluster = physical_cluster or cluster
+    profile = machine_profile or profile
+    machines = machine_counts or MACHINES
     solution = solution or helix_solution
     sim_cluster = sim_cluster or helix_sim_cluster
     layout = None
-    if method == "helix":
+    if method in ("helix", "swarm", "separate"):
         from simulator.initial_layout.layout_synthesizer import LayoutMethod, LayoutSynthesizer
         layout = LayoutSynthesizer(str(cluster), str(profile), ModelName.LLaMa70B,
                                    str(ROOT / "experiments/critical_graph/runs"),
-                                   LayoutMethod.LoadExisting, MACHINES)
+                                   LayoutMethod.LoadExisting, machines)
         layout.synthesize({"solution_file_name": str(solution),
                            "simulator_cluster_file_name": str(sim_cluster)})
     simulator = ClusterSimulator(model_name=ModelName.LLaMa70B,
-                                 machine_num_dict=MACHINES)
+                                 machine_num_dict=machines)
+    simulator.model_manager.allow_force_set = allow_force_set
     simulator.logger = _NullLogger()
     simulator.from_ini_file(config_file_name=str(sim_cluster))
     if method == "helix":
@@ -81,6 +91,14 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
             "kv_param": KVParameters(expected_kv_hwm=0.9,
                                      expected_output_length_ratio=0.6),
             "scheduling_mode": SchedulingMode.Online})
+    elif method == "swarm":
+        from simulator.scheduler.base_scheduler import SchedulingMethod
+
+        simulator.init_scheduler(SchedulingMethod.Swarm)
+    elif method == "separate":
+        from simulator.scheduler.base_scheduler import SchedulingMethod
+
+        simulator.init_scheduler(SchedulingMethod.Naive)
     elif scheduler_factory is not None:
         simulator.set_scheduler(scheduler_factory(simulator))
     else:
@@ -89,8 +107,8 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         simulator.set_scheduler(LayerDagScheduler(simulator))
     simulator.init_query_manager()
     simulator.mark_as_ready()
-    start = layout.set_layout(simulator) if method == "helix" else load_graph_layout(simulator, solution)
-    if method == "helix":
+    start = layout.set_layout(simulator) if layout is not None else load_graph_layout(simulator, solution)
+    if layout is not None:
         simulator.update_scheduler()
     beginning, ending = start + warmup, start + duration
     scheduler_calls: dict[str, list[int]] = {}
@@ -129,8 +147,14 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
             simulator = checkpoint["simulator"]
             start = checkpoint["start"]
             next_index = checkpoint["next_index"]
-    feeder = OnlineRequestFeeder(cluster_token_throughput=offered,
-                                 start_time=start, duration=duration, seed=seed)
+    if trace_override is None:
+        feeder = OnlineRequestFeeder(cluster_token_throughput=offered,
+                                     start_time=start, duration=duration, seed=seed)
+    else:
+        random.seed(seed)
+        feeder = SimpleNamespace(trace=[
+            (start + arrival, input_tokens, output_tokens)
+            for arrival, input_tokens, output_tokens in trace_override])
     trace_payload = [(round(arrival - start, 9), input_tokens, output_tokens)
                      for arrival, input_tokens, output_tokens in feeder.trace]
     trace_sha256 = hashlib.sha256(json.dumps(trace_payload,
@@ -285,6 +309,12 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         result["physical_cluster"] = str(physical_cluster)
         result["physical_cluster_sha256"] = hashlib.sha256(
             physical_cluster.read_bytes()).hexdigest()
+    if include_distributions:
+        result["_distributions"] = {
+            "ttft": first_tokens, "tpot": tpots, "e2e": e2es,
+            "paper_prompt": paper_prompt_latencies,
+            "paper_decode": paper_decode_latencies,
+        }
     if profile_scheduler:
         result["scheduler_call_profile"] = {
             operation: {

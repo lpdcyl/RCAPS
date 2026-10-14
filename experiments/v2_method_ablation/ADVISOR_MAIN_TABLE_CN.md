@@ -89,4 +89,4 @@
 
 来源：[Helix artifact 单集群 70B 在线实验](../../artifact_evaluation/ae_readme.md)（第 293–379 行）与[三集群 70B 在线实验](../../artifact_evaluation/ae_readme.md)（第 1665–1751 行）；负载配置见 `artifact_evaluation/{single_cluster,distributed_clusters}/step3_simulation.py`。SP 的三套子集群各自生成请求，不能把该行与 Helix/V2 视为同一请求群体的配对比较。
 
-**主表取舍。**当前主表使用单集群 700、三集群 320 token/s 的共同负载和三个种子。Helix 原 artifact 对 Swarm 使用 350/160，对 SP 则分别向三套子集群投送请求；因此上表不能填入主表。提高负载后的原版基线未形成可审计的三个完整窗口；额外加入 KV 准入保护会改变原方法，且若使用轨迹中的目标输出长度，会引入在线时不可用的信息。本轮不把这种适配结果作为论文公平对照，也不据此计算 V2 相对 Swarm/SP 的提升。核心主表保留协议一致的 V2–Helix 与递进消融。
+**主表取舍。**当前主表使用单集群 700、三集群 320 token/s 的共同负载和三个种子。Helix 原 artifact 对 Swarm 使用 350/160，对 SP 则分别向三套子集群投送请求；因此上表不能填入主表。我们按主表负载直接运行原版 Swarm 与 SP，未加入 KV 准入保护；SP 为共用同一轨迹而按原子集群负载比例分配请求，分配不读取目标输出长度。[逐窗口核查](../helix_additional_baselines/RAW_BASELINE_AUDIT_CN.md)显示：Swarm 仅三集群种子 2 完成，其余五个窗口及 SP 的六个窗口均触发 KV 容量断言。两者都无法形成两个拓扑各三个完整窗口的汇总，失败窗口不填补指标，也不计算 V2 相对 Swarm/SP 的三种子提升。核心主表保留协议一致的 V2–Helix 与递进消融。

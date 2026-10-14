@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
-from baselines import helix
+from baselines import helix, separate, swarm
 from rcaps import method as rcaps_v1
 from rcaps import v2_method
 from experiments.v2_method_ablation import adapters as v2_ablation
@@ -29,6 +29,10 @@ METHODS = {
         v2_method.evaluate),
     helix.NAME: MethodSpec(helix.NAME, helix.DESCRIPTION, "baseline",
                            helix.layout, helix.evaluate),
+    swarm.NAME: MethodSpec(swarm.NAME, swarm.DESCRIPTION, "comparison",
+                          swarm.layout, swarm.evaluate),
+    separate.NAME: MethodSpec(separate.NAME, separate.DESCRIPTION, "comparison",
+                             separate.layout, separate.evaluate),
     rcaps_v1.NAME: MethodSpec(
         rcaps_v1.NAME, rcaps_v1.DESCRIPTION, "comparison",
         rcaps_v1.layout, rcaps_v1.evaluate),
