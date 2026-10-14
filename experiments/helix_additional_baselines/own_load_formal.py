@@ -20,8 +20,12 @@ def main(scenario: str) -> None:
     selection = json.loads(selection_file.read_text(encoding="utf-8"))
     if set(selection["methods"]) != set(METHODS):
         raise ValueError(f"{scenario}: incomplete development selection")
+    failed = []
     for method in METHODS:
         choice = selection["methods"][method]
+        if choice["status"] == "no_grid_load_passed":
+            print(f"SKIP FORMAL {scenario}/{method}: no L90 grid point passed", flush=True)
+            continue
         if choice["status"] not in ("selected", "grid_ceiling"):
             raise ValueError(f"{scenario}/{method}: no valid L90 selection")
         offered = choice["formal_offered_tokens_per_s"]
@@ -48,6 +52,10 @@ def main(scenario: str) -> None:
             json.dumps(status, indent=2) + "\n", encoding="utf-8")
         print(f"END FORMAL {scenario}/{method} code={result.returncode} "
               f"wall={status['wall_s']:.1f}s", flush=True)
+        if result.returncode:
+            failed.append(method)
+    if failed:
+        raise RuntimeError(f"Formal windows failed: {scenario}/{failed}")
 
 
 if __name__ == "__main__":

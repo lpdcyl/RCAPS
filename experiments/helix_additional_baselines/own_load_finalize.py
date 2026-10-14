@@ -41,9 +41,7 @@ def selections_ready() -> bool:
             return False
         statuses = {method: choice["status"]
                     for method, choice in selection["methods"].items()}
-        if "no_grid_load_passed" in statuses.values():
-            raise ValueError(f"No passing grid load: {scenario}: {statuses}")
-        if not all(status in ("selected", "grid_ceiling")
+        if not all(status in ("selected", "grid_ceiling", "no_grid_load_passed")
                    for status in statuses.values()):
             return False
     return True
@@ -86,7 +84,7 @@ def main() -> None:
             raise TimeoutError("Development selection timeout")
         time.sleep(30)
     write_status("formal_running")
-    with LOG.open("w", encoding="utf-8") as stream:
+    with LOG.open("a", encoding="utf-8") as stream:
         processes = {scenario: subprocess.Popen(
             [sys.executable, "-u", "-m",
              "experiments.helix_additional_baselines.own_load_formal",

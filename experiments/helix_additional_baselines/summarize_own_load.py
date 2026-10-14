@@ -58,6 +58,24 @@ def inspect_result(path: Path, scenario: str, method: str,
 
 
 def verify_choice(scenario: str, method: str, choice: dict) -> dict:
+    if choice["status"] == "no_grid_load_passed":
+        minimum = GRIDS[scenario][0]
+        paths = sorted((HERE / "own_load_development" / scenario / method).glob(
+            "load*/probe.json"))
+        probes = [json.loads(path.read_text(encoding="utf-8")) for path in paths]
+        if not any(probe["offered_tokens_per_s"] == minimum for probe in probes):
+            raise ValueError(f"Missing lower-bound probe: {scenario}/{method}")
+        if any(probe["scenario"] != scenario or probe["method"] != method or
+               probe["passed_l90"] or set(probe["seeds"]) != {"100", "101"}
+               for probe in probes):
+            raise ValueError(f"Invalid no-pass evidence: {scenario}/{method}")
+        return {"boundary_probes": {str(minimum): str((
+                    HERE / "own_load_development" / scenario / method /
+                    f"load{minimum}" / "probe.json").relative_to(ROOT))},
+                "probe_count": len(probes),
+                "search_wall_s": sum(probe["wall_s"] for probe in probes),
+                "observed_pass_fail": {
+                    probe["offered_tokens_per_s"]: False for probe in probes}}
     if choice["status"] not in ("selected", "grid_ceiling"):
         raise ValueError(f"No usable selection for {scenario}/{method}")
     grid = GRIDS[scenario]
@@ -125,6 +143,13 @@ def main() -> None:
                               ("separate", "SP"), ("rcaps_v2", "RCAPS V2")):
             choice = selection["methods"][method]
             search = verify_choice(scenario, method, choice)
+            if choice["status"] == "no_grid_load_passed":
+                section["methods"][method] = {
+                    "selection": choice, "search": search,
+                    "formal_by_seed": {}, "summary": None}
+                lines.append(f"| {label} | 最低 {GRIDS[scenario][0]} 未通过 | "
+                             "未运行 | — | — | — | — | — | 0/3 |")
+                continue
             offered = choice["formal_offered_tokens_per_s"]
             results = {str(seed): inspect_result(
                 HERE / "own_load_formal" / scenario / method / "results" /
@@ -155,7 +180,7 @@ def main() -> None:
         for method, label in (("helix", "Helix"), ("swarm", "Swarm"),
                               ("separate", "SP"), ("rcaps_v2", "RCAPS V2")):
             data = section["methods"][method]
-            higher = data["selection"]["next_grid_tokens_per_s"]
+            higher = data["selection"].get("next_grid_tokens_per_s")
             lines.append(f"| {label} | {data['search']['probe_count']} | "
                          f"{data['search']['search_wall_s'] / 60:.1f} min | "
                          f"{higher if higher is not None else '网格上限'} |")
