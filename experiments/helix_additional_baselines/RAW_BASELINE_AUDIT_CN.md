@@ -2,7 +2,7 @@
 
 ## 协议与实现
 
-- 模型：LLaMa70B；单集群 700、三集群 320 输出 token/s；每个拓扑种子 0/1/2；1800 秒、零预热、固定窗口且不排空尾部。仅运行 Swarm 与 Separate Pipelines（SP），未重跑 Helix 或 V2。
+- 模型：LLaMa70B；单集群 700、三集群 320 提供 token/s（输入与目标输出之和）；每个拓扑种子 0/1/2；1800 秒、零预热、固定窗口且不排空尾部。仅运行 Swarm 与 Separate Pipelines（SP），未重跑 Helix 或 V2。
 - Swarm 直接使用 Helix artifact 的 70B Swarm 布局与 `SchedulingMethod.Swarm`。SP 使用 artifact 的 A100/L4/T4 三套原布局、原 `SchedulingMethod.Naive` 和 `allow_force_set`。两个基线均未加 KV 准入保护。
 - SP 为与主表共用一条请求轨迹，将每个请求按 artifact 中三套子集群提供负载的比例确定性分配给 A100/L4/T4。分配只看已分配**请求数**，不读取该请求的目标输出长度；三个子集群的结果仅在全部完成时才可合并。原 artifact 分别生成三条轨迹，因此这里的共同轨迹分配是本次公平对照所需的实验适配，不等同于原论文的一次运行。
 - 运行命令：`python -m benchmarks.run --methods swarm separate --scenarios single multi --seeds 0 1 2 --duration 1800 --warmup 0 --workers 2 --results-dir experiments/helix_additional_baselines/raw_formal`。发现最初的 SP 轨迹分配用了未来目标输出长度后，已将其改成上述按请求数分配，并单独以同一正式协议重跑：`python -m benchmarks.run --methods separate --scenarios single multi --seeds 0 1 2 --duration 1800 --warmup 0 --workers 2 --results-dir experiments/helix_additional_baselines/raw_formal_nonoracle`。以下 SP 状态**只取重跑结果**。

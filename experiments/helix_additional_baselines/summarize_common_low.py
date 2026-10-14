@@ -96,11 +96,11 @@ def fmt(item: dict | None, decimals: int = 3) -> str:
 
 
 def main() -> None:
-    report = {"protocol": "70B, 24 GPUs, common 350/160 offered token/s, "
+    report = {"protocol": "70B, 24 GPUs, common 350/160 offered input+target-output token/s, "
                           "seeds 0/1/2, 1800 s, zero warmup, no tail drain",
               "source_sha256": {}, "scenarios": {}}
     lines = ["# 四方法共同负载实验：完整窗口核查", "",
-             "70B；单集群 350、三集群 160 提供 token/s；种子 0/1/2；"
+             "70B；单集群 350、三集群 160 提供 token/s（输入与目标输出之和）；种子 0/1/2；"
              "1800 秒、零预热、不排空尾部。四方法共用同一请求轨迹。"
              "每格为三个种子各自完整窗口指标的均值 ± 样本标准差。", "",
              "这组负载取自原 Helix artifact 的 Swarm 设置，在查看本组结果前固定。"

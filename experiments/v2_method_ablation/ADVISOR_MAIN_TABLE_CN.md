@@ -18,7 +18,7 @@
 
 ## 主结果：Helix 与递进消融同表
 
-70B；两种 24-GPU 拓扑；官方负载；种子 0/1/2；每次 1800 秒、零预热、不排空窗口尾部。每格为**三个种子各自窗口指标的均值 ± 样本标准差**。吞吐为输出 token/s；TTFT、TPOT 为秒；完成率为百分数；积压为窗口结束时未完成请求数。P95 是三个种子各自 P95 的均值。
+70B；两种 24-GPU 拓扑；提供负载单集群 700、三集群 320 token/s（输入与目标输出之和）；种子 0/1/2；每次 1800 秒、零预热、不排空窗口尾部。每格为**三个种子各自窗口指标的均值 ± 样本标准差**。实测吞吐为输出 token/s；TTFT、TPOT 为秒；完成率为百分数；积压为窗口结束时未完成请求数。P95 是三个种子各自 P95 的均值。
 
 <table style="border-collapse: collapse; border-top: 2px solid; border-bottom: 2px solid; white-space: nowrap;">
   <thead>
@@ -78,7 +78,7 @@
 
 下表直接摘录 Helix artifact 的 **70B 在线仿真**输出，用于说明 Swarm 与 Separate Pipelines（SP）在原研究中的表现；它们**不属于上面的共同负载、三种子配对主表**。原 artifact 只报告种子 0 的单次运行，不提供三个种子的样本标准差、完成率和末端积压。这里的 P95 是原 artifact 的 *prompt/decode request latency*，不能直接当成主表按请求汇总的 P95 TTFT/TPOT。
 
-| 原 artifact 拓扑 | 方法 | 提供负载（输出 token/s） | 仿真 Decode 吞吐（token/s） | Prompt latency P95（s） | Decode latency P95（s） |
+| 原 artifact 拓扑 | 方法 | 提供负载（输入＋目标输出 token/s） | 仿真 Decode 吞吐（输出 token/s） | Prompt latency P95（s） | Decode latency P95（s） |
 | --- | --- | ---: | ---: | ---: | ---: |
 | 单集群 | Helix | 700 | 141.6 | 4.41 | 3.19 |
 | 单集群 | Swarm | 350 | 69.8 | 5.01 | 2.51 |
@@ -93,4 +93,4 @@
 
 ## 四方法共同负载补充实验
 
-另按原 artifact 的 Swarm 提供负载设置单集群 **350**、三集群 **160** token/s，让 V2、Helix、Swarm、SP 在各自拓扑上使用共同轨迹与种子 0/1/2。24 个 1800 秒正式窗口全部完成；[完整绝对数值、配对改善及审计](../helix_additional_baselines/COMMON_LOW_SUMMARY_CN.md)独立成表。单集群 V2 与 SP 的吞吐分别为 **75.619 ± 0.740** 与 **75.636 ± 1.183 token/s**，不能声称 V2 在该档吞吐优于所有基线；V2 的 P95 TTFT/TPOT 为 **3.375 ± 0.059 / 0.455 ± 0.004 s**，SP 为 **4.354 ± 0.081 / 1.065 ± 0.029 s**。三集群 V2 在吞吐及两项 P95 延迟上均优于另外三种方法。此补充表不与上面的 700/320 主表跨负载相减。
+另按原 artifact 的 Swarm 提供负载设置单集群 **350**、三集群 **160** token/s（输入与目标输出之和），让 V2、Helix、Swarm、SP 在各自拓扑上使用共同轨迹与种子 0/1/2。24 个 1800 秒正式窗口全部完成；[完整绝对数值、配对改善及审计](../helix_additional_baselines/COMMON_LOW_SUMMARY_CN.md)独立成表。单集群 V2 与 SP 的输出吞吐分别为 **75.619 ± 0.740** 与 **75.636 ± 1.183 token/s**，不能声称 V2 在该档吞吐优于所有基线；V2 的 P95 TTFT/TPOT 为 **3.375 ± 0.059 / 0.455 ± 0.004 s**，SP 为 **4.354 ± 0.081 / 1.065 ± 0.029 s**。三集群 V2 在输出吞吐及两项 P95 延迟上均优于另外三种方法。此补充表不与上面的 700/320 主表跨负载相减。
