@@ -1,0 +1,46 @@
+{
+  "scenario": "single",
+  "method": "separate",
+  "offered_tokens_per_s": 500,
+  "seeds": {
+    "100": {
+      "status": "failed",
+      "log": "experiments\\helix_additional_baselines\\own_load_development\\single\\separate\\load500\\results\\single\\seed100\\separate.log",
+      "log_sha256": "d88af179eb399f1e57949b96ecbe176008738d82a2642776117007703261a8d4",
+      "last_log_line": "AssertionError: Exceed KV-cache capacity"
+    },
+    "101": {
+      "status": "failed",
+      "log": "experiments\\helix_additional_baselines\\own_load_development\\single\\separate\\load500\\results\\single\\seed101\\separate.log",
+      "log_sha256": "fe7be778a26eedac66102d301a9c5804eb5a094fb74e471a028a86ed72d1473f",
+      "last_log_line": "AssertionError: Exceed KV-cache capacity!"
+    }
+  },
+  "passed_l90": false,
+  "runner_exit_code": 1,
+  "wall_s": 48.24699480000709,
+  "command": [
+    "D:\\software\\miniconda\\python.exe",
+    "-m",
+    "benchmarks.run",
+    "--methods",
+    "separate",
+    "--scenarios",
+    "single",
+    "--seeds",
+    "100",
+    "101",
+    "--offered-single",
+    "500",
+    "--offered-multi",
+    "500",
+    "--duration",
+    "1800",
+    "--warmup",
+    "0",
+    "--workers",
+    "2",
+    "--results-dir",
+    "D:\\PythonProject\\Helix-GREEN\\experiments\\helix_additional_baselines\\own_load_development\\single\\separate\\load500\\results"
+  ]
+}

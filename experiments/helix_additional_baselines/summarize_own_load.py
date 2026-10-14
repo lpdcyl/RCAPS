@@ -32,8 +32,12 @@ def inspect_result(path: Path, scenario: str, method: str,
                    seed: int, offered: float) -> dict:
     log = path.with_suffix(".log")
     if not path.is_file():
+        reason = ("KV 容量断言" if log.is_file() and
+                  "Exceed KV-cache capacity!" in log.read_text(
+                      encoding="utf-8", errors="replace") else "见日志")
         return {"status": "failed_or_missing", "log": str(log.relative_to(ROOT)),
-                "log_sha256": digest(log) if log.is_file() else None}
+                "log_sha256": digest(log) if log.is_file() else None,
+                "reason": reason}
     record = json.loads(path.read_text(encoding="utf-8"))
     solution, cluster = METHODS[method].layout(scenario, ROOT)
     expected = {
@@ -175,15 +179,25 @@ def main() -> None:
             lines.append("| " + " | ".join([label, capacity, f"{offered:g}",
                                             *metric_cells, f"{len(complete)}/3"]) + " |")
         summary["scenarios"][scenario] = section
+        failed = [(method, seed, item) for method, data in section["methods"].items()
+                  for seed, item in data["formal_by_seed"].items()
+                  if item["status"] != "complete"]
+        if failed:
+            lines.extend(["", "失败或缺失的正式窗口（未填补）：", ""])
+            for method, seed, item in failed:
+                lines.append(f"- `{method}` 种子 {seed}：{item['reason']}；"
+                             f"日志 `{item['log']}`。")
         lines.extend(["", "| 开发搜索 | 探测网格点数 | 仿真墙钟累计 | 相邻较高点 |",
                       "| --- | ---: | ---: | ---: |"])
         for method, label in (("helix", "Helix"), ("swarm", "Swarm"),
                               ("separate", "SP"), ("rcaps_v2", "RCAPS V2")):
             data = section["methods"][method]
             higher = data["selection"].get("next_grid_tokens_per_s")
+            boundary = ("不适用" if data["selection"]["status"] == "no_grid_load_passed"
+                        else higher if higher is not None else "网格上限")
             lines.append(f"| {label} | {data['search']['probe_count']} | "
                          f"{data['search']['search_wall_s'] / 60:.1f} min | "
-                         f"{higher if higher is not None else '网格上限'} |")
+                         f"{boundary} |")
         lines.append("")
     lines.extend(["请求身份、轨迹哈希（同负载时）、布局与物理拓扑哈希、协议字段均逐结果校验；"
                   "SP 三个子集群的设备覆盖及链路参数另行核验。三种子只描述波动，不作显著性或真实集群性能声明。", ""])

@@ -1,0 +1,56 @@
+{
+  "scenario": "multi",
+  "method": "helix",
+  "offered_tokens_per_s": 40,
+  "seeds": {
+    "100": {
+      "status": "complete",
+      "result": "experiments\\helix_additional_baselines\\own_load_development\\multi\\helix\\load40\\results\\multi\\seed100\\helix.json",
+      "result_sha256": "7ec41988cdce7c1feb31bd51a25c68da4a6455c4304502c0e7eb69c95dee1844",
+      "completion_fraction": 0.9444444444444444,
+      "backlog_at_window_end": 4,
+      "arrivals": 72,
+      "output_throughput_tokens_per_s": 8.872777777777777,
+      "ttft_p95_s": 10.240755292089405,
+      "tpot_p95_s": 0.7441304200759102
+    },
+    "101": {
+      "status": "complete",
+      "result": "experiments\\helix_additional_baselines\\own_load_development\\multi\\helix\\load40\\results\\multi\\seed101\\helix.json",
+      "result_sha256": "5bff3792057a98201899be4f4bd378c9996705b9eb99e5936d2b2e3f3842ee0c",
+      "completion_fraction": 0.9154929577464789,
+      "backlog_at_window_end": 6,
+      "arrivals": 71,
+      "output_throughput_tokens_per_s": 7.781666666666666,
+      "ttft_p95_s": 10.831184808201755,
+      "tpot_p95_s": 0.7463046193254027
+    }
+  },
+  "passed_l90": true,
+  "runner_exit_code": 0,
+  "wall_s": 136.58113800000865,
+  "command": [
+    "D:\\software\\miniconda\\python.exe",
+    "-m",
+    "benchmarks.run",
+    "--methods",
+    "helix",
+    "--scenarios",
+    "multi",
+    "--seeds",
+    "100",
+    "101",
+    "--offered-single",
+    "40",
+    "--offered-multi",
+    "40",
+    "--duration",
+    "1800",
+    "--warmup",
+    "0",
+    "--workers",
+    "2",
+    "--results-dir",
+    "D:\\PythonProject\\Helix-GREEN\\experiments\\helix_additional_baselines\\own_load_development\\multi\\helix\\load40\\results"
+  ]
+}
