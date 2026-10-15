@@ -1,0 +1,85 @@
+Set parameter LicenseID to value 2791955
+Set parameter Seed to value 0
+Set parameter NumericFocus to value 3
+Set parameter IntFeasTol to value 1e-09
+# ----------------------------------------- Gurobi ----------------------------------------- #
+Gurobi Optimizer version 13.0.3 build v13.0.3rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i9-14900KF, instruction set [SSE2|AVX|AVX2]
+Thread count: 24 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+IntFeasTol  1e-09
+NumericFocus  3
+
+Optimize a model with 1848 rows, 1386 columns and 14460 nonzeros (Max)
+Model fingerprint: 0x5b1bf7cf
+Model has 24 linear objective coefficients
+Variable types: 600 continuous, 786 integer (762 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+08]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 8e+01]
+Warning: Model contains large matrix coefficients
+
+User MIP start produced solution with objective -0 (0.00s)
+Loaded user MIP start with objective -0
+
+Presolve time: 0.02s
+Presolved: 1848 rows, 1386 columns, 13866 nonzeros
+Variable types: 600 continuous, 786 integer (762 binary)
+
+Root relaxation: objective 2.782239e+05, 396 iterations, 0.01 seconds (0.02 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 278223.906    0  120   -0.00000 278223.906      -     -    0s
+H    0     0                       0.0000002 276603.534      -     -    0s
+     0     2 276603.534    0  120    0.00000 276603.534      -     -    0s
+H  396   414                       0.0000003 221140.473      -   181    1s
+H  446   470                       0.0000004 221140.473      -   180    1s
+H  455   470                       0.0000021 221140.473      -   180    1s
+H 1568  1532                       0.0000027 220620.977      -   122    1s
+  5315  4639 11154.5366   82  120    0.00000 149408.481      -  66.0    5s
+H 5509  4570                       0.0000034 131694.608      -  68.7    6s
+H 5527  4344                       0.0000068 131694.608      -  68.8    6s
+H 5857  4344                       0.0000101 131694.608      -  70.3    7s
+  6357  4697 60446.7894   65   78    0.00001 131694.608      -  72.0   10s
+  9138  5913     cutoff   95         0.00001 121890.271      -  68.0   15s
+ 12947  7794 47265.0521   63   52    0.00001 120859.515      -  65.3   20s
+ 16982  9543 75554.1965   58   85    0.00001 119159.913      -  62.8   25s
+ 19924 11750 71125.9686   45   94    0.00001 119159.913      -  63.9   30s
+ 24063 15270 50434.1977   55   61    0.00001 116219.799      -  64.4   35s
+ 28377 18457 35098.1892   54   41    0.00001 109311.137      -  62.1   40s
+ 33307 22483 infeasible   70         0.00001 109220.597      -  63.0   46s
+ 37611 25358 47054.0230   47   53    0.00001 107141.677      -  61.6   50s
+ 41576 28362 6060.32636   86   15    0.00001 107141.677      -  61.5   55s
+ 45346 31409 infeasible   61         0.00001 105170.816      -  62.5   60s
+ 51323 35799 68409.6107   53   70    0.00001 103962.713      -  60.8   66s
+ 55485 38421 28144.4790   74   24    0.00001 103338.393      -  59.6   70s
+ 61557 42644 70599.9434   54  131    0.00001 103034.338      -  60.1   77s
+ 63526 44294 44168.3053   67   41    0.00001 103034.338      -  60.0   80s
+ 69456 49130 50434.1977   58   76    0.00001 102576.597      -  60.5   88s
+ 72309 50975 6060.32636   78   14    0.00001 101626.255      -  60.2   91s
+ 77988 55947 55266.9141   54   70    0.00001 101081.350      -  60.5   99s
+ 81488 58297 22734.3744   81   32    0.00001 101042.911      -  60.5  103s
+ 84727 60626 55312.5663   62  100    0.00001 100434.967      -  60.1  106s
+ 87934 63091 34204.8053   67   43    0.00001 100323.662      -  59.9  110s
+ 91260 65365 3778.84241  130   14    0.00001 99946.2413      -  59.5  115s
+[ILP Layout - Info] Early stop because max search time (120) is reached
+[ILP Layout - Info] Found: 1.0117922101926524e-05, Upper Bound: 3582.4517162504853.
+ 94513 65578 14472.7893   71   30    0.00001 99219.0484      -  59.6  123s
+
+Explored 94767 nodes (5642905 simplex iterations) in 123.31 seconds (86.55 work units)
+Thread count was 32 (of 32 available processors)
+
+Solution count 9: 1.01179e-05 6.81996e-06 3.35273e-06 ... -0
+
+Solve interrupted
+Best objective 1.011792210193e-05, best bound 9.921904840274e+04, gap 980626727435.7433%
+
+User-callback calls 215321, time in user-callback 0.72 sec
+# ------------------------------------------------------------------------------------------ #
+done C3: D:\PythonProject\Helix-GREEN\experiments\v2_resource_generalization\layouts\C3\helix_numeric

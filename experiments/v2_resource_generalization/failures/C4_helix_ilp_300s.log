@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "D:\software\miniconda\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\software\miniconda\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "D:\PythonProject\Helix-GREEN\experiments\v2_resource_generalization\run_one.py", line 78, in <module>
+    main()
+  File "D:\PythonProject\Helix-GREEN\experiments\v2_resource_generalization\run_one.py", line 59, in main
+    result = run("single", "helix" if is_helix_scheduler else "queue_dag",
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 195, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1052, in handle_event
+    succeeded = self.handle_command_new_request(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 523, in handle_command_new_request
+    succeeded = self.scheduler.generate_schedule(request=new_request)
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\global_maxflow\global_maxflow_scheduler.py", line 62, in generate_schedule
+    return self.core.schedule(request=request)
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\global_maxflow\scheduler_core.py", line 453, in schedule
+    next_stage: PipelineStage = current_scheduler_node.schedule_initialization(reqeust=request)
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\global_maxflow\scheduler_core.py", line 276, in schedule_initialization
+    assert any(mask), f"No next level node meets scheduling requirement at compute {self.node_uid}!"
+AssertionError: No next level node meets scheduling requirement at compute 0!
+Online Request Feeder: avg token feeding throughput 127.63666666666667.

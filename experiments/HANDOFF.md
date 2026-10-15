@@ -74,3 +74,15 @@
 下一窗口可直接围绕导师汇报或论文撰写继续。解释“吞吐增益小但 P95 改善明显”时，先区分**V2 对 Helix 的整系统比较**与 **M1/M2 强替代对照**：前者吞吐与延迟均改善；后者主要说明同一资源预算下尾部等待的变化，且 M1/M2 各有负向或接近零的结果。解释须连同完成率、积压、共同请求分析，不能仅据延迟差额推断精确因果机制。已有 18 个正式新窗口完整，无需为了重复相同主表而重跑。
 
 **给新窗口的起始语：**“请先读 `experiments/HANDOFF.md`。当前论文主方法是冻结的 RCAPS V2，研究主线为建模、放置、调度；三组完整方法替换实验和 V2–Helix 主对比已完成。后续以 `experiments/v2_method_ablation/ADVISOR_MAIN_TABLE_CN.md` 和可审计的 `experiments/v2_method_comparisons/summary.json` 为准，不混合不同负载，也不要把 M1/M2 的接近零结果写成显著独立增益。”
+
+## 5. 2026-10-15 补充实验
+
+本节是上述交接后的新增工作；前述“代码未改动”和“下一窗口”仅描述原交接时的状态。V2 冻结的 C1 单集群与三集群正式布局及评分仍与原结果一致；新资源池的放置生成现按物理配置加载 GPU 类型数量，并枚举池中实际 A100 数量。
+
+| 问题 | 新报告 | 主要发现 |
+| --- | --- | --- |
+| GPU 数量与异构比例 | [资源池泛化](v2_resource_generalization/RESULTS_CN.md)、[机器汇总](v2_resource_generalization/summary.json)、[负载敏感性](v2_resource_generalization/SENSITIVITY_CN.md) | C1–C5 的 V2 结构分别为 4/48/3、2/24/2、6/72/3、4/48/2、4/48/3（共享 GPU/共享层/后缀）。C2/C4 的三后缀和旧固定结构因容量不可行。C3/C5 对固定双后缀的吞吐提升仅约 0.14%/0.16%，尾延迟改善更明显。 |
+| 竞争强度与放置评价 | [事件 DAG 对照](v2_competition/RESULTS_CN.md)、[机器汇总](v2_competition/summary_two_seeds.json) | 在六个固定候选、350/525/700 三档负载中，Event DAG 的吞吐排序 Spearman 系数为 0.714/0.943/0.943，静态模型为 0.600/0.657/0.829；单候选评分约慢 170 倍。该结果仅支持这组候选上的排序改善。 |
+| 放置 × 在线调度 | [四格交叉实验](v2_interaction/RESULTS_CN.md)、[机器汇总](v2_interaction/summary_multi.json) | 三集群 320 token/s 下，动态 DAG 的吞吐增益在固定结构为 +11.275 token/s，在自适应结构为 +3.367 token/s；交互项为负，不能宣称正向协同。 |
+
+资源池主表使用同池同负载、1800 秒、种子 0/1/2。C1 的 Helix 复用原配置的 ILP 放置，C2 的 Helix 为新资源池求解 ILP；C3–C5 的 ILP 限时解在线不可运行，报告中的 `Helix–Petals` 是重新生成 Petals 放置配 Helix MaxFlow，须保留这个标签。负载敏感性是 600 秒单开发种子，不作为正式主表替代。所有新增证据仍来自离散事件仿真器。

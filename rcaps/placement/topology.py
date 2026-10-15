@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ast
+from collections import Counter
 from configparser import ConfigParser
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,7 +14,6 @@ from simulator.model_manager.model_manager import ModelManager, ModelName
 from .event_graph import interleaved_workload_graph
 
 
-MACHINES = {"A100": 4, "L4": 8, "T4": 12}
 UNITS = {"kbps": kbps, "mbps": mbps, "gbps": gbps,
          "MilliSec": MilliSec, "Sec": Sec}
 
@@ -47,11 +47,12 @@ class TopologyModel:
         self.config = ConfigParser()
         if not self.config.read(self.cluster_file):
             raise FileNotFoundError(self.cluster_file)
-        self.manager = ModelManager(ModelName.LLaMa70B, MACHINES)
-        self.layers = self.manager.get_num_layers()
         count = ast.literal_eval(self.config["NodeNames"]["total_compute_nodes"])
         self.types = {node: self.config[f"ComputeNode-{node}"]["type"]
                       for node in range(count)}
+        self.machine_counts = dict(Counter(self.types.values()))
+        self.manager = ModelManager(ModelName.LLaMa70B, self.machine_counts)
+        self.layers = self.manager.get_num_layers()
         self.capacity = {node: self.manager.get_max_num_layers(kind)
                          for node, kind in self.types.items()}
         self.profiles = {kind: self.manager.get_profiling_results(kind)

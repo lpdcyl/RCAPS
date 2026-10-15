@@ -139,15 +139,16 @@ def stages(model: TopologyModel, state: dict, branch: list[int]) -> list[dict]:
     return result
 
 
-def measure(model: TopologyModel, state: dict) -> dict:
+def measure(model: TopologyModel, state: dict,
+            arrivals_s: tuple[float, ...] = ARRIVALS) -> dict:
     pipelines = [stages(model, state, branch) for branch in state["branches"]]
-    requests = [pipelines[i % len(pipelines)] for i in range(len(ARRIVALS))]
+    requests = [pipelines[i % len(pipelines)] for i in range(len(arrivals_s))]
     graph, first, final = interleaved_workload_graph(
         requests, prompt_tokens=model.prompt_tokens, generated_tokens=8,
-        arrivals_s=list(ARRIVALS))
+        arrivals_s=list(arrivals_s))
     first_paths = [graph.critical_path(event) for event in first]
     final_paths = [graph.critical_path(event) for event in final]
-    ttft = max(path.completion_s - arrival for path, arrival in zip(first_paths, ARRIVALS))
+    ttft = max(path.completion_s - arrival for path, arrival in zip(first_paths, arrivals_s))
     tpot = max((last.completion_s - start.completion_s) / 7
                for start, last in zip(first_paths, final_paths))
     demand: dict[str, float] = defaultdict(float)
@@ -261,14 +262,15 @@ def construct(model: TopologyModel, stem_nodes: tuple[int, ...], p: int,
     return state
 
 
-def initial_states(model: TopologyModel, *, fixed_structure: bool) -> list[dict]:
+def initial_states(model: TopologyModel, *, fixed_structure: bool,
+                   branch_counts: tuple[int, ...] = (2, 3)) -> list[dict]:
     a100s = tuple(sorted(n for n, kind in model.types.items() if kind == "A100"))
     families: dict[tuple[int, int], list[tuple[float, dict]]] = defaultdict(list)
-    stem_sizes = (1,) if fixed_structure else (1, 2, 3, 4)
+    stem_sizes = (1,) if fixed_structure else range(1, len(a100s) + 1)
     for size in stem_sizes:
         for shared in itertools.combinations(a100s, size):
             remaining = [n for n in sorted(model.types) if n not in shared]
-            for k in ((2,) if fixed_structure else (2, 3)):
+            for k in ((2,) if fixed_structure else branch_counts):
                 for p in ((model.capacity[shared[0]],) if fixed_structure else
                           range(size, sum(model.capacity[n] for n in shared) + 1)):
                     required = model.layers - p
@@ -333,10 +335,13 @@ def neighbors(model: TopologyModel, state: dict, *, allow_prefix: bool):
 
 
 def optimize(model: TopologyModel, name: str, *, fixed_structure: bool,
-             max_steps: int = 16) -> tuple[dict, dict]:
+             max_steps: int = 16, branch_counts: tuple[int, ...] = (2, 3),
+             use_frozen_reference: bool = True) -> tuple[dict, dict]:
     started = time.perf_counter()
-    reference = measure(model, reference_state(model, name))
-    candidates = initial_states(model, fixed_structure=fixed_structure)
+    candidates = initial_states(model, fixed_structure=fixed_structure,
+                                branch_counts=branch_counts)
+    reference = (measure(model, reference_state(model, name))
+                 if use_frozen_reference else measure(model, candidates[0]))
     evaluations = 0
     ranked = []
     for state in candidates:
