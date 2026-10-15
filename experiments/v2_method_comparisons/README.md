@@ -15,7 +15,9 @@ python -m experiments.v2_method_comparisons.placement --scenario multi --variant
 python -m benchmarks.run --methods rcaps_v2_static_resource_model rcaps_v2_beam_placement rcaps_v2_live_pipeline --scenarios single multi --seeds 100 101 --duration 60 --warmup 0 --workers 2 --results-dir experiments/v2_method_comparisons/smoke
 python -m benchmarks.run --methods rcaps_v2_static_resource_model rcaps_v2_beam_placement rcaps_v2_live_pipeline --scenarios single multi --seeds 100 101 --duration 300 --warmup 0 --workers 2 --results-dir experiments/v2_method_comparisons/stress
 python -m benchmarks.run --methods rcaps_v2_static_resource_model rcaps_v2_beam_placement rcaps_v2_live_pipeline --scenarios single multi --seeds 0 1 2 --duration 1800 --warmup 0 --workers 2 --results-dir experiments/v2_method_comparisons/runs
+python -m experiments.v2_method_comparisons.timing
 python -m experiments.v2_method_comparisons.report
+python -m experiments.v2_method_comparisons.mentor_report
 ```
 
 `benchmarks.run` writes individual logs and result JSON files and skips
@@ -24,3 +26,7 @@ formal window, matching the physical layout, exact trace, request IDs, and
 protocol before computing paired metrics. A failed window retains its log and
 has no imputed metrics. The prior simple alternatives and original V2 records
 come from `experiments/v2_method_ablation/runs/`, after the same audit.
+Run `timing` after the formal simulators finish so evaluator wall-clock
+measurements are not distorted by their concurrent CPU load. The advisor table
+generator requires every formal window and writes
+`experiments/v2_method_ablation/ADVISOR_MAIN_TABLE_CN.md`.

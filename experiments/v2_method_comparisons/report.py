@@ -168,8 +168,19 @@ def main() -> None:
              "三组各保持另外两项 V2 方法不变，比较简单替代、较强替代和完整 V2。",
              "70B、24 GPU、种子 0/1/2、1800 秒零预热；单集群 700、三集群 320 提供 token/s。",
              "每格是完整窗口的三种子均值 ± 样本标准差；P95 是逐种子 P95 的均值。",
+             "简单替代与 V2 的正式结果复用 `experiments/v2_method_ablation/runs/`；三种新增较强替代使用本目录 `runs/`。逐种子路径和布局哈希记录在 `summary.json`。",
              "失败或未运行窗口不补数值。", ""]
+    timing_file = HERE / "evaluator_timing.json"
+    evaluator_timing = (json.loads(timing_file.read_text(encoding="utf-8"))
+                        if timing_file.is_file() else None)
+    if evaluator_timing is not None:
+        summary["evaluator_timing"] = evaluator_timing
     for scenario in ("single", "multi"):
+        v2_solution, v2_cluster = METHODS["rcaps_v2"].layout(scenario, ROOT)
+        for method in ("rcaps_v2_static_routes", "rcaps_v2_live_pipeline"):
+            solution, cluster = METHODS[method].layout(scenario, ROOT)
+            if digest(solution) != digest(v2_solution) or digest(cluster) != digest(v2_cluster):
+                raise ValueError(f"M3 layout bytes differ from V2: {scenario}/{method}")
         lines.extend([f"## {'单集群' if scenario == 'single' else '三集群'}", ""])
         summary["groups"][scenario] = {}
         diagnostic = modeling_diagnostic(scenario)
@@ -198,6 +209,10 @@ def main() -> None:
                     data["outbound_wait_per_arrival"] = wait_metric(
                         completed, "outbound_wait_request_s")
                     data["route_counts_by_seed"] = [row.get("route_counts", {}) for row in completed]
+                    data["largest_route_share_percent"] = mean_sd([
+                        100 * max(row["route_counts"].values()) /
+                        sum(row["route_counts"].values())
+                        for row in completed])
                     cells = [fmt(data["absolute"][key], key) for key in KEYS]
                 else:
                     cells = ["不完整"] * len(KEYS)
@@ -270,6 +285,17 @@ def main() -> None:
                                  f"{placement.get('planning_s', 0.0):.2f} | "
                                  f"{'—' if static_time is None else f'{static_time:.3f}'} |")
                 lines.extend(["", "规划耗时包含候选构造与搜索；静态评分累计秒数仅由新增静态模型单独计时，不把规划耗时误写为纯评分时间。", ""])
+                if evaluator_timing is not None:
+                    scores = evaluator_timing["scenarios"][scenario]
+                    lines.extend(["同一组六个开发候选，各重复五次的单候选评价墙钟如下（运行时无正式仿真并发）：", "",
+                                  "| 评价模型 | 评价次数 | 中位数 ms | 平均数 ms |",
+                                  "| --- | ---: | ---: | ---: |"])
+                    for label, key in (("静态异构资源模型", "static_resource"),
+                                       ("V2 事件 DAG", "event_dag")):
+                        item = scores[key]
+                        lines.append(f"| {label} | {item['evaluations']} | "
+                                     f"{item['median_ms']:.3f} | {item['mean_ms']:.3f} |")
+                    lines.append("")
                 lines.extend(["同一组已审计的 600 秒开发候选上，静态模型与事件 DAG 的排序一致性如下；这不是正式三种子性能指标。", "",
                               "| 评价模型 | 吞吐排序 | TTFT 排序 | TPOT 排序 |",
                               "| --- | ---: | ---: | ---: |"])
@@ -281,19 +307,21 @@ def main() -> None:
                         "—" if value is None else f"{value:+.3f}" for value in cells) + " |")
                 lines.append("")
             if name.startswith("M3"):
-                lines.extend(["| 调度方法 | GPU 排队 request-s/到达 | 出站等待 request-s/到达 | 路径种类/种子 |",
-                              "| --- | ---: | ---: | --- |"])
+                lines.extend(["| 调度方法 | GPU 排队 request-s/到达 | 出站等待 request-s/到达 | 路径种类/种子 | 最大单一路径占比 % |",
+                              "| --- | ---: | ---: | --- | ---: |"])
                 for label, method in options:
                     item = group["methods"][method]
                     if "absolute" not in item:
                         continue
                     routes = "/".join(str(len(row)) for row in item["route_counts_by_seed"])
                     lines.append(f"| {label} | {fmt(item['gpu_queue_per_arrival'], '')} | "
-                                 f"{fmt(item['outbound_wait_per_arrival'], '')} | {routes} |")
+                                 f"{fmt(item['outbound_wait_per_arrival'], '')} | {routes} | "
+                                 f"{fmt(item['largest_route_share_percent'], '')} |")
                 lines.append("")
             summary["groups"][scenario][name] = group
     lines.extend(["## 解释边界", "",
                   "M1 的容量替代使用独立的容量规则；静态模型和 V2 使用相同结构搜索流程，但分别完成整轮搜索，非固定候选池内换一次分数。基本合法性检查在三者之间共用。",
+                  "M1 三种完整搜索可能因评价结果不同而访问不同数量的候选；单候选耗时使用相同的六个开发布局另行测量，不把整轮搜索耗时当成纯评价开销。",
                   "M2 三者使用 V2 事件 DAG 评价及在线调度；beam search 的评价上限等于该拓扑 V2 正式搜索的评价数。",
                   "M3 三者使用字节相同的 V2 布局；负载感知完整流水线只能选三条规范完整路径，V2 可使用完整层兼容 DAG。出站等待包含发送端和下游限制。",
                   "外部系统的同负载 V2–Helix，以及共同较低负载的 V2／Helix／Swarm／SP，分别见既有导师主表和四方法共同负载报告，不与本表跨负载相减。",
