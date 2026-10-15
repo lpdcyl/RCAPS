@@ -11,6 +11,7 @@ from rcaps import method as rcaps_v1
 from rcaps import v2_method
 from experiments.v2_method_ablation import adapters as v2_ablation
 from experiments.v2_core_ablations import adapters as v2_core
+from experiments.v2_method_comparisons import adapters as v2_comparisons
 
 
 @dataclass(frozen=True)
@@ -84,6 +85,21 @@ METHODS = {
     v2_core.QUEUE_DAG: MethodSpec(
         v2_core.QUEUE_DAG, "Queue-only legal DAG routing with V2 transfer batching",
         "ablation", v2_core.v2_layout, v2_core.evaluate_queue_dag),
+    v2_comparisons.STATIC_RESOURCE: MethodSpec(
+        v2_comparisons.STATIC_RESOURCE,
+        "Complete static heterogeneous resource model with V2 adaptive search",
+        "ablation", v2_comparisons.static_resource_layout,
+        v2_comparisons.evaluate_placement),
+    v2_comparisons.BEAM_SEARCH: MethodSpec(
+        v2_comparisons.BEAM_SEARCH,
+        "Bounded beam placement using the full V2 event-DAG evaluator",
+        "ablation", v2_comparisons.beam_layout,
+        v2_comparisons.evaluate_placement),
+    v2_comparisons.LIVE_PIPELINE: MethodSpec(
+        v2_comparisons.LIVE_PIPELINE,
+        "Live workload-aware complete-pipeline routing with serial transfers",
+        "ablation", v2_comparisons.v2_layout,
+        v2_comparisons.evaluate_pipeline),
 }
 
 DEFAULT_METHODS = [name for name, spec in METHODS.items()
