@@ -1,7 +1,7 @@
-"""Adaptive shared-stem and two/three-suffix placement (research V2).
+"""Adaptive shared-stem and two/three-suffix placement search.
 
-All decisions are deterministic. The six-request event graph is a placement
-surrogate; it is not a prediction of the benchmark's online queue state.
+The frozen V2 path uses a six-request event graph as its placement surrogate.
+An injected evaluator can score the same candidates without event simulation.
 """
 
 from __future__ import annotations
@@ -14,6 +14,7 @@ import time
 from collections import defaultdict
 from configparser import ConfigParser
 from pathlib import Path
+from typing import Callable
 
 from .event_graph import interleaved_workload_graph
 from .partition import ROOT, scenario
@@ -23,6 +24,7 @@ from .topology import TopologyModel, profile_at
 ARRIVALS = (0.0, 0.05, 0.10, 0.15, 0.20, 0.25)
 BEAM_WIDTH = 96
 SHORTLIST_PER_FAMILY = 4
+PlacementEvaluator = Callable[[TopologyModel, dict], dict]
 
 
 def has_link(model: TopologyModel, left: str | int, right: str | int) -> bool:
@@ -336,16 +338,18 @@ def neighbors(model: TopologyModel, state: dict, *, allow_prefix: bool):
 
 def optimize(model: TopologyModel, name: str, *, fixed_structure: bool,
              max_steps: int = 16, branch_counts: tuple[int, ...] = (2, 3),
-             use_frozen_reference: bool = True) -> tuple[dict, dict]:
+             use_frozen_reference: bool = True,
+             evaluator: PlacementEvaluator | None = None) -> tuple[dict, dict]:
     started = time.perf_counter()
+    evaluate = measure if evaluator is None else evaluator
     candidates = initial_states(model, fixed_structure=fixed_structure,
                                 branch_counts=branch_counts)
-    reference = (measure(model, reference_state(model, name))
-                 if use_frozen_reference else measure(model, candidates[0]))
+    reference = (evaluate(model, reference_state(model, name))
+                 if use_frozen_reference else evaluate(model, candidates[0]))
     evaluations = 0
     ranked = []
     for state in candidates:
-        metrics = measure(model, state)
+        metrics = evaluate(model, state)
         evaluations += 1
         ranked.append((objective(metrics, reference), state, metrics))
     current_score, state, current = min(ranked, key=lambda item: item[0])
@@ -356,7 +360,7 @@ def optimize(model: TopologyModel, name: str, *, fixed_structure: bool,
                                          allow_prefix=not fixed_structure):
             try:
                 intervals(model, candidate)
-                metrics = measure(model, candidate)
+                metrics = evaluate(model, candidate)
             except ValueError:
                 continue
             evaluations += 1
@@ -376,7 +380,7 @@ def optimize(model: TopologyModel, name: str, *, fixed_structure: bool,
 
 
 def save(model: TopologyModel, template: Path, state: dict, destination: Path,
-         metadata: dict) -> dict:
+         metadata: dict, *, compatibility_dag=None) -> dict:
     spans = intervals(model, state)
     destination.mkdir(parents=True, exist_ok=True)
     solution = ConfigParser()
@@ -395,13 +399,18 @@ def save(model: TopologyModel, template: Path, state: dict, destination: Path,
     for section in list(sim.sections()):
         if section.startswith("link_"):
             sim.remove_section(section)
-    edges: list[tuple[str | int, str | int]] = [("source", state["stem"][0])]
-    for left, (_, end) in spans.items():
-        for right, (start, limit) in spans.items():
-            if left != right and start <= end < limit and has_link(model, left, right):
-                edges.append((left, right))
-        if end == model.layers and has_link(model, left, "sink"):
-            edges.append((left, "sink"))
+    if compatibility_dag is None:
+        edges: list[tuple[str | int, str | int]] = [("source", state["stem"][0])]
+        for left, (_, end) in spans.items():
+            for right, (start, limit) in spans.items():
+                if left != right and start <= end < limit and has_link(model, left, right):
+                    edges.append((left, right))
+            if end == model.layers and has_link(model, left, "sink"):
+                edges.append((left, "sink"))
+    else:
+        if compatibility_dag.spans != spans or compatibility_dag.layers != model.layers:
+            raise ValueError("Compatibility DAG does not match the placement")
+        edges = list(compatibility_dag.edges)
     names = []
     for left, right in edges:
         lookup = f"Link-{left}-{right}"

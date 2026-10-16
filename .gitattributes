@@ -1,5 +1,32 @@
 # Published layout hashes refer to exact INI bytes; do not convert line endings.
 rcaps/layouts/*/*.ini -text -diff
 rcaps/v2_layouts/*/*.ini -text -diff
+rcaps/v3_layouts/*/*.ini -text -diff
+rcaps/v3_layouts/*/placement.json -text -diff
+rcaps/v3/*.py -text -diff
+rcaps/v3/*.json -text -diff
+rcaps/v3_method.py -text -diff
+experiments/v3_release/*.json -text -diff
+experiments/v3_release/**/*.json -text -diff
+experiments/v3_core_ablations/**/*.json -text -diff
+experiments/m1_simplification/**/*.json -text -diff
+experiments/m1_simplification/**/*.ini -text -diff
+experiments/m1_graph_candidate/**/*.json -text -diff
+experiments/m1_graph_candidate/**/*.ini -text -diff
+experiments/m2_multistage_candidate/**/*.json -text -diff
+experiments/m2_multistage_candidate/**/*.ini -text -diff
+experiments/m2_multistage_candidate/*.json -text -diff
+experiments/m2_multistage_candidate/runs/**/*.json -text -diff
+benchmarks/runs/*/seed*/rcaps_v3.json -text -diff
+# Frozen V3 manifest hashes include these source and physical input bytes.
+rcaps/placement/adaptive.py -text -diff
+rcaps/placement/topology.py -text -diff
+rcaps/scheduling/scheduler_final.py -text -diff
+rcaps/scheduling/scheduler_queue_cost.py -text -diff
+rcaps/scheduling/routing_dag.py -text -diff
+benchmarks/fixed_window.py -text -diff
+examples/simulation/config/single24.ini -text -diff
+artifact_evaluation/distributed_clusters/config/3cluster24.ini -text -diff
+experiments/v2_resource_generalization/pools/C[2-5]/physical.ini -text -diff
 artifact_evaluation/single_cluster/layout_llama70b/ilp/*.ini -text -diff
 artifact_evaluation/distributed_clusters/layout_llama70b/ilp/*.ini -text -diff

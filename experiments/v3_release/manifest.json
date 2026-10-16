@@ -1,0 +1,138 @@
+{
+  "version": "RCAPS V3",
+  "method": "rcaps_v3",
+  "selection_rule": "multi_any: at most two boundaries, unrestricted initial GPU type, one shared search phase plus 500 evaluations for the multistage extension",
+  "m1": "graph-only physical resources and layer-compatible execution DAG",
+  "m2": "bounded multistage shared-replicated placement with static 0.40/0.35/0.25 objective",
+  "m3": "unchanged queue-aware DAG scheduler with graph-edge adapter",
+  "code_sha256": {
+    "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+    "rcaps/v3/placement.py": "4940b9c4c63aa99c81c9ad7b3b416419843073b4c7841ed7421e0c5a38f90936",
+    "rcaps/v3/search.py": "1970902c4b3abb935d5619ed2533d656f35ee0fa2ac80685a8044549d8ffce37",
+    "rcaps/v3/plan.py": "eeb111a3e46525fd23bae94d859a67c06bfa04fa62d9332214b846e4a7299905",
+    "rcaps/v3/planning_inputs.json": "364d4ae2fafd4e89720e6756b6900e59bb981658562bb385657a312713728587",
+    "rcaps/v3/scheduler.py": "1acf3ee8bb9ea2047af78903a3f4e4da93dc3db86515d5390d60783414f118a5",
+    "rcaps/v3_method.py": "f1adf1f14a627d995af5a346565c4d085cdc9c1be04df08b50b53c20a1e32f87",
+    "rcaps/placement/adaptive.py": "61ddd37d310fac025acff6364ee33f6cc74c5897b712efbd69ddd260686a28d8",
+    "rcaps/placement/topology.py": "053643c07e4ba87a79322d8d5e49baa21e765e947f50c1e7b250676b1046bb98",
+    "rcaps/scheduling/scheduler_final.py": "9be01b7698c2c9528d25fe77fed6ed0701e3fa439a48db385b40149aec262004",
+    "rcaps/scheduling/scheduler_queue_cost.py": "5761c9b59a82a8dd445ac9fac0d5b399e7396288c5f05bd38e9611b01f098c1e",
+    "rcaps/scheduling/routing_dag.py": "6360e7d84097b63ed1972ce8288ceed6d26b922b1e9c6de0cadf06e42ca1e1ad",
+    "benchmarks/fixed_window.py": "a27f2d78d182fd74494a1b767b635918a043b3995f13c5208ffc18a864cecb49"
+  },
+  "layouts": {
+    "single": {
+      "case": "C1_single",
+      "candidate_variant": "multi_any",
+      "source": "experiments/m2_multistage_candidate/layouts/C1_single/multi_any",
+      "state_sha256": "aad51c3d4684e5164cd93443910dc4ada4a14bfc56c04779d385253818572c90",
+      "physical_source": "examples/simulation/config/single24.ini",
+      "physical_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+      "solution_sha256": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+      "sim_cluster_sha256": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+      "widths": [
+        1,
+        4,
+        3
+      ],
+      "compatible_paths": 4788,
+      "compatibility_edges": 62
+    },
+    "multi": {
+      "case": "C1_multi",
+      "candidate_variant": "multi_any",
+      "source": "experiments/m2_multistage_candidate/layouts/C1_multi/multi_any",
+      "state_sha256": "ac51964500f3cfd621c4ce1963497f56cfad6ab4dbde4924e8180fd3c618cde5",
+      "physical_source": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+      "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+      "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+      "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+      "widths": [
+        1,
+        3
+      ],
+      "compatible_paths": 8603,
+      "compatibility_edges": 58
+    },
+    "C2": {
+      "case": "C2",
+      "candidate_variant": "multi_any",
+      "source": "experiments/m2_multistage_candidate/layouts/C2/multi_any",
+      "state_sha256": "950b50dfdb77355fa29dc54e0467400e82d0773039ccae448a183e6a2d94db9c",
+      "physical_source": "experiments/v2_resource_generalization/pools/C2/physical.ini",
+      "physical_sha256": "45a82926c0f81b96bf7a3ae91ad697b5e5ad6321606347bf8195e1ba45f0738d",
+      "solution_sha256": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+      "sim_cluster_sha256": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+      "widths": [
+        1,
+        2
+      ],
+      "compatible_paths": 2048,
+      "compatibility_edges": 46
+    },
+    "C3": {
+      "case": "C3",
+      "candidate_variant": "multi_any",
+      "source": "experiments/m2_multistage_candidate/layouts/C3/multi_any",
+      "state_sha256": "473c136807ee2821c4c108854f0e18da16d8777cdde7f3a54d4052e0ac7d1eb6",
+      "physical_source": "experiments/v2_resource_generalization/pools/C3/physical.ini",
+      "physical_sha256": "96a359d052beffad72d30a2ee1ac880973fb22a9a7d5ab9a39f581ca26d6d898",
+      "solution_sha256": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+      "sim_cluster_sha256": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+      "widths": [
+        1,
+        2
+      ],
+      "compatible_paths": 4,
+      "compatibility_edges": 14
+    },
+    "C4": {
+      "case": "C4",
+      "candidate_variant": "multi_any",
+      "source": "experiments/m2_multistage_candidate/layouts/C4/multi_any",
+      "state_sha256": "22c2f01f3b40cb6d33bc3d557928efeca4eee8f8b2c6fedb357b26f27d402f51",
+      "physical_source": "experiments/v2_resource_generalization/pools/C4/physical.ini",
+      "physical_sha256": "56168af24e0ebeb2de28ecee318b1b8a4e94c1734097097b5d0f4ffd87b85bd7",
+      "solution_sha256": "0b6b2557653e1c244dc1de26e73daa9db9467aa0f25a860cd3787a1d9ac94a3e",
+      "sim_cluster_sha256": "d57c066be677f738bbb49297ec99220eb71b536254aa2e94d39b1cfa2885ac4c",
+      "widths": [
+        1,
+        2
+      ],
+      "compatible_paths": 128,
+      "compatibility_edges": 32
+    },
+    "C5": {
+      "case": "C5",
+      "candidate_variant": "multi_any",
+      "source": "experiments/m2_multistage_candidate/layouts/C5/multi_any",
+      "state_sha256": "495915f80f6d6b1a1375c0aecacfc8da5622dff1f389acafb0ccdad7c1d69b07",
+      "physical_source": "experiments/v2_resource_generalization/pools/C5/physical.ini",
+      "physical_sha256": "518f6f7c613145978e2decd73b2deb0ca2479f7697308de5fbad99ad0fa15a76",
+      "solution_sha256": "e9f3db6b38f256c0ad5980fd027d5338b66193b6f2f514d432b3809879a945e2",
+      "sim_cluster_sha256": "ff11c2ee4276c9163c356b66cbeb17b06ca4c02902b415a28002e16a7bdbb58c",
+      "widths": [
+        1,
+        3
+      ],
+      "compatible_paths": 2867,
+      "compatibility_edges": 52
+    }
+  },
+  "formal_candidate_evidence": {
+    "source": "experiments/m2_multistage_candidate/summary.json",
+    "sha256": "6ad20fcc431dacf9a024334f1e366867e0803ede182c69783217b905e2c67325",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "formal_cases": [
+      "C1_single",
+      "C1_multi",
+      "C2",
+      "C3"
+    ]
+  }
+}

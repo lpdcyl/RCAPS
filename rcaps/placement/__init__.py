@@ -1,1 +1,1 @@
-"""RCAPS event-graph placement."""
+"""RCAPS heterogeneous-GPU placement and evaluation models."""

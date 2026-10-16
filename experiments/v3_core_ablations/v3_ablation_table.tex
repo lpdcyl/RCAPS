@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\caption{Core V3 placement and routing ablation under the C1 GPU pool.}
+\label{tab:v3-core-ablation}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccc@{\hspace{0.65em}\vrule\hspace{0.65em}}ccc@{}}
+\toprule
+ & \multicolumn{3}{c}{Single cluster (700 token/s)} & \multicolumn{3}{c}{Three clusters (320 token/s)} \\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+Method & \shortstack{Output\\token/s $\uparrow$} & \shortstack{P95 TTFT\\(s) $\downarrow$} & \shortstack{P95 TPOT\\(s) $\downarrow$} & \shortstack{Output\\token/s $\uparrow$} & \shortstack{P95 TTFT\\(s) $\downarrow$} & \shortstack{P95 TPOT\\(s) $\downarrow$} \\
+\midrule
+A: Single + Static & 144.169 $\pm$ 3.381 & 5.028 $\pm$ 0.004 & 1.404 $\pm$ 0.047 & 67.182 $\pm$ 0.890 & 6.471 $\pm$ 0.105 & 1.226 $\pm$ 0.027 \\
+B: Multistage + Static & 149.065 $\pm$ 3.251 & 4.271 $\pm$ 0.019 & 1.106 $\pm$ 0.024 & 67.195 $\pm$ 0.899 & 6.463 $\pm$ 0.106 & 1.219 $\pm$ 0.023 \\
+C: Single + Live M3 & 155.376 $\pm$ 4.169 & 3.863 $\pm$ 0.162 & 0.600 $\pm$ 0.007 & 70.566 $\pm$ 1.096 & 5.484 $\pm$ 0.140 & \textbf{0.694 $\pm$ 0.004} \\
+D: Multistage + Live M3 (V3) & \textbf{155.980 $\pm$ 4.226} & \textbf{3.580 $\pm$ 0.084} & \textbf{0.559 $\pm$ 0.004} & \textbf{70.576 $\pm$ 1.109} & \textbf{5.326 $\pm$ 0.092} & 0.699 $\pm$ 0.004 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\parbox{\textwidth}{\footnotesize Values are mean $\pm$ sample standard deviation over paired seeds 0--2 (1800-s windows, zero warmup, no tail drain). M1 graph modeling is shared by all rows. The incremental sequence is A$\rightarrow$B$\rightarrow$D; C is the orthogonal single-boundary/live-routing control. Bold marks the best observed mean in a column and does not imply statistical significance. In the three-cluster case, B and D retain a single boundary; their differences from A and C reflect micro-placement.}
+\end{table*}

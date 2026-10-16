@@ -1,5 +1,7 @@
 # RCAPS V2 研究交接（2026-10-15）
 
+> **2026-10-16 状态更新：当前默认主方法已固定为 RCAPS V3。** 本文下方第 1–5 节保留 V2 时期的历史交接语境。V3 的代码、布局、结果来源与限制见 [V3 冻结记录](v3_release/README_CN.md) 和 [冻结清单](v3_release/manifest.json)。V2 仍可用 `rcaps_v2` 显式运行。
+
 本文件供新窗口快速恢复上下文。当前仓库为 `D:\PythonProject\Helix-GREEN`，GitHub 为 `lpdcyl/RCAPS`。**当前论文主方法是 RCAPS V2**；V1、曾经的 `rcaps_final` 和未采纳的探索均不代表当前主方法。方法、正式布局和既有正式结果保持冻结。数字以原始 JSON 和链接的报告为准。
 
 ## 1. 研究问题与论文主线

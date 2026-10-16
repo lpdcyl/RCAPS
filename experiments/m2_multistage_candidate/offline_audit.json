@@ -1,0 +1,803 @@
+{
+  "C1_single": {
+    "case": "C1_single",
+    "topology": "single",
+    "offered_tokens_per_s": 700.0,
+    "physical_source": "examples/simulation/config/single24.ini",
+    "physical_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+    "template_sha256": "f772ffc21608b77270be6401c60adfa1f5dfb23f3dbe8ce210bb2ecbf4b24ab3",
+    "score_parity": {
+      "ttft_s": true,
+      "tpot_s": true,
+      "bottleneck_s": true
+    },
+    "reference": {
+      "ttft_s": 2.988020000000003,
+      "tpot_s": 0.45031301999999995,
+      "bottleneck_s": 0.329,
+      "bottleneck_resource": "gpu:5"
+    },
+    "variants": {
+      "single_a100": {
+        "status": "feasible",
+        "score": 0.711348597150627,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 112,
+        "active_gpus": 24,
+        "idle_gpus": 0,
+        "compatible_paths": 1024,
+        "candidate_evaluations": 349,
+        "search_wall_s": 13.630058000038844,
+        "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+        "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999",
+        "deployment_audit": {
+          "exported_edges": 44,
+          "exported_layers": 24,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 24,
+          "assignment_infeasible": 22
+        }
+      },
+      "multi_a100": {
+        "status": "feasible",
+        "score": 0.6955967062931281,
+        "widths": [
+          1,
+          3,
+          2
+        ],
+        "boundaries": [
+          48,
+          70
+        ],
+        "layer_copies": 134,
+        "active_gpus": 22,
+        "idle_gpus": 2,
+        "compatible_paths": 1416,
+        "candidate_evaluations": 821,
+        "search_wall_s": 13.630058000038844,
+        "solution_sha256": "b5359dffc55a8c4a9e4a63004ed9ea92b15baa8010ed189d099d900d940ff532",
+        "sim_cluster_sha256": "e16719d316b74d47859e77d332075f7210e051ee2e56b29dbc2af58318e16e56",
+        "deployment_audit": {
+          "exported_edges": 50,
+          "exported_layers": 22,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 873,
+          "assignment_infeasible": 294
+        }
+      },
+      "single_any": {
+        "status": "feasible",
+        "score": 0.711348597150627,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 112,
+        "active_gpus": 24,
+        "idle_gpus": 0,
+        "compatible_paths": 1024,
+        "candidate_evaluations": 376,
+        "search_wall_s": 43.08426039997721,
+        "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+        "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999",
+        "deployment_audit": {
+          "exported_edges": 44,
+          "exported_layers": 24,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 24,
+          "assignment_infeasible": 2
+        }
+      },
+      "multi_any": {
+        "status": "feasible",
+        "score": 0.7083960852089655,
+        "widths": [
+          1,
+          4,
+          3
+        ],
+        "boundaries": [
+          48,
+          51
+        ],
+        "layer_copies": 147,
+        "active_gpus": 24,
+        "idle_gpus": 0,
+        "compatible_paths": 4788,
+        "candidate_evaluations": 752,
+        "search_wall_s": 43.08426039997721,
+        "solution_sha256": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+        "sim_cluster_sha256": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+        "deployment_audit": {
+          "exported_edges": 62,
+          "exported_layers": 24,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 873,
+          "assignment_infeasible": 103
+        }
+      }
+    }
+  },
+  "C1_multi": {
+    "case": "C1_multi",
+    "topology": "multi",
+    "offered_tokens_per_s": 320.0,
+    "physical_source": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+    "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+    "template_sha256": "1733392a562d7a860415fed0932826a59b6c5a6b9caec6e45e380762e9e031f0",
+    "score_parity": {
+      "ttft_s": true,
+      "tpot_s": true,
+      "bottleneck_s": true
+    },
+    "reference": {
+      "ttft_s": 5.309580931650686,
+      "tpot_s": 0.5760787953705113,
+      "bottleneck_s": 0.6117440000000001,
+      "bottleneck_resource": "link:18->sink"
+    },
+    "variants": {
+      "single_a100": {
+        "status": "feasible",
+        "score": 0.8943635899291026,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 23,
+        "idle_gpus": 1,
+        "compatible_paths": 14895,
+        "candidate_evaluations": 950,
+        "search_wall_s": 14.2387528999825,
+        "solution_sha256": "eb899c42794767ce037d5a32da676d99caa4a040675638144596ae07fce32429",
+        "sim_cluster_sha256": "113e7808fb89aa78ec83e3228c575118268473197a1fba185eac1d37ba08c123",
+        "deployment_audit": {
+          "exported_edges": 58,
+          "exported_layers": 23,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 24,
+          "assignment_infeasible": 22
+        }
+      },
+      "multi_a100": {
+        "status": "feasible",
+        "score": 0.8992760675169554,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 23,
+        "idle_gpus": 1,
+        "compatible_paths": 8603,
+        "candidate_evaluations": 999,
+        "search_wall_s": 14.2387528999825,
+        "solution_sha256": "a1fab5d8460aa02fb8350d8079cc3fd7abf6483e02f64e476cd1fdf77d503bf8",
+        "sim_cluster_sha256": "36ee15f6c4fe6cebbfba2706ddb820fee8976611e8a674201251f3e8bf27e464",
+        "deployment_audit": {
+          "exported_edges": 58,
+          "exported_layers": 23,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 873,
+          "assignment_infeasible": 294
+        }
+      },
+      "single_any": {
+        "status": "feasible",
+        "score": 0.8943635899291026,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 23,
+        "idle_gpus": 1,
+        "compatible_paths": 14895,
+        "candidate_evaluations": 997,
+        "search_wall_s": 44.04625600000145,
+        "solution_sha256": "eb899c42794767ce037d5a32da676d99caa4a040675638144596ae07fce32429",
+        "sim_cluster_sha256": "113e7808fb89aa78ec83e3228c575118268473197a1fba185eac1d37ba08c123",
+        "deployment_audit": {
+          "exported_edges": 58,
+          "exported_layers": 23,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 24,
+          "assignment_infeasible": 2
+        }
+      },
+      "multi_any": {
+        "status": "feasible",
+        "score": 0.9028485262483839,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 23,
+        "idle_gpus": 1,
+        "compatible_paths": 8603,
+        "candidate_evaluations": 997,
+        "search_wall_s": 44.04625600000145,
+        "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+        "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+        "deployment_audit": {
+          "exported_edges": 58,
+          "exported_layers": 23,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 873,
+          "assignment_infeasible": 103
+        }
+      }
+    }
+  },
+  "C2": {
+    "case": "C2",
+    "topology": "single",
+    "offered_tokens_per_s": 160.0,
+    "physical_source": "experiments/v2_resource_generalization/pools/C2/physical.ini",
+    "physical_sha256": "45a82926c0f81b96bf7a3ae91ad697b5e5ad6321606347bf8195e1ba45f0738d",
+    "template_sha256": "9ffd6e18770becb5e61b27991eca471fdd5a834d8436620c7f756176838bab94",
+    "score_parity": {
+      "ttft_s": true,
+      "tpot_s": true,
+      "bottleneck_s": true
+    },
+    "reference": {
+      "ttft_s": 3.051020000000002,
+      "tpot_s": 0.4518130199999999,
+      "bottleneck_s": 0.329,
+      "bottleneck_resource": "gpu:0"
+    },
+    "variants": {
+      "single_a100": {
+        "status": "feasible",
+        "score": 0.9968594940054436,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          24
+        ],
+        "layer_copies": 136,
+        "active_gpus": 24,
+        "idle_gpus": 0,
+        "compatible_paths": 2048,
+        "candidate_evaluations": 323,
+        "search_wall_s": 3.2981589999981225,
+        "solution_sha256": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+        "sim_cluster_sha256": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+        "deployment_audit": {
+          "exported_edges": 46,
+          "exported_layers": 24,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 30,
+          "assignment_infeasible": 26
+        }
+      },
+      "multi_a100": {
+        "status": "feasible",
+        "score": 0.9968594940054436,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          24
+        ],
+        "layer_copies": 136,
+        "active_gpus": 24,
+        "idle_gpus": 0,
+        "compatible_paths": 2048,
+        "candidate_evaluations": 609,
+        "search_wall_s": 3.2981589999981225,
+        "solution_sha256": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+        "sim_cluster_sha256": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+        "deployment_audit": {
+          "exported_edges": 46,
+          "exported_layers": 24,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 1003,
+          "assignment_infeasible": 399
+        }
+      },
+      "single_any": {
+        "status": "feasible",
+        "score": 0.9968594940054436,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          24
+        ],
+        "layer_copies": 136,
+        "active_gpus": 24,
+        "idle_gpus": 0,
+        "compatible_paths": 2048,
+        "candidate_evaluations": 435,
+        "search_wall_s": 29.1050147000351,
+        "solution_sha256": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+        "sim_cluster_sha256": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+        "deployment_audit": {
+          "exported_edges": 46,
+          "exported_layers": 24,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 30,
+          "assignment_infeasible": 2
+        }
+      },
+      "multi_any": {
+        "status": "feasible",
+        "score": 0.9968594940054436,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          24
+        ],
+        "layer_copies": 136,
+        "active_gpus": 24,
+        "idle_gpus": 0,
+        "compatible_paths": 2048,
+        "candidate_evaluations": 765,
+        "search_wall_s": 29.1050147000351,
+        "solution_sha256": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+        "sim_cluster_sha256": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+        "deployment_audit": {
+          "exported_edges": 46,
+          "exported_layers": 24,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 1003,
+          "assignment_infeasible": 69
+        }
+      }
+    }
+  },
+  "C3": {
+    "case": "C3",
+    "topology": "single",
+    "offered_tokens_per_s": 400.0,
+    "physical_source": "experiments/v2_resource_generalization/pools/C3/physical.ini",
+    "physical_sha256": "96a359d052beffad72d30a2ee1ac880973fb22a9a7d5ab9a39f581ca26d6d898",
+    "template_sha256": "7acfecaa5b39747d64f7dcb6dc1ad1eea612a1a07309724f36225d04a3d598cb",
+    "score_parity": {
+      "ttft_s": true,
+      "tpot_s": true,
+      "bottleneck_s": true
+    },
+    "reference": {
+      "ttft_s": 1.194634,
+      "tpot_s": 0.17249663399999995,
+      "bottleneck_s": 0.2304,
+      "bottleneck_resource": "gpu:6"
+    },
+    "variants": {
+      "single_a100": {
+        "status": "feasible",
+        "score": 0.9282356769604916,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          72
+        ],
+        "layer_copies": 88,
+        "active_gpus": 10,
+        "idle_gpus": 14,
+        "compatible_paths": 4,
+        "candidate_evaluations": 230,
+        "search_wall_s": 23.51921020000009,
+        "solution_sha256": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+        "sim_cluster_sha256": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+        "deployment_audit": {
+          "exported_edges": 14,
+          "exported_layers": 10,
+          "checked": true
+        },
+        "failure_counts": {
+          "assignment_infeasible": 5,
+          "capacity_lower_bound": 22
+        }
+      },
+      "multi_a100": {
+        "status": "feasible",
+        "score": 0.9282356769604916,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          72
+        ],
+        "layer_copies": 88,
+        "active_gpus": 10,
+        "idle_gpus": 14,
+        "compatible_paths": 4,
+        "candidate_evaluations": 515,
+        "search_wall_s": 23.51921020000009,
+        "solution_sha256": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+        "sim_cluster_sha256": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+        "deployment_audit": {
+          "exported_edges": 14,
+          "exported_layers": 10,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 792,
+          "assignment_infeasible": 113
+        }
+      },
+      "single_any": {
+        "status": "feasible",
+        "score": 0.9282356769604916,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          72
+        ],
+        "layer_copies": 88,
+        "active_gpus": 10,
+        "idle_gpus": 14,
+        "compatible_paths": 4,
+        "candidate_evaluations": 272,
+        "search_wall_s": 53.07282479997957,
+        "solution_sha256": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+        "sim_cluster_sha256": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+        "deployment_audit": {
+          "exported_edges": 14,
+          "exported_layers": 10,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 22,
+          "assignment_infeasible": 1
+        }
+      },
+      "multi_any": {
+        "status": "feasible",
+        "score": 0.9282356769604916,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          72
+        ],
+        "layer_copies": 88,
+        "active_gpus": 10,
+        "idle_gpus": 14,
+        "compatible_paths": 4,
+        "candidate_evaluations": 606,
+        "search_wall_s": 53.07282479997957,
+        "solution_sha256": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+        "sim_cluster_sha256": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+        "deployment_audit": {
+          "exported_edges": 14,
+          "exported_layers": 10,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 792,
+          "assignment_infeasible": 88
+        }
+      }
+    }
+  },
+  "C4": {
+    "case": "C4",
+    "topology": "single",
+    "offered_tokens_per_s": 120.0,
+    "physical_source": "experiments/v2_resource_generalization/pools/C4/physical.ini",
+    "physical_sha256": "56168af24e0ebeb2de28ecee318b1b8a4e94c1734097097b5d0f4ffd87b85bd7",
+    "template_sha256": "f3e71267c664568a09bb325772c8885b541320b49181d7c3969fbeef09a10f83",
+    "score_parity": {
+      "ttft_s": true,
+      "tpot_s": true,
+      "bottleneck_s": true
+    },
+    "reference": {
+      "ttft_s": 2.1282479999999997,
+      "tpot_s": 0.311380248,
+      "bottleneck_s": 0.28200000000000003,
+      "bottleneck_resource": "gpu:0"
+    },
+    "variants": {
+      "single_a100": {
+        "status": "feasible",
+        "score": 0.9954910777455128,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 112,
+        "active_gpus": 18,
+        "idle_gpus": 0,
+        "compatible_paths": 128,
+        "candidate_evaluations": 147,
+        "search_wall_s": 2.5777413000469096,
+        "solution_sha256": "0b6b2557653e1c244dc1de26e73daa9db9467aa0f25a860cd3787a1d9ac94a3e",
+        "sim_cluster_sha256": "d57c066be677f738bbb49297ec99220eb71b536254aa2e94d39b1cfa2885ac4c",
+        "deployment_audit": {
+          "exported_edges": 32,
+          "exported_layers": 18,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 39,
+          "assignment_infeasible": 16
+        }
+      },
+      "multi_a100": {
+        "status": "feasible",
+        "score": 0.9954910777455128,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 112,
+        "active_gpus": 18,
+        "idle_gpus": 0,
+        "compatible_paths": 128,
+        "candidate_evaluations": 393,
+        "search_wall_s": 2.5777413000469096,
+        "solution_sha256": "0b6b2557653e1c244dc1de26e73daa9db9467aa0f25a860cd3787a1d9ac94a3e",
+        "sim_cluster_sha256": "d57c066be677f738bbb49297ec99220eb71b536254aa2e94d39b1cfa2885ac4c",
+        "deployment_audit": {
+          "exported_edges": 32,
+          "exported_layers": 18,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 1199,
+          "assignment_infeasible": 173
+        }
+      },
+      "single_any": {
+        "status": "feasible",
+        "score": 0.9954910777455128,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 112,
+        "active_gpus": 18,
+        "idle_gpus": 0,
+        "compatible_paths": 128,
+        "candidate_evaluations": 494,
+        "search_wall_s": 8.789843900012784,
+        "solution_sha256": "0b6b2557653e1c244dc1de26e73daa9db9467aa0f25a860cd3787a1d9ac94a3e",
+        "sim_cluster_sha256": "d57c066be677f738bbb49297ec99220eb71b536254aa2e94d39b1cfa2885ac4c",
+        "deployment_audit": {
+          "exported_edges": 32,
+          "exported_layers": 18,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 39,
+          "assignment_infeasible": 3
+        }
+      },
+      "multi_any": {
+        "status": "feasible",
+        "score": 0.9954910777455128,
+        "widths": [
+          1,
+          2
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 112,
+        "active_gpus": 18,
+        "idle_gpus": 0,
+        "compatible_paths": 128,
+        "candidate_evaluations": 622,
+        "search_wall_s": 8.789843900012784,
+        "solution_sha256": "0b6b2557653e1c244dc1de26e73daa9db9467aa0f25a860cd3787a1d9ac94a3e",
+        "sim_cluster_sha256": "d57c066be677f738bbb49297ec99220eb71b536254aa2e94d39b1cfa2885ac4c",
+        "deployment_audit": {
+          "exported_edges": 32,
+          "exported_layers": 18,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 1199,
+          "assignment_infeasible": 63
+        }
+      }
+    }
+  },
+  "C5": {
+    "case": "C5",
+    "topology": "single",
+    "offered_tokens_per_s": 500.0,
+    "physical_source": "experiments/v2_resource_generalization/pools/C5/physical.ini",
+    "physical_sha256": "518f6f7c613145978e2decd73b2deb0ca2479f7697308de5fbad99ad0fa15a76",
+    "template_sha256": "b68ee51e25fafe0ec9047e7a584268462aea96a1e1eb7c9a2605a2d8983df00e",
+    "score_parity": {
+      "ttft_s": true,
+      "tpot_s": true,
+      "bottleneck_s": true
+    },
+    "reference": {
+      "ttft_s": 2.2050199999999998,
+      "tpot_s": 0.31441302,
+      "bottleneck_s": 0.2304,
+      "bottleneck_resource": "gpu:6"
+    },
+    "variants": {
+      "single_a100": {
+        "status": "feasible",
+        "score": 0.9609475468881534,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 21,
+        "idle_gpus": 9,
+        "compatible_paths": 2867,
+        "candidate_evaluations": 370,
+        "search_wall_s": 28.72142169997096,
+        "solution_sha256": "e9f3db6b38f256c0ad5980fd027d5338b66193b6f2f514d432b3809879a945e2",
+        "sim_cluster_sha256": "ff11c2ee4276c9163c356b66cbeb17b06ca4c02902b415a28002e16a7bdbb58c",
+        "deployment_audit": {
+          "exported_edges": 52,
+          "exported_layers": 21,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 18,
+          "assignment_infeasible": 21
+        }
+      },
+      "multi_a100": {
+        "status": "feasible",
+        "score": 0.9609475468881534,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 21,
+        "idle_gpus": 9,
+        "compatible_paths": 2867,
+        "candidate_evaluations": 740,
+        "search_wall_s": 28.72142169997096,
+        "solution_sha256": "e9f3db6b38f256c0ad5980fd027d5338b66193b6f2f514d432b3809879a945e2",
+        "sim_cluster_sha256": "ff11c2ee4276c9163c356b66cbeb17b06ca4c02902b415a28002e16a7bdbb58c",
+        "deployment_audit": {
+          "exported_edges": 52,
+          "exported_layers": 21,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 584,
+          "assignment_infeasible": 291
+        }
+      },
+      "single_any": {
+        "status": "feasible",
+        "score": 0.9609475468881534,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 21,
+        "idle_gpus": 9,
+        "compatible_paths": 2867,
+        "candidate_evaluations": 411,
+        "search_wall_s": 73.06597390002571,
+        "solution_sha256": "e9f3db6b38f256c0ad5980fd027d5338b66193b6f2f514d432b3809879a945e2",
+        "sim_cluster_sha256": "ff11c2ee4276c9163c356b66cbeb17b06ca4c02902b415a28002e16a7bdbb58c",
+        "deployment_audit": {
+          "exported_edges": 52,
+          "exported_layers": 21,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 18
+        }
+      },
+      "multi_any": {
+        "status": "feasible",
+        "score": 0.9609475468881534,
+        "widths": [
+          1,
+          3
+        ],
+        "boundaries": [
+          48
+        ],
+        "layer_copies": 144,
+        "active_gpus": 21,
+        "idle_gpus": 9,
+        "compatible_paths": 2867,
+        "candidate_evaluations": 775,
+        "search_wall_s": 73.06597390002571,
+        "solution_sha256": "e9f3db6b38f256c0ad5980fd027d5338b66193b6f2f514d432b3809879a945e2",
+        "sim_cluster_sha256": "ff11c2ee4276c9163c356b66cbeb17b06ca4c02902b415a28002e16a7bdbb58c",
+        "deployment_audit": {
+          "exported_edges": 52,
+          "exported_layers": 21,
+          "checked": true
+        },
+        "failure_counts": {
+          "capacity_lower_bound": 584,
+          "assignment_infeasible": 85
+        }
+      }
+    }
+  }
+}

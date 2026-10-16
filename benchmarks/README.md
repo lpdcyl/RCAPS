@@ -15,11 +15,14 @@ python -m benchmarks.run --seeds 0 1 2 --workers 12
 python -m benchmarks.compare --baselines helix --seeds 0 1 2
 python -m benchmarks.compare --baselines rcaps --seeds 0 1 2
 python -m benchmarks.paired_stats --seeds 0 1 2
-python -m benchmarks.audit
+python -m experiments.v3_release.verify
+python -m experiments.v3_release.reuse_formal
 ```
 
-The default run executes `rcaps_v2` and `helix`; the default comparison uses
-V2 as the main method. The historical `rcaps` V1 shared-prefix/two-suffix
+The default run executes `rcaps_v3` and `helix`; the default comparison uses
+V3 as the main method. Its three-seed C1 result files record audited reuse
+from the multistage candidate; see `experiments/v3_release/README_CN.md`.
+The historical `rcaps` V1 shared-prefix/two-suffix
 adapter is available explicitly for comparison. `rcaps_v2_fixed_structure`
 is a V2 search constrained to a one-GPU prefix and two suffixes; it is an
 ablation of the V2 structure search, not the same method as V1. Existing
@@ -37,8 +40,9 @@ The active methods are:
 
 | Name | Role |
 | --- | --- |
-| `rcaps_v2` | Default main method |
+| `rcaps_v3` | Default main method |
 | `helix` | Default external baseline |
+| `rcaps_v2` | Explicit historical V2 comparison |
 | `rcaps` | Explicit V1 two-suffix comparison |
 | `rcaps_v2_fixed_structure` | Explicit V2 structure ablation |
 

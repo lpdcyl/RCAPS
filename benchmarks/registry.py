@@ -8,7 +8,7 @@ from typing import Callable
 
 from baselines import helix, separate, swarm
 from rcaps import method as rcaps_v1
-from rcaps import v2_method
+from rcaps import v2_method, v3_method
 from experiments.v2_method_ablation import adapters as v2_ablation
 from experiments.v2_core_ablations import adapters as v2_core
 from experiments.v2_method_comparisons import adapters as v2_comparisons
@@ -23,12 +23,11 @@ class MethodSpec:
     evaluate: Callable[[str, float, int, int, int, Path, Path], dict]
 
 
-MAIN_METHOD = v2_method.NAME
+MAIN_METHOD = v3_method.NAME
 METHODS = {
     MAIN_METHOD: MethodSpec(
-        MAIN_METHOD, "V2 adaptive shared-stem and replicated-suffix placement",
-        "main", lambda scenario, root: v2_method.layout(MAIN_METHOD, scenario, root),
-        v2_method.evaluate),
+        MAIN_METHOD, v3_method.DESCRIPTION, "main", v3_method.layout,
+        v3_method.evaluate),
     helix.NAME: MethodSpec(helix.NAME, helix.DESCRIPTION, "baseline",
                            helix.layout, helix.evaluate),
     swarm.NAME: MethodSpec(swarm.NAME, swarm.DESCRIPTION, "comparison",
@@ -38,6 +37,11 @@ METHODS = {
     rcaps_v1.NAME: MethodSpec(
         rcaps_v1.NAME, rcaps_v1.DESCRIPTION, "comparison",
         rcaps_v1.layout, rcaps_v1.evaluate),
+    v2_method.NAME: MethodSpec(
+        v2_method.NAME, "Frozen V2 event-DAG placement and queue-aware routing",
+        "comparison",
+        lambda scenario, root: v2_method.layout(v2_method.NAME, scenario, root),
+        v2_method.evaluate),
     "rcaps_v2_fixed_structure": MethodSpec(
         "rcaps_v2_fixed_structure",
         "V2 search constrained to a one-GPU stem and two suffixes", "ablation",

@@ -1,0 +1,1625 @@
+{
+  "protocol": {
+    "model": "LLaMA-70B",
+    "loads": {
+      "single": 700.0,
+      "multi": 320.0
+    },
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "tail_drain": false,
+    "candidate_scheduler": "GraphModeledQueueAwareDagScheduler",
+    "reference_scheduler": "QueueAwareDagScheduler"
+  },
+  "layout_audit": {
+    "single": {
+      "scenario": "single",
+      "M1": "resource graph and compatibility DAG",
+      "M2": "unchanged strong static evaluator and adaptive search",
+      "gpu_count": 24,
+      "physical_directed_edges": 600,
+      "compatibility_edges": 44,
+      "compatible_paths": 1024,
+      "canonical_suffixes": 2,
+      "shared_gpus": 4,
+      "shared_layers": 48,
+      "candidate_evaluations": 78,
+      "planning_s": 2.208020099962596,
+      "static_score": 0.7113485971506273,
+      "same_static_score": true,
+      "same_static_reference": true,
+      "same_layout_semantics": true,
+      "same_deployment_sha256": {
+        "solution.ini": true,
+        "simulator_cluster.ini": true
+      },
+      "source_sha256": {
+        "resource_graph": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+        "static_resource": "4ca0c22c96c97c7ca7900d5925e27ca433fc231a9b3d72e8b9d33c3a5f469490",
+        "adaptive": "61ddd37d310fac025acff6364ee33f6cc74c5897b712efbd69ddd260686a28d8"
+      },
+      "layout_audit": {
+        "physical_topology_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+        "placement_sha256": "2f30b52721574974edfb62d739ee53e41e937b988726b7937e62b1ea3f578cf4",
+        "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+        "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999",
+        "gpu_count": 24,
+        "compatibility_edge_count": 44
+      }
+    },
+    "multi": {
+      "scenario": "multi",
+      "M1": "resource graph and compatibility DAG",
+      "M2": "unchanged strong static evaluator and adaptive search",
+      "gpu_count": 24,
+      "physical_directed_edges": 600,
+      "compatibility_edges": 61,
+      "compatible_paths": 22413,
+      "canonical_suffixes": 3,
+      "shared_gpus": 4,
+      "shared_layers": 48,
+      "candidate_evaluations": 168,
+      "planning_s": 3.53920450003352,
+      "static_score": 0.9669600178907872,
+      "same_static_score": true,
+      "same_static_reference": true,
+      "same_layout_semantics": true,
+      "same_deployment_sha256": {
+        "solution.ini": true,
+        "simulator_cluster.ini": true
+      },
+      "source_sha256": {
+        "resource_graph": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+        "static_resource": "4ca0c22c96c97c7ca7900d5925e27ca433fc231a9b3d72e8b9d33c3a5f469490",
+        "adaptive": "61ddd37d310fac025acff6364ee33f6cc74c5897b712efbd69ddd260686a28d8"
+      },
+      "layout_audit": {
+        "physical_topology_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+        "placement_sha256": "ae26a335f3530fa87927dbb834c584913be6168e5fae72e57b51f97e23960df0",
+        "solution_sha256": "a0d64c6aaae0176371e87f474b32489e7ef33ca112405b3e477780a765ac556b",
+        "sim_cluster_sha256": "e9712023f6f60c597bfb1e66234017d3cda7fa82635f754c6200480efb21d64a",
+        "gpu_count": 24,
+        "compatibility_edge_count": 61
+      }
+    }
+  },
+  "route_parity": {
+    "single": {
+      "scenario": "single",
+      "trace_kind": "fixed_12",
+      "trace": [
+        [
+          0.0,
+          1000,
+          8
+        ],
+        [
+          0.2,
+          1000,
+          8
+        ],
+        [
+          0.4,
+          1000,
+          8
+        ],
+        [
+          0.6000000000000001,
+          1000,
+          8
+        ],
+        [
+          0.8,
+          1000,
+          8
+        ],
+        [
+          1.0,
+          1000,
+          8
+        ],
+        [
+          1.2000000000000002,
+          1000,
+          8
+        ],
+        [
+          1.4000000000000001,
+          1000,
+          8
+        ],
+        [
+          1.6,
+          1000,
+          8
+        ],
+        [
+          1.8,
+          1000,
+          8
+        ],
+        [
+          2.0,
+          1000,
+          8
+        ],
+        [
+          2.2,
+          1000,
+          8
+        ]
+      ],
+      "trace_sha256": "f7021a019fd027045112fa5f854181d9544d1fc006187f7e6699ed0243aad1fb",
+      "seed": 100,
+      "duration_s": 60,
+      "offered_tokens_per_s": 700.0,
+      "arrivals": 12,
+      "route_assignments": 12,
+      "route_sequence_sha256": "0ee3ba6ddaf36068ca38eb7102b9b42b752580cadb41fc4974c60b1a6b09120c",
+      "routes_equal": true,
+      "metrics_equal": true,
+      "traces_equal": true,
+      "runtime_edges_equal": true,
+      "runtime_edge_count_equal": true,
+      "runtime_path_count_equal": true,
+      "passed": true,
+      "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+      "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999"
+    },
+    "multi": {
+      "scenario": "multi",
+      "trace_kind": "fixed_12",
+      "trace": [
+        [
+          0.0,
+          1000,
+          8
+        ],
+        [
+          0.2,
+          1000,
+          8
+        ],
+        [
+          0.4,
+          1000,
+          8
+        ],
+        [
+          0.6000000000000001,
+          1000,
+          8
+        ],
+        [
+          0.8,
+          1000,
+          8
+        ],
+        [
+          1.0,
+          1000,
+          8
+        ],
+        [
+          1.2000000000000002,
+          1000,
+          8
+        ],
+        [
+          1.4000000000000001,
+          1000,
+          8
+        ],
+        [
+          1.6,
+          1000,
+          8
+        ],
+        [
+          1.8,
+          1000,
+          8
+        ],
+        [
+          2.0,
+          1000,
+          8
+        ],
+        [
+          2.2,
+          1000,
+          8
+        ]
+      ],
+      "trace_sha256": "f7021a019fd027045112fa5f854181d9544d1fc006187f7e6699ed0243aad1fb",
+      "seed": 100,
+      "duration_s": 60,
+      "offered_tokens_per_s": 320.0,
+      "arrivals": 12,
+      "route_assignments": 12,
+      "route_sequence_sha256": "3d8eb607979e09dc2993cd8f7326f7e13bd8132e119c368806c25065d196cf31",
+      "routes_equal": true,
+      "metrics_equal": true,
+      "traces_equal": true,
+      "runtime_edges_equal": true,
+      "runtime_edge_count_equal": true,
+      "runtime_path_count_equal": true,
+      "passed": true,
+      "solution_sha256": "a0d64c6aaae0176371e87f474b32489e7ef33ca112405b3e477780a765ac556b",
+      "sim_cluster_sha256": "e9712023f6f60c597bfb1e66234017d3cda7fa82635f754c6200480efb21d64a"
+    },
+    "source_sha256": {
+      "resource_graph": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+      "scheduler_adapter": "625d692a04c34349cd596fdf4df7a760b6865caac5b426d6952657fd62293d15",
+      "routing_implementation": "5761c9b59a82a8dd445ac9fac0d5b399e7396288c5f05bd38e9611b01f098c1e",
+      "scheduler_final": "9be01b7698c2c9528d25fe77fed6ed0701e3fa439a48db385b40149aec262004"
+    }
+  },
+  "path_analysis": {
+    "method": "m1_graph_candidate (audited static window reuse)",
+    "denominator": "routed_requests; not all arrivals are necessarily routed by window end",
+    "rows": [
+      {
+        "scenario": "single",
+        "seed": 0,
+        "source": "experiments/v2_method_comparisons/runs/single/seed0/rcaps_v2_static_resource_model.json",
+        "source_sha256": "098cc686d1e9ce5cfc0b95d2e384cdfd7be1f102632237633293886fc080bf2a",
+        "trace_sha256": "7ee10f4e3e29ccb02b3f2c7445e48f44ee9af68b44c1a04e61463a78c7925f5e",
+        "arrivals": 1293,
+        "routed_requests": 1292,
+        "not_routed_by_window_end": 1,
+        "canonical_suffixes": 2,
+        "legal_complete_paths": 1024,
+        "distinct_used_paths": 689,
+        "canonical_path_requests": 25,
+        "noncanonical_path_requests": 1267,
+        "noncanonical_path_fraction_of_routed": 0.9806501547987616,
+        "legal_cross_suffix_edges": 18,
+        "distinct_used_cross_suffix_edges": 18,
+        "cross_suffix_path_requests": 1267,
+        "cross_suffix_path_fraction_of_routed": 0.9806501547987616,
+        "gpu_route_visits": {
+          "0": 649,
+          "1": 649,
+          "2": 643,
+          "3": 648,
+          "4": 643,
+          "5": 657,
+          "6": 1292,
+          "7": 649,
+          "8": 658,
+          "9": 1292,
+          "10": 1292,
+          "11": 653,
+          "12": 634,
+          "13": 666,
+          "14": 643,
+          "15": 626,
+          "16": 658,
+          "17": 1292,
+          "18": 644,
+          "19": 634,
+          "20": 645,
+          "21": 635,
+          "22": 647,
+          "23": 639
+        },
+        "gpu_busy_fraction": {
+          "Compute-10": 0.6782680756640069,
+          "Compute-11": 0.7743842177792053,
+          "Compute-12": 0.7418898726225758,
+          "Compute-13": 0.7016109720321901,
+          "Compute-14": 0.6879373756906956,
+          "Compute-15": 0.6944097974986989,
+          "Compute-16": 0.6430218320291295,
+          "Compute-17": 0.6952879848376068,
+          "Compute-18": 0.5442687318584746,
+          "Compute-19": 0.7158377167445429,
+          "Compute-2": 0.6424478603066904,
+          "Compute-20": 0.6742910779932682,
+          "Compute-21": 0.5490020230084713,
+          "Compute-22": 0.579681724493584,
+          "Compute-23": 0.6896741457008269,
+          "Compute-24": 0.5819474739869211,
+          "Compute-25": 0.7041100982850683,
+          "Compute-3": 0.6436390222382121,
+          "Compute-4": 0.6450583154908784,
+          "Compute-5": 0.6690289352272627,
+          "Compute-6": 0.6727141697920109,
+          "Compute-7": 0.686954505440841,
+          "Compute-8": 0.8103514665348672,
+          "Compute-9": 0.6748084613279978
+        },
+        "all_recorded_paths_valid": true
+      },
+      {
+        "scenario": "single",
+        "seed": 1,
+        "source": "experiments/v2_method_comparisons/runs/single/seed1/rcaps_v2_static_resource_model.json",
+        "source_sha256": "09f5f8adb398f1276bf5ab9d0e706bc6ff3fb8885aee6a4a534e4dcdc77f0b66",
+        "trace_sha256": "7125daaca557cc88e906fa2dd0f36e001b7e064bb176dd30edced0fd7d7545f6",
+        "arrivals": 1291,
+        "routed_requests": 1290,
+        "not_routed_by_window_end": 1,
+        "canonical_suffixes": 2,
+        "legal_complete_paths": 1024,
+        "distinct_used_paths": 668,
+        "canonical_path_requests": 28,
+        "noncanonical_path_requests": 1262,
+        "noncanonical_path_fraction_of_routed": 0.9782945736434109,
+        "legal_cross_suffix_edges": 18,
+        "distinct_used_cross_suffix_edges": 18,
+        "cross_suffix_path_requests": 1262,
+        "cross_suffix_path_fraction_of_routed": 0.9782945736434109,
+        "gpu_route_visits": {
+          "0": 639,
+          "1": 649,
+          "2": 641,
+          "3": 633,
+          "4": 653,
+          "5": 629,
+          "6": 1290,
+          "7": 637,
+          "8": 654,
+          "9": 1290,
+          "10": 1290,
+          "11": 626,
+          "12": 636,
+          "13": 658,
+          "14": 651,
+          "15": 632,
+          "16": 641,
+          "17": 1290,
+          "18": 657,
+          "19": 649,
+          "20": 650,
+          "21": 661,
+          "22": 640,
+          "23": 664
+        },
+        "gpu_busy_fraction": {
+          "Compute-10": 0.6909882482294433,
+          "Compute-11": 0.7744884447546111,
+          "Compute-12": 0.7422430016109149,
+          "Compute-13": 0.7028336130578038,
+          "Compute-14": 0.6904317983454767,
+          "Compute-15": 0.6997415550285928,
+          "Compute-16": 0.6408833419394497,
+          "Compute-17": 0.6947396602265806,
+          "Compute-18": 0.554881036724792,
+          "Compute-19": 0.7164144737556026,
+          "Compute-2": 0.6469932762469911,
+          "Compute-20": 0.6698533571928543,
+          "Compute-21": 0.5466331706449027,
+          "Compute-22": 0.5844554530519869,
+          "Compute-23": 0.6878009875217876,
+          "Compute-24": 0.5809939181114451,
+          "Compute-25": 0.7010113606844766,
+          "Compute-3": 0.6467292989279553,
+          "Compute-4": 0.644857818143968,
+          "Compute-5": 0.6710558832159591,
+          "Compute-6": 0.6764178426559679,
+          "Compute-7": 0.6860892528870898,
+          "Compute-8": 0.8114789403613722,
+          "Compute-9": 0.6756682244159848
+        },
+        "all_recorded_paths_valid": true
+      },
+      {
+        "scenario": "single",
+        "seed": 2,
+        "source": "experiments/v2_method_comparisons/runs/single/seed2/rcaps_v2_static_resource_model.json",
+        "source_sha256": "d8d09a829ef9d2701fd70c79bcbdad94832d01b52d8bd4c555fa939e0dac7f95",
+        "trace_sha256": "6e34d3fee9ea7ec2e6ddbcf0fe6df28d74b33455e80b411f5075d64b08c0ab28",
+        "arrivals": 1267,
+        "routed_requests": 1266,
+        "not_routed_by_window_end": 1,
+        "canonical_suffixes": 2,
+        "legal_complete_paths": 1024,
+        "distinct_used_paths": 664,
+        "canonical_path_requests": 17,
+        "noncanonical_path_requests": 1249,
+        "noncanonical_path_fraction_of_routed": 0.9865718799368088,
+        "legal_cross_suffix_edges": 18,
+        "distinct_used_cross_suffix_edges": 18,
+        "cross_suffix_path_requests": 1249,
+        "cross_suffix_path_fraction_of_routed": 0.9865718799368088,
+        "gpu_route_visits": {
+          "0": 632,
+          "1": 640,
+          "2": 626,
+          "3": 637,
+          "4": 625,
+          "5": 652,
+          "6": 1266,
+          "7": 641,
+          "8": 630,
+          "9": 1266,
+          "10": 1266,
+          "11": 642,
+          "12": 636,
+          "13": 624,
+          "14": 634,
+          "15": 642,
+          "16": 613,
+          "17": 1266,
+          "18": 629,
+          "19": 653,
+          "20": 616,
+          "21": 614,
+          "22": 650,
+          "23": 624
+        },
+        "gpu_busy_fraction": {
+          "Compute-10": 0.6895973361013692,
+          "Compute-11": 0.7753983965626979,
+          "Compute-12": 0.7446824197598324,
+          "Compute-13": 0.7072109319643464,
+          "Compute-14": 0.6902975349998548,
+          "Compute-15": 0.6912993628267139,
+          "Compute-16": 0.6507049367282125,
+          "Compute-17": 0.6993832181283355,
+          "Compute-18": 0.5514755163622443,
+          "Compute-19": 0.7197482004848899,
+          "Compute-2": 0.6487248351481915,
+          "Compute-20": 0.6747939120291597,
+          "Compute-21": 0.5470162970820756,
+          "Compute-22": 0.5805488326253435,
+          "Compute-23": 0.6926594596203203,
+          "Compute-24": 0.5794772940182943,
+          "Compute-25": 0.7070725259554972,
+          "Compute-3": 0.6460621091573637,
+          "Compute-4": 0.65012004832291,
+          "Compute-5": 0.6756652315538285,
+          "Compute-6": 0.6777530669074052,
+          "Compute-7": 0.6913652979600776,
+          "Compute-8": 0.8110352673262227,
+          "Compute-9": 0.6769831413567322
+        },
+        "all_recorded_paths_valid": true
+      },
+      {
+        "scenario": "multi",
+        "seed": 0,
+        "source": "experiments/v2_method_comparisons/runs/multi/seed0/rcaps_v2_static_resource_model.json",
+        "source_sha256": "dba04b7f3e51537a6977ce7022ebd83181ed58286e4a9b560e89a47ec1201e6a",
+        "trace_sha256": "b62ab4fcb5534f9b34c85ba99ef5d261a8dbfab56e21567caa8eec60da3bfc33",
+        "arrivals": 584,
+        "routed_requests": 583,
+        "not_routed_by_window_end": 1,
+        "canonical_suffixes": 3,
+        "legal_complete_paths": 22413,
+        "distinct_used_paths": 51,
+        "canonical_path_requests": 0,
+        "noncanonical_path_requests": 583,
+        "noncanonical_path_fraction_of_routed": 1.0,
+        "legal_cross_suffix_edges": 34,
+        "distinct_used_cross_suffix_edges": 14,
+        "cross_suffix_path_requests": 583,
+        "cross_suffix_path_fraction_of_routed": 1.0,
+        "gpu_route_visits": {
+          "0": 583,
+          "1": 583,
+          "2": 583,
+          "3": 583,
+          "4": 242,
+          "5": 135,
+          "6": 240,
+          "7": 158,
+          "8": 206,
+          "9": 290,
+          "10": 240,
+          "11": 201,
+          "12": 176,
+          "13": 242,
+          "14": 249,
+          "15": 256,
+          "16": 249,
+          "17": 239,
+          "18": 247,
+          "19": 94,
+          "20": 257,
+          "21": 219,
+          "22": 193,
+          "23": 247
+        },
+        "gpu_busy_fraction": {
+          "Compute-10": 0.19823324811050955,
+          "Compute-11": 0.28009732724624964,
+          "Compute-12": 0.21615066701506255,
+          "Compute-13": 0.23828962707928042,
+          "Compute-14": 0.19309391106850196,
+          "Compute-15": 0.21904749126217665,
+          "Compute-16": 0.5103276646164636,
+          "Compute-17": 0.43062458949294136,
+          "Compute-18": 0.32472075814751017,
+          "Compute-19": 0.34213365519053773,
+          "Compute-2": 0.38513788727997167,
+          "Compute-20": 0.4121168409674884,
+          "Compute-21": 0.18427461957603597,
+          "Compute-22": 0.23037676176748897,
+          "Compute-23": 0.33749048858340364,
+          "Compute-24": 0.2800666504180272,
+          "Compute-25": 0.304817170469798,
+          "Compute-3": 0.4023933133915309,
+          "Compute-4": 0.3762201202025588,
+          "Compute-5": 0.3940713950617536,
+          "Compute-6": 0.3034384923741125,
+          "Compute-7": 0.18264885511155582,
+          "Compute-8": 0.21709628923728475,
+          "Compute-9": 0.1690887410774648
+        },
+        "all_recorded_paths_valid": true
+      },
+      {
+        "scenario": "multi",
+        "seed": 1,
+        "source": "experiments/v2_method_comparisons/runs/multi/seed1/rcaps_v2_static_resource_model.json",
+        "source_sha256": "ad0f1b4fb122401bff618ad40ee896fdd13d8c67dfa6af63ba64f3718c05f2bf",
+        "trace_sha256": "8c695a951e47b6b79a1b94c06fe1983ba9c47840ab31ca0bceacbe1262b5da46",
+        "arrivals": 569,
+        "routed_requests": 569,
+        "not_routed_by_window_end": 0,
+        "canonical_suffixes": 3,
+        "legal_complete_paths": 22413,
+        "distinct_used_paths": 47,
+        "canonical_path_requests": 0,
+        "noncanonical_path_requests": 569,
+        "noncanonical_path_fraction_of_routed": 1.0,
+        "legal_cross_suffix_edges": 34,
+        "distinct_used_cross_suffix_edges": 14,
+        "cross_suffix_path_requests": 569,
+        "cross_suffix_path_fraction_of_routed": 1.0,
+        "gpu_route_visits": {
+          "0": 569,
+          "1": 569,
+          "2": 569,
+          "3": 569,
+          "4": 258,
+          "5": 143,
+          "6": 252,
+          "7": 167,
+          "8": 211,
+          "9": 311,
+          "10": 253,
+          "11": 206,
+          "12": 182,
+          "13": 258,
+          "14": 220,
+          "15": 241,
+          "16": 220,
+          "17": 217,
+          "18": 220,
+          "19": 97,
+          "20": 234,
+          "21": 201,
+          "22": 161,
+          "23": 220
+        },
+        "gpu_busy_fraction": {
+          "Compute-10": 0.18894135217807717,
+          "Compute-11": 0.27521207227742644,
+          "Compute-12": 0.21651881347553534,
+          "Compute-13": 0.2326772846650866,
+          "Compute-14": 0.19558649314856572,
+          "Compute-15": 0.2254926158804422,
+          "Compute-16": 0.46165412326843025,
+          "Compute-17": 0.39116102604191694,
+          "Compute-18": 0.29575492849145435,
+          "Compute-19": 0.3048416431358898,
+          "Compute-2": 0.36121162569428295,
+          "Compute-20": 0.36255022539869475,
+          "Compute-21": 0.17554750739618236,
+          "Compute-22": 0.20812244778524042,
+          "Compute-23": 0.31352647698411007,
+          "Compute-24": 0.25576635073709314,
+          "Compute-25": 0.26704342073281295,
+          "Compute-3": 0.3768472317296764,
+          "Compute-4": 0.35397433481137236,
+          "Compute-5": 0.3692139502566375,
+          "Compute-6": 0.3140766032218173,
+          "Compute-7": 0.18258428128737478,
+          "Compute-8": 0.21679963245509498,
+          "Compute-9": 0.1593994441316471
+        },
+        "all_recorded_paths_valid": true
+      },
+      {
+        "scenario": "multi",
+        "seed": 2,
+        "source": "experiments/v2_method_comparisons/runs/multi/seed2/rcaps_v2_static_resource_model.json",
+        "source_sha256": "6afbf2d9d65a882011e068946e3d6deb7d06b3fb7248ac9a6fd70c7075a10e0e",
+        "trace_sha256": "84725cd2924e8a1476f231f1a7c273bec9c86770740d686219a622c3543cdb5e",
+        "arrivals": 586,
+        "routed_requests": 585,
+        "not_routed_by_window_end": 1,
+        "canonical_suffixes": 3,
+        "legal_complete_paths": 22413,
+        "distinct_used_paths": 47,
+        "canonical_path_requests": 0,
+        "noncanonical_path_requests": 585,
+        "noncanonical_path_fraction_of_routed": 1.0,
+        "legal_cross_suffix_edges": 34,
+        "distinct_used_cross_suffix_edges": 14,
+        "cross_suffix_path_requests": 585,
+        "cross_suffix_path_fraction_of_routed": 1.0,
+        "gpu_route_visits": {
+          "0": 585,
+          "1": 585,
+          "2": 585,
+          "3": 585,
+          "4": 261,
+          "5": 149,
+          "6": 258,
+          "7": 169,
+          "8": 209,
+          "9": 308,
+          "10": 258,
+          "11": 204,
+          "12": 181,
+          "13": 261,
+          "14": 235,
+          "15": 247,
+          "16": 235,
+          "17": 229,
+          "18": 232,
+          "19": 92,
+          "20": 244,
+          "21": 210,
+          "22": 183,
+          "23": 232
+        },
+        "gpu_busy_fraction": {
+          "Compute-10": 0.19886936476866413,
+          "Compute-11": 0.27489197523929226,
+          "Compute-12": 0.21614480963442015,
+          "Compute-13": 0.23843503803758262,
+          "Compute-14": 0.1927800557158005,
+          "Compute-15": 0.2189466740687944,
+          "Compute-16": 0.5016035794946405,
+          "Compute-17": 0.4112654260513455,
+          "Compute-18": 0.32207667825153347,
+          "Compute-19": 0.34960351097370507,
+          "Compute-2": 0.3789256814813623,
+          "Compute-20": 0.3972950612384234,
+          "Compute-21": 0.17729557707265217,
+          "Compute-22": 0.2147710717176726,
+          "Compute-23": 0.3347705897246706,
+          "Compute-24": 0.2702972346241557,
+          "Compute-25": 0.29395004491944227,
+          "Compute-3": 0.3949111522444907,
+          "Compute-4": 0.3706694814811026,
+          "Compute-5": 0.3869458586177955,
+          "Compute-6": 0.3029388151000802,
+          "Compute-7": 0.17714554603743418,
+          "Compute-8": 0.21730205349522283,
+          "Compute-9": 0.16304749809074018
+        },
+        "all_recorded_paths_valid": true
+      }
+    ]
+  },
+  "stress_route_parity": {
+    "purpose": "behavior regression under offered-load traces; not formal performance evidence",
+    "formal_seeds_unchanged": [
+      0,
+      1,
+      2
+    ],
+    "rows": [
+      {
+        "scenario": "single",
+        "trace_kind": "offered_load",
+        "trace": null,
+        "trace_sha256": "ad4caab0c062304f61b0603b5eb384e41f902425a62fe9fdd523d05cbe2a4895",
+        "seed": 100,
+        "duration_s": 300,
+        "offered_tokens_per_s": 700.0,
+        "arrivals": 220,
+        "route_assignments": 220,
+        "route_sequence_sha256": "b0e9b343beb3e0fa8034efbb02b97d7ad1ca860bfacbac3259c6cd7162e7c941",
+        "routes_equal": true,
+        "metrics_equal": true,
+        "traces_equal": true,
+        "runtime_edges_equal": true,
+        "runtime_edge_count_equal": true,
+        "runtime_path_count_equal": true,
+        "passed": true,
+        "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+        "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999"
+      },
+      {
+        "scenario": "single",
+        "trace_kind": "offered_load",
+        "trace": null,
+        "trace_sha256": "05770c03e2053cd68f78cc0e37ab53570c7ba39c783a2540343dafbb43370957",
+        "seed": 101,
+        "duration_s": 300,
+        "offered_tokens_per_s": 700.0,
+        "arrivals": 218,
+        "route_assignments": 218,
+        "route_sequence_sha256": "7a153e6c85f22dd571e8b1088ebedc5626c3c6c4ba6fff2299fc01c2dbbd7578",
+        "routes_equal": true,
+        "metrics_equal": true,
+        "traces_equal": true,
+        "runtime_edges_equal": true,
+        "runtime_edge_count_equal": true,
+        "runtime_path_count_equal": true,
+        "passed": true,
+        "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+        "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999"
+      },
+      {
+        "scenario": "multi",
+        "trace_kind": "offered_load",
+        "trace": null,
+        "trace_sha256": "4240d92d46129db3a77451515570e0487fa45a729cf373d46f2284799386560a",
+        "seed": 100,
+        "duration_s": 300,
+        "offered_tokens_per_s": 320.0,
+        "arrivals": 99,
+        "route_assignments": 99,
+        "route_sequence_sha256": "b793a730145bb381a98cff3dd1f5bf9023bbc63d514b4d31397e5896eb0385f4",
+        "routes_equal": true,
+        "metrics_equal": true,
+        "traces_equal": true,
+        "runtime_edges_equal": true,
+        "runtime_edge_count_equal": true,
+        "runtime_path_count_equal": true,
+        "passed": true,
+        "solution_sha256": "a0d64c6aaae0176371e87f474b32489e7ef33ca112405b3e477780a765ac556b",
+        "sim_cluster_sha256": "e9712023f6f60c597bfb1e66234017d3cda7fa82635f754c6200480efb21d64a"
+      },
+      {
+        "scenario": "multi",
+        "trace_kind": "offered_load",
+        "trace": null,
+        "trace_sha256": "5f9bead7e02fb717a52e365bcedd17b872e3aa3a2a1c9826aec0986ce816dc85",
+        "seed": 101,
+        "duration_s": 300,
+        "offered_tokens_per_s": 320.0,
+        "arrivals": 96,
+        "route_assignments": 96,
+        "route_sequence_sha256": "746c16f4b8e5e4cade4d2fac803939d0a978df0d75f1fa8e8f72567466fc13a2",
+        "routes_equal": true,
+        "metrics_equal": true,
+        "traces_equal": true,
+        "runtime_edges_equal": true,
+        "runtime_edge_count_equal": true,
+        "runtime_path_count_equal": true,
+        "passed": true,
+        "solution_sha256": "a0d64c6aaae0176371e87f474b32489e7ef33ca112405b3e477780a765ac556b",
+        "sim_cluster_sha256": "e9712023f6f60c597bfb1e66234017d3cda7fa82635f754c6200480efb21d64a"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "scenario": "single",
+      "seed": 0,
+      "sources": {
+        "m1_graph_candidate": {
+          "source": "experiments/v2_method_comparisons/runs/single/seed0/rcaps_v2_static_resource_model.json",
+          "source_kind": "audited_static_reuse",
+          "sha256": "098cc686d1e9ce5cfc0b95d2e384cdfd7be1f102632237633293886fc080bf2a",
+          "rejected_local": []
+        },
+        "v2_reference": {
+          "source": "experiments/v2_method_ablation/runs/single/seed0/rcaps_v2.json",
+          "source_kind": "audited_v2_reuse",
+          "sha256": "d0800d4626021b569ee8be942de9db88cba82449571e0d498b6d44177806319f",
+          "rejected_local": []
+        }
+      },
+      "paired_trace": {
+        "seed": 0,
+        "arrivals": 1293,
+        "both_completed": 1203,
+        "ttft_s": {
+          "both_observed": 1291,
+          "main_p95_s": 3.731348172788728,
+          "baseline_p95_s": 3.647357023354388
+        },
+        "tpot_s": {
+          "both_observed": 1291,
+          "main_p95_s": 0.5951392299134572,
+          "baseline_p95_s": 0.56113440632602
+        }
+      },
+      "metrics": {
+        "m1_graph_candidate": {
+          "output_throughput_tokens_per_s": 154.01666666666668,
+          "ttft_p95_s": 3.731348172788728,
+          "tpot_p95_s": 0.5951392299134572,
+          "completion_fraction": 0.9311678267594741,
+          "backlog_at_window_end": 89
+        },
+        "v2_reference": {
+          "output_throughput_tokens_per_s": 154.5088888888889,
+          "ttft_p95_s": 3.647357023354388,
+          "tpot_p95_s": 0.56113440632602,
+          "completion_fraction": 0.9350348027842227,
+          "backlog_at_window_end": 84
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": -0.49222222222221035,
+        "ttft_p95_s": 0.08399114943433972,
+        "tpot_p95_s": 0.03400482358743728,
+        "completion_fraction": -0.003866976024748614,
+        "backlog_at_window_end": 5
+      },
+      "common_completed": {
+        "count": 1203,
+        "ttft_s": {
+          "count": 1203,
+          "candidate_p95_s": 3.8087283766965894,
+          "v2_p95_s": 3.6749487922080664
+        },
+        "tpot_s": {
+          "count": 1203,
+          "candidate_p95_s": 0.5947009783811531,
+          "v2_p95_s": 0.561042756691014
+        }
+      },
+      "pending": {
+        "m1_graph_candidate": {
+          "count": 89,
+          "residence_p50_s": 66.60499192897419,
+          "residence_p95_s": 212.30186935910015,
+          "residence_max_s": 262.06460285347885
+        },
+        "v2_reference": {
+          "count": 84,
+          "residence_p50_s": 60.6968844798771,
+          "residence_p95_s": 198.88735955739855,
+          "residence_max_s": 262.06460285347885
+        }
+      }
+    },
+    {
+      "scenario": "single",
+      "seed": 1,
+      "sources": {
+        "m1_graph_candidate": {
+          "source": "experiments/v2_method_comparisons/runs/single/seed1/rcaps_v2_static_resource_model.json",
+          "source_kind": "audited_static_reuse",
+          "sha256": "09f5f8adb398f1276bf5ab9d0e706bc6ff3fb8885aee6a4a534e4dcdc77f0b66",
+          "rejected_local": []
+        },
+        "v2_reference": {
+          "source": "experiments/v2_method_ablation/runs/single/seed1/rcaps_v2.json",
+          "source_kind": "audited_v2_reuse",
+          "sha256": "c8c47d2bed79436cd73a6e1bf208b493b050decbe76ee3b9e419dcaac6c4e470",
+          "rejected_local": []
+        }
+      },
+      "paired_trace": {
+        "seed": 1,
+        "arrivals": 1291,
+        "both_completed": 1186,
+        "ttft_s": {
+          "both_observed": 1288,
+          "main_p95_s": 3.8138283133928375,
+          "baseline_p95_s": 3.610620625853198
+        },
+        "tpot_s": {
+          "both_observed": 1287,
+          "main_p95_s": 0.5978069735618958,
+          "baseline_p95_s": 0.567476418727787
+        }
+      },
+      "metrics": {
+        "m1_graph_candidate": {
+          "output_throughput_tokens_per_s": 160.055,
+          "ttft_p95_s": 3.8138283133928375,
+          "tpot_p95_s": 0.5978069735618958,
+          "completion_fraction": 0.9186676994577847,
+          "backlog_at_window_end": 105
+        },
+        "v2_reference": {
+          "output_throughput_tokens_per_s": 160.64833333333334,
+          "ttft_p95_s": 3.6105562338364505,
+          "tpot_p95_s": 0.5674276975354702,
+          "completion_fraction": 0.9264136328427576,
+          "backlog_at_window_end": 95
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": -0.5933333333333337,
+        "ttft_p95_s": 0.20327207955638693,
+        "tpot_p95_s": 0.03037927602642565,
+        "completion_fraction": -0.0077459333849728695,
+        "backlog_at_window_end": 10
+      },
+      "common_completed": {
+        "count": 1186,
+        "ttft_s": {
+          "count": 1186,
+          "candidate_p95_s": 3.8066574560168362,
+          "v2_p95_s": 3.6048404455395584
+        },
+        "tpot_s": {
+          "count": 1186,
+          "candidate_p95_s": 0.5978196082651246,
+          "v2_p95_s": 0.565606733703968
+        }
+      },
+      "pending": {
+        "m1_graph_candidate": {
+          "count": 105,
+          "residence_p50_s": 84.81232657953683,
+          "residence_p95_s": 218.209127030273,
+          "residence_max_s": 384.8961636805948
+        },
+        "v2_reference": {
+          "count": 95,
+          "residence_p50_s": 77.67515255180274,
+          "residence_p95_s": 208.0951282871089,
+          "residence_max_s": 384.8961636805948
+        }
+      }
+    },
+    {
+      "scenario": "single",
+      "seed": 2,
+      "sources": {
+        "m1_graph_candidate": {
+          "source": "experiments/v2_method_comparisons/runs/single/seed2/rcaps_v2_static_resource_model.json",
+          "source_kind": "audited_static_reuse",
+          "sha256": "d8d09a829ef9d2701fd70c79bcbdad94832d01b52d8bd4c555fa939e0dac7f95",
+          "rejected_local": []
+        },
+        "v2_reference": {
+          "source": "experiments/v2_method_ablation/runs/single/seed2/rcaps_v2.json",
+          "source_kind": "audited_v2_reuse",
+          "sha256": "8731b8850b37d17f25b1e45335d92a8c4aefa9034ecb6b96ab29447f6a0c72f2",
+          "rejected_local": []
+        }
+      },
+      "paired_trace": {
+        "seed": 2,
+        "arrivals": 1267,
+        "both_completed": 1172,
+        "ttft_s": {
+          "both_observed": 1265,
+          "main_p95_s": 4.043672562687288,
+          "baseline_p95_s": 3.810148577386189
+        },
+        "tpot_s": {
+          "both_observed": 1264,
+          "main_p95_s": 0.6076503155896512,
+          "baseline_p95_s": 0.5669480695142556
+        }
+      },
+      "metrics": {
+        "m1_graph_candidate": {
+          "output_throughput_tokens_per_s": 152.05666666666667,
+          "ttft_p95_s": 4.043672562687288,
+          "tpot_p95_s": 0.6076503155896512,
+          "completion_fraction": 0.925808997632202,
+          "backlog_at_window_end": 94
+        },
+        "v2_reference": {
+          "output_throughput_tokens_per_s": 152.59777777777776,
+          "ttft_p95_s": 3.810148577386189,
+          "tpot_p95_s": 0.5669480695142556,
+          "completion_fraction": 0.925808997632202,
+          "backlog_at_window_end": 94
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": -0.5411111111110927,
+        "ttft_p95_s": 0.23352398530109886,
+        "tpot_p95_s": 0.04070224607539563,
+        "completion_fraction": 0.0,
+        "backlog_at_window_end": 0
+      },
+      "common_completed": {
+        "count": 1172,
+        "ttft_s": {
+          "count": 1172,
+          "candidate_p95_s": 4.040940299637374,
+          "v2_p95_s": 3.8206137717256192
+        },
+        "tpot_s": {
+          "count": 1172,
+          "candidate_p95_s": 0.5953358758340224,
+          "v2_p95_s": 0.5593961240705111
+        }
+      },
+      "pending": {
+        "m1_graph_candidate": {
+          "count": 94,
+          "residence_p50_s": 68.94156121884339,
+          "residence_p95_s": 222.9692018991171,
+          "residence_max_s": 453.46963585735966
+        },
+        "v2_reference": {
+          "count": 94,
+          "residence_p50_s": 68.58711138481885,
+          "residence_p95_s": 218.28090621456562,
+          "residence_max_s": 453.46963585735966
+        }
+      }
+    },
+    {
+      "scenario": "multi",
+      "seed": 0,
+      "sources": {
+        "m1_graph_candidate": {
+          "source": "experiments/v2_method_comparisons/runs/multi/seed0/rcaps_v2_static_resource_model.json",
+          "source_kind": "audited_static_reuse",
+          "sha256": "dba04b7f3e51537a6977ce7022ebd83181ed58286e4a9b560e89a47ec1201e6a",
+          "rejected_local": []
+        },
+        "v2_reference": {
+          "source": "experiments/v2_method_ablation/runs/multi/seed0/rcaps_v2.json",
+          "source_kind": "audited_v2_reuse",
+          "sha256": "6414b5680a290450d2f301fca490767d1449d18af5a161528612451d96600fbc",
+          "rejected_local": []
+        }
+      },
+      "paired_trace": {
+        "seed": 0,
+        "arrivals": 584,
+        "both_completed": 539,
+        "ttft_s": {
+          "both_observed": 582,
+          "main_p95_s": 5.309993341642938,
+          "baseline_p95_s": 5.391433458000909
+        },
+        "tpot_s": {
+          "both_observed": 582,
+          "main_p95_s": 0.7114153668413433,
+          "baseline_p95_s": 0.6992525904836989
+        }
+      },
+      "metrics": {
+        "m1_graph_candidate": {
+          "output_throughput_tokens_per_s": 71.80555555555556,
+          "ttft_p95_s": 5.309993341642938,
+          "tpot_p95_s": 0.7114153668413433,
+          "completion_fraction": 0.922945205479452,
+          "backlog_at_window_end": 45
+        },
+        "v2_reference": {
+          "output_throughput_tokens_per_s": 71.77722222222222,
+          "ttft_p95_s": 5.391433458000909,
+          "tpot_p95_s": 0.6992525904836989,
+          "completion_fraction": 0.922945205479452,
+          "backlog_at_window_end": 45
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": 0.028333333333335986,
+        "ttft_p95_s": -0.08144011635797099,
+        "tpot_p95_s": 0.0121627763576444,
+        "completion_fraction": 0.0,
+        "backlog_at_window_end": 0
+      },
+      "common_completed": {
+        "count": 539,
+        "ttft_s": {
+          "count": 539,
+          "candidate_p95_s": 5.404920046802861,
+          "v2_p95_s": 5.490734197002359
+        },
+        "tpot_s": {
+          "count": 539,
+          "candidate_p95_s": 0.7094872673158992,
+          "v2_p95_s": 0.6971711656796098
+        }
+      },
+      "pending": {
+        "m1_graph_candidate": {
+          "count": 45,
+          "residence_p50_s": 78.16443282134992,
+          "residence_p95_s": 223.29510235278593,
+          "residence_max_s": 240.3797508301841
+        },
+        "v2_reference": {
+          "count": 45,
+          "residence_p50_s": 78.16443282134992,
+          "residence_p95_s": 223.29510235278593,
+          "residence_max_s": 240.3797508301841
+        }
+      }
+    },
+    {
+      "scenario": "multi",
+      "seed": 1,
+      "sources": {
+        "m1_graph_candidate": {
+          "source": "experiments/v2_method_comparisons/runs/multi/seed1/rcaps_v2_static_resource_model.json",
+          "source_kind": "audited_static_reuse",
+          "sha256": "ad0f1b4fb122401bff618ad40ee896fdd13d8c67dfa6af63ba64f3718c05f2bf",
+          "rejected_local": []
+        },
+        "v2_reference": {
+          "source": "experiments/v2_method_ablation/runs/multi/seed1/rcaps_v2.json",
+          "source_kind": "audited_v2_reuse",
+          "sha256": "0c5cb909d4fc93f6737ce07bde084e6d845a0d3d7d8f0275d17e00d7fb243b88",
+          "rejected_local": []
+        }
+      },
+      "paired_trace": {
+        "seed": 1,
+        "arrivals": 569,
+        "both_completed": 522,
+        "ttft_s": {
+          "both_observed": 569,
+          "main_p95_s": 5.666981603833222,
+          "baseline_p95_s": 5.401722995762796
+        },
+        "tpot_s": {
+          "both_observed": 569,
+          "main_p95_s": 0.7219082486166564,
+          "baseline_p95_s": 0.6880075961431531
+        }
+      },
+      "metrics": {
+        "m1_graph_candidate": {
+          "output_throughput_tokens_per_s": 70.67611111111111,
+          "ttft_p95_s": 5.666981603833222,
+          "tpot_p95_s": 0.7219082486166564,
+          "completion_fraction": 0.9191564147627417,
+          "backlog_at_window_end": 46
+        },
+        "v2_reference": {
+          "output_throughput_tokens_per_s": 70.59833333333333,
+          "ttft_p95_s": 5.401722995762796,
+          "tpot_p95_s": 0.6880075961431531,
+          "completion_fraction": 0.9173989455184535,
+          "backlog_at_window_end": 47
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": 0.07777777777778283,
+        "ttft_p95_s": 0.2652586080704262,
+        "tpot_p95_s": 0.03390065247350327,
+        "completion_fraction": 0.0017574692442882123,
+        "backlog_at_window_end": -1
+      },
+      "common_completed": {
+        "count": 522,
+        "ttft_s": {
+          "count": 522,
+          "candidate_p95_s": 5.629145688498999,
+          "v2_p95_s": 5.213276070893147
+        },
+        "tpot_s": {
+          "count": 522,
+          "candidate_p95_s": 0.7221236898465269,
+          "v2_p95_s": 0.691052771826475
+        }
+      },
+      "pending": {
+        "m1_graph_candidate": {
+          "count": 46,
+          "residence_p50_s": 83.3937132264507,
+          "residence_p95_s": 228.80599104626458,
+          "residence_max_s": 281.71791732883935
+        },
+        "v2_reference": {
+          "count": 47,
+          "residence_p50_s": 84.58732852724938,
+          "residence_p95_s": 228.6849188583359,
+          "residence_max_s": 281.71791732883935
+        }
+      }
+    },
+    {
+      "scenario": "multi",
+      "seed": 2,
+      "sources": {
+        "m1_graph_candidate": {
+          "source": "experiments/v2_method_comparisons/runs/multi/seed2/rcaps_v2_static_resource_model.json",
+          "source_kind": "audited_static_reuse",
+          "sha256": "6afbf2d9d65a882011e068946e3d6deb7d06b3fb7248ac9a6fd70c7075a10e0e",
+          "rejected_local": []
+        },
+        "v2_reference": {
+          "source": "experiments/v2_method_ablation/runs/multi/seed2/rcaps_v2.json",
+          "source_kind": "audited_v2_reuse",
+          "sha256": "6d42f42c09d526781b0041266ffe8b6d654de77930c9542ba9c6ac48c22274b7",
+          "rejected_local": []
+        }
+      },
+      "paired_trace": {
+        "seed": 2,
+        "arrivals": 586,
+        "both_completed": 536,
+        "ttft_s": {
+          "both_observed": 585,
+          "main_p95_s": 5.114728058820446,
+          "baseline_p95_s": 5.203276051273352
+        },
+        "tpot_s": {
+          "both_observed": 584,
+          "main_p95_s": 0.7110418027258125,
+          "baseline_p95_s": 0.6938377186629322
+        }
+      },
+      "metrics": {
+        "m1_graph_candidate": {
+          "output_throughput_tokens_per_s": 69.56388888888888,
+          "ttft_p95_s": 5.114728058820446,
+          "tpot_p95_s": 0.7110418027258125,
+          "completion_fraction": 0.9163822525597269,
+          "backlog_at_window_end": 49
+        },
+        "v2_reference": {
+          "output_throughput_tokens_per_s": 69.52333333333333,
+          "ttft_p95_s": 5.203276051273352,
+          "tpot_p95_s": 0.6938377186629322,
+          "completion_fraction": 0.9146757679180887,
+          "backlog_at_window_end": 50
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": 0.040555555555556566,
+        "ttft_p95_s": -0.08854799245290579,
+        "tpot_p95_s": 0.01720408406288032,
+        "completion_fraction": 0.0017064846416382506,
+        "backlog_at_window_end": -1
+      },
+      "common_completed": {
+        "count": 536,
+        "ttft_s": {
+          "count": 536,
+          "candidate_p95_s": 5.108133550654713,
+          "v2_p95_s": 5.190157146261895
+        },
+        "tpot_s": {
+          "count": 536,
+          "candidate_p95_s": 0.7082109201401339,
+          "v2_p95_s": 0.6887863522002908
+        }
+      },
+      "pending": {
+        "m1_graph_candidate": {
+          "count": 49,
+          "residence_p50_s": 79.56297270865025,
+          "residence_p95_s": 210.09990398397542,
+          "residence_max_s": 268.5060135126507
+        },
+        "v2_reference": {
+          "count": 50,
+          "residence_p50_s": 78.42586188760015,
+          "residence_p95_s": 210.00122500275347,
+          "residence_max_s": 268.5060135126507
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "single": {
+      "m1_graph_candidate": {
+        "output_throughput_tokens_per_s": {
+          "count": 3,
+          "mean": 155.37611111111113,
+          "sample_sd": 4.168860866702788,
+          "by_seed": [
+            154.01666666666668,
+            160.055,
+            152.05666666666667
+          ]
+        },
+        "ttft_p95_s": {
+          "count": 3,
+          "mean": 3.8629496829562844,
+          "sample_sd": 0.16185275049321363,
+          "by_seed": [
+            3.731348172788728,
+            3.8138283133928375,
+            4.043672562687288
+          ]
+        },
+        "tpot_p95_s": {
+          "count": 3,
+          "mean": 0.6001988396883348,
+          "sample_sd": 0.006589581464279121,
+          "by_seed": [
+            0.5951392299134572,
+            0.5978069735618958,
+            0.6076503155896512
+          ]
+        },
+        "completion_fraction": {
+          "count": 3,
+          "mean": 0.9252148412831536,
+          "sample_sd": 0.006271208971557709,
+          "by_seed": [
+            0.9311678267594741,
+            0.9186676994577847,
+            0.925808997632202
+          ]
+        },
+        "backlog_at_window_end": {
+          "count": 3,
+          "mean": 96,
+          "sample_sd": 8.18535277187245,
+          "by_seed": [
+            89,
+            105,
+            94
+          ]
+        }
+      },
+      "v2_reference": {
+        "output_throughput_tokens_per_s": {
+          "count": 3,
+          "mean": 155.91833333333332,
+          "sample_sd": 4.206276431685531,
+          "by_seed": [
+            154.5088888888889,
+            160.64833333333334,
+            152.59777777777776
+          ]
+        },
+        "ttft_p95_s": {
+          "count": 3,
+          "mean": 3.6893539448590094,
+          "sample_sd": 0.10621714533359565,
+          "by_seed": [
+            3.647357023354388,
+            3.6105562338364505,
+            3.810148577386189
+          ]
+        },
+        "tpot_p95_s": {
+          "count": 3,
+          "mean": 0.5651700577919152,
+          "sample_sd": 0.0035031946599240788,
+          "by_seed": [
+            0.56113440632602,
+            0.5674276975354702,
+            0.5669480695142556
+          ]
+        },
+        "completion_fraction": {
+          "count": 3,
+          "mean": 0.9290858110863941,
+          "sample_sd": 0.005160840299804478,
+          "by_seed": [
+            0.9350348027842227,
+            0.9264136328427576,
+            0.925808997632202
+          ]
+        },
+        "backlog_at_window_end": {
+          "count": 3,
+          "mean": 91,
+          "sample_sd": 6.082762530298219,
+          "by_seed": [
+            84,
+            95,
+            94
+          ]
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": {
+          "count": 3,
+          "mean": -0.5422222222222123,
+          "sample_sd": 0.05056471223548517,
+          "by_seed": [
+            -0.49222222222221035,
+            -0.5933333333333337,
+            -0.5411111111110927
+          ]
+        },
+        "ttft_p95_s": {
+          "count": 3,
+          "mean": 0.17359573809727516,
+          "sample_sd": 0.07906030092522498,
+          "by_seed": [
+            0.08399114943433972,
+            0.20327207955638693,
+            0.23352398530109886
+          ]
+        },
+        "tpot_p95_s": {
+          "count": 3,
+          "mean": 0.035028781896419524,
+          "sample_sd": 0.005237107562565729,
+          "by_seed": [
+            0.03400482358743728,
+            0.03037927602642565,
+            0.04070224607539563
+          ]
+        },
+        "completion_fraction": {
+          "count": 3,
+          "mean": -0.0038709698032404947,
+          "sample_sd": 0.0038729682368706946,
+          "by_seed": [
+            -0.003866976024748614,
+            -0.0077459333849728695,
+            0.0
+          ]
+        },
+        "backlog_at_window_end": {
+          "count": 3,
+          "mean": 5,
+          "sample_sd": 5.0,
+          "by_seed": [
+            5,
+            10,
+            0
+          ]
+        }
+      }
+    },
+    "multi": {
+      "m1_graph_candidate": {
+        "output_throughput_tokens_per_s": {
+          "count": 3,
+          "mean": 70.68185185185185,
+          "sample_sd": 1.1208443594849862,
+          "by_seed": [
+            71.80555555555556,
+            70.67611111111111,
+            69.56388888888888
+          ]
+        },
+        "ttft_p95_s": {
+          "count": 3,
+          "mean": 5.363901001432202,
+          "sample_sd": 0.2800455701002267,
+          "by_seed": [
+            5.309993341642938,
+            5.666981603833222,
+            5.114728058820446
+          ]
+        },
+        "tpot_p95_s": {
+          "count": 3,
+          "mean": 0.7147884727279374,
+          "sample_sd": 0.006168735207989642,
+          "by_seed": [
+            0.7114153668413433,
+            0.7219082486166564,
+            0.7110418027258125
+          ]
+        },
+        "completion_fraction": {
+          "count": 3,
+          "mean": 0.9194946242673069,
+          "sample_sd": 0.0032945222731627847,
+          "by_seed": [
+            0.922945205479452,
+            0.9191564147627417,
+            0.9163822525597269
+          ]
+        },
+        "backlog_at_window_end": {
+          "count": 3,
+          "mean": 46.666666666666664,
+          "sample_sd": 2.0816659994661326,
+          "by_seed": [
+            45,
+            46,
+            49
+          ]
+        }
+      },
+      "v2_reference": {
+        "output_throughput_tokens_per_s": {
+          "count": 3,
+          "mean": 70.63296296296296,
+          "sample_sd": 1.1273434211900197,
+          "by_seed": [
+            71.77722222222222,
+            70.59833333333333,
+            69.52333333333333
+          ]
+        },
+        "ttft_p95_s": {
+          "count": 3,
+          "mean": 5.332144168345685,
+          "sample_sd": 0.11172158406129466,
+          "by_seed": [
+            5.391433458000909,
+            5.401722995762796,
+            5.203276051273352
+          ]
+        },
+        "tpot_p95_s": {
+          "count": 3,
+          "mean": 0.6936993017632614,
+          "sample_sd": 0.005623774876211951,
+          "by_seed": [
+            0.6992525904836989,
+            0.6880075961431531,
+            0.6938377186629322
+          ]
+        },
+        "completion_fraction": {
+          "count": 3,
+          "mean": 0.9183399729719981,
+          "sample_sd": 0.004214267302457826,
+          "by_seed": [
+            0.922945205479452,
+            0.9173989455184535,
+            0.9146757679180887
+          ]
+        },
+        "backlog_at_window_end": {
+          "count": 3,
+          "mean": 47.333333333333336,
+          "sample_sd": 2.516611478423583,
+          "by_seed": [
+            45,
+            47,
+            50
+          ]
+        }
+      },
+      "candidate_minus_v2": {
+        "output_throughput_tokens_per_s": {
+          "count": 3,
+          "mean": 0.04888888888889179,
+          "sample_sd": 0.025754059969999965,
+          "by_seed": [
+            0.028333333333335986,
+            0.07777777777778283,
+            0.040555555555556566
+          ]
+        },
+        "ttft_p95_s": {
+          "count": 3,
+          "mean": 0.03175683308651648,
+          "sample_sd": 0.20224969633134818,
+          "by_seed": [
+            -0.08144011635797099,
+            0.2652586080704262,
+            -0.08854799245290579
+          ]
+        },
+        "tpot_p95_s": {
+          "count": 3,
+          "mean": 0.021089170964675996,
+          "sample_sd": 0.011377795906193127,
+          "by_seed": [
+            0.0121627763576444,
+            0.03390065247350327,
+            0.01720408406288032
+          ]
+        },
+        "completion_fraction": {
+          "count": 3,
+          "mean": 0.001154651295308821,
+          "sample_sd": 0.001000282244041949,
+          "by_seed": [
+            0.0,
+            0.0017574692442882123,
+            0.0017064846416382506
+          ]
+        },
+        "backlog_at_window_end": {
+          "count": 3,
+          "mean": -0.6666666666666666,
+          "sample_sd": 0.5773502691896257,
+          "by_seed": [
+            0,
+            -1,
+            -1
+          ]
+        }
+      }
+    }
+  },
+  "source_code_sha256": {
+    "resource_graph": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+    "static_M2": "4ca0c22c96c97c7ca7900d5925e27ca433fc231a9b3d72e8b9d33c3a5f469490",
+    "adaptive_search": "61ddd37d310fac025acff6364ee33f6cc74c5897b712efbd69ddd260686a28d8",
+    "M3_adapter": "625d692a04c34349cd596fdf4df7a760b6865caac5b426d6952657fd62293d15"
+  }
+}

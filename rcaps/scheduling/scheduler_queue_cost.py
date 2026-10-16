@@ -19,6 +19,10 @@ class WorkloadQueueDagScheduler(QueueDagScheduler):
     include_committed = False
     include_session_round = False
 
+    def _allow_placement_edge(self, left_uid: int, right_uid: int) -> bool:
+        """Hook for a candidate that explicitly reads the deployed M1 DAG."""
+        return True
+
     def _decode_token_service(self, node, first, end, active_sessions):
         typical = max(1, node.inference_settings.decode_typical_tokens)
         return sum(self._layer_service(node, layer, RequestPhase.Increment,
@@ -43,6 +47,8 @@ class WorkloadQueueDagScheduler(QueueDagScheduler):
             winner = None
             for (boundary, last_uid), (cost, path) in best.items():
                 if not start <= boundary < end or last_uid == node.node_uid:
+                    continue
+                if not self._allow_placement_edge(last_uid, node.node_uid):
                     continue
                 previous = (source if last_uid == source.node_uid
                             else sim.compute_nodes[last_uid])
@@ -71,6 +77,8 @@ class WorkloadQueueDagScheduler(QueueDagScheduler):
         winner = None
         for (boundary, last_uid), (cost, path) in best.items():
             if boundary != n_layers:
+                continue
+            if not self._allow_placement_edge(last_uid, sink.node_uid):
                 continue
             previous = sim.compute_nodes[last_uid]
             for link in previous.outbound_links.values():

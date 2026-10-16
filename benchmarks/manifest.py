@@ -39,6 +39,10 @@ CONFIGS = (
     "rcaps/v2_layouts/single_fixed/simulator_cluster.ini",
     "rcaps/v2_layouts/multi_fixed/solution.ini",
     "rcaps/v2_layouts/multi_fixed/simulator_cluster.ini",
+    "rcaps/v3_layouts/single/solution.ini",
+    "rcaps/v3_layouts/single/simulator_cluster.ini",
+    "rcaps/v3_layouts/multi/solution.ini",
+    "rcaps/v3_layouts/multi/simulator_cluster.ini",
 )
 
 
@@ -89,7 +93,7 @@ def manifest() -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path,
-                        default=ROOT / "paper" / "V2_RUN_MANIFEST.json")
+                        default=ROOT / "paper" / "V3_RUN_MANIFEST.json")
     args = parser.parse_args()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(manifest(), indent=2) + "\n",
