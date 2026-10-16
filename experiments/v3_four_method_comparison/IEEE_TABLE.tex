@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\caption{Paired four-method comparison at the common offered loads. Values are mean $\pm$ sample SD over seeds 0/1/2; output throughput is in token/s and P95 latencies are in seconds.}
+\label{tab:v3-four-methods}
+\scriptsize
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}
+\toprule
+ & \multicolumn{3}{c}{Single cluster (350 token/s)} & \multicolumn{3}{c}{Three clusters (160 token/s)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Method & Output throughput$\uparrow$ & P95 TTFT$\downarrow$ & P95 TPOT$\downarrow$ & Output throughput$\uparrow$ & P95 TTFT$\downarrow$ & P95 TPOT$\downarrow$ \\
+\midrule
+\textbf{RCAPS V3} & 75.570 $\pm$ 0.736 & 3.262 $\pm$ 0.090 & 0.452 $\pm$ 0.004 & 35.899 $\pm$ 1.253 & 5.066 $\pm$ 0.172 & 0.580 $\pm$ 0.004 \\
+Helix ILP & 71.886 $\pm$ 0.727 & 5.491 $\pm$ 0.218 & 1.066 $\pm$ 0.032 & 33.548 $\pm$ 1.527 & 12.309 $\pm$ 1.430 & 1.543 $\pm$ 0.109 \\
+Swarm & 69.160 $\pm$ 0.633 & 6.405 $\pm$ 0.266 & 1.390 $\pm$ 0.055 & 29.971 $\pm$ 1.126 & 18.061 $\pm$ 0.256 & 2.584 $\pm$ 0.200 \\
+Separate Pipelines (SP) & 75.636 $\pm$ 1.183 & 4.354 $\pm$ 0.081 & 1.065 $\pm$ 0.029 & 31.650 $\pm$ 1.673 & 17.209 $\pm$ 0.442 & 2.309 $\pm$ 0.222 \\
+\bottomrule
+\end{tabular*}
+\end{table*}
