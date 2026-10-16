@@ -1,0 +1,1221 @@
+{
+  "experiment": "V3 same-layout canonical versus full DAG routing",
+  "protocol": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "tail_drain": false,
+    "loads": {
+      "C1_single": 700.0,
+      "C1_multi": 320.0
+    }
+  },
+  "audit": {
+    "runtime_sha256": {
+      "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+      "rcaps/v3/scheduler.py": "1acf3ee8bb9ea2047af78903a3f4e4da93dc3db86515d5390d60783414f118a5",
+      "rcaps/scheduling/routing_dag.py": "6360e7d84097b63ed1972ce8288ceed6d26b922b1e9c6de0cadf06e42ca1e1ad",
+      "rcaps/scheduling/scheduler_queue_cost.py": "5761c9b59a82a8dd445ac9fac0d5b399e7396288c5f05bd38e9611b01f098c1e",
+      "rcaps/scheduling/scheduler_final.py": "9be01b7698c2c9528d25fe77fed6ed0701e3fa439a48db385b40149aec262004",
+      "benchmarks/fixed_window.py": "a27f2d78d182fd74494a1b767b635918a043b3995f13c5208ffc18a864cecb49"
+    },
+    "adapter_sha256": "0568dc8b3944eeded53874e31cf4a1b9323b43f01b41a1704b94c0ee2d0cbc3d",
+    "cases": {
+      "C1_single": {
+        "physical": "examples/simulation/config/single24.ini",
+        "physical_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+        "solution_sha256": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+        "sim_cluster_sha256": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+        "full_edges": 62,
+        "full_paths": 4788,
+        "canonical_edges": 36,
+        "canonical_paths": 12,
+        "allowed_edges": [
+          [
+            "0",
+            "3"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "10",
+            "17"
+          ],
+          [
+            "11",
+            "21"
+          ],
+          [
+            "12",
+            "0"
+          ],
+          [
+            "12",
+            "4"
+          ],
+          [
+            "12",
+            "7"
+          ],
+          [
+            "13",
+            "0"
+          ],
+          [
+            "13",
+            "4"
+          ],
+          [
+            "13",
+            "7"
+          ],
+          [
+            "14",
+            "18"
+          ],
+          [
+            "15",
+            "0"
+          ],
+          [
+            "15",
+            "4"
+          ],
+          [
+            "15",
+            "7"
+          ],
+          [
+            "16",
+            "0"
+          ],
+          [
+            "16",
+            "4"
+          ],
+          [
+            "16",
+            "7"
+          ],
+          [
+            "17",
+            "12"
+          ],
+          [
+            "17",
+            "13"
+          ],
+          [
+            "17",
+            "15"
+          ],
+          [
+            "17",
+            "16"
+          ],
+          [
+            "18",
+            "23"
+          ],
+          [
+            "19",
+            "sink"
+          ],
+          [
+            "2",
+            "8"
+          ],
+          [
+            "20",
+            "sink"
+          ],
+          [
+            "21",
+            "19"
+          ],
+          [
+            "22",
+            "sink"
+          ],
+          [
+            "23",
+            "20"
+          ],
+          [
+            "3",
+            "1"
+          ],
+          [
+            "4",
+            "5"
+          ],
+          [
+            "5",
+            "11"
+          ],
+          [
+            "6",
+            "9"
+          ],
+          [
+            "7",
+            "14"
+          ],
+          [
+            "8",
+            "22"
+          ],
+          [
+            "9",
+            "10"
+          ],
+          [
+            "source",
+            "6"
+          ]
+        ]
+      },
+      "C1_multi": {
+        "physical": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+        "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+        "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+        "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+        "full_edges": 58,
+        "full_paths": 8603,
+        "canonical_edges": 26,
+        "canonical_paths": 3,
+        "allowed_edges": [
+          [
+            "0",
+            "2"
+          ],
+          [
+            "1",
+            "3"
+          ],
+          [
+            "10",
+            "13"
+          ],
+          [
+            "11",
+            "12"
+          ],
+          [
+            "12",
+            "sink"
+          ],
+          [
+            "13",
+            "4"
+          ],
+          [
+            "14",
+            "21"
+          ],
+          [
+            "15",
+            "14"
+          ],
+          [
+            "16",
+            "19"
+          ],
+          [
+            "17",
+            "16"
+          ],
+          [
+            "18",
+            "15"
+          ],
+          [
+            "19",
+            "sink"
+          ],
+          [
+            "2",
+            "18"
+          ],
+          [
+            "2",
+            "8"
+          ],
+          [
+            "2",
+            "9"
+          ],
+          [
+            "20",
+            "22"
+          ],
+          [
+            "21",
+            "11"
+          ],
+          [
+            "22",
+            "17"
+          ],
+          [
+            "3",
+            "0"
+          ],
+          [
+            "4",
+            "5"
+          ],
+          [
+            "5",
+            "sink"
+          ],
+          [
+            "6",
+            "7"
+          ],
+          [
+            "7",
+            "10"
+          ],
+          [
+            "8",
+            "6"
+          ],
+          [
+            "9",
+            "20"
+          ],
+          [
+            "source",
+            "1"
+          ]
+        ]
+      }
+    }
+  },
+  "failures": {},
+  "cases": {
+    "C1_single": {
+      "0": {
+        "status": "passed",
+        "sources": {
+          "canonical": {
+            "path": "experiments/v3_pathspace_ablation/runs/formal/C1_single/seed0.json",
+            "sha256": "32a1ed00a0dce5d3f40a257f2929d7624d852391ffc76dcfac4c6ab87edd4556"
+          },
+          "full_dag": {
+            "path": "benchmarks/runs/single/seed0/rcaps_v3.json",
+            "sha256": "58e4912877497c26e0a687ef45951077f1c76eb80635cfd58b4af305f61c67e0"
+          }
+        },
+        "trace_sha256": "7ee10f4e3e29ccb02b3f2c7445e48f44ee9af68b44c1a04e61463a78c7925f5e",
+        "paired_cohort": {
+          "seed": 0,
+          "arrivals": 1293,
+          "both_completed": 1212,
+          "ttft_s": {
+            "both_observed": 1291,
+            "main_p95_s": 3.5854141462019697,
+            "baseline_p95_s": 3.4441187518096967
+          },
+          "tpot_s": {
+            "both_observed": 1290,
+            "main_p95_s": 0.5553963566444227,
+            "baseline_p95_s": 0.5074428118269296
+          }
+        },
+        "common_completed": {
+          "count": 1212,
+          "ttft_s": {
+            "count": 1212,
+            "left_p95_s": 3.476981611774432,
+            "right_p95_s": 3.6243563456873744
+          },
+          "tpot_s": {
+            "count": 1212,
+            "left_p95_s": 0.5064140874454857,
+            "right_p95_s": 0.5552089110310409
+          }
+        },
+        "metrics": {
+          "output_throughput_tokens_per_s": {
+            "canonical": 155.40277777777777,
+            "full_dag": 154.52444444444444,
+            "delta_full_minus_canonical": -0.8783333333333303
+          },
+          "ttft_p95_s": {
+            "canonical": 3.4441187518096967,
+            "full_dag": 3.5854141462019697,
+            "delta_full_minus_canonical": 0.141295394392273
+          },
+          "tpot_p95_s": {
+            "canonical": 0.5074428118269296,
+            "full_dag": 0.5553963566444227,
+            "delta_full_minus_canonical": 0.04795354481749303
+          },
+          "completion_fraction": {
+            "canonical": 0.9466357308584686,
+            "full_dag": 0.9373549883990719,
+            "delta_full_minus_canonical": -0.009280742459396696
+          },
+          "backlog_at_window_end": {
+            "canonical": 69,
+            "full_dag": 81,
+            "delta_full_minus_canonical": 12
+          }
+        },
+        "pending": {
+          "canonical": {
+            "count": 69,
+            "p50_s": 43.91768979454696,
+            "p95_s": 187.60493801294237,
+            "max_s": 262.06460285347885
+          },
+          "full_dag": {
+            "count": 81,
+            "p50_s": 58.23857714038877,
+            "p95_s": 202.05305054807036,
+            "max_s": 262.06460285347885
+          }
+        },
+        "paths": {
+          "canonical": {
+            "compatible_dag_paths": 4788,
+            "compatible_dag_edges": 62,
+            "actual_distinct_paths": 12,
+            "routed_requests": 1292,
+            "cross_replica_requests": 0,
+            "cross_replica_fraction": 0.0,
+            "gpu_request_counts": {
+              "6": 1292,
+              "9": 1292,
+              "10": 1292,
+              "17": 1292,
+              "16": 319,
+              "15": 329,
+              "13": 338,
+              "12": 306,
+              "0": 518,
+              "3": 518,
+              "1": 518,
+              "2": 518,
+              "8": 518,
+              "22": 518,
+              "4": 402,
+              "5": 402,
+              "11": 402,
+              "21": 402,
+              "19": 402,
+              "7": 372,
+              "14": 372,
+              "18": 372,
+              "23": 372,
+              "20": 372
+            }
+          },
+          "full_dag": {
+            "compatible_dag_paths": 4788,
+            "compatible_dag_edges": 62,
+            "actual_distinct_paths": 502,
+            "routed_requests": 1291,
+            "cross_replica_requests": 1270,
+            "cross_replica_fraction": 0.983733539891557,
+            "gpu_request_counts": {
+              "6": 1291,
+              "9": 1291,
+              "10": 1291,
+              "17": 1291,
+              "16": 315,
+              "15": 329,
+              "13": 329,
+              "12": 318,
+              "0": 499,
+              "3": 633,
+              "1": 562,
+              "2": 596,
+              "8": 574,
+              "22": 434,
+              "4": 486,
+              "5": 487,
+              "11": 381,
+              "21": 359,
+              "19": 435,
+              "7": 501,
+              "14": 467,
+              "18": 410,
+              "23": 358,
+              "20": 422
+            }
+          }
+        }
+      },
+      "1": {
+        "status": "passed",
+        "sources": {
+          "canonical": {
+            "path": "experiments/v3_pathspace_ablation/runs/formal/C1_single/seed1.json",
+            "sha256": "5431a55f87797820d896ec477a483fa5a42d6146040241ae43c7d2961e067ed7"
+          },
+          "full_dag": {
+            "path": "benchmarks/runs/single/seed1/rcaps_v3.json",
+            "sha256": "fff920b63938ca1e2e4dc621c5b615183a47ef12159a95b1fd105a9cec0749e8"
+          }
+        },
+        "trace_sha256": "7125daaca557cc88e906fa2dd0f36e001b7e064bb176dd30edced0fd7d7545f6",
+        "paired_cohort": {
+          "seed": 1,
+          "arrivals": 1291,
+          "both_completed": 1194,
+          "ttft_s": {
+            "both_observed": 1289,
+            "main_p95_s": 3.493568081316584,
+            "baseline_p95_s": 3.496284167999622
+          },
+          "tpot_s": {
+            "both_observed": 1288,
+            "main_p95_s": 0.5587526605913752,
+            "baseline_p95_s": 0.5050282920064837
+          }
+        },
+        "common_completed": {
+          "count": 1194,
+          "ttft_s": {
+            "count": 1194,
+            "left_p95_s": 3.489423818330923,
+            "right_p95_s": 3.4922858695090917
+          },
+          "tpot_s": {
+            "count": 1194,
+            "left_p95_s": 0.504066042207578,
+            "right_p95_s": 0.557419947325724
+          }
+        },
+        "metrics": {
+          "output_throughput_tokens_per_s": {
+            "canonical": 161.90333333333334,
+            "full_dag": 160.7411111111111,
+            "delta_full_minus_canonical": -1.1622222222222263
+          },
+          "ttft_p95_s": {
+            "canonical": 3.496284167999622,
+            "full_dag": 3.493568081316584,
+            "delta_full_minus_canonical": -0.0027160866830380215
+          },
+          "tpot_p95_s": {
+            "canonical": 0.5050282920064837,
+            "full_dag": 0.5587526605913752,
+            "delta_full_minus_canonical": 0.05372436858489149
+          },
+          "completion_fraction": {
+            "canonical": 0.935708752904725,
+            "full_dag": 0.924864446165763,
+            "delta_full_minus_canonical": -0.010844306738961973
+          },
+          "backlog_at_window_end": {
+            "canonical": 83,
+            "full_dag": 97,
+            "delta_full_minus_canonical": 14
+          }
+        },
+        "pending": {
+          "canonical": {
+            "count": 83,
+            "p50_s": 69.26963591450021,
+            "p95_s": 199.17745426769636,
+            "max_s": 384.8961636805948
+          },
+          "full_dag": {
+            "count": 97,
+            "p50_s": 79.59611624598438,
+            "p95_s": 207.0596792648893,
+            "max_s": 384.8961636805948
+          }
+        },
+        "paths": {
+          "canonical": {
+            "compatible_dag_paths": 4788,
+            "compatible_dag_edges": 62,
+            "actual_distinct_paths": 12,
+            "routed_requests": 1289,
+            "cross_replica_requests": 0,
+            "cross_replica_fraction": 0.0,
+            "gpu_request_counts": {
+              "6": 1289,
+              "9": 1289,
+              "10": 1289,
+              "17": 1289,
+              "16": 330,
+              "15": 307,
+              "13": 321,
+              "12": 331,
+              "0": 504,
+              "3": 504,
+              "1": 504,
+              "2": 504,
+              "8": 504,
+              "22": 504,
+              "4": 385,
+              "5": 385,
+              "11": 385,
+              "21": 385,
+              "19": 385,
+              "7": 400,
+              "14": 400,
+              "18": 400,
+              "23": 400,
+              "20": 400
+            }
+          },
+          "full_dag": {
+            "compatible_dag_paths": 4788,
+            "compatible_dag_edges": 62,
+            "actual_distinct_paths": 506,
+            "routed_requests": 1289,
+            "cross_replica_requests": 1243,
+            "cross_replica_fraction": 0.9643134212567882,
+            "gpu_request_counts": {
+              "6": 1289,
+              "9": 1289,
+              "10": 1289,
+              "17": 1289,
+              "16": 317,
+              "15": 325,
+              "13": 310,
+              "12": 337,
+              "0": 464,
+              "3": 610,
+              "1": 545,
+              "2": 595,
+              "8": 575,
+              "22": 420,
+              "4": 493,
+              "5": 500,
+              "11": 407,
+              "21": 362,
+              "19": 456,
+              "7": 491,
+              "14": 479,
+              "18": 403,
+              "23": 352,
+              "20": 413
+            }
+          }
+        }
+      },
+      "2": {
+        "status": "passed",
+        "sources": {
+          "canonical": {
+            "path": "experiments/v3_pathspace_ablation/runs/formal/C1_single/seed2.json",
+            "sha256": "f348595aecd57595e36bdb81e5fad94a5985db325d5c5ff30cf51e1e6394cae3"
+          },
+          "full_dag": {
+            "path": "benchmarks/runs/single/seed2/rcaps_v3.json",
+            "sha256": "690c419fd8a34cf2fe21a5a85538ea7f4a17c9f3833a36206601af1526cf3cf5"
+          }
+        },
+        "trace_sha256": "6e34d3fee9ea7ec2e6ddbcf0fe6df28d74b33455e80b411f5075d64b08c0ab28",
+        "paired_cohort": {
+          "seed": 2,
+          "arrivals": 1267,
+          "both_completed": 1179,
+          "ttft_s": {
+            "both_observed": 1265,
+            "main_p95_s": 3.6605204544857313,
+            "baseline_p95_s": 3.5920228211635274
+          },
+          "tpot_s": {
+            "both_observed": 1264,
+            "main_p95_s": 0.5637527140387167,
+            "baseline_p95_s": 0.50664012067356
+          }
+        },
+        "common_completed": {
+          "count": 1179,
+          "ttft_s": {
+            "count": 1179,
+            "left_p95_s": 3.6176489933210325,
+            "right_p95_s": 3.6563985799031564
+          },
+          "tpot_s": {
+            "count": 1179,
+            "left_p95_s": 0.5003679690754452,
+            "right_p95_s": 0.5560324815334333
+          }
+        },
+        "metrics": {
+          "output_throughput_tokens_per_s": {
+            "canonical": 153.785,
+            "full_dag": 152.67444444444445,
+            "delta_full_minus_canonical": -1.1105555555555497
+          },
+          "ttft_p95_s": {
+            "canonical": 3.5920228211635274,
+            "full_dag": 3.6605204544857313,
+            "delta_full_minus_canonical": 0.06849763332220382
+          },
+          "tpot_p95_s": {
+            "canonical": 0.5066339353303448,
+            "full_dag": 0.5637527140387167,
+            "delta_full_minus_canonical": 0.0571187787083719
+          },
+          "completion_fraction": {
+            "canonical": 0.9392265193370166,
+            "full_dag": 0.930544593528019,
+            "delta_full_minus_canonical": -0.008681925808997626
+          },
+          "backlog_at_window_end": {
+            "canonical": 77,
+            "full_dag": 88,
+            "delta_full_minus_canonical": 11
+          }
+        },
+        "pending": {
+          "canonical": {
+            "count": 77,
+            "p50_s": 61.49113863171738,
+            "p95_s": 185.36669349865608,
+            "max_s": 300.9654060406747
+          },
+          "full_dag": {
+            "count": 88,
+            "p50_s": 68.58711138481885,
+            "p95_s": 209.4086322384634,
+            "max_s": 453.46963585735966
+          }
+        },
+        "paths": {
+          "canonical": {
+            "compatible_dag_paths": 4788,
+            "compatible_dag_edges": 62,
+            "actual_distinct_paths": 12,
+            "routed_requests": 1266,
+            "cross_replica_requests": 0,
+            "cross_replica_fraction": 0.0,
+            "gpu_request_counts": {
+              "6": 1266,
+              "9": 1266,
+              "10": 1266,
+              "17": 1266,
+              "16": 317,
+              "15": 315,
+              "13": 323,
+              "12": 311,
+              "0": 488,
+              "3": 488,
+              "1": 488,
+              "2": 488,
+              "8": 488,
+              "22": 488,
+              "4": 386,
+              "5": 386,
+              "11": 386,
+              "21": 386,
+              "19": 386,
+              "7": 392,
+              "14": 392,
+              "18": 392,
+              "23": 392,
+              "20": 392
+            }
+          },
+          "full_dag": {
+            "compatible_dag_paths": 4788,
+            "compatible_dag_edges": 62,
+            "actual_distinct_paths": 512,
+            "routed_requests": 1266,
+            "cross_replica_requests": 1230,
+            "cross_replica_fraction": 0.9715639810426541,
+            "gpu_request_counts": {
+              "6": 1266,
+              "9": 1266,
+              "10": 1266,
+              "17": 1266,
+              "16": 347,
+              "15": 315,
+              "13": 280,
+              "12": 324,
+              "0": 479,
+              "3": 614,
+              "1": 537,
+              "2": 573,
+              "8": 553,
+              "22": 414,
+              "4": 467,
+              "5": 456,
+              "11": 400,
+              "21": 356,
+              "19": 427,
+              "7": 480,
+              "14": 494,
+              "18": 389,
+              "23": 357,
+              "20": 425
+            }
+          }
+        }
+      }
+    },
+    "C1_multi": {
+      "0": {
+        "status": "passed",
+        "sources": {
+          "canonical": {
+            "path": "experiments/v3_pathspace_ablation/runs/formal/C1_multi/seed0.json",
+            "sha256": "98dd4d258710cf6412f4a15851e9e8ab03460f5f47971741697d4c9958517531"
+          },
+          "full_dag": {
+            "path": "benchmarks/runs/multi/seed0/rcaps_v3.json",
+            "sha256": "f70f9930ed13730f91afb5732feab02d0a10d8c44e9821dd9b8a340c5c0b5188"
+          }
+        },
+        "trace_sha256": "b62ab4fcb5534f9b34c85ba99ef5d261a8dbfab56e21567caa8eec60da3bfc33",
+        "paired_cohort": {
+          "seed": 0,
+          "arrivals": 584,
+          "both_completed": 529,
+          "ttft_s": {
+            "both_observed": 582,
+            "main_p95_s": 5.228783675305078,
+            "baseline_p95_s": 6.47406297262438
+          },
+          "tpot_s": {
+            "both_observed": 582,
+            "main_p95_s": 0.6992093827588951,
+            "baseline_p95_s": 0.8146788353716394
+          }
+        },
+        "common_completed": {
+          "count": 529,
+          "ttft_s": {
+            "count": 529,
+            "left_p95_s": 6.470698499150558,
+            "right_p95_s": 5.304453576904773
+          },
+          "tpot_s": {
+            "count": 529,
+            "left_p95_s": 0.8144049567898998,
+            "right_p95_s": 0.6993419352203305
+          }
+        },
+        "metrics": {
+          "output_throughput_tokens_per_s": {
+            "canonical": 70.96055555555556,
+            "full_dag": 71.71277777777777,
+            "delta_full_minus_canonical": 0.7522222222222155
+          },
+          "ttft_p95_s": {
+            "canonical": 6.47406297262438,
+            "full_dag": 5.228783675305078,
+            "delta_full_minus_canonical": -1.2452792973193025
+          },
+          "tpot_p95_s": {
+            "canonical": 0.8146788353716394,
+            "full_dag": 0.6992093827588951,
+            "delta_full_minus_canonical": -0.11546945261274433
+          },
+          "completion_fraction": {
+            "canonical": 0.9058219178082192,
+            "full_dag": 0.9212328767123288,
+            "delta_full_minus_canonical": 0.015410958904109595
+          },
+          "backlog_at_window_end": {
+            "canonical": 55,
+            "full_dag": 46,
+            "delta_full_minus_canonical": -9
+          }
+        },
+        "pending": {
+          "canonical": {
+            "count": 55,
+            "p50_s": 90.57785473018066,
+            "p95_s": 279.25829077809254,
+            "max_s": 300.09440317753433
+          },
+          "full_dag": {
+            "count": 46,
+            "p50_s": 80.06644779193584,
+            "p95_s": 230.24714503356427,
+            "max_s": 258.36402339502274
+          }
+        },
+        "paths": {
+          "canonical": {
+            "compatible_dag_paths": 8603,
+            "compatible_dag_edges": 58,
+            "actual_distinct_paths": 3,
+            "routed_requests": 583,
+            "cross_replica_requests": 0,
+            "cross_replica_fraction": 0.0,
+            "gpu_request_counts": {
+              "1": 583,
+              "3": 583,
+              "0": 583,
+              "2": 583,
+              "8": 168,
+              "6": 168,
+              "7": 168,
+              "10": 168,
+              "13": 168,
+              "4": 168,
+              "5": 168,
+              "18": 212,
+              "15": 212,
+              "14": 212,
+              "21": 212,
+              "11": 212,
+              "12": 212,
+              "9": 203,
+              "20": 203,
+              "22": 203,
+              "17": 203,
+              "16": 203,
+              "19": 203
+            }
+          },
+          "full_dag": {
+            "compatible_dag_paths": 8603,
+            "compatible_dag_edges": 58,
+            "actual_distinct_paths": 32,
+            "routed_requests": 583,
+            "cross_replica_requests": 493,
+            "cross_replica_fraction": 0.8456260720411664,
+            "gpu_request_counts": {
+              "1": 583,
+              "3": 583,
+              "0": 583,
+              "2": 583,
+              "8": 146,
+              "6": 276,
+              "7": 276,
+              "10": 277,
+              "13": 277,
+              "4": 276,
+              "5": 151,
+              "18": 236,
+              "15": 208,
+              "14": 236,
+              "21": 207,
+              "11": 230,
+              "12": 222,
+              "9": 201,
+              "20": 181,
+              "22": 179,
+              "17": 212,
+              "16": 210,
+              "19": 210
+            }
+          }
+        }
+      },
+      "1": {
+        "status": "passed",
+        "sources": {
+          "canonical": {
+            "path": "experiments/v3_pathspace_ablation/runs/formal/C1_multi/seed1.json",
+            "sha256": "90c00c95da606a9e87a01999f18e0f3cb80fab8b91df667c163ab4f68d1d5c37"
+          },
+          "full_dag": {
+            "path": "benchmarks/runs/multi/seed1/rcaps_v3.json",
+            "sha256": "bd6967424eeac6fdc3f0138946b55a935c280eaf4cd848e0a1563d79761bec2c"
+          }
+        },
+        "trace_sha256": "8c695a951e47b6b79a1b94c06fe1983ba9c47840ab31ca0bceacbe1262b5da46",
+        "paired_cohort": {
+          "seed": 1,
+          "arrivals": 569,
+          "both_completed": 511,
+          "ttft_s": {
+            "both_observed": 569,
+            "main_p95_s": 5.4125897445153,
+            "baseline_p95_s": 7.017260828381589
+          },
+          "tpot_s": {
+            "both_observed": 569,
+            "main_p95_s": 0.702764090012156,
+            "baseline_p95_s": 0.8540008061911403
+          }
+        },
+        "common_completed": {
+          "count": 511,
+          "ttft_s": {
+            "count": 511,
+            "left_p95_s": 7.074296372509956,
+            "right_p95_s": 5.331537463471818
+          },
+          "tpot_s": {
+            "count": 511,
+            "left_p95_s": 0.8576476762720342,
+            "right_p95_s": 0.7078966586557673
+          }
+        },
+        "metrics": {
+          "output_throughput_tokens_per_s": {
+            "canonical": 69.62222222222222,
+            "full_dag": 70.5188888888889,
+            "delta_full_minus_canonical": 0.8966666666666754
+          },
+          "ttft_p95_s": {
+            "canonical": 7.017260828381589,
+            "full_dag": 5.4125897445153,
+            "delta_full_minus_canonical": -1.6046710838662896
+          },
+          "tpot_p95_s": {
+            "canonical": 0.8540008061911403,
+            "full_dag": 0.702764090012156,
+            "delta_full_minus_canonical": -0.15123671617898427
+          },
+          "completion_fraction": {
+            "canonical": 0.8980667838312829,
+            "full_dag": 0.9156414762741653,
+            "delta_full_minus_canonical": 0.017574692442882345
+          },
+          "backlog_at_window_end": {
+            "canonical": 58,
+            "full_dag": 48,
+            "delta_full_minus_canonical": -10
+          }
+        },
+        "pending": {
+          "canonical": {
+            "count": 58,
+            "p50_s": 105.55673629854073,
+            "p95_s": 297.0307123553573,
+            "max_s": 326.5202943873642
+          },
+          "full_dag": {
+            "count": 48,
+            "p50_s": 90.60131286904834,
+            "p95_s": 240.35687997517613,
+            "max_s": 319.4872969349983
+          }
+        },
+        "paths": {
+          "canonical": {
+            "compatible_dag_paths": 8603,
+            "compatible_dag_edges": 58,
+            "actual_distinct_paths": 3,
+            "routed_requests": 569,
+            "cross_replica_requests": 0,
+            "cross_replica_fraction": 0.0,
+            "gpu_request_counts": {
+              "1": 569,
+              "3": 569,
+              "0": 569,
+              "2": 569,
+              "8": 165,
+              "6": 165,
+              "7": 165,
+              "10": 165,
+              "13": 165,
+              "4": 165,
+              "5": 165,
+              "18": 209,
+              "15": 209,
+              "14": 209,
+              "21": 209,
+              "11": 209,
+              "12": 209,
+              "9": 195,
+              "20": 195,
+              "22": 195,
+              "17": 195,
+              "16": 195,
+              "19": 195
+            }
+          },
+          "full_dag": {
+            "compatible_dag_paths": 8603,
+            "compatible_dag_edges": 58,
+            "actual_distinct_paths": 35,
+            "routed_requests": 569,
+            "cross_replica_requests": 490,
+            "cross_replica_fraction": 0.8611599297012302,
+            "gpu_request_counts": {
+              "1": 569,
+              "3": 569,
+              "0": 569,
+              "2": 569,
+              "8": 126,
+              "6": 261,
+              "7": 261,
+              "10": 261,
+              "13": 261,
+              "4": 262,
+              "5": 145,
+              "18": 240,
+              "15": 203,
+              "14": 233,
+              "21": 206,
+              "11": 220,
+              "12": 213,
+              "9": 203,
+              "20": 183,
+              "22": 183,
+              "17": 218,
+              "16": 211,
+              "19": 211
+            }
+          }
+        }
+      },
+      "2": {
+        "status": "passed",
+        "sources": {
+          "canonical": {
+            "path": "experiments/v3_pathspace_ablation/runs/formal/C1_multi/seed2.json",
+            "sha256": "e589c22351c3c5d8573f20577d4c693e761b66b5be92d3bf489f83ab01d360de"
+          },
+          "full_dag": {
+            "path": "benchmarks/runs/multi/seed2/rcaps_v3.json",
+            "sha256": "13870792d8fd8b4cb1910216acff56ce72db484816e8ac3dd4ec53b319a97069"
+          }
+        },
+        "trace_sha256": "84725cd2924e8a1476f231f1a7c273bec9c86770740d686219a622c3543cdb5e",
+        "paired_cohort": {
+          "seed": 2,
+          "arrivals": 586,
+          "both_completed": 532,
+          "ttft_s": {
+            "both_observed": 583,
+            "main_p95_s": 5.339107604115053,
+            "baseline_p95_s": 6.805650057813545
+          },
+          "tpot_s": {
+            "both_observed": 583,
+            "main_p95_s": 0.6952907479609178,
+            "baseline_p95_s": 0.8027807962401761
+          }
+        },
+        "common_completed": {
+          "count": 532,
+          "ttft_s": {
+            "count": 532,
+            "left_p95_s": 6.7909235744915115,
+            "right_p95_s": 5.324862359078287
+          },
+          "tpot_s": {
+            "count": 532,
+            "left_p95_s": 0.7996200012897243,
+            "right_p95_s": 0.6933871246662494
+          }
+        },
+        "metrics": {
+          "output_throughput_tokens_per_s": {
+            "canonical": 68.8861111111111,
+            "full_dag": 69.4961111111111,
+            "delta_full_minus_canonical": 0.6099999999999994
+          },
+          "ttft_p95_s": {
+            "canonical": 6.805650057813545,
+            "full_dag": 5.3375247991109696,
+            "delta_full_minus_canonical": -1.4681252587025755
+          },
+          "tpot_p95_s": {
+            "canonical": 0.8027807962401761,
+            "full_dag": 0.6950792342615104,
+            "delta_full_minus_canonical": -0.10770156197866565
+          },
+          "completion_fraction": {
+            "canonical": 0.909556313993174,
+            "full_dag": 0.9163822525597269,
+            "delta_full_minus_canonical": 0.0068259385665528916
+          },
+          "backlog_at_window_end": {
+            "canonical": 53,
+            "full_dag": 49,
+            "delta_full_minus_canonical": -4
+          }
+        },
+        "pending": {
+          "canonical": {
+            "count": 53,
+            "p50_s": 88.97794134757487,
+            "p95_s": 261.68468878389115,
+            "max_s": 305.87422926508907
+          },
+          "full_dag": {
+            "count": 49,
+            "p50_s": 79.56297270865025,
+            "p95_s": 210.09990398397542,
+            "max_s": 268.5060135126507
+          }
+        },
+        "paths": {
+          "canonical": {
+            "compatible_dag_paths": 8603,
+            "compatible_dag_edges": 58,
+            "actual_distinct_paths": 3,
+            "routed_requests": 585,
+            "cross_replica_requests": 0,
+            "cross_replica_fraction": 0.0,
+            "gpu_request_counts": {
+              "1": 585,
+              "3": 585,
+              "0": 585,
+              "2": 585,
+              "8": 167,
+              "6": 167,
+              "7": 167,
+              "10": 167,
+              "13": 167,
+              "4": 167,
+              "5": 167,
+              "18": 199,
+              "15": 199,
+              "14": 199,
+              "21": 199,
+              "11": 199,
+              "12": 199,
+              "9": 219,
+              "20": 219,
+              "22": 219,
+              "17": 219,
+              "16": 219,
+              "19": 219
+            }
+          },
+          "full_dag": {
+            "compatible_dag_paths": 8603,
+            "compatible_dag_edges": 58,
+            "actual_distinct_paths": 32,
+            "routed_requests": 584,
+            "cross_replica_requests": 489,
+            "cross_replica_fraction": 0.8373287671232876,
+            "gpu_request_counts": {
+              "1": 584,
+              "3": 584,
+              "0": 584,
+              "2": 584,
+              "8": 148,
+              "6": 276,
+              "7": 276,
+              "10": 276,
+              "13": 276,
+              "4": 276,
+              "5": 156,
+              "18": 236,
+              "15": 194,
+              "14": 241,
+              "21": 214,
+              "11": 227,
+              "12": 219,
+              "9": 200,
+              "20": 191,
+              "22": 188,
+              "17": 215,
+              "16": 209,
+              "19": 209
+            }
+          }
+        }
+      }
+    }
+  }
+}

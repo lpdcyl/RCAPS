@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | `v3_release/` | 当前 V3 主方法的冻结清单、结果复用审计及 Helix 对照 | `README_CN.md` → `manifest.json` → `v3_vs_helix.json` |
 | `v3_core_ablations/` | V3 在 C1 两种拓扑下的放置 × 调度递进消融与论文双栏表格 | `README.md` → `formal_report.md` → `v3_ablation_table.tex` |
+| `v3_pathspace_ablation/` | 固定 V3 布局与实时评分，比较规范路径和完整层兼容 DAG 的核心机制消融 | `README.md` → `formal_report.md` → `formal_analysis.json` |
 | `m1_graph_candidate/` | V3 纯图 M1 的合法性、行为一致性与静态候选证据 | `README_CN.md` → `RESULTS_CN.md` |
 | `m1_simplification/` | 纯图 M1 之前的强静态评价器来源与对照记录 | `README_CN.md` → `RESULTS_CN.md` |
 | `m2_multistage_candidate/` | V3 多级 M2 来源实验与四格受控对照 | `RESULTS_CN.md` → `summary.json` |
