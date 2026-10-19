@@ -1,0 +1,441 @@
+{
+  "protocol": "fixed_window_no_tail_drain",
+  "boundary_layer": 48,
+  "selection_frozen_before_simulation": true,
+  "runtime_sha256": {
+    "rcaps/v3/placement.py": "3ed3913ea352b8a5878468a3e85a1a30106ef774f42e9c5816bbb8b66e80c163",
+    "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6"
+  },
+  "runner_sha256": "04a589c5734bc9c6b2ad6a5230854350b6e356d1a02564a0f8ee8e63468f1008",
+  "cases": {
+    "C1_single": {
+      "scenario": "single",
+      "physical": "examples/simulation/config/single24.ini",
+      "physical_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+      "template_sha256": "f772ffc21608b77270be6401c60adfa1f5dfb23f3dbe8ce210bb2ecbf4b24ab3",
+      "parent": {
+        "case": "C1_single",
+        "state": {
+          "segments": [
+            {
+              "start": 0,
+              "end": 48,
+              "replicas": [
+                [
+                  6,
+                  9,
+                  10,
+                  17
+                ]
+              ]
+            },
+            {
+              "start": 48,
+              "end": 80,
+              "replicas": [
+                [
+                  0,
+                  3,
+                  1,
+                  2,
+                  8,
+                  15,
+                  20
+                ],
+                [
+                  4,
+                  5,
+                  11,
+                  21,
+                  12,
+                  16,
+                  22
+                ],
+                [
+                  7,
+                  14,
+                  18,
+                  23,
+                  13,
+                  19
+                ]
+              ]
+            }
+          ],
+          "lengths": {
+            "6": 12,
+            "9": 12,
+            "10": 12,
+            "17": 12,
+            "0": 6,
+            "3": 6,
+            "1": 4,
+            "2": 4,
+            "8": 4,
+            "15": 4,
+            "20": 4,
+            "4": 4,
+            "5": 6,
+            "11": 5,
+            "21": 5,
+            "12": 4,
+            "16": 4,
+            "22": 4,
+            "7": 4,
+            "14": 7,
+            "18": 7,
+            "23": 6,
+            "13": 4,
+            "19": 4
+          }
+        },
+        "source": "experiments/v3_method_validation/m2_candidates/C1_single/full.json",
+        "source_sha256": "70d1bb1c5e6705fba71cdf142b014bcc714187a3d984358a91df60b9be71eaf3",
+        "selection": "minimum frozen static objective, signature tie break",
+        "static_score": 0.714795774666884,
+        "eligible_candidates": 3
+      },
+      "variants": {
+        "k1": {
+          "state_signature": "{\"lengths\":{\"0\":6,\"1\":4,\"2\":4,\"3\":6,\"6\":12,\"8\":4,\"9\":12,\"10\":12,\"15\":4,\"17\":12,\"20\":4},\"segments\":[{\"end\":48,\"replicas\":[[6,9,10,17]],\"start\":0},{\"end\":80,\"replicas\":[[0,3,1,2,8,15,20]],\"start\":48}]}",
+          "solution_sha256": "d05c7590ff02d9cb7356872ae52fc526fd41f595ac83f65ca2bdbfe6543f705d",
+          "sim_cluster_sha256": "b2f457dcada6d179d19ab6baa3bb3893fb5681e0a42f36a5352fe0d6253e5d22",
+          "active_gpus": 11,
+          "layer_copies": 80,
+          "canonical_paths": 1,
+          "full_dag_paths": 1,
+          "branch_gpu_ids": [
+            [
+              0,
+              3,
+              1,
+              2,
+              8,
+              15,
+              20
+            ]
+          ],
+          "prefix_gpu_ids": [
+            6,
+            9,
+            10,
+            17
+          ]
+        },
+        "k2": {
+          "state_signature": "{\"lengths\":{\"0\":6,\"1\":4,\"2\":4,\"3\":6,\"4\":4,\"5\":6,\"6\":12,\"8\":4,\"9\":12,\"10\":12,\"11\":5,\"12\":4,\"15\":4,\"16\":4,\"17\":12,\"20\":4,\"21\":5,\"22\":4},\"segments\":[{\"end\":48,\"replicas\":[[6,9,10,17]],\"start\":0},{\"end\":80,\"replicas\":[[0,3,1,2,8,15,20],[4,5,11,21,12,16,22]],\"start\":48}]}",
+          "solution_sha256": "1fdca9efdbc07447d74eb615dec2eaf289887181657b96cdce5b9bfd40a3f35f",
+          "sim_cluster_sha256": "c0a5a6707fe5d3ecd94d3ab289edf2d203d4926ce08291693f5466678443ee0c",
+          "active_gpus": 18,
+          "layer_copies": 112,
+          "canonical_paths": 2,
+          "full_dag_paths": 272,
+          "branch_gpu_ids": [
+            [
+              0,
+              3,
+              1,
+              2,
+              8,
+              15,
+              20
+            ],
+            [
+              4,
+              5,
+              11,
+              21,
+              12,
+              16,
+              22
+            ]
+          ],
+          "prefix_gpu_ids": [
+            6,
+            9,
+            10,
+            17
+          ]
+        },
+        "k3": {
+          "state_signature": "{\"lengths\":{\"0\":6,\"1\":4,\"2\":4,\"3\":6,\"4\":4,\"5\":6,\"6\":12,\"7\":4,\"8\":4,\"9\":12,\"10\":12,\"11\":5,\"12\":4,\"13\":4,\"14\":7,\"15\":4,\"16\":4,\"17\":12,\"18\":7,\"19\":4,\"20\":4,\"21\":5,\"22\":4,\"23\":6},\"segments\":[{\"end\":48,\"replicas\":[[6,9,10,17]],\"start\":0},{\"end\":80,\"replicas\":[[0,3,1,2,8,15,20],[4,5,11,21,12,16,22],[7,14,18,23,13,19]],\"start\":48}]}",
+          "solution_sha256": "59e10d31f96faed6bcfeca26906d93d0bf08e43a258664ea0cc81af4ee510d4c",
+          "sim_cluster_sha256": "55c6a2493706f894263234b0fbea70a460632bf8eb6221e3bc062fcefd3721cb",
+          "active_gpus": 24,
+          "layer_copies": 144,
+          "canonical_paths": 3,
+          "full_dag_paths": 10701,
+          "branch_gpu_ids": [
+            [
+              0,
+              3,
+              1,
+              2,
+              8,
+              15,
+              20
+            ],
+            [
+              4,
+              5,
+              11,
+              21,
+              12,
+              16,
+              22
+            ],
+            [
+              7,
+              14,
+              18,
+              23,
+              13,
+              19
+            ]
+          ],
+          "prefix_gpu_ids": [
+            6,
+            9,
+            10,
+            17
+          ]
+        },
+        "equal_gpu_k2": {
+          "state_signature": "{\"lengths\":{\"0\":4,\"1\":3,\"2\":3,\"3\":4,\"4\":3,\"5\":4,\"6\":12,\"7\":3,\"8\":3,\"9\":12,\"10\":12,\"11\":4,\"12\":3,\"13\":3,\"14\":4,\"15\":3,\"16\":2,\"17\":12,\"18\":4,\"19\":2,\"20\":2,\"21\":4,\"22\":2,\"23\":4},\"segments\":[{\"end\":48,\"replicas\":[[6,9,10,17]],\"start\":0},{\"end\":80,\"replicas\":[[0,3,5,11,1,4,8,13,16,20],[14,18,21,23,2,7,12,15,19,22]],\"start\":48}]}",
+          "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+          "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999",
+          "active_gpus": 24,
+          "layer_copies": 112,
+          "canonical_paths": 2,
+          "full_dag_paths": 1024,
+          "branch_gpu_ids": [
+            [
+              0,
+              3,
+              5,
+              11,
+              1,
+              4,
+              8,
+              13,
+              16,
+              20
+            ],
+            [
+              14,
+              18,
+              21,
+              23,
+              2,
+              7,
+              12,
+              15,
+              19,
+              22
+            ]
+          ],
+          "prefix_gpu_ids": [
+            6,
+            9,
+            10,
+            17
+          ]
+        }
+      }
+    },
+    "C1_multi": {
+      "scenario": "multi",
+      "physical": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+      "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+      "template_sha256": "1733392a562d7a860415fed0932826a59b6c5a6b9caec6e45e380762e9e031f0",
+      "parent": {
+        "case": "C1_multi",
+        "state": {
+          "segments": [
+            {
+              "start": 0,
+              "end": 48,
+              "replicas": [
+                [
+                  1,
+                  3,
+                  0,
+                  2
+                ]
+              ]
+            },
+            {
+              "start": 48,
+              "end": 80,
+              "replicas": [
+                [
+                  8,
+                  6,
+                  7,
+                  10,
+                  13,
+                  4,
+                  5
+                ],
+                [
+                  18,
+                  15,
+                  14,
+                  21,
+                  11,
+                  12
+                ],
+                [
+                  9,
+                  20,
+                  22,
+                  17,
+                  16,
+                  19
+                ]
+              ]
+            }
+          ],
+          "lengths": {
+            "1": 12,
+            "3": 12,
+            "0": 12,
+            "2": 12,
+            "8": 4,
+            "6": 4,
+            "7": 4,
+            "10": 4,
+            "13": 4,
+            "4": 6,
+            "5": 6,
+            "18": 6,
+            "15": 7,
+            "14": 7,
+            "21": 4,
+            "11": 4,
+            "12": 4,
+            "9": 4,
+            "20": 4,
+            "22": 4,
+            "17": 7,
+            "16": 7,
+            "19": 6
+          }
+        },
+        "source": "rcaps/v3_layouts/multi/placement.json",
+        "source_sha256": "ac51964500f3cfd621c4ce1963497f56cfad6ab4dbde4924e8180fd3c618cde5",
+        "selection": "frozen V3 single-boundary layout"
+      },
+      "variants": {
+        "k1": {
+          "state_signature": "{\"lengths\":{\"0\":12,\"1\":12,\"2\":12,\"3\":12,\"4\":6,\"5\":6,\"6\":4,\"7\":4,\"8\":4,\"10\":4,\"13\":4},\"segments\":[{\"end\":48,\"replicas\":[[1,3,0,2]],\"start\":0},{\"end\":80,\"replicas\":[[8,6,7,10,13,4,5]],\"start\":48}]}",
+          "solution_sha256": "c8eb622bcdbac7dda6d49606b0698919647501d3286ddbe0d871b868b7b2198a",
+          "sim_cluster_sha256": "5fb19b944de709ecee1e825a2e012d0e917ff48ee06e65a95800a71380b2b3cf",
+          "active_gpus": 11,
+          "layer_copies": 80,
+          "canonical_paths": 1,
+          "full_dag_paths": 1,
+          "branch_gpu_ids": [
+            [
+              8,
+              6,
+              7,
+              10,
+              13,
+              4,
+              5
+            ]
+          ],
+          "prefix_gpu_ids": [
+            1,
+            3,
+            0,
+            2
+          ]
+        },
+        "k2": {
+          "state_signature": "{\"lengths\":{\"0\":12,\"1\":12,\"2\":12,\"3\":12,\"4\":6,\"5\":6,\"6\":4,\"7\":4,\"8\":4,\"10\":4,\"11\":4,\"12\":4,\"13\":4,\"14\":7,\"15\":7,\"18\":6,\"21\":4},\"segments\":[{\"end\":48,\"replicas\":[[1,3,0,2]],\"start\":0},{\"end\":80,\"replicas\":[[8,6,7,10,13,4,5],[18,15,14,21,11,12]],\"start\":48}]}",
+          "solution_sha256": "a8f31f81ce7f312f5e80ed0df8eaf1e34c6b65304e11a8e9e9147665af5fc0b4",
+          "sim_cluster_sha256": "b481724ee67dc07aa4f76cb5d05d3b342908cbf14d09a27d2823d81be63235ac",
+          "active_gpus": 17,
+          "layer_copies": 112,
+          "canonical_paths": 2,
+          "full_dag_paths": 240,
+          "branch_gpu_ids": [
+            [
+              8,
+              6,
+              7,
+              10,
+              13,
+              4,
+              5
+            ],
+            [
+              18,
+              15,
+              14,
+              21,
+              11,
+              12
+            ]
+          ],
+          "prefix_gpu_ids": [
+            1,
+            3,
+            0,
+            2
+          ]
+        },
+        "k3": {
+          "state_signature": "{\"lengths\":{\"0\":12,\"1\":12,\"2\":12,\"3\":12,\"4\":6,\"5\":6,\"6\":4,\"7\":4,\"8\":4,\"9\":4,\"10\":4,\"11\":4,\"12\":4,\"13\":4,\"14\":7,\"15\":7,\"16\":7,\"17\":7,\"18\":6,\"19\":6,\"20\":4,\"21\":4,\"22\":4},\"segments\":[{\"end\":48,\"replicas\":[[1,3,0,2]],\"start\":0},{\"end\":80,\"replicas\":[[8,6,7,10,13,4,5],[18,15,14,21,11,12],[9,20,22,17,16,19]],\"start\":48}]}",
+          "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+          "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+          "active_gpus": 23,
+          "layer_copies": 144,
+          "canonical_paths": 3,
+          "full_dag_paths": 8603,
+          "branch_gpu_ids": [
+            [
+              8,
+              6,
+              7,
+              10,
+              13,
+              4,
+              5
+            ],
+            [
+              18,
+              15,
+              14,
+              21,
+              11,
+              12
+            ],
+            [
+              9,
+              20,
+              22,
+              17,
+              16,
+              19
+            ]
+          ],
+          "prefix_gpu_ids": [
+            1,
+            3,
+            0,
+            2
+          ]
+        }
+      }
+    }
+  }
+}

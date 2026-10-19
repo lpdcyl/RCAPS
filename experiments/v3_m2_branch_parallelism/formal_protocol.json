@@ -1,0 +1,15 @@
+{
+  "selection_time": "after single-seed exploratory load scan, before confirmatory runs",
+  "evaluation_protocol": "fixed_window_no_tail_drain",
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "routing": "canonical complete paths with unchanged live M3 costs",
+  "confirmatory_loads": {
+    "C1_single": [700.0],
+    "C1_multi": [320.0]
+  },
+  "confirmatory_seeds": [1, 2, 3],
+  "reason": "At these loads k1 already shows larger backlog while k2 and k3 remain evaluable; higher exploratory loads can trigger KV capacity assertions and are treated as failure thresholds, not zero-throughput observations.",
+  "primary_comparisons": ["k1 versus k2", "k2 versus k3", "equal_gpu_k2 versus k3 on C1_single"],
+  "metrics": ["output_throughput_tokens_per_s", "completion_fraction", "backlog_at_window_end", "common_completed_ttft_p95_s", "common_completed_tpot_p95_s", "branch_route_counts", "gpu_busy_fraction", "gpu_queue_s_per_exit", "link_occupied_fraction"]
+}
