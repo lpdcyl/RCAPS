@@ -1,31 +1,29 @@
-from setuptools import setup, find_packages
+from pathlib import Path
 
-# To ensure modules are imported correctly, the project's root directory must be in sys.path.
-# The recommended way is to install the project in editable mode:
-#   pip install -e .
-# If that fails (sometimes pip will not update path when using with conda), manually add the
-# project to your PYTHONPATH:
-#   export PYTHONPATH=$PYTHONPATH:/path/to/project
+from setuptools import find_packages, setup
+
+
+ROOT = Path(__file__).resolve().parent
 setup(
-    name="helix",
-    version="1.0.0",
+    name="rcaps-v3",
+    version="3.0.0",
     packages=find_packages(),
     install_requires=[
-        "numpy~=1.26",
-        "networkx~=3.2.1",
-        "matplotlib~=3.8.2",
-        "gurobipy~=11.0.0",
+        "numpy>=1.24,<3",
+        "networkx>=3.2,<4",
+        "matplotlib>=3.8,<4",
+        "scipy>=1.11,<2",
+        "gurobipy==13.0.3",
     ],
-    author="Yixuan Mei",
-    author_email="yixuanm@andrew.cmu.edu",
-    description="Official implementation of Helix.",
-    long_description=open("readme.md").read(),
+    author="RCAPS contributors",
+    description="RCAPS V3 heterogeneous LLM serving research code built on Helix",
+    long_description=(ROOT / "readme.md").read_text(encoding="utf-8"),
     long_description_content_type="text/markdown",
-    url="https://github.com/Thesys-lab/Helix-ASPLOS25",
+    url="https://github.com/lpdcyl/RCAPS",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License",
-        "Operating System :: POSIX :: Linux",
+        "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.10",
 )

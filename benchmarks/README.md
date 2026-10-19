@@ -1,59 +1,32 @@
-# RCAPS benchmark protocol
+# RCAPS V3 benchmark protocol
 
-Run from the repository root with the Python environment in `requirements.txt`.
-The published comparisons use the Helix event simulator, two 24-GPU LLaMA-70B
-topologies, 1800-second fixed windows, zero warmup, and offered loads of 700
-tokens/s (single cluster) or 320 tokens/s (three clusters). A finished window is
-not drained. A result includes the seed, generated request-trace hash, layout
-and simulator-configuration hashes, software versions, arrival count, throughput,
-TTFT/TPOT samples, completion fraction, and end-of-window backlog.
+The active research method is `rcaps_v3`. The registered external systems are
+Helix ILP (`helix`), Swarm (`swarm`), and Separate Pipelines (`separate`).
+V1/V2 adapters are not in the current method registry. Historical experiment
+records remain under `experiments/` for source tracing.
+
+The primary C1 comparison uses the Helix event simulator, 24 heterogeneous
+GPUs, offered loads of 700 token/s (single cluster) and 320 token/s (three
+clusters), paired seeds 0/1/2, 1800-second windows, zero warmup, and no tail
+drain. All methods in a comparison must use the same topology, offered load,
+seed, request trace, and measurement window. The four-method common-load
+experiment instead uses 350/160 token/s and reports its results separately.
 
 ```powershell
-python -m benchmarks.manifest
+python -m benchmarks.manifest --output paper/V3_RUN_MANIFEST.json
 python -m benchmarks.run --dry-run
-python -m benchmarks.run --seeds 0 1 2 --workers 12
+python -m benchmarks.run --methods rcaps_v3 helix --seeds 0 1 2
 python -m benchmarks.compare --baselines helix --seeds 0 1 2
-python -m benchmarks.compare --baselines rcaps --seeds 0 1 2
-python -m benchmarks.paired_stats --seeds 0 1 2
 python -m experiments.v3_release.verify
-python -m experiments.v3_release.reuse_formal
 ```
 
-The default run executes `rcaps_v3` and `helix`; the default comparison uses
-V3 as the main method. Its three-seed C1 result files record audited reuse
-from the multistage candidate; see `experiments/v3_release/README_CN.md`.
-The historical `rcaps` V1 shared-prefix/two-suffix
-adapter is available explicitly for comparison. `rcaps_v2_fixed_structure`
-is a V2 search constrained to a one-GPU prefix and two suffixes; it is an
-ablation of the V2 structure search, not the same method as V1. Existing
-result JSON files keep their original registry metadata for provenance.
-The formal layout INI files have fixed byte hashes; `.gitattributes` prevents
-Git line-ending conversion from changing those hashes on a fresh checkout.
+The runner reuses a window only when its method, protocol, and deployment
+hashes match. The comparison checks paired trace hashes and request identities,
+then reports throughput, P95 TTFT/TPOT, completion, backlog, and latency on
+the jointly observed cohort. P95 values come from samples observed within the
+fixed window; unfinished requests must be considered when interpreting them.
+Seed-level variation from three seeds is descriptive, not a significance claim.
 
-Each new run also records per-query first-token time, mean inter-token time,
-arrival length, and completion status. `benchmarks.compare` verifies paired
-query IDs and inputs before reporting P95 latency on the cohort observed in
-both methods. This sensitivity analysis complements the original fixed-window
-P95; it does not remove censoring of requests without an output sample.
-
-The active methods are:
-
-| Name | Role |
-| --- | --- |
-| `rcaps_v3` | Default main method |
-| `helix` | Default external baseline |
-| `rcaps_v2` | Explicit historical V2 comparison |
-| `rcaps` | Explicit V1 two-suffix comparison |
-| `rcaps_v2_fixed_structure` | Explicit V2 structure ablation |
-
-To run the two internal comparisons explicitly:
-
-```powershell
-python -m benchmarks.run --methods rcaps rcaps_v2_fixed_structure --scenarios single multi --seeds 0 1 2
-python -m benchmarks.compare --baselines rcaps rcaps_v2_fixed_structure --seeds 0 1 2
-```
-
-V1-specific ablation code and result files remain for historical provenance,
-but they are no longer registered as current benchmark methods. The V2
-structure comparison is documented in
-[the V2 experiment](../experiments/adaptive_v2/README.md).
+V3's adopted INI files are in `rcaps/v3_layouts/`. Their identity and source
+candidate are recorded in `experiments/v3_release/manifest.json`. The frozen
+V3 code and layout byte hashes must not be changed as part of document cleanup.

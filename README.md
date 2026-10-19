@@ -1,40 +1,58 @@
-# RCAPS
+# RCAPS V3
 
-**Resource Contention-Aware Placement and Scheduling for Heterogeneous LLM Serving**
+RCAPS V3 is the **current research method** for heterogeneous LLM serving. It
+combines a physical-resource and layer-compatibility graph (M1), multistage
+shared/replicated placement (M2), and live resource-aware DAG routing (M3).
+M1 defines legal execution relationships; performance claims concern M2, M3,
+and the complete system. Results are from the Helix event simulator, not a
+physical GPU deployment.
 
-The default RCAPS method is V3. Its graph-only M1 defines physical resources and legal layer-compatible execution edges. Multistage M2 searches one or two branch boundaries with a static heterogeneous-resource objective; the existing queue-aware DAG scheduler remains M3. The adopted search configuration allows any GPU type in the initial shared segment, although the selected C1 layouts still use A100s there. V2 and V1 remain available as explicit historical comparisons. Measurements use the Helix event simulator on heterogeneous LLaMA-70B configurations.
+## Start here
 
-## Project structure
-
-| Directory | Role |
+| Purpose | Entry |
 | --- | --- |
-| [`rcaps/`](rcaps/) | Frozen V3 method and layouts in `rcaps/v3/` and `rcaps/v3_layouts/`; V2 and V1 layouts remain available |
-| [`baselines/`](baselines/) | Baseline adapters; Helix placement and max-flow scheduling are registered here |
-| [`benchmarks/`](benchmarks/) | Shared fixed-window simulator protocol, method registry, paired runner, and comparison |
-| [`experiments/`](experiments/) | Historical experiments, paper result JSON, analysis, figures, and compatibility entry points |
-| [`simulator/`](simulator/) | Original Helix simulator used by all methods |
+| V3 implementation and adopted layouts | [`rcaps/v3/`](rcaps/v3/), [`rcaps/v3_layouts/`](rcaps/v3_layouts/) |
+| Fixed-window protocol and baseline adapters | [`benchmarks/README.md`](benchmarks/README.md), [`baselines/`](baselines/) |
+| Frozen V3 identity and V3–Helix evidence | [`experiments/v3_release/README_CN.md`](experiments/v3_release/README_CN.md) |
+| V3 experiment index | [`experiments/README.md`](experiments/README.md) |
+| Paper evidence and claim boundaries | [`paper/V3_EVIDENCE_CN.md`](paper/V3_EVIDENCE_CN.md) |
 
-Start with the [V3 release and evidence](experiments/v3_release/README_CN.md) and the [benchmark protocol](benchmarks/README.md). The [experiment navigation](experiments/README.md) separates V3 from historical V2 and V1 evidence. V1 claims and limitations remain documented in the [historical framework](paper/RESEARCH_FRAMEWORK_V1_CN.md).
+The adopted V3 rule is `multi_any`: M2 searches at most two branch boundaries
+and permits any GPU type in the initial shared segment. A selected layout may
+still have only one boundary. The C1 single-cluster layout is `1→4→3`; the C1
+three-cluster layout is `1→3`.
 
-The V3 layouts and audited seed-0/1/2 candidate windows are included in this branch. V2 remains registered as `rcaps_v2`; the V1 release remains available at tag `v1.0.0-research` and as the explicit `rcaps` comparison method.
+## Run the current method
 
-## Run
+Install [`requirements.txt`](requirements.txt), then run from the repository
+root. Layout regeneration needs a working Gurobi license; the adopted layouts
+are included.
 
-Install `requirements.txt` in a Python environment. A working Gurobi 13 license is required only to regenerate layouts. Run commands from the repository root:
-
-```bash
+```powershell
+python -m experiments.v3_release.verify
 python -m benchmarks.run --dry-run
-python -m benchmarks.run
-python -m benchmarks.compare
-python -m benchmarks.compare --baselines rcaps
+python -m benchmarks.run --methods rcaps_v3 helix --seeds 0 1 2
+python -m benchmarks.compare --baselines helix --seeds 0 1 2
 ```
 
-Without `--methods`, the runner selects `rcaps_v3` and `helix`. The comparison script defaults to V3 versus Helix; use `--baselines rcaps_v2` or `--baselines rcaps` for historical methods. Both commands use the same offered load, seed, time window, and trace generation. Results go to `benchmarks/runs/<scenario>/seed<seed>/<method>.json`; the runner checks layout identity before reuse, and the comparison script checks paired traces and protocol fields. V3 formal windows are explicitly marked as audited reuse from the identical multistage candidate deployment and execution semantics. Existing V2 JSON files retain their historical metadata.
+The benchmark defaults are V3 and Helix ILP on the C1 single- and
+three-cluster topologies, with offered loads of 700/320 token/s, seeds 0/1/2,
+1800-second windows, zero warmup, and no tail drain. Swarm and Separate
+Pipelines are separate external comparisons at a common lower load; see the
+[four-method report](experiments/v3_four_method_comparison/RESULTS_CN.md).
+The runner checks layout identity before reusing a result, and comparison
+checks the paired request traces.
 
-The adopted layouts are included. The trace-generator pickle files are required simulator inputs. Paper JSON, summary tables, plotting code, and PDF/PNG/SVG figures are included; large checkpoints and logs are omitted. Real GPU execution requires separately obtained model weights and tokenizer files. Reported results are from the event simulator, not physical GPUs.
+## Repository scope
 
-Historical V1 records retain their original `green` and `integrated` keys and filenames so their calculations remain reproducible. Old `experiments.critical_graph` and `experiments.queue_dag` imports remain as compatibility entry points.
+`rcaps/placement/`, `rcaps/scheduling/`, and some older experiment inputs
+remain because the frozen V3 implementation and its provenance audit use
+them. V1/V2 adapters and results are **historical records**, not current
+benchmark methods or paper claims. Do not combine their measurements with V3
+tables. The pre-cleanup snapshot is recoverable from the GitHub branch
+[`archive/pre-v3-main-2026-10-19`](https://github.com/lpdcyl/RCAPS/tree/archive/pre-v3-main-2026-10-19).
 
-## Provenance
-
-This repository includes the Helix simulator and baseline configuration code under the original [LICENSE](LICENSE). See [the original Helix README](HELIX_README.md) and [Helix ASPLOS 2025 repository](https://github.com/Thesys-lab/Helix-ASPLOS25).
+This repository includes the original Helix simulator and artifact inputs.
+See [`LICENSE`](LICENSE), [`HELIX_README.md`](HELIX_README.md), and the
+[Helix ASPLOS 2025 repository](https://github.com/Thesys-lab/Helix-ASPLOS25)
+for upstream provenance.
