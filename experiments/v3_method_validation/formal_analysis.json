@@ -1,0 +1,1126 @@
+{
+  "phase": "formal",
+  "protocol": {
+    "loads": {
+      "single": 700.0,
+      "multi": 320.0
+    },
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "tail_drain": false
+  },
+  "audit_sha256": "2ad06ddfba350397ca1307ce9591461c5c941dda594eda950933734155ac51af",
+  "scenarios": {
+    "single": {
+      "seeds": {
+        "0": {
+          "sources": {
+            "HH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed0/HH.json",
+              "sha256": "95100629f76a793e45109c5e408197474e5b188ee4eda4e07c532a4961752ad5",
+              "trace_sha256": "7ee10f4e3e29ccb02b3f2c7445e48f44ee9af68b44c1a04e61463a78c7925f5e",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed0/HH.log",
+              "existing": false
+            },
+            "HR": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed0/HR.json",
+              "sha256": "7d05ce73a8ba3da2969ed918115bd982d77f7d8e91153c6d52239e0689cd1d84",
+              "trace_sha256": "7ee10f4e3e29ccb02b3f2c7445e48f44ee9af68b44c1a04e61463a78c7925f5e",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed0/HR.log",
+              "existing": false
+            },
+            "RH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed0/RH.json",
+              "sha256": "3ef6fc81f7f2639a5a5b42c88e9073cceb25db1aa17f4ab92da150e36fe6682f",
+              "trace_sha256": "7ee10f4e3e29ccb02b3f2c7445e48f44ee9af68b44c1a04e61463a78c7925f5e",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed0/RH.log",
+              "existing": false
+            },
+            "RR": {
+              "status": "reused",
+              "source": "benchmarks/runs/single/seed0/rcaps_v3.json",
+              "sha256": "c0b782a952c17f3ec7daf37dc65514e8b202410d277d0e2a8aea51b2b80b59c3",
+              "trace_sha256": "7ee10f4e3e29ccb02b3f2c7445e48f44ee9af68b44c1a04e61463a78c7925f5e",
+              "runtime_sha256": {
+                "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+                "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+                "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+                "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+                "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+                "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+                "simulator/scheduler/global_maxflow/global_maxflow_scheduler.py": "5982c3ff218e81bb08256600413c8c154801bea95d612f324b001dfd45823647",
+                "simulator/scheduler/global_maxflow/scheduler_core.py": "076e530d87aea3f30cd7f7a7bd93aefd76d06c15c165f111987bd93f96cd126b"
+              }
+            }
+          },
+          "metrics": {
+            "HH": {
+              "output_throughput_tokens_per_s": 141.5677777777778,
+              "ttft_p95_s": 6.398921780319483,
+              "tpot_p95_s": 1.6664643282103238,
+              "completion_fraction": 0.8275328692962104,
+              "backlog_at_window_end": 223
+            },
+            "HR": {
+              "output_throughput_tokens_per_s": 148.27,
+              "ttft_p95_s": 5.5356556813602085,
+              "tpot_p95_s": 1.0545999592888289,
+              "completion_fraction": 0.8824439288476411,
+              "backlog_at_window_end": 152
+            },
+            "RH": {
+              "output_throughput_tokens_per_s": 150.6611111111111,
+              "ttft_p95_s": 3.744200625543499,
+              "tpot_p95_s": 0.8608250145167392,
+              "completion_fraction": 0.9064191802010828,
+              "backlog_at_window_end": 121
+            },
+            "RR": {
+              "output_throughput_tokens_per_s": 154.52444444444444,
+              "ttft_p95_s": 3.5854141462019697,
+              "tpot_p95_s": 0.5553963566444227,
+              "completion_fraction": 0.9373549883990719,
+              "backlog_at_window_end": 81
+            }
+          },
+          "pending": {
+            "HH": {
+              "count": 223,
+              "p50_s": 197.13168044246322,
+              "p95_s": 583.9206267981108,
+              "max_s": 862.677273334186
+            },
+            "HR": {
+              "count": 152,
+              "p50_s": 133.37936773745935,
+              "p95_s": 372.02337984700716,
+              "max_s": 862.677273334186
+            },
+            "RH": {
+              "count": 121,
+              "p50_s": 92.53843765678857,
+              "p95_s": 306.4864822099946,
+              "max_s": 394.7719268890894
+            },
+            "RR": {
+              "count": 81,
+              "p50_s": 58.23857714038877,
+              "p95_s": 202.05305054807036,
+              "max_s": 262.06460285347885
+            }
+          },
+          "route_audit": {
+            "HH": {
+              "actual_distinct_paths": 6,
+              "routed_requests": 1291,
+              "checked": true
+            },
+            "HR": {
+              "actual_distinct_paths": 9,
+              "routed_requests": 1291,
+              "checked": true
+            },
+            "RH": {
+              "actual_distinct_paths": 8,
+              "routed_requests": 1291,
+              "checked": true
+            },
+            "RR": {
+              "actual_distinct_paths": 502,
+              "routed_requests": 1291,
+              "checked": true
+            }
+          },
+          "effects": {
+            "HH->HR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 6.702222222222218,
+                "ttft_p95_s": -0.8632660989592749,
+                "tpot_p95_s": -0.6118643689214949,
+                "completion_fraction": 0.05491105955143072,
+                "backlog_at_window_end": -71
+              },
+              "common_completed": {
+                "count": 1070,
+                "ttft_s": {
+                  "count": 1070,
+                  "left_p95_s": 6.260237378531723,
+                  "right_p95_s": 5.528819038442185
+                },
+                "tpot_s": {
+                  "count": 1070,
+                  "left_p95_s": 1.670327355731505,
+                  "right_p95_s": 1.0578685938114523
+                }
+              }
+            },
+            "HH->RH": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 9.093333333333305,
+                "ttft_p95_s": -2.6547211547759844,
+                "tpot_p95_s": -0.8056393136935845,
+                "completion_fraction": 0.07888631090487241,
+                "backlog_at_window_end": -102
+              },
+              "common_completed": {
+                "count": 1070,
+                "ttft_s": {
+                  "count": 1070,
+                  "left_p95_s": 6.260237378531723,
+                  "right_p95_s": 3.830190949731187
+                },
+                "tpot_s": {
+                  "count": 1070,
+                  "left_p95_s": 1.670327355731505,
+                  "right_p95_s": 0.8630038936293828
+                }
+              }
+            },
+            "HR->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 6.254444444444431,
+                "ttft_p95_s": -1.9502415351582387,
+                "tpot_p95_s": -0.4992036026444062,
+                "completion_fraction": 0.05491105955143083,
+                "backlog_at_window_end": -71
+              },
+              "common_completed": {
+                "count": 1141,
+                "ttft_s": {
+                  "count": 1141,
+                  "left_p95_s": 5.539497939684281,
+                  "right_p95_s": 3.6475071611818066
+                },
+                "tpot_s": {
+                  "count": 1141,
+                  "left_p95_s": 1.05516679416063,
+                  "right_p95_s": 0.5562733381511495
+                }
+              }
+            },
+            "RH->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 3.863333333333344,
+                "ttft_p95_s": -0.15878647934152923,
+                "tpot_p95_s": -0.30542865787231654,
+                "completion_fraction": 0.030935808197989134,
+                "backlog_at_window_end": -40
+              },
+              "common_completed": {
+                "count": 1172,
+                "ttft_s": {
+                  "count": 1172,
+                  "left_p95_s": 3.8251083544813613,
+                  "right_p95_s": 3.6368214136256802
+                },
+                "tpot_s": {
+                  "count": 1172,
+                  "left_p95_s": 0.8612182526797498,
+                  "right_p95_s": 0.5557331574531501
+                }
+              }
+            }
+          },
+          "interaction": {
+            "output_throughput_tokens_per_s": -2.8388888888888744,
+            "ttft_p95_s": 0.7044796196177456,
+            "tpot_p95_s": 0.3064357110491782,
+            "completion_fraction": -0.023975251353441585,
+            "backlog_at_window_end": 31
+          },
+          "trace_sha256": "7ee10f4e3e29ccb02b3f2c7445e48f44ee9af68b44c1a04e61463a78c7925f5e"
+        },
+        "1": {
+          "sources": {
+            "HH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed1/HH.json",
+              "sha256": "6464338578420129a1be6cb61a3d3c6b140d243a0430068bd09cbc34d0ab4db4",
+              "trace_sha256": "7125daaca557cc88e906fa2dd0f36e001b7e064bb176dd30edced0fd7d7545f6",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed1/HH.log",
+              "existing": false
+            },
+            "HR": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed1/HR.json",
+              "sha256": "8c7d06458f30c10cb99a13d4d1364af02973935b1ff37c77d2da75ec40ee0b1b",
+              "trace_sha256": "7125daaca557cc88e906fa2dd0f36e001b7e064bb176dd30edced0fd7d7545f6",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed1/HR.log",
+              "existing": false
+            },
+            "RH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed1/RH.json",
+              "sha256": "dc246dda76a4e51d35c74effaac3881bb9bd1d886191eaae9bf59703601326c0",
+              "trace_sha256": "7125daaca557cc88e906fa2dd0f36e001b7e064bb176dd30edced0fd7d7545f6",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed1/RH.log",
+              "existing": false
+            },
+            "RR": {
+              "status": "reused",
+              "source": "benchmarks/runs/single/seed1/rcaps_v3.json",
+              "sha256": "fa99d53600d3237988fe709b74e1751ac7b3b37aa822d7d5a91797d955a3df67",
+              "trace_sha256": "7125daaca557cc88e906fa2dd0f36e001b7e064bb176dd30edced0fd7d7545f6",
+              "runtime_sha256": {
+                "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+                "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+                "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+                "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+                "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+                "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+                "simulator/scheduler/global_maxflow/global_maxflow_scheduler.py": "5982c3ff218e81bb08256600413c8c154801bea95d612f324b001dfd45823647",
+                "simulator/scheduler/global_maxflow/scheduler_core.py": "076e530d87aea3f30cd7f7a7bd93aefd76d06c15c165f111987bd93f96cd126b"
+              }
+            }
+          },
+          "metrics": {
+            "HH": {
+              "output_throughput_tokens_per_s": 145.885,
+              "ttft_p95_s": 6.599190518599925,
+              "tpot_p95_s": 1.7076062446955207,
+              "completion_fraction": 0.8086754453911696,
+              "backlog_at_window_end": 247
+            },
+            "HR": {
+              "output_throughput_tokens_per_s": 152.81055555555557,
+              "ttft_p95_s": 5.736207317393735,
+              "tpot_p95_s": 1.103346885992456,
+              "completion_fraction": 0.8636715724244771,
+              "backlog_at_window_end": 176
+            },
+            "RH": {
+              "output_throughput_tokens_per_s": 156.06,
+              "ttft_p95_s": 3.8828081787138893,
+              "tpot_p95_s": 0.8783197354191367,
+              "completion_fraction": 0.8900077459333849,
+              "backlog_at_window_end": 142
+            },
+            "RR": {
+              "output_throughput_tokens_per_s": 160.7411111111111,
+              "ttft_p95_s": 3.493568081316584,
+              "tpot_p95_s": 0.5587526605913752,
+              "completion_fraction": 0.924864446165763,
+              "backlog_at_window_end": 97
+            }
+          },
+          "pending": {
+            "HH": {
+              "count": 247,
+              "p50_s": 189.18793071231403,
+              "p95_s": 603.5241338807675,
+              "max_s": 769.4031933478159
+            },
+            "HR": {
+              "count": 176,
+              "p50_s": 123.49444044532322,
+              "p95_s": 358.56090631629127,
+              "max_s": 434.66386914034456
+            },
+            "RH": {
+              "count": 142,
+              "p50_s": 110.50868289725372,
+              "p95_s": 311.8247027179151,
+              "max_s": 408.1399023492095
+            },
+            "RR": {
+              "count": 97,
+              "p50_s": 79.59611624598438,
+              "p95_s": 207.0596792648893,
+              "max_s": 384.8961636805948
+            }
+          },
+          "route_audit": {
+            "HH": {
+              "actual_distinct_paths": 6,
+              "routed_requests": 1288,
+              "checked": true
+            },
+            "HR": {
+              "actual_distinct_paths": 9,
+              "routed_requests": 1287,
+              "checked": true
+            },
+            "RH": {
+              "actual_distinct_paths": 8,
+              "routed_requests": 1290,
+              "checked": true
+            },
+            "RR": {
+              "actual_distinct_paths": 506,
+              "routed_requests": 1289,
+              "checked": true
+            }
+          },
+          "effects": {
+            "HH->HR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 6.925555555555576,
+                "ttft_p95_s": -0.8629832012061902,
+                "tpot_p95_s": -0.6042593587030647,
+                "completion_fraction": 0.054996127033307474,
+                "backlog_at_window_end": -71
+              },
+              "common_completed": {
+                "count": 1044,
+                "ttft_s": {
+                  "count": 1044,
+                  "left_p95_s": 6.465211395522727,
+                  "right_p95_s": 5.699923925333523
+                },
+                "tpot_s": {
+                  "count": 1044,
+                  "left_p95_s": 1.6635225759985317,
+                  "right_p95_s": 1.0771686750109513
+                }
+              }
+            },
+            "HH->RH": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 10.175000000000011,
+                "ttft_p95_s": -2.7163823398860356,
+                "tpot_p95_s": -0.829286509276384,
+                "completion_fraction": 0.0813323005422153,
+                "backlog_at_window_end": -105
+              },
+              "common_completed": {
+                "count": 1044,
+                "ttft_s": {
+                  "count": 1044,
+                  "left_p95_s": 6.465211395522727,
+                  "right_p95_s": 3.8351308119179004
+                },
+                "tpot_s": {
+                  "count": 1044,
+                  "left_p95_s": 1.6635225759985317,
+                  "right_p95_s": 0.8789965402571993
+                }
+              }
+            },
+            "HR->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 7.930555555555543,
+                "ttft_p95_s": -2.2426392360771508,
+                "tpot_p95_s": -0.5445942254010808,
+                "completion_fraction": 0.0611928737412859,
+                "backlog_at_window_end": -79
+              },
+              "common_completed": {
+                "count": 1115,
+                "ttft_s": {
+                  "count": 1115,
+                  "left_p95_s": 5.7279869796322815,
+                  "right_p95_s": 3.508296109659284
+                },
+                "tpot_s": {
+                  "count": 1115,
+                  "left_p95_s": 1.077467394584891,
+                  "right_p95_s": 0.5585097936512938
+                }
+              }
+            },
+            "RH->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 4.6811111111111074,
+                "ttft_p95_s": -0.38924009739730536,
+                "tpot_p95_s": -0.3195670748277615,
+                "completion_fraction": 0.03485670023237808,
+                "backlog_at_window_end": -45
+              },
+              "common_completed": {
+                "count": 1149,
+                "ttft_s": {
+                  "count": 1149,
+                  "left_p95_s": 3.8334325171171253,
+                  "right_p95_s": 3.503163091746818
+                },
+                "tpot_s": {
+                  "count": 1149,
+                  "left_p95_s": 0.8778779871054302,
+                  "right_p95_s": 0.5577538112670487
+                }
+              }
+            }
+          },
+          "interaction": {
+            "output_throughput_tokens_per_s": -2.2444444444444684,
+            "ttft_p95_s": 0.47374310380888485,
+            "tpot_p95_s": 0.2846922838753032,
+            "completion_fraction": -0.020139426800929394,
+            "backlog_at_window_end": 26
+          },
+          "trace_sha256": "7125daaca557cc88e906fa2dd0f36e001b7e064bb176dd30edced0fd7d7545f6"
+        },
+        "2": {
+          "sources": {
+            "HH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed2/HH.json",
+              "sha256": "9d9be450fc93601e56fd8f757882aca2afee2e095f7d9a0e3dd2ed2b7781cf5d",
+              "trace_sha256": "6e34d3fee9ea7ec2e6ddbcf0fe6df28d74b33455e80b411f5075d64b08c0ab28",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed2/HH.log",
+              "existing": false
+            },
+            "HR": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed2/HR.json",
+              "sha256": "5db7faec5fd6eba074cf8b4732053b6ee041d22150f970e33d145928f15ca9e0",
+              "trace_sha256": "6e34d3fee9ea7ec2e6ddbcf0fe6df28d74b33455e80b411f5075d64b08c0ab28",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed2/HR.log",
+              "existing": false
+            },
+            "RH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/single/seed2/RH.json",
+              "sha256": "4a858af2608570ff4e672afe1bb1e0cbcb1fa60de983d87868e978ebc02d11a3",
+              "trace_sha256": "6e34d3fee9ea7ec2e6ddbcf0fe6df28d74b33455e80b411f5075d64b08c0ab28",
+              "log": "experiments/v3_method_validation/runs/formal/single/seed2/RH.log",
+              "existing": false
+            },
+            "RR": {
+              "status": "reused",
+              "source": "benchmarks/runs/single/seed2/rcaps_v3.json",
+              "sha256": "2969c8024d74b5f62e8228ff7820b0851ad4ddadc14c40cac0cadaac6c528186",
+              "trace_sha256": "6e34d3fee9ea7ec2e6ddbcf0fe6df28d74b33455e80b411f5075d64b08c0ab28",
+              "runtime_sha256": {
+                "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+                "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+                "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+                "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+                "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+                "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+                "simulator/scheduler/global_maxflow/global_maxflow_scheduler.py": "5982c3ff218e81bb08256600413c8c154801bea95d612f324b001dfd45823647",
+                "simulator/scheduler/global_maxflow/scheduler_core.py": "076e530d87aea3f30cd7f7a7bd93aefd76d06c15c165f111987bd93f96cd126b"
+              }
+            }
+          },
+          "metrics": {
+            "HH": {
+              "output_throughput_tokens_per_s": 139.3661111111111,
+              "ttft_p95_s": 6.725523762558377,
+              "tpot_p95_s": 1.7429101023750648,
+              "completion_fraction": 0.8224151539068666,
+              "backlog_at_window_end": 225
+            },
+            "HR": {
+              "output_throughput_tokens_per_s": 145.61166666666668,
+              "ttft_p95_s": 6.134697820922376,
+              "tpot_p95_s": 1.1429114573666106,
+              "completion_fraction": 0.8768745067087609,
+              "backlog_at_window_end": 156
+            },
+            "RH": {
+              "output_throughput_tokens_per_s": 148.335,
+              "ttft_p95_s": 3.9690989622003365,
+              "tpot_p95_s": 0.8746310580334454,
+              "completion_fraction": 0.8981846882399369,
+              "backlog_at_window_end": 129
+            },
+            "RR": {
+              "output_throughput_tokens_per_s": 152.67444444444445,
+              "ttft_p95_s": 3.6605204544857313,
+              "tpot_p95_s": 0.5637527140387167,
+              "completion_fraction": 0.930544593528019,
+              "backlog_at_window_end": 88
+            }
+          },
+          "pending": {
+            "HH": {
+              "count": 225,
+              "p50_s": 191.95923015044104,
+              "p95_s": 678.4965360296823,
+              "max_s": 960.5398600274673
+            },
+            "HR": {
+              "count": 156,
+              "p50_s": 122.14035917012814,
+              "p95_s": 378.6695883973546,
+              "max_s": 721.6565450332803
+            },
+            "RH": {
+              "count": 129,
+              "p50_s": 113.34851257324794,
+              "p95_s": 325.05520780055554,
+              "max_s": 490.2210679632685
+            },
+            "RR": {
+              "count": 88,
+              "p50_s": 68.58711138481885,
+              "p95_s": 209.4086322384634,
+              "max_s": 453.46963585735966
+            }
+          },
+          "route_audit": {
+            "HH": {
+              "actual_distinct_paths": 6,
+              "routed_requests": 1264,
+              "checked": true
+            },
+            "HR": {
+              "actual_distinct_paths": 9,
+              "routed_requests": 1265,
+              "checked": true
+            },
+            "RH": {
+              "actual_distinct_paths": 8,
+              "routed_requests": 1266,
+              "checked": true
+            },
+            "RR": {
+              "actual_distinct_paths": 512,
+              "routed_requests": 1266,
+              "checked": true
+            }
+          },
+          "effects": {
+            "HH->HR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 6.245555555555569,
+                "ttft_p95_s": -0.5908259416360009,
+                "tpot_p95_s": -0.5999986450084542,
+                "completion_fraction": 0.05445935280189429,
+                "backlog_at_window_end": -69
+              },
+              "common_completed": {
+                "count": 1042,
+                "ttft_s": {
+                  "count": 1042,
+                  "left_p95_s": 6.627759331026674,
+                  "right_p95_s": 6.064067418982601
+                },
+                "tpot_s": {
+                  "count": 1042,
+                  "left_p95_s": 1.6938763082379307,
+                  "right_p95_s": 1.073122996580546
+                }
+              }
+            },
+            "HH->RH": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 8.968888888888898,
+                "ttft_p95_s": -2.7564248003580407,
+                "tpot_p95_s": -0.8682790443416194,
+                "completion_fraction": 0.07576953433307032,
+                "backlog_at_window_end": -96
+              },
+              "common_completed": {
+                "count": 1042,
+                "ttft_s": {
+                  "count": 1042,
+                  "left_p95_s": 6.627759331026674,
+                  "right_p95_s": 3.984903332850244
+                },
+                "tpot_s": {
+                  "count": 1042,
+                  "left_p95_s": 1.6938763082379307,
+                  "right_p95_s": 0.8571433704215904
+                }
+              }
+            },
+            "HR->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 7.062777777777768,
+                "ttft_p95_s": -2.474177366436645,
+                "tpot_p95_s": -0.5791587433278939,
+                "completion_fraction": 0.05367008681925811,
+                "backlog_at_window_end": -68
+              },
+              "common_completed": {
+                "count": 1111,
+                "ttft_s": {
+                  "count": 1111,
+                  "left_p95_s": 6.121961433364788,
+                  "right_p95_s": 3.696248426207717
+                },
+                "tpot_s": {
+                  "count": 1111,
+                  "left_p95_s": 1.0724990870656923,
+                  "right_p95_s": 0.5560107849194235
+                }
+              }
+            },
+            "RH->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 4.339444444444439,
+                "ttft_p95_s": -0.30857850771460527,
+                "tpot_p95_s": -0.3108783439947287,
+                "completion_fraction": 0.03235990528808208,
+                "backlog_at_window_end": -41
+              },
+              "common_completed": {
+                "count": 1138,
+                "ttft_s": {
+                  "count": 1138,
+                  "left_p95_s": 3.9870819244605125,
+                  "right_p95_s": 3.6720115818847368
+                },
+                "tpot_s": {
+                  "count": 1138,
+                  "left_p95_s": 0.8554974099205498,
+                  "right_p95_s": 0.5560056447878384
+                }
+              }
+            }
+          },
+          "interaction": {
+            "output_throughput_tokens_per_s": -1.9061111111111302,
+            "ttft_p95_s": 0.2822474339213956,
+            "tpot_p95_s": 0.28912030101372554,
+            "completion_fraction": -0.02209944751381221,
+            "backlog_at_window_end": 28
+          },
+          "trace_sha256": "6e34d3fee9ea7ec2e6ddbcf0fe6df28d74b33455e80b411f5075d64b08c0ab28"
+        }
+      },
+      "complete_four_cell_seeds": [
+        "0",
+        "1",
+        "2"
+      ]
+    },
+    "multi": {
+      "seeds": {
+        "0": {
+          "sources": {
+            "HH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/multi/seed0/HH.json",
+              "sha256": "d2e14a525ee59b902977a6ebe45c1007741e477a16231b113970921f28c0c110",
+              "trace_sha256": "b62ab4fcb5534f9b34c85ba99ef5d261a8dbfab56e21567caa8eec60da3bfc33",
+              "log": "experiments/v3_method_validation/runs/formal/multi/seed0/HH.log",
+              "existing": false
+            },
+            "HR": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/multi/seed0/HR.json",
+              "sha256": "eb429d84b238b8b16f2ee77bf0a8680a523404eb1970c52c1754d4089fc662ff",
+              "trace_sha256": "b62ab4fcb5534f9b34c85ba99ef5d261a8dbfab56e21567caa8eec60da3bfc33",
+              "log": "experiments/v3_method_validation/runs/formal/multi/seed0/HR.log",
+              "existing": false
+            },
+            "RR": {
+              "status": "reused",
+              "source": "benchmarks/runs/multi/seed0/rcaps_v3.json",
+              "sha256": "9b9697eb87f4377ed571baee2ebcce4e99cf717b5274fe09a91488308f25e932",
+              "trace_sha256": "b62ab4fcb5534f9b34c85ba99ef5d261a8dbfab56e21567caa8eec60da3bfc33",
+              "runtime_sha256": {
+                "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+                "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+                "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+                "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+                "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+                "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+                "simulator/scheduler/global_maxflow/global_maxflow_scheduler.py": "5982c3ff218e81bb08256600413c8c154801bea95d612f324b001dfd45823647",
+                "simulator/scheduler/global_maxflow/scheduler_core.py": "076e530d87aea3f30cd7f7a7bd93aefd76d06c15c165f111987bd93f96cd126b"
+              }
+            }
+          },
+          "metrics": {
+            "HH": {
+              "output_throughput_tokens_per_s": 59.324444444444445,
+              "ttft_p95_s": 15.867151985799817,
+              "tpot_p95_s": 3.2296279199337863,
+              "completion_fraction": 0.6832191780821918,
+              "backlog_at_window_end": 185
+            },
+            "HR": {
+              "output_throughput_tokens_per_s": 65.75222222222222,
+              "ttft_p95_s": 10.36019264017159,
+              "tpot_p95_s": 2.0023355058075825,
+              "completion_fraction": 0.8047945205479452,
+              "backlog_at_window_end": 114
+            },
+            "RR": {
+              "output_throughput_tokens_per_s": 71.71277777777777,
+              "ttft_p95_s": 5.228783675305078,
+              "tpot_p95_s": 0.6992093827588951,
+              "completion_fraction": 0.9212328767123288,
+              "backlog_at_window_end": 46
+            }
+          },
+          "pending": {
+            "HH": {
+              "count": 185,
+              "p50_s": 350.5719199636146,
+              "p95_s": 1206.424277532126,
+              "max_s": 1663.3672937655683
+            },
+            "HR": {
+              "count": 114,
+              "p50_s": 187.35419737428606,
+              "p95_s": 626.2600905841849,
+              "max_s": 789.5861984177909
+            },
+            "RR": {
+              "count": 46,
+              "p50_s": 80.06644779193584,
+              "p95_s": 230.24714503356427,
+              "max_s": 258.36402339502274
+            }
+          },
+          "route_audit": {
+            "HH": {
+              "actual_distinct_paths": 2,
+              "routed_requests": 582,
+              "checked": true
+            },
+            "HR": {
+              "actual_distinct_paths": 5,
+              "routed_requests": 582,
+              "checked": true
+            },
+            "RR": {
+              "actual_distinct_paths": 32,
+              "routed_requests": 583,
+              "checked": true
+            }
+          },
+          "effects": {
+            "HH->HR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 6.42777777777777,
+                "ttft_p95_s": -5.506959345628227,
+                "tpot_p95_s": -1.2272924141262038,
+                "completion_fraction": 0.12157534246575341,
+                "backlog_at_window_end": -71
+              },
+              "common_completed": {
+                "count": 393,
+                "ttft_s": {
+                  "count": 393,
+                  "left_p95_s": 14.923818092458493,
+                  "right_p95_s": 9.509922117292444
+                },
+                "tpot_s": {
+                  "count": 393,
+                  "left_p95_s": 3.2655111473369995,
+                  "right_p95_s": 1.9110809571472136
+                }
+              }
+            },
+            "HR->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 5.960555555555558,
+                "ttft_p95_s": -5.131408964866512,
+                "tpot_p95_s": -1.3031261230486875,
+                "completion_fraction": 0.11643835616438358,
+                "backlog_at_window_end": -68
+              },
+              "common_completed": {
+                "count": 470,
+                "ttft_s": {
+                  "count": 470,
+                  "left_p95_s": 9.762004339712457,
+                  "right_p95_s": 5.1295212154299525
+                },
+                "tpot_s": {
+                  "count": 470,
+                  "left_p95_s": 1.8747781070074814,
+                  "right_p95_s": 0.6993352889167327
+                }
+              }
+            }
+          },
+          "interaction": null,
+          "trace_sha256": "b62ab4fcb5534f9b34c85ba99ef5d261a8dbfab56e21567caa8eec60da3bfc33"
+        },
+        "1": {
+          "sources": {
+            "HH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/multi/seed1/HH.json",
+              "sha256": "0cc1c203a85d325c67bf2bf5a42efb3eceb625421cdfa30655ca8a2497e835d6",
+              "trace_sha256": "8c695a951e47b6b79a1b94c06fe1983ba9c47840ab31ca0bceacbe1262b5da46",
+              "log": "experiments/v3_method_validation/runs/formal/multi/seed1/HH.log",
+              "existing": false
+            },
+            "HR": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/multi/seed1/HR.json",
+              "sha256": "6dd65543a3ca4feb54a2258711f383bf10dc11c526bcccf93204d725e0ee29d0",
+              "trace_sha256": "8c695a951e47b6b79a1b94c06fe1983ba9c47840ab31ca0bceacbe1262b5da46",
+              "log": "experiments/v3_method_validation/runs/formal/multi/seed1/HR.log",
+              "existing": false
+            },
+            "RR": {
+              "status": "reused",
+              "source": "benchmarks/runs/multi/seed1/rcaps_v3.json",
+              "sha256": "0cafa0353244abf453ccf2173d67aef4fa2859bd7a48f83764afe33cb3e56cd3",
+              "trace_sha256": "8c695a951e47b6b79a1b94c06fe1983ba9c47840ab31ca0bceacbe1262b5da46",
+              "runtime_sha256": {
+                "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+                "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+                "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+                "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+                "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+                "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+                "simulator/scheduler/global_maxflow/global_maxflow_scheduler.py": "5982c3ff218e81bb08256600413c8c154801bea95d612f324b001dfd45823647",
+                "simulator/scheduler/global_maxflow/scheduler_core.py": "076e530d87aea3f30cd7f7a7bd93aefd76d06c15c165f111987bd93f96cd126b"
+              }
+            }
+          },
+          "metrics": {
+            "HH": {
+              "output_throughput_tokens_per_s": 57.406666666666666,
+              "ttft_p95_s": 15.387764893273005,
+              "tpot_p95_s": 3.2059142687154667,
+              "completion_fraction": 0.6994727592267135,
+              "backlog_at_window_end": 171
+            },
+            "HR": {
+              "output_throughput_tokens_per_s": 64.0338888888889,
+              "ttft_p95_s": 10.529416469404168,
+              "tpot_p95_s": 1.8190567452351734,
+              "completion_fraction": 0.8031634446397188,
+              "backlog_at_window_end": 112
+            },
+            "RR": {
+              "output_throughput_tokens_per_s": 70.5188888888889,
+              "ttft_p95_s": 5.4125897445153,
+              "tpot_p95_s": 0.702764090012156,
+              "completion_fraction": 0.9156414762741653,
+              "backlog_at_window_end": 48
+            }
+          },
+          "pending": {
+            "HH": {
+              "count": 171,
+              "p50_s": 365.7522908979936,
+              "p95_s": 1117.064562940902,
+              "max_s": 1648.5105190320214
+            },
+            "HR": {
+              "count": 112,
+              "p50_s": 226.94243681784906,
+              "p95_s": 594.8722839521074,
+              "max_s": 708.4966624392052
+            },
+            "RR": {
+              "count": 48,
+              "p50_s": 90.60131286904834,
+              "p95_s": 240.35687997517613,
+              "max_s": 319.4872969349983
+            }
+          },
+          "route_audit": {
+            "HH": {
+              "actual_distinct_paths": 2,
+              "routed_requests": 569,
+              "checked": true
+            },
+            "HR": {
+              "actual_distinct_paths": 5,
+              "routed_requests": 569,
+              "checked": true
+            },
+            "RR": {
+              "actual_distinct_paths": 35,
+              "routed_requests": 569,
+              "checked": true
+            }
+          },
+          "effects": {
+            "HH->HR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 6.62722222222223,
+                "ttft_p95_s": -4.858348423868836,
+                "tpot_p95_s": -1.3868575234802933,
+                "completion_fraction": 0.1036906854130053,
+                "backlog_at_window_end": -59
+              },
+              "common_completed": {
+                "count": 390,
+                "ttft_s": {
+                  "count": 390,
+                  "left_p95_s": 15.373087148062574,
+                  "right_p95_s": 10.276709527225158
+                },
+                "tpot_s": {
+                  "count": 390,
+                  "left_p95_s": 3.0617149908093872,
+                  "right_p95_s": 1.828777796419685
+                }
+              }
+            },
+            "HR->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 6.484999999999999,
+                "ttft_p95_s": -5.116826724888869,
+                "tpot_p95_s": -1.1162926552230172,
+                "completion_fraction": 0.11247803163444647,
+                "backlog_at_window_end": -64
+              },
+              "common_completed": {
+                "count": 457,
+                "ttft_s": {
+                  "count": 457,
+                  "left_p95_s": 10.449147829939442,
+                  "right_p95_s": 5.3003790086286235
+                },
+                "tpot_s": {
+                  "count": 457,
+                  "left_p95_s": 1.8187354271755731,
+                  "right_p95_s": 0.710969569549367
+                }
+              }
+            }
+          },
+          "interaction": null,
+          "trace_sha256": "8c695a951e47b6b79a1b94c06fe1983ba9c47840ab31ca0bceacbe1262b5da46"
+        },
+        "2": {
+          "sources": {
+            "HH": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/multi/seed2/HH.json",
+              "sha256": "5bd409df0b85926139498a41b47463c743fed54527c769a26be1ccea959e48e8",
+              "trace_sha256": "84725cd2924e8a1476f231f1a7c273bec9c86770740d686219a622c3543cdb5e",
+              "log": "experiments/v3_method_validation/runs/formal/multi/seed2/HH.log",
+              "existing": false
+            },
+            "HR": {
+              "status": "passed",
+              "source": "experiments/v3_method_validation/runs/formal/multi/seed2/HR.json",
+              "sha256": "e0d714f22c313c676adf20cd6df1c4ea7bf00820aec4afa943733d3586d5db8f",
+              "trace_sha256": "84725cd2924e8a1476f231f1a7c273bec9c86770740d686219a622c3543cdb5e",
+              "log": "experiments/v3_method_validation/runs/formal/multi/seed2/HR.log",
+              "existing": false
+            },
+            "RR": {
+              "status": "reused",
+              "source": "benchmarks/runs/multi/seed2/rcaps_v3.json",
+              "sha256": "d49be1310379092840e36bb9050ff828b5d7e905383dc4dd1e94457b5528647f",
+              "trace_sha256": "84725cd2924e8a1476f231f1a7c273bec9c86770740d686219a622c3543cdb5e",
+              "runtime_sha256": {
+                "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+                "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+                "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+                "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+                "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+                "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+                "simulator/scheduler/global_maxflow/global_maxflow_scheduler.py": "5982c3ff218e81bb08256600413c8c154801bea95d612f324b001dfd45823647",
+                "simulator/scheduler/global_maxflow/scheduler_core.py": "076e530d87aea3f30cd7f7a7bd93aefd76d06c15c165f111987bd93f96cd126b"
+              }
+            }
+          },
+          "metrics": {
+            "HH": {
+              "output_throughput_tokens_per_s": 58.03388888888889,
+              "ttft_p95_s": 15.494305105426928,
+              "tpot_p95_s": 3.147861473225592,
+              "completion_fraction": 0.7235494880546075,
+              "backlog_at_window_end": 162
+            },
+            "HR": {
+              "output_throughput_tokens_per_s": 63.89388888888889,
+              "ttft_p95_s": 10.360089532930038,
+              "tpot_p95_s": 1.800537484107103,
+              "completion_fraction": 0.8054607508532423,
+              "backlog_at_window_end": 114
+            },
+            "RR": {
+              "output_throughput_tokens_per_s": 69.4961111111111,
+              "ttft_p95_s": 5.3375247991109696,
+              "tpot_p95_s": 0.6950792342615104,
+              "completion_fraction": 0.9163822525597269,
+              "backlog_at_window_end": 49
+            }
+          },
+          "pending": {
+            "HH": {
+              "count": 162,
+              "p50_s": 349.5806836827443,
+              "p95_s": 1007.856399129976,
+              "max_s": 1326.3642560604198
+            },
+            "HR": {
+              "count": 114,
+              "p50_s": 211.86317174643227,
+              "p95_s": 629.8761729470384,
+              "max_s": 1393.5051662329793
+            },
+            "RR": {
+              "count": 49,
+              "p50_s": 79.56297270865025,
+              "p95_s": 210.09990398397542,
+              "max_s": 268.5060135126507
+            }
+          },
+          "route_audit": {
+            "HH": {
+              "actual_distinct_paths": 2,
+              "routed_requests": 583,
+              "checked": true
+            },
+            "HR": {
+              "actual_distinct_paths": 5,
+              "routed_requests": 584,
+              "checked": true
+            },
+            "RR": {
+              "actual_distinct_paths": 32,
+              "routed_requests": 584,
+              "checked": true
+            }
+          },
+          "effects": {
+            "HH->HR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 5.859999999999999,
+                "ttft_p95_s": -5.13421557249689,
+                "tpot_p95_s": -1.347323989118489,
+                "completion_fraction": 0.08191126279863481,
+                "backlog_at_window_end": -48
+              },
+              "common_completed": {
+                "count": 410,
+                "ttft_s": {
+                  "count": 410,
+                  "left_p95_s": 15.008102578378855,
+                  "right_p95_s": 10.35023505399009
+                },
+                "tpot_s": {
+                  "count": 410,
+                  "left_p95_s": 3.205916056244894,
+                  "right_p95_s": 1.893480871674119
+                }
+              }
+            },
+            "HR->RR": {
+              "deltas": {
+                "output_throughput_tokens_per_s": 5.602222222222217,
+                "ttft_p95_s": -5.022564733819069,
+                "tpot_p95_s": -1.1054582498455925,
+                "completion_fraction": 0.11092150170648463,
+                "backlog_at_window_end": -65
+              },
+              "common_completed": {
+                "count": 472,
+                "ttft_s": {
+                  "count": 472,
+                  "left_p95_s": 10.356768374382145,
+                  "right_p95_s": 5.2462508457028845
+                },
+                "tpot_s": {
+                  "count": 472,
+                  "left_p95_s": 1.8256272700657183,
+                  "right_p95_s": 0.7024591858424889
+                }
+              }
+            }
+          },
+          "interaction": null,
+          "trace_sha256": "84725cd2924e8a1476f231f1a7c273bec9c86770740d686219a622c3543cdb5e"
+        }
+      },
+      "complete_four_cell_seeds": []
+    }
+  }
+}

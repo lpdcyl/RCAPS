@@ -17,6 +17,7 @@
 
 | 实验 | 已有证据 | 写作边界 |
 | --- | --- | --- |
+| [M2 论文主消融](../experiments/v3_m2_paper_ablation/RESULTS_CN.md) | 固定 DAG 构建规则与实时 M3，比较 Helix ILP、单边界 M2 和完整 M2 放置；C1 单/三集群各三种子正式窗口，附可直接引用的 LaTeX 表 | M2 整体放置收益在两拓扑成立；额外多级结构收益只在单集群可检验，三集群完整 M2 仍选单边界 |
 | [V3–Helix ILP](../experiments/v3_release/README_CN.md) | C1 单集群与三集群，700/320 offered token/s；V3 平均输出吞吐 155.980/70.576，Helix ILP 为 142.273/58.255 token/s | Helix 历史窗口缺少物理配置文件哈希；负载与请求轨迹已配对 |
 | [V3 四格递进消融](../experiments/v3_core_ablations/formal_report.md) | A 单边界+静态 DAG、B 多级候选+静态 DAG、C 单边界+实时 M3、D V3；两拓扑三种子 | C1 单集群 B 相对 A 改善；三集群 B 仍是单边界，B−A 仅反映微观放置变化；不要宣称普遍正向交互 |
 | [V3 路径空间消融](../experiments/v3_pathspace_ablation/formal_report.md) | 相同放置和实时 M3 下，规范路径与完整层兼容 DAG 配对 | 三集群完整 DAG 改善，单集群完整 DAG 退化；不可写成普遍收益 |

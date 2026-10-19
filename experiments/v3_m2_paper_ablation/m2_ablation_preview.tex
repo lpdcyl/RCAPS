@@ -1,0 +1,28 @@
+\documentclass[twocolumn]{article}
+\usepackage{booktabs}
+\setlength{\textwidth}{7.16in}
+\setlength{\columnsep}{0.24in}
+\begin{document}
+\begin{table*}[t]
+\caption{M2 placement ablation with the same layer-compatible DAG construction rule and live M3 scheduler.}
+\label{tab:v3-m2-ablation}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Pool & Placement + M3 & Output token/s $\uparrow$ & P95 TTFT (s) $\downarrow$ & P95 TPOT (s) $\downarrow$ & Completion $\uparrow$ & Backlog $\downarrow$ \\
+\midrule
+Single cluster (700) & Helix ILP (no M2) & 148.897 $\pm$ 3.640 & 5.802 $\pm$ 0.305 & 1.100 $\pm$ 0.044 & 0.874 $\pm$ 0.010 & 161.333 $\pm$ 12.858 \\
+ & Single-boundary M2 & 155.376 $\pm$ 4.169 & 3.863 $\pm$ 0.162 & 0.600 $\pm$ 0.007 & 0.925 $\pm$ 0.006 & 96.000 $\pm$ 8.185 \\
+ & Full M2 (V3) & 155.980 $\pm$ 4.226 & 3.580 $\pm$ 0.084 & 0.559 $\pm$ 0.004 & 0.931 $\pm$ 0.006 & 88.667 $\pm$ 8.021 \\
+\midrule
+Three clusters (320) & Helix ILP (no M2) & 64.560 $\pm$ 1.035 & 10.417 $\pm$ 0.098 & 1.874 $\pm$ 0.112 & 0.804 $\pm$ 0.001 & 113.333 $\pm$ 1.155 \\
+ & Single-boundary M2 & 70.566 $\pm$ 1.096 & 5.484 $\pm$ 0.140 & 0.694 $\pm$ 0.004 & 0.917 $\pm$ 0.004 & 48.000 $\pm$ 1.732 \\
+ & Full M2 (V3) & 70.576 $\pm$ 1.109 & 5.326 $\pm$ 0.092 & 0.699 $\pm$ 0.004 & 0.918 $\pm$ 0.003 & 47.667 $\pm$ 1.528 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\parbox{\textwidth}{\scriptsize Mean $\pm$ sample standard deviation over paired seeds 0--2. All windows last 1800 s with zero warmup and no tail drain. Single/three-cluster offered loads are 700/320 token/s. The three-cluster full M2 deployment retains one boundary, so its difference from single-boundary M2 is micro-placement, not an added stage.}
+\end{table*}
+\end{document}

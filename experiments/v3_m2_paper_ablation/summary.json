@@ -1,0 +1,672 @@
+{
+  "sources": {
+    "experiments\\v3_method_validation\\formal_analysis.json": "1775c6603e7f597b2733b717d933249c2b7e4a09022e9859fd96919b383acf6d",
+    "experiments\\v3_core_ablations\\formal_analysis.json": "f99c2c5588bb9e8462a924cf02773b1e2b359c3838d8326e5a95aabee05c5250",
+    "experiments\\v3_method_validation\\crossover_audit.json": "2ad06ddfba350397ca1307ce9591461c5c941dda594eda950933734155ac51af"
+  },
+  "protocol": "paired seeds 0/1/2; 1800 s; zero warmup; no tail drain",
+  "cases": {
+    "C1_single": {
+      "offered_tokens_per_s": 700,
+      "aggregate": {
+        "Helix ILP + M3": {
+          "output_throughput_tokens_per_s": {
+            "mean": 148.89740740740743,
+            "sd": 3.640223942258805,
+            "values": [
+              148.27,
+              152.81055555555557,
+              145.61166666666668
+            ]
+          },
+          "ttft_p95_s": {
+            "mean": 5.802186939892106,
+            "sd": 0.30492270197801885,
+            "values": [
+              5.5356556813602085,
+              5.736207317393735,
+              6.134697820922376
+            ]
+          },
+          "tpot_p95_s": {
+            "mean": 1.100286100882632,
+            "sd": 0.04423524021978294,
+            "values": [
+              1.0545999592888289,
+              1.103346885992456,
+              1.1429114573666106
+            ]
+          },
+          "completion_fraction": {
+            "mean": 0.874330002660293,
+            "sd": 0.009641380454015833,
+            "values": [
+              0.8824439288476411,
+              0.8636715724244771,
+              0.8768745067087609
+            ]
+          },
+          "backlog_at_window_end": {
+            "mean": 161.33333333333334,
+            "sd": 12.858201014657274,
+            "values": [
+              152,
+              176,
+              156
+            ]
+          }
+        },
+        "Single-boundary M2 + M3": {
+          "output_throughput_tokens_per_s": {
+            "mean": 155.37611111111113,
+            "sd": 4.168860866702788,
+            "values": [
+              154.01666666666668,
+              160.055,
+              152.05666666666667
+            ]
+          },
+          "ttft_p95_s": {
+            "mean": 3.8629496829562844,
+            "sd": 0.16185275049321363,
+            "values": [
+              3.731348172788728,
+              3.8138283133928375,
+              4.043672562687288
+            ]
+          },
+          "tpot_p95_s": {
+            "mean": 0.6001988396883348,
+            "sd": 0.006589581464279121,
+            "values": [
+              0.5951392299134572,
+              0.5978069735618958,
+              0.6076503155896512
+            ]
+          },
+          "completion_fraction": {
+            "mean": 0.9252148412831536,
+            "sd": 0.006271208971557709,
+            "values": [
+              0.9311678267594741,
+              0.9186676994577847,
+              0.925808997632202
+            ]
+          },
+          "backlog_at_window_end": {
+            "mean": 96,
+            "sd": 8.18535277187245,
+            "values": [
+              89,
+              105,
+              94
+            ]
+          }
+        },
+        "Full M2 + M3": {
+          "output_throughput_tokens_per_s": {
+            "mean": 155.98,
+            "sd": 4.225725885485149,
+            "values": [
+              154.52444444444444,
+              160.7411111111111,
+              152.67444444444445
+            ]
+          },
+          "ttft_p95_s": {
+            "mean": 3.5798342273347616,
+            "sd": 0.08361593955476447,
+            "values": [
+              3.5854141462019697,
+              3.493568081316584,
+              3.6605204544857313
+            ]
+          },
+          "tpot_p95_s": {
+            "mean": 0.5593005770915048,
+            "sd": 0.004205037050208844,
+            "values": [
+              0.5553963566444227,
+              0.5587526605913752,
+              0.5637527140387167
+            ]
+          },
+          "completion_fraction": {
+            "mean": 0.930921342697618,
+            "sd": 0.0062537881538403265,
+            "values": [
+              0.9373549883990719,
+              0.924864446165763,
+              0.930544593528019
+            ]
+          },
+          "backlog_at_window_end": {
+            "mean": 88.66666666666667,
+            "sd": 8.020806277010642,
+            "values": [
+              81,
+              97,
+              88
+            ]
+          }
+        }
+      },
+      "effects": {
+        "M2_vs_Helix": {
+          "left": "Helix ILP + M3",
+          "right": "Full M2 + M3",
+          "mean_paired_delta": {
+            "output_throughput_tokens_per_s": 7.08259259259258,
+            "ttft_p95_s": -2.222352712557345,
+            "tpot_p95_s": -0.540985523791127,
+            "completion_fraction": 0.056591340037324946,
+            "backlog_at_window_end": -72.66666666666667
+          },
+          "throughput_relative_percent": 4.756693025025904,
+          "common_completed": [
+            {
+              "count": 1141,
+              "ttft_s": {
+                "count": 1141,
+                "left_p95_s": 5.539497939684281,
+                "right_p95_s": 3.6475071611818066
+              },
+              "tpot_s": {
+                "count": 1141,
+                "left_p95_s": 1.05516679416063,
+                "right_p95_s": 0.5562733381511495
+              }
+            },
+            {
+              "count": 1115,
+              "ttft_s": {
+                "count": 1115,
+                "left_p95_s": 5.7279869796322815,
+                "right_p95_s": 3.508296109659284
+              },
+              "tpot_s": {
+                "count": 1115,
+                "left_p95_s": 1.077467394584891,
+                "right_p95_s": 0.5585097936512938
+              }
+            },
+            {
+              "count": 1111,
+              "ttft_s": {
+                "count": 1111,
+                "left_p95_s": 6.121961433364788,
+                "right_p95_s": 3.696248426207717
+              },
+              "tpot_s": {
+                "count": 1111,
+                "left_p95_s": 1.0724990870656923,
+                "right_p95_s": 0.5560107849194235
+              }
+            }
+          ]
+        },
+        "multistage_vs_single": {
+          "left": "Single-boundary M2 + M3",
+          "right": "Full M2 + M3",
+          "mean_paired_delta": {
+            "output_throughput_tokens_per_s": 0.6038888888888797,
+            "ttft_p95_s": -0.28311545562152274,
+            "tpot_p95_s": -0.0408982625968299,
+            "completion_fraction": 0.005706501414464382,
+            "backlog_at_window_end": -7.333333333333333
+          },
+          "throughput_relative_percent": 0.388662635826309,
+          "common_completed": [
+            {
+              "count": 1204,
+              "ttft_s": {
+                "count": 1204,
+                "left_p95_s": 3.8075273548458006,
+                "right_p95_s": 3.626072199192094
+              },
+              "tpot_s": {
+                "count": 1204,
+                "left_p95_s": 0.5946785066695295,
+                "right_p95_s": 0.5552566804533837
+              }
+            },
+            {
+              "count": 1186,
+              "ttft_s": {
+                "count": 1186,
+                "left_p95_s": 3.8066574560168362,
+                "right_p95_s": 3.49433740840108
+              },
+              "tpot_s": {
+                "count": 1186,
+                "left_p95_s": 0.5978196082651246,
+                "right_p95_s": 0.5572421947463944
+              }
+            },
+            {
+              "count": 1173,
+              "ttft_s": {
+                "count": 1173,
+                "left_p95_s": 4.0405499763445265,
+                "right_p95_s": 3.6581107352554447
+              },
+              "tpot_s": {
+                "count": 1173,
+                "left_p95_s": 0.5953049949523903,
+                "right_p95_s": 0.5560093163103992
+              }
+            }
+          ]
+        }
+      },
+      "raw_sources": {
+        "Helix ILP + M3": [
+          {
+            "source": "experiments/v3_method_validation/runs/formal/single/seed0/HR.json",
+            "sha256": "7d05ce73a8ba3da2969ed918115bd982d77f7d8e91153c6d52239e0689cd1d84"
+          },
+          {
+            "source": "experiments/v3_method_validation/runs/formal/single/seed1/HR.json",
+            "sha256": "8c7d06458f30c10cb99a13d4d1364af02973935b1ff37c77d2da75ec40ee0b1b"
+          },
+          {
+            "source": "experiments/v3_method_validation/runs/formal/single/seed2/HR.json",
+            "sha256": "5db7faec5fd6eba074cf8b4732053b6ee041d22150f970e33d145928f15ca9e0"
+          }
+        ],
+        "Single-boundary M2 + M3": [
+          {
+            "source": "experiments/m2_multistage_candidate/runs/formal/C1_single/seed0/single_a100.json",
+            "sha256": "213d2384e7d5ab2498a2cf82ce5a7429d7460fb7fe233476a0b0eabc2a89b346"
+          },
+          {
+            "source": "experiments/m2_multistage_candidate/runs/formal/C1_single/seed1/single_a100.json",
+            "sha256": "5a33c7cd9d994a1ef7ebed6f33628cdc1016e01af7c1c2b27c4f93de5ffdd6f5"
+          },
+          {
+            "source": "experiments/m2_multistage_candidate/runs/formal/C1_single/seed2/single_a100.json",
+            "sha256": "a6a5f72e81f452a5d3cd0aa818a38a8667c3153f815180922c4c8c9805833b24"
+          }
+        ],
+        "Full M2 + M3": [
+          {
+            "source": "benchmarks/runs/single/seed0/rcaps_v3.json",
+            "sha256": "c0b782a952c17f3ec7daf37dc65514e8b202410d277d0e2a8aea51b2b80b59c3"
+          },
+          {
+            "source": "benchmarks/runs/single/seed1/rcaps_v3.json",
+            "sha256": "fa99d53600d3237988fe709b74e1751ac7b3b37aa822d7d5a91797d955a3df67"
+          },
+          {
+            "source": "benchmarks/runs/single/seed2/rcaps_v3.json",
+            "sha256": "2969c8024d74b5f62e8228ff7820b0851ad4ddadc14c40cac0cadaac6c528186"
+          }
+        ]
+      },
+      "structure": {
+        "single_boundary": {
+          "widths": [
+            1,
+            2
+          ],
+          "boundaries": [
+            48
+          ],
+          "layer_copies": 112,
+          "active_gpus": 24,
+          "idle_gpus": 0,
+          "candidate_evaluations": 376,
+          "search_wall_s": 43.08426039997721,
+          "compatible_paths": 1024
+        },
+        "full_m2": {
+          "widths": [
+            1,
+            4,
+            3
+          ],
+          "boundaries": [
+            48,
+            51
+          ],
+          "layer_copies": 147,
+          "active_gpus": 24,
+          "idle_gpus": 0,
+          "candidate_evaluations": 752,
+          "search_wall_s": 43.08426039997721,
+          "compatible_paths": 4788
+        }
+      }
+    },
+    "C1_multi": {
+      "offered_tokens_per_s": 320,
+      "aggregate": {
+        "Helix ILP + M3": {
+          "output_throughput_tokens_per_s": {
+            "mean": 64.56,
+            "sd": 1.0348649044055747,
+            "values": [
+              65.75222222222222,
+              64.0338888888889,
+              63.89388888888889
+            ]
+          },
+          "ttft_p95_s": {
+            "mean": 10.416566214168599,
+            "sd": 0.09773120145493809,
+            "values": [
+              10.36019264017159,
+              10.529416469404168,
+              10.360089532930038
+            ]
+          },
+          "tpot_p95_s": {
+            "mean": 1.8739765783832862,
+            "sd": 0.11154708174272972,
+            "values": [
+              2.0023355058075825,
+              1.8190567452351734,
+              1.800537484107103
+            ]
+          },
+          "completion_fraction": {
+            "mean": 0.8044729053469688,
+            "sd": 0.0011819395977789183,
+            "values": [
+              0.8047945205479452,
+              0.8031634446397188,
+              0.8054607508532423
+            ]
+          },
+          "backlog_at_window_end": {
+            "mean": 113.33333333333333,
+            "sd": 1.1547005383792515,
+            "values": [
+              114,
+              112,
+              114
+            ]
+          }
+        },
+        "Single-boundary M2 + M3": {
+          "output_throughput_tokens_per_s": {
+            "mean": 70.56648148148147,
+            "sd": 1.0961132698820522,
+            "values": [
+              71.68222222222222,
+              70.5261111111111,
+              69.49111111111111
+            ]
+          },
+          "ttft_p95_s": {
+            "mean": 5.483795320344212,
+            "sd": 0.13961916090333187,
+            "values": [
+              5.418940001919766,
+              5.644046494002715,
+              5.388399465110155
+            ]
+          },
+          "tpot_p95_s": {
+            "mean": 0.6935437909908662,
+            "sd": 0.004003856766008021,
+            "values": [
+              0.6961581218352095,
+              0.6955388709684104,
+              0.6889343801689787
+            ]
+          },
+          "completion_fraction": {
+            "mean": 0.9171663787673109,
+            "sd": 0.0037366578428429846,
+            "values": [
+              0.9212328767123288,
+              0.9138840070298769,
+              0.9163822525597269
+            ]
+          },
+          "backlog_at_window_end": {
+            "mean": 48,
+            "sd": 1.7320508075688772,
+            "values": [
+              46,
+              49,
+              49
+            ]
+          }
+        },
+        "Full M2 + M3": {
+          "output_throughput_tokens_per_s": {
+            "mean": 70.57592592592593,
+            "sd": 1.109433502051048,
+            "values": [
+              71.71277777777777,
+              70.5188888888889,
+              69.4961111111111
+            ]
+          },
+          "ttft_p95_s": {
+            "mean": 5.326299406310449,
+            "sd": 0.09241577166410897,
+            "values": [
+              5.228783675305078,
+              5.4125897445153,
+              5.3375247991109696
+            ]
+          },
+          "tpot_p95_s": {
+            "mean": 0.6990175690108539,
+            "sd": 0.003846016947766986,
+            "values": [
+              0.6992093827588951,
+              0.702764090012156,
+              0.6950792342615104
+            ]
+          },
+          "completion_fraction": {
+            "mean": 0.9177522018487403,
+            "sd": 0.003037023296885462,
+            "values": [
+              0.9212328767123288,
+              0.9156414762741653,
+              0.9163822525597269
+            ]
+          },
+          "backlog_at_window_end": {
+            "mean": 47.666666666666664,
+            "sd": 1.5275252316519468,
+            "values": [
+              46,
+              48,
+              49
+            ]
+          }
+        }
+      },
+      "effects": {
+        "M2_vs_Helix": {
+          "left": "Helix ILP + M3",
+          "right": "Full M2 + M3",
+          "mean_paired_delta": {
+            "output_throughput_tokens_per_s": 6.015925925925925,
+            "ttft_p95_s": -5.09026680785815,
+            "tpot_p95_s": -1.1749590093724325,
+            "completion_fraction": 0.11327929650177156,
+            "backlog_at_window_end": -65.66666666666667
+          },
+          "throughput_relative_percent": 9.318348708063695,
+          "common_completed": [
+            {
+              "count": 470,
+              "ttft_s": {
+                "count": 470,
+                "left_p95_s": 9.762004339712457,
+                "right_p95_s": 5.1295212154299525
+              },
+              "tpot_s": {
+                "count": 470,
+                "left_p95_s": 1.8747781070074814,
+                "right_p95_s": 0.6993352889167327
+              }
+            },
+            {
+              "count": 457,
+              "ttft_s": {
+                "count": 457,
+                "left_p95_s": 10.449147829939442,
+                "right_p95_s": 5.3003790086286235
+              },
+              "tpot_s": {
+                "count": 457,
+                "left_p95_s": 1.8187354271755731,
+                "right_p95_s": 0.710969569549367
+              }
+            },
+            {
+              "count": 472,
+              "ttft_s": {
+                "count": 472,
+                "left_p95_s": 10.356768374382145,
+                "right_p95_s": 5.2462508457028845
+              },
+              "tpot_s": {
+                "count": 472,
+                "left_p95_s": 1.8256272700657183,
+                "right_p95_s": 0.7024591858424889
+              }
+            }
+          ]
+        },
+        "multistage_vs_single": {
+          "left": "Single-boundary M2 + M3",
+          "right": "Full M2 + M3",
+          "mean_paired_delta": {
+            "output_throughput_tokens_per_s": 0.00944444444444533,
+            "ttft_p95_s": -0.15749591403376298,
+            "tpot_p95_s": 0.005473778019987645,
+            "completion_fraction": 0.0005858230814294411,
+            "backlog_at_window_end": -0.3333333333333333
+          },
+          "throughput_relative_percent": 0.013383754221796273,
+          "common_completed": [
+            {
+              "count": 536,
+              "ttft_s": {
+                "count": 536,
+                "left_p95_s": 5.416587756158769,
+                "right_p95_s": 5.262793004988623
+              },
+              "tpot_s": {
+                "count": 536,
+                "left_p95_s": 0.6935453110529441,
+                "right_p95_s": 0.6992954110951457
+              }
+            },
+            {
+              "count": 520,
+              "ttft_s": {
+                "count": 520,
+                "left_p95_s": 5.610062892002361,
+                "right_p95_s": 5.284799781207023
+              },
+              "tpot_s": {
+                "count": 520,
+                "left_p95_s": 0.6994421898192624,
+                "right_p95_s": 0.7077652119261424
+              }
+            },
+            {
+              "count": 536,
+              "ttft_s": {
+                "count": 536,
+                "left_p95_s": 5.254613493297796,
+                "right_p95_s": 5.318531139061946
+              },
+              "tpot_s": {
+                "count": 536,
+                "left_p95_s": 0.6835827653982242,
+                "right_p95_s": 0.692541069868619
+              }
+            }
+          ]
+        }
+      },
+      "raw_sources": {
+        "Helix ILP + M3": [
+          {
+            "source": "experiments/v3_method_validation/runs/formal/multi/seed0/HR.json",
+            "sha256": "eb429d84b238b8b16f2ee77bf0a8680a523404eb1970c52c1754d4089fc662ff"
+          },
+          {
+            "source": "experiments/v3_method_validation/runs/formal/multi/seed1/HR.json",
+            "sha256": "6dd65543a3ca4feb54a2258711f383bf10dc11c526bcccf93204d725e0ee29d0"
+          },
+          {
+            "source": "experiments/v3_method_validation/runs/formal/multi/seed2/HR.json",
+            "sha256": "e0d714f22c313c676adf20cd6df1c4ea7bf00820aec4afa943733d3586d5db8f"
+          }
+        ],
+        "Single-boundary M2 + M3": [
+          {
+            "source": "experiments/m2_multistage_candidate/runs/formal/C1_multi/seed0/single_a100.json",
+            "sha256": "8d14beef38a9cf581099fd8b285e0ebf1af174195fb96f30be4e5af16699a9e9"
+          },
+          {
+            "source": "experiments/m2_multistage_candidate/runs/formal/C1_multi/seed1/single_a100.json",
+            "sha256": "f091421b9a378958803bf91c819210f90bf78f2a573de20ae06152b420a49938"
+          },
+          {
+            "source": "experiments/m2_multistage_candidate/runs/formal/C1_multi/seed2/single_a100.json",
+            "sha256": "b2e39f7fde0ba0ca5a5e4c7289a8febedbd4b83ed199825e5a75cf63285255c0"
+          }
+        ],
+        "Full M2 + M3": [
+          {
+            "source": "benchmarks/runs/multi/seed0/rcaps_v3.json",
+            "sha256": "9b9697eb87f4377ed571baee2ebcce4e99cf717b5274fe09a91488308f25e932"
+          },
+          {
+            "source": "benchmarks/runs/multi/seed1/rcaps_v3.json",
+            "sha256": "0cafa0353244abf453ccf2173d67aef4fa2859bd7a48f83764afe33cb3e56cd3"
+          },
+          {
+            "source": "benchmarks/runs/multi/seed2/rcaps_v3.json",
+            "sha256": "d49be1310379092840e36bb9050ff828b5d7e905383dc4dd1e94457b5528647f"
+          }
+        ]
+      },
+      "structure": {
+        "single_boundary": {
+          "widths": [
+            1,
+            3
+          ],
+          "boundaries": [
+            48
+          ],
+          "layer_copies": 144,
+          "active_gpus": 23,
+          "idle_gpus": 1,
+          "candidate_evaluations": 997,
+          "search_wall_s": 44.04625600000145,
+          "compatible_paths": 14895
+        },
+        "full_m2": {
+          "widths": [
+            1,
+            3
+          ],
+          "boundaries": [
+            48
+          ],
+          "layer_copies": 144,
+          "active_gpus": 23,
+          "idle_gpus": 1,
+          "candidate_evaluations": 997,
+          "search_wall_s": 44.04625600000145,
+          "compatible_paths": 8603
+        }
+      }
+    }
+  }
+}
