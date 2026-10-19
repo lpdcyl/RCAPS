@@ -4,6 +4,17 @@
 
 负载在旧 V2 四方法实验前按 Helix artifact 的 Swarm 配置确定。这组结果与 700/320 token/s 的 V3–Helix 主表属于不同负载，不能直接相减。
 
+## 与 Helix 原文运行点的关系
+
+Helix 原文的 online/offline 是请求到达模式，不是两个独立的放置算法版本。online 使用到达轨迹，offline 持续供给请求使集群饱和。[原文第 6.2 节](https://www.cs.cmu.edu/~rvinayak/papers/Helix_ASPLOS_2025_Serving_LLMs_over_Heterogeneous_GPUs_and_Network_via_Max_Flow.pdf)描述 online 到达率按集群峰值吞吐的 75% 缩放；artifact 的 70B online 脚本实际给各方法设置了不同的提供负载：
+
+| 拓扑 | Helix | Swarm | SP 三子集群之和 | 本表四方法共同负载 |
+| --- | ---: | ---: | ---: | ---: |
+| 单集群 | 700 | 350 | 240+120+10=370 | 350 |
+| 三集群 | 320 | 160 | 1+120+60=181 | 160 |
+
+以上单位都是提供的输入与目标输出 token/s，不是测得的输出吞吐。SP 原脚本分别生成三条子集群轨迹；本实验按这些比例确定性划分一条全局轨迹。因此本表是**相同较低负载下的 online 对照**，尤其不能把 Helix 在本表的吞吐解释为其峰值容量，也不能把本表的 P95 TTFT/TPOT 直接与原文图 7 的 prompt/decode 阶段延迟相比。原文描述 online 预热 30 秒，而 artifact 在线仿真脚本使用零预热；本实验统一沿用后者。
+
 ## 单集群
 
 | 方法 | 输出吞吐 token/s ↑ | P95 TTFT s ↓ | P95 TPOT s ↓ | 完成率 % ↑ | 末端积压 ↓ |
@@ -93,6 +104,8 @@ V3 相对各方法的逐种子配对改善（%）：
 - 在这三个配对种子的共同负载下，V3 在两个拓扑的输出吞吐均高于 Helix ILP 和 Swarm，P95 TTFT、P95 TPOT 也均较低。三集群 V3 的吞吐还高于 SP。
 - 单集群 V3 与 SP 的平均吞吐分别为 75.570 和 75.636 token/s；不能声称 V3 在此负载下对 SP 有吞吐优势。V3 的 P95 TTFT/TPOT 为 3.262/0.452 s，低于 SP。
 - 三集群 V3 的平均输出吞吐为 35.899 token/s，且完成率最高、末端积压最少；这组数据支持完整 V3 系统在该资源池和负载下的竞争力，不单独归因于 M1 图建模或额外分叉。
+
+另有一组**单独报告**的 V3–Helix ILP 配对窗口，采用 Helix artifact 的原 online 提供负载：单集群 700、三集群 320 token/s。V3/Helix 平均输出吞吐分别为 155.980/142.273 与 70.576/58.255 token/s。它直接回答原 Helix 运行点上的两方法对照，但不能补作 Swarm/SP 在这些较高负载的完整窗口。来源见 [V3 冻结记录](../v3_release/README_CN.md)。
 
 ## 核查与解释边界
 

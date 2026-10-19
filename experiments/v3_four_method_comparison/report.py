@@ -89,7 +89,7 @@ def write_ieee_table(report: dict) -> None:
     """Produce the compact two-topology table for an IEEE two-column paper."""
     keys = ("output_throughput_tokens_per_s", "ttft_p95_s", "tpot_p95_s")
     lines = [
-        r"\begin{table*}[t]", r"\centering", r"\caption{Paired four-method comparison at the common offered loads. Values are mean $\pm$ sample SD over seeds 0/1/2; output throughput is in token/s and P95 latencies are in seconds.}",
+        r"\begin{table*}[t]", r"\centering", r"\caption{Paired online comparison at the common Swarm offered loads (not the original Helix peak-load settings). Values are mean $\pm$ sample SD over seeds 0/1/2; output throughput is in token/s and P95 latencies are in seconds.}",
         r"\label{tab:v3-four-methods}", r"\scriptsize",
         r"\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}",
         r"\toprule",
@@ -131,7 +131,21 @@ def main() -> None:
              "种子 0/1/2；1800 秒、零预热、窗口末不排空。"
              "四方法逐种子使用同一请求轨迹。数值为均值 ± 样本标准差。", "",
              "负载在旧 V2 四方法实验前按 Helix artifact 的 Swarm 配置确定。"
-             "这组结果与 700/320 token/s 的 V3–Helix 主表属于不同负载，不能直接相减。", ""]
+             "这组结果与 700/320 token/s 的 V3–Helix 主表属于不同负载，不能直接相减。", "",
+             "## 与 Helix 原文运行点的关系", "",
+             "Helix 原文的 online/offline 是请求到达模式，不是两个独立的放置算法版本。"
+             "online 使用到达轨迹，offline 持续供给请求使集群饱和。"
+             "[原文第 6.2 节](https://www.cs.cmu.edu/~rvinayak/papers/Helix_ASPLOS_2025_Serving_LLMs_over_Heterogeneous_GPUs_and_Network_via_Max_Flow.pdf)"
+             "描述 online 到达率按集群峰值吞吐的 75% 缩放；artifact 的 70B online 脚本实际给各方法设置了不同的提供负载：", "",
+             "| 拓扑 | Helix | Swarm | SP 三子集群之和 | 本表四方法共同负载 |",
+             "| --- | ---: | ---: | ---: | ---: |",
+             "| 单集群 | 700 | 350 | 240+120+10=370 | 350 |",
+             "| 三集群 | 320 | 160 | 1+120+60=181 | 160 |", "",
+             "以上单位都是提供的输入与目标输出 token/s，不是测得的输出吞吐。"
+             "SP 原脚本分别生成三条子集群轨迹；本实验按这些比例确定性划分一条全局轨迹。"
+             "因此本表是**相同较低负载下的 online 对照**，尤其不能把 Helix 在本表的吞吐解释为其峰值容量，"
+             "也不能把本表的 P95 TTFT/TPOT 直接与原文图 7 的 prompt/decode 阶段延迟相比。"
+             "原文描述 online 预热 30 秒，而 artifact 在线仿真脚本使用零预热；本实验统一沿用后者。", ""]
     for scenario in LOADS:
         result["sp_gpu_mapping"][scenario] = audit_sp_physical(scenario)
         rows: dict[str, list[dict]] = {method: [] for method in METHODS_IN_TABLE}
@@ -247,6 +261,11 @@ def main() -> None:
               f"{m_v3['output_throughput_tokens_per_s']['mean']:.3f} token/s，"
               "且完成率最高、末端积压最少；这组数据支持完整 V3 系统在该资源池和负载下的竞争力，"
               "不单独归因于 M1 图建模或额外分叉。", "",
+              "另有一组**单独报告**的 V3–Helix ILP 配对窗口，采用 Helix artifact 的原 online 提供负载："
+              "单集群 700、三集群 320 token/s。V3/Helix 平均输出吞吐分别为 155.980/142.273"
+              " 与 70.576/58.255 token/s。"
+              "它直接回答原 Helix 运行点上的两方法对照，但不能补作 Swarm/SP 在这些较高负载的完整窗口。"
+              "来源见 [V3 冻结记录](../v3_release/README_CN.md)。", "",
               "## 核查与解释边界", "",
               "- V3 使用冻结的 `multi_any` 搜索输出：单集群实际布局为 1→4→3，"
               "三集群退回 1→3；两拓扑均运行相同的在线 M3。Helix 为 ILP 布局，"

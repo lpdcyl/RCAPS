@@ -14,6 +14,17 @@ requests observed in the window; completion and backlog are reported to
 show truncation effects. These figures must not be mixed numerically with
 the 700/320 V3 versus Helix main comparison.
 
+The original 70B online artifact assigns method-specific offered rates:
+single cluster Helix/Swarm/SP = 700/350/(240+120+10), and three clusters
+= 320/160/(1+120+60) token/s. The common-load table therefore tests
+same-load behavior at the Swarm rate; it does not measure Helix's peak
+capacity. The separate V3 versus Helix comparison at 700/320 covers the
+original Helix online operating points. "Online" and "offline" in the paper
+are workload modes; this directory evaluates online serving only. The paper's
+prompt/decode stage latencies are not the same metrics as this experiment's
+request-level P95 TTFT/TPOT. See `RESULTS_CN.md` for the full provenance and
+interpretation boundary.
+
 Helix, Swarm, and SP use their original layouts and schedulers. SP runs three
 homogeneous subclusters that partition the 24 GPUs and uses a deterministic
 request-count allocation based on the original artifact's subcluster load
