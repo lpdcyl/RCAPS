@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from statistics import mean
 
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.topology import TopologyModel
 
 from .analysis import METRICS, common_completed, pending, source, summarize
 from .placement import HERE, ROOT, digest
@@ -32,12 +32,12 @@ def collect() -> dict:
               "missing": [],
               "source_sha256": {
                   name: digest(ROOT / name) for name in (
-                      "rcaps/placement/resource_graph.py",
-                      "rcaps/placement/static_resource.py",
-                      "rcaps/scheduling/scheduler_final.py",
+                      "rcaps/v3/resource_graph.py",
+                      "rcaps/v3/placement.py",
+                      "rcaps/v3/online_scheduler.py",
                       "benchmarks/fixed_window.py",
                       "simulator/event_simulator/cluster_simulator.py",
-                      "experiments/m1_graph_candidate/scheduler.py",
+                      "rcaps/v3/scheduler.py",
                       "experiments/m2_multistage_candidate/placement.py",
                       "experiments/m2_multistage_candidate/search.py",
                       "experiments/m2_multistage_candidate/prepare.py",
@@ -115,10 +115,8 @@ def collect() -> dict:
                     "any_minus_a100": {key: a[key] - b[key] for key in METRICS},
                     "common_completed": common_completed(a, b)})
     baseline_paths = {
-        "C1_single": ("Helix ILP", "experiments/v2_method_ablation/runs/single"),
-        "C1_multi": ("Helix ILP", "experiments/v2_method_ablation/runs/multi"),
-        "C2": ("Helix ILP", "experiments/v2_resource_generalization/runs/C2/1800s/load160"),
-        "C3": ("Helix–Petals", "experiments/v2_resource_generalization/runs/C3/1800s/load400")}
+        "C1_single": ("Helix ILP", "benchmarks/runs/single"),
+        "C1_multi": ("Helix ILP", "benchmarks/runs/multi")}
     for case, (label, folder) in baseline_paths.items():
         filename = "helix_petals.json" if label == "Helix–Petals" else "helix.json"
         for seed in (0, 1, 2):
@@ -162,7 +160,7 @@ def _mean(values):
 
 def markdown(data: dict) -> str:
     lines = ["# 多级共享复制 M2：独立候选验证", "",
-             "本候选使用纯图 M1、相同的静态 M2 目标及不变的在线 M3。主要比较为相同评分次数上限下的单边界与最多双边界布局；实际评分次数逐项记录。冻结 V2 仅作迁移参考。多级搜索是有界启发式，不提供全局最优性保证。", "",
+             "本候选使用纯图 M1、相同的静态 M2 目标及不变的在线 M3。主要比较为相同评分次数上限下的单边界与最多双边界布局；实际评分次数逐项记录。多级搜索是有界启发式，不提供全局最优性保证。", "",
              "## 协议与原始证据", "",
              "离线资源池：C1 单集群、C1 三集群、C2–C5。先运行种子 100、60 秒检查；正式配对窗口为 C1 两拓扑、C2、C3 的种子 0/1/2，每次 1800 秒、零预热、不排空。每个资源池四格使用同一参考布局与 0.40/0.35/0.25 静态目标；实际评分次数和规划耗时逐池记录。", "",
              "布局、原始结果和 SHA256 索引见 [summary.json](summary.json)；复现入口见 [README_CN.md](README_CN.md)。", "",

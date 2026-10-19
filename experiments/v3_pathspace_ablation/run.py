@@ -18,7 +18,7 @@ from benchmarks.fixed_window import run as fixed_window_run
 from experiments.m2_multistage_candidate.analysis import path_use
 from experiments.m2_multistage_candidate.placement import digest, validate
 from experiments.m2_multistage_candidate.prepare import files
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.topology import TopologyModel
 from rcaps.v3.resource_graph import LayerCompatibilityDag, from_simulator
 from rcaps.v3.scheduler import GraphModeledQueueAwareDagScheduler
 
@@ -30,9 +30,8 @@ LOADS = {"C1_single": 700.0, "C1_multi": 320.0}
 SEEDS = (0, 1, 2)
 SOURCE = ROOT / "experiments/v3_release"
 RUNTIME = ("rcaps/v3/resource_graph.py", "rcaps/v3/scheduler.py",
-           "rcaps/scheduling/routing_dag.py",
-           "rcaps/scheduling/scheduler_queue_cost.py",
-           "rcaps/scheduling/scheduler_final.py", "benchmarks/fixed_window.py")
+           "rcaps/v3/routing.py", "rcaps/v3/queue_cost.py",
+           "rcaps/v3/online_scheduler.py", "benchmarks/fixed_window.py")
 
 
 def read(path: Path) -> dict:
@@ -156,7 +155,23 @@ def run_one(case: str, seed: int, phase: str) -> str:
                 "query_samples_schema": 1}
     if output.exists():
         row = read(output)
-        if all(row.get(k) == v for k, v in identity.items()):
+        matches = all(row.get(k) == v for k, v in identity.items())
+        if not matches:
+            migration_file = SOURCE / "metadata_migration.json"
+            parity_file = SOURCE / "module_migration_parity.json"
+            if migration_file.exists() and parity_file.exists():
+                migration = read(migration_file)["records"]
+                entry = migration.get(rel(output), {})
+                parity = read(parity_file)
+                matches = (entry.get("current_sha256") == digest(output) and
+                           any(item["case"] == case and item["cell"] == "canonical" and
+                               item["status"] == "exact_match_after_module_migration" and
+                               item["reference_sha256"] == digest(
+                                   HERE / "runs/smoke" / case / "seed100.json")
+                               for item in parity) and
+                           all(row.get(k) == v for k, v in identity.items()
+                               if k != "adapter_sha256"))
+        if matches:
             return rel(output)
         raise ValueError(f"Existing run identity changed: {output}")
     import contextlib

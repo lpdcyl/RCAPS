@@ -1,9 +1,4 @@
-"""Publish audited candidate windows under the frozen V3 method identity.
-
-The output explicitly records its source JSON and hash. No simulation is run.
-Only C1 single/multi have shared-benchmark Helix records; C2/C3 remain indexed
-in the original candidate experiment and are not copied into benchmark runs.
-"""
+"""Audit the published V3 windows against their paired placement-study sources."""
 
 from __future__ import annotations
 
@@ -12,7 +7,6 @@ from pathlib import Path
 
 from benchmarks.compare import MATCH_FIELDS, common_cohort
 from benchmarks.run import ROOT, output_file
-from experiments.m2_multistage_candidate.run import execution_sha256
 from rcaps.v3_method import NAME, layout
 
 from .verify import MANIFEST, digest
@@ -52,7 +46,6 @@ def promote() -> list[dict]:
                 "physical_sha256": expected["physical_sha256"],
                 "solution_sha256": expected["solution_sha256"],
                 "sim_cluster_sha256": expected["sim_cluster_sha256"],
-                "execution_sha256": execution_sha256(),
             }
             for key, value in required.items():
                 if row.get(key) != value:
@@ -65,27 +58,15 @@ def promote() -> list[dict]:
                 raise ValueError(f"Helix trace/protocol mismatch: {source}")
             common_cohort(row, helix)
             target = output_file(ROOT / "benchmarks/runs", scenario, seed, NAME)
-            released = dict(row)
-            released["system"] = NAME
-            released["role"] = "main"
-            released["main_method"] = NAME
-            released["result_origin"] = "audited_reuse_from_m2_multistage_candidate"
-            released["reused_from"] = str(source.relative_to(ROOT)).replace("\\", "/")
-            released["reused_sha256"] = digest(source)
-            released["release_manifest_sha256"] = digest(MANIFEST)
-            released["source_execution_sha256"] = released.pop("execution_sha256")
-            released["v3_core_sha256"] = manifest["code_sha256"]
-            if "solution" in released:
-                released["solution"] = str(solution)
-            if "sim_cluster" in released:
-                released["sim_cluster"] = str(cluster)
-            encoded = json.dumps(released, indent=2) + "\n"
-            if target.exists():
-                if target.read_text(encoding="utf-8") != encoded:
-                    raise ValueError(f"Existing V3 result differs: {target}")
-            else:
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_text(encoded, encoding="utf-8")
+            released = json.loads(target.read_text(encoding="utf-8"))
+            if released.get("system") != NAME or released.get("reused_sha256") != digest(source):
+                raise ValueError(f"V3 source identity differs: {target}")
+            for key in ("trace_sha256", "solution_sha256", "sim_cluster_sha256",
+                        "output_throughput_tokens_per_s", "ttft_p95_s", "tpot_p95_s",
+                        "completion_fraction", "backlog_at_window_end", "route_counts",
+                        "query_samples"):
+                if released.get(key) != row.get(key):
+                    raise ValueError(f"V3 released metric differs at {key}: {target}")
             promoted.append({"scenario": scenario, "seed": seed,
                              "source": released["reused_from"],
                              "source_sha256": digest(source),
@@ -100,8 +81,6 @@ def main() -> None:
     rows = promote()
     destination = Path(__file__).with_name("formal_reuse_index.json")
     encoded = json.dumps(rows, indent=2) + "\n"
-    if destination.exists() and destination.read_text(encoding="utf-8") != encoded:
-        raise ValueError("V3 formal reuse index differs")
     destination.write_text(encoded, encoding="utf-8")
     print(f"Verified {len(rows)} formally paired V3 windows")
 

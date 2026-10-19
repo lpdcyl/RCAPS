@@ -5,8 +5,8 @@ from __future__ import annotations
 import json
 
 from benchmarks.fixed_window import run as fixed_window_run
-from experiments.m1_graph_candidate.scheduler import GraphModeledQueueAwareDagScheduler
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.scheduler import GraphModeledQueueAwareDagScheduler
+from rcaps.v3.topology import TopologyModel
 from simulator.event_simulator.request import RequestPhase
 
 from .placement import HERE, save, validate

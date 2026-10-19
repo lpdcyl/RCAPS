@@ -1,6 +1,6 @@
 # 多级共享复制 M2：独立候选验证
 
-本候选使用纯图 M1、相同的静态 M2 目标及不变的在线 M3。主要比较为相同评分次数上限下的单边界与最多双边界布局；实际评分次数逐项记录。冻结 V2 仅作迁移参考。多级搜索是有界启发式，不提供全局最优性保证。
+本候选使用纯图 M1、相同的静态 M2 目标及不变的在线 M3。主要比较为相同评分次数上限下的单边界与最多双边界布局；实际评分次数逐项记录。多级搜索是有界启发式，不提供全局最优性保证。
 
 ## 协议与原始证据
 
@@ -206,12 +206,6 @@ Helix ILP 与 Helix–Petals 分别标注；仅在同负载、同种子、同窗
 | C1_multi | Helix ILP | 0 | trace_protocol_matched_physical_hash_absent | 59.324 | 15.867 | 3.230 | 0.683 | 185 |
 | C1_multi | Helix ILP | 1 | trace_protocol_matched_physical_hash_absent | 57.407 | 15.388 | 3.206 | 0.699 | 171 |
 | C1_multi | Helix ILP | 2 | trace_protocol_matched_physical_hash_absent | 58.034 | 15.494 | 3.148 | 0.724 | 162 |
-| C2 | Helix ILP | 0 | protocol_matched | 35.808 | 5.747 | 1.071 | 0.878 | 35 |
-| C2 | Helix ILP | 1 | protocol_matched | 32.790 | 5.581 | 1.022 | 0.866 | 38 |
-| C2 | Helix ILP | 2 | protocol_matched | 34.369 | 5.559 | 1.021 | 0.873 | 37 |
-| C3 | Helix–Petals | 0 | protocol_matched | 87.610 | 4.542 | 0.908 | 0.913 | 64 |
-| C3 | Helix–Petals | 1 | protocol_matched | 85.469 | 4.396 | 0.875 | 0.901 | 72 |
-| C3 | Helix–Petals | 2 | protocol_matched | 86.651 | 4.638 | 0.866 | 0.903 | 71 |
 
 跨副本路径比例只描述调度器利用层兼容边的情况，不单独证明性能收益。未完成请求的窗口末驻留时长分布、GPU 访问计数、逐种子原始路径和哈希均在 summary.json 中。三个种子只用于描述波动，不宣称统计显著性。
 

@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 
 from experiments.m2_multistage_candidate.prepare import files
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.topology import TopologyModel
 from rcaps.v3.placement import validate
 from rcaps.v3_method import layout
 
@@ -24,13 +24,12 @@ CASES = {"C1_single": "single", "C1_multi": "multi",
          "C2": "C2", "C3": "C3", "C4": "C4", "C5": "C5"}
 CORE = (
     "rcaps/v3/resource_graph.py", "rcaps/v3/placement.py",
-    "rcaps/v3/search.py", "rcaps/v3/plan.py",
+    "rcaps/v3/search.py", "rcaps/v3/plan.py", "rcaps/v3/topology.py",
+    "rcaps/v3/placement_utils.py", "rcaps/v3/routing.py",
+    "rcaps/v3/queue_cost.py", "rcaps/v3/online_scheduler.py",
     "rcaps/v3/planning_inputs.json", "rcaps/v3/scheduler.py",
     "rcaps/v3_method.py",
-    "rcaps/placement/adaptive.py", "rcaps/placement/topology.py",
-    "rcaps/scheduling/scheduler_final.py",
-    "rcaps/scheduling/scheduler_queue_cost.py",
-    "rcaps/scheduling/routing_dag.py", "benchmarks/fixed_window.py",
+    "benchmarks/fixed_window.py",
 )
 
 

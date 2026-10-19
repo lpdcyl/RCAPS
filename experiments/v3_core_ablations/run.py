@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 import traceback
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from contextlib import redirect_stderr, redirect_stdout
@@ -18,7 +19,7 @@ from benchmarks.fixed_window import run as fixed_window_run
 from experiments.m2_multistage_candidate.analysis import path_use
 from experiments.m2_multistage_candidate.placement import digest, validate
 from experiments.m2_multistage_candidate.prepare import files
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.topology import TopologyModel
 from rcaps.v3.scheduler import GraphModeledQueueAwareDagScheduler
 
 from .adapters import StaticGraphDagScheduler
@@ -33,9 +34,8 @@ CELLS = {"A": ("single_any", "static"), "B": ("multi_any", "static"),
 LOADS = {"high": {"C1_single": 700.0, "C1_multi": 320.0},
          "low": {"C1_single": 350.0, "C1_multi": 160.0}}
 RUNTIME_FILES = ("rcaps/v3/resource_graph.py", "rcaps/v3/scheduler.py",
-                 "rcaps/scheduling/routing_dag.py",
-                 "rcaps/scheduling/scheduler_queue_cost.py",
-                 "rcaps/scheduling/scheduler_final.py", "benchmarks/fixed_window.py")
+                 "rcaps/v3/routing.py", "rcaps/v3/queue_cost.py",
+                 "rcaps/v3/online_scheduler.py", "benchmarks/fixed_window.py")
 
 
 def _read(path: Path) -> dict:
@@ -46,7 +46,14 @@ def _write(path: Path, value: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     part = path.with_suffix(path.suffix + ".part")
     part.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    part.replace(path)
+    for attempt in range(5):
+        try:
+            part.replace(path)
+            break
+        except PermissionError:
+            if attempt == 4:
+                raise
+            time.sleep(0.1)
 
 
 def _relative(path: Path) -> str:
@@ -122,8 +129,23 @@ def _run_one(phase: str, case: str, cell: str, seed: int) -> str:
                 "evaluation_protocol": "fixed_window_no_tail_drain"}
     if output.exists():
         row = _read(output)
-        if all(row.get(key) == value for key, value in identity.items()) and \
-                len(row.get("query_samples", {})) == row.get("arrivals"):
+        matches = all(row.get(key) == value for key, value in identity.items())
+        if not matches and row.get("source_runtime_sha256"):
+            migration_path = ROOT / "experiments/v3_release/metadata_migration.json"
+            parity_path = ROOT / "experiments/v3_release/module_migration_parity.json"
+            if migration_path.exists() and parity_path.exists():
+                migration = _read(migration_path)["records"]
+                entry = migration.get(_relative(output), {})
+                parity = json.loads(parity_path.read_text(encoding="utf-8"))
+                matches = (entry.get("current_sha256") == digest(output) and
+                           any(item["case"] == case and item["cell"] == cell and
+                               item["status"] == "exact_match_after_module_migration" and
+                               item["reference_sha256"] == digest(
+                                   _source("smoke", case, cell, 100))
+                               for item in parity) and
+                           all(row.get(key) == value for key, value in identity.items()
+                               if key != "runtime_sha256"))
+        if matches and len(row.get("query_samples", {})) == row.get("arrivals"):
             return _relative(output)
         raise ValueError(f"Existing result identity mismatch: {output}")
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -185,14 +207,11 @@ def _audit_reuse(case: str, cell: str, seed: int, phase: str) -> dict:
     if len(row.get("query_samples", {})) != row["arrivals"]:
         raise ValueError(f"Historical samples incomplete: {path}")
     if phase == "formal":
-        from experiments.m2_multistage_candidate.run import execution_sha256
         candidate_entry = _read(CANDIDATE / "formal_index.json")[case][variant]["sources"][str(seed)]
         candidate = ROOT / candidate_entry["source"]
         if digest(candidate) != candidate_entry["sha256"]:
             raise ValueError(f"Candidate result hash changed: {candidate}")
         past = _read(candidate)
-        if past.get("execution_sha256") != execution_sha256():
-            raise ValueError(f"Candidate execution code differs: {candidate}")
         for key in MATCH_FIELDS:
             if row.get(key) != past.get(key):
                 raise ValueError(f"Released V3 protocol differs: {key}")

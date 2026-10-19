@@ -74,7 +74,7 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
     if method in ("helix", "swarm", "separate"):
         from simulator.initial_layout.layout_synthesizer import LayoutMethod, LayoutSynthesizer
         layout = LayoutSynthesizer(str(cluster), str(profile), ModelName.LLaMa70B,
-                                   str(ROOT / "experiments/critical_graph/runs"),
+                                   str(ROOT / "benchmarks/runs"),
                                    LayoutMethod.LoadExisting, machines)
         layout.synthesize({"solution_file_name": str(solution),
                            "simulator_cluster_file_name": str(sim_cluster)})
@@ -102,9 +102,7 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
     elif scheduler_factory is not None:
         simulator.set_scheduler(scheduler_factory(simulator))
     else:
-        from experiments.graph_pipeline.scheduler import LayerDagScheduler
-
-        simulator.set_scheduler(LayerDagScheduler(simulator))
+        raise ValueError("A scheduler_factory is required for RCAPS simulation")
     simulator.init_query_manager()
     simulator.mark_as_ready()
     start = layout.set_layout(simulator) if layout is not None else load_graph_layout(simulator, solution)

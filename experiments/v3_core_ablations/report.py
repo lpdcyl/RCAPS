@@ -43,7 +43,6 @@ def _record(phase: str, case: str, cell: str, seed: int, index: dict) -> tuple[d
                     "physical_sha256": digest(physical),
                     "solution_sha256": digest(layout / "solution.ini"),
                     "sim_cluster_sha256": digest(layout / "simulator_cluster.ini"),
-                    "runtime_sha256": _runtime_hash(),
                     "evaluation_protocol": "fixed_window_no_tail_drain"}
         for field, value in expected.items():
             if row.get(field) != value:

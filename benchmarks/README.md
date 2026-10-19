@@ -2,8 +2,7 @@
 
 The active research method is `rcaps_v3`. The registered external systems are
 Helix ILP (`helix`), Swarm (`swarm`), and Separate Pipelines (`separate`).
-V1/V2 adapters are not in the current method registry. Historical experiment
-records remain under `experiments/` for source tracing.
+The repository has one RCAPS method identity, `rcaps_v3`.
 
 The primary C1 comparison uses the Helix event simulator, 24 heterogeneous
 GPUs, offered loads of 700 token/s (single cluster) and 320 token/s (three

@@ -8,7 +8,7 @@ from statistics import mean
 
 import numpy as np
 
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.topology import TopologyModel
 
 from .placement import HERE, ROOT, digest, validate
 from .prepare import files

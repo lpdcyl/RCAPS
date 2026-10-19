@@ -7,7 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from rcaps.placement.topology import TopologyModel
+from .topology import TopologyModel
 
 from .placement import normalize, save, validate
 from .search import search

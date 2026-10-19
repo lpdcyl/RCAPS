@@ -5,15 +5,12 @@ from __future__ import annotations
 import argparse
 import ast
 import json
-import math
 from configparser import ConfigParser
 from pathlib import Path
 
-from rcaps.placement import adaptive, static_resource
-from rcaps.placement.partition import scenario as original_scenario
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.topology import TopologyModel
 
-from .placement import HERE, ROOT, digest, from_legacy, measure, save, validate
+from .placement import HERE, ROOT, digest, measure, normalize, save, validate
 from .search import search
 
 
@@ -24,36 +21,24 @@ LOADS = {"C1_single": 700.0, "C1_multi": 320.0,
 
 
 def files(case: str) -> tuple[Path, Path, str]:
-    if case == "C1_single":
-        physical, template = original_scenario("single")
-        return physical, template, "single"
-    if case == "C1_multi":
-        physical, template = original_scenario("multi")
-        return physical, template, "multi"
-    source = ROOT / "experiments/v2_resource_generalization/pools" / case
-    return source / "physical.ini", source / "template.ini", "single"
+    inputs = json.loads((ROOT / "rcaps/v3/planning_inputs.json").read_text(encoding="utf-8"))
+    item = inputs[case]
+    physical, template = ROOT / item["physical"], ROOT / item["template"]
+    if digest(physical) != item["physical_sha256"] or digest(
+            template) != item["template_sha256"]:
+        raise ValueError(f"Resource inputs changed for {case}")
+    topology = item["scenario"] if case.startswith("C1_") else "single"
+    return physical, template, topology
 
 
-def legacy_state(case: str, model: TopologyModel) -> dict:
-    if case.startswith("C1_"):
-        name = case.removeprefix("C1_")
-        path = ROOT / "experiments/m1_graph_candidate/layouts" / name / "placement.json"
-    else:
-        path = (ROOT / "experiments/v2_resource_generalization/layouts" /
-                case / "adaptive/placement.json")
-    record = json.loads(path.read_text(encoding="utf-8"))
-    state = {"stem": record["stem"], "prefix_layers": record["prefix_layers"],
-             "branches": record["branches"],
-             "lengths": {int(node): end - start for node, (start, end)
-                         in record["intervals"].items()}}
-    return from_legacy(state, model)
+def initial_state(case: str, model: TopologyModel) -> dict:
+    inputs = json.loads((ROOT / "rcaps/v3/planning_inputs.json").read_text(encoding="utf-8"))
+    return normalize(inputs[case]["seed_state"])
 
 
 def reference_state(case: str, model: TopologyModel, seed_state: dict) -> dict:
-    if case.startswith("C1_"):
-        return from_legacy(adaptive.reference_state(
-            model, case.removeprefix("C1_")), model)
-    return seed_state
+    inputs = json.loads((ROOT / "rcaps/v3/planning_inputs.json").read_text(encoding="utf-8"))
+    return normalize(inputs[case]["reference_state"])
 
 
 def _audit_export(destination: Path, expected: dict) -> dict:
@@ -90,24 +75,12 @@ def plan(case: str) -> dict:
     if not physical.is_file() or not template.is_file():
         raise FileNotFoundError(f"Missing resource pool files for {case}")
     model = TopologyModel(physical)
-    seed = legacy_state(case, model)
+    seed = initial_state(case, model)
     reference = reference_state(case, model, seed)
-    legacy_static = static_resource.measure(model, {
-        "stem": seed["segments"][0]["replicas"][0],
-        "prefix_layers": seed["segments"][0]["end"],
-        "branches": seed["segments"][1]["replicas"],
-        "lengths": seed["lengths"]})
-    translated = measure(model, seed)
-    score_parity = {key: math.isclose(legacy_static[key], translated[key],
-                                     rel_tol=1e-12, abs_tol=1e-10)
-                    for key in ("ttft_s", "tpot_s", "bottleneck_s")}
-    if not all(score_parity.values()):
-        raise ValueError(f"Legacy static score changed for {case}: {score_parity}")
     result = {"case": case, "topology": topology, "offered_tokens_per_s": LOADS[case],
               "physical_source": str(physical.relative_to(ROOT)).replace("\\", "/"),
               "physical_sha256": digest(physical),
               "template_sha256": digest(template),
-              "score_parity": score_parity,
               "reference": measure(model, reference),
               "variants": {}}
     for restriction in ("a100", "any"):

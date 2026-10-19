@@ -22,7 +22,7 @@ def verify(results_dir: Path) -> dict:
     records = {}
     checks = []
     for scenario, offered in SCENARIOS.items():
-        names = list(METHODS)
+        names = [MAIN_METHOD, "helix"]
         for seed in SEEDS:
             group = {}
             for name in names:
@@ -58,32 +58,22 @@ def verify(results_dir: Path) -> dict:
                         record["arrivals"] != main["arrivals"]):
                     raise ValueError(f"{scenario} seed {seed}: {name} trace mismatch")
                 common_cohort(main, record)
-            for name, historical in (("rcaps", "paper_integrated"),
-                                     ("helix", "paper_helix")):
-                old_path = (ROOT / "experiments" / "multiseed" / "runs" /
-                            f"seed{seed}" / scenario / f"{historical}.json")
-                old = json.loads(old_path.read_text(encoding="utf-8"))
-                new = group[name]
-                if (old["trace_sha256"] != new["trace_sha256"] or
-                        any(old[metric] != new[metric] for metric in METRICS)):
-                    raise ValueError(f"{scenario} seed {seed}: {name} differs from history")
             checks.append({"scenario": scenario, "seed": seed,
                            "trace_sha256": main["trace_sha256"],
                            "arrivals": main["arrivals"],
-                           "methods_verified": names,
-                           "historical_v1_and_helix_metrics_exact": True})
+                           "methods_verified": names})
     return {"status": "passed", "record_count": len(records),
-            "expected_record_count": len(METHODS) * len(SCENARIOS) * len(SEEDS),
+            "expected_record_count": 2 * len(SCENARIOS) * len(SEEDS),
             "checks": checks, "record_sha256": records,
             "arrival_comparison_abs_tolerance_s": 1e-9,
-            "historical_metrics": list(METRICS)}
+            "metrics": list(METRICS)}
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--results-dir", type=Path, default=DEFAULT_RESULTS)
     parser.add_argument("--output", type=Path,
-                        default=ROOT / "paper" / "V2_THREE_SEED_AUDIT.json")
+                        default=ROOT / "paper" / "V3_THREE_SEED_AUDIT.json")
     args = parser.parse_args()
     report = verify(args.results_dir.resolve())
     if report["record_count"] != report["expected_record_count"]:

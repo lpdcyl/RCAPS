@@ -3,7 +3,7 @@
 A state contains consecutive model segments. Each segment has one or more
 complete, GPU-disjoint replicas. Replica chains may split or merge at segment
 boundaries. Unassigned GPUs remain idle. This module never constructs request
-events and does not change the frozen V2 placement implementation.
+events.
 """
 
 from __future__ import annotations
@@ -16,9 +16,8 @@ from collections import defaultdict
 from configparser import ConfigParser
 from pathlib import Path
 
-from rcaps.placement import adaptive
 from .resource_graph import from_topology, layer_dag
-from rcaps.placement.topology import TopologyModel, profile_at
+from .topology import TopologyModel, profile_at
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -49,8 +48,8 @@ def signature(state: dict) -> str:
     return json.dumps(normalize(state), sort_keys=True, separators=(",", ":"))
 
 
-def from_legacy(state: dict, model: TopologyModel) -> dict:
-    """Embed the strong static single-boundary family for score regression."""
+def from_single_boundary(state: dict, model: TopologyModel) -> dict:
+    """Convert a single-boundary state into the segmented representation."""
     result = {"segments": [
         {"start": 0, "end": state["prefix_layers"],
          "replicas": [list(state["stem"])]},

@@ -45,12 +45,9 @@ checks the paired request traces.
 
 ## Repository scope
 
-`rcaps/placement/`, `rcaps/scheduling/`, and some older experiment inputs
-remain because the frozen V3 implementation and its provenance audit use
-them. V1/V2 adapters and results are **historical records**, not current
-benchmark methods or paper claims. Do not combine their measurements with V3
-tables. The pre-cleanup snapshot is recoverable from the GitHub branch
-[`archive/pre-v3-main-2026-10-19`](https://github.com/lpdcyl/RCAPS/tree/archive/pre-v3-main-2026-10-19).
+The current tree contains the V3 method, its controlled experiments, and
+the Helix simulator and artifact inputs needed to reproduce the comparisons.
+The paper evidence index separates the high-load and common-load protocols.
 
 This repository includes the original Helix simulator and artifact inputs.
 See [`LICENSE`](LICENSE), [`HELIX_README.md`](HELIX_README.md), and the

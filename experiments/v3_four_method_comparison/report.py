@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from configparser import ConfigParser
 from pathlib import Path
 from statistics import mean, stdev
 
@@ -12,11 +13,9 @@ import numpy as np
 from benchmarks.compare import MATCH_FIELDS, common_cohort
 from benchmarks.layout import scenario as physical_scenario
 from benchmarks.registry import METHODS
-from experiments.helix_additional_baselines.summarize_common_low import audit_sp_physical
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
-OLD = ROOT / "experiments" / "helix_additional_baselines"
 LOADS = {"single": 350.0, "multi": 160.0}
 SEEDS = (0, 1, 2)
 METHODS_IN_TABLE = ("rcaps_v3", "helix", "swarm", "separate")
@@ -35,14 +34,39 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def audit_sp_physical(scenario: str) -> dict[str, list[int]]:
+    """Verify that the three SP subclusters partition the physical GPU graph."""
+    full = ConfigParser()
+    full.read(physical_scenario(scenario)[0])
+    manifest = json.loads((HERE / "layouts" / f"sp_{scenario}.json").read_text(encoding="utf-8"))
+    mapping = {}
+    for group, gpu_type in (("a100", "A100"), ("l4", "L4"), ("t4", "T4")):
+        entry = manifest["groups"][group]
+        sub = ConfigParser()
+        sub.read(ROOT / entry["physical"]["path"])
+        ids = [index for index in range(24)
+               if full[f"ComputeNode-{index}"]["type"] == gpu_type]
+        if len(ids) != int(sub["NodeNames"]["total_compute_nodes"]):
+            raise ValueError(f"{scenario}/{group}: device count mismatch")
+        for local, actual in enumerate(ids):
+            for left, right in ((f"Link-source-{local}", f"Link-source-{actual}"),
+                                (f"Link-{local}-sink", f"Link-{actual}-sink")):
+                for field in ("bandwidth", "latency"):
+                    if sub[left][field] != full[right][field]:
+                        raise ValueError(f"{scenario}/{group}: {left}/{field} mismatch")
+            for later in range(local + 1, len(ids)):
+                for field in ("bandwidth", "latency"):
+                    if sub[f"Link-{local}-{later}"][field] != full[
+                            f"Link-{actual}-{ids[later]}"][field]:
+                        raise ValueError(f"{scenario}/{group}: internal {field} mismatch")
+        mapping[group] = ids
+    if sorted(index for ids in mapping.values() for index in ids) != list(range(24)):
+        raise ValueError(f"{scenario}: SP does not partition all 24 GPUs")
+    return mapping
+
+
 def source_path(scenario: str, seed: int, method: str) -> Path:
-    if method == "rcaps_v3":
-        base = HERE / "runs"
-    elif scenario == "single":
-        base = OLD / "common_low_formal"
-    else:
-        base = OLD / "common_low_formal_multi"
-    return base / scenario / f"seed{seed}" / f"{method}.json"
+    return HERE / "runs" / scenario / f"seed{seed}" / f"{method}.json"
 
 
 def checked_record(scenario: str, seed: int, method: str) -> tuple[dict, Path]:
@@ -130,7 +154,7 @@ def main() -> None:
              "70B；同一套 4 A100、8 L4、12 T4 GPU。单集群 350、三集群 160 offered token/s；"
              "种子 0/1/2；1800 秒、零预热、窗口末不排空。"
              "四方法逐种子使用同一请求轨迹。数值为均值 ± 样本标准差。", "",
-             "负载在旧 V2 四方法实验前按 Helix artifact 的 Swarm 配置确定。"
+             "共同负载按 Helix artifact 的 Swarm 配置确定。"
              "这组结果与 700/320 token/s 的 V3–Helix 主表属于不同负载，不能直接相减。", "",
              "## 与 Helix 原文运行点的关系", "",
              "Helix 原文的 online/offline 是请求到达模式，不是两个独立的放置算法版本。"

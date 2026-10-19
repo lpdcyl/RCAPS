@@ -1,7 +1,7 @@
 """RCAPS V3 main-method adapter.
 
 V3 combines the graph-only M1, unrestricted at-most-two-boundary M2,
-and the existing queue-aware DAG scheduler (M3). V2 remains available.
+and the queue-aware DAG scheduler (M3).
 """
 
 from __future__ import annotations

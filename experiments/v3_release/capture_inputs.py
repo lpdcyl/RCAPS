@@ -5,8 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from experiments.m2_multistage_candidate.prepare import files, legacy_state, reference_state
-from rcaps.placement.topology import TopologyModel
+from experiments.m2_multistage_candidate.prepare import files, initial_state, reference_state
+from rcaps.v3.topology import TopologyModel
 
 from .verify import CASES, ROOT, digest
 
@@ -16,7 +16,7 @@ def main() -> None:
     for case, scenario in CASES.items():
         physical, template, _ = files(case)
         model = TopologyModel(physical)
-        seed = legacy_state(case, model)
+        seed = initial_state(case, model)
         reference = reference_state(case, model, seed)
         captured[case] = {
             "scenario": scenario,

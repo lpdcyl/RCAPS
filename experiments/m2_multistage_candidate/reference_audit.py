@@ -6,10 +6,10 @@ import hashlib
 import json
 import math
 
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.topology import TopologyModel
 
 from .placement import HERE, ROOT, digest, measure, signature, validate
-from .prepare import CASES, VARIANTS, files, legacy_state, reference_state
+from .prepare import CASES, VARIANTS, files, initial_state, reference_state
 
 
 def audit() -> dict:
@@ -18,7 +18,7 @@ def audit() -> dict:
     for case in CASES:
         physical, _, _ = files(case)
         model = TopologyModel(physical)
-        seed = legacy_state(case, model)
+        seed = initial_state(case, model)
         reference = reference_state(case, model, seed)
         validate(model, reference)
         metrics = measure(model, reference)
@@ -34,14 +34,8 @@ def audit() -> dict:
                 if not math.isclose(placement["reference"][key], metrics[key],
                                     rel_tol=1e-12, abs_tol=1e-10):
                     raise ValueError(f"Four-cell scoring reference differs: {case}/{variant}")
-        if case.startswith("C1_"):
-            source = "rcaps.placement.adaptive.reference_state"
-            source_sha256 = digest(ROOT / "rcaps/placement/adaptive.py")
-        else:
-            path = (ROOT / "experiments/v2_resource_generalization/layouts" /
-                    case / "adaptive/placement.json")
-            source = str(path.relative_to(ROOT)).replace("\\", "/")
-            source_sha256 = digest(path)
+        source = "rcaps/v3/planning_inputs.json"
+        source_sha256 = digest(ROOT / source)
         result[case] = {"reference_state": reference,
                         "state_sha256": hashlib.sha256(signature(reference).encode()).hexdigest(),
                         "source": source, "source_sha256": source_sha256,

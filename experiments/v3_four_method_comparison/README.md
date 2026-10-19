@@ -6,8 +6,7 @@ cluster and C1 three cluster topologies, each with the same 24-GPU pool
 (4 A100, 8 L4, 12 T4).
 
 The common loads are 350 offered input-plus-target-output tokens/s for the
-single cluster and 160 for three clusters. They were fixed by the earlier
-V2 four-method experiment from the Helix artifact's Swarm workload before
+single cluster and 160 for three clusters. They were fixed from the Helix artifact's Swarm workload before
 these V3 windows were run. Seeds 0/1/2 use paired request traces, 1800-second
 fixed windows, no warmup, and no tail drain. P95 latency is measured on
 requests observed in the window; completion and backlog are reported to

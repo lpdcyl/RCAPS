@@ -27,7 +27,7 @@ MACHINES = {"a100": {"A100": 4}, "l4": {"L4": 8}, "t4": {"T4": 12}}
 def layout(scenario: str, root: Path) -> tuple[Path, Path]:
     if scenario not in ("single", "multi"):
         raise ValueError(scenario)
-    manifest = root / "experiments" / "helix_additional_baselines" / "layouts" / f"sp_{scenario}.json"
+    manifest = root / "experiments" / "v3_four_method_comparison" / "layouts" / f"sp_{scenario}.json"
     return manifest, manifest
 
 

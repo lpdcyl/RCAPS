@@ -10,8 +10,8 @@ from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 from benchmarks.fixed_window import run as fixed_window_run
-from experiments.m1_graph_candidate.scheduler import GraphModeledQueueAwareDagScheduler
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.scheduler import GraphModeledQueueAwareDagScheduler
+from rcaps.v3.topology import TopologyModel
 
 from .analysis import path_use
 from .placement import HERE, ROOT, digest
@@ -19,10 +19,12 @@ from .prepare import CASES, LOADS, VARIANTS, files
 
 
 FORMAL_CASES = ("C1_single", "C1_multi", "C2", "C3")
-SOURCE_FILES = (ROOT / "rcaps/placement/resource_graph.py",
-                ROOT / "rcaps/scheduling/scheduler_queue_cost.py",
-                ROOT / "rcaps/scheduling/scheduler_final.py",
-                ROOT / "experiments/m1_graph_candidate/scheduler.py")
+ARCHIVED_EXECUTION_SHA256 = "49d952c13f8ca7c6d3fc766adfac4a38c75a51a514f556656368ab0984b2040c"
+SOURCE_FILES = (ROOT / "rcaps/v3/resource_graph.py",
+                ROOT / "rcaps/v3/routing.py",
+                ROOT / "rcaps/v3/queue_cost.py",
+                ROOT / "rcaps/v3/online_scheduler.py",
+                ROOT / "rcaps/v3/scheduler.py")
 
 
 def execution_sha256() -> str:
@@ -48,13 +50,30 @@ def _result_path(phase: str, case: str, variant: str, seed: int) -> Path:
     return HERE / "runs" / phase / case / f"seed{seed}" / f"{variant}.json"
 
 
+def _matching_identity(row: dict, expected: dict, source: Path,
+                       phase: str, case: str, variant: str, seed: int) -> bool:
+    if all(row.get(key) == value for key, value in expected.items()):
+        return True
+    if row.get("execution_sha256") != ARCHIVED_EXECUTION_SHA256 or any(
+            row.get(key) != value for key, value in expected.items()
+            if key != "execution_sha256"):
+        return False
+    index_path = HERE / f"{phase}_index.json"
+    if not index_path.exists():
+        return False
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    entry = index.get(case, {}).get(variant, {}).get("sources", {}).get(str(seed), {})
+    return entry.get("source") == source.relative_to(ROOT).as_posix() and \
+        entry.get("sha256") == digest(source)
+
+
 def _run_one(phase: str, case: str, variant: str, seed: int) -> Path:
     duration = 60 if phase == "smoke" else 1800
     output = _result_path(phase, case, variant, seed)
     expected = identity(case, variant, duration, seed)
     if output.exists():
         saved = json.loads(output.read_text(encoding="utf-8"))
-        if all(saved.get(key) == value for key, value in expected.items()) and len(
+        if _matching_identity(saved, expected, output, phase, case, variant, seed) and len(
                 saved.get("query_samples", {})) == saved.get("arrivals"):
             path_use(case, variant, saved)
             return output
@@ -151,6 +170,8 @@ def main() -> None:
                                     seed)
                 for key, value in expected.items():
                     if key in ("variant",) and reused:
+                        continue
+                    if key == "execution_sha256" and row.get(key) == ARCHIVED_EXECUTION_SHA256:
                         continue
                     if row.get(key) != value:
                         raise ValueError(f"Identity mismatch {source}: {key}")

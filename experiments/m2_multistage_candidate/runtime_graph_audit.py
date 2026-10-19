@@ -6,9 +6,9 @@ import argparse
 import json
 
 from benchmarks.layout import _NullLogger, load_graph_layout
-from experiments.m1_graph_candidate.scheduler import GraphModeledQueueAwareDagScheduler
-from rcaps.placement.resource_graph import from_simulator
-from rcaps.placement.topology import TopologyModel
+from rcaps.v3.scheduler import GraphModeledQueueAwareDagScheduler
+from rcaps.v3.resource_graph import from_simulator
+from rcaps.v3.topology import TopologyModel
 from simulator.event_simulator.cluster_simulator import ClusterSimulator
 from simulator.model_manager.model_manager import ModelName
 

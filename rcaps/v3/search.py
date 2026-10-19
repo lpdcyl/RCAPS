@@ -7,8 +7,8 @@ import itertools
 import time
 from collections import Counter
 
-from rcaps.placement import adaptive
-from rcaps.placement.topology import TopologyModel, profile_at
+from . import placement_utils as adaptive
+from .topology import TopologyModel, profile_at
 
 from .placement import (BEAM_WIDTH, MAX_ACCEPTED_MOVES, STAGE_BUDGET,
                         measure, normalize, objective, signature, validate)

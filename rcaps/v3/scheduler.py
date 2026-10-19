@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from .resource_graph import from_simulator
-from rcaps.scheduling.scheduler_final import QueueAwareDagScheduler
+from .online_scheduler import QueueAwareDagScheduler
 
 
 class GraphModeledQueueAwareDagScheduler(QueueAwareDagScheduler):
