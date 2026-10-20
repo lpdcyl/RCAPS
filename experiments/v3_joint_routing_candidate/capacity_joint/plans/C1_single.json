@@ -1,0 +1,5446 @@
+{
+  "case": "C1_single",
+  "physical_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+  "template_sha256": "f772ffc21608b77270be6401c60adfa1f5dfb23f3dbe8ce210bb2ecbf4b24ab3",
+  "training_seed": 100,
+  "training_duration_s": 300,
+  "training_offered_tokens_per_s": 350.0,
+  "workload_classes": [
+    {
+      "name": "input_short_output_short",
+      "input_tokens": 384,
+      "output_tokens": 101,
+      "probability": 0.41904761904761906,
+      "decode_batch": 8
+    },
+    {
+      "name": "input_short_output_long",
+      "input_tokens": 200,
+      "output_tokens": 217,
+      "probability": 0.08571428571428572,
+      "decode_batch": 8
+    },
+    {
+      "name": "input_long_output_short",
+      "input_tokens": 1477,
+      "output_tokens": 112,
+      "probability": 0.08571428571428572,
+      "decode_batch": 8
+    },
+    {
+      "name": "input_long_output_long",
+      "input_tokens": 1094,
+      "output_tokens": 416,
+      "probability": 0.4095238095238095,
+      "decode_batch": 8
+    }
+  ],
+  "capacity_ranked": [
+    {
+      "layout": "released_v3",
+      "path": "rcaps/v3_layouts/single",
+      "solution_sha256": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+      "sim_cluster_sha256": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+      "widths": [
+        1,
+        4,
+        3
+      ],
+      "legal_edges": 62,
+      "legal_paths": 4788,
+      "lp_wall_s": 0.8906713000033051,
+      "lp": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "workload_classes": [
+          {
+            "name": "input_short_output_short",
+            "input_tokens": 384,
+            "output_tokens": 101,
+            "probability": 0.41904761904761906,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_short_output_long",
+            "input_tokens": 200,
+            "output_tokens": 217,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_short",
+            "input_tokens": 1477,
+            "output_tokens": 112,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_long",
+            "input_tokens": 1094,
+            "output_tokens": 416,
+            "probability": 0.4095238095238095,
+            "decode_batch": 8
+          }
+        ],
+        "expanded_states": 35,
+        "expanded_arcs": 95,
+        "physical_resources": 136,
+        "requests_per_s": 1.7384031128342827,
+        "shadow_prices": {
+          "gpu:0": 0.0,
+          "gpu:1": 0.0,
+          "gpu:10": 0.0,
+          "gpu:11": 0.0,
+          "gpu:12": 0.0,
+          "gpu:13": 0.0,
+          "gpu:14": 0.0,
+          "gpu:15": 0.0,
+          "gpu:16": 0.0,
+          "gpu:17": 0.0,
+          "gpu:18": 0.0,
+          "gpu:19": 0.0,
+          "gpu:2": 0.0,
+          "gpu:20": 0.0,
+          "gpu:21": 0.0,
+          "gpu:22": 0.0,
+          "gpu:23": 0.0,
+          "gpu:3": 0.0,
+          "gpu:4": 0.0,
+          "gpu:5": 0.0,
+          "gpu:6": 1.7384031128342827,
+          "gpu:7": 0.0,
+          "gpu:8": 0.0,
+          "gpu:9": 0.0,
+          "link:0->14": 0.0,
+          "link:0->3": 0.0,
+          "link:0->5": 0.0,
+          "link:1->11": 0.0,
+          "link:1->18": 0.0,
+          "link:1->2": 0.0,
+          "link:10->17": 0.0,
+          "link:11->2": 0.0,
+          "link:11->21": 0.0,
+          "link:11->23": 0.0,
+          "link:12->0": 0.0,
+          "link:12->4": 0.0,
+          "link:12->7": 0.0,
+          "link:13->0": 0.0,
+          "link:13->4": 0.0,
+          "link:13->7": 0.0,
+          "link:14->11": 0.0,
+          "link:14->18": 0.0,
+          "link:14->3": 0.0,
+          "link:15->0": 0.0,
+          "link:15->4": 0.0,
+          "link:15->7": 0.0,
+          "link:16->0": 0.0,
+          "link:16->4": 0.0,
+          "link:16->7": 0.0,
+          "link:17->12": 0.0,
+          "link:17->13": 0.0,
+          "link:17->15": 0.0,
+          "link:17->16": 0.0,
+          "link:18->2": 0.0,
+          "link:18->21": 0.0,
+          "link:18->23": 0.0,
+          "link:19->sink": 0.0,
+          "link:2->21": 0.0,
+          "link:2->23": 0.0,
+          "link:2->8": 0.0,
+          "link:20->sink": 0.0,
+          "link:21->19": 0.0,
+          "link:21->20": 0.0,
+          "link:21->22": 0.0,
+          "link:22->sink": 0.0,
+          "link:23->19": 0.0,
+          "link:23->20": 0.0,
+          "link:23->22": 0.0,
+          "link:3->1": 0.0,
+          "link:3->11": 0.0,
+          "link:3->18": 0.0,
+          "link:4->0": 0.0,
+          "link:4->14": 0.0,
+          "link:4->5": 0.0,
+          "link:5->11": 0.0,
+          "link:5->18": 0.0,
+          "link:5->3": 0.0,
+          "link:6->9": 0.0,
+          "link:7->0": 0.0,
+          "link:7->14": 0.0,
+          "link:7->5": 0.0,
+          "link:8->19": 0.0,
+          "link:8->20": 0.0,
+          "link:8->22": 0.0,
+          "link:9->10": 0.0,
+          "link:source->6": 0.0,
+          "nic_in:0": 0.0,
+          "nic_in:1": 0.0,
+          "nic_in:10": 0.0,
+          "nic_in:11": 0.0,
+          "nic_in:12": 0.0,
+          "nic_in:13": 0.0,
+          "nic_in:14": 0.0,
+          "nic_in:15": 0.0,
+          "nic_in:16": 0.0,
+          "nic_in:17": 0.0,
+          "nic_in:18": 0.0,
+          "nic_in:19": 0.0,
+          "nic_in:2": 0.0,
+          "nic_in:20": 0.0,
+          "nic_in:21": 0.0,
+          "nic_in:22": 0.0,
+          "nic_in:23": 0.0,
+          "nic_in:3": 0.0,
+          "nic_in:4": 0.0,
+          "nic_in:5": 0.0,
+          "nic_in:6": 0.0,
+          "nic_in:7": 0.0,
+          "nic_in:8": 0.0,
+          "nic_in:9": 0.0,
+          "nic_in:sink": 0.0,
+          "nic_out:0": 0.0,
+          "nic_out:1": 0.0,
+          "nic_out:10": 0.0,
+          "nic_out:11": 0.0,
+          "nic_out:12": 0.0,
+          "nic_out:13": 0.0,
+          "nic_out:14": 0.0,
+          "nic_out:15": 0.0,
+          "nic_out:16": 0.0,
+          "nic_out:17": 0.0,
+          "nic_out:18": 0.0,
+          "nic_out:19": 0.0,
+          "nic_out:2": 0.0,
+          "nic_out:20": 0.0,
+          "nic_out:21": 0.0,
+          "nic_out:22": 0.0,
+          "nic_out:23": 0.0,
+          "nic_out:3": 0.0,
+          "nic_out:4": 0.0,
+          "nic_out:5": 0.0,
+          "nic_out:6": 0.0,
+          "nic_out:7": 0.0,
+          "nic_out:8": 0.0,
+          "nic_out:9": 0.0,
+          "nic_out:source": 0.0
+        },
+        "resource_utilization": [
+          {
+            "resource": "gpu:0",
+            "utilization": 0.9999999999999999,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 0.7380629017175688,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 0.3837270518371944,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 0.38455738224371694,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 0.04934311189481178,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:15",
+            "utilization": 0.8855582962706519,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:16",
+            "utilization": 0.09737727122366692,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:19",
+            "utilization": 0.6160964537226661,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:20",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:22",
+            "utilization": 0.2730182951211306,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:4",
+            "utilization": 0.3952310993901878,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342827
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:8",
+            "utilization": 0.2787396324678278,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->14",
+            "utilization": 0.004381250224872146,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->3",
+            "utilization": 0.005231174517495305,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->5",
+            "utilization": 0.004821482845446223,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->11",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->18",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->2",
+            "utilization": 0.013389192216839377,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:10->17",
+            "utilization": 0.028302081216206688,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->2",
+            "utilization": 0.0004778799400453072,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->21",
+            "utilization": 0.0020885631191713597,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->23",
+            "utilization": 0.001097329634754923,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->0",
+            "utilization": 0.003879721478020128,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->4",
+            "utilization": 0.0062419731029261325,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->7",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->0",
+            "utilization": 0.001097329634754923,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->4",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->7",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->11",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->18",
+            "utilization": 0.009073253947291512,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->3",
+            "utilization": 0.0015499693805067652,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->0",
+            "utilization": 0.0042256819575433174,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->4",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->7",
+            "utilization": 0.011839222836332614,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->4",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->7",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->12",
+            "utilization": 0.01012169458094626,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->13",
+            "utilization": 0.001097329634754923,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->15",
+            "utilization": 0.016064904793875928,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->16",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->2",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->21",
+            "utilization": 0.0024875789031177185,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->23",
+            "utilization": 0.008761537402278002,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:19->sink",
+            "utilization": 1.1533268710887993e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->21",
+            "utilization": 0.009885466796867819,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->23",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->8",
+            "utilization": 0.003981605360016865,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:20->sink",
+            "utilization": 1.6606545838465598e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->19",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->20",
+            "utilization": 0.00953620932559623,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->22",
+            "utilization": 0.004925399493560668,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:22->sink",
+            "utilization": 6.404407611279497e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->19",
+            "utilization": 0.005789333357174291,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->20",
+            "utilization": 0.004069533679858634,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->22",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->1",
+            "utilization": 0.013389192216839376,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->11",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->18",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->14",
+            "utilization": 0.0062419731029261325,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->5",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->11",
+            "utilization": 0.0026456204873420157,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->18",
+            "utilization": 0.002175862358104207,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->3",
+            "utilization": 0.0066080483188373056,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:6->9",
+            "utilization": 0.028302081216206688,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->0",
+            "utilization": 0.005231174517495305,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->14",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->5",
+            "utilization": 0.0066080483188373056,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->19",
+            "utilization": 0.0036598736976562415,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->20",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->22",
+            "utilization": 0.00032173166236062394,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:9->10",
+            "utilization": 0.028302081216206688,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:source->6",
+            "utilization": 3.4544222160633085e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:0",
+            "utilization": 0.0014433907587813675,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:1",
+            "utilization": 0.0013389192216839377,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:10",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:11",
+            "utilization": 0.00036637726939715896,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:12",
+            "utilization": 0.001012169458094626,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:13",
+            "utilization": 0.0001097329634754923,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:14",
+            "utilization": 0.0011641375534427853,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:15",
+            "utilization": 0.001606490479387593,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:16",
+            "utilization": 0.00010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:17",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:18",
+            "utilization": 0.001124911630539572,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:19",
+            "utilization": 0.0009449207054830532,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:2",
+            "utilization": 0.0013867072156884684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:20",
+            "utilization": 0.0013605743005454863,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:21",
+            "utilization": 0.00144616088191569,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:22",
+            "utilization": 0.0005247131155921292,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:23",
+            "utilization": 0.0009858867037032923,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:3",
+            "utilization": 0.0013389192216839377,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:4",
+            "utilization": 0.0006241973102926133,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:5",
+            "utilization": 0.001142953116428353,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:6",
+            "utilization": 3.4544222160633086e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:7",
+            "utilization": 0.0012857375042962188,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:8",
+            "utilization": 0.0003981605360016866,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:9",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:sink",
+            "utilization": 3.4544222160633086e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:0",
+            "utilization": 0.0014433907587813675,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:1",
+            "utilization": 0.0013389192216839377,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:10",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:11",
+            "utilization": 0.00036637726939715896,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:12",
+            "utilization": 0.001012169458094626,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:13",
+            "utilization": 0.0001097329634754923,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:14",
+            "utilization": 0.0011641375534427853,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:15",
+            "utilization": 0.0016064904793875931,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:16",
+            "utilization": 0.00010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:17",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:18",
+            "utilization": 0.001124911630539572,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:19",
+            "utilization": 1.1533268710887991e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:2",
+            "utilization": 0.0013867072156884684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:20",
+            "utilization": 1.6606545838465597e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:21",
+            "utilization": 0.0014461608819156897,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:22",
+            "utilization": 6.404407611279497e-08,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:23",
+            "utilization": 0.0009858867037032923,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:3",
+            "utilization": 0.0013389192216839377,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:4",
+            "utilization": 0.0006241973102926133,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:5",
+            "utilization": 0.001142953116428353,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:6",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:7",
+            "utilization": 0.0012857375042962186,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:8",
+            "utilization": 0.00039816053600168655,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:9",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:source",
+            "utilization": 3.4544222160633086e-07,
+            "shadow_price": 0.0
+          }
+        ],
+        "bottlenecks": [
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342827
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:20",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          }
+        ],
+        "physical_edge_flow_per_s": {
+          "source->6": 1.7384031128342827,
+          "6->9": 1.7384031128342827,
+          "9->10": 1.7384031128342827,
+          "10->17": 1.7384031128342827,
+          "17->12": 0.8020454213313927,
+          "17->13": 0.13807734220624887,
+          "12->4": 0.6530394402313113,
+          "13->0": 0.13807734220624887,
+          "0->5": 0.2857943131836562,
+          "4->14": 0.6530394402313113,
+          "5->11": 0.19785531348417895,
+          "14->18": 0.7624692464073338,
+          "11->23": 0.13807734220624887,
+          "18->23": 0.7548693943817963,
+          "23->19": 0.7284736853781756,
+          "19->sink": 0.8763900417596222,
+          "17->16": 0.14900598110008137,
+          "16->7": 0.14900598110008137,
+          "7->14": 0.14900598110008137,
+          "14->11": 0.14900598110008137,
+          "11->21": 0.19011656831803697,
+          "21->22": 0.29977090512729776,
+          "22->sink": 0.31212744728440883,
+          "12->0": 0.14900598110008137,
+          "0->14": 0.17207290323540708,
+          "11->2": 0.01866738405997447,
+          "18->21": 0.09553885172501471,
+          "2->8": 0.16027289853855775,
+          "8->22": 0.012356542157111048,
+          "17->15": 0.6492743681965597,
+          "15->0": 0.17078389311273304,
+          "15->7": 0.4784904750838268,
+          "7->0": 0.2114215784875033,
+          "7->5": 0.2670688965963234,
+          "3->1": 0.5411335721432113,
+          "5->18": 0.08793899969947723,
+          "0->3": 0.2114215784875033,
+          "14->3": 0.06264309705938462,
+          "5->3": 0.2670688965963234,
+          "1->2": 0.5411335721432113,
+          "23->20": 0.1644730512098696,
+          "2->21": 0.39952805766462807,
+          "21->20": 0.385412572580382,
+          "8->19": 0.14791635638144668,
+          "20->sink": 0.5498856237902516
+        }
+      }
+    },
+    {
+      "layout": "capacity_1",
+      "path": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_single/capacity_1",
+      "solution_sha256": "a49d09c09fb2fc9c1a73ded1fe4d9379a60044dc6af855f2acd80590bcbcef02",
+      "sim_cluster_sha256": "aacfaefb38bef50bb1b7fd2130cbb87ddab7bfcc795f796b44ef2e3cdc29f1dc",
+      "widths": [
+        1,
+        3
+      ],
+      "legal_edges": 58,
+      "legal_paths": 3591,
+      "lp_wall_s": 1.66641319997143,
+      "lp": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "workload_classes": [
+          {
+            "name": "input_short_output_short",
+            "input_tokens": 384,
+            "output_tokens": 101,
+            "probability": 0.41904761904761906,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_short_output_long",
+            "input_tokens": 200,
+            "output_tokens": 217,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_short",
+            "input_tokens": 1477,
+            "output_tokens": 112,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_long",
+            "input_tokens": 1094,
+            "output_tokens": 416,
+            "probability": 0.4095238095238095,
+            "decode_batch": 8
+          }
+        ],
+        "expanded_states": 34,
+        "expanded_arcs": 91,
+        "physical_resources": 129,
+        "requests_per_s": 1.7384031128342825,
+        "shadow_prices": {
+          "gpu:0": 0.0,
+          "gpu:1": 0.0,
+          "gpu:10": 0.0,
+          "gpu:11": 0.0,
+          "gpu:12": 0.0,
+          "gpu:13": 0.0,
+          "gpu:14": 0.0,
+          "gpu:15": 0.0,
+          "gpu:16": 0.0,
+          "gpu:17": 0.0,
+          "gpu:18": 0.0,
+          "gpu:19": 0.0,
+          "gpu:2": 0.0,
+          "gpu:20": 0.0,
+          "gpu:21": 0.0,
+          "gpu:23": 0.0,
+          "gpu:3": 0.0,
+          "gpu:4": 0.0,
+          "gpu:5": 0.0,
+          "gpu:6": 1.7384031128342825,
+          "gpu:7": 0.0,
+          "gpu:8": 0.0,
+          "gpu:9": 0.0,
+          "link:0->14": 0.0,
+          "link:0->3": 0.0,
+          "link:0->5": 0.0,
+          "link:1->11": 0.0,
+          "link:1->18": 0.0,
+          "link:1->2": 0.0,
+          "link:10->17": 0.0,
+          "link:11->2": 0.0,
+          "link:11->21": 0.0,
+          "link:11->23": 0.0,
+          "link:12->16": 0.0,
+          "link:12->19": 0.0,
+          "link:12->20": 0.0,
+          "link:13->16": 0.0,
+          "link:13->19": 0.0,
+          "link:13->20": 0.0,
+          "link:14->11": 0.0,
+          "link:14->18": 0.0,
+          "link:14->3": 0.0,
+          "link:15->16": 0.0,
+          "link:15->19": 0.0,
+          "link:15->20": 0.0,
+          "link:16->sink": 0.0,
+          "link:17->0": 0.0,
+          "link:17->4": 0.0,
+          "link:17->7": 0.0,
+          "link:18->2": 0.0,
+          "link:18->21": 0.0,
+          "link:18->23": 0.0,
+          "link:19->sink": 0.0,
+          "link:2->21": 0.0,
+          "link:2->23": 0.0,
+          "link:2->8": 0.0,
+          "link:20->sink": 0.0,
+          "link:21->12": 0.0,
+          "link:21->13": 0.0,
+          "link:21->15": 0.0,
+          "link:23->12": 0.0,
+          "link:23->13": 0.0,
+          "link:23->15": 0.0,
+          "link:3->1": 0.0,
+          "link:3->11": 0.0,
+          "link:3->18": 0.0,
+          "link:4->0": 0.0,
+          "link:4->14": 0.0,
+          "link:4->5": 0.0,
+          "link:5->11": 0.0,
+          "link:5->18": 0.0,
+          "link:5->3": 0.0,
+          "link:6->9": 0.0,
+          "link:7->0": 0.0,
+          "link:7->14": 0.0,
+          "link:7->5": 0.0,
+          "link:8->12": 0.0,
+          "link:8->13": 0.0,
+          "link:8->15": 0.0,
+          "link:9->10": 0.0,
+          "link:source->6": 0.0,
+          "nic_in:0": 0.0,
+          "nic_in:1": 0.0,
+          "nic_in:10": 0.0,
+          "nic_in:11": 0.0,
+          "nic_in:12": 0.0,
+          "nic_in:13": 0.0,
+          "nic_in:14": 0.0,
+          "nic_in:15": 0.0,
+          "nic_in:16": 0.0,
+          "nic_in:17": 0.0,
+          "nic_in:18": 0.0,
+          "nic_in:19": 0.0,
+          "nic_in:2": 0.0,
+          "nic_in:20": 0.0,
+          "nic_in:21": 0.0,
+          "nic_in:23": 0.0,
+          "nic_in:3": 0.0,
+          "nic_in:4": 0.0,
+          "nic_in:5": 0.0,
+          "nic_in:6": 0.0,
+          "nic_in:7": 0.0,
+          "nic_in:8": 0.0,
+          "nic_in:9": 0.0,
+          "nic_in:sink": 0.0,
+          "nic_out:0": 0.0,
+          "nic_out:1": 0.0,
+          "nic_out:10": 0.0,
+          "nic_out:11": 0.0,
+          "nic_out:12": 0.0,
+          "nic_out:13": 0.0,
+          "nic_out:14": 0.0,
+          "nic_out:15": 0.0,
+          "nic_out:16": 0.0,
+          "nic_out:17": 0.0,
+          "nic_out:18": 0.0,
+          "nic_out:19": 0.0,
+          "nic_out:2": 0.0,
+          "nic_out:20": 0.0,
+          "nic_out:21": 0.0,
+          "nic_out:23": 0.0,
+          "nic_out:3": 0.0,
+          "nic_out:4": 0.0,
+          "nic_out:5": 0.0,
+          "nic_out:6": 0.0,
+          "nic_out:7": 0.0,
+          "nic_out:8": 0.0,
+          "nic_out:9": 0.0,
+          "nic_out:source": 0.0
+        },
+        "resource_utilization": [
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 0.47693804629317826,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:15",
+            "utilization": 0.4121767025506184,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:16",
+            "utilization": 0.11751207693476817,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 0.544920380624879,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:19",
+            "utilization": 0.7716026719090284,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 0.39538544823650196,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:20",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 0.9208741826441695,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:4",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342825
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 0.13606340444942047,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:8",
+            "utilization": 0.330467267420724,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->14",
+            "utilization": 0.003778281060262937,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->3",
+            "utilization": 0.007520025937844678,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->5",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->11",
+            "utilization": 0.007431381272613556,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->18",
+            "utilization": 0.002034397442327688,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->2",
+            "utilization": 0.004496252712241298,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:10->17",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->2",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->21",
+            "utilization": 0.0055864343425224144,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->23",
+            "utilization": 0.007431381272613556,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->16",
+            "utilization": 0.003879721478020128,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->19",
+            "utilization": 0.004009131168927829,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->20",
+            "utilization": 0.007997772717715337,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->19",
+            "utilization": 0.006807485563803866,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->20",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->11",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->18",
+            "utilization": 0.003778281060262937,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->3",
+            "utilization": 0.0048728904684918,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->19",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->20",
+            "utilization": 0.005607970287739525,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->sink",
+            "utilization": 4.735410079360586e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->0",
+            "utilization": 0.011298306998107615,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->4",
+            "utilization": 0.015780032999725354,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->7",
+            "utilization": 0.0012237412183737123,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->2",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->21",
+            "utilization": 0.0057118726555852005,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->23",
+            "utilization": 0.004057988026614642,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:19->sink",
+            "utilization": 1.3202266242806903e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->21",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->23",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->8",
+            "utilization": 0.004496252712241298,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:20->sink",
+            "utilization": 1.6606545838465596e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->12",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->13",
+            "utilization": 0.0057118726555852005,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->15",
+            "utilization": 0.0055864343425224144,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->12",
+            "utilization": 0.011390372652421998,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->13",
+            "utilization": 0.0010956129082186645,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->15",
+            "utilization": 2.153594521711135e-05,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->1",
+            "utilization": 0.01396203142718254,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->11",
+            "utilization": 0.0055864343425224144,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->18",
+            "utilization": 0.003879721478020128,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->14",
+            "utilization": 0.004667301456747662,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->5",
+            "utilization": 0.011112731542977691,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->11",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->18",
+            "utilization": 7.746070158909012e-05,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->3",
+            "utilization": 0.011035270841388601,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:6->9",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->14",
+            "utilization": 0.0012237412183737123,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->5",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->12",
+            "utilization": 0.004496252712241298,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->13",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->15",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:9->10",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:source->6",
+            "utilization": 3.4544222160633085e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:0",
+            "utilization": 0.0011298306998107615,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:1",
+            "utilization": 0.0013962031427182543,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:10",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:11",
+            "utilization": 0.0014035967821765544,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:12",
+            "utilization": 0.0015886625364663295,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:13",
+            "utilization": 0.0006807485563803865,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:14",
+            "utilization": 0.0009669323735384312,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:15",
+            "utilization": 0.0005607970287739525,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:16",
+            "utilization": 0.0003879721478020128,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:17",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:18",
+            "utilization": 0.0009769860682199843,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:19",
+            "utilization": 0.0010816616732731695,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:2",
+            "utilization": 0.0005514404918870872,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:20",
+            "utilization": 0.0013605743005454863,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:21",
+            "utilization": 0.0011298306998107615,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:23",
+            "utilization": 0.0012507521505857775,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:3",
+            "utilization": 0.002342818724772508,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:4",
+            "utilization": 0.0015780032999725354,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:5",
+            "utilization": 0.0011112731542977693,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:6",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:7",
+            "utilization": 0.00012237412183737124,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:8",
+            "utilization": 0.0004496252712241298,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:9",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:sink",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:0",
+            "utilization": 0.0011298306998107615,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:1",
+            "utilization": 0.0013962031427182543,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:10",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:11",
+            "utilization": 0.0014035967821765544,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:12",
+            "utilization": 0.0015886625364663295,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:13",
+            "utilization": 0.0006807485563803865,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:14",
+            "utilization": 0.0009669323735384312,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:15",
+            "utilization": 0.0005607970287739525,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:16",
+            "utilization": 4.735410079360586e-08,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:17",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:18",
+            "utilization": 0.0009769860682199843,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:19",
+            "utilization": 1.3202266242806902e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:2",
+            "utilization": 0.0005514404918870872,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:20",
+            "utilization": 1.6606545838465594e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:21",
+            "utilization": 0.0011298306998107615,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:23",
+            "utilization": 0.0012507521505857773,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:3",
+            "utilization": 0.0023428187247725085,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:4",
+            "utilization": 0.0015780032999725354,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:5",
+            "utilization": 0.0011112731542977693,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:6",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:7",
+            "utilization": 0.00012237412183737124,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:8",
+            "utilization": 0.0004496252712241298,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:9",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:source",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          }
+        ],
+        "bottlenecks": [
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342825
+          },
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:20",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:4",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          }
+        ],
+        "physical_edge_flow_per_s": {
+          "source->6": 1.7384031128342827,
+          "6->9": 1.7384031128342827,
+          "9->10": 1.7384031128342827,
+          "10->17": 1.7384031128342827,
+          "17->0": 0.944506433188338,
+          "17->4": 0.6369947728790638,
+          "0->14": 0.4754223256039462,
+          "0->3": 0.4690841075843918,
+          "4->5": 0.4483625186955271,
+          "14->18": 0.4754223256039462,
+          "3->1": 0.7294422670428321,
+          "5->18": 0.009746905088589596,
+          "18->21": 0.718726780289586,
+          "1->18": 0.24737859352833724,
+          "21->13": 0.718726780289586,
+          "23->13": 0.15875288618867098,
+          "18->23": 0.1628270250313684,
+          "13->19": 0.877479666478257,
+          "19->sink": 1.0395115079439496,
+          "17->7": 0.15690190676688062,
+          "7->14": 0.15690190676688062,
+          "14->11": 0.14900598110008137,
+          "11->2": 0.14900598110008137,
+          "2->23": 0.14900598110008137,
+          "14->3": 0.19652817985033594,
+          "5->3": 0.43861561360693757,
+          "3->18": 0.14900598110008137,
+          "23->12": 0.45255420367426513,
+          "12->16": 0.14900598110008137,
+          "16->sink": 0.14900598110008137,
+          "4->14": 0.18863225418353669,
+          "3->11": 0.225779652898752,
+          "1->11": 0.30034447402659015,
+          "1->2": 0.18171919948790471,
+          "11->21": 0.225779652898752,
+          "21->15": 0.225779652898752,
+          "23->15": 0.0008703902951037734,
+          "11->23": 0.30034447402659015,
+          "2->8": 0.18171919948790471,
+          "8->12": 0.18171919948790471,
+          "12->19": 0.16203184146569272,
+          "12->20": 0.3232355805963958,
+          "15->20": 0.22665004319385576,
+          "20->sink": 0.5498856237902515
+        }
+      }
+    },
+    {
+      "layout": "local_neighbor",
+      "path": "experiments/v3_joint_routing_candidate/layouts/C1_single/local_neighbor",
+      "solution_sha256": "9d7e2a75d8afe57ad7ccfc3d47f70ef8da36faf923a71b337ec1030f19393c2c",
+      "sim_cluster_sha256": "47fd96cfd094471a4864011c661d7c30588ba65c3e7cb68d5ab0f2ba3515b23a",
+      "widths": [
+        1,
+        4,
+        3
+      ],
+      "legal_edges": 62,
+      "legal_paths": 3540,
+      "lp_wall_s": 0.8065780999604613,
+      "lp": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "workload_classes": [
+          {
+            "name": "input_short_output_short",
+            "input_tokens": 384,
+            "output_tokens": 101,
+            "probability": 0.41904761904761906,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_short_output_long",
+            "input_tokens": 200,
+            "output_tokens": 217,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_short",
+            "input_tokens": 1477,
+            "output_tokens": 112,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_long",
+            "input_tokens": 1094,
+            "output_tokens": 416,
+            "probability": 0.4095238095238095,
+            "decode_batch": 8
+          }
+        ],
+        "expanded_states": 32,
+        "expanded_arcs": 86,
+        "physical_resources": 136,
+        "requests_per_s": 1.7384031128342825,
+        "shadow_prices": {
+          "gpu:0": 0.0,
+          "gpu:1": 0.0,
+          "gpu:10": 0.0,
+          "gpu:11": 0.0,
+          "gpu:12": 0.0,
+          "gpu:13": 0.0,
+          "gpu:14": 0.0,
+          "gpu:15": 0.0,
+          "gpu:16": 0.0,
+          "gpu:17": 0.0,
+          "gpu:18": 0.0,
+          "gpu:19": 0.0,
+          "gpu:2": 0.0,
+          "gpu:20": 0.0,
+          "gpu:21": 0.0,
+          "gpu:22": 0.0,
+          "gpu:23": 0.0,
+          "gpu:3": 0.0,
+          "gpu:4": 0.0,
+          "gpu:5": 0.0,
+          "gpu:6": 1.7384031128342823,
+          "gpu:7": 0.0,
+          "gpu:8": 0.0,
+          "gpu:9": 0.0,
+          "link:0->14": 0.0,
+          "link:0->3": 0.0,
+          "link:0->5": 0.0,
+          "link:1->2": 0.0,
+          "link:1->21": 0.0,
+          "link:1->23": 0.0,
+          "link:10->17": 0.0,
+          "link:11->2": 0.0,
+          "link:11->21": 0.0,
+          "link:11->23": 0.0,
+          "link:12->0": 0.0,
+          "link:12->4": 0.0,
+          "link:12->7": 0.0,
+          "link:13->0": 0.0,
+          "link:13->4": 0.0,
+          "link:13->7": 0.0,
+          "link:14->11": 0.0,
+          "link:14->18": 0.0,
+          "link:14->3": 0.0,
+          "link:15->0": 0.0,
+          "link:15->4": 0.0,
+          "link:15->7": 0.0,
+          "link:16->0": 0.0,
+          "link:16->4": 0.0,
+          "link:16->7": 0.0,
+          "link:17->12": 0.0,
+          "link:17->13": 0.0,
+          "link:17->15": 0.0,
+          "link:17->16": 0.0,
+          "link:18->2": 0.0,
+          "link:18->21": 0.0,
+          "link:18->23": 0.0,
+          "link:19->sink": 0.0,
+          "link:2->21": 0.0,
+          "link:2->23": 0.0,
+          "link:2->8": 0.0,
+          "link:20->sink": 0.0,
+          "link:21->19": 0.0,
+          "link:21->20": 0.0,
+          "link:21->22": 0.0,
+          "link:22->sink": 0.0,
+          "link:23->19": 0.0,
+          "link:23->20": 0.0,
+          "link:23->22": 0.0,
+          "link:3->1": 0.0,
+          "link:3->11": 0.0,
+          "link:3->18": 0.0,
+          "link:4->0": 0.0,
+          "link:4->14": 0.0,
+          "link:4->5": 0.0,
+          "link:5->11": 0.0,
+          "link:5->18": 0.0,
+          "link:5->3": 0.0,
+          "link:6->9": 0.0,
+          "link:7->0": 0.0,
+          "link:7->14": 0.0,
+          "link:7->5": 0.0,
+          "link:8->19": 0.0,
+          "link:8->20": 0.0,
+          "link:8->22": 0.0,
+          "link:9->10": 0.0,
+          "link:source->6": 0.0,
+          "nic_in:0": 0.0,
+          "nic_in:1": 0.0,
+          "nic_in:10": 0.0,
+          "nic_in:11": 0.0,
+          "nic_in:12": 0.0,
+          "nic_in:13": 0.0,
+          "nic_in:14": 0.0,
+          "nic_in:15": 0.0,
+          "nic_in:16": 0.0,
+          "nic_in:17": 0.0,
+          "nic_in:18": 0.0,
+          "nic_in:19": 0.0,
+          "nic_in:2": 0.0,
+          "nic_in:20": 0.0,
+          "nic_in:21": 0.0,
+          "nic_in:22": 0.0,
+          "nic_in:23": 0.0,
+          "nic_in:3": 0.0,
+          "nic_in:4": 0.0,
+          "nic_in:5": 0.0,
+          "nic_in:6": 0.0,
+          "nic_in:7": 0.0,
+          "nic_in:8": 0.0,
+          "nic_in:9": 0.0,
+          "nic_in:sink": 0.0,
+          "nic_out:0": 0.0,
+          "nic_out:1": 0.0,
+          "nic_out:10": 0.0,
+          "nic_out:11": 0.0,
+          "nic_out:12": 0.0,
+          "nic_out:13": 0.0,
+          "nic_out:14": 0.0,
+          "nic_out:15": 0.0,
+          "nic_out:16": 0.0,
+          "nic_out:17": 0.0,
+          "nic_out:18": 0.0,
+          "nic_out:19": 0.0,
+          "nic_out:2": 0.0,
+          "nic_out:20": 0.0,
+          "nic_out:21": 0.0,
+          "nic_out:22": 0.0,
+          "nic_out:23": 0.0,
+          "nic_out:3": 0.0,
+          "nic_out:4": 0.0,
+          "nic_out:5": 0.0,
+          "nic_out:6": 0.0,
+          "nic_out:7": 0.0,
+          "nic_out:8": 0.0,
+          "nic_out:9": 0.0,
+          "nic_out:source": 0.0
+        },
+        "resource_utilization": [
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 0.5540122749234319,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 0.07366339287295945,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 0.6010205351173169,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 0.9178710323432383,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:15",
+            "utilization": 0.742152133642571,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 1.0000000000000004,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:19",
+            "utilization": 0.8891147488437966,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 0.8290683208165744,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:20",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 0.6854633779722146,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:22",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:4",
+            "utilization": 0.2280542187955018,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342823
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:8",
+            "utilization": 0.5491105457320123,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->14",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->3",
+            "utilization": 0.012138758708695331,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->5",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->2",
+            "utilization": 0.002815172316209152,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->21",
+            "utilization": 0.005789333357174291,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->23",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:10->17",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->2",
+            "utilization": 0.008727467817214193,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->21",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->23",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->4",
+            "utilization": 0.001336326923119122,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->7",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->0",
+            "utilization": 0.012138758708695331,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->4",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->7",
+            "utilization": 0.00034546844270823984,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->11",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->18",
+            "utilization": 0.007435854690297162,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->3",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->4",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->7",
+            "utilization": 0.013463374935054418,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->4",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->7",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->12",
+            "utilization": 0.001336326923119122,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->13",
+            "utilization": 0.013502379358033145,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->15",
+            "utilization": 0.013463374935054418,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->2",
+            "utilization": 0.002952212952384194,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->21",
+            "utilization": 0.003534253035311888,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->23",
+            "utilization": 0.004483641737912968,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:19->sink",
+            "utilization": 1.4099596222315834e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->21",
+            "utilization": 0.00034546844270823984,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->23",
+            "utilization": 0.0074266956387771445,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->8",
+            "utilization": 0.006722689004322154,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:20->sink",
+            "utilization": 2.044462593831725e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->19",
+            "utilization": 0.00034546844270823984,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->20",
+            "utilization": 0.009323586392486179,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->22",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:22->sink",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->19",
+            "utilization": 0.004483641737912968,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->20",
+            "utilization": 0.0074266956387771445,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->22",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->1",
+            "utilization": 0.008604505673383443,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->11",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->18",
+            "utilization": 0.003534253035311888,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->14",
+            "utilization": 0.002354479129748696,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->5",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->11",
+            "utilization": 0.008727467817214193,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->18",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->3",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:6->9",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->14",
+            "utilization": 0.005081375560548465,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->5",
+            "utilization": 0.008727467817214193,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->19",
+            "utilization": 0.006722689004322154,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->20",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->22",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:9->10",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:source->6",
+            "utilization": 3.4544222160633085e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:0",
+            "utilization": 0.001213875870869533,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:1",
+            "utilization": 0.0008604505673383443,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:10",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:11",
+            "utilization": 0.0008727467817214193,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:12",
+            "utilization": 0.0001336326923119122,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:13",
+            "utilization": 0.0013502379358033144,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:14",
+            "utilization": 0.0007435854690297163,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:15",
+            "utilization": 0.001346337493505442,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:17",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:18",
+            "utilization": 0.001097010772560905,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:19",
+            "utilization": 0.0011551799184943362,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:2",
+            "utilization": 0.001449485308580754,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:20",
+            "utilization": 0.0016750282031263324,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:21",
+            "utilization": 0.0009669054835194419,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:22",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:23",
+            "utilization": 0.0011910337376690114,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:3",
+            "utilization": 0.001213875870869533,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:4",
+            "utilization": 0.00023544791297486962,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:5",
+            "utilization": 0.0008727467817214193,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:6",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:7",
+            "utilization": 0.001380884337776266,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:8",
+            "utilization": 0.0006722689004322155,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:9",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:sink",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:0",
+            "utilization": 0.001213875870869533,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:1",
+            "utilization": 0.0008604505673383443,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:10",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:11",
+            "utilization": 0.0008727467817214193,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:12",
+            "utilization": 0.0001336326923119122,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:13",
+            "utilization": 0.0013502379358033144,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:14",
+            "utilization": 0.0007435854690297163,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:15",
+            "utilization": 0.001346337493505442,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:17",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:18",
+            "utilization": 0.001097010772560905,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:19",
+            "utilization": 1.4099596222315832e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:2",
+            "utilization": 0.001449485308580754,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:20",
+            "utilization": 2.044462593831725e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:21",
+            "utilization": 0.0009669054835194419,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:22",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:23",
+            "utilization": 0.0011910337376690114,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:3",
+            "utilization": 0.001213875870869533,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:4",
+            "utilization": 0.00023544791297486962,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:5",
+            "utilization": 0.0008727467817214193,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:6",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:7",
+            "utilization": 0.001380884337776266,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:8",
+            "utilization": 0.0006722689004322155,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:9",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:source",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          }
+        ],
+        "bottlenecks": [
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342823
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 1.0000000000000004,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:20",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          }
+        ],
+        "physical_edge_flow_per_s": {
+          "source->6": 1.7384031128342827,
+          "6->9": 1.7384031128342827,
+          "9->10": 1.7384031128342827,
+          "10->17": 1.7384031128342827,
+          "17->13": 1.1402628065732627,
+          "13->0": 0.9779886399767502,
+          "0->3": 0.9779886399767502,
+          "3->1": 0.8422508443730998,
+          "1->21": 0.7284736853781756,
+          "21->20": 0.864211480981826,
+          "20->sink": 1.164366581838281,
+          "13->4": 0.14900598110008137,
+          "4->14": 0.2030145687540196,
+          "14->18": 0.40768775423186854,
+          "18->2": 0.22647823609560747,
+          "2->8": 0.37955882736330965,
+          "8->19": 0.37955882736330965,
+          "19->sink": 0.5740365309960017,
+          "13->7": 0.013268185496431007,
+          "7->14": 0.2046731854778489,
+          "3->18": 0.13573779560365037,
+          "18->21": 0.13573779560365037,
+          "2->21": 0.013268185496431007,
+          "21->19": 0.013268185496431007,
+          "17->12": 0.054008587653938234,
+          "17->15": 0.5441317186070818,
+          "12->4": 0.054008587653938234,
+          "15->7": 0.5441317186070818,
+          "7->5": 0.35272671862566385,
+          "5->11": 0.35272671862566385,
+          "11->2": 0.35272671862566385,
+          "18->23": 0.18120951813626104,
+          "1->2": 0.11377715899492429,
+          "2->23": 0.30015510085645497,
+          "23->19": 0.18120951813626104,
+          "23->20": 0.30015510085645497
+        }
+      }
+    },
+    {
+      "layout": "single_boundary",
+      "path": "experiments/m2_multistage_candidate/layouts/C1_single/single_any",
+      "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+      "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999",
+      "widths": [
+        1,
+        2
+      ],
+      "legal_edges": 44,
+      "legal_paths": 1024,
+      "lp_wall_s": 0.45143300003837794,
+      "lp": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "workload_classes": [
+          {
+            "name": "input_short_output_short",
+            "input_tokens": 384,
+            "output_tokens": 101,
+            "probability": 0.41904761904761906,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_short_output_long",
+            "input_tokens": 200,
+            "output_tokens": 217,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_short",
+            "input_tokens": 1477,
+            "output_tokens": 112,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_long",
+            "input_tokens": 1094,
+            "output_tokens": 416,
+            "probability": 0.4095238095238095,
+            "decode_batch": 8
+          }
+        ],
+        "expanded_states": 24,
+        "expanded_arcs": 44,
+        "physical_resources": 118,
+        "requests_per_s": 1.7384031128342825,
+        "shadow_prices": {
+          "gpu:0": 0.0,
+          "gpu:1": 0.0,
+          "gpu:10": 0.0,
+          "gpu:11": 0.0,
+          "gpu:12": 0.0,
+          "gpu:13": 0.0,
+          "gpu:14": 0.0,
+          "gpu:15": 0.0,
+          "gpu:16": 0.0,
+          "gpu:17": 0.0,
+          "gpu:18": 0.0,
+          "gpu:19": 0.0,
+          "gpu:2": 0.0,
+          "gpu:20": 0.0,
+          "gpu:21": 0.0,
+          "gpu:22": 0.0,
+          "gpu:23": 0.0,
+          "gpu:3": 0.0,
+          "gpu:4": 0.0,
+          "gpu:5": 0.0,
+          "gpu:6": 1.7384031128342827,
+          "gpu:7": 0.0,
+          "gpu:8": 0.0,
+          "gpu:9": 0.0,
+          "link:0->18": 0.0,
+          "link:0->3": 0.0,
+          "link:1->4": 0.0,
+          "link:1->7": 0.0,
+          "link:10->17": 0.0,
+          "link:11->1": 0.0,
+          "link:11->2": 0.0,
+          "link:12->13": 0.0,
+          "link:12->15": 0.0,
+          "link:13->16": 0.0,
+          "link:13->19": 0.0,
+          "link:14->18": 0.0,
+          "link:14->3": 0.0,
+          "link:15->16": 0.0,
+          "link:15->19": 0.0,
+          "link:16->20": 0.0,
+          "link:16->22": 0.0,
+          "link:17->0": 0.0,
+          "link:17->14": 0.0,
+          "link:18->21": 0.0,
+          "link:18->5": 0.0,
+          "link:19->20": 0.0,
+          "link:19->22": 0.0,
+          "link:2->4": 0.0,
+          "link:2->7": 0.0,
+          "link:20->sink": 0.0,
+          "link:21->11": 0.0,
+          "link:21->23": 0.0,
+          "link:22->sink": 0.0,
+          "link:23->1": 0.0,
+          "link:23->2": 0.0,
+          "link:3->21": 0.0,
+          "link:3->5": 0.0,
+          "link:4->12": 0.0,
+          "link:4->8": 0.0,
+          "link:5->11": 0.0,
+          "link:5->23": 0.0,
+          "link:6->9": 0.0,
+          "link:7->12": 0.0,
+          "link:7->8": 0.0,
+          "link:8->13": 0.0,
+          "link:8->15": 0.0,
+          "link:9->10": 0.0,
+          "link:source->6": 0.0,
+          "nic_in:0": 0.0,
+          "nic_in:1": 0.0,
+          "nic_in:10": 0.0,
+          "nic_in:11": 0.0,
+          "nic_in:12": 0.0,
+          "nic_in:13": 0.0,
+          "nic_in:14": 0.0,
+          "nic_in:15": 0.0,
+          "nic_in:16": 0.0,
+          "nic_in:17": 0.0,
+          "nic_in:18": 0.0,
+          "nic_in:19": 0.0,
+          "nic_in:2": 0.0,
+          "nic_in:20": 0.0,
+          "nic_in:21": 0.0,
+          "nic_in:22": 0.0,
+          "nic_in:23": 0.0,
+          "nic_in:3": 0.0,
+          "nic_in:4": 0.0,
+          "nic_in:5": 0.0,
+          "nic_in:6": 0.0,
+          "nic_in:7": 0.0,
+          "nic_in:8": 0.0,
+          "nic_in:9": 0.0,
+          "nic_in:sink": 0.0,
+          "nic_out:0": 0.0,
+          "nic_out:1": 0.0,
+          "nic_out:10": 0.0,
+          "nic_out:11": 0.0,
+          "nic_out:12": 0.0,
+          "nic_out:13": 0.0,
+          "nic_out:14": 0.0,
+          "nic_out:15": 0.0,
+          "nic_out:16": 0.0,
+          "nic_out:17": 0.0,
+          "nic_out:18": 0.0,
+          "nic_out:19": 0.0,
+          "nic_out:2": 0.0,
+          "nic_out:20": 0.0,
+          "nic_out:21": 0.0,
+          "nic_out:22": 0.0,
+          "nic_out:23": 0.0,
+          "nic_out:3": 0.0,
+          "nic_out:4": 0.0,
+          "nic_out:5": 0.0,
+          "nic_out:6": 0.0,
+          "nic_out:7": 0.0,
+          "nic_out:8": 0.0,
+          "nic_out:9": 0.0,
+          "nic_out:source": 0.0
+        },
+        "resource_utilization": [
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 0.4168360616328474,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 0.6673548756247076,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 0.4168360616328475,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 0.6673548756247075,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:15",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:16",
+            "utilization": 0.2778907077552316,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 0.8821748780551607,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:19",
+            "utilization": 0.6666666666666665,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:20",
+            "utilization": 0.712250493623703,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:22",
+            "utilization": 0.23230688079819525,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 0.7851799975695468,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:4",
+            "utilization": 0.6771623251290642,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 0.6673548756247076,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342827
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 0.7396737365037833,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:8",
+            "utilization": 0.4168360616328474,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->18",
+            "utilization": 0.003860242612536883,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->3",
+            "utilization": 0.010615134542769277,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->4",
+            "utilization": 0.008363674117559972,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->7",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:10->17",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->1",
+            "utilization": 0.008363674117559972,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->2",
+            "utilization": 0.003533939198703144,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->13",
+            "utilization": 0.006545849651854461,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->15",
+            "utilization": 0.012345691736418777,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->16",
+            "utilization": 0.0075640018584840355,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->19",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->18",
+            "utilization": 0.009946982582880395,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->3",
+            "utilization": 0.003879721478020128,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->19",
+            "utilization": 0.02073807935772265,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->20",
+            "utilization": 0.006287334644593489,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->22",
+            "utilization": 0.0012766672138905461,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->0",
+            "utilization": 0.014475377155306161,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->14",
+            "utilization": 0.013826704060900523,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->21",
+            "utilization": 0.005789333357174291,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->5",
+            "utilization": 0.008017891838242988,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:19->20",
+            "utilization": 0.012345691736418777,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:19->22",
+            "utilization": 0.008392387621303872,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->4",
+            "utilization": 0.005789333357174291,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->7",
+            "utilization": 0.014149073741472422,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:20->sink",
+            "utilization": 2.2742617333104193e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->11",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->23",
+            "utilization": 0.01640446789994357,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:22->sink",
+            "utilization": 1.180160482752889e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->1",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->2",
+            "utilization": 0.01640446789994357,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->21",
+            "utilization": 0.010615134542769277,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->5",
+            "utilization": 0.003879721478020128,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->12",
+            "utilization": 0.00827640684550396,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->8",
+            "utilization": 0.0058766006292303025,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->11",
+            "utilization": 0.011897613316263116,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->23",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:6->9",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->12",
+            "utilization": 0.010615134542769277,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->8",
+            "utilization": 0.003533939198703144,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->13",
+            "utilization": 0.0010181522066295742,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->15",
+            "utilization": 0.008392387621303872,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:9->10",
+            "utilization": 0.028302081216206684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:source->6",
+            "utilization": 3.4544222160633085e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:0",
+            "utilization": 0.0014475377155306161,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:1",
+            "utilization": 0.0008363674117559971,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:10",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:11",
+            "utilization": 0.0011897613316263116,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:12",
+            "utilization": 0.0018891541388273239,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:13",
+            "utilization": 0.0007564001858484036,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:14",
+            "utilization": 0.0013826704060900523,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:15",
+            "utilization": 0.002073807935772265,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:16",
+            "utilization": 0.0007564001858484036,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:17",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:18",
+            "utilization": 0.0013807225195417278,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:19",
+            "utilization": 0.002073807935772265,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:2",
+            "utilization": 0.001993840709864671,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:20",
+            "utilization": 0.0018633026381012266,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:21",
+            "utilization": 0.0016404467899943567,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:22",
+            "utilization": 0.0009669054835194418,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:23",
+            "utilization": 0.0016404467899943567,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:3",
+            "utilization": 0.0014494856020789404,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:4",
+            "utilization": 0.001415300747473426,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:5",
+            "utilization": 0.0011897613316263116,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:6",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:7",
+            "utilization": 0.0014149073741472422,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:8",
+            "utilization": 0.0009410539827933446,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:9",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:sink",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:0",
+            "utilization": 0.0014475377155306161,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:1",
+            "utilization": 0.0008363674117559971,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:10",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:11",
+            "utilization": 0.0011897613316263116,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:12",
+            "utilization": 0.0018891541388273239,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:13",
+            "utilization": 0.0007564001858484036,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:14",
+            "utilization": 0.0013826704060900523,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:15",
+            "utilization": 0.002073807935772265,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:16",
+            "utilization": 0.0007564001858484036,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:17",
+            "utilization": 0.0028302081216206687,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:18",
+            "utilization": 0.0013807225195417278,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:19",
+            "utilization": 0.002073807935772265,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:2",
+            "utilization": 0.001993840709864671,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:20",
+            "utilization": 2.2742617333104192e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:21",
+            "utilization": 0.0016404467899943567,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:22",
+            "utilization": 1.1801604827528889e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:23",
+            "utilization": 0.0016404467899943567,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:3",
+            "utilization": 0.0014494856020789404,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:4",
+            "utilization": 0.0014153007474734262,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:5",
+            "utilization": 0.0011897613316263116,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:6",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:7",
+            "utilization": 0.0014149073741472422,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:8",
+            "utilization": 0.0009410539827933446,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:9",
+            "utilization": 0.0028302081216206683,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:source",
+            "utilization": 3.454422216063308e-07,
+            "shadow_price": 0.0
+          }
+        ],
+        "bottlenecks": [
+          {
+            "resource": "gpu:6",
+            "utilization": 1.0,
+            "shadow_price": 1.7384031128342827
+          },
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:15",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 0.8821748780551607,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 0.7851799975695468,
+            "shadow_price": 0.0
+          }
+        ],
+        "physical_edge_flow_per_s": {
+          "source->6": 1.7384031128342827,
+          "6->9": 1.7384031128342827,
+          "9->10": 1.7384031128342827,
+          "10->17": 1.7384031128342827,
+          "17->14": 1.0455139691298543,
+          "14->18": 0.896507988029773,
+          "18->21": 0.7284736853781756,
+          "21->23": 1.157491775557293,
+          "23->2": 1.157491775557293,
+          "2->4": 0.7284736853781756,
+          "4->8": 0.7318253036745667,
+          "8->15": 0.8284475254284964,
+          "15->19": 1.3274072954962564,
+          "19->22": 0.8284475254284964,
+          "22->sink": 0.8774796664782569,
+          "17->0": 0.6928891437044281,
+          "0->18": 0.2638710535253107,
+          "18->5": 0.4319053561769082,
+          "5->11": 0.5809113372769895,
+          "11->2": 0.24562820285401113,
+          "2->7": 0.6746462930331286,
+          "7->8": 0.24562820285401113,
+          "8->13": 0.14900598110008137,
+          "13->16": 0.4109958173380261,
+          "16->20": 0.36196367628826553,
+          "20->sink": 0.8609234463560256,
+          "14->3": 0.14900598110008137,
+          "3->5": 0.14900598110008137,
+          "11->1": 0.3352831344229784,
+          "1->4": 0.3352831344229784,
+          "4->12": 0.3319315161265873,
+          "12->13": 0.2619898362379447,
+          "16->22": 0.049032141049760516,
+          "0->3": 0.42901809017911746,
+          "3->21": 0.42901809017911746,
+          "7->12": 0.42901809017911746,
+          "12->15": 0.49895977006776004,
+          "19->20": 0.49895977006776004
+        }
+      }
+    },
+    {
+      "layout": "capacity_2",
+      "path": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_single/capacity_2",
+      "solution_sha256": "cfc5e7e9afaa0818d0189da829f411614e7a3dfc03aff35f8ec6196eab5e5564",
+      "sim_cluster_sha256": "3dd2a04d1a1dd7c33849ad0547e095531487e3415c087f6900b312d40cbf7f94",
+      "widths": [
+        1,
+        2,
+        2
+      ],
+      "legal_edges": 42,
+      "legal_paths": 3536,
+      "lp_wall_s": 1.1152577000902966,
+      "lp": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "workload_classes": [
+          {
+            "name": "input_short_output_short",
+            "input_tokens": 384,
+            "output_tokens": 101,
+            "probability": 0.41904761904761906,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_short_output_long",
+            "input_tokens": 200,
+            "output_tokens": 217,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_short",
+            "input_tokens": 1477,
+            "output_tokens": 112,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_long",
+            "input_tokens": 1094,
+            "output_tokens": 416,
+            "probability": 0.4095238095238095,
+            "decode_batch": 8
+          }
+        ],
+        "expanded_states": 32,
+        "expanded_arcs": 62,
+        "physical_resources": 110,
+        "requests_per_s": 1.469002764344529,
+        "shadow_prices": {
+          "gpu:0": 0.34776163850200736,
+          "gpu:1": 0.0,
+          "gpu:10": 0.0,
+          "gpu:11": 0.0,
+          "gpu:12": 0.0,
+          "gpu:13": 0.0,
+          "gpu:14": 0.34776163850200753,
+          "gpu:15": 0.0,
+          "gpu:16": 0.0,
+          "gpu:17": 0.0,
+          "gpu:18": 0.11592054616733585,
+          "gpu:19": 0.0,
+          "gpu:2": 0.30979730267117045,
+          "gpu:21": 0.0,
+          "gpu:23": 0.0,
+          "gpu:3": 0.3477616385020075,
+          "gpu:4": 0.0,
+          "gpu:5": 0.0,
+          "gpu:6": 0.0,
+          "gpu:7": 0.0,
+          "gpu:8": 0.0,
+          "gpu:9": 0.0,
+          "link:0->14": 0.0,
+          "link:0->3": 0.0,
+          "link:1->12": 0.0,
+          "link:1->4": 0.0,
+          "link:10->0": 0.0,
+          "link:10->2": 0.0,
+          "link:11->21": 0.0,
+          "link:11->23": 0.0,
+          "link:12->16": 0.0,
+          "link:12->19": 0.0,
+          "link:13->sink": 0.0,
+          "link:14->1": 0.0,
+          "link:14->18": 0.0,
+          "link:15->sink": 0.0,
+          "link:16->5": 0.0,
+          "link:16->8": 0.0,
+          "link:17->11": 0.0,
+          "link:17->9": 0.0,
+          "link:18->12": 0.0,
+          "link:18->4": 0.0,
+          "link:19->5": 0.0,
+          "link:19->8": 0.0,
+          "link:2->0": 0.0,
+          "link:2->3": 0.0,
+          "link:21->23": 0.0,
+          "link:21->7": 0.0,
+          "link:23->13": 0.0,
+          "link:23->15": 0.0,
+          "link:3->14": 0.0,
+          "link:3->18": 0.0,
+          "link:4->16": 0.0,
+          "link:4->19": 0.0,
+          "link:5->17": 0.0,
+          "link:5->9": 0.0,
+          "link:6->10": 0.0,
+          "link:7->13": 0.0,
+          "link:7->15": 0.0,
+          "link:8->17": 0.0,
+          "link:8->5": 0.0,
+          "link:9->11": 0.0,
+          "link:9->21": 0.0,
+          "link:source->6": 0.0,
+          "nic_in:0": 0.0,
+          "nic_in:1": 0.0,
+          "nic_in:10": 0.0,
+          "nic_in:11": 0.0,
+          "nic_in:12": 0.0,
+          "nic_in:13": 0.0,
+          "nic_in:14": 0.0,
+          "nic_in:15": 0.0,
+          "nic_in:16": 0.0,
+          "nic_in:17": 0.0,
+          "nic_in:18": 0.0,
+          "nic_in:19": 0.0,
+          "nic_in:2": 0.0,
+          "nic_in:21": 0.0,
+          "nic_in:23": 0.0,
+          "nic_in:3": 0.0,
+          "nic_in:4": 0.0,
+          "nic_in:5": 0.0,
+          "nic_in:6": 0.0,
+          "nic_in:7": 0.0,
+          "nic_in:8": 0.0,
+          "nic_in:9": 0.0,
+          "nic_in:sink": 0.0,
+          "nic_out:0": 0.0,
+          "nic_out:1": 0.0,
+          "nic_out:10": 0.0,
+          "nic_out:11": 0.0,
+          "nic_out:12": 0.0,
+          "nic_out:13": 0.0,
+          "nic_out:14": 0.0,
+          "nic_out:15": 0.0,
+          "nic_out:16": 0.0,
+          "nic_out:17": 0.0,
+          "nic_out:18": 0.0,
+          "nic_out:19": 0.0,
+          "nic_out:2": 0.0,
+          "nic_out:21": 0.0,
+          "nic_out:23": 0.0,
+          "nic_out:3": 0.0,
+          "nic_out:4": 0.0,
+          "nic_out:5": 0.0,
+          "nic_out:6": 0.0,
+          "nic_out:7": 0.0,
+          "nic_out:8": 0.0,
+          "nic_out:9": 0.0,
+          "nic_out:source": 0.0
+        },
+        "resource_utilization": [
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.34776163850200736
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 0.845520328770363,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 0.845029989591698,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 0.7818952624369693,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 0.9999999999999999,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0000000000000002,
+            "shadow_price": 0.34776163850200753
+          },
+          {
+            "resource": "gpu:15",
+            "utilization": 0.5963586165529958,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:16",
+            "utilization": 0.8916108817551068,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 0.5611605897889933,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 1.0,
+            "shadow_price": 0.11592054616733585
+          },
+          {
+            "resource": "gpu:19",
+            "utilization": 0.7047477347978893,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 1.0,
+            "shadow_price": 0.30979730267117045
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.3477616385020075
+          },
+          {
+            "resource": "gpu:4",
+            "utilization": 0.8144633541160269,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 0.8281676047950604,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:6",
+            "utilization": 0.845029989591698,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 0.6819165601525128,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:8",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 0.3450918810292589,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->14",
+            "utilization": 0.011412116753718868,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->3",
+            "utilization": 0.005787321963149695,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->12",
+            "utilization": 0.005155435798505909,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->4",
+            "utilization": 0.007989369509244927,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:10->0",
+            "utilization": 0.010942757761655604,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:10->2",
+            "utilization": 0.012973349633898918,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->21",
+            "utilization": 0.007785218948471993,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->23",
+            "utilization": 0.00921798890407154,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->16",
+            "utilization": 0.012911532378069607,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->19",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->sink",
+            "utilization": 1.895905895485982e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->1",
+            "utilization": 0.013144805307750836,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->18",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->sink",
+            "utilization": 1.0231844737993244e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->5",
+            "utilization": 0.010041316072170455,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->8",
+            "utilization": 0.0037305854544701063,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->11",
+            "utilization": 0.004796545525060123,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->9",
+            "utilization": 0.012356726798513977,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->12",
+            "utilization": 0.007756096579563699,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->4",
+            "utilization": 0.003015205508239986,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:19->5",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:19->8",
+            "utilization": 0.01014420586891396,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->0",
+            "utilization": 0.006256680955212959,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->3",
+            "utilization": 0.0067166686786859576,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->23",
+            "utilization": 0.006052530394440029,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->7",
+            "utilization": 0.008645588097042946,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->13",
+            "utilization": 0.01037835899195571,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->15",
+            "utilization": 0.004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->14",
+            "utilization": 0.0017326885540319672,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->18",
+            "utilization": 0.010771302087803684,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->16",
+            "utilization": 0.0008603691485709532,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->19",
+            "utilization": 0.01014420586891396,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->17",
+            "utilization": 0.004796545525060123,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->9",
+            "utilization": 0.006762835071980419,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:6->10",
+            "utilization": 0.02391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->13",
+            "utilization": 0.0051547980097609416,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->15",
+            "utilization": 0.003490790087282005,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->17",
+            "utilization": 0.012356726798513977,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->5",
+            "utilization": 0.001518064524870088,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:9->11",
+            "utilization": 0.012206662327483414,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:9->21",
+            "utilization": 0.006912899543010982,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:source->6",
+            "utilization": 2.919090369285307e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:0",
+            "utilization": 0.0017199438716868562,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:1",
+            "utilization": 0.0013144805307750836,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:10",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:11",
+            "utilization": 0.0017003207852543537,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:12",
+            "utilization": 0.001291153237806961,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:13",
+            "utilization": 0.001553315700171665,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:14",
+            "utilization": 0.0013144805307750834,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:15",
+            "utilization": 0.0008382950393837863,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:16",
+            "utilization": 0.0013771901526640562,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:17",
+            "utilization": 0.0017153272323574102,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:18",
+            "utilization": 0.0010771302087803686,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:19",
+            "utilization": 0.001014420586891396,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:2",
+            "utilization": 0.0012973349633898918,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:21",
+            "utilization": 0.0014698118491482976,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:23",
+            "utilization": 0.0015270519298511568,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:3",
+            "utilization": 0.0012503990641835653,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:4",
+            "utilization": 0.0011004575017484913,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:5",
+            "utilization": 0.0011559380597040542,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:6",
+            "utilization": 2.919090369285307e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:7",
+            "utilization": 0.0008645588097042947,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:8",
+            "utilization": 0.0013874791323384066,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:9",
+            "utilization": 0.0019119561870494398,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:sink",
+            "utilization": 2.919090369285306e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:0",
+            "utilization": 0.0017199438716868562,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:1",
+            "utilization": 0.0013144805307750836,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:10",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:11",
+            "utilization": 0.0017003207852543533,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:12",
+            "utilization": 0.001291153237806961,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:13",
+            "utilization": 1.895905895485982e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:14",
+            "utilization": 0.0013144805307750836,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:15",
+            "utilization": 1.0231844737993243e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:16",
+            "utilization": 0.0013771901526640562,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:17",
+            "utilization": 0.0017153272323574102,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:18",
+            "utilization": 0.0010771302087803686,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:19",
+            "utilization": 0.001014420586891396,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:2",
+            "utilization": 0.0012973349633898915,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:21",
+            "utilization": 0.0014698118491482976,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:23",
+            "utilization": 0.0015270519298511568,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:3",
+            "utilization": 0.0012503990641835653,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:4",
+            "utilization": 0.0011004575017484913,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:5",
+            "utilization": 0.0011559380597040542,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:6",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:7",
+            "utilization": 0.0008645588097042946,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:8",
+            "utilization": 0.0013874791323384066,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:9",
+            "utilization": 0.0019119561870494396,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:source",
+            "utilization": 2.919090369285307e-07,
+            "shadow_price": 0.0
+          }
+        ],
+        "bottlenecks": [
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0000000000000002,
+            "shadow_price": 0.34776163850200753
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.3477616385020075
+          },
+          {
+            "resource": "gpu:0",
+            "utilization": 1.0,
+            "shadow_price": 0.34776163850200736
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 1.0,
+            "shadow_price": 0.30979730267117045
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 1.0,
+            "shadow_price": 0.11592054616733585
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:8",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 0.9999999999999999,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:16",
+            "utilization": 0.8916108817551068,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 0.845520328770363,
+            "shadow_price": 0.0
+          }
+        ],
+        "physical_edge_flow_per_s": {
+          "source->6": 1.469002764344529,
+          "6->10": 1.469002764344529,
+          "10->0": 0.8535336596644627,
+          "0->14": 0.70610259112815,
+          "0->3": 0.49144130877281994,
+          "14->1": 0.7761304114380078,
+          "3->18": 0.6928723529065212,
+          "1->12": 0.36209235089164277,
+          "18->4": 0.37940428253940517,
+          "12->16": 0.6755604212587587,
+          "4->19": 0.6675278204276676,
+          "16->8": 0.4022357097266069,
+          "19->8": 0.6675278204276676,
+          "8->17": 1.0084098901599454,
+          "17->9": 1.0084098901599454,
+          "9->11": 0.911202828059773,
+          "11->23": 0.7838259194281253,
+          "23->15": 0.6155821107729454,
+          "15->sink": 0.8478069362299585,
+          "10->2": 0.6154691046800662,
+          "2->0": 0.34401024023650717,
+          "1->4": 0.41403806054636494,
+          "4->16": 0.1259145226581025,
+          "9->21": 0.37053177363232415,
+          "21->7": 0.44055959394218175,
+          "7->15": 0.23222482545701303,
+          "16->5": 0.39923923419025437,
+          "5->17": 0.18726816265243168,
+          "17->11": 0.18726816265243168,
+          "23->13": 0.41286105962940145,
+          "13->sink": 0.6211958281145702,
+          "2->3": 0.271458864443559,
+          "3->14": 0.07002782030985777,
+          "18->12": 0.313468070367116,
+          "5->9": 0.2733247115321519,
+          "8->5": 0.061353639994329204,
+          "11->21": 0.31464507128407926,
+          "21->23": 0.24461725097422163,
+          "7->13": 0.20833476848516871
+        }
+      }
+    },
+    {
+      "layout": "capacity_3",
+      "path": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_single/capacity_3",
+      "solution_sha256": "54511fe5e3db096402f2323bfd193805de9ab3f6590c80d2f5cec87f8c878e36",
+      "sim_cluster_sha256": "ee00ccb70decb94a4fe24c6e3f6b8b7f970bdb63fabbf7effcd0e6eecc59966e",
+      "widths": [
+        1,
+        3,
+        2
+      ],
+      "legal_edges": 47,
+      "legal_paths": 2561,
+      "lp_wall_s": 1.5535020999377593,
+      "lp": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "workload_classes": [
+          {
+            "name": "input_short_output_short",
+            "input_tokens": 384,
+            "output_tokens": 101,
+            "probability": 0.41904761904761906,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_short_output_long",
+            "input_tokens": 200,
+            "output_tokens": 217,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_short",
+            "input_tokens": 1477,
+            "output_tokens": 112,
+            "probability": 0.08571428571428572,
+            "decode_batch": 8
+          },
+          {
+            "name": "input_long_output_long",
+            "input_tokens": 1094,
+            "output_tokens": 416,
+            "probability": 0.4095238095238095,
+            "decode_batch": 8
+          }
+        ],
+        "expanded_states": 35,
+        "expanded_arcs": 83,
+        "physical_resources": 112,
+        "requests_per_s": 1.4690027643445287,
+        "shadow_prices": {
+          "gpu:0": 0.0,
+          "gpu:1": 0.0,
+          "gpu:10": 0.0,
+          "gpu:11": 0.34776163850200725,
+          "gpu:12": 0.0,
+          "gpu:13": 0.3097973026711704,
+          "gpu:14": 0.3477616385020074,
+          "gpu:15": 0.0,
+          "gpu:16": 0.0,
+          "gpu:17": 0.0,
+          "gpu:18": 0.0,
+          "gpu:2": 0.0,
+          "gpu:21": 0.3477616385020075,
+          "gpu:23": 0.11592054616733584,
+          "gpu:3": 0.0,
+          "gpu:4": 0.0,
+          "gpu:5": 0.0,
+          "gpu:6": 0.0,
+          "gpu:7": 0.0,
+          "gpu:8": 0.0,
+          "gpu:9": 0.0,
+          "link:0->2": 0.0,
+          "link:0->3": 0.0,
+          "link:0->5": 0.0,
+          "link:1->0": 0.0,
+          "link:1->3": 0.0,
+          "link:1->5": 0.0,
+          "link:10->17": 0.0,
+          "link:11->14": 0.0,
+          "link:11->21": 0.0,
+          "link:12->sink": 0.0,
+          "link:13->11": 0.0,
+          "link:13->14": 0.0,
+          "link:14->21": 0.0,
+          "link:14->23": 0.0,
+          "link:15->11": 0.0,
+          "link:15->13": 0.0,
+          "link:16->11": 0.0,
+          "link:16->13": 0.0,
+          "link:17->0": 0.0,
+          "link:17->1": 0.0,
+          "link:17->5": 0.0,
+          "link:18->4": 0.0,
+          "link:18->7": 0.0,
+          "link:18->8": 0.0,
+          "link:2->18": 0.0,
+          "link:2->4": 0.0,
+          "link:2->7": 0.0,
+          "link:21->12": 0.0,
+          "link:21->23": 0.0,
+          "link:23->sink": 0.0,
+          "link:3->18": 0.0,
+          "link:3->4": 0.0,
+          "link:3->7": 0.0,
+          "link:4->15": 0.0,
+          "link:4->16": 0.0,
+          "link:4->8": 0.0,
+          "link:5->18": 0.0,
+          "link:5->2": 0.0,
+          "link:5->3": 0.0,
+          "link:6->9": 0.0,
+          "link:7->15": 0.0,
+          "link:7->16": 0.0,
+          "link:7->8": 0.0,
+          "link:8->11": 0.0,
+          "link:8->13": 0.0,
+          "link:9->10": 0.0,
+          "link:source->6": 0.0,
+          "nic_in:0": 0.0,
+          "nic_in:1": 0.0,
+          "nic_in:10": 0.0,
+          "nic_in:11": 0.0,
+          "nic_in:12": 0.0,
+          "nic_in:13": 0.0,
+          "nic_in:14": 0.0,
+          "nic_in:15": 0.0,
+          "nic_in:16": 0.0,
+          "nic_in:17": 0.0,
+          "nic_in:18": 0.0,
+          "nic_in:2": 0.0,
+          "nic_in:21": 0.0,
+          "nic_in:23": 0.0,
+          "nic_in:3": 0.0,
+          "nic_in:4": 0.0,
+          "nic_in:5": 0.0,
+          "nic_in:6": 0.0,
+          "nic_in:7": 0.0,
+          "nic_in:8": 0.0,
+          "nic_in:9": 0.0,
+          "nic_in:sink": 0.0,
+          "nic_out:0": 0.0,
+          "nic_out:1": 0.0,
+          "nic_out:10": 0.0,
+          "nic_out:11": 0.0,
+          "nic_out:12": 0.0,
+          "nic_out:13": 0.0,
+          "nic_out:14": 0.0,
+          "nic_out:15": 0.0,
+          "nic_out:16": 0.0,
+          "nic_out:17": 0.0,
+          "nic_out:18": 0.0,
+          "nic_out:2": 0.0,
+          "nic_out:21": 0.0,
+          "nic_out:23": 0.0,
+          "nic_out:3": 0.0,
+          "nic_out:4": 0.0,
+          "nic_out:5": 0.0,
+          "nic_out:6": 0.0,
+          "nic_out:7": 0.0,
+          "nic_out:8": 0.0,
+          "nic_out:9": 0.0,
+          "nic_out:source": 0.0
+        },
+        "resource_utilization": [
+          {
+            "resource": "gpu:0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 0.9982892249755084,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.34776163850200725
+          },
+          {
+            "resource": "gpu:12",
+            "utilization": 0.8332636802629988,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 1.0,
+            "shadow_price": 0.3097973026711704
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0000000000000007,
+            "shadow_price": 0.3477616385020074
+          },
+          {
+            "resource": "gpu:15",
+            "utilization": 0.3719707826485602,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:16",
+            "utilization": 0.2199834997326536,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 0.9134473097922197,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:2",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:21",
+            "utilization": 0.9999999999999999,
+            "shadow_price": 0.3477616385020075
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.11592054616733584
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:4",
+            "utilization": 0.6056766628495511,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:5",
+            "utilization": 0.8372619723707988,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:6",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:7",
+            "utilization": 0.29331133297687145,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:8",
+            "utilization": 0.7796573352151768,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->2",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->3",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:0->5",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->3",
+            "utilization": 0.012500447954132438,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:1->5",
+            "utilization": 0.003278481000190035,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:10->17",
+            "utilization": 0.02391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->14",
+            "utilization": 0.00826902904237757,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:11->21",
+            "utilization": 0.009604482935405898,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:12->sink",
+            "utilization": 1.383763150181603e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->11",
+            "utilization": 0.006930754216127866,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:13->14",
+            "utilization": 0.006042595417771051,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->21",
+            "utilization": 0.0017326885540319744,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:14->23",
+            "utilization": 0.012578935906116648,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->11",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:15->13",
+            "utilization": 0.0067479184990056245,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->11",
+            "utilization": 0.004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:16->13",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->1",
+            "utilization": 0.01577892895432247,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:17->5",
+            "utilization": 0.00813717844123205,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->4",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->7",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:18->8",
+            "utilization": 0.011415659441422085,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->18",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->4",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:2->7",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->12",
+            "utilization": 0.011337171489437874,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:21->23",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:23->sink",
+            "utilization": 1.5353272191037043e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->18",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->4",
+            "utilization": 0.0076082876475765775,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:3->7",
+            "utilization": 0.004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->15",
+            "utilization": 0.0067479184990056245,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->16",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:4->8",
+            "utilization": 0.0008603691485709531,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->18",
+            "utilization": 0.011415659441422085,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->2",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:5->3",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:6->9",
+            "utilization": 0.02391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->15",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->16",
+            "utilization": 0.004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:7->8",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->11",
+            "utilization": 0.006050597455099745,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:8->13",
+            "utilization": 0.006225431134893293,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:9->10",
+            "utilization": 0.02391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "link:source->6",
+            "utilization": 2.9190903692853068e-06,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:1",
+            "utilization": 0.0015778928954322472,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:10",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:11",
+            "utilization": 0.001787351197778347,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:12",
+            "utilization": 0.0011337171489437874,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:13",
+            "utilization": 0.001297334963389892,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:14",
+            "utilization": 0.0014311624460148623,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:15",
+            "utilization": 0.0006747918499005626,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:16",
+            "utilization": 0.0004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:17",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:18",
+            "utilization": 0.0011415659441422084,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:2",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:21",
+            "utilization": 0.0011337171489437874,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:23",
+            "utilization": 0.0012578935906116648,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:3",
+            "utilization": 0.0012500447954132438,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:4",
+            "utilization": 0.0007608287647576579,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:5",
+            "utilization": 0.0011415659441422084,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:6",
+            "utilization": 2.919090369285307e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:7",
+            "utilization": 0.0004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:8",
+            "utilization": 0.0012276028589993037,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:9",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_in:sink",
+            "utilization": 2.919090369285307e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:0",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:1",
+            "utilization": 0.0015778928954322472,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:10",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:11",
+            "utilization": 0.001787351197778347,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:12",
+            "utilization": 1.383763150181603e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:13",
+            "utilization": 0.001297334963389892,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:14",
+            "utilization": 0.0014311624460148621,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:15",
+            "utilization": 0.0006747918499005626,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:16",
+            "utilization": 0.0004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:17",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:18",
+            "utilization": 0.0011415659441422084,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:2",
+            "utilization": 0.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:21",
+            "utilization": 0.0011337171489437874,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:23",
+            "utilization": 1.5353272191037041e-07,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:3",
+            "utilization": 0.0012500447954132438,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:4",
+            "utilization": 0.0007608287647576579,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:5",
+            "utilization": 0.0011415659441422084,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:6",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:7",
+            "utilization": 0.0004892160306555859,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:8",
+            "utilization": 0.001227602858999304,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:9",
+            "utilization": 0.002391610739555452,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "nic_out:source",
+            "utilization": 2.919090369285307e-07,
+            "shadow_price": 0.0
+          }
+        ],
+        "bottlenecks": [
+          {
+            "resource": "gpu:21",
+            "utilization": 0.9999999999999999,
+            "shadow_price": 0.3477616385020075
+          },
+          {
+            "resource": "gpu:14",
+            "utilization": 1.0000000000000007,
+            "shadow_price": 0.3477616385020074
+          },
+          {
+            "resource": "gpu:11",
+            "utilization": 1.0,
+            "shadow_price": 0.34776163850200725
+          },
+          {
+            "resource": "gpu:13",
+            "utilization": 1.0,
+            "shadow_price": 0.3097973026711704
+          },
+          {
+            "resource": "gpu:23",
+            "utilization": 1.0,
+            "shadow_price": 0.11592054616733584
+          },
+          {
+            "resource": "gpu:3",
+            "utilization": 1.0,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:1",
+            "utilization": 0.9982892249755084,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:18",
+            "utilization": 0.9134473097922197,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:10",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:17",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:6",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          },
+          {
+            "resource": "gpu:9",
+            "utilization": 0.8450299895916978,
+            "shadow_price": 0.0
+          }
+        ],
+        "physical_edge_flow_per_s": {
+          "source->6": 1.4690027643445287,
+          "6->9": 1.4690027643445287,
+          "9->10": 1.4690027643445287,
+          "10->17": 1.4690027643445287,
+          "17->1": 1.1401330038870856,
+          "1->3": 1.0142184812289834,
+          "3->7": 0.6155821107729454,
+          "7->16": 0.6155821107729454,
+          "16->11": 0.6155821107729454,
+          "11->14": 0.7454730426105719,
+          "14->23": 1.010803045741349,
+          "23->sink": 1.010803045741349,
+          "3->4": 0.39863637045603795,
+          "4->8": 0.12591452265810246,
+          "8->13": 0.3427472568821307,
+          "13->14": 0.33535782344063525,
+          "1->5": 0.12591452265810246,
+          "5->18": 0.45478428311554553,
+          "18->8": 0.45478428311554553,
+          "8->11": 0.23795154889151726,
+          "17->5": 0.32886976045744304,
+          "4->15": 0.27272184779793546,
+          "15->13": 0.27272184779793546,
+          "11->21": 0.38817189829332177,
+          "13->11": 0.28011128123943096,
+          "14->21": 0.07002782030985805,
+          "21->12": 0.4581997186031798,
+          "12->sink": 0.4581997186031798
+        }
+      }
+    }
+  ],
+  "shortlist": [
+    "capacity_1",
+    "local_neighbor",
+    "released_v3",
+    "single_boundary"
+  ]
+}
