@@ -63,7 +63,8 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         machine_profile: Path | None = None,
         trace_override: list[tuple[float, int, int]] | None = None,
         allow_force_set: bool = False,
-        include_distributions: bool = False) -> dict:
+        include_distributions: bool = False,
+        phase_link_probe=None) -> dict:
     cluster, profile, helix_solution, helix_sim_cluster = scenario(name)
     cluster = physical_cluster or cluster
     profile = machine_profile or profile
@@ -109,6 +110,8 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
     if layout is not None:
         simulator.update_scheduler()
     beginning, ending = start + warmup, start + duration
+    if phase_link_probe is not None:
+        phase_link_probe.install(simulator, beginning, ending)
     scheduler_calls: dict[str, list[int]] = {}
     if profile_scheduler:
         for operation in ("schedule_transmission", "schedule_execution",
@@ -336,6 +339,9 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         result["query_samples"] = accumulator.query_samples
     if resource_profile is not None:
         result.update(resource_profile.summary())
+    if phase_link_probe is not None:
+        result["phase_link_profile"] = phase_link_probe.summary(
+            result.get("query_samples", {}))
     if checkpoint_file is not None:
         checkpoint_file.unlink(missing_ok=True)
     return result

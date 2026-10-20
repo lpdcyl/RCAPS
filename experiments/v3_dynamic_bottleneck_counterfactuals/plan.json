@@ -1,0 +1,101 @@
+{
+  "protocol": "fixed_window_no_tail_drain",
+  "formal_duration_s": 600,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "runtime_sha256": {
+    "benchmarks/fixed_window.py": "4e87beec2cfa1b8c1dca0731c8966470fa1bc733c4de73b852035e596d2c237f",
+    "benchmarks/resource_profile.py": "98c13359ac543560354c41a8ec47279e75e57e90281f069a0971d09de80afd95",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "experiments/v3_dynamic_bottleneck_counterfactuals/scheduler.py": "7e073b4f4a13ae3098b5d32dcf2ce071dab27245ecee36fc2f0debb769aa3d0d",
+    "experiments/v3_dynamic_bottleneck_counterfactuals/run.py": "7c298672f51fec3ef74faf0bb852652b5bd83dcacdb324397144fe28f765ab08"
+  },
+  "design": {
+    "kv": "C1_single/k1; multiply every deployed node KV capacity by 2; GPU, links, layout, and trace fixed.",
+    "network": "C1_multi k1/k3; multiply every deployed link bandwidth by 2, or replace the same seed's arrival times with uniform spacing while retaining request sizes and order.",
+    "oracle": "Frozen V3 multi layout; Decode remains on the prompt path. The oracle observes true remaining output lengths of currently live sessions, but no future arrivals."
+  },
+  "layouts": {
+    "kv/base": {
+      "scenario": "single",
+      "physical": "examples/simulation/config/single24.ini",
+      "physical_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+      "solution": "experiments/v3_m2_branch_parallelism/layouts/C1_single/k1/solution.ini",
+      "solution_sha256": "d05c7590ff02d9cb7356872ae52fc526fd41f595ac83f65ca2bdbfe6543f705d",
+      "source_sim_cluster": "experiments/v3_m2_branch_parallelism/layouts/C1_single/k1/simulator_cluster.ini",
+      "source_sim_cluster_sha256": "b2f457dcada6d179d19ab6baa3bb3893fb5681e0a42f36a5352fe0d6253e5d22",
+      "sim_cluster": "experiments/v3_m2_branch_parallelism/layouts/C1_single/k1/simulator_cluster.ini",
+      "sim_cluster_sha256": "b2f457dcada6d179d19ab6baa3bb3893fb5681e0a42f36a5352fe0d6253e5d22"
+    },
+    "network/k1_base": {
+      "scenario": "multi",
+      "physical": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+      "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+      "solution": "experiments/v3_m2_branch_parallelism/layouts/C1_multi/k1/solution.ini",
+      "solution_sha256": "c8eb622bcdbac7dda6d49606b0698919647501d3286ddbe0d871b868b7b2198a",
+      "source_sim_cluster": "experiments/v3_m2_branch_parallelism/layouts/C1_multi/k1/simulator_cluster.ini",
+      "source_sim_cluster_sha256": "5fb19b944de709ecee1e825a2e012d0e917ff48ee06e65a95800a71380b2b3cf",
+      "sim_cluster": "experiments/v3_m2_branch_parallelism/layouts/C1_multi/k1/simulator_cluster.ini",
+      "sim_cluster_sha256": "5fb19b944de709ecee1e825a2e012d0e917ff48ee06e65a95800a71380b2b3cf"
+    },
+    "network/k3_base": {
+      "scenario": "multi",
+      "physical": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+      "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+      "solution": "experiments/v3_m2_branch_parallelism/layouts/C1_multi/k3/solution.ini",
+      "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+      "source_sim_cluster": "experiments/v3_m2_branch_parallelism/layouts/C1_multi/k3/simulator_cluster.ini",
+      "source_sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+      "sim_cluster": "experiments/v3_m2_branch_parallelism/layouts/C1_multi/k3/simulator_cluster.ini",
+      "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da"
+    },
+    "oracle/fixed": {
+      "scenario": "multi",
+      "physical": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+      "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+      "solution": "rcaps/v3_layouts/multi/solution.ini",
+      "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+      "source_sim_cluster": "rcaps/v3_layouts/multi/simulator_cluster.ini",
+      "source_sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+      "sim_cluster": "rcaps/v3_layouts/multi/simulator_cluster.ini",
+      "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da"
+    },
+    "oracle/length_oracle": {
+      "scenario": "multi",
+      "physical": "artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+      "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+      "solution": "rcaps/v3_layouts/multi/solution.ini",
+      "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+      "source_sim_cluster": "rcaps/v3_layouts/multi/simulator_cluster.ini",
+      "source_sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+      "sim_cluster": "rcaps/v3_layouts/multi/simulator_cluster.ini",
+      "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da"
+    },
+    "kv/kv2": {
+      "sim_cluster": "experiments/v3_dynamic_bottleneck_counterfactuals/derived_configs/kv/kv2.ini",
+      "sim_cluster_sha256": "903c143859874ba705faed8683ff625e6bf3eb761e3f39e53c0cb9c1141924ea",
+      "resource_change": "kv_capacity_x2"
+    },
+    "network/k1_bw2": {
+      "sim_cluster": "experiments/v3_dynamic_bottleneck_counterfactuals/derived_configs/network/k1_bw2.ini",
+      "sim_cluster_sha256": "5cc25a09444f2dffdc1b9e7570501053fe14f8b8670dbfda900e6c80631ae06f",
+      "resource_change": "all_deployed_link_bandwidth_x2"
+    },
+    "network/k1_flat": {
+      "sim_cluster": "experiments/v3_dynamic_bottleneck_counterfactuals/derived_configs/network/k1_flat.ini",
+      "sim_cluster_sha256": "21d6f5cd5566d6d354c618987bb6bacf99267b5f372d148e3446f964f7d25e1b",
+      "resource_change": "none_trace_only"
+    },
+    "network/k3_bw2": {
+      "sim_cluster": "experiments/v3_dynamic_bottleneck_counterfactuals/derived_configs/network/k3_bw2.ini",
+      "sim_cluster_sha256": "b95f094f67ced1896df797ba99561e8cdfc78498ecc101ab83e2bdaee8a4700d",
+      "resource_change": "all_deployed_link_bandwidth_x2"
+    }
+  }
+}

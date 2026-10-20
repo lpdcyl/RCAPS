@@ -1,0 +1,217 @@
+{
+  "protocol": "formal600",
+  "failed_jobs": {
+    "kv/base/load1100/seed1": "AssertionError('Exceed KV-cache capacity!')",
+    "kv/base/load1100/seed2": "AssertionError('Exceed KV-cache capacity!')",
+    "kv/base/load1100/seed3": "AssertionError('Exceed KV-cache capacity!')"
+  },
+  "summary": [
+    {
+      "group": "kv",
+      "treatment": "base",
+      "load": 600.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 95.09722222222221,
+        "ttft_p95_s": 5.104650686685517,
+        "tpot_p95_s": 1.2785667385299917,
+        "e2e_p95_s": 409.6401450603705,
+        "completion_fraction": 0.5673404168702165
+      }
+    },
+    {
+      "group": "kv",
+      "treatment": "kv2",
+      "load": 600.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 95.09722222222221,
+        "ttft_p95_s": 5.104650686685517,
+        "tpot_p95_s": 1.2785667385299917,
+        "e2e_p95_s": 409.6401450603705,
+        "completion_fraction": 0.5673404168702165
+      }
+    },
+    {
+      "group": "kv",
+      "treatment": "kv2",
+      "load": 1100.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 132.6888888888889,
+        "ttft_p95_s": 5.840684039771799,
+        "tpot_p95_s": 1.817496814748847,
+        "e2e_p95_s": 298.65604384299206,
+        "completion_fraction": 0.4339441031757282
+      }
+    },
+    {
+      "group": "network",
+      "treatment": "k1_base",
+      "load": 320.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 46.157222222222224,
+        "ttft_p95_s": 7.599784231430306,
+        "tpot_p95_s": 1.8899766684895936,
+        "e2e_p95_s": 485.59921718662196,
+        "completion_fraction": 0.5051506479242207
+      }
+    },
+    {
+      "group": "network",
+      "treatment": "k1_bw2",
+      "load": 320.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 52.43833333333333,
+        "ttft_p95_s": 6.016128391764292,
+        "tpot_p95_s": 1.2663552399097855,
+        "e2e_p95_s": 404.7806209480389,
+        "completion_fraction": 0.6283092154907537
+      }
+    },
+    {
+      "group": "network",
+      "treatment": "k1_flat",
+      "load": 320.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 44.17388888888889,
+        "ttft_p95_s": 8.091353367529717,
+        "tpot_p95_s": 1.9996229063245516,
+        "e2e_p95_s": 477.5587165476902,
+        "completion_fraction": 0.4717383304093268
+      }
+    },
+    {
+      "group": "network",
+      "treatment": "k3_base",
+      "load": 320.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 59.72555555555556,
+        "ttft_p95_s": 5.337955562445841,
+        "tpot_p95_s": 0.7131039799610259,
+        "e2e_p95_s": 280.751340365023,
+        "completion_fraction": 0.7671440017312847
+      }
+    },
+    {
+      "group": "network",
+      "treatment": "k3_bw2",
+      "load": 320.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 60.88944444444444,
+        "ttft_p95_s": 4.2755299782544025,
+        "tpot_p95_s": 0.6484969828035941,
+        "e2e_p95_s": 251.05360682899652,
+        "completion_fraction": 0.7810766180671388
+      }
+    },
+    {
+      "group": "oracle",
+      "treatment": "fixed",
+      "load": 320.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 59.72555555555556,
+        "ttft_p95_s": 5.337955562445841,
+        "tpot_p95_s": 0.7131039799610259,
+        "e2e_p95_s": 280.751340365023,
+        "completion_fraction": 0.7671440017312847
+      }
+    },
+    {
+      "group": "oracle",
+      "treatment": "length_oracle",
+      "load": 320.0,
+      "passed": 3,
+      "total": 3,
+      "metrics": {
+        "output_throughput_tokens_per_s": 57.58,
+        "ttft_p95_s": 9.306391473450866,
+        "tpot_p95_s": 0.9938281189751255,
+        "e2e_p95_s": 335.4600299267543,
+        "completion_fraction": 0.7201648055734634
+      }
+    }
+  ],
+  "paired_differences": [
+    {
+      "group": "kv",
+      "control": "base",
+      "test": "kv2",
+      "load": 600.0,
+      "paired_seeds": 3,
+      "delta": {
+        "output_throughput_tokens_per_s": 0.0,
+        "ttft_p95_s": 0.0,
+        "tpot_p95_s": 0.0,
+        "completion_fraction": 0.0
+      }
+    },
+    {
+      "group": "network",
+      "control": "k1_base",
+      "test": "k1_bw2",
+      "load": 320.0,
+      "paired_seeds": 3,
+      "delta": {
+        "output_throughput_tokens_per_s": 6.281111111111113,
+        "ttft_p95_s": -1.5836558396660134,
+        "tpot_p95_s": -0.623621428579808,
+        "completion_fraction": 0.12315856756653298
+      }
+    },
+    {
+      "group": "network",
+      "control": "k1_base",
+      "test": "k1_flat",
+      "load": 320.0,
+      "paired_seeds": 3,
+      "delta": {
+        "output_throughput_tokens_per_s": -1.9833333333333318,
+        "ttft_p95_s": 0.49156913609941216,
+        "tpot_p95_s": 0.10964623783495808,
+        "completion_fraction": -0.033412317514893874
+      }
+    },
+    {
+      "group": "network",
+      "control": "k3_base",
+      "test": "k3_bw2",
+      "load": 320.0,
+      "paired_seeds": 3,
+      "delta": {
+        "output_throughput_tokens_per_s": 1.163888888888889,
+        "ttft_p95_s": -1.0624255841914385,
+        "tpot_p95_s": -0.06460699715743172,
+        "completion_fraction": 0.013932616335854039
+      }
+    },
+    {
+      "group": "oracle",
+      "control": "fixed",
+      "test": "length_oracle",
+      "load": 320.0,
+      "paired_seeds": 3,
+      "delta": {
+        "output_throughput_tokens_per_s": -2.1455555555555557,
+        "ttft_p95_s": 3.968435911005024,
+        "tpot_p95_s": 0.2807241390140996,
+        "completion_fraction": -0.04697919615782131
+      }
+    }
+  ]
+}
