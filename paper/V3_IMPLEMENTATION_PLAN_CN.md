@@ -75,6 +75,74 @@ LLaMA-70B 被写死在以下位置：
 
 另外：`rcaps/v3/routing.py` 文件头注释描述的是"最早完成时间"的递推，但 V3 实际生效的是 `queue_cost.py` 中 `WorkloadQueueDagScheduler._route` 的累加工作量代价。在 `RESULTS_CN.md` 中给出 M3 实际代价公式（逐项对应代码行号），供论文方法章节使用。
 
+### T0.6 Prefill/Decode 链路干扰模型的离线检验（只做分析，不跑仿真）
+
+**目的**：检验一个简单的排队模型，能否给出链路干扰的正确**方向与排序**，以决定是否把它作为方法升级的核心。本卡**不要求预测数值准确**：离线模型与在线结果本来就不同，标准是它能否选对方案、给对趋势。本卡不修改任何方法代码，也不跑新仿真。
+
+**模型**：每条链路视为非抢占式优先级 M/G/1 队列，Decode 为高优先级（V3 调度器优先发送 Decode），已开始的 Prompt 传输不可抢占。链路 ℓ 上 Decode 消息的期望等待：
+
+```latex
+W_{d,\ell} = \frac{\lambda_{p,\ell}\,\mathbb{E}[S_{p,\ell}^2] + \lambda_{d,\ell}\,\mathbb{E}[S_{d,\ell}^2]}{2\,(1-\rho_{d,\ell})},\qquad \rho_{d,\ell}=\lambda_{d,\ell}\,\mathbb{E}[S_{d,\ell}]
+```
+
+- λp,ℓ、λd,ℓ：Prompt 与 Decode 消息到达该链路的速率（条/秒）
+- Sp,ℓ、Sd,ℓ：单条消息的传输占用时间 = 消息字节数 ÷ 有效带宽，有效带宽为 `min(链路带宽, 发送端 NIC, 接收端 NIC)`，与 `rcaps/v3/routing.py` 的 `_transfer_time` 一致；不含传播延迟
+- 若 ρd,ℓ ≥ 1，该链路记为饱和，W 记为无穷大，单独列出
+- **模型没有任何可调参数**，不做拟合。不得根据结果修改公式；如需改动，作为新版本另行记录
+
+一个请求的干扰代价 = 其路径上各计算节点间链路的 W 之和。
+
+**新建目录**：`experiments/v3_interference_model/`
+- `model.py`：纯函数实现上式，以及由流量份额计算各链路 λ、S 的函数
+- `test_model.py`：单元测试。至少覆盖：ρd → 0 时退化为 λp E[Sp²]/2；带宽翻倍时 W 约降为 1/4；λp 减半时 Prompt 项减半
+- `analyze.py`：检验 A、B、C，输出 `analysis.json` 与 `RESULTS_CN.md`
+
+**检验 A：链路级排序**（数据：`experiments/v3_phase_link_diagnosis/`）
+1. 输入取 `slow_links.csv` 中 baseline 的每一行（变体 k1/k3 × 负载 × 种子 × 链路）：
+   - λp = `prompt_messages` ÷ 窗口秒数（600），λd = `decode_messages` ÷ 600
+   - E[S] = 平均消息字节 ÷ 有效带宽（`capacity_MBps`）
+   - E[S²] 优先从本地逐消息事件流 `runs/**/*.jsonl.gz` 中按消息字节精确计算；事件流不在时，退化为 (E[S])² × (1 + CV²)，CV 取该运行 `query_samples` 中输入 token 数的变异系数，并在报告中标注使用了退化估计
+2. 预测值 W 与实测 `decode_wait_mean_s` 对比，计算 Spearman 秩相关：k1、k3 各自一个，合并一个。
+3. 同时报告预测值与实测值之比的中位数和四分位距，仅作描述，不作判定依据。
+
+**检验 B：干预方向**（只用 baseline 的输入，按模型推算干预后的 W）
+1. **带宽翻倍**：S 减半、ρ 减半后重算 W。比较对象是 `experiments/v3_dynamic_bottleneck_counterfactuals/formal600_report.md` 中的 `k1_bw2` 与 `k3_bw2`。
+2. **理想带宽**：S → 0。比较对象是 `v3_phase_link_diagnosis` 中的 `ideal_bandwidth`。
+3. **Prompt 字节置零**：λp 项置零。比较对象是 `prompt_zero`。
+4. **k1 → k3**：分别用 k1、k3 的 baseline 输入计算路径干扰代价，比较两者大小。
+
+每个干预需判断两件事：
+- 模型预测的改善方向，与实测 P95 TPOT 的变化方向是否一致
+- k1 的改善是否大于 k3，与实测是否一致
+
+**检验 C：布局排序**（模拟 M2 的用法，完全离线）
+1. 布局集合：
+   - `experiments/v3_search_sensitivity/` 中三集群的 6 个布局，负载 160、320
+   - `experiments/v3_m2_linear_proxy/selection_manifest.json` 中候选池里已有正式在线结果的布局
+   - 单集群同理，但单集群链路均为 1 Gbps，干扰很小，结果仅作参考，不参与判定
+2. 对每个布局，**不用任何在线结果**估计各链路流量：
+   - 请求到达率与输入、输出长度分布取开发种子 100 的轨迹（`OnlineRequestFeeder`，对应负载）
+   - 流量在可达后继间均分，与 `rcaps/v3/placement.py` 中 `measure` 的假设一致
+   - 每个请求在每条经过的链路上产生 1 条 Prompt 消息和"输出长度"条 Decode 消息，消息字节按 `_transfer_time` 中的 payload 计算
+3. 计算布局级干扰代价（按流量加权的路径干扰代价均值），与该布局在线实测的三种子平均 P95 TPOT 求 Spearman 秩相关。
+4. 用同一组布局，计算冻结 V3 静态目标 `objective(measure(...))` 与实测 P95 TPOT 的 Spearman，作为对照。
+
+**判定规则（运行前写入 `protocol.json` 并提交，之后不得修改）**：
+
+| 结果 | 结论与后续 |
+| --- | --- |
+| A 合并 Spearman ≥ 0.6，且 k1、k3 各自 > 0；B 的四项干预方向全部正确；C（三集群 320）的 Spearman > 0 且不低于冻结静态目标 | **全部通过**：干扰模型可以作为方法升级的核心，同时用于 M2 目标与 M3 代价，另开任务卡设计升级版本 |
+| A、B 通过，C 不通过 | 模型能解释机制，但不足以替代 M2 目标。只用于 M3 的外部代价（新 Prompt 对已有会话的阻塞）和论文的机制解释 |
+| A 或 B 不通过 | 单队列模型不能刻画该干扰（可能是 NIC 共享或多跳耦合的影响更大）。放弃模型驱动的升级，退回 T2 中的针对性修改 |
+
+**产出**：`RESULTS_CN.md` 包含：模型与假设、每项检验的表格（逐行输入、预测、实测）、判定结果，以及模型的已知局限（泊松到达假设、Decode 合并发送、多跳耦合、NIC 共享）。
+
+**验收**：
+1. `python -m unittest experiments.v3_interference_model.test_model -v` 通过。
+2. `python -m experiments.v3_interference_model.analyze` 可重复运行，输出逐字节相同。
+3. `protocol.json` 的提交早于 `analysis.json`（以 git 提交顺序为证）。
+4. 读取的每个已有结果文件，在 `analysis.json` 中记录路径与 SHA256。
+
 ---
 
 ## 阶段 1：补齐故事闭环
@@ -251,6 +319,7 @@ LLaMA-70B 被写死在以下位置：
 | 顺序 | 任务 | 依赖 | 新跑窗口数（估计） |
 | --- | --- | --- | ---: |
 | 1 | T0.1、T0.3–T0.5 | 无 | 少量 60 秒窗口 |
+| 1′ | T0.6 | T0.1 | 0（纯离线分析） |
 | 2 | T3 | T0.1 | 16 |
 | 3 | T1 | T0.1 | 约 90（3 布局 × 3 负载 × 3 种子 × 基线与两种字节置零，另加理想带宽只在 700 负载跑 9 个） |
 | 4 | T2 | T0.1 | 6 + 开发 8 + 正式约 18 |
@@ -262,4 +331,4 @@ LLaMA-70B 被写死在以下位置：
 | 10 | T10 | T0.1 | 12 |
 | 11 | T11 | 无 | 离线 |
 
-所有正式窗口只用种子 0、1、2。T1、T2、T3 优先：它们关系到科学问题的表述是否需要加限定，应在开始写论文正文前完成。T5–T9 可以并行，按算力安排。
+所有正式窗口只用种子 0、1、2。T0.6 的判定结果决定方法是否升级，应在 T2 步骤 B 之前完成。T1、T2、T3 优先：它们关系到科学问题的表述是否需要加限定，应在开始写论文正文前完成。T5–T9 可以并行，按算力安排。
