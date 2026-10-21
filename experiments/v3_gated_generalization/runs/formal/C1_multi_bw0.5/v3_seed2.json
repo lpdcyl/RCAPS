@@ -1,0 +1,5086 @@
+{
+  "scenario": "multi",
+  "method": "queue_dag",
+  "solution": "/home/user/RCAPS/rcaps/v3_layouts/multi/solution.ini",
+  "sim_cluster": "/home/user/RCAPS/experiments/v3_gated_generalization/derived_configs/C1_multi_bw0.5.ini",
+  "offered_tokens_per_s": 320.0,
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "seed": 2,
+  "arrivals": 586,
+  "evaluation_protocol": "fixed_window_no_tail_drain",
+  "python_version": "3.13.16",
+  "numpy_version": "2.5.3",
+  "trace_sha256": "84725cd2924e8a1476f231f1a7c273bec9c86770740d686219a622c3543cdb5e",
+  "output_throughput_tokens_per_s": 68.85444444444444,
+  "completed_request_throughput_per_s": 0.295,
+  "ttft_p95_s": 8.055022984120871,
+  "tpot_p95_s": 0.8869689267557259,
+  "e2e_p95_s": 342.7340227999328,
+  "completion_fraction": 0.9061433447098977,
+  "backlog_at_window_start": 0,
+  "backlog_at_window_end": 55,
+  "first_tokens_in_window": 584,
+  "queries_with_tpot_samples": 584,
+  "paper_prompt_request_p95_s": 6.118562886627274,
+  "paper_decode_request_p95_s": 1.8716381145961236,
+  "paper_prompt_request_count": 585,
+  "paper_decode_request_count": 123938,
+  "route_counts": {
+    "3-5-2-4-10-22-24-17-16-23-13-14": 1,
+    "3-5-2-4-10-22-24-17-19-16-23-13-14": 1,
+    "3-5-2-4-10-22-24-19-16-23-13-14": 2,
+    "3-5-2-4-10-8-9-12-15-6-13-14": 74,
+    "3-5-2-4-10-8-9-12-15-6-7": 83,
+    "3-5-2-4-11-22-24-17-16-23-13-14": 7,
+    "3-5-2-4-11-22-24-17-16-23-18-21": 1,
+    "3-5-2-4-11-22-24-17-19-16-23-13-14": 21,
+    "3-5-2-4-11-22-24-19-16-23-13-14": 9,
+    "3-5-2-4-11-8-9-12-15-6-13-14": 86,
+    "3-5-2-4-11-8-9-12-15-6-7": 56,
+    "3-5-2-4-20-17-16-18-21": 19,
+    "3-5-2-4-20-17-16-23-18-21": 17,
+    "3-5-2-4-20-17-19-16-18-21": 5,
+    "3-5-2-4-20-17-19-16-23-18-21": 23,
+    "3-5-2-4-20-17-19-18-21": 38,
+    "3-5-2-4-20-22-17-19-16-23-18-21": 2,
+    "3-5-2-4-20-22-24-17-16-18-21": 3,
+    "3-5-2-4-20-22-24-17-16-23-13-14": 6,
+    "3-5-2-4-20-22-24-17-16-23-18-21": 19,
+    "3-5-2-4-20-22-24-17-19-16-23-13-14": 6,
+    "3-5-2-4-20-22-24-17-19-16-23-13-7": 3,
+    "3-5-2-4-20-22-24-17-19-16-23-18-21": 28,
+    "3-5-2-4-20-22-24-19-16-23-13-14": 5,
+    "3-5-2-4-20-22-24-19-16-23-18-21": 55,
+    "3-5-2-4-20-22-24-19-18-21": 15
+  },
+  "physical_cluster": "/home/user/RCAPS/artifact_evaluation/distributed_clusters/config/3cluster24.ini",
+  "physical_cluster_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+  "query_samples": {
+    "30000008": {
+      "arrival_s": 27.493465272199593,
+      "input_tokens": 375,
+      "output_tokens": 58,
+      "ttft_s": 2.4217014971912505,
+      "tpot_s": 0.6591891100446384,
+      "completed": true
+    },
+    "30000005": {
+      "arrival_s": 23.61309890510391,
+      "input_tokens": 202,
+      "output_tokens": 80,
+      "ttft_s": 1.69196453613295,
+      "tpot_s": 0.6518692202075516,
+      "completed": true
+    },
+    "30000007": {
+      "arrival_s": 26.723250330537894,
+      "input_tokens": 453,
+      "output_tokens": 95,
+      "ttft_s": 2.7690672336138107,
+      "tpot_s": 0.6129093988630455,
+      "completed": true
+    },
+    "30000003": {
+      "arrival_s": 14.99915638783581,
+      "input_tokens": 631,
+      "output_tokens": 78,
+      "ttft_s": 3.2254618962225123,
+      "tpot_s": 1.034387348875753,
+      "completed": true
+    },
+    "30000015": {
+      "arrival_s": 46.96473293446799,
+      "input_tokens": 387,
+      "output_tokens": 82,
+      "ttft_s": 2.5250538664521827,
+      "tpot_s": 0.6287539747699838,
+      "completed": true
+    },
+    "30000016": {
+      "arrival_s": 52.50252318789197,
+      "input_tokens": 1420,
+      "output_tokens": 75,
+      "ttft_s": 6.516921332445776,
+      "tpot_s": 0.8238378391796413,
+      "completed": true
+    },
+    "30000014": {
+      "arrival_s": 44.86479935990283,
+      "input_tokens": 2019,
+      "output_tokens": 78,
+      "ttft_s": 12.79769043493657,
+      "tpot_s": 0.8504532724195755,
+      "completed": true
+    },
+    "30000017": {
+      "arrival_s": 53.77449621628371,
+      "input_tokens": 914,
+      "output_tokens": 93,
+      "ttft_s": 4.863411990879385,
+      "tpot_s": 0.7022153262106068,
+      "completed": true
+    },
+    "30000021": {
+      "arrival_s": 65.31895217101375,
+      "input_tokens": 414,
+      "output_tokens": 96,
+      "ttft_s": 2.5860981639492877,
+      "tpot_s": 0.6995240696701993,
+      "completed": true
+    },
+    "30000019": {
+      "arrival_s": 59.76099131757579,
+      "input_tokens": 399,
+      "output_tokens": 104,
+      "ttft_s": 2.6972712881621845,
+      "tpot_s": 0.7268119696272874,
+      "completed": true
+    },
+    "30000024": {
+      "arrival_s": 69.935532973653,
+      "input_tokens": 400,
+      "output_tokens": 125,
+      "ttft_s": 3.5167628710744907,
+      "tpot_s": 0.6449439043689833,
+      "completed": true
+    },
+    "30000031": {
+      "arrival_s": 98.27822721075728,
+      "input_tokens": 383,
+      "output_tokens": 80,
+      "ttft_s": 5.103409892901823,
+      "tpot_s": 0.704871638745387,
+      "completed": true
+    },
+    "30000030": {
+      "arrival_s": 95.83074288548339,
+      "input_tokens": 421,
+      "output_tokens": 93,
+      "ttft_s": 2.687289902799577,
+      "tpot_s": 0.6946852851584708,
+      "completed": true
+    },
+    "30000029": {
+      "arrival_s": 92.56182902155462,
+      "input_tokens": 429,
+      "output_tokens": 100,
+      "ttft_s": 2.7065232024569497,
+      "tpot_s": 0.7059242705721261,
+      "completed": true
+    },
+    "30000041": {
+      "arrival_s": 122.81539203856676,
+      "input_tokens": 383,
+      "output_tokens": 82,
+      "ttft_s": 2.4966965625289674,
+      "tpot_s": 0.5266857568368519,
+      "completed": true
+    },
+    "30000025": {
+      "arrival_s": 76.09979474397349,
+      "input_tokens": 772,
+      "output_tokens": 136,
+      "ttft_s": 4.025641967096021,
+      "tpot_s": 0.691249698761211,
+      "completed": true
+    },
+    "30000038": {
+      "arrival_s": 115.76837472714098,
+      "input_tokens": 427,
+      "output_tokens": 109,
+      "ttft_s": 2.6984025310835307,
+      "tpot_s": 0.5675112062042869,
+      "completed": true
+    },
+    "30000010": {
+      "arrival_s": 33.52076626129517,
+      "input_tokens": 181,
+      "output_tokens": 221,
+      "ttft_s": 1.8954067965904287,
+      "tpot_s": 0.6562874390400086,
+      "completed": true
+    },
+    "30000044": {
+      "arrival_s": 131.2669864610252,
+      "input_tokens": 396,
+      "output_tokens": 89,
+      "ttft_s": 2.5577976050483358,
+      "tpot_s": 0.6277418633649513,
+      "completed": true
+    },
+    "30000045": {
+      "arrival_s": 135.2803609518892,
+      "input_tokens": 397,
+      "output_tokens": 100,
+      "ttft_s": 2.5264868975052366,
+      "tpot_s": 0.5637002425149527,
+      "completed": true
+    },
+    "30000052": {
+      "arrival_s": 162.28761583089954,
+      "input_tokens": 375,
+      "output_tokens": 52,
+      "ttft_s": 2.4328869887828546,
+      "tpot_s": 0.7232608271766644,
+      "completed": true
+    },
+    "30000050": {
+      "arrival_s": 158.87699986563405,
+      "input_tokens": 388,
+      "output_tokens": 75,
+      "ttft_s": 2.5386292567963267,
+      "tpot_s": 0.5859364907837727,
+      "completed": true
+    },
+    "30000048": {
+      "arrival_s": 147.983882437881,
+      "input_tokens": 963,
+      "output_tokens": 80,
+      "ttft_s": 5.109605312066009,
+      "tpot_s": 0.6798653904975602,
+      "completed": true
+    },
+    "30000047": {
+      "arrival_s": 142.75486709433181,
+      "input_tokens": 798,
+      "output_tokens": 98,
+      "ttft_s": 3.9962275352205268,
+      "tpot_s": 0.6978700236822349,
+      "completed": true
+    },
+    "30000043": {
+      "arrival_s": 127.65450998617641,
+      "input_tokens": 12,
+      "output_tokens": 139,
+      "ttft_s": 1.157208898139345,
+      "tpot_s": 0.6428476393806118,
+      "completed": true
+    },
+    "30000042": {
+      "arrival_s": 124.46628306874956,
+      "input_tokens": 886,
+      "output_tokens": 138,
+      "ttft_s": 4.4108377411067465,
+      "tpot_s": 0.6758638535339365,
+      "completed": true
+    },
+    "30000075": {
+      "arrival_s": 233.6686257181036,
+      "input_tokens": 120,
+      "output_tokens": 12,
+      "ttft_s": 2.0464443449094745,
+      "tpot_s": 0.6124006073359826,
+      "completed": true
+    },
+    "30000059": {
+      "arrival_s": 184.5362455336102,
+      "input_tokens": 402,
+      "output_tokens": 100,
+      "ttft_s": 3.006010903973049,
+      "tpot_s": 0.6017639045169031,
+      "completed": true
+    },
+    "30000070": {
+      "arrival_s": 218.95056322065994,
+      "input_tokens": 374,
+      "output_tokens": 54,
+      "ttft_s": 2.4943548764821344,
+      "tpot_s": 0.5868114988957861,
+      "completed": true
+    },
+    "30000068": {
+      "arrival_s": 213.05844865409753,
+      "input_tokens": 378,
+      "output_tokens": 68,
+      "ttft_s": 2.5380132184708373,
+      "tpot_s": 0.6080444233224453,
+      "completed": true
+    },
+    "30000053": {
+      "arrival_s": 167.7491938989639,
+      "input_tokens": 415,
+      "output_tokens": 142,
+      "ttft_s": 2.6598616393447685,
+      "tpot_s": 0.6213296512911177,
+      "completed": true
+    },
+    "30000062": {
+      "arrival_s": 192.07332031847693,
+      "input_tokens": 1602,
+      "output_tokens": 96,
+      "ttft_s": 7.278085089370222,
+      "tpot_s": 0.714007315974405,
+      "completed": true
+    },
+    "30000069": {
+      "arrival_s": 216.86874230259048,
+      "input_tokens": 185,
+      "output_tokens": 67,
+      "ttft_s": 2.1940786138159183,
+      "tpot_s": 0.8468019175908394,
+      "completed": true
+    },
+    "30000067": {
+      "arrival_s": 211.98987634783958,
+      "input_tokens": 403,
+      "output_tokens": 105,
+      "ttft_s": 3.565178151928791,
+      "tpot_s": 0.6326392112249761,
+      "completed": true
+    },
+    "30000063": {
+      "arrival_s": 195.92917821263225,
+      "input_tokens": 405,
+      "output_tokens": 137,
+      "ttft_s": 2.6044073504097867,
+      "tpot_s": 0.6258222304848334,
+      "completed": true
+    },
+    "30000065": {
+      "arrival_s": 202.2767968590148,
+      "input_tokens": 398,
+      "output_tokens": 132,
+      "ttft_s": 2.5754302637050444,
+      "tpot_s": 0.6158127990513133,
+      "completed": true
+    },
+    "30000049": {
+      "arrival_s": 150.78551219268317,
+      "input_tokens": 200,
+      "output_tokens": 217,
+      "ttft_s": 2.2749541939742812,
+      "tpot_s": 0.6179684197143928,
+      "completed": true
+    },
+    "30000002": {
+      "arrival_s": 7.817832497035386,
+      "input_tokens": 1233,
+      "output_tokens": 423,
+      "ttft_s": 6.268832771298012,
+      "tpot_s": 0.6465210550823729,
+      "completed": true
+    },
+    "30000079": {
+      "arrival_s": 248.14777402870112,
+      "input_tokens": 382,
+      "output_tokens": 58,
+      "ttft_s": 3.0182092215931107,
+      "tpot_s": 0.6368651781427733,
+      "completed": true
+    },
+    "30000046": {
+      "arrival_s": 138.07261147605973,
+      "input_tokens": 203,
+      "output_tokens": 189,
+      "ttft_s": 2.2519666711908712,
+      "tpot_s": 0.7995087454326425,
+      "completed": true
+    },
+    "30000080": {
+      "arrival_s": 250.1851276804736,
+      "input_tokens": 1298,
+      "output_tokens": 85,
+      "ttft_s": 6.197958684569471,
+      "tpot_s": 0.5772892166123129,
+      "completed": true
+    },
+    "30000013": {
+      "arrival_s": 40.08565914588369,
+      "input_tokens": 1011,
+      "output_tokens": 414,
+      "ttft_s": 5.990525516615087,
+      "tpot_s": 0.6268014977774182,
+      "completed": true
+    },
+    "30000076": {
+      "arrival_s": 237.0724259102248,
+      "input_tokens": 404,
+      "output_tokens": 101,
+      "ttft_s": 2.5451946547626676,
+      "tpot_s": 0.669965321029731,
+      "completed": true
+    },
+    "30000000": {
+      "arrival_s": 0.2747543622152193,
+      "input_tokens": 1181,
+      "output_tokens": 407,
+      "ttft_s": 8.555219536499433,
+      "tpot_s": 0.739027912506338,
+      "completed": true
+    },
+    "30000054": {
+      "arrival_s": 173.14160242180594,
+      "input_tokens": 1357,
+      "output_tokens": 200,
+      "ttft_s": 8.196704215462091,
+      "tpot_s": 0.6408894459247229,
+      "completed": true
+    },
+    "30000072": {
+      "arrival_s": 222.31504955081468,
+      "input_tokens": 403,
+      "output_tokens": 140,
+      "ttft_s": 2.602042159156639,
+      "tpot_s": 0.64451686979989,
+      "completed": true
+    },
+    "30000064": {
+      "arrival_s": 200.05405984610087,
+      "input_tokens": 1314,
+      "output_tokens": 174,
+      "ttft_s": 6.528604598061889,
+      "tpot_s": 0.650844331044109,
+      "completed": true
+    },
+    "30000023": {
+      "arrival_s": 68.39777663438483,
+      "input_tokens": 1096,
+      "output_tokens": 375,
+      "ttft_s": 5.682009004294841,
+      "tpot_s": 0.6584443151308281,
+      "completed": true
+    },
+    "30000060": {
+      "arrival_s": 186.3057337202081,
+      "input_tokens": 203,
+      "output_tokens": 217,
+      "ttft_s": 1.6920658196963814,
+      "tpot_s": 0.6152513619126311,
+      "completed": true
+    },
+    "30000082": {
+      "arrival_s": 252.3653102991646,
+      "input_tokens": 404,
+      "output_tokens": 118,
+      "ttft_s": 2.638058415273804,
+      "tpot_s": 0.6071625753443239,
+      "completed": true
+    },
+    "30000057": {
+      "arrival_s": 178.26905076828757,
+      "input_tokens": 396,
+      "output_tokens": 199,
+      "ttft_s": 5.01829684051819,
+      "tpot_s": 0.7300678685736723,
+      "completed": true
+    },
+    "30000028": {
+      "arrival_s": 85.77510095149167,
+      "input_tokens": 1037,
+      "output_tokens": 396,
+      "ttft_s": 5.42694627162075,
+      "tpot_s": 0.6160921884646695,
+      "completed": true
+    },
+    "30000004": {
+      "arrival_s": 17.848186419279727,
+      "input_tokens": 1005,
+      "output_tokens": 429,
+      "ttft_s": 4.843153780446869,
+      "tpot_s": 0.7385026670379798,
+      "completed": true
+    },
+    "30000006": {
+      "arrival_s": 23.70362339249084,
+      "input_tokens": 1127,
+      "output_tokens": 427,
+      "ttft_s": 5.500542924370585,
+      "tpot_s": 0.7283816190342075,
+      "completed": true
+    },
+    "30000090": {
+      "arrival_s": 282.287841932576,
+      "input_tokens": 796,
+      "output_tokens": 94,
+      "ttft_s": 4.210204444643864,
+      "tpot_s": 0.5952706414898581,
+      "completed": true
+    },
+    "30000026": {
+      "arrival_s": 80.17784786243189,
+      "input_tokens": 1008,
+      "output_tokens": 414,
+      "ttft_s": 5.314751763155485,
+      "tpot_s": 0.6210612156453728,
+      "completed": true
+    },
+    "30000097": {
+      "arrival_s": 309.9865309040957,
+      "input_tokens": 419,
+      "output_tokens": 53,
+      "ttft_s": 2.61185174992022,
+      "tpot_s": 0.6192009218301618,
+      "completed": true
+    },
+    "30000091": {
+      "arrival_s": 288.4395031438687,
+      "input_tokens": 408,
+      "output_tokens": 91,
+      "ttft_s": 2.633407447835168,
+      "tpot_s": 0.6645706815813709,
+      "completed": true
+    },
+    "30000009": {
+      "arrival_s": 30.69180802309196,
+      "input_tokens": 1002,
+      "output_tokens": 429,
+      "ttft_s": 7.361836827845892,
+      "tpot_s": 0.739645108507362,
+      "completed": true
+    },
+    "30000012": {
+      "arrival_s": 38.39027976426492,
+      "input_tokens": 1172,
+      "output_tokens": 429,
+      "ttft_s": 5.644591353766074,
+      "tpot_s": 0.7289317782997788,
+      "completed": true
+    },
+    "30000077": {
+      "arrival_s": 240.6574958359074,
+      "input_tokens": 206,
+      "output_tokens": 161,
+      "ttft_s": 2.259696973935718,
+      "tpot_s": 0.7094041976427906,
+      "completed": true
+    },
+    "30000081": {
+      "arrival_s": 252.2415321532609,
+      "input_tokens": 412,
+      "output_tokens": 145,
+      "ttft_s": 2.6394257862894506,
+      "tpot_s": 0.7217481475015393,
+      "completed": true
+    },
+    "30000011": {
+      "arrival_s": 34.530500080664986,
+      "input_tokens": 992,
+      "output_tokens": 416,
+      "ttft_s": 7.917677681343157,
+      "tpot_s": 0.768229669674817,
+      "completed": true
+    },
+    "30000018": {
+      "arrival_s": 58.70311521126074,
+      "input_tokens": 1014,
+      "output_tokens": 405,
+      "ttft_s": 9.260263126218732,
+      "tpot_s": 0.7274351616628671,
+      "completed": true
+    },
+    "30000093": {
+      "arrival_s": 296.92174398816485,
+      "input_tokens": 746,
+      "output_tokens": 96,
+      "ttft_s": 4.240346160390004,
+      "tpot_s": 0.6460501210545712,
+      "completed": true
+    },
+    "30000032": {
+      "arrival_s": 98.69390361868503,
+      "input_tokens": 1074,
+      "output_tokens": 423,
+      "ttft_s": 5.591188099101586,
+      "tpot_s": 0.6137102416588128,
+      "completed": true
+    },
+    "30000088": {
+      "arrival_s": 273.69488208345473,
+      "input_tokens": 18,
+      "output_tokens": 131,
+      "ttft_s": 1.1530540254968855,
+      "tpot_s": 0.6808925043789972,
+      "completed": true
+    },
+    "30000095": {
+      "arrival_s": 300.5175916073619,
+      "input_tokens": 378,
+      "output_tokens": 96,
+      "ttft_s": 2.4728893641436684,
+      "tpot_s": 0.6551959242706492,
+      "completed": true
+    },
+    "30000094": {
+      "arrival_s": 299.12520948061496,
+      "input_tokens": 67,
+      "output_tokens": 95,
+      "ttft_s": 1.6232572544707295,
+      "tpot_s": 0.689073492778524,
+      "completed": true
+    },
+    "30000099": {
+      "arrival_s": 317.8421577148862,
+      "input_tokens": 383,
+      "output_tokens": 72,
+      "ttft_s": 2.5416657033803745,
+      "tpot_s": 0.6820538823538261,
+      "completed": true
+    },
+    "30000089": {
+      "arrival_s": 277.645683298133,
+      "input_tokens": 410,
+      "output_tokens": 142,
+      "ttft_s": 2.6436543959537175,
+      "tpot_s": 0.6545425381205087,
+      "completed": true
+    },
+    "30000071": {
+      "arrival_s": 221.62304101926037,
+      "input_tokens": 1355,
+      "output_tokens": 218,
+      "ttft_s": 9.511367333731386,
+      "tpot_s": 0.6572687809555743,
+      "completed": true
+    },
+    "30000096": {
+      "arrival_s": 307.6226797473435,
+      "input_tokens": 837,
+      "output_tokens": 103,
+      "ttft_s": 4.505819919635712,
+      "tpot_s": 0.6506154273783911,
+      "completed": true
+    },
+    "30000034": {
+      "arrival_s": 102.34566923874382,
+      "input_tokens": 1196,
+      "output_tokens": 410,
+      "ttft_s": 6.106002524508767,
+      "tpot_s": 0.6616013741304944,
+      "completed": true
+    },
+    "30000020": {
+      "arrival_s": 62.82178954760731,
+      "input_tokens": 1109,
+      "output_tokens": 415,
+      "ttft_s": 7.862746285495831,
+      "tpot_s": 0.7495565027955804,
+      "completed": true
+    },
+    "30000085": {
+      "arrival_s": 263.1705548399494,
+      "input_tokens": 181,
+      "output_tokens": 174,
+      "ttft_s": 2.7078627631867676,
+      "tpot_s": 0.685855275284368,
+      "completed": true
+    },
+    "30000105": {
+      "arrival_s": 339.99218250170185,
+      "input_tokens": 387,
+      "output_tokens": 52,
+      "ttft_s": 3.7907970867802874,
+      "tpot_s": 0.8108495702913098,
+      "completed": true
+    },
+    "30000036": {
+      "arrival_s": 108.76707016217233,
+      "input_tokens": 1002,
+      "output_tokens": 411,
+      "ttft_s": 5.40497315699011,
+      "tpot_s": 0.6643133704514373,
+      "completed": true
+    },
+    "30000040": {
+      "arrival_s": 121.88326881995334,
+      "input_tokens": 1119,
+      "output_tokens": 399,
+      "ttft_s": 5.774126581275965,
+      "tpot_s": 0.6578785112701444,
+      "completed": true
+    },
+    "30000102": {
+      "arrival_s": 326.1566054604065,
+      "input_tokens": 1332,
+      "output_tokens": 92,
+      "ttft_s": 6.942723930618968,
+      "tpot_s": 0.6284318071744355,
+      "completed": true
+    },
+    "30000027": {
+      "arrival_s": 81.17627668919597,
+      "input_tokens": 1162,
+      "output_tokens": 411,
+      "ttft_s": 5.587169378062157,
+      "tpot_s": 0.7456416000408999,
+      "completed": true
+    },
+    "30000098": {
+      "arrival_s": 312.7717815526478,
+      "input_tokens": 394,
+      "output_tokens": 99,
+      "ttft_s": 2.4582009064361046,
+      "tpot_s": 0.8073011849848495,
+      "completed": true
+    },
+    "30000001": {
+      "arrival_s": 5.20790996720557,
+      "input_tokens": 956,
+      "output_tokens": 513,
+      "ttft_s": 4.629329872569144,
+      "tpot_s": 0.753347716905474,
+      "completed": true
+    },
+    "30000104": {
+      "arrival_s": 334.2147440371004,
+      "input_tokens": 186,
+      "output_tokens": 102,
+      "ttft_s": 1.621140625632279,
+      "tpot_s": 0.6155779617523345,
+      "completed": true
+    },
+    "30000113": {
+      "arrival_s": 359.4468636488406,
+      "input_tokens": 390,
+      "output_tokens": 72,
+      "ttft_s": 2.620414277532916,
+      "tpot_s": 0.5808893509392418,
+      "completed": true
+    },
+    "30000114": {
+      "arrival_s": 362.2327370775056,
+      "input_tokens": 1436,
+      "output_tokens": 50,
+      "ttft_s": 9.628645989972085,
+      "tpot_s": 0.6657493298904351,
+      "completed": true
+    },
+    "30000111": {
+      "arrival_s": 353.44820970507925,
+      "input_tokens": 1049,
+      "output_tokens": 82,
+      "ttft_s": 5.4884927170973015,
+      "tpot_s": 0.6159561337479137,
+      "completed": true
+    },
+    "30000103": {
+      "arrival_s": 331.5305145096832,
+      "input_tokens": 389,
+      "output_tokens": 88,
+      "ttft_s": 2.422482418592608,
+      "tpot_s": 0.8703970227644015,
+      "completed": true
+    },
+    "30000121": {
+      "arrival_s": 380.5115744919126,
+      "input_tokens": 219,
+      "output_tokens": 57,
+      "ttft_s": 1.7720184892502289,
+      "tpot_s": 0.5898033269785533,
+      "completed": true
+    },
+    "30000035": {
+      "arrival_s": 105.1226237281283,
+      "input_tokens": 1024,
+      "output_tokens": 414,
+      "ttft_s": 5.190003734492365,
+      "tpot_s": 0.7387841392270901,
+      "completed": true
+    },
+    "30000110": {
+      "arrival_s": 351.0514121890721,
+      "input_tokens": 385,
+      "output_tokens": 104,
+      "ttft_s": 2.540292983927202,
+      "tpot_s": 0.6589080604092044,
+      "completed": true
+    },
+    "30000037": {
+      "arrival_s": 112.56927423234646,
+      "input_tokens": 1119,
+      "output_tokens": 414,
+      "ttft_s": 5.415550300455294,
+      "tpot_s": 0.7454207793050602,
+      "completed": true
+    },
+    "30000033": {
+      "arrival_s": 99.5156429763772,
+      "input_tokens": 1093,
+      "output_tokens": 429,
+      "ttft_s": 5.311780625623513,
+      "tpot_s": 0.7565024118744039,
+      "completed": true
+    },
+    "30000106": {
+      "arrival_s": 341.885932234248,
+      "input_tokens": 407,
+      "output_tokens": 95,
+      "ttft_s": 2.99873129790808,
+      "tpot_s": 0.8964569329874796,
+      "completed": true
+    },
+    "30000112": {
+      "arrival_s": 356.6540391811562,
+      "input_tokens": 422,
+      "output_tokens": 98,
+      "ttft_s": 2.551680778653349,
+      "tpot_s": 0.7905031362659044,
+      "completed": true
+    },
+    "30000055": {
+      "arrival_s": 174.24128764699185,
+      "input_tokens": 1014,
+      "output_tokens": 429,
+      "ttft_s": 5.474910775520186,
+      "tpot_s": 0.6192921599408265,
+      "completed": true
+    },
+    "30000118": {
+      "arrival_s": 374.13814127158366,
+      "input_tokens": 398,
+      "output_tokens": 97,
+      "ttft_s": 2.588577015906253,
+      "tpot_s": 0.729807761882118,
+      "completed": true
+    },
+    "30000066": {
+      "arrival_s": 209.64431113193965,
+      "input_tokens": 1110,
+      "output_tokens": 379,
+      "ttft_s": 5.777129739711455,
+      "tpot_s": 0.6189902818131696,
+      "completed": true
+    },
+    "30000126": {
+      "arrival_s": 393.4877104349319,
+      "input_tokens": 399,
+      "output_tokens": 96,
+      "ttft_s": 2.5922524637797437,
+      "tpot_s": 0.6805143269765955,
+      "completed": true
+    },
+    "30000061": {
+      "arrival_s": 191.25175557803047,
+      "input_tokens": 1071,
+      "output_tokens": 397,
+      "ttft_s": 6.802878074382392,
+      "tpot_s": 0.6638468396712882,
+      "completed": true
+    },
+    "30000039": {
+      "arrival_s": 119.91245175979142,
+      "input_tokens": 908,
+      "output_tokens": 456,
+      "ttft_s": 4.7184825964491495,
+      "tpot_s": 0.7437737727928332,
+      "completed": true
+    },
+    "30000125": {
+      "arrival_s": 392.02497955318836,
+      "input_tokens": 397,
+      "output_tokens": 103,
+      "ttft_s": 3.5133106180097684,
+      "tpot_s": 0.6796187247988701,
+      "completed": true
+    },
+    "30000122": {
+      "arrival_s": 385.3809620446159,
+      "input_tokens": 404,
+      "output_tokens": 104,
+      "ttft_s": 6.4940593768128,
+      "tpot_s": 0.7274999860242558,
+      "completed": true
+    },
+    "30000051": {
+      "arrival_s": 159.10066873874595,
+      "input_tokens": 1109,
+      "output_tokens": 436,
+      "ttft_s": 5.323373210950422,
+      "tpot_s": 0.7019381396969708,
+      "completed": true
+    },
+    "30000115": {
+      "arrival_s": 365.4125681879802,
+      "input_tokens": 169,
+      "output_tokens": 163,
+      "ttft_s": 2.4680625754660923,
+      "tpot_s": 0.6376307734103963,
+      "completed": true
+    },
+    "30000124": {
+      "arrival_s": 389.27887254395165,
+      "input_tokens": 9,
+      "output_tokens": 140,
+      "ttft_s": 0.8497488164812808,
+      "tpot_s": 0.6486690247931093,
+      "completed": true
+    },
+    "30000136": {
+      "arrival_s": 421.89994320744154,
+      "input_tokens": 839,
+      "output_tokens": 84,
+      "ttft_s": 4.646921102279521,
+      "tpot_s": 0.7339120969322755,
+      "completed": true
+    },
+    "30000022": {
+      "arrival_s": 66.90989023351733,
+      "input_tokens": 1075,
+      "output_tokens": 598,
+      "ttft_s": 5.2382511605757,
+      "tpot_s": 0.7068603299162525,
+      "completed": true
+    },
+    "30000056": {
+      "arrival_s": 177.7698278654641,
+      "input_tokens": 999,
+      "output_tokens": 416,
+      "ttft_s": 5.354840051413021,
+      "tpot_s": 0.7510461007716247,
+      "completed": true
+    },
+    "30000074": {
+      "arrival_s": 229.91188443047992,
+      "input_tokens": 989,
+      "output_tokens": 428,
+      "ttft_s": 5.211723137672465,
+      "tpot_s": 0.6189091361673994,
+      "completed": true
+    },
+    "30000138": {
+      "arrival_s": 427.8865205143944,
+      "input_tokens": 406,
+      "output_tokens": 117,
+      "ttft_s": 2.6217289800151775,
+      "tpot_s": 0.6103299768440099,
+      "completed": true
+    },
+    "30000149": {
+      "arrival_s": 462.42073362607726,
+      "input_tokens": 374,
+      "output_tokens": 61,
+      "ttft_s": 2.4845374717664868,
+      "tpot_s": 0.7667135102409228,
+      "completed": true
+    },
+    "30000129": {
+      "arrival_s": 402.10205173949896,
+      "input_tokens": 596,
+      "output_tokens": 139,
+      "ttft_s": 7.57548616927977,
+      "tpot_s": 0.7713017681346052,
+      "completed": true
+    },
+    "30000141": {
+      "arrival_s": 440.02613268387205,
+      "input_tokens": 62,
+      "output_tokens": 113,
+      "ttft_s": 1.4567742172791895,
+      "tpot_s": 0.6833554367231284,
+      "completed": true
+    },
+    "30000083": {
+      "arrival_s": 257.0779576399639,
+      "input_tokens": 1120,
+      "output_tokens": 415,
+      "ttft_s": 5.8422750970410675,
+      "tpot_s": 0.6203891835831795,
+      "completed": true
+    },
+    "30000139": {
+      "arrival_s": 433.68390877318626,
+      "input_tokens": 401,
+      "output_tokens": 98,
+      "ttft_s": 2.4791051805125335,
+      "tpot_s": 0.8832031623033224,
+      "completed": true
+    },
+    "30000140": {
+      "arrival_s": 434.8487442759619,
+      "input_tokens": 1314,
+      "output_tokens": 111,
+      "ttft_s": 6.676213971595416,
+      "tpot_s": 0.7306256519931248,
+      "completed": true
+    },
+    "30000150": {
+      "arrival_s": 465.805906820488,
+      "input_tokens": 210,
+      "output_tokens": 80,
+      "ttft_s": 1.6907823673257099,
+      "tpot_s": 0.7239100067528278,
+      "completed": true
+    },
+    "30000058": {
+      "arrival_s": 181.15425830502943,
+      "input_tokens": 1089,
+      "output_tokens": 500,
+      "ttft_s": 5.800235722557403,
+      "tpot_s": 0.6809283157521225,
+      "completed": true
+    },
+    "30000148": {
+      "arrival_s": 456.7135256335636,
+      "input_tokens": 208,
+      "output_tokens": 101,
+      "ttft_s": 1.7423015037259688,
+      "tpot_s": 0.7161237903984431,
+      "completed": true
+    },
+    "30000132": {
+      "arrival_s": 410.06888304364463,
+      "input_tokens": 200,
+      "output_tokens": 183,
+      "ttft_s": 1.9850270427104988,
+      "tpot_s": 0.6533537609820302,
+      "completed": true
+    },
+    "30000133": {
+      "arrival_s": 411.77394818867083,
+      "input_tokens": 394,
+      "output_tokens": 164,
+      "ttft_s": 2.543510484126216,
+      "tpot_s": 0.7228198957293447,
+      "completed": true
+    },
+    "30000073": {
+      "arrival_s": 227.43618121262097,
+      "input_tokens": 1050,
+      "output_tokens": 412,
+      "ttft_s": 5.386392075216122,
+      "tpot_s": 0.7341932218163607,
+      "completed": true
+    },
+    "30000108": {
+      "arrival_s": 347.93170219393676,
+      "input_tokens": 212,
+      "output_tokens": 217,
+      "ttft_s": 1.7996276863221397,
+      "tpot_s": 0.8719684241342612,
+      "completed": true
+    },
+    "30000147": {
+      "arrival_s": 456.2986631666359,
+      "input_tokens": 13,
+      "output_tokens": 124,
+      "ttft_s": 4.126049696350037,
+      "tpot_s": 0.6820216710467155,
+      "completed": true
+    },
+    "30000145": {
+      "arrival_s": 452.68371961565003,
+      "input_tokens": 2032,
+      "output_tokens": 111,
+      "ttft_s": 9.082884262052744,
+      "tpot_s": 0.7663675496233323,
+      "completed": true
+    },
+    "30000167": {
+      "arrival_s": 506.91214824785743,
+      "input_tokens": 1314,
+      "output_tokens": 54,
+      "ttft_s": 6.137819733659626,
+      "tpot_s": 0.6873560284185894,
+      "completed": true
+    },
+    "30000086": {
+      "arrival_s": 267.80682748148297,
+      "input_tokens": 1218,
+      "output_tokens": 397,
+      "ttft_s": 5.9705066380490734,
+      "tpot_s": 0.7185943710367431,
+      "completed": true
+    },
+    "30000158": {
+      "arrival_s": 484.4299020339779,
+      "input_tokens": 397,
+      "output_tokens": 88,
+      "ttft_s": 2.5674648225202077,
+      "tpot_s": 0.8264768638541584,
+      "completed": true
+    },
+    "30000142": {
+      "arrival_s": 441.6411498632668,
+      "input_tokens": 181,
+      "output_tokens": 139,
+      "ttft_s": 1.6493546085171147,
+      "tpot_s": 0.8429395047091044,
+      "completed": true
+    },
+    "30000084": {
+      "arrival_s": 262.49384856128887,
+      "input_tokens": 1008,
+      "output_tokens": 411,
+      "ttft_s": 5.431700028570276,
+      "tpot_s": 0.7127047157822175,
+      "completed": true
+    },
+    "30000078": {
+      "arrival_s": 243.3473051094611,
+      "input_tokens": 1046,
+      "output_tokens": 410,
+      "ttft_s": 5.558266565640963,
+      "tpot_s": 0.7712674562514186,
+      "completed": true
+    },
+    "30000173": {
+      "arrival_s": 525.9629343268944,
+      "input_tokens": 752,
+      "output_tokens": 70,
+      "ttft_s": 4.125462391964561,
+      "tpot_s": 0.534288696772249,
+      "completed": true
+    },
+    "30000087": {
+      "arrival_s": 272.7961615806547,
+      "input_tokens": 1018,
+      "output_tokens": 415,
+      "ttft_s": 6.933409885866297,
+      "tpot_s": 0.6952186271367287,
+      "completed": true
+    },
+    "30000155": {
+      "arrival_s": 478.86745860361293,
+      "input_tokens": 398,
+      "output_tokens": 105,
+      "ttft_s": 2.471648651553437,
+      "tpot_s": 0.8860302663997103,
+      "completed": true
+    },
+    "30000159": {
+      "arrival_s": 488.88200849396765,
+      "input_tokens": 404,
+      "output_tokens": 132,
+      "ttft_s": 2.6157862480790186,
+      "tpot_s": 0.6423164442564336,
+      "completed": true
+    },
+    "30000163": {
+      "arrival_s": 496.62805921555446,
+      "input_tokens": 181,
+      "output_tokens": 112,
+      "ttft_s": 2.8970095190157963,
+      "tpot_s": 0.689575260698313,
+      "completed": true
+    },
+    "30000164": {
+      "arrival_s": 498.45173577278456,
+      "input_tokens": 1185,
+      "output_tokens": 110,
+      "ttft_s": 6.10896454235899,
+      "tpot_s": 0.6911572258252197,
+      "completed": true
+    },
+    "30000169": {
+      "arrival_s": 513.562546251263,
+      "input_tokens": 401,
+      "output_tokens": 90,
+      "ttft_s": 3.2481349796944414,
+      "tpot_s": 0.7146848183775915,
+      "completed": true
+    },
+    "30000166": {
+      "arrival_s": 506.3516389400738,
+      "input_tokens": 246,
+      "output_tokens": 115,
+      "ttft_s": 1.9113421869911917,
+      "tpot_s": 0.6356853523850821,
+      "completed": true
+    },
+    "30000127": {
+      "arrival_s": 399.46754432492855,
+      "input_tokens": 318,
+      "output_tokens": 294,
+      "ttft_s": 2.3125020472400593,
+      "tpot_s": 0.6507141758220368,
+      "completed": true
+    },
+    "30000092": {
+      "arrival_s": 293.3957115431014,
+      "input_tokens": 986,
+      "output_tokens": 426,
+      "ttft_s": 5.192885983031829,
+      "tpot_s": 0.7040850491087334,
+      "completed": true
+    },
+    "30000128": {
+      "arrival_s": 399.8479644780775,
+      "input_tokens": 203,
+      "output_tokens": 217,
+      "ttft_s": 2.345131180566227,
+      "tpot_s": 0.9200172806371896,
+      "completed": true
+    },
+    "30000153": {
+      "arrival_s": 473.7777777670718,
+      "input_tokens": 205,
+      "output_tokens": 146,
+      "ttft_s": 4.824724587485775,
+      "tpot_s": 0.8740048387548188,
+      "completed": true
+    },
+    "30000107": {
+      "arrival_s": 343.86374708685,
+      "input_tokens": 1015,
+      "output_tokens": 398,
+      "ttft_s": 5.336307461857132,
+      "tpot_s": 0.6469664640304705,
+      "completed": true
+    },
+    "30000176": {
+      "arrival_s": 538.6338936128685,
+      "input_tokens": 425,
+      "output_tokens": 91,
+      "ttft_s": 2.700705886151809,
+      "tpot_s": 0.7308935806711715,
+      "completed": true
+    },
+    "30000137": {
+      "arrival_s": 425.54446186537166,
+      "input_tokens": 194,
+      "output_tokens": 217,
+      "ttft_s": 2.25003097098471,
+      "tpot_s": 0.8343686059690056,
+      "completed": true
+    },
+    "30000175": {
+      "arrival_s": 536.2997251482411,
+      "input_tokens": 393,
+      "output_tokens": 95,
+      "ttft_s": 2.568111831271608,
+      "tpot_s": 0.7373144258218004,
+      "completed": true
+    },
+    "30000151": {
+      "arrival_s": 470.42547958694814,
+      "input_tokens": 197,
+      "output_tokens": 162,
+      "ttft_s": 1.774784817748241,
+      "tpot_s": 0.8689110995998534,
+      "completed": true
+    },
+    "30000154": {
+      "arrival_s": 476.2530211444308,
+      "input_tokens": 1317,
+      "output_tokens": 173,
+      "ttft_s": 6.678180185284475,
+      "tpot_s": 0.7720456264581717,
+      "completed": true
+    },
+    "30000101": {
+      "arrival_s": 323.1867734077148,
+      "input_tokens": 1330,
+      "output_tokens": 413,
+      "ttft_s": 6.74310155813356,
+      "tpot_s": 0.7160175331375037,
+      "completed": true
+    },
+    "30000179": {
+      "arrival_s": 547.2353693333118,
+      "input_tokens": 427,
+      "output_tokens": 94,
+      "ttft_s": 2.6362254681638433,
+      "tpot_s": 0.8331186610550543,
+      "completed": true
+    },
+    "30000100": {
+      "arrival_s": 320.62340462196914,
+      "input_tokens": 1073,
+      "output_tokens": 411,
+      "ttft_s": 5.195504909581587,
+      "tpot_s": 0.7419270844974554,
+      "completed": true
+    },
+    "30000183": {
+      "arrival_s": 559.3730787366165,
+      "input_tokens": 372,
+      "output_tokens": 88,
+      "ttft_s": 5.811646565136925,
+      "tpot_s": 0.7583895643904205,
+      "completed": true
+    },
+    "30000203": {
+      "arrival_s": 624.6873089392634,
+      "input_tokens": 120,
+      "output_tokens": 12,
+      "ttft_s": 2.0133336739944525,
+      "tpot_s": 0.6264253098086204,
+      "completed": true
+    },
+    "30000117": {
+      "arrival_s": 369.76107333258034,
+      "input_tokens": 1002,
+      "output_tokens": 417,
+      "ttft_s": 5.271681069783369,
+      "tpot_s": 0.6321892212590569,
+      "completed": true
+    },
+    "30000187": {
+      "arrival_s": 572.5746705136908,
+      "input_tokens": 405,
+      "output_tokens": 99,
+      "ttft_s": 3.2319397731409936,
+      "tpot_s": 0.6970528165643234,
+      "completed": true
+    },
+    "30000206": {
+      "arrival_s": 634.1744194234859,
+      "input_tokens": 324,
+      "output_tokens": 18,
+      "ttft_s": 3.0440407658842332,
+      "tpot_s": 0.6203243372500604,
+      "completed": true
+    },
+    "30000160": {
+      "arrival_s": 489.3128080967988,
+      "input_tokens": 165,
+      "output_tokens": 217,
+      "ttft_s": 2.503029237735575,
+      "tpot_s": 0.7604890077758374,
+      "completed": true
+    },
+    "30000197": {
+      "arrival_s": 604.5329140150274,
+      "input_tokens": 388,
+      "output_tokens": 77,
+      "ttft_s": 2.539977772135444,
+      "tpot_s": 0.6532985421053992,
+      "completed": true
+    },
+    "30000184": {
+      "arrival_s": 564.0748203578635,
+      "input_tokens": 181,
+      "output_tokens": 106,
+      "ttft_s": 4.619869049618728,
+      "tpot_s": 0.8404128635431486,
+      "completed": true
+    },
+    "30000195": {
+      "arrival_s": 598.8791287551626,
+      "input_tokens": 1005,
+      "output_tokens": 86,
+      "ttft_s": 5.474898929014216,
+      "tpot_s": 0.6652609442337025,
+      "completed": true
+    },
+    "30000120": {
+      "arrival_s": 379.97520619032036,
+      "input_tokens": 1108,
+      "output_tokens": 390,
+      "ttft_s": 5.718730586198774,
+      "tpot_s": 0.7084665006116823,
+      "completed": true
+    },
+    "30000205": {
+      "arrival_s": 632.2552954897734,
+      "input_tokens": 1992,
+      "output_tokens": 50,
+      "ttft_s": 8.935702767793032,
+      "tpot_s": 0.5690974739315527,
+      "completed": true
+    },
+    "30000193": {
+      "arrival_s": 592.6204018395362,
+      "input_tokens": 1821,
+      "output_tokens": 112,
+      "ttft_s": 8.168308686134992,
+      "tpot_s": 0.6400518452145393,
+      "completed": true
+    },
+    "30000201": {
+      "arrival_s": 617.3932196639321,
+      "input_tokens": 450,
+      "output_tokens": 90,
+      "ttft_s": 2.804060735924395,
+      "tpot_s": 0.5882797981383389,
+      "completed": true
+    },
+    "30000215": {
+      "arrival_s": 662.003302433799,
+      "input_tokens": 91,
+      "output_tokens": 16,
+      "ttft_s": 1.698925168780761,
+      "tpot_s": 0.6396993748795997,
+      "completed": true
+    },
+    "30000181": {
+      "arrival_s": 552.3553578243565,
+      "input_tokens": 1320,
+      "output_tokens": 179,
+      "ttft_s": 6.69318075612523,
+      "tpot_s": 0.6639152285771075,
+      "completed": true
+    },
+    "30000123": {
+      "arrival_s": 386.63256567350555,
+      "input_tokens": 1122,
+      "output_tokens": 373,
+      "ttft_s": 5.64705898173878,
+      "tpot_s": 0.7721792744079156,
+      "completed": true
+    },
+    "30000116": {
+      "arrival_s": 367.8369711193151,
+      "input_tokens": 1161,
+      "output_tokens": 394,
+      "ttft_s": 5.8040219905250865,
+      "tpot_s": 0.780775755584493,
+      "completed": true
+    },
+    "30000207": {
+      "arrival_s": 637.8762973626743,
+      "input_tokens": 379,
+      "output_tokens": 84,
+      "ttft_s": 2.518642339796429,
+      "tpot_s": 0.5434994059360274,
+      "completed": true
+    },
+    "30000210": {
+      "arrival_s": 648.4212538816595,
+      "input_tokens": 369,
+      "output_tokens": 65,
+      "ttft_s": 2.3933107322183105,
+      "tpot_s": 0.5758211856827149,
+      "completed": true
+    },
+    "30000178": {
+      "arrival_s": 545.522374071737,
+      "input_tokens": 209,
+      "output_tokens": 217,
+      "ttft_s": 2.9321449032041755,
+      "tpot_s": 0.675832621264795,
+      "completed": true
+    },
+    "30000134": {
+      "arrival_s": 415.00112118526494,
+      "input_tokens": 966,
+      "output_tokens": 377,
+      "ttft_s": 7.452629172724983,
+      "tpot_s": 0.7273582385301763,
+      "completed": true
+    },
+    "30000194": {
+      "arrival_s": 595.3991088691008,
+      "input_tokens": 1313,
+      "output_tokens": 181,
+      "ttft_s": 6.9912468822763,
+      "tpot_s": 0.5471402838511027,
+      "completed": true
+    },
+    "30000196": {
+      "arrival_s": 602.7125544980534,
+      "input_tokens": 9,
+      "output_tokens": 154,
+      "ttft_s": 1.2200136979703302,
+      "tpot_s": 0.6419862729881083,
+      "completed": true
+    },
+    "30000217": {
+      "arrival_s": 668.8328436816591,
+      "input_tokens": 395,
+      "output_tokens": 58,
+      "ttft_s": 2.6355241874086914,
+      "tpot_s": 0.5430161699894761,
+      "completed": true
+    },
+    "30000119": {
+      "arrival_s": 375.0091118642467,
+      "input_tokens": 1126,
+      "output_tokens": 414,
+      "ttft_s": 5.991816126226752,
+      "tpot_s": 0.7862458676092794,
+      "completed": true
+    },
+    "30000198": {
+      "arrival_s": 606.5204118798069,
+      "input_tokens": 181,
+      "output_tokens": 187,
+      "ttft_s": 1.4985470495502113,
+      "tpot_s": 0.541834033118409,
+      "completed": true
+    },
+    "30000218": {
+      "arrival_s": 670.2557611390923,
+      "input_tokens": 374,
+      "output_tokens": 50,
+      "ttft_s": 2.3346155009103313,
+      "tpot_s": 0.7585898952133276,
+      "completed": true
+    },
+    "30000135": {
+      "arrival_s": 418.5542541334191,
+      "input_tokens": 1116,
+      "output_tokens": 393,
+      "ttft_s": 5.52470379442093,
+      "tpot_s": 0.7320793510506786,
+      "completed": true
+    },
+    "30000146": {
+      "arrival_s": 455.7889266298644,
+      "input_tokens": 1060,
+      "output_tokens": 411,
+      "ttft_s": 5.544729760527218,
+      "tpot_s": 0.6114922674530182,
+      "completed": true
+    },
+    "30000213": {
+      "arrival_s": 656.8887014957264,
+      "input_tokens": 391,
+      "output_tokens": 107,
+      "ttft_s": 2.5321183810613093,
+      "tpot_s": 0.5423638254073878,
+      "completed": true
+    },
+    "30000143": {
+      "arrival_s": 442.0682471411836,
+      "input_tokens": 1016,
+      "output_tokens": 406,
+      "ttft_s": 5.336488239810137,
+      "tpot_s": 0.6664912790483046,
+      "completed": true
+    },
+    "30000208": {
+      "arrival_s": 640.6190390523029,
+      "input_tokens": 403,
+      "output_tokens": 143,
+      "ttft_s": 2.542425756381931,
+      "tpot_s": 0.5281281643704382,
+      "completed": true
+    },
+    "30000204": {
+      "arrival_s": 628.9746887036558,
+      "input_tokens": 1311,
+      "output_tokens": 169,
+      "ttft_s": 6.676275718221291,
+      "tpot_s": 0.5343910298249935,
+      "completed": true
+    },
+    "30000130": {
+      "arrival_s": 404.55010166873774,
+      "input_tokens": 1161,
+      "output_tokens": 428,
+      "ttft_s": 5.524842219896698,
+      "tpot_s": 0.7545813576667634,
+      "completed": true
+    },
+    "30000221": {
+      "arrival_s": 686.911474727374,
+      "input_tokens": 213,
+      "output_tokens": 76,
+      "ttft_s": 1.7723483983762662,
+      "tpot_s": 0.5965953926985428,
+      "completed": true
+    },
+    "30000224": {
+      "arrival_s": 695.5500977838034,
+      "input_tokens": 205,
+      "output_tokens": 53,
+      "ttft_s": 4.887782700581056,
+      "tpot_s": 0.7069808390338432,
+      "completed": true
+    },
+    "30000212": {
+      "arrival_s": 654.4726553818014,
+      "input_tokens": 400,
+      "output_tokens": 120,
+      "ttft_s": 2.4718780558205253,
+      "tpot_s": 0.6836726694464166,
+      "completed": true
+    },
+    "30000168": {
+      "arrival_s": 511.08123603277306,
+      "input_tokens": 1066,
+      "output_tokens": 377,
+      "ttft_s": 5.59841497336231,
+      "tpot_s": 0.5908144546346571,
+      "completed": true
+    },
+    "30000219": {
+      "arrival_s": 676.7805987937478,
+      "input_tokens": 408,
+      "output_tokens": 103,
+      "ttft_s": 2.6450044237014936,
+      "tpot_s": 0.5888986326786326,
+      "completed": true
+    },
+    "30000222": {
+      "arrival_s": 688.8380581644456,
+      "input_tokens": 1421,
+      "output_tokens": 75,
+      "ttft_s": 6.559557308522471,
+      "tpot_s": 0.6410473149627539,
+      "completed": true
+    },
+    "30000226": {
+      "arrival_s": 699.6667560734273,
+      "input_tokens": 374,
+      "output_tokens": 66,
+      "ttft_s": 2.4457405042487608,
+      "tpot_s": 0.6316617453162595,
+      "completed": true
+    },
+    "30000157": {
+      "arrival_s": 481.4519996160591,
+      "input_tokens": 1002,
+      "output_tokens": 427,
+      "ttft_s": 5.430078344476499,
+      "tpot_s": 0.6030000794313869,
+      "completed": true
+    },
+    "30000109": {
+      "arrival_s": 349.3936464233005,
+      "input_tokens": 1062,
+      "output_tokens": 521,
+      "ttft_s": 5.139498686680042,
+      "tpot_s": 0.7524117844828085,
+      "completed": true
+    },
+    "30000230": {
+      "arrival_s": 713.9738021562938,
+      "input_tokens": 201,
+      "output_tokens": 62,
+      "ttft_s": 1.6152447176641545,
+      "tpot_s": 0.5050680343079004,
+      "completed": true
+    },
+    "30000223": {
+      "arrival_s": 691.4283167446764,
+      "input_tokens": 388,
+      "output_tokens": 103,
+      "ttft_s": 2.5278966232895073,
+      "tpot_s": 0.5780823463887482,
+      "completed": true
+    },
+    "30000144": {
+      "arrival_s": 448.49275098238905,
+      "input_tokens": 997,
+      "output_tokens": 414,
+      "ttft_s": 11.426830661762438,
+      "tpot_s": 0.7262194237983998,
+      "completed": true
+    },
+    "30000227": {
+      "arrival_s": 706.6058803760304,
+      "input_tokens": 435,
+      "output_tokens": 98,
+      "ttft_s": 2.7492592707784524,
+      "tpot_s": 0.542282858332423,
+      "completed": true
+    },
+    "30000161": {
+      "arrival_s": 492.2311109956572,
+      "input_tokens": 1043,
+      "output_tokens": 414,
+      "ttft_s": 5.43269219554486,
+      "tpot_s": 0.6610211950495282,
+      "completed": true
+    },
+    "30000236": {
+      "arrival_s": 731.4023618278309,
+      "input_tokens": 371,
+      "output_tokens": 64,
+      "ttft_s": 2.4711934308617174,
+      "tpot_s": 0.5970127814604392,
+      "completed": true
+    },
+    "30000214": {
+      "arrival_s": 658.7067984730198,
+      "input_tokens": 206,
+      "output_tokens": 192,
+      "ttft_s": 2.99681864056447,
+      "tpot_s": 0.6141714656739409,
+      "completed": true
+    },
+    "30000234": {
+      "arrival_s": 725.1632788642835,
+      "input_tokens": 402,
+      "output_tokens": 78,
+      "ttft_s": 2.5874193861177446,
+      "tpot_s": 0.7126016981643739,
+      "completed": true
+    },
+    "30000202": {
+      "arrival_s": 621.8533777339917,
+      "input_tokens": 200,
+      "output_tokens": 217,
+      "ttft_s": 2.2868688903108705,
+      "tpot_s": 0.7615825526429468,
+      "completed": true
+    },
+    "30000253": {
+      "arrival_s": 780.3879801179968,
+      "input_tokens": 296,
+      "output_tokens": 18,
+      "ttft_s": 2.1122871778230774,
+      "tpot_s": 0.5345577040659798,
+      "completed": true
+    },
+    "30000165": {
+      "arrival_s": 499.91341803746,
+      "input_tokens": 1044,
+      "output_tokens": 381,
+      "ttft_s": 5.070831134222317,
+      "tpot_s": 0.7548693028337455,
+      "completed": true
+    },
+    "30000240": {
+      "arrival_s": 745.6834908141619,
+      "input_tokens": 374,
+      "output_tokens": 50,
+      "ttft_s": 2.4160927764734197,
+      "tpot_s": 0.9253506397956569,
+      "completed": true
+    },
+    "30000237": {
+      "arrival_s": 735.8979444321023,
+      "input_tokens": 390,
+      "output_tokens": 86,
+      "ttft_s": 2.558753071814749,
+      "tpot_s": 0.7314033520394119,
+      "completed": true
+    },
+    "30000171": {
+      "arrival_s": 521.5868907305012,
+      "input_tokens": 1004,
+      "output_tokens": 477,
+      "ttft_s": 8.091550328806989,
+      "tpot_s": 0.5761950681638264,
+      "completed": true
+    },
+    "30000231": {
+      "arrival_s": 714.2159891818319,
+      "input_tokens": 1940,
+      "output_tokens": 110,
+      "ttft_s": 8.652456678439307,
+      "tpot_s": 0.7602501558443474,
+      "completed": true
+    },
+    "30000162": {
+      "arrival_s": 495.710309248233,
+      "input_tokens": 1157,
+      "output_tokens": 395,
+      "ttft_s": 8.187241221204431,
+      "tpot_s": 0.7730391033312813,
+      "completed": true
+    },
+    "30000216": {
+      "arrival_s": 663.8922531826628,
+      "input_tokens": 197,
+      "output_tokens": 217,
+      "ttft_s": 1.757463149395221,
+      "tpot_s": 0.6648160097017171,
+      "completed": true
+    },
+    "30000238": {
+      "arrival_s": 742.7739685538955,
+      "input_tokens": 237,
+      "output_tokens": 72,
+      "ttft_s": 1.9036234193757764,
+      "tpot_s": 0.945326430430787,
+      "completed": true
+    },
+    "30000156": {
+      "arrival_s": 480.92575685073086,
+      "input_tokens": 1065,
+      "output_tokens": 413,
+      "ttft_s": 5.233616085627318,
+      "tpot_s": 0.7939402670664076,
+      "completed": true
+    },
+    "30000239": {
+      "arrival_s": 743.1066810874321,
+      "input_tokens": 480,
+      "output_tokens": 86,
+      "ttft_s": 3.0569212936475196,
+      "tpot_s": 0.8205038327217848,
+      "completed": true
+    },
+    "30000248": {
+      "arrival_s": 769.5440409393484,
+      "input_tokens": 373,
+      "output_tokens": 70,
+      "ttft_s": 2.4319108383551793,
+      "tpot_s": 0.6375187923897491,
+      "completed": true
+    },
+    "30000174": {
+      "arrival_s": 531.6832659914497,
+      "input_tokens": 987,
+      "output_tokens": 413,
+      "ttft_s": 6.7356040405060185,
+      "tpot_s": 0.6858577248838877,
+      "completed": true
+    },
+    "30000252": {
+      "arrival_s": 777.0742918706545,
+      "input_tokens": 1656,
+      "output_tokens": 45,
+      "ttft_s": 7.874919015598948,
+      "tpot_s": 0.8224464367621455,
+      "completed": true
+    },
+    "30000247": {
+      "arrival_s": 767.1211653522538,
+      "input_tokens": 412,
+      "output_tokens": 79,
+      "ttft_s": 2.6418653118721522,
+      "tpot_s": 0.6877751196317814,
+      "completed": true
+    },
+    "30000241": {
+      "arrival_s": 747.4150683792654,
+      "input_tokens": 396,
+      "output_tokens": 116,
+      "ttft_s": 2.538970725745571,
+      "tpot_s": 0.647059052555973,
+      "completed": true
+    },
+    "30000191": {
+      "arrival_s": 586.0127600285823,
+      "input_tokens": 877,
+      "output_tokens": 409,
+      "ttft_s": 4.697376995328227,
+      "tpot_s": 0.5810878137883841,
+      "completed": true
+    },
+    "30000229": {
+      "arrival_s": 711.1756920960307,
+      "input_tokens": 423,
+      "output_tokens": 145,
+      "ttft_s": 2.579474240930267,
+      "tpot_s": 0.8258906408186262,
+      "completed": true
+    },
+    "30000233": {
+      "arrival_s": 721.7393898496233,
+      "input_tokens": 194,
+      "output_tokens": 174,
+      "ttft_s": 1.6532456152946224,
+      "tpot_s": 0.6459306105120117,
+      "completed": true
+    },
+    "30000246": {
+      "arrival_s": 764.0235640258397,
+      "input_tokens": 2006,
+      "output_tokens": 77,
+      "ttft_s": 9.35870271204874,
+      "tpot_s": 0.8326916128012062,
+      "completed": true
+    },
+    "30000244": {
+      "arrival_s": 756.6453378403323,
+      "input_tokens": 396,
+      "output_tokens": 113,
+      "ttft_s": 3.21754416796864,
+      "tpot_s": 0.7039009602858103,
+      "completed": true
+    },
+    "30000255": {
+      "arrival_s": 789.3062549078796,
+      "input_tokens": 382,
+      "output_tokens": 62,
+      "ttft_s": 2.411127320878336,
+      "tpot_s": 0.7930119727003352,
+      "completed": true
+    },
+    "30000186": {
+      "arrival_s": 569.9145130325792,
+      "input_tokens": 1119,
+      "output_tokens": 391,
+      "ttft_s": 5.791586496141576,
+      "tpot_s": 0.6802998524435021,
+      "completed": true
+    },
+    "30000170": {
+      "arrival_s": 517.0093742595634,
+      "input_tokens": 1116,
+      "output_tokens": 444,
+      "ttft_s": 5.556007200151271,
+      "tpot_s": 0.7239861827665605,
+      "completed": true
+    },
+    "30000189": {
+      "arrival_s": 581.0872575156873,
+      "input_tokens": 1071,
+      "output_tokens": 426,
+      "ttft_s": 9.065298719278417,
+      "tpot_s": 0.5996454646969005,
+      "completed": true
+    },
+    "30000262": {
+      "arrival_s": 806.3526169884527,
+      "input_tokens": 373,
+      "output_tokens": 56,
+      "ttft_s": 2.375752096553242,
+      "tpot_s": 0.668534738640952,
+      "completed": true
+    },
+    "30000251": {
+      "arrival_s": 776.2036108531629,
+      "input_tokens": 403,
+      "output_tokens": 98,
+      "ttft_s": 2.6110785986758174,
+      "tpot_s": 0.6916311724864391,
+      "completed": true
+    },
+    "30000177": {
+      "arrival_s": 541.6157591938528,
+      "input_tokens": 1056,
+      "output_tokens": 393,
+      "ttft_s": 5.423145069491852,
+      "tpot_s": 0.7649740556694542,
+      "completed": true
+    },
+    "30000260": {
+      "arrival_s": 803.0589949769359,
+      "input_tokens": 1002,
+      "output_tokens": 48,
+      "ttft_s": 6.190979450693021,
+      "tpot_s": 0.8058130308528872,
+      "completed": true
+    },
+    "30000180": {
+      "arrival_s": 551.6365540200827,
+      "input_tokens": 1110,
+      "output_tokens": 397,
+      "ttft_s": 5.471280910659516,
+      "tpot_s": 0.7346182115722626,
+      "completed": true
+    },
+    "30000232": {
+      "arrival_s": 720.3955628472322,
+      "input_tokens": 197,
+      "output_tokens": 162,
+      "ttft_s": 1.5885138611969296,
+      "tpot_s": 0.7934819985841339,
+      "completed": true
+    },
+    "30000228": {
+      "arrival_s": 708.0378768322383,
+      "input_tokens": 203,
+      "output_tokens": 183,
+      "ttft_s": 2.308205252582411,
+      "tpot_s": 0.7886775786856669,
+      "completed": true
+    },
+    "30000185": {
+      "arrival_s": 564.6617686042146,
+      "input_tokens": 1073,
+      "output_tokens": 392,
+      "ttft_s": 5.181171184566551,
+      "tpot_s": 0.727190233693126,
+      "completed": true
+    },
+    "30000190": {
+      "arrival_s": 582.598821123231,
+      "input_tokens": 1043,
+      "output_tokens": 399,
+      "ttft_s": 5.4726216881707614,
+      "tpot_s": 0.6784173986572983,
+      "completed": true
+    },
+    "30000249": {
+      "arrival_s": 772.53087909582,
+      "input_tokens": 1033,
+      "output_tokens": 120,
+      "ttft_s": 5.733321958372358,
+      "tpot_s": 0.7945745662759328,
+      "completed": true
+    },
+    "30000199": {
+      "arrival_s": 610.0219148493751,
+      "input_tokens": 1080,
+      "output_tokens": 397,
+      "ttft_s": 5.59550769673865,
+      "tpot_s": 0.6660482479665977,
+      "completed": true
+    },
+    "30000245": {
+      "arrival_s": 760.5978087080616,
+      "input_tokens": 946,
+      "output_tokens": 129,
+      "ttft_s": 11.588428630155931,
+      "tpot_s": 0.8471762790198145,
+      "completed": true
+    },
+    "30000182": {
+      "arrival_s": 559.1778535166192,
+      "input_tokens": 1149,
+      "output_tokens": 429,
+      "ttft_s": 5.881661476822842,
+      "tpot_s": 0.7451990548698947,
+      "completed": true
+    },
+    "30000275": {
+      "arrival_s": 852.0188406562544,
+      "input_tokens": 219,
+      "output_tokens": 60,
+      "ttft_s": 1.7805017669576273,
+      "tpot_s": 0.5165783810459936,
+      "completed": true
+    },
+    "30000270": {
+      "arrival_s": 836.0194838087575,
+      "input_tokens": 412,
+      "output_tokens": 95,
+      "ttft_s": 2.6381757792912595,
+      "tpot_s": 0.5394087800854506,
+      "completed": true
+    },
+    "30000172": {
+      "arrival_s": 523.2893321389765,
+      "input_tokens": 1046,
+      "output_tokens": 489,
+      "ttft_s": 5.179165846734236,
+      "tpot_s": 0.7410366272490428,
+      "completed": true
+    },
+    "30000272": {
+      "arrival_s": 843.1899208704198,
+      "input_tokens": 181,
+      "output_tokens": 94,
+      "ttft_s": 1.7698278884656702,
+      "tpot_s": 0.5356830854126245,
+      "completed": true
+    },
+    "30000188": {
+      "arrival_s": 577.4443920434899,
+      "input_tokens": 1262,
+      "output_tokens": 415,
+      "ttft_s": 6.243492098404886,
+      "tpot_s": 0.7652529537975302,
+      "completed": true
+    },
+    "30000211": {
+      "arrival_s": 653.9339286465964,
+      "input_tokens": 935,
+      "output_tokens": 429,
+      "ttft_s": 4.996235880829204,
+      "tpot_s": 0.5684652680000573,
+      "completed": true
+    },
+    "30000284": {
+      "arrival_s": 884.9323701594236,
+      "input_tokens": 320,
+      "output_tokens": 18,
+      "ttft_s": 2.2152572856557526,
+      "tpot_s": 1.1201530861558975,
+      "completed": true
+    },
+    "30000274": {
+      "arrival_s": 849.7000681433861,
+      "input_tokens": 375,
+      "output_tokens": 107,
+      "ttft_s": 2.5151658132047032,
+      "tpot_s": 0.5404391858359259,
+      "completed": true
+    },
+    "30000192": {
+      "arrival_s": 589.1145643180333,
+      "input_tokens": 874,
+      "output_tokens": 404,
+      "ttft_s": 9.56023148970769,
+      "tpot_s": 0.780603211919101,
+      "completed": true
+    },
+    "30000280": {
+      "arrival_s": 870.1583887779793,
+      "input_tokens": 422,
+      "output_tokens": 84,
+      "ttft_s": 3.1111241236625347,
+      "tpot_s": 0.53097405185604,
+      "completed": true
+    },
+    "30000283": {
+      "arrival_s": 879.4368954157017,
+      "input_tokens": 380,
+      "output_tokens": 71,
+      "ttft_s": 2.4591396535713557,
+      "tpot_s": 0.5716739758964455,
+      "completed": true
+    },
+    "30000152": {
+      "arrival_s": 473.6357439395801,
+      "input_tokens": 1113,
+      "output_tokens": 581,
+      "ttft_s": 5.363827808347935,
+      "tpot_s": 0.7679382163034703,
+      "completed": true
+    },
+    "30000200": {
+      "arrival_s": 616.1944674994131,
+      "input_tokens": 1137,
+      "output_tokens": 402,
+      "ttft_s": 5.7421146336639595,
+      "tpot_s": 0.7627749179930495,
+      "completed": true
+    },
+    "30000269": {
+      "arrival_s": 832.8411384980004,
+      "input_tokens": 191,
+      "output_tokens": 162,
+      "ttft_s": 2.7803886768477923,
+      "tpot_s": 0.6315354567983428,
+      "completed": true
+    },
+    "30000293": {
+      "arrival_s": 910.855973179528,
+      "input_tokens": 375,
+      "output_tokens": 44,
+      "ttft_s": 2.6409479003231127,
+      "tpot_s": 0.6016002017657541,
+      "completed": true
+    },
+    "30000242": {
+      "arrival_s": 750.3582000725816,
+      "input_tokens": 212,
+      "output_tokens": 217,
+      "ttft_s": 1.8110817486326596,
+      "tpot_s": 0.8709261418954073,
+      "completed": true
+    },
+    "30000276": {
+      "arrival_s": 860.5586577567686,
+      "input_tokens": 374,
+      "output_tokens": 84,
+      "ttft_s": 2.456125756504889,
+      "tpot_s": 0.9497211343403946,
+      "completed": true
+    },
+    "30000258": {
+      "arrival_s": 796.5344104541956,
+      "input_tokens": 72,
+      "output_tokens": 224,
+      "ttft_s": 1.4715653582161394,
+      "tpot_s": 0.6922613316277427,
+      "completed": true
+    },
+    "30000277": {
+      "arrival_s": 862.5767195042396,
+      "input_tokens": 1844,
+      "output_tokens": 116,
+      "ttft_s": 9.37368643657237,
+      "tpot_s": 0.7792442129235022,
+      "completed": true
+    },
+    "30000297": {
+      "arrival_s": 924.2704617745399,
+      "input_tokens": 1072,
+      "output_tokens": 57,
+      "ttft_s": 5.579830926116642,
+      "tpot_s": 0.5743837922861863,
+      "completed": true
+    },
+    "30000292": {
+      "arrival_s": 910.565866332808,
+      "input_tokens": 386,
+      "output_tokens": 76,
+      "ttft_s": 2.52265652101255,
+      "tpot_s": 0.6829082378709639,
+      "completed": true
+    },
+    "30000290": {
+      "arrival_s": 904.4318228193131,
+      "input_tokens": 394,
+      "output_tokens": 90,
+      "ttft_s": 2.5717426931340697,
+      "tpot_s": 0.6658433773041444,
+      "completed": true
+    },
+    "30000209": {
+      "arrival_s": 643.7942932317973,
+      "input_tokens": 1189,
+      "output_tokens": 415,
+      "ttft_s": 6.344729800798518,
+      "tpot_s": 0.7960950520977023,
+      "completed": true
+    },
+    "30000131": {
+      "arrival_s": 406.4948337670207,
+      "input_tokens": 1070,
+      "output_tokens": 939,
+      "ttft_s": 5.615407199171898,
+      "tpot_s": 0.6142903715737552,
+      "completed": true
+    },
+    "30000295": {
+      "arrival_s": 915.3292098083804,
+      "input_tokens": 393,
+      "output_tokens": 88,
+      "ttft_s": 2.4153763566058615,
+      "tpot_s": 0.8360985614519081,
+      "completed": true
+    },
+    "30000281": {
+      "arrival_s": 875.454149330556,
+      "input_tokens": 203,
+      "output_tokens": 183,
+      "ttft_s": 1.96400633229689,
+      "tpot_s": 0.635702116058572,
+      "completed": true
+    },
+    "30000220": {
+      "arrival_s": 683.0798946210178,
+      "input_tokens": 995,
+      "output_tokens": 397,
+      "ttft_s": 4.985670930718243,
+      "tpot_s": 0.7888316365648822,
+      "completed": true
+    },
+    "30000298": {
+      "arrival_s": 928.8488769592677,
+      "input_tokens": 957,
+      "output_tokens": 83,
+      "ttft_s": 4.715712138144795,
+      "tpot_s": 0.8400091301701046,
+      "completed": true
+    },
+    "30000235": {
+      "arrival_s": 727.9353248495369,
+      "input_tokens": 1039,
+      "output_tokens": 396,
+      "ttft_s": 5.428818016607352,
+      "tpot_s": 0.6953134212923769,
+      "completed": true
+    },
+    "30000306": {
+      "arrival_s": 954.3429239543681,
+      "input_tokens": 395,
+      "output_tokens": 84,
+      "ttft_s": 2.584645521701873,
+      "tpot_s": 0.6860509097312782,
+      "completed": true
+    },
+    "30000305": {
+      "arrival_s": 950.0022327977014,
+      "input_tokens": 419,
+      "output_tokens": 88,
+      "ttft_s": 2.6672565836537387,
+      "tpot_s": 0.7218079287309571,
+      "completed": true
+    },
+    "30000294": {
+      "arrival_s": 912.8642938871429,
+      "input_tokens": 410,
+      "output_tokens": 120,
+      "ttft_s": 2.4988418545473223,
+      "tpot_s": 0.8502801648123903,
+      "completed": true
+    },
+    "30000225": {
+      "arrival_s": 696.2122991272157,
+      "input_tokens": 1009,
+      "output_tokens": 415,
+      "ttft_s": 5.2158147364914385,
+      "tpot_s": 0.776466965163557,
+      "completed": true
+    },
+    "30000324": {
+      "arrival_s": 1013.5894770732887,
+      "input_tokens": 91,
+      "output_tokens": 16,
+      "ttft_s": 1.760210248397243,
+      "tpot_s": 0.5787321925456884,
+      "completed": true
+    },
+    "30000303": {
+      "arrival_s": 944.749357009044,
+      "input_tokens": 435,
+      "output_tokens": 98,
+      "ttft_s": 2.617047873718775,
+      "tpot_s": 0.844845713805622,
+      "completed": true
+    },
+    "30000288": {
+      "arrival_s": 899.463781186819,
+      "input_tokens": 181,
+      "output_tokens": 209,
+      "ttft_s": 1.5986171238796487,
+      "tpot_s": 0.6351893025563413,
+      "completed": true
+    },
+    "30000314": {
+      "arrival_s": 975.9894656853184,
+      "input_tokens": 439,
+      "output_tokens": 83,
+      "ttft_s": 3.8549806841216423,
+      "tpot_s": 0.6526822592039929,
+      "completed": true
+    },
+    "30000296": {
+      "arrival_s": 918.3515053562668,
+      "input_tokens": 9,
+      "output_tokens": 162,
+      "ttft_s": 0.9922879113034924,
+      "tpot_s": 0.7174333934357645,
+      "completed": true
+    },
+    "30000261": {
+      "arrival_s": 804.3211306395176,
+      "input_tokens": 1061,
+      "output_tokens": 378,
+      "ttft_s": 5.533413838593674,
+      "tpot_s": 0.6227870472346171,
+      "completed": true
+    },
+    "30000318": {
+      "arrival_s": 992.4905853284447,
+      "input_tokens": 393,
+      "output_tokens": 90,
+      "ttft_s": 2.5251787209016356,
+      "tpot_s": 0.5814232999799436,
+      "completed": true
+    },
+    "30000315": {
+      "arrival_s": 982.9166410469983,
+      "input_tokens": 1328,
+      "output_tokens": 82,
+      "ttft_s": 6.300521431086054,
+      "tpot_s": 0.7184269019577302,
+      "completed": true
+    },
+    "30000330": {
+      "arrival_s": 1035.818937854367,
+      "input_tokens": 324,
+      "output_tokens": 18,
+      "ttft_s": 2.1735990804536414,
+      "tpot_s": 0.6399301086049919,
+      "completed": true
+    },
+    "30000316": {
+      "arrival_s": 986.2226702037216,
+      "input_tokens": 222,
+      "output_tokens": 96,
+      "ttft_s": 3.443613672664469,
+      "tpot_s": 0.6917733499957086,
+      "completed": true
+    },
+    "30000319": {
+      "arrival_s": 997.5110817971878,
+      "input_tokens": 198,
+      "output_tokens": 89,
+      "ttft_s": 2.2753461803160917,
+      "tpot_s": 0.7962236109526593,
+      "completed": true
+    },
+    "30000326": {
+      "arrival_s": 1022.1798933304897,
+      "input_tokens": 400,
+      "output_tokens": 82,
+      "ttft_s": 2.6029865647349197,
+      "tpot_s": 0.5962093513082274,
+      "completed": true
+    },
+    "30000268": {
+      "arrival_s": 828.7196056050938,
+      "input_tokens": 1086,
+      "output_tokens": 396,
+      "ttft_s": 5.644317554190707,
+      "tpot_s": 0.6268948398950227,
+      "completed": true
+    },
+    "30000317": {
+      "arrival_s": 990.9095986063995,
+      "input_tokens": 1530,
+      "output_tokens": 108,
+      "ttft_s": 7.765480596091834,
+      "tpot_s": 0.7799205213979323,
+      "completed": true
+    },
+    "30000301": {
+      "arrival_s": 937.4965396532781,
+      "input_tokens": 181,
+      "output_tokens": 167,
+      "ttft_s": 2.119996956220348,
+      "tpot_s": 0.8765179249546095,
+      "completed": true
+    },
+    "30000263": {
+      "arrival_s": 809.6878539089042,
+      "input_tokens": 1059,
+      "output_tokens": 415,
+      "ttft_s": 5.676286240523609,
+      "tpot_s": 0.6557796443804382,
+      "completed": true
+    },
+    "30000329": {
+      "arrival_s": 1034.3364445262828,
+      "input_tokens": 374,
+      "output_tokens": 69,
+      "ttft_s": 2.4861817867140417,
+      "tpot_s": 0.8025728603842895,
+      "completed": true
+    },
+    "30000321": {
+      "arrival_s": 1004.6841701397784,
+      "input_tokens": 411,
+      "output_tokens": 103,
+      "ttft_s": 2.52424978759268,
+      "tpot_s": 0.8429643470986691,
+      "completed": true
+    },
+    "30000254": {
+      "arrival_s": 783.9650380888859,
+      "input_tokens": 1046,
+      "output_tokens": 442,
+      "ttft_s": 5.445879902392107,
+      "tpot_s": 0.6934229187094689,
+      "completed": true
+    },
+    "30000322": {
+      "arrival_s": 1006.7579025209345,
+      "input_tokens": 424,
+      "output_tokens": 107,
+      "ttft_s": 2.58019409036865,
+      "tpot_s": 0.8214754053995459,
+      "completed": true
+    },
+    "30000267": {
+      "arrival_s": 823.5198630901341,
+      "input_tokens": 916,
+      "output_tokens": 412,
+      "ttft_s": 5.0112705017918415,
+      "tpot_s": 0.6622532278531403,
+      "completed": true
+    },
+    "30000325": {
+      "arrival_s": 1019.219209679107,
+      "input_tokens": 400,
+      "output_tokens": 118,
+      "ttft_s": 2.6256421490656976,
+      "tpot_s": 0.6823702042267588,
+      "completed": true
+    },
+    "30000334": {
+      "arrival_s": 1044.2283847322685,
+      "input_tokens": 400,
+      "output_tokens": 84,
+      "ttft_s": 2.6154681401649214,
+      "tpot_s": 0.7138025525585182,
+      "completed": true
+    },
+    "30000256": {
+      "arrival_s": 791.8279425001597,
+      "input_tokens": 1145,
+      "output_tokens": 456,
+      "ttft_s": 5.887706046902963,
+      "tpot_s": 0.6912484619347284,
+      "completed": true
+    },
+    "30000250": {
+      "arrival_s": 772.5597760664383,
+      "input_tokens": 1030,
+      "output_tokens": 393,
+      "ttft_s": 11.202705324699878,
+      "tpot_s": 0.8393374488113462,
+      "completed": true
+    },
+    "30000355": {
+      "arrival_s": 1106.6715591615148,
+      "input_tokens": 302,
+      "output_tokens": 18,
+      "ttft_s": 2.2034359159597443,
+      "tpot_s": 0.5560582125204907,
+      "completed": true
+    },
+    "30000278": {
+      "arrival_s": 866.7444405283662,
+      "input_tokens": 1277,
+      "output_tokens": 373,
+      "ttft_s": 6.4784527404535766,
+      "tpot_s": 0.6775656868686626,
+      "completed": true
+    },
+    "30000264": {
+      "arrival_s": 814.0211769513948,
+      "input_tokens": 1233,
+      "output_tokens": 401,
+      "ttft_s": 5.9490569796683985,
+      "tpot_s": 0.7689962365191024,
+      "completed": true
+    },
+    "30000271": {
+      "arrival_s": 842.9051256458453,
+      "input_tokens": 1140,
+      "output_tokens": 416,
+      "ttft_s": 5.931895413521943,
+      "tpot_s": 0.6731912309241642,
+      "completed": true
+    },
+    "30000347": {
+      "arrival_s": 1077.8182056494866,
+      "input_tokens": 204,
+      "output_tokens": 85,
+      "ttft_s": 2.811492306585478,
+      "tpot_s": 0.6623057375464192,
+      "completed": true
+    },
+    "30000257": {
+      "arrival_s": 794.1217772917486,
+      "input_tokens": 1156,
+      "output_tokens": 396,
+      "ttft_s": 8.061539487592086,
+      "tpot_s": 0.8469837354024162,
+      "completed": true
+    },
+    "30000345": {
+      "arrival_s": 1074.4661461967387,
+      "input_tokens": 414,
+      "output_tokens": 101,
+      "ttft_s": 2.6333855880288866,
+      "tpot_s": 0.6290508707855497,
+      "completed": true
+    },
+    "30000259": {
+      "arrival_s": 798.1411098974437,
+      "input_tokens": 1157,
+      "output_tokens": 414,
+      "ttft_s": 5.934699958433725,
+      "tpot_s": 0.8520076194126524,
+      "completed": true
+    },
+    "30000349": {
+      "arrival_s": 1086.3937494894221,
+      "input_tokens": 216,
+      "output_tokens": 82,
+      "ttft_s": 2.380170593712819,
+      "tpot_s": 0.8997078973081448,
+      "completed": true
+    },
+    "30000333": {
+      "arrival_s": 1040.6324375223182,
+      "input_tokens": 400,
+      "output_tokens": 127,
+      "ttft_s": 2.482265725689331,
+      "tpot_s": 0.9489178717677869,
+      "completed": true
+    },
+    "30000363": {
+      "arrival_s": 1129.948426335829,
+      "input_tokens": 214,
+      "output_tokens": 48,
+      "ttft_s": 2.8224515258668816,
+      "tpot_s": 0.6398443994287245,
+      "completed": true
+    },
+    "30000266": {
+      "arrival_s": 821.5864695235102,
+      "input_tokens": 1094,
+      "output_tokens": 411,
+      "ttft_s": 5.348790562383783,
+      "tpot_s": 0.8403063649091376,
+      "completed": true
+    },
+    "30000351": {
+      "arrival_s": 1096.9164172444407,
+      "input_tokens": 430,
+      "output_tokens": 90,
+      "ttft_s": 2.7937075397264834,
+      "tpot_s": 0.8110360341964229,
+      "completed": true
+    },
+    "30000354": {
+      "arrival_s": 1103.030472420708,
+      "input_tokens": 393,
+      "output_tokens": 113,
+      "ttft_s": 2.5389610064653425,
+      "tpot_s": 0.622266757103958,
+      "completed": true
+    },
+    "30000341": {
+      "arrival_s": 1063.3918051404899,
+      "input_tokens": 220,
+      "output_tokens": 131,
+      "ttft_s": 2.374705718039195,
+      "tpot_s": 0.8567762394882475,
+      "completed": true
+    },
+    "30000286": {
+      "arrival_s": 891.5643914361966,
+      "input_tokens": 1096,
+      "output_tokens": 411,
+      "ttft_s": 5.694646688070975,
+      "tpot_s": 0.693001762446238,
+      "completed": true
+    },
+    "30000366": {
+      "arrival_s": 1140.3757622767523,
+      "input_tokens": 379,
+      "output_tokens": 67,
+      "ttft_s": 2.513911470219,
+      "tpot_s": 0.6662104624396354,
+      "completed": true
+    },
+    "30000332": {
+      "arrival_s": 1038.9145544402825,
+      "input_tokens": 197,
+      "output_tokens": 164,
+      "ttft_s": 3.7099248912261373,
+      "tpot_s": 0.9139052885565004,
+      "completed": true
+    },
+    "30000285": {
+      "arrival_s": 890.9425612414416,
+      "input_tokens": 1080,
+      "output_tokens": 378,
+      "ttft_s": 5.209601561233171,
+      "tpot_s": 0.7885989683726116,
+      "completed": true
+    },
+    "30000282": {
+      "arrival_s": 876.4871781951696,
+      "input_tokens": 1024,
+      "output_tokens": 401,
+      "ttft_s": 5.091890947165439,
+      "tpot_s": 0.7866630324335372,
+      "completed": true
+    },
+    "30000265": {
+      "arrival_s": 815.5133512534177,
+      "input_tokens": 1002,
+      "output_tokens": 580,
+      "ttft_s": 5.430265159808187,
+      "tpot_s": 0.6484342094667789,
+      "completed": true
+    },
+    "30000360": {
+      "arrival_s": 1124.1781884307918,
+      "input_tokens": 405,
+      "output_tokens": 104,
+      "ttft_s": 2.6295311607063923,
+      "tpot_s": 0.6799812247206597,
+      "completed": true
+    },
+    "30000338": {
+      "arrival_s": 1055.747332402182,
+      "input_tokens": 411,
+      "output_tokens": 163,
+      "ttft_s": 5.579468736339777,
+      "tpot_s": 0.8422137187988252,
+      "completed": true
+    },
+    "30000357": {
+      "arrival_s": 1115.6703019703743,
+      "input_tokens": 393,
+      "output_tokens": 96,
+      "ttft_s": 2.615893614173274,
+      "tpot_s": 0.8472780283192103,
+      "completed": true
+    },
+    "30000287": {
+      "arrival_s": 896.3244722758092,
+      "input_tokens": 1134,
+      "output_tokens": 401,
+      "ttft_s": 8.7607643418919,
+      "tpot_s": 0.7373774109552843,
+      "completed": true
+    },
+    "30000273": {
+      "arrival_s": 848.7880737840447,
+      "input_tokens": 1116,
+      "output_tokens": 446,
+      "ttft_s": 5.318443415947286,
+      "tpot_s": 0.7793879730654923,
+      "completed": true
+    },
+    "30000364": {
+      "arrival_s": 1135.9594471058306,
+      "input_tokens": 426,
+      "output_tokens": 80,
+      "ttft_s": 2.6667072193790773,
+      "tpot_s": 0.8018485115215938,
+      "completed": true
+    },
+    "30000342": {
+      "arrival_s": 1067.3505767374288,
+      "input_tokens": 408,
+      "output_tokens": 151,
+      "ttft_s": 2.514104504763509,
+      "tpot_s": 0.8922870494924519,
+      "completed": true
+    },
+    "30000279": {
+      "arrival_s": 868.2806713684564,
+      "input_tokens": 1041,
+      "output_tokens": 421,
+      "ttft_s": 5.401031765451535,
+      "tpot_s": 0.7863462462442198,
+      "completed": true
+    },
+    "30000362": {
+      "arrival_s": 1128.630049431571,
+      "input_tokens": 1474,
+      "output_tokens": 94,
+      "ttft_s": 6.785450650405437,
+      "tpot_s": 0.7450964487490603,
+      "completed": true
+    },
+    "30000299": {
+      "arrival_s": 933.4967135521823,
+      "input_tokens": 1058,
+      "output_tokens": 419,
+      "ttft_s": 5.520105392723622,
+      "tpot_s": 0.6562746618552028,
+      "completed": true
+    },
+    "30000289": {
+      "arrival_s": 900.9067418112888,
+      "input_tokens": 1027,
+      "output_tokens": 405,
+      "ttft_s": 5.1039272859025,
+      "tpot_s": 0.7754739182720459,
+      "completed": true
+    },
+    "30000302": {
+      "arrival_s": 939.791922947281,
+      "input_tokens": 1139,
+      "output_tokens": 428,
+      "ttft_s": 5.888141537086426,
+      "tpot_s": 0.6448589867973403,
+      "completed": true
+    },
+    "30000370": {
+      "arrival_s": 1151.502129291827,
+      "input_tokens": 1495,
+      "output_tokens": 85,
+      "ttft_s": 7.566886951274,
+      "tpot_s": 0.7680230534305381,
+      "completed": true
+    },
+    "30000390": {
+      "arrival_s": 1208.59224389886,
+      "input_tokens": 303,
+      "output_tokens": 18,
+      "ttft_s": 2.2049876398830293,
+      "tpot_s": 0.7573322618505592,
+      "completed": true
+    },
+    "30000243": {
+      "arrival_s": 754.1850396053812,
+      "input_tokens": 1072,
+      "output_tokens": 646,
+      "ttft_s": 5.588834296497907,
+      "tpot_s": 0.7198377547622953,
+      "completed": true
+    },
+    "30000352": {
+      "arrival_s": 1097.158145809329,
+      "input_tokens": 1320,
+      "output_tokens": 158,
+      "ttft_s": 6.447140808126505,
+      "tpot_s": 0.801839555336292,
+      "completed": true
+    },
+    "30000313": {
+      "arrival_s": 974.1424913787953,
+      "input_tokens": 1018,
+      "output_tokens": 396,
+      "ttft_s": 5.502472231862839,
+      "tpot_s": 0.6364114784603293,
+      "completed": true
+    },
+    "30000372": {
+      "arrival_s": 1153.9852121467982,
+      "input_tokens": 388,
+      "output_tokens": 100,
+      "ttft_s": 2.784056671962162,
+      "tpot_s": 0.7886493674980745,
+      "completed": true
+    },
+    "30000346": {
+      "arrival_s": 1076.7661117141474,
+      "input_tokens": 1315,
+      "output_tokens": 186,
+      "ttft_s": 6.475201052342072,
+      "tpot_s": 0.8224303898784013,
+      "completed": true
+    },
+    "30000377": {
+      "arrival_s": 1167.3512026312967,
+      "input_tokens": 378,
+      "output_tokens": 92,
+      "ttft_s": 2.5320014891185565,
+      "tpot_s": 0.7297900735087112,
+      "completed": true
+    },
+    "30000312": {
+      "arrival_s": 969.091137356378,
+      "input_tokens": 1028,
+      "output_tokens": 408,
+      "ttft_s": 10.25143676843129,
+      "tpot_s": 0.632239553621634,
+      "completed": true
+    },
+    "30000373": {
+      "arrival_s": 1156.5077783443912,
+      "input_tokens": 386,
+      "output_tokens": 106,
+      "ttft_s": 2.4835943477594355,
+      "tpot_s": 0.7757428660169137,
+      "completed": true
+    },
+    "30000308": {
+      "arrival_s": 959.1994818092738,
+      "input_tokens": 1024,
+      "output_tokens": 428,
+      "ttft_s": 5.521074861978946,
+      "tpot_s": 0.6473213619350463,
+      "completed": true
+    },
+    "30000300": {
+      "arrival_s": 933.700279146386,
+      "input_tokens": 1096,
+      "output_tokens": 415,
+      "ttft_s": 5.39842129595354,
+      "tpot_s": 0.7332436043987819,
+      "completed": true
+    },
+    "30000291": {
+      "arrival_s": 906.7413830563353,
+      "input_tokens": 1053,
+      "output_tokens": 394,
+      "ttft_s": 5.312378667505413,
+      "tpot_s": 0.8415222078879258,
+      "completed": true
+    },
+    "30000369": {
+      "arrival_s": 1148.103537505223,
+      "input_tokens": 16,
+      "output_tokens": 136,
+      "ttft_s": 1.2737418763679216,
+      "tpot_s": 0.7046898581402662,
+      "completed": true
+    },
+    "30000385": {
+      "arrival_s": 1191.0054252637779,
+      "input_tokens": 432,
+      "output_tokens": 103,
+      "ttft_s": 2.714320943647863,
+      "tpot_s": 0.6534031514401312,
+      "completed": true
+    },
+    "30000378": {
+      "arrival_s": 1171.6640622595085,
+      "input_tokens": 204,
+      "output_tokens": 118,
+      "ttft_s": 2.8259134997758792,
+      "tpot_s": 0.7387072967598521,
+      "completed": true
+    },
+    "30000386": {
+      "arrival_s": 1193.3848505584233,
+      "input_tokens": 181,
+      "output_tokens": 92,
+      "ttft_s": 2.6393321482721603,
+      "tpot_s": 0.7131268876207867,
+      "completed": true
+    },
+    "30000388": {
+      "arrival_s": 1200.698448321932,
+      "input_tokens": 397,
+      "output_tokens": 91,
+      "ttft_s": 2.6080119607624965,
+      "tpot_s": 0.6452166627489759,
+      "completed": true
+    },
+    "30000379": {
+      "arrival_s": 1173.6799858073175,
+      "input_tokens": 402,
+      "output_tokens": 123,
+      "ttft_s": 2.8121497506040214,
+      "tpot_s": 0.6988533534706415,
+      "completed": true
+    },
+    "30000406": {
+      "arrival_s": 1258.3079893863646,
+      "input_tokens": 237,
+      "output_tokens": 14,
+      "ttft_s": 3.48206342472713,
+      "tpot_s": 1.172442928222486,
+      "completed": true
+    },
+    "30000387": {
+      "arrival_s": 1194.5231564924502,
+      "input_tokens": 406,
+      "output_tokens": 97,
+      "ttft_s": 2.489873084537294,
+      "tpot_s": 0.8481619058732003,
+      "completed": true
+    },
+    "30000397": {
+      "arrival_s": 1228.4108275590202,
+      "input_tokens": 389,
+      "output_tokens": 60,
+      "ttft_s": 3.238675683276824,
+      "tpot_s": 0.8288937986510249,
+      "completed": true
+    },
+    "30000320": {
+      "arrival_s": 1000.0850590432904,
+      "input_tokens": 1153,
+      "output_tokens": 394,
+      "ttft_s": 5.92936107086075,
+      "tpot_s": 0.7126193315556741,
+      "completed": true
+    },
+    "30000394": {
+      "arrival_s": 1219.6176866607072,
+      "input_tokens": 426,
+      "output_tokens": 75,
+      "ttft_s": 4.816508403622265,
+      "tpot_s": 0.8452666024193457,
+      "completed": true
+    },
+    "30000310": {
+      "arrival_s": 964.8600591552059,
+      "input_tokens": 1073,
+      "output_tokens": 454,
+      "ttft_s": 5.58589062917531,
+      "tpot_s": 0.7051120426804051,
+      "completed": true
+    },
+    "30000398": {
+      "arrival_s": 1232.8968594123096,
+      "input_tokens": 211,
+      "output_tokens": 73,
+      "ttft_s": 1.7510352576300647,
+      "tpot_s": 0.8696590021025625,
+      "completed": true
+    },
+    "30000383": {
+      "arrival_s": 1185.331433849531,
+      "input_tokens": 1352,
+      "output_tokens": 158,
+      "ttft_s": 10.1924606560342,
+      "tpot_s": 0.6499379102221818,
+      "completed": true
+    },
+    "30000375": {
+      "arrival_s": 1164.6962068687621,
+      "input_tokens": 203,
+      "output_tokens": 167,
+      "ttft_s": 2.820818251508854,
+      "tpot_s": 0.7840341291011969,
+      "completed": true
+    },
+    "30000400": {
+      "arrival_s": 1236.3780072027082,
+      "input_tokens": 440,
+      "output_tokens": 95,
+      "ttft_s": 2.760908206884551,
+      "tpot_s": 0.6357304901282315,
+      "completed": true
+    },
+    "30000307": {
+      "arrival_s": 956.8268258088171,
+      "input_tokens": 1005,
+      "output_tokens": 415,
+      "ttft_s": 5.1352937652327455,
+      "tpot_s": 0.8176914508329476,
+      "completed": true
+    },
+    "30000404": {
+      "arrival_s": 1253.0379462581732,
+      "input_tokens": 1276,
+      "output_tokens": 50,
+      "ttft_s": 6.5025777927396575,
+      "tpot_s": 0.8940626735377881,
+      "completed": true
+    },
+    "30000393": {
+      "arrival_s": 1213.3824399305981,
+      "input_tokens": 397,
+      "output_tokens": 111,
+      "ttft_s": 2.4370240152006772,
+      "tpot_s": 0.820577918055057,
+      "completed": true
+    },
+    "30000399": {
+      "arrival_s": 1235.2037791957396,
+      "input_tokens": 438,
+      "output_tokens": 81,
+      "ttft_s": 2.619568726057423,
+      "tpot_s": 0.8658228393029959,
+      "completed": true
+    },
+    "30000331": {
+      "arrival_s": 1036.850527945984,
+      "input_tokens": 1037,
+      "output_tokens": 390,
+      "ttft_s": 5.445632895809695,
+      "tpot_s": 0.6835945299080736,
+      "completed": true
+    },
+    "30000418": {
+      "arrival_s": 1295.1588143331019,
+      "input_tokens": 91,
+      "output_tokens": 16,
+      "ttft_s": 1.9684534910736602,
+      "tpot_s": 0.808946832237613,
+      "completed": true
+    },
+    "30000323": {
+      "arrival_s": 1010.5884870275659,
+      "input_tokens": 1056,
+      "output_tokens": 429,
+      "ttft_s": 5.489917568398823,
+      "tpot_s": 0.7183790124431233,
+      "completed": true
+    },
+    "30000405": {
+      "arrival_s": 1257.0939799300809,
+      "input_tokens": 1271,
+      "output_tokens": 82,
+      "ttft_s": 6.063019559926943,
+      "tpot_s": 0.7600928380777616,
+      "completed": true
+    },
+    "30000311": {
+      "arrival_s": 968.6552268883835,
+      "input_tokens": 1009,
+      "output_tokens": 419,
+      "ttft_s": 5.318493590825824,
+      "tpot_s": 0.8542376959901231,
+      "completed": true
+    },
+    "30000335": {
+      "arrival_s": 1045.3882897982564,
+      "input_tokens": 1099,
+      "output_tokens": 401,
+      "ttft_s": 6.046788010392447,
+      "tpot_s": 0.7162872372695347,
+      "completed": true
+    },
+    "30000414": {
+      "arrival_s": 1282.4023768306238,
+      "input_tokens": 404,
+      "output_tokens": 78,
+      "ttft_s": 7.88701262974223,
+      "tpot_s": 0.633794060425204,
+      "completed": true
+    },
+    "30000340": {
+      "arrival_s": 1062.5942024333156,
+      "input_tokens": 1072,
+      "output_tokens": 415,
+      "ttft_s": 5.582240964663924,
+      "tpot_s": 0.6579003145215747,
+      "completed": true
+    },
+    "30000327": {
+      "arrival_s": 1024.845606967955,
+      "input_tokens": 1054,
+      "output_tokens": 408,
+      "ttft_s": 7.926859377838355,
+      "tpot_s": 0.7596387353339455,
+      "completed": true
+    },
+    "30000389": {
+      "arrival_s": 1204.6889683399274,
+      "input_tokens": 1364,
+      "output_tokens": 189,
+      "ttft_s": 8.586685134831214,
+      "tpot_s": 0.7624147125294448,
+      "completed": true
+    },
+    "30000424": {
+      "arrival_s": 1310.6946255601729,
+      "input_tokens": 385,
+      "output_tokens": 73,
+      "ttft_s": 3.613443433100656,
+      "tpot_s": 0.6074521936397699,
+      "completed": true
+    },
+    "30000337": {
+      "arrival_s": 1051.4512586862836,
+      "input_tokens": 1012,
+      "output_tokens": 454,
+      "ttft_s": 5.400809198957404,
+      "tpot_s": 0.6666754093227085,
+      "completed": true
+    },
+    "30000348": {
+      "arrival_s": 1085.430533228548,
+      "input_tokens": 987,
+      "output_tokens": 407,
+      "ttft_s": 5.461328035413089,
+      "tpot_s": 0.6611257827280592,
+      "completed": true
+    },
+    "30000408": {
+      "arrival_s": 1265.6883461742914,
+      "input_tokens": 399,
+      "output_tokens": 132,
+      "ttft_s": 3.4998305216308836,
+      "tpot_s": 0.7145738338323352,
+      "completed": true
+    },
+    "30000304": {
+      "arrival_s": 949.2024943290425,
+      "input_tokens": 1179,
+      "output_tokens": 511,
+      "ttft_s": 5.81128152382837,
+      "tpot_s": 0.8079758946395905,
+      "completed": true
+    },
+    "30000409": {
+      "arrival_s": 1266.6866715811616,
+      "input_tokens": 403,
+      "output_tokens": 107,
+      "ttft_s": 2.471362685284703,
+      "tpot_s": 0.9566192091851102,
+      "completed": true
+    },
+    "30000344": {
+      "arrival_s": 1073.4131059057856,
+      "input_tokens": 1115,
+      "output_tokens": 398,
+      "ttft_s": 5.749536308571805,
+      "tpot_s": 0.7363390859543203,
+      "completed": true
+    },
+    "30000350": {
+      "arrival_s": 1089.930710648443,
+      "input_tokens": 1146,
+      "output_tokens": 380,
+      "ttft_s": 6.0884500450647465,
+      "tpot_s": 0.727484339880968,
+      "completed": true
+    },
+    "30000428": {
+      "arrival_s": 1323.0857673055375,
+      "input_tokens": 402,
+      "output_tokens": 73,
+      "ttft_s": 2.874797120478661,
+      "tpot_s": 0.6631028908876652,
+      "completed": true
+    },
+    "30000425": {
+      "arrival_s": 1312.0983405235552,
+      "input_tokens": 390,
+      "output_tokens": 93,
+      "ttft_s": 2.8204529088970958,
+      "tpot_s": 0.6389693384508237,
+      "completed": true
+    },
+    "30000421": {
+      "arrival_s": 1301.0692431110479,
+      "input_tokens": 395,
+      "output_tokens": 87,
+      "ttft_s": 2.468967527819359,
+      "tpot_s": 0.8702187287844222,
+      "completed": true
+    },
+    "30000328": {
+      "arrival_s": 1029.0043485452495,
+      "input_tokens": 1074,
+      "output_tokens": 396,
+      "ttft_s": 5.458503411171705,
+      "tpot_s": 0.8720808984608861,
+      "completed": true
+    },
+    "30000336": {
+      "arrival_s": 1050.4433567867443,
+      "input_tokens": 1254,
+      "output_tokens": 419,
+      "ttft_s": 6.996507518737417,
+      "tpot_s": 0.7866662398977329,
+      "completed": true
+    },
+    "30000353": {
+      "arrival_s": 1102.4418847709003,
+      "input_tokens": 1073,
+      "output_tokens": 380,
+      "ttft_s": 5.881791643391125,
+      "tpot_s": 0.7358996774127644,
+      "completed": true
+    },
+    "30000339": {
+      "arrival_s": 1057.2509991134239,
+      "input_tokens": 1086,
+      "output_tokens": 383,
+      "ttft_s": 5.3736030731852225,
+      "tpot_s": 0.8556813548151807,
+      "completed": true
+    },
+    "30000429": {
+      "arrival_s": 1323.7658436101653,
+      "input_tokens": 435,
+      "output_tokens": 83,
+      "ttft_s": 2.700381382804153,
+      "tpot_s": 0.780995260398826,
+      "completed": true
+    },
+    "30000420": {
+      "arrival_s": 1300.4424491629304,
+      "input_tokens": 410,
+      "output_tokens": 123,
+      "ttft_s": 3.472880767102197,
+      "tpot_s": 0.7282429467287799,
+      "completed": true
+    },
+    "30000431": {
+      "arrival_s": 1330.9924808868082,
+      "input_tokens": 412,
+      "output_tokens": 95,
+      "ttft_s": 2.6503404205916468,
+      "tpot_s": 0.7269044062008266,
+      "completed": true
+    },
+    "30000343": {
+      "arrival_s": 1070.560391298353,
+      "input_tokens": 1250,
+      "output_tokens": 393,
+      "ttft_s": 6.005731106292842,
+      "tpot_s": 0.8554638968545462,
+      "completed": true
+    },
+    "30000430": {
+      "arrival_s": 1328.6967288019207,
+      "input_tokens": 388,
+      "output_tokens": 98,
+      "ttft_s": 2.4278438993480904,
+      "tpot_s": 0.8609097224888708,
+      "completed": true
+    },
+    "30000438": {
+      "arrival_s": 1351.749037747087,
+      "input_tokens": 408,
+      "output_tokens": 84,
+      "ttft_s": 2.635366122395453,
+      "tpot_s": 0.7501356454228715,
+      "completed": true
+    },
+    "30000434": {
+      "arrival_s": 1340.6061174504373,
+      "input_tokens": 709,
+      "output_tokens": 106,
+      "ttft_s": 3.9120175229854794,
+      "tpot_s": 0.7059215832536904,
+      "completed": true
+    },
+    "30000435": {
+      "arrival_s": 1341.718815175867,
+      "input_tokens": 399,
+      "output_tokens": 92,
+      "ttft_s": 3.0139959873486077,
+      "tpot_s": 0.8417785852660962,
+      "completed": true
+    },
+    "30000358": {
+      "arrival_s": 1118.3282667376052,
+      "input_tokens": 1020,
+      "output_tokens": 414,
+      "ttft_s": 5.347654817289822,
+      "tpot_s": 0.7434394132474016,
+      "completed": true
+    },
+    "30000446": {
+      "arrival_s": 1376.325649580639,
+      "input_tokens": 1029,
+      "output_tokens": 71,
+      "ttft_s": 5.523765827797206,
+      "tpot_s": 0.7281751255578586,
+      "completed": true
+    },
+    "30000309": {
+      "arrival_s": 962.3486476707559,
+      "input_tokens": 1117,
+      "output_tokens": 569,
+      "ttft_s": 5.440184036767619,
+      "tpot_s": 0.8367599126505594,
+      "completed": true
+    },
+    "30000371": {
+      "arrival_s": 1153.8633969800476,
+      "input_tokens": 1024,
+      "output_tokens": 410,
+      "ttft_s": 5.549679577925417,
+      "tpot_s": 0.6970803785591799,
+      "completed": true
+    },
+    "30000439": {
+      "arrival_s": 1351.9358574504063,
+      "input_tokens": 241,
+      "output_tokens": 110,
+      "ttft_s": 2.684086280229849,
+      "tpot_s": 0.8278609639376726,
+      "completed": true
+    },
+    "30000444": {
+      "arrival_s": 1373.4567903353475,
+      "input_tokens": 830,
+      "output_tokens": 87,
+      "ttft_s": 7.630183028801639,
+      "tpot_s": 0.7866009005088758,
+      "completed": true
+    },
+    "30000442": {
+      "arrival_s": 1360.0793996414218,
+      "input_tokens": 1478,
+      "output_tokens": 116,
+      "ttft_s": 7.002082477640215,
+      "tpot_s": 0.7677218153445032,
+      "completed": true
+    },
+    "30000441": {
+      "arrival_s": 1357.71014894816,
+      "input_tokens": 412,
+      "output_tokens": 110,
+      "ttft_s": 2.523193377447569,
+      "tpot_s": 0.8785615453949429,
+      "completed": true
+    },
+    "30000454": {
+      "arrival_s": 1398.4542052159234,
+      "input_tokens": 1741,
+      "output_tokens": 73,
+      "ttft_s": 8.018096131117318,
+      "tpot_s": 0.7059229701469102,
+      "completed": true
+    },
+    "30000374": {
+      "arrival_s": 1160.0196549834181,
+      "input_tokens": 956,
+      "output_tokens": 405,
+      "ttft_s": 5.193421219901666,
+      "tpot_s": 0.7246062548228209,
+      "completed": true
+    },
+    "30000423": {
+      "arrival_s": 1308.19900117742,
+      "input_tokens": 1316,
+      "output_tokens": 182,
+      "ttft_s": 6.6731726222101315,
+      "tpot_s": 0.7918167357494144,
+      "completed": true
+    },
+    "30000381": {
+      "arrival_s": 1179.4530228449348,
+      "input_tokens": 1132,
+      "output_tokens": 398,
+      "ttft_s": 5.91852919818507,
+      "tpot_s": 0.6930584967803947,
+      "completed": true
+    },
+    "30000452": {
+      "arrival_s": 1395.193507487956,
+      "input_tokens": 51,
+      "output_tokens": 93,
+      "ttft_s": 1.6105537620405812,
+      "tpot_s": 0.69565775265715,
+      "completed": true
+    },
+    "30000437": {
+      "arrival_s": 1346.0041165181196,
+      "input_tokens": 1353,
+      "output_tokens": 142,
+      "ttft_s": 6.859735489620334,
+      "tpot_s": 0.8022399948260567,
+      "completed": true
+    },
+    "30000412": {
+      "arrival_s": 1275.1676874559305,
+      "input_tokens": 203,
+      "output_tokens": 217,
+      "ttft_s": 2.3390177468318143,
+      "tpot_s": 0.8871345727009051,
+      "completed": true
+    },
+    "30000359": {
+      "arrival_s": 1121.9763340859838,
+      "input_tokens": 1070,
+      "output_tokens": 400,
+      "ttft_s": 5.448344215892121,
+      "tpot_s": 0.8593796799294953,
+      "completed": true
+    },
+    "30000453": {
+      "arrival_s": 1395.2434216351899,
+      "input_tokens": 403,
+      "output_tokens": 105,
+      "ttft_s": 2.5856513111023105,
+      "tpot_s": 0.7226126603027777,
+      "completed": true
+    },
+    "30000450": {
+      "arrival_s": 1391.6625351826428,
+      "input_tokens": 1409,
+      "output_tokens": 101,
+      "ttft_s": 6.516113605313421,
+      "tpot_s": 0.7804370197379898,
+      "completed": true
+    },
+    "30000368": {
+      "arrival_s": 1147.846141074753,
+      "input_tokens": 1162,
+      "output_tokens": 396,
+      "ttft_s": 5.656049389977397,
+      "tpot_s": 0.819852847816741,
+      "completed": true
+    },
+    "30000460": {
+      "arrival_s": 1419.3453715191863,
+      "input_tokens": 385,
+      "output_tokens": 91,
+      "ttft_s": 2.540609566427065,
+      "tpot_s": 0.6233261591887513,
+      "completed": true
+    },
+    "30000367": {
+      "arrival_s": 1142.8549462790331,
+      "input_tokens": 1076,
+      "output_tokens": 438,
+      "ttft_s": 5.351540971625127,
+      "tpot_s": 0.7723029511594828,
+      "completed": true
+    },
+    "30000361": {
+      "arrival_s": 1127.9667857383984,
+      "input_tokens": 1038,
+      "output_tokens": 479,
+      "ttft_s": 5.4106733625528705,
+      "tpot_s": 0.7393217009507199,
+      "completed": true
+    },
+    "30000365": {
+      "arrival_s": 1138.5810834457577,
+      "input_tokens": 1086,
+      "output_tokens": 403,
+      "ttft_s": 8.088667374297984,
+      "tpot_s": 0.8547558729583453,
+      "completed": true
+    },
+    "30000384": {
+      "arrival_s": 1190.5019064552973,
+      "input_tokens": 1087,
+      "output_tokens": 429,
+      "ttft_s": 5.966894007555311,
+      "tpot_s": 0.6936327354236004,
+      "completed": true
+    },
+    "30000457": {
+      "arrival_s": 1413.4128852020342,
+      "input_tokens": 404,
+      "output_tokens": 120,
+      "ttft_s": 2.5962298963056583,
+      "tpot_s": 0.7190373986884061,
+      "completed": true
+    },
+    "30000462": {
+      "arrival_s": 1424.809570815466,
+      "input_tokens": 394,
+      "output_tokens": 90,
+      "ttft_s": 2.4693303010471936,
+      "tpot_s": 0.8436396667911743,
+      "completed": true
+    },
+    "30000458": {
+      "arrival_s": 1413.925609441931,
+      "input_tokens": 200,
+      "output_tokens": 138,
+      "ttft_s": 2.7810912242016457,
+      "tpot_s": 0.6332330801579837,
+      "completed": true
+    },
+    "30000402": {
+      "arrival_s": 1245.923820908683,
+      "input_tokens": 1149,
+      "output_tokens": 385,
+      "ttft_s": 6.098125942707384,
+      "tpot_s": 0.6915853756840301,
+      "completed": true
+    },
+    "30000475": {
+      "arrival_s": 1466.4535455040807,
+      "input_tokens": 391,
+      "output_tokens": 83,
+      "ttft_s": 2.5439213833767553,
+      "tpot_s": 0.6294063331924002,
+      "completed": true
+    },
+    "30000392": {
+      "arrival_s": 1211.956193657075,
+      "input_tokens": 1058,
+      "output_tokens": 431,
+      "ttft_s": 5.514039601909417,
+      "tpot_s": 0.7116853249552928,
+      "completed": true
+    },
+    "30000396": {
+      "arrival_s": 1226.1724339594643,
+      "input_tokens": 1026,
+      "output_tokens": 414,
+      "ttft_s": 5.387131685210534,
+      "tpot_s": 0.7134275219882148,
+      "completed": true
+    },
+    "30000391": {
+      "arrival_s": 1209.5195905488608,
+      "input_tokens": 982,
+      "output_tokens": 412,
+      "ttft_s": 5.510421930953498,
+      "tpot_s": 0.7600475661532603,
+      "completed": true
+    },
+    "30000476": {
+      "arrival_s": 1467.7210144376725,
+      "input_tokens": 398,
+      "output_tokens": 111,
+      "ttft_s": 2.5897626784051226,
+      "tpot_s": 0.5245168024269065,
+      "completed": true
+    },
+    "30000478": {
+      "arrival_s": 1474.2678148670077,
+      "input_tokens": 408,
+      "output_tokens": 83,
+      "ttft_s": 2.6588590043920703,
+      "tpot_s": 0.6372325170763661,
+      "completed": true
+    },
+    "30000407": {
+      "arrival_s": 1262.991718347999,
+      "input_tokens": 1122,
+      "output_tokens": 394,
+      "ttft_s": 5.974205225717469,
+      "tpot_s": 0.6636463682773942,
+      "completed": true
+    },
+    "30000380": {
+      "arrival_s": 1178.8794432460688,
+      "input_tokens": 1106,
+      "output_tokens": 414,
+      "ttft_s": 5.424172491052332,
+      "tpot_s": 0.846862299076702,
+      "completed": true
+    },
+    "30000449": {
+      "arrival_s": 1388.8907715508417,
+      "input_tokens": 215,
+      "output_tokens": 217,
+      "ttft_s": 2.9963721032506783,
+      "tpot_s": 0.6746502931955021,
+      "completed": true
+    },
+    "30000382": {
+      "arrival_s": 1184.291646892419,
+      "input_tokens": 1034,
+      "output_tokens": 401,
+      "ttft_s": 5.318022873850623,
+      "tpot_s": 0.8727253842499902,
+      "completed": true
+    },
+    "30000469": {
+      "arrival_s": 1444.558275682891,
+      "input_tokens": 414,
+      "output_tokens": 142,
+      "ttft_s": 2.6066575419292803,
+      "tpot_s": 0.6852987566005063,
+      "completed": true
+    },
+    "30000481": {
+      "arrival_s": 1483.7609530984187,
+      "input_tokens": 389,
+      "output_tokens": 87,
+      "ttft_s": 2.5712133608474232,
+      "tpot_s": 0.6800924816434867,
+      "completed": true
+    },
+    "30000395": {
+      "arrival_s": 1219.6898824946852,
+      "input_tokens": 1057,
+      "output_tokens": 414,
+      "ttft_s": 5.9367723730058515,
+      "tpot_s": 0.7729350636755704,
+      "completed": true
+    },
+    "30000376": {
+      "arrival_s": 1165.033131817884,
+      "input_tokens": 1072,
+      "output_tokens": 446,
+      "ttft_s": 5.604530750050117,
+      "tpot_s": 0.8457511253699614,
+      "completed": true
+    },
+    "30000411": {
+      "arrival_s": 1269.4747864460694,
+      "input_tokens": 1058,
+      "output_tokens": 416,
+      "ttft_s": 5.694579112302563,
+      "tpot_s": 0.6648549724811872,
+      "completed": true
+    },
+    "30000480": {
+      "arrival_s": 1483.1297990579685,
+      "input_tokens": 383,
+      "output_tokens": 81,
+      "ttft_s": 2.377415250854483,
+      "tpot_s": 0.8974324040077988,
+      "completed": true
+    },
+    "30000356": {
+      "arrival_s": 1107.020716417302,
+      "input_tokens": 1133,
+      "output_tokens": 527,
+      "ttft_s": 5.547893600921498,
+      "tpot_s": 0.846292244564917,
+      "completed": true
+    },
+    "30000485": {
+      "arrival_s": 1499.4273041759302,
+      "input_tokens": 397,
+      "output_tokens": 80,
+      "ttft_s": 2.5988910512683105,
+      "tpot_s": 0.717360865499419,
+      "completed": true
+    },
+    "30000465": {
+      "arrival_s": 1432.6899185241123,
+      "input_tokens": 206,
+      "output_tokens": 217,
+      "ttft_s": 1.7173757258226487,
+      "tpot_s": 0.5975959689986494,
+      "completed": true
+    },
+    "30000466": {
+      "arrival_s": 1436.8441732456765,
+      "input_tokens": 130,
+      "output_tokens": 173,
+      "ttft_s": 4.375440483645889,
+      "tpot_s": 0.715414017772574,
+      "completed": true
+    },
+    "30000401": {
+      "arrival_s": 1244.6764232399878,
+      "input_tokens": 1118,
+      "output_tokens": 396,
+      "ttft_s": 5.514558430609668,
+      "tpot_s": 0.7960268185530551,
+      "completed": true
+    },
+    "30000403": {
+      "arrival_s": 1250.2611423771548,
+      "input_tokens": 1134,
+      "output_tokens": 399,
+      "ttft_s": 5.59857795127391,
+      "tpot_s": 0.784081122525643,
+      "completed": true
+    },
+    "30000473": {
+      "arrival_s": 1460.7168055695174,
+      "input_tokens": 212,
+      "output_tokens": 183,
+      "ttft_s": 1.7511536911915755,
+      "tpot_s": 0.5842598271523142,
+      "completed": true
+    },
+    "30000490": {
+      "arrival_s": 1514.607432673537,
+      "input_tokens": 390,
+      "output_tokens": 83,
+      "ttft_s": 3.025015924258696,
+      "tpot_s": 0.7009268594371788,
+      "completed": true
+    },
+    "30000415": {
+      "arrival_s": 1284.1429842980442,
+      "input_tokens": 1249,
+      "output_tokens": 445,
+      "ttft_s": 6.700565531290067,
+      "tpot_s": 0.6457112127699888,
+      "completed": true
+    },
+    "30000499": {
+      "arrival_s": 1545.173980589659,
+      "input_tokens": 686,
+      "output_tokens": 50,
+      "ttft_s": 3.9240242443729585,
+      "tpot_s": 0.6416476842863519,
+      "completed": true
+    },
+    "30000493": {
+      "arrival_s": 1523.1195706272306,
+      "input_tokens": 407,
+      "output_tokens": 88,
+      "ttft_s": 2.6412477333733477,
+      "tpot_s": 0.7089435964756078,
+      "completed": true
+    },
+    "30000416": {
+      "arrival_s": 1289.9222099649241,
+      "input_tokens": 1086,
+      "output_tokens": 399,
+      "ttft_s": 5.621912601631038,
+      "tpot_s": 0.7342941626875672,
+      "completed": true
+    },
+    "30000487": {
+      "arrival_s": 1505.9014208928452,
+      "input_tokens": 393,
+      "output_tokens": 123,
+      "ttft_s": 2.448281930763642,
+      "tpot_s": 0.6621632575102572,
+      "completed": true
+    },
+    "30000488": {
+      "arrival_s": 1507.352055615667,
+      "input_tokens": 398,
+      "output_tokens": 134,
+      "ttft_s": 2.599649748638285,
+      "tpot_s": 0.6206099469280476,
+      "completed": true
+    },
+    "30000417": {
+      "arrival_s": 1292.0263590105424,
+      "input_tokens": 1201,
+      "output_tokens": 375,
+      "ttft_s": 5.803344891008464,
+      "tpot_s": 0.8010573456943259,
+      "completed": true
+    },
+    "30000505": {
+      "arrival_s": 1565.4911623669816,
+      "input_tokens": 428,
+      "output_tokens": 66,
+      "ttft_s": 2.5750814452915165,
+      "tpot_s": 0.5848544363787054,
+      "completed": true
+    },
+    "30000410": {
+      "arrival_s": 1268.9498615523669,
+      "input_tokens": 1118,
+      "output_tokens": 414,
+      "ttft_s": 5.6304529019173515,
+      "tpot_s": 0.8034847404177053,
+      "completed": true
+    },
+    "30000443": {
+      "arrival_s": 1366.160755663001,
+      "input_tokens": 1104,
+      "output_tokens": 396,
+      "ttft_s": 5.724168229422048,
+      "tpot_s": 0.6082206776361982,
+      "completed": true
+    },
+    "30000413": {
+      "arrival_s": 1279.6628773284826,
+      "input_tokens": 989,
+      "output_tokens": 411,
+      "ttft_s": 5.562367120452336,
+      "tpot_s": 0.7993355004850544,
+      "completed": true
+    },
+    "30000459": {
+      "arrival_s": 1418.772861510551,
+      "input_tokens": 1312,
+      "output_tokens": 283,
+      "ttft_s": 6.566131670434515,
+      "tpot_s": 0.6757582716172998,
+      "completed": true
+    },
+    "30000419": {
+      "arrival_s": 1297.9589894464493,
+      "input_tokens": 1118,
+      "output_tokens": 507,
+      "ttft_s": 5.825310258761192,
+      "tpot_s": 0.6175445948896691,
+      "completed": true
+    },
+    "30000507": {
+      "arrival_s": 1571.8312102216123,
+      "input_tokens": 425,
+      "output_tokens": 83,
+      "ttft_s": 2.7103923452682466,
+      "tpot_s": 0.5674126865020886,
+      "completed": true
+    },
+    "30000503": {
+      "arrival_s": 1558.8705546554177,
+      "input_tokens": 434,
+      "output_tokens": 96,
+      "ttft_s": 2.649830049502043,
+      "tpot_s": 0.6302027258360675,
+      "completed": true
+    },
+    "30000504": {
+      "arrival_s": 1560.2957159456876,
+      "input_tokens": 416,
+      "output_tokens": 96,
+      "ttft_s": 2.666247727904647,
+      "tpot_s": 0.616065690818622,
+      "completed": true
+    },
+    "30000448": {
+      "arrival_s": 1384.82474730685,
+      "input_tokens": 1070,
+      "output_tokens": 397,
+      "ttft_s": 5.581238925342632,
+      "tpot_s": 0.5901405653827954,
+      "completed": true
+    },
+    "30000510": {
+      "arrival_s": 1580.928555643547,
+      "input_tokens": 433,
+      "output_tokens": 83,
+      "ttft_s": 2.7734908172383257,
+      "tpot_s": 0.5681655715813726,
+      "completed": true
+    },
+    "30000427": {
+      "arrival_s": 1320.6162689705905,
+      "input_tokens": 1186,
+      "output_tokens": 371,
+      "ttft_s": 5.889475725462717,
+      "tpot_s": 0.8211151611958546,
+      "completed": true
+    },
+    "30000426": {
+      "arrival_s": 1317.3093467393483,
+      "input_tokens": 1099,
+      "output_tokens": 394,
+      "ttft_s": 7.457232184734494,
+      "tpot_s": 0.7840720450732493,
+      "completed": true
+    },
+    "30000445": {
+      "arrival_s": 1374.8760451944559,
+      "input_tokens": 956,
+      "output_tokens": 415,
+      "ttft_s": 6.551695719433383,
+      "tpot_s": 0.6106563919881205,
+      "completed": true
+    },
+    "30000494": {
+      "arrival_s": 1527.1124945914328,
+      "input_tokens": 399,
+      "output_tokens": 150,
+      "ttft_s": 2.5738762915525513,
+      "tpot_s": 0.7077251267281545,
+      "completed": true
+    },
+    "30000502": {
+      "arrival_s": 1554.1155628929237,
+      "input_tokens": 22,
+      "output_tokens": 129,
+      "ttft_s": 0.9783713595022618,
+      "tpot_s": 0.6371163407270259,
+      "completed": true
+    },
+    "30000492": {
+      "arrival_s": 1520.6403107292792,
+      "input_tokens": 206,
+      "output_tokens": 183,
+      "ttft_s": 2.767589145034435,
+      "tpot_s": 0.6326013176896412,
+      "completed": true
+    },
+    "30000422": {
+      "arrival_s": 1307.2892919210196,
+      "input_tokens": 1038,
+      "output_tokens": 401,
+      "ttft_s": 5.543300904584612,
+      "tpot_s": 0.818209460327924,
+      "completed": true
+    },
+    "30000509": {
+      "arrival_s": 1576.883279796109,
+      "input_tokens": 395,
+      "output_tokens": 94,
+      "ttft_s": 2.590765850407024,
+      "tpot_s": 0.6614339970010894,
+      "completed": true
+    },
+    "30000432": {
+      "arrival_s": 1332.0267773695987,
+      "input_tokens": 933,
+      "output_tokens": 405,
+      "ttft_s": 4.818843766864802,
+      "tpot_s": 0.7682741411506283,
+      "completed": true
+    },
+    "30000433": {
+      "arrival_s": 1337.7109477136644,
+      "input_tokens": 1076,
+      "output_tokens": 387,
+      "ttft_s": 5.486460709671746,
+      "tpot_s": 0.7893050175798211,
+      "completed": true
+    },
+    "30000440": {
+      "arrival_s": 1355.6292035724364,
+      "input_tokens": 1156,
+      "output_tokens": 405,
+      "ttft_s": 5.929969825284161,
+      "tpot_s": 0.709339444021664,
+      "completed": true
+    },
+    "30000456": {
+      "arrival_s": 1409.8242407262508,
+      "input_tokens": 1132,
+      "output_tokens": 398,
+      "ttft_s": 6.004049789896726,
+      "tpot_s": 0.5938959992859306,
+      "completed": true
+    },
+    "30000506": {
+      "arrival_s": 1569.8983713228217,
+      "input_tokens": 181,
+      "output_tokens": 120,
+      "ttft_s": 3.806889077629876,
+      "tpot_s": 0.6650009167856641,
+      "completed": true
+    },
+    "30000511": {
+      "arrival_s": 1582.7077442239924,
+      "input_tokens": 420,
+      "output_tokens": 104,
+      "ttft_s": 2.685950389439313,
+      "tpot_s": 0.6767594898502881,
+      "completed": true
+    },
+    "30000520": {
+      "arrival_s": 1613.185237522099,
+      "input_tokens": 391,
+      "output_tokens": 71,
+      "ttft_s": 2.578695346674067,
+      "tpot_s": 0.6189136783806491,
+      "completed": true
+    },
+    "30000508": {
+      "arrival_s": 1573.0027931420407,
+      "input_tokens": 15,
+      "output_tokens": 134,
+      "ttft_s": 1.1259350164032185,
+      "tpot_s": 0.6895681727152114,
+      "completed": true
+    },
+    "30000518": {
+      "arrival_s": 1607.527950208131,
+      "input_tokens": 394,
+      "output_tokens": 84,
+      "ttft_s": 3.763087496739672,
+      "tpot_s": 0.6675243935429146,
+      "completed": true
+    },
+    "30000519": {
+      "arrival_s": 1609.4930345204698,
+      "input_tokens": 410,
+      "output_tokens": 81,
+      "ttft_s": 2.6258613921570486,
+      "tpot_s": 0.6934428005254943,
+      "completed": true
+    },
+    "30000497": {
+      "arrival_s": 1538.9799470577834,
+      "input_tokens": 1313,
+      "output_tokens": 203,
+      "ttft_s": 6.263271971601398,
+      "tpot_s": 0.6146750532646372,
+      "completed": true
+    },
+    "30000451": {
+      "arrival_s": 1392.5596684957989,
+      "input_tokens": 913,
+      "output_tokens": 394,
+      "ttft_s": 4.842475177448705,
+      "tpot_s": 0.6954540254086233,
+      "completed": true
+    },
+    "30000468": {
+      "arrival_s": 1439.6241068672898,
+      "input_tokens": 900,
+      "output_tokens": 396,
+      "ttft_s": 4.819971994964817,
+      "tpot_s": 0.5761385114134929,
+      "completed": true
+    },
+    "30000463": {
+      "arrival_s": 1427.5178177224907,
+      "input_tokens": 1027,
+      "output_tokens": 414,
+      "ttft_s": 5.3950879953958975,
+      "tpot_s": 0.5822077649786963,
+      "completed": true
+    },
+    "30000512": {
+      "arrival_s": 1587.1629923408866,
+      "input_tokens": 398,
+      "output_tokens": 154,
+      "ttft_s": 2.837907916136146,
+      "tpot_s": 0.5765555880341476,
+      "completed": true
+    },
+    "30000524": {
+      "arrival_s": 1625.2752535544732,
+      "input_tokens": 374,
+      "output_tokens": 86,
+      "ttft_s": 2.4535292421910526,
+      "tpot_s": 0.5998082137790174,
+      "completed": true
+    },
+    "30000447": {
+      "arrival_s": 1379.9266497214778,
+      "input_tokens": 1101,
+      "output_tokens": 426,
+      "ttft_s": 5.879983022677379,
+      "tpot_s": 0.7000250635879537,
+      "completed": true
+    },
+    "30000527": {
+      "arrival_s": 1629.6476787764186,
+      "input_tokens": 391,
+      "output_tokens": 88,
+      "ttft_s": 2.5656654752963277,
+      "tpot_s": 0.6598633440262478,
+      "completed": true
+    },
+    "30000521": {
+      "arrival_s": 1615.6514611021494,
+      "input_tokens": 412,
+      "output_tokens": 102,
+      "ttft_s": 2.506270958723462,
+      "tpot_s": 0.7192676746196416,
+      "completed": true
+    },
+    "30000495": {
+      "arrival_s": 1529.7208447585908,
+      "input_tokens": 1352,
+      "output_tokens": 230,
+      "ttft_s": 7.049922845152423,
+      "tpot_s": 0.6846043411330622,
+      "completed": true
+    },
+    "30000530": {
+      "arrival_s": 1643.819683059866,
+      "input_tokens": 379,
+      "output_tokens": 67,
+      "ttft_s": 2.4186327073603024,
+      "tpot_s": 0.7463638360613845,
+      "completed": true
+    },
+    "30000522": {
+      "arrival_s": 1618.224534003791,
+      "input_tokens": 687,
+      "output_tokens": 113,
+      "ttft_s": 3.520974876923219,
+      "tpot_s": 0.6680891382873873,
+      "completed": true
+    },
+    "30000537": {
+      "arrival_s": 1660.3556505207266,
+      "input_tokens": 385,
+      "output_tokens": 65,
+      "ttft_s": 2.6064240052887726,
+      "tpot_s": 0.599176528982337,
+      "completed": true
+    },
+    "30000547": {
+      "arrival_s": 1692.065855388322,
+      "input_tokens": 247,
+      "output_tokens": 14,
+      "ttft_s": 1.9661086173866806,
+      "tpot_s": 1.0769693569440664,
+      "completed": true
+    },
+    "30000529": {
+      "arrival_s": 1638.33315497659,
+      "input_tokens": 394,
+      "output_tokens": 104,
+      "ttft_s": 2.570692927563414,
+      "tpot_s": 0.6834545570245035,
+      "completed": true
+    },
+    "30000472": {
+      "arrival_s": 1452.529639132633,
+      "input_tokens": 1186,
+      "output_tokens": 371,
+      "ttft_s": 6.067555365945054,
+      "tpot_s": 0.6830811218771985,
+      "completed": true
+    },
+    "30000535": {
+      "arrival_s": 1653.9624093486439,
+      "input_tokens": 402,
+      "output_tokens": 88,
+      "ttft_s": 2.6039648744294936,
+      "tpot_s": 0.6474981514979636,
+      "completed": true
+    },
+    "30000526": {
+      "arrival_s": 1628.9784909448515,
+      "input_tokens": 227,
+      "output_tokens": 132,
+      "ttft_s": 1.7313138862541564,
+      "tpot_s": 0.6338026634716316,
+      "completed": true
+    },
+    "30000464": {
+      "arrival_s": 1428.3367294457573,
+      "input_tokens": 988,
+      "output_tokens": 398,
+      "ttft_s": 4.981346480140701,
+      "tpot_s": 0.7119554183526505,
+      "completed": true
+    },
+    "30000455": {
+      "arrival_s": 1405.5682912018608,
+      "input_tokens": 1066,
+      "output_tokens": 429,
+      "ttft_s": 5.549357612118911,
+      "tpot_s": 0.7148096165438508,
+      "completed": true
+    },
+    "30000470": {
+      "arrival_s": 1444.611292382538,
+      "input_tokens": 1135,
+      "output_tokens": 395,
+      "ttft_s": 7.351391763741731,
+      "tpot_s": 0.6837612016068694,
+      "completed": true
+    },
+    "30000516": {
+      "arrival_s": 1599.2048521113811,
+      "input_tokens": 209,
+      "output_tokens": 162,
+      "ttft_s": 2.3867334881749684,
+      "tpot_s": 0.7479942016766952,
+      "completed": true
+    },
+    "30000436": {
+      "arrival_s": 1344.6480676044287,
+      "input_tokens": 1298,
+      "output_tokens": 523,
+      "ttft_s": 6.230590553904904,
+      "tpot_s": 0.7115301199124741,
+      "completed": true
+    },
+    "30000536": {
+      "arrival_s": 1656.2422718646692,
+      "input_tokens": 406,
+      "output_tokens": 91,
+      "ttft_s": 2.470668319941069,
+      "tpot_s": 0.7779325143856568,
+      "completed": true
+    },
+    "30000545": {
+      "arrival_s": 1689.001470705825,
+      "input_tokens": 380,
+      "output_tokens": 50,
+      "ttft_s": 2.6678155685365255,
+      "tpot_s": 0.7578554786556262,
+      "completed": true
+    },
+    "30000461": {
+      "arrival_s": 1424.3679427752402,
+      "input_tokens": 1120,
+      "output_tokens": 423,
+      "ttft_s": 5.780182775524281,
+      "tpot_s": 0.7133559018670915,
+      "completed": true
+    },
+    "30000546": {
+      "arrival_s": 1689.5462155908253,
+      "input_tokens": 374,
+      "output_tokens": 54,
+      "ttft_s": 2.5617283577757917,
+      "tpot_s": 0.7713567390127202,
+      "completed": true
+    },
+    "30000528": {
+      "arrival_s": 1635.883473781947,
+      "input_tokens": 31,
+      "output_tokens": 138,
+      "ttft_s": 1.1727718011927664,
+      "tpot_s": 0.736661487782272,
+      "completed": true
+    },
+    "30000538": {
+      "arrival_s": 1666.6418767533626,
+      "input_tokens": 181,
+      "output_tokens": 94,
+      "ttft_s": 2.589033063312627,
+      "tpot_s": 0.7716244158542439,
+      "completed": true
+    },
+    "30000467": {
+      "arrival_s": 1437.372291190411,
+      "input_tokens": 1076,
+      "output_tokens": 434,
+      "ttft_s": 6.679206569377129,
+      "tpot_s": 0.7038874703723446,
+      "completed": true
+    },
+    "30000517": {
+      "arrival_s": 1603.5472132097038,
+      "input_tokens": 124,
+      "output_tokens": 198,
+      "ttft_s": 2.0587140722816457,
+      "tpot_s": 0.7274351692770284,
+      "completed": true
+    },
+    "30000540": {
+      "arrival_s": 1671.0268011951262,
+      "input_tokens": 398,
+      "output_tokens": 86,
+      "ttft_s": 5.092750609305995,
+      "tpot_s": 0.873864012874096,
+      "completed": true
+    },
+    "30000567": {
+      "arrival_s": 1748.2684386479768,
+      "input_tokens": 237,
+      "output_tokens": 14,
+      "ttft_s": 2.129554250753472,
+      "tpot_s": 0.6222088221400974,
+      "completed": true
+    },
+    "30000474": {
+      "arrival_s": 1461.0528231481705,
+      "input_tokens": 1123,
+      "output_tokens": 396,
+      "ttft_s": 5.486149326462282,
+      "tpot_s": 0.7599836388486795,
+      "completed": true
+    },
+    "30000471": {
+      "arrival_s": 1448.3089935018784,
+      "input_tokens": 1034,
+      "output_tokens": 415,
+      "ttft_s": 5.496236027576515,
+      "tpot_s": 0.7579749565284047,
+      "completed": true
+    },
+    "30000571": {
+      "arrival_s": 1757.8217001367298,
+      "input_tokens": 242,
+      "output_tokens": 14,
+      "ttft_s": 1.9950135752505957,
+      "tpot_s": 0.6132460370816506,
+      "completed": true
+    },
+    "30000486": {
+      "arrival_s": 1501.9314562026664,
+      "input_tokens": 1026,
+      "output_tokens": 379,
+      "ttft_s": 5.614452795856096,
+      "tpot_s": 0.6902730341798171,
+      "completed": true
+    },
+    "30000483": {
+      "arrival_s": 1493.144365284134,
+      "input_tokens": 1096,
+      "output_tokens": 396,
+      "ttft_s": 5.4931966914496115,
+      "tpot_s": 0.6871376518090729,
+      "completed": true
+    },
+    "30000482": {
+      "arrival_s": 1486.328148009917,
+      "input_tokens": 1121,
+      "output_tokens": 388,
+      "ttft_s": 5.456630322671117,
+      "tpot_s": 0.7484145800112438,
+      "completed": true
+    },
+    "30000479": {
+      "arrival_s": 1479.8192341982415,
+      "input_tokens": 1091,
+      "output_tokens": 399,
+      "ttft_s": 5.346745050506797,
+      "tpot_s": 0.773816555021381,
+      "completed": true
+    },
+    "30000562": {
+      "arrival_s": 1732.7203506660367,
+      "input_tokens": 2001,
+      "output_tokens": 74,
+      "ttft_s": 8.968425131135064,
+      "tpot_s": 0.7079874003716525,
+      "completed": true
+    },
+    "30000498": {
+      "arrival_s": 1542.8628610352819,
+      "input_tokens": 1097,
+      "output_tokens": 396,
+      "ttft_s": 5.858072693129316,
+      "tpot_s": 0.6248665407837064,
+      "completed": true
+    },
+    "30000566": {
+      "arrival_s": 1743.7633234827817,
+      "input_tokens": 396,
+      "output_tokens": 95,
+      "ttft_s": 2.5786900230357332,
+      "tpot_s": 0.5380584038496132,
+      "completed": true
+    },
+    "30000477": {
+      "arrival_s": 1470.5041697314496,
+      "input_tokens": 1025,
+      "output_tokens": 431,
+      "ttft_s": 5.08654599444526,
+      "tpot_s": 0.7830750379983032,
+      "completed": false
+    },
+    "30000484": {
+      "arrival_s": 1494.125770734911,
+      "input_tokens": 986,
+      "output_tokens": 460,
+      "ttft_s": 5.216049365698154,
+      "tpot_s": 0.686159746790128,
+      "completed": false
+    },
+    "30000489": {
+      "arrival_s": 1511.9599129611142,
+      "input_tokens": 1066,
+      "output_tokens": 414,
+      "ttft_s": 9.15987884783408,
+      "tpot_s": 0.7373159048950598,
+      "completed": false
+    },
+    "30000491": {
+      "arrival_s": 1516.60659281239,
+      "input_tokens": 1223,
+      "output_tokens": 395,
+      "ttft_s": 5.889482911203231,
+      "tpot_s": 0.7474062149153614,
+      "completed": false
+    },
+    "30000496": {
+      "arrival_s": 1531.4939864873493,
+      "input_tokens": 1092,
+      "output_tokens": 515,
+      "ttft_s": 5.670934445942294,
+      "tpot_s": 0.6144763292792693,
+      "completed": false
+    },
+    "30000500": {
+      "arrival_s": 1547.311274422699,
+      "input_tokens": 1182,
+      "output_tokens": 595,
+      "ttft_s": 5.823110446107876,
+      "tpot_s": 0.7273349886219009,
+      "completed": false
+    },
+    "30000501": {
+      "arrival_s": 1553.249588694218,
+      "input_tokens": 1090,
+      "output_tokens": 380,
+      "ttft_s": 5.869392671648484,
+      "tpot_s": 0.6616087191246977,
+      "completed": false
+    },
+    "30000513": {
+      "arrival_s": 1589.1106641662489,
+      "input_tokens": 985,
+      "output_tokens": 426,
+      "ttft_s": 5.17431003607112,
+      "tpot_s": 0.67853074254906,
+      "completed": false
+    },
+    "30000514": {
+      "arrival_s": 1591.084243790688,
+      "input_tokens": 1002,
+      "output_tokens": 388,
+      "ttft_s": 5.0671724221188015,
+      "tpot_s": 0.7518547867266425,
+      "completed": false
+    },
+    "30000515": {
+      "arrival_s": 1594.194860740115,
+      "input_tokens": 1087,
+      "output_tokens": 568,
+      "ttft_s": 5.640978597299636,
+      "tpot_s": 0.6623971849578493,
+      "completed": false
+    },
+    "30000523": {
+      "arrival_s": 1621.8379287524203,
+      "input_tokens": 1043,
+      "output_tokens": 642,
+      "ttft_s": 5.5622452270151825,
+      "tpot_s": 0.6790536032096441,
+      "completed": false
+    },
+    "30000525": {
+      "arrival_s": 1625.871365591997,
+      "input_tokens": 1205,
+      "output_tokens": 409,
+      "ttft_s": 5.733682061981426,
+      "tpot_s": 0.7571887313407789,
+      "completed": false
+    },
+    "30000531": {
+      "arrival_s": 1644.7886126672518,
+      "input_tokens": 1036,
+      "output_tokens": 545,
+      "ttft_s": 5.450262781682568,
+      "tpot_s": 0.6302555054484471,
+      "completed": false
+    },
+    "30000532": {
+      "arrival_s": 1648.6984727455433,
+      "input_tokens": 989,
+      "output_tokens": 426,
+      "ttft_s": 7.47364641788522,
+      "tpot_s": 0.8589870183973031,
+      "completed": false
+    },
+    "30000533": {
+      "arrival_s": 1650.251238191018,
+      "input_tokens": 1048,
+      "output_tokens": 405,
+      "ttft_s": 5.767756283829158,
+      "tpot_s": 0.6785886543388582,
+      "completed": false
+    },
+    "30000534": {
+      "arrival_s": 1652.4361827981577,
+      "input_tokens": 1059,
+      "output_tokens": 415,
+      "ttft_s": 5.490497985249249,
+      "tpot_s": 0.7922664034182854,
+      "completed": false
+    },
+    "30000539": {
+      "arrival_s": 1670.66262291554,
+      "input_tokens": 1055,
+      "output_tokens": 411,
+      "ttft_s": 5.150446488654097,
+      "tpot_s": 0.815051819785771,
+      "completed": false
+    },
+    "30000541": {
+      "arrival_s": 1674.8757427814505,
+      "input_tokens": 1264,
+      "output_tokens": 416,
+      "ttft_s": 6.428739623830779,
+      "tpot_s": 0.6854063976266118,
+      "completed": false
+    },
+    "30000542": {
+      "arrival_s": 1679.3343909303576,
+      "input_tokens": 970,
+      "output_tokens": 508,
+      "ttft_s": 5.457288186632013,
+      "tpot_s": 0.6545575663840308,
+      "completed": false
+    },
+    "30000543": {
+      "arrival_s": 1682.475182793987,
+      "input_tokens": 935,
+      "output_tokens": 428,
+      "ttft_s": 4.960204670230041,
+      "tpot_s": 0.6693119150623104,
+      "completed": false
+    },
+    "30000544": {
+      "arrival_s": 1683.805509536096,
+      "input_tokens": 1326,
+      "output_tokens": 413,
+      "ttft_s": 6.309659441458962,
+      "tpot_s": 0.8239532107825284,
+      "completed": false
+    },
+    "30000548": {
+      "arrival_s": 1696.7102005226277,
+      "input_tokens": 1315,
+      "output_tokens": 193,
+      "ttft_s": 8.126131870324116,
+      "tpot_s": 0.8195494053687518,
+      "completed": false
+    },
+    "30000549": {
+      "arrival_s": 1697.3542605551545,
+      "input_tokens": 181,
+      "output_tokens": 260,
+      "ttft_s": 1.591381752490861,
+      "tpot_s": 0.6650671501851185,
+      "completed": false
+    },
+    "30000550": {
+      "arrival_s": 1701.1467733406046,
+      "input_tokens": 1014,
+      "output_tokens": 391,
+      "ttft_s": 5.062900413822263,
+      "tpot_s": 0.9177993147534714,
+      "completed": false
+    },
+    "30000551": {
+      "arrival_s": 1701.7455952855596,
+      "input_tokens": 1072,
+      "output_tokens": 455,
+      "ttft_s": 5.58905249804593,
+      "tpot_s": 0.6320687354564575,
+      "completed": false
+    },
+    "30000552": {
+      "arrival_s": 1704.4150716947313,
+      "input_tokens": 1032,
+      "output_tokens": 399,
+      "ttft_s": 5.38969854043512,
+      "tpot_s": 0.6672223626631018,
+      "completed": false
+    },
+    "30000553": {
+      "arrival_s": 1709.89394433867,
+      "input_tokens": 1052,
+      "output_tokens": 414,
+      "ttft_s": 5.355701637422499,
+      "tpot_s": 0.9072398415019957,
+      "completed": false
+    },
+    "30000554": {
+      "arrival_s": 1711.0220586524251,
+      "input_tokens": 1159,
+      "output_tokens": 398,
+      "ttft_s": 5.94317227772558,
+      "tpot_s": 0.6378042943425726,
+      "completed": false
+    },
+    "30000555": {
+      "arrival_s": 1718.0679969310493,
+      "input_tokens": 1313,
+      "output_tokens": 232,
+      "ttft_s": 7.1280474396792215,
+      "tpot_s": 0.5892816708827379,
+      "completed": false
+    },
+    "30000556": {
+      "arrival_s": 1720.4370272913498,
+      "input_tokens": 1029,
+      "output_tokens": 411,
+      "ttft_s": 5.533402108904511,
+      "tpot_s": 0.5965655300564682,
+      "completed": false
+    },
+    "30000557": {
+      "arrival_s": 1722.71124893345,
+      "input_tokens": 1027,
+      "output_tokens": 420,
+      "ttft_s": 5.34404544847348,
+      "tpot_s": 0.8529244241631881,
+      "completed": false
+    },
+    "30000558": {
+      "arrival_s": 1723.280947889254,
+      "input_tokens": 169,
+      "output_tokens": 217,
+      "ttft_s": 2.414459429938006,
+      "tpot_s": 0.6567505362465116,
+      "completed": false
+    },
+    "30000559": {
+      "arrival_s": 1727.050126287515,
+      "input_tokens": 194,
+      "output_tokens": 112,
+      "ttft_s": 2.2300672961519012,
+      "tpot_s": 1.0489036838748926,
+      "completed": false
+    },
+    "30000560": {
+      "arrival_s": 1728.7947552844046,
+      "input_tokens": 1017,
+      "output_tokens": 534,
+      "ttft_s": 10.533302186033552,
+      "tpot_s": 0.7572000743161112,
+      "completed": false
+    },
+    "30000561": {
+      "arrival_s": 1731.9457036305414,
+      "input_tokens": 1419,
+      "output_tokens": 111,
+      "ttft_s": 8.209149398132013,
+      "tpot_s": 0.5422243351404675,
+      "completed": false
+    },
+    "30000563": {
+      "arrival_s": 1734.2819822170895,
+      "input_tokens": 401,
+      "output_tokens": 114,
+      "ttft_s": 4.202434157094785,
+      "tpot_s": 0.5798126297459621,
+      "completed": false
+    },
+    "30000564": {
+      "arrival_s": 1738.026753171236,
+      "input_tokens": 418,
+      "output_tokens": 140,
+      "ttft_s": 2.6754028504869893,
+      "tpot_s": 0.5449367741665386,
+      "completed": false
+    },
+    "30000565": {
+      "arrival_s": 1743.3083242513417,
+      "input_tokens": 215,
+      "output_tokens": 167,
+      "ttft_s": 2.364481669961606,
+      "tpot_s": 0.9193750302069467,
+      "completed": false
+    },
+    "30000568": {
+      "arrival_s": 1749.3551544540003,
+      "input_tokens": 1121,
+      "output_tokens": 388,
+      "ttft_s": 5.775941213453962,
+      "tpot_s": 0.5524530065090234,
+      "completed": false
+    },
+    "30000569": {
+      "arrival_s": 1753.3601637847507,
+      "input_tokens": 217,
+      "output_tokens": 138,
+      "ttft_s": 2.3536326422758975,
+      "tpot_s": 1.0045940062837841,
+      "completed": false
+    },
+    "30000570": {
+      "arrival_s": 1756.368980894501,
+      "input_tokens": 381,
+      "output_tokens": 67,
+      "ttft_s": 2.5210871106055492,
+      "tpot_s": 1.0183220807667908,
+      "completed": false
+    },
+    "30000572": {
+      "arrival_s": 1759.1955399330627,
+      "input_tokens": 410,
+      "output_tokens": 96,
+      "ttft_s": 2.5186025727180095,
+      "tpot_s": 1.0245623981080383,
+      "completed": false
+    },
+    "30000573": {
+      "arrival_s": 1762.5602777171462,
+      "input_tokens": 390,
+      "output_tokens": 89,
+      "ttft_s": 2.463176228432303,
+      "tpot_s": 1.0484696148545358,
+      "completed": false
+    },
+    "30000574": {
+      "arrival_s": 1764.3989380202825,
+      "input_tokens": 473,
+      "output_tokens": 110,
+      "ttft_s": 2.8766794349621705,
+      "tpot_s": 0.5140136338478943,
+      "completed": false
+    },
+    "30000575": {
+      "arrival_s": 1768.924235710928,
+      "input_tokens": 206,
+      "output_tokens": 183,
+      "ttft_s": 1.729321310965588,
+      "tpot_s": 1.215485284891135,
+      "completed": false
+    },
+    "30000576": {
+      "arrival_s": 1772.33394132638,
+      "input_tokens": 900,
+      "output_tokens": 420,
+      "ttft_s": 4.72366123270217,
+      "tpot_s": 1.3273734515703515,
+      "completed": false
+    },
+    "30000577": {
+      "arrival_s": 1774.738520162529,
+      "input_tokens": 175,
+      "output_tokens": 114,
+      "ttft_s": 2.9349562415029595,
+      "tpot_s": 0.6136589914906452,
+      "completed": false
+    },
+    "30000578": {
+      "arrival_s": 1776.6544462546956,
+      "input_tokens": 996,
+      "output_tokens": 451,
+      "ttft_s": 4.964980230568017,
+      "tpot_s": 1.2915371090262593,
+      "completed": false
+    },
+    "30000579": {
+      "arrival_s": 1781.3283998672796,
+      "input_tokens": 1139,
+      "output_tokens": 398,
+      "ttft_s": 5.4607077488817595,
+      "tpot_s": 1.0759865329558238,
+      "completed": false
+    },
+    "30000580": {
+      "arrival_s": 1786.912452166762,
+      "input_tokens": 1113,
+      "output_tokens": 417,
+      "ttft_s": 5.4741057359753995,
+      "tpot_s": 1.0508298703632266,
+      "completed": false
+    },
+    "30000581": {
+      "arrival_s": 1790.0470770418733,
+      "input_tokens": 209,
+      "output_tokens": 217,
+      "ttft_s": 1.7352895251722202,
+      "tpot_s": 0.5593213967997371,
+      "completed": false
+    },
+    "30000582": {
+      "arrival_s": 1790.0838617099996,
+      "input_tokens": 1072,
+      "output_tokens": 400,
+      "ttft_s": 5.572108927410682,
+      "tpot_s": 0.5279773196593567,
+      "completed": false
+    },
+    "30000583": {
+      "arrival_s": 1794.204562147403,
+      "input_tokens": 980,
+      "output_tokens": 398,
+      "ttft_s": 5.025705971103889,
+      "tpot_s": 0.5120988767730523,
+      "completed": false
+    },
+    "30000584": {
+      "arrival_s": 1796.9803388717405,
+      "input_tokens": 1169,
+      "output_tokens": 511,
+      "ttft_s": null,
+      "tpot_s": null,
+      "completed": false
+    },
+    "30000585": {
+      "arrival_s": 1797.5393557235352,
+      "input_tokens": 408,
+      "output_tokens": 112,
+      "ttft_s": null,
+      "tpot_s": null,
+      "completed": false
+    }
+  },
+  "gpu_busy_fraction": {
+    "Compute-10": 0.11800824517696223,
+    "Compute-11": 0.15508856430233076,
+    "Compute-12": 0.21420001656186644,
+    "Compute-13": 0.1450845039469107,
+    "Compute-14": 0.18972250706506327,
+    "Compute-15": 0.21366012767297693,
+    "Compute-16": 0.2436329688115333,
+    "Compute-17": 0.2525366129380842,
+    "Compute-18": 0.24412064416775878,
+    "Compute-19": 0.3334305675249346,
+    "Compute-2": 0.29850109742398023,
+    "Compute-20": 0.34483464300087296,
+    "Compute-21": 0.3397409555422335,
+    "Compute-22": 0.134262585404689,
+    "Compute-23": 0.22602887387041462,
+    "Compute-24": 0.2049608460659077,
+    "Compute-3": 0.31106133609450304,
+    "Compute-4": 0.2921874467911548,
+    "Compute-5": 0.3048640865703697,
+    "Compute-6": 0.28990241878442935,
+    "Compute-7": 0.16252442906329476,
+    "Compute-8": 0.21684434989520388,
+    "Compute-9": 0.214884172117422
+  },
+  "gpu_queue_request_s": {
+    "Compute-10": 315.80820491040345,
+    "Compute-11": 235.97254320060586,
+    "Compute-12": 785.7254360834298,
+    "Compute-13": 53.63426139348746,
+    "Compute-14": 154.87908007116937,
+    "Compute-15": 813.2669574900826,
+    "Compute-16": 392.66194847628606,
+    "Compute-17": 603.373427824486,
+    "Compute-18": 476.8468141181413,
+    "Compute-19": 609.1347121419533,
+    "Compute-2": 742.8064597417048,
+    "Compute-20": 1036.7804142709083,
+    "Compute-21": 727.7923737995528,
+    "Compute-22": 101.30359562470412,
+    "Compute-23": 304.96326097023007,
+    "Compute-24": 265.8131799141287,
+    "Compute-3": 399.37072691142066,
+    "Compute-4": 989.5456284251318,
+    "Compute-5": 464.1747063327617,
+    "Compute-6": 1029.896266034455,
+    "Compute-7": 311.6260149652186,
+    "Compute-8": 691.150244179403,
+    "Compute-9": 724.2756582049436
+  },
+  "gpu_queue_exits": {
+    "Compute-10": 132208,
+    "Compute-11": 136072,
+    "Compute-12": 247804,
+    "Compute-13": 78158,
+    "Compute-14": 123132,
+    "Compute-15": 247804,
+    "Compute-16": 146904,
+    "Compute-17": 220014,
+    "Compute-18": 202133,
+    "Compute-19": 295788,
+    "Compute-2": 1494873,
+    "Compute-20": 344841,
+    "Compute-21": 328488,
+    "Compute-22": 77410,
+    "Compute-23": 171644,
+    "Compute-24": 132392,
+    "Compute-3": 1494924,
+    "Compute-4": 1494840,
+    "Compute-5": 1494900,
+    "Compute-6": 371706,
+    "Compute-7": 233024,
+    "Compute-8": 247804,
+    "Compute-9": 247804
+  },
+  "gpu_queued_at_end": 0,
+  "outbound_wait_request_s": {
+    "Compute-10": 0.0,
+    "Compute-11": 14.66569631983674,
+    "Compute-12": 0.0028534033801577152,
+    "Compute-13": 0.006360069446373018,
+    "Compute-14": 1.9236640468989208e-05,
+    "Compute-15": 0.0034338788846639545,
+    "Compute-16": 2.3447015793313497,
+    "Compute-17": 0.22097545299052967,
+    "Compute-18": 0.6025726390258015,
+    "Compute-19": 0.003260992741559221,
+    "Compute-2": 1.4757349231039285,
+    "Compute-20": 0.0,
+    "Compute-21": 2.921985756643153e-05,
+    "Compute-22": 0.11580740566125769,
+    "Compute-23": 23.494831919490025,
+    "Compute-24": 0.00033531097790273634,
+    "Compute-3": 1.6629523443963379,
+    "Compute-4": 17299.132232470023,
+    "Compute-5": 1.5304429102395005,
+    "Compute-6": 0.0014807624949071396,
+    "Compute-7": 1.0962963017391303e-05,
+    "Compute-8": 0.0024997620442661628,
+    "Compute-9": 0.0027210109731186094,
+    "Source-0": 0.0002846844514579061
+  },
+  "outbound_wait_exits": {
+    "Compute-10": 33052,
+    "Compute-11": 34018,
+    "Compute-12": 61951,
+    "Compute-13": 31253,
+    "Compute-14": 30783,
+    "Compute-15": 61951,
+    "Compute-16": 48631,
+    "Compute-17": 44041,
+    "Compute-18": 54748,
+    "Compute-19": 46202,
+    "Compute-2": 124570,
+    "Compute-20": 57473,
+    "Compute-21": 54748,
+    "Compute-22": 33586,
+    "Compute-23": 42911,
+    "Compute-24": 33098,
+    "Compute-3": 124575,
+    "Compute-4": 124558,
+    "Compute-5": 124573,
+    "Compute-6": 61951,
+    "Compute-7": 38994,
+    "Compute-8": 61951,
+    "Compute-9": 61951,
+    "Source-0": 124578
+  },
+  "outbound_queued_at_end": 12,
+  "link_dispatch_wait_request_s": {
+    "Compute-10->Compute-22": 0.0,
+    "Compute-10->Compute-8": 0.0,
+    "Compute-11->Compute-22": 14.66569631983674,
+    "Compute-11->Compute-8": 0.0,
+    "Compute-12->Compute-15": 0.0028534033801577152,
+    "Compute-13->Compute-14": 0.006360069446373018,
+    "Compute-13->Compute-7": 0.0,
+    "Compute-14->Sink-1": 1.9236640468989208e-05,
+    "Compute-15->Compute-6": 0.0034338788846639545,
+    "Compute-16->Compute-18": 0.01680426778898436,
+    "Compute-16->Compute-23": 2.3278973115423653,
+    "Compute-17->Compute-16": 0.10786982885232987,
+    "Compute-17->Compute-19": 0.1131056241381998,
+    "Compute-18->Compute-21": 0.6025726390258015,
+    "Compute-19->Compute-16": 0.0031098536177864844,
+    "Compute-19->Compute-18": 0.00015113912377273664,
+    "Compute-2->Compute-4": 1.4757349231039285,
+    "Compute-20->Compute-17": 0.0,
+    "Compute-20->Compute-22": 0.0,
+    "Compute-21->Sink-1": 2.921985756643153e-05,
+    "Compute-22->Compute-17": 0.0,
+    "Compute-22->Compute-24": 0.11580740566125769,
+    "Compute-23->Compute-13": 23.49451980520422,
+    "Compute-23->Compute-18": 0.00031211428580490974,
+    "Compute-24->Compute-17": 0.00019907061505364254,
+    "Compute-24->Compute-19": 0.0001362403628490938,
+    "Compute-3->Compute-5": 1.6629523443963379,
+    "Compute-4->Compute-10": 3278.1309688300043,
+    "Compute-4->Compute-11": 2263.730504448573,
+    "Compute-4->Compute-20": 11727.814197944748,
+    "Compute-5->Compute-2": 1.5304429102395005,
+    "Compute-6->Compute-13": 0.0012908585214290724,
+    "Compute-6->Compute-7": 0.0001899039734780672,
+    "Compute-7->Sink-1": 1.0962963017391303e-05,
+    "Compute-8->Compute-9": 0.0024997620442661628,
+    "Compute-9->Compute-12": 0.0027210109731186094,
+    "Source-0->Compute-3": 0.0002846844514579061
+  },
+  "link_occupied_fraction": {
+    "Compute-10->Compute-22": 0.0013816510752533873,
+    "Compute-10->Compute-8": 0.0011086761066054073,
+    "Compute-11->Compute-22": 0.0124604330935033,
+    "Compute-11->Compute-8": 0.000809187442991062,
+    "Compute-12->Compute-15": 0.0017977845922444245,
+    "Compute-13->Compute-14": 0.0008322315099624768,
+    "Compute-13->Compute-7": 7.555625961464961e-06,
+    "Compute-14->Sink-1": 2.0098558206574544e-05,
+    "Compute-15->Compute-6": 0.0019496293465808832,
+    "Compute-16->Compute-18": 0.00026697771237513973,
+    "Compute-16->Compute-23": 0.001116675555424942,
+    "Compute-17->Compute-16": 0.0005621289785496429,
+    "Compute-17->Compute-19": 0.0009955279769685117,
+    "Compute-18->Compute-21": 0.0020095666047669366,
+    "Compute-19->Compute-16": 0.0009673008312604459,
+    "Compute-19->Compute-18": 0.0005417497924701031,
+    "Compute-2->Compute-4": 0.0039036703158381175,
+    "Compute-20->Compute-17": 0.001059687554442203,
+    "Compute-20->Compute-22": 0.0009231092560384606,
+    "Compute-21->Sink-1": 4.115807732860885e-05,
+    "Compute-22->Compute-17": 1.8122571185333274e-05,
+    "Compute-22->Compute-24": 0.0009017667530377496,
+    "Compute-23->Compute-13": 0.020917849886506034,
+    "Compute-23->Compute-18": 0.0011459875008164703,
+    "Compute-24->Compute-17": 0.0003495901189677871,
+    "Compute-24->Compute-19": 0.0005190000931725672,
+    "Compute-3->Compute-5": 0.004249519744560997,
+    "Compute-4->Compute-10": 0.20263986249335741,
+    "Compute-4->Compute-11": 0.17793810184763068,
+    "Compute-4->Compute-20": 0.3691043050506283,
+    "Compute-5->Compute-2": 0.003891511679723851,
+    "Compute-6->Compute-13": 0.000751288440523652,
+    "Compute-6->Compute-7": 0.0012518062996724627,
+    "Compute-7->Sink-1": 2.752049380608036e-05,
+    "Compute-8->Compute-9": 0.001785974328414406,
+    "Compute-9->Compute-12": 0.0017898938039783256,
+    "Source-0->Compute-3": 0.00010064958678245972
+  },
+  "link_service_request_s": {
+    "Compute-10->Compute-22": 2.486971935456097,
+    "Compute-10->Compute-8": 5.008689641764505,
+    "Compute-11->Compute-22": 31.020230503532133,
+    "Compute-11->Compute-8": 3.2797481209223065,
+    "Compute-12->Compute-15": 8.418659661129539,
+    "Compute-13->Compute-14": 2.760193884979387,
+    "Compute-13->Compute-7": 0.01360012673063693,
+    "Compute-14->Sink-1": 0.06706106948584534,
+    "Compute-15->Compute-6": 9.189334082881253,
+    "Compute-16->Compute-18": 0.5531748111507611,
+    "Compute-16->Compute-23": 4.56846138747634,
+    "Compute-17->Compute-16": 1.3928901272327252,
+    "Compute-17->Compute-19": 3.275335386092035,
+    "Compute-18->Compute-21": 7.749733075477948,
+    "Compute-19->Compute-16": 4.020064540133042,
+    "Compute-19->Compute-18": 1.6079439478010222,
+    "Compute-2->Compute-4": 18.702670118267385,
+    "Compute-20->Compute-17": 3.7273300556760773,
+    "Compute-20->Compute-22": 3.6873000874240844,
+    "Compute-21->Sink-1": 0.16545531934915658,
+    "Compute-22->Compute-17": 0.032620628133599894,
+    "Compute-22->Compute-24": 3.5129806270711654,
+    "Compute-23->Compute-13": 49.07551265283499,
+    "Compute-23->Compute-18": 4.725225855495047,
+    "Compute-24->Compute-17": 0.9906002642912597,
+    "Compute-24->Compute-19": 1.8310333195925281,
+    "Compute-3->Compute-5": 17.830396589306712,
+    "Compute-4->Compute-10": 916.2571689239212,
+    "Compute-4->Compute-11": 724.281101220844,
+    "Compute-4->Compute-20": 1815.4496290912944,
+    "Compute-5->Compute-2": 17.25415124114913,
+    "Compute-6->Compute-13": 2.566990717007613,
+    "Compute-6->Compute-7": 6.022275501684099,
+    "Compute-7->Sink-1": 0.13206725896441895,
+    "Compute-8->Compute-9": 8.0483367371232,
+    "Compute-9->Compute-12": 8.292718459221078,
+    "Source-0->Compute-3": 0.4113662801390561
+  },
+  "link_propagation_request_s": {
+    "Compute-10->Compute-22": 23.391999999968334,
+    "Compute-10->Compute-8": 32.50799999930189,
+    "Compute-11->Compute-22": 196.72499999977435,
+    "Compute-11->Compute-8": 29.442999999368823,
+    "Compute-12->Compute-15": 61.95099999867055,
+    "Compute-13->Compute-14": 30.782999999334606,
+    "Compute-13->Compute-7": 0.469999999988886,
+    "Compute-14->Sink-1": 1631.4547263236063,
+    "Compute-15->Compute-6": 61.95099999867055,
+    "Compute-16->Compute-18": 5.719999999879125,
+    "Compute-16->Compute-23": 42.91099999907297,
+    "Compute-17->Compute-16": 16.378999999652887,
+    "Compute-17->Compute-19": 27.66199999939519,
+    "Compute-18->Compute-21": 54.74799999883143,
+    "Compute-19->Compute-16": 32.252999999299185,
+    "Compute-19->Compute-18": 13.948999999702114,
+    "Compute-2->Compute-4": 124.56999999732447,
+    "Compute-20->Compute-17": 29.004150447099143,
+    "Compute-20->Compute-22": 28.466999999378245,
+    "Compute-21->Sink-1": 3065.8372550840104,
+    "Compute-22->Compute-17": 0.48799999998846033,
+    "Compute-22->Compute-24": 33.0979999992728,
+    "Compute-23->Compute-13": 328.69199999972255,
+    "Compute-23->Compute-18": 35.08499999925005,
+    "Compute-24->Compute-17": 14.551999999666748,
+    "Compute-24->Compute-19": 18.545999999606025,
+    "Compute-3->Compute-5": 124.57499999732435,
+    "Compute-4->Compute-10": 1586.4960000000601,
+    "Compute-4->Compute-11": 1360.7199999991224,
+    "Compute-4->Compute-20": 2356.5160000012575,
+    "Compute-5->Compute-2": 124.5729999973244,
+    "Compute-6->Compute-13": 23.426999999500595,
+    "Compute-6->Compute-7": 38.52399999916978,
+    "Compute-7->Sink-1": 1949.699999998709,
+    "Compute-8->Compute-9": 61.9509999986707,
+    "Compute-9->Compute-12": 61.9509999986707,
+    "Source-0->Compute-3": 5606.010000008063
+  },
+  "link_request_count": {
+    "Compute-10->Compute-22": 544,
+    "Compute-10->Compute-8": 32508,
+    "Compute-11->Compute-22": 4575,
+    "Compute-11->Compute-8": 29443,
+    "Compute-12->Compute-15": 61951,
+    "Compute-13->Compute-14": 30783,
+    "Compute-13->Compute-7": 470,
+    "Compute-14->Sink-1": 30783,
+    "Compute-15->Compute-6": 61951,
+    "Compute-16->Compute-18": 5720,
+    "Compute-16->Compute-23": 42911,
+    "Compute-17->Compute-16": 16379,
+    "Compute-17->Compute-19": 27662,
+    "Compute-18->Compute-21": 54748,
+    "Compute-19->Compute-16": 32253,
+    "Compute-19->Compute-18": 13949,
+    "Compute-2->Compute-4": 124570,
+    "Compute-20->Compute-17": 29006,
+    "Compute-20->Compute-22": 28467,
+    "Compute-21->Sink-1": 54748,
+    "Compute-22->Compute-17": 488,
+    "Compute-22->Compute-24": 33098,
+    "Compute-23->Compute-13": 7826,
+    "Compute-23->Compute-18": 35085,
+    "Compute-24->Compute-17": 14552,
+    "Compute-24->Compute-19": 18546,
+    "Compute-3->Compute-5": 124575,
+    "Compute-4->Compute-10": 33063,
+    "Compute-4->Compute-11": 34019,
+    "Compute-4->Compute-20": 57476,
+    "Compute-5->Compute-2": 124573,
+    "Compute-6->Compute-13": 23427,
+    "Compute-6->Compute-7": 38524,
+    "Compute-7->Sink-1": 38994,
+    "Compute-8->Compute-9": 61951,
+    "Compute-9->Compute-12": 61951,
+    "Source-0->Compute-3": 124578
+  },
+  "condition": "C1_multi_bw0.5",
+  "cell": "v3",
+  "pythonhashseed": "0",
+  "gated_scheduler_sha256": "3d12affc9e64fa4e4e38977665b93046967a511ce9368e074ee13e712f790b47",
+  "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+  "sim_cluster_sha256": "6c596d838ab4be1223cf0bce49170425cf0d66bf15be53aa663c7626e3cb773e",
+  "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+  "admitted_edges": 0,
+  "decode_batches": {
+    "executions": 2408515,
+    "mean_batch": 4.117814919151427,
+    "single_share": 0.3034143445234927
+  }
+}
