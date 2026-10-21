@@ -1,0 +1,169 @@
+name: RCAPS cluster42 resume (missing formal windows)
+
+on:
+  push:
+    branches: [claude/cluster42-resume-actions-20261021]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  simulate:
+    name: "${{ matrix.load }} / ${{ matrix.cell }} / seed${{ matrix.seed }}"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - {load: 1450, cell: helix, seed: 0}
+          - {load: 1450, cell: helix, seed: 1}
+          - {load: 1450, cell: v3, seed: 1}
+          - {load: 1450, cell: gated, seed: 1}
+          - {load: 1450, cell: helix, seed: 2}
+          - {load: 1450, cell: v3, seed: 2}
+          - {load: 1450, cell: gated, seed: 2}
+          - {load: 2150, cell: helix, seed: 0}
+          - {load: 2150, cell: helix, seed: 1}
+          - {load: 2150, cell: helix, seed: 2}
+          - {load: 2150, cell: v3, seed: 2}
+          - {load: 2150, cell: gated, seed: 2}
+          - {load: 2150, cell: v3_off, seed: 2}
+          - {load: 2150, cell: gated_off, seed: 2}
+    env:
+      PYTHONHASHSEED: "0"
+      MPLBACKEND: Agg
+      RCAPS_LOAD: "${{ matrix.load }}"
+      RCAPS_CELL: "${{ matrix.cell }}"
+      RCAPS_SEED: "${{ matrix.seed }}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Run only if neither result nor recorded failure exists
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from experiments.v3_cluster42.run import HERE, run_one
+
+          cell = os.environ["RCAPS_CELL"]
+          load = float(os.environ["RCAPS_LOAD"])
+          seed = int(os.environ["RCAPS_SEED"])
+          output = HERE / "runs/formal" / f"load{load:g}" / f"{cell}_seed{seed}.json"
+          if output.exists() or output.with_suffix(".failure.json").exists():
+              print("Preserving existing window or failure:", output)
+          else:
+              print("Starting missing formal window:", load, cell, seed, flush=True)
+              print(run_one(cell, load, seed, 1800, output), flush=True)
+          PY
+      - name: Preserve results, failures, and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cluster42-${{ matrix.load }}-${{ matrix.cell }}-s${{ matrix.seed }}
+          if-no-files-found: warn
+          retention-days: 90
+          path: |
+            experiments/v3_cluster42/runs/formal/load${{ matrix.load }}/${{ matrix.cell }}_seed${{ matrix.seed }}.json
+            experiments/v3_cluster42/runs/formal/load${{ matrix.load }}/${{ matrix.cell }}_seed${{ matrix.seed }}.failure.json
+            experiments/v3_cluster42/runs/formal/load${{ matrix.load }}/${{ matrix.cell }}_seed${{ matrix.seed }}.log
+
+  aggregate:
+    name: Collect results and report completeness
+    if: always()
+    needs: simulate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      PYTHONHASHSEED: "0"
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cluster42-*
+          path: downloaded
+        continue-on-error: true
+      - name: Restore artifacts and produce a transparent status report
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import shutil
+          from pathlib import Path
+
+          base = Path("experiments/v3_cluster42")
+          saved = Path("downloaded")
+          if saved.exists():
+              for item in saved.iterdir():
+                  match = re.fullmatch(r"cluster42-(\d+)-([a-z_]+)-s([0-2])", item.name)
+                  if not match or not item.is_dir():
+                      continue
+                  load, cell, seed = match.groups()
+                  out = base / "runs/formal" / f"load{load}"
+                  out.mkdir(parents=True, exist_ok=True)
+                  for source in item.iterdir():
+                      if not source.is_file() or not source.name.startswith(f"{cell}_seed{seed}."):
+                          continue
+                      target = out / source.name
+                      if target.exists():
+                          if target.read_bytes() != source.read_bytes():
+                              raise ValueError(f"Refusing to overwrite changed original: {target}")
+                      else:
+                          shutil.copy2(source, target)
+
+          protocol = json.loads((base / "protocol.json").read_text(encoding="utf-8"))
+          results = []
+          totals = {"passed": 0, "failed": 0, "missing": 0}
+          for load, names in protocol["formal"]["cells"].items():
+              for seed in protocol["formal"]["seeds"]:
+                  for cell in names:
+                      path = base / "runs/formal" / f"load{load}" / f"{cell}_seed{seed}.json"
+                      fail = path.with_suffix(".failure.json")
+                      state = "passed" if path.exists() else "failed" if fail.exists() else "missing"
+                      totals[state] += 1
+                      results.append(f"| {load} | {seed} | {cell} | {state} |")
+          contents = [
+              "# 42 节点正式窗口续跑状态", "",
+              "基于原 Claude 分支创建的独立续跑分支；正式协议未改动。",
+              "保留已有成功 JSON 和 KV-cache 失败记录；不存在的窗口才执行。",
+              "失败不折算为零，不重跑以追求成功。", "",
+              f"成功：{totals['passed']}；失败：{totals['failed']}；缺失：{totals['missing']}；计划：{sum(totals.values())}。", "",
+              "| 负载 | 种子 | 方法 | 状态 |",
+              "| ---: | ---: | --- | --- |", *results, "",
+          ]
+          (base / "STATUS_CN.md").write_text("\n".join(contents), encoding="utf-8")
+          PY
+      - name: Build paired report from available windows
+        run: python -m experiments.v3_cluster42.run --phase report
+      - name: Commit only collected simulation evidence on this isolated branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/v3_cluster42/runs/formal experiments/v3_cluster42/STATUS_CN.md experiments/v3_cluster42/analysis.json experiments/v3_cluster42/RESULTS_CN.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Record resumed 42-node windows and status"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+      - name: Keep independent downloadable copy even if push fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cluster42-aggregated-report
+          if-no-files-found: warn
+          retention-days: 90
+          path: |
+            experiments/v3_cluster42/runs/formal
+            experiments/v3_cluster42/STATUS_CN.md
+            experiments/v3_cluster42/analysis.json
+            experiments/v3_cluster42/RESULTS_CN.md
