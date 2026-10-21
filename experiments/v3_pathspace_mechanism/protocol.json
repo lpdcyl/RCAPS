@@ -1,0 +1,46 @@
+{
+  "task": "T2_step_A",
+  "plan_commit": "35e874f",
+  "scope": "diagnosis_only",
+  "cases": {
+    "C1_single": {"scenario": "single", "offered_tokens_per_s": 700},
+    "C1_multi": {"scenario": "multi", "offered_tokens_per_s": 320}
+  },
+  "variants": ["canonical", "full"],
+  "formal_seeds": [0, 1, 2],
+  "formal_duration_s": 1800,
+  "warmup_s": 0,
+  "drain_after_window": false,
+  "environment": {"PYTHONHASHSEED": "0", "MPLBACKEND": "Agg"},
+  "smoke": {"seed": 100, "duration_s": 60, "repeat_same_window": 2, "require_exact_parity": true},
+  "reproduction_check": {
+    "before_analysis": true,
+    "fields": ["output_throughput_tokens_per_s", "ttft_p95_s", "tpot_p95_s", "completion_fraction", "backlog_at_window_end", "route_counts"],
+    "canonical_reference": "experiments/v3_pathspace_ablation/runs/formal/<case>/seed<seed>.json",
+    "full_reference": "benchmarks/runs/<scenario>/seed<seed>/rcaps_v3.json",
+    "on_any_mismatch": "stop_without_analysis"
+  },
+  "measurements": {
+    "path_compute_nodes_and_links": "query route_counts weighted by request count",
+    "kv_sessions": "per GPU sampled every 10 seconds, temporal mean and maximum",
+    "decode_batch": "per GPU mean batch request count weighted by Decode token count; H2 averages GPUs with Decode tokens",
+    "link_busy_and_blocking": "per compute-to-compute link; H4 weights Decode same-link Prompt blocked fraction by Decode message count",
+    "gpu_busy": "per GPU busy fraction; H3 averages the top three",
+    "cross_replica_edge_use": "edges absent from canonical_edges, with endpoint GPU busy fractions"
+  },
+  "hypotheses": {
+    "H1": {"statistic": "mean_compute_links_per_query", "direction": "full_greater_than_canonical"},
+    "H2": {"statistic": "mean_gpu_token_weighted_decode_batch_size", "direction": "full_less_than_canonical"},
+    "H3": {"statistic": "mean_top3_gpu_busy_fraction", "direction": "full_greater_than_canonical"},
+    "H4": {"statistic": "message_weighted_decode_same_link_prompt_blocked_fraction", "direction": "full_greater_than_canonical"}
+  },
+  "single_cluster_confirmation": {
+    "all_three_seeds_same_direction": true,
+    "relative_difference_of_three_seed_means_at_least": 0.05
+  },
+  "multi_cluster_interpretation": {
+    "opposite_or_not_significant": "can_explain_topology_difference",
+    "same_direction": "cannot_explain_topology_difference"
+  },
+  "t12_switch_cost": "recommend only after H1 and topology-difference decision; do not implement in T2"
+}
