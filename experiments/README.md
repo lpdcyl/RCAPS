@@ -22,6 +22,7 @@
 | M2 目标与代理 | 权重/Pareto 审计、静态与在线排序反例、LP 替代未稳健获益 | [`v3_m2_linear_proxy/M2_OBJECTIVE_RESPONSE_CN.md`](v3_m2_linear_proxy/M2_OBJECTIVE_RESPONSE_CN.md)、[`v3_m2_linear_proxy/SELECTION_RESULTS_CN.md`](v3_m2_linear_proxy/SELECTION_RESULTS_CN.md) |
 | 联合容量与路由候选 | 独立正式种子上的 TPOT 全部高于 V3 | [`v3_joint_routing_candidate/capacity_joint/RESULTS_CN.md`](v3_joint_routing_candidate/capacity_joint/RESULTS_CN.md) |
 | 慢链路和动态瓶颈 | Prompt/Decode 传输干扰、带宽和 KV 反事实；逐消息流未上传 | [`v3_phase_link_diagnosis/formal_report.md`](v3_phase_link_diagnosis/formal_report.md)、[`v3_dynamic_bottleneck_counterfactuals/formal600_report.md`](v3_dynamic_bottleneck_counterfactuals/formal600_report.md) |
+| 路径空间痛点闭环 | 证伪"多跳"假设，确认 Decode 批碎片化；三个候选按预注册规则均未采纳，慢链路门控待决定 | [`V3_PAINPOINT_LOOP_CN.md`](V3_PAINPOINT_LOOP_CN.md) |
 | 边界与压力测试 | 未确认吞吐平台；冻结 V3 不具备逐层热点自适应 | [`v3_load_boundary/FINDINGS_CN.md`](v3_load_boundary/FINDINGS_CN.md)、[`v3_multistage_stress/FINDINGS_CN.md`](v3_multistage_stress/FINDINGS_CN.md) |
 
 ## 证据边界

@@ -123,7 +123,7 @@ def main() -> None:
             for field in ("ttft_s", "tpot_s"):
                 n, a, b = common_p95(v3, cand, field)
                 deltas[case][f"common/{field}"].append(b - a)
-                deltas[case]["common/n"].append(n)
+            deltas[case]["common/n"].append(n)
 
     lines += ["", "## 正式窗口（种子 0/1/2，1800 秒，零预热，不排空）", ""]
     if analysis["parity"]:
