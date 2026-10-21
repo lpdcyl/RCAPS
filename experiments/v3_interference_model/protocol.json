@@ -1,0 +1,36 @@
+{
+  "task": "T0.6",
+  "plan_commit": "5bb8fe439fa3f81a085da7dc6dedb7f3a212ac1f",
+  "decision_rules": [
+    {
+      "result": "A 合并 Spearman ≥ 0.6，且 k1、k3 各自 > 0；B 的四项干预方向全部正确；C（三集群 320）的 Spearman > 0 且不低于冻结静态目标",
+      "conclusion": "全部通过：干扰模型可以作为方法升级的核心，同时用于 M2 目标与 M3 代价，另开任务卡设计升级版本",
+      "thresholds": {
+        "a_combined_spearman_gte": 0.6,
+        "a_k1_spearman_gt": 0,
+        "a_k3_spearman_gt": 0,
+        "b_all_four_intervention_directions_correct": true,
+        "c_multi_320_spearman_gt": 0,
+        "c_multi_320_spearman_gte_frozen_static": true
+      }
+    },
+    {
+      "result": "A、B 通过，C 不通过",
+      "conclusion": "模型能解释机制，但不足以替代 M2 目标。只用于 M3 的外部代价（新 Prompt 对已有会话的阻塞）和论文的机制解释",
+      "thresholds": {
+        "a_combined_spearman_gte": 0.6,
+        "a_k1_spearman_gt": 0,
+        "a_k3_spearman_gt": 0,
+        "b_all_four_intervention_directions_correct": true,
+        "c_multi_320_condition": false
+      }
+    },
+    {
+      "result": "A 或 B 不通过",
+      "conclusion": "单队列模型不能刻画该干扰（可能是 NIC 共享或多跳耦合的影响更大）。放弃模型驱动的升级，退回 T2 中的针对性修改",
+      "thresholds": {
+        "a_or_b_condition": false
+      }
+    }
+  ]
+}
