@@ -16,6 +16,7 @@ physical GPU deployment.
 | Frozen V3 identity and V3–Helix evidence | [`experiments/v3_release/README_CN.md`](experiments/v3_release/README_CN.md) |
 | V3 experiment index | [`experiments/README.md`](experiments/README.md) |
 | Paper evidence and claim boundaries | [`paper/V3_EVIDENCE_CN.md`](paper/V3_EVIDENCE_CN.md) |
+| Independent code and experiment review | [`REVIEW_GUIDE_CN.md`](REVIEW_GUIDE_CN.md) |
 
 The adopted V3 rule is `multi_any`: M2 searches at most two branch boundaries
 and permits any GPU type in the initial shared segment. A selected layout may
@@ -29,7 +30,7 @@ root. Layout regeneration needs a working Gurobi license; the adopted layouts
 are included.
 
 ```powershell
-python -m experiments.v3_release.verify
+python -m experiments.v3_release.verify --allow-diagnostic-probe
 python -m benchmarks.run --dry-run
 python -m benchmarks.run --methods rcaps_v3 helix --seeds 0 1 2
 python -m benchmarks.compare --baselines helix --seeds 0 1 2
@@ -42,6 +43,11 @@ Pipelines are separate external comparisons at a common lower load; see the
 [four-method report](experiments/v3_four_method_comparison/RESULTS_CN.md).
 The runner checks layout identity before reusing a result, and comparison
 checks the paired request traces.
+
+On this research branch, `fixed_window.py` also has an opt-in diagnostic
+probe. The pinned `--allow-diagnostic-probe` check verifies the unchanged V3
+method, layouts, and evidence while explicitly accepting that one runner
+variant. The strict verifier still detects the runner's changed file hash.
 
 ## Repository scope
 
