@@ -1,0 +1,27 @@
+{
+  "experiment": "v3_gated_pathspace",
+  "version": 2,
+  "supersedes": "protocol_dev.json go rule (C1_multi P95 TPOT <= 0), which the seed-100 development window missed at +1.08%. That stop decision stays recorded in RESULTS_CN.md; this file re-registers a non-inferiority test at the researcher's request before any formal window of this candidate exists.",
+  "candidate": "SlowLinkGatedScheduler (scheduler.py, unchanged since the development windows); admitted edges in audit.json",
+  "free_parameters": 0,
+  "formal": {
+    "seeds": [0, 1, 2], "duration_s": 1800, "warmup_s": 0, "tail_drain": false,
+    "loads": {"C1_single": 700.0, "C1_multi": 320.0},
+    "layouts": "frozen rcaps/v3_layouts/{single,multi}",
+    "pythonhashseed": "0",
+    "controls": {
+      "v3": "released benchmarks/runs/{single,multi}/seed*/rcaps_v3.json",
+      "canonical": "experiments/v3_pathspace_ablation/runs/formal/*/seed*.json"
+    },
+    "single_note": "C1_single admits no detour, so the candidate's admitted edge set equals the canonical set; its formal windows are still run, not reused."
+  },
+  "decision": {
+    "NI1_multi_non_inferior": "C1_multi: mean over seeds of the relative P95 TPOT change vs frozen V3 <= +2%, and mean relative throughput change >= -0.5%.",
+    "NI2_single_improves": "C1_single: P95 TPOT below frozen V3 on all three seeds, and mean relative throughput change >= -0.5%.",
+    "adopt_if": "NI1 and NI2",
+    "relative_change": "per seed (candidate - v3) / v3, then averaged over the three seeds",
+    "reported_not_decisive": "P95 TTFT, completion fraction, end backlog, common-completed P95 TTFT/TPOT, decode batch statistics, paths used",
+    "failures": "Any failed window is kept as .failure.json and counts as not passing; it is not rerun to fill the table.",
+    "no_tuning": "scheduler.py, the slow-link threshold and these margins are fixed before the formal windows and are not changed afterwards."
+  }
+}
