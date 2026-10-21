@@ -9,17 +9,17 @@
 | 挑战一：放置目标错位 | 泛化到更多资源池与模型 | T5、T6、T7、T9 |
 | 挑战二：慢链路阶段间干扰 | 单集群是否存在同类干扰 | T1 |
 | 挑战三：路径锁定 | 单集群完整 DAG 退化的原因与对策；M3 状态消融补齐 | T2、T3 |
-| 全部 | 统计严谨性、敏感性、开销 | T4、T8、T10 |
+| 全部 | 敏感性、开销 | T8、T10 |
 
 ## 全局规则（所有任务必须遵守）
 
 1. **冻结内容不可改**：`rcaps/v3/`、`rcaps/v3_layouts/`、`rcaps/v3_method.py` 以及所有已发布实验的 `runs/` 原始结果，逐字节保持不变。新方法候选一律放在 `experiments/<新目录>/`，通过子类或适配器实现。T0.4 是唯一例外，且必须证明行为逐字节等价。
 2. **目录规范**：每个新实验目录包含 `README.md`（协议与复现命令）、`run.py`（`--phase smoke|formal|report`）、`index.json`（逐窗口路径、SHA256、状态）、`RESULTS_CN.md`（结果表与判定）。
 3. **窗口协议**：除非卡片另有说明，正式窗口为 1800 秒、零预热、窗口末不排空，通过 `benchmarks.fixed_window.run` 运行。环境变量 `PYTHONHASHSEED=0`、`MPLBACKEND=Agg`。
-4. **种子分离**：凡涉及选择（规则阈值、布局、参数），只用开发种子 100 做选择，选择结果写入 `*_protocol.json` 并提交，之后才运行正式种子。正式种子不得参与调参。
+4. **种子**：正式种子固定为 0、1、2，所有任务一律只跑这三个，不增加种子。凡涉及选择（规则阈值、布局、参数），只用开发种子 100 的短窗口做选择，选择结果写入 `*_protocol.json` 并提交，之后才运行正式种子。开发种子不计入正式结果，正式种子不得参与调参。
 5. **失败保留**：KV 断言、调度器断言、模拟器 `SystemError` 等失败写成 `.failure.json`，保留异常与日志，不折算为零吞吐，也不删除。
 6. **复用规则**：只有方法、协议、布局哈希、物理配置哈希和请求轨迹哈希全部一致时，才复用已有窗口；`index.json` 中标记 `reused` 并记录来源路径。
-7. **报告口径**：报告吞吐、P95 TTFT、P95 TPOT、完成率、末端积压，以及两方都完成的共同请求上的 P95。种子数不少于 5 时，另报 95% bootstrap 置信区间（按种子配对重采样 10000 次）和 Wilcoxon 符号秩检验 p 值。
+7. **报告口径**：报告吞吐、P95 TTFT、P95 TPOT、完成率、末端积压，以及两方都完成的共同请求上的 P95。给出逐种子数值、三种子均值 ± 样本标准差和逐种子配对差值，不做显著性检验。
 8. **提交粒度**：每张任务卡单独提交，提交信息写明任务编号。
 
 ---
@@ -29,31 +29,12 @@
 ### T0.1 合并诊断分支
 
 - 把 `origin/codex/v3-phase-link-mechanism` 合并进 `main`，用 merge commit，不要 rebase。
-- 合并后运行 `python -m experiments.v3_release.verify`；如因 T0.2 的换行问题失败，先完成 T0.2 再验收。
-- `benchmarks/fixed_window.py` 在该分支有改动且 git 显示为二进制差异（换行符变化）。合并时逐行核对改动内容，并在提交说明中列出具体改了什么。
+- `benchmarks/fixed_window.py` 在该分支有改动。合并时逐行核对改动内容，并在提交说明中列出具体改了什么。
 
-**验收**：`main` 包含六个诊断实验目录；`git diff` 中没有意外的整文件换行变化。
+**验收**：`main` 包含六个诊断实验目录，合并前后已有实验的结果文件没有变化。
 
-### T0.2 修复 Linux 上的复现哈希
+### T0.3 修复命令行入口
 
-问题：`rcaps/v3/planning_inputs.json` 记录的 SHA256 是在 Windows CRLF 换行下算的，但以下文件在 git 中以 LF 存储，也没有列入 `.gitattributes`，所以在 Linux 上 `verify` 报 `Resource inputs changed for C1_single`：
-
-- `examples/simulation/layouts/ilp/simulator_cluster.ini`
-- `rcaps/v3/pools/C2/physical.ini`、`rcaps/v3/pools/C2/template.ini`
-- C3、C4、C5 下的同名两个文件
-
-已核实：把这些文件转成 CRLF 后，哈希与记录全部吻合。
-
-做法：
-1. 在 `.gitattributes` 中为上述文件加 `-text -diff`。
-2. 把这些文件转为 CRLF 后提交，恢复与记录哈希一致的原始字节。
-3. 新建 `experiments/v3_release/hash_audit.py`：遍历所有 `*_index.json`、`manifest.json`、`planning_inputs.json` 中带 `sha256` 的文件引用，逐个重算，列出不一致项。
-
-**验收**：Linux 上 `python -m experiments.v3_release.verify` 与 `python -m experiments.v3_release.replay_audit` 均通过；`hash_audit.py` 报告零不一致，或剩余项逐一写明原因。
-
-### T0.3 清理路径与入口
-
-- `rcaps/v3_layouts/*/placement.json` 中的 `solution`、`simulator_cluster` 字段是 Windows 绝对路径（`D:/PythonProject/Helix-GREEN/...`）。**不要改这些冻结文件**；在 `experiments/v3_release/README_CN.md` 中补一句说明它们只是来源记录。
 - 修复 `benchmarks/fixed_window.py` 的命令行入口：`--method graph` 目前不传 `scheduler_factory`，会直接报错。把 `graph` 改为 `rcaps_v3`，并传入 `GraphModeledQueueAwareDagScheduler`。只改 `main()`，不改 `run()`。
 
 **验收**：`python -m benchmarks.fixed_window --scenario single --method rcaps_v3 --offered 350 --duration 60 --seed 100 --compact --solution rcaps/v3_layouts/single/solution.ini --sim-cluster rcaps/v3_layouts/single/simulator_cluster.ini` 可以跑完。
@@ -79,7 +60,7 @@ LLaMA-70B 被写死在以下位置：
 `rcaps/v3/online_scheduler.py:68-69` 的 `QueueAwareDagScheduler._decode_token_service` 把单 token Decode 服务时间乘以 2，注释写的是"与模拟器执行画像对齐"。论文需要说清这个系数从哪里来。
 
 做法：新建 `experiments/v3_m3_calibration/`：
-1. 在 C1 单集群冻结布局上，对每个 GPU 类型（A100/L4/T4），用模拟器实际执行一次 batch=1 的 Decode，记录 `FinishExecution` 的实际时长。
+1. 在 C1 单集群冻结布局上，对每个 GPU 类型（A100/L4/T4），用模拟器实际执行 batch=1 的 Decode（开发种子 100 的短窗口即可，这一步不是正式窗口），记录 `FinishExecution` 的实际时长。
 2. 与 `_layer_service(node, layer, Increment, 1)` 的逐层之和对比，报告实际时长与画像之和的比值。
 3. 同时记录 `decode_typical_tokens` 和 `decode_max_tokens` 的取值。
 
@@ -99,7 +80,7 @@ LLaMA-70B 被写死在以下位置：
 1. 布局：`experiments/v3_m2_branch_parallelism/layouts/C1_single/` 下的 k1、k3，加上冻结 V3 单集群布局 `rcaps/v3_layouts/single/`。
 2. 指标改为**对全部计算节点间链路**统计：Decode 等待中与同链路 Prompt 传输重叠的比例、尾部 5% TPOT 查询与全体的阻挡率之差。不使用 50 MB/s 阈值。
 3. 干预：Prompt 激活字节置零、Decode 字节置零、理想带宽（链路与 NIC 带宽 ×10⁶，传播延迟不变），与三集群实验相同。
-4. 负载：350、600、700 offered token/s；先跑 600 秒窗口、种子 1–3；若 Prompt 置零使 k1 的 P95 TPOT 下降至少 10%，再按原实验的 `confirm` 规则跑 1800 秒复核。
+4. 负载：350、600、700 offered token/s；正式窗口 1800 秒、种子 0、1、2。原三集群诊断用的是 600 秒窗口、种子 1–3，本任务不沿用。若 1800 秒窗口触发模拟器内部 `SystemError`，保留失败记录，并对该负载点改用 600 秒窗口、种子 0、1、2 重跑，报告中注明。
 
 **判定规则（写进 README，运行前固定）**：
 - 若单集群 Prompt 置零对 TPOT 的改善 < 10%：结论为"阶段间干扰主要出现在跨集群带宽受限场景"，论文科学问题加上该限定。
@@ -132,7 +113,7 @@ LLaMA-70B 被写死在以下位置：
 
 其中预计 Decode 步数不使用真实输出长度，只用一个固定常数 `D_ref`（例如训练轨迹的输出长度中位数，从开发种子 100 的轨迹算出后写入协议文件）。λ 取 {0, 0.5, 1, 2}。
 
-选择：只用开发种子 100、300 秒窗口，在单集群和三集群**两种拓扑**上各跑 4 个 λ，选两种拓扑上最差情况最好的 λ，写入 `pathspace_protocol.json`。然后用正式种子 0–2、1800 秒在两种拓扑上比较：冻结 V3、规范路径、选定 λ 的新规则。
+选择：只用开发种子 100、300 秒窗口，在单集群和三集群**两种拓扑**上各跑 4 个 λ，选两种拓扑上最差情况最好的 λ，写入 `pathspace_protocol.json`。然后用正式种子 0、1、2，1800 秒，在两种拓扑上比较：冻结 V3、规范路径、选定 λ 的新规则。
 
 **判定**：只有新规则在两种拓扑上都不差于冻结 V3（吞吐差 ≥ −0.5%，P95 TPOT 不升），且在单集群上缩小与规范路径的差距，才可写成方法改进；否则作为负结果报告。
 
@@ -148,16 +129,6 @@ LLaMA-70B 被写死在以下位置：
 
 ## 阶段 2：泛化与统计严谨性
 
-### T4 主对照扩展到 10 个种子
-
-做法：新建 `experiments/v3_multiseed/`。
-- 方法：冻结 V3 与 Helix ILP（`benchmarks.run` 已注册的 `rcaps_v3` 和 `helix`）。
-- 拓扑与负载：单集群 700、三集群 320 offered token/s。另加四方法共同负载点（单集群 350、三集群 160），四个方法全跑。
-- 种子：0–9。种子 0–2 的已有窗口按全局规则 6 复用。
-- 报告：均值 ± 标准差、95% bootstrap 置信区间、Wilcoxon 符号秩检验 p 值（双侧），每个指标单独报告。
-
-**窗口数**：新跑约 2 方法 × 2 拓扑 × 7 种子 + 4 方法 × 2 拓扑 × 7 种子 = 84 个。
-
 ### T5 42 节点高异构集群
 
 背景：`artifact_evaluation/high_heterogeneity/` 是 Helix 原文的 42 节点集群（含 A100、V100、L4、L4x2、T4、T4x2、T4x4），链路全部 1000 Mbps、1 ms；现成的 Helix ILP、Swarm、Petals、SP 布局都在 `layout_llama70b/` 下。Helix artifact 的在线负载：MaxFlow 2150、Swarm 1450 offered token/s（见 `step3_simulation.py`）。
@@ -166,7 +137,7 @@ LLaMA-70B 被写死在以下位置：
 1. **V3 规划**：参照 `rcaps/v3/planning_inputs.json` 的结构，为 42 节点新增一个规划用例：物理文件为 `config/cluster42.ini`，模板为 Helix ILP 的 `simulator_cluster.ini`。`seed_state` 用 `search.initial_states` 产生的最优单边界候选；`reference_state` 用 Helix ILP 布局转换成的分段表示（若 Helix 布局不能表示成"共享前段 + 整链副本"的形式，则改用 `seed_state` 作参考，并在 README 写明）。在实验目录内写 `planning_inputs.json`，不修改冻结的那份。
 2. 搜索参数与冻结 V3 相同（Beam 64、每阶段 500 次）。记录规划耗时和评分次数。若单次搜索超过 30 分钟，先报告耗时，暂停后续步骤。
 3. **适配器**：`benchmarks/layout.py` 的 `MACHINES` 写死了 4 A100、8 L4、12 T4。给 `fixed_window.run` 传入 `machine_counts`（该参数已存在），从 `cluster42.ini` 统计。
-4. **对照**：V3、Helix ILP、Swarm、SP。负载点 1450（共同负载）和 2150（Helix 原负载），种子 0–2 起步，T4 完成后扩展到 0–9。
+4. **对照**：V3、Helix ILP、Swarm、SP。负载点 1450（共同负载）和 2150（Helix 原负载），种子 0、1、2。
 
 **风险**：多卡节点（T4x2、T4x4、L4x2）在 V3 的 `TopologyModel` 中是否有画像需要先确认；`simulator/model_manager/llama2_70b/` 下有对应目录。
 
@@ -178,7 +149,7 @@ LLaMA-70B 被写死在以下位置：
 1. 用 `model_name=ModelName.LLaMa30B` 在 C1 单集群和三集群上重新规划 V3 布局，规划输入结构同 T5 第 1 步。
 2. Helix 的 30B 布局在 `artifact_evaluation/single_cluster/layout_llama30b/` 和 `artifact_evaluation/distributed_clusters/layout_llama30b/` 下。
 3. 负载点取 Helix artifact 对 30B 的在线负载（从两个目录的 `step3_simulation.py` 中读出，写入 README），以及 Swarm 的负载作为共同负载点。
-4. 对照：V3、Helix ILP、Swarm、SP；种子 0–2 起步。
+4. 对照：V3、Helix ILP、Swarm、SP；种子 0、1、2。
 
 ### T7 请求长度分布泛化
 
@@ -208,7 +179,7 @@ LLaMA-70B 被写死在以下位置：
 
 ### T10 在线调度开销
 
-做法：在 T4 的单集群 700、三集群 320 窗口中，选种子 0 额外跑一次 `profile_scheduler=True`（`fixed_window.run` 已支持），记录 `_route`、`schedule_transmission`、`schedule_execution` 的调用次数、均值、P50、P95（微秒）。Helix 同样跑一次，记录 `update_scheduler` 等对应开销。结果写入 `experiments/v3_multiseed/overhead.json` 与报告。
+做法：新建 `experiments/v3_overhead/`。在单集群 700、三集群 320 的主对照设置下，对种子 0、1、2 各额外跑一次 `profile_scheduler=True`（`fixed_window.run` 已支持），记录 `_route`、`schedule_transmission`、`schedule_execution` 的调用次数、均值、P50、P95（微秒）。Helix 同样跑，记录 `update_scheduler` 等对应开销。开销测量窗口只用于计时，吞吐与延迟仍以主对照窗口为准。结果写入 `overhead.json` 与 `RESULTS_CN.md`。
 
 ---
 
@@ -230,17 +201,16 @@ LLaMA-70B 被写死在以下位置：
 
 | 顺序 | 任务 | 依赖 | 新跑窗口数（估计） |
 | --- | --- | --- | ---: |
-| 1 | T0.1–T0.5 | 无 | 少量 60 秒窗口 |
+| 1 | T0.1、T0.3–T0.5 | 无 | 少量 60 秒窗口 |
 | 2 | T3 | T0.1 | 16 |
-| 3 | T1 | T0.1 | 约 60（600 秒）+ 复核 |
+| 3 | T1 | T0.1 | 约 90（3 布局 × 3 负载 × 3 种子 × 基线与两种字节置零，另加理想带宽只在 700 负载跑 9 个） |
 | 4 | T2 | T0.1 | 6 + 开发 8 + 正式约 18 |
-| 5 | T4 | T0.2 | 约 84 |
-| 6 | T7 | T0.2 | 约 24 |
-| 7 | T8 | T0.2 | 约 70 |
-| 8 | T5 | T0.4 | 约 24 起 |
-| 9 | T6 | T0.4 | 约 48 起 |
-| 10 | T9 | T0.2 | 约 6 + 规划 |
-| 11 | T10 | T4 | 4 |
-| 12 | T11 | 无 | 离线 |
+| 5 | T7 | T0.1 | 约 24 |
+| 6 | T8 | T0.1 | 约 70 |
+| 7 | T5 | T0.4 | 约 24 |
+| 8 | T6 | T0.4 | 约 48 |
+| 9 | T9 | T0.1 | 约 6 + 规划 |
+| 10 | T10 | T0.1 | 12 |
+| 11 | T11 | 无 | 离线 |
 
-T1、T2、T3 优先：它们关系到科学问题的表述是否需要加限定，应在开始写论文正文前完成。T4–T9 可以并行，按算力安排。
+所有正式窗口只用种子 0、1、2。T1、T2、T3 优先：它们关系到科学问题的表述是否需要加限定，应在开始写论文正文前完成。T5–T9 可以并行，按算力安排。
