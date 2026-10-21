@@ -350,13 +350,13 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", choices=("single", "multi"), required=True)
-    parser.add_argument("--method", choices=("graph", "helix"), required=True)
+    parser.add_argument("--method", choices=("rcaps_v3", "helix"), required=True)
     parser.add_argument("--solution", type=Path)
     parser.add_argument("--sim-cluster", type=Path)
     parser.add_argument("--physical-cluster", type=Path)
     parser.add_argument("--offered", type=float, required=True)
     parser.add_argument("--duration", type=int, default=1980)
-    parser.add_argument("--warmup", type=int, default=180)
+    parser.add_argument("--warmup", type=int)
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--profile-resources", action="store_true")
     parser.add_argument("--profile-scheduler", action="store_true")
@@ -365,12 +365,20 @@ def main() -> None:
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    warmup = args.warmup if args.warmup is not None else (
+        180 if args.duration > 180 else 0)
+    scheduler_factory = None
+    if args.method == "rcaps_v3":
+        from rcaps.v3.scheduler import GraphModeledQueueAwareDagScheduler
+
+        scheduler_factory = GraphModeledQueueAwareDagScheduler
     result = run(args.scenario, args.method, args.offered, args.duration,
-                 args.warmup, args.seed, args.solution, args.sim_cluster,
+                 warmup, args.seed, args.solution, args.sim_cluster,
                  args.profile_resources, checkpoint_file=args.checkpoint_file,
                  checkpoint_every=args.checkpoint_every, compact=args.compact,
                  physical_cluster=args.physical_cluster,
-                 profile_scheduler=args.profile_scheduler)
+                 profile_scheduler=args.profile_scheduler,
+                 scheduler_factory=scheduler_factory)
     content = json.dumps(result, indent=2)
     print(content)
     if args.output:
