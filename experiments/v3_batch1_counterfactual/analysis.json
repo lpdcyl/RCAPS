@@ -87,5 +87,37 @@
       }
     ]
   },
-  "decision": "efficiency_claim_stands"
+  "decision": "efficiency_claim_stands",
+  "execution_model": {
+    "a100": {
+      "profile": "simulator/model_manager/llama2_70b/a100/decode_bs2time.csv",
+      "sha256": "1d8302ad8503ce5f734bf1a4b43e3dc0c642063acdc8f59ad6d58a67f3cb90e0",
+      "smallest_measured_batch": 2.0,
+      "time_at_smallest_batch": 1.4,
+      "time_at_batch_le_10": 1.4,
+      "batch_le_10": 10.0,
+      "batch1_rule_off": 0.7,
+      "batch1_rule_on": 1.4
+    },
+    "l4": {
+      "profile": "simulator/model_manager/llama2_70b/l4/decode_bs2time.csv",
+      "sha256": "568a5227b9c3b9205038ac9296c7915e826a81b9fb249d212929e8c61e9f6e7b",
+      "smallest_measured_batch": 2.0,
+      "time_at_smallest_batch": 6.9,
+      "time_at_batch_le_10": 7.1,
+      "batch_le_10": 10.0,
+      "batch1_rule_off": 3.45,
+      "batch1_rule_on": 6.9
+    },
+    "t4": {
+      "profile": "simulator/model_manager/llama2_70b/t4/decode_bs2time.csv",
+      "sha256": "136176f0fb07a9c6bad81438dde79614e33fc27ef47585c16d54c184d268f4ff",
+      "smallest_measured_batch": 2.0,
+      "time_at_smallest_batch": 7.1,
+      "time_at_batch_le_10": 7.6,
+      "batch_le_10": 10.0,
+      "batch1_rule_off": 3.55,
+      "batch1_rule_on": 7.1
+    }
+  }
 }

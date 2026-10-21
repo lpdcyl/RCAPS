@@ -107,10 +107,54 @@ def main() -> None:
         out += ["", "## 预注册判定", "", "正式窗口未全部完成或有失败，暂不判定。"]
     if analysis["failures"]:
         out += ["", "失败窗口（保留，不重跑）：" + "、".join(analysis["failures"])]
+    out += execution_model_section(analysis)
     (HERE / "analysis.json").write_text(json.dumps(analysis, indent=2, ensure_ascii=False) + "\n",
                                         encoding="utf-8")
     (HERE / "RESULTS_CN.md").write_text("\n".join(out) + "\n", encoding="utf-8")
     print("\n".join(out))
+
+
+PROFILE_DIR = ROOT / "simulator/model_manager/llama2_70b"
+PROFILE_GPUS = ("a100", "l4", "t4")
+
+
+def execution_model_section(analysis: dict) -> list[str]:
+    """Explain which batch-1 decode cost the measured profiles support."""
+    rows, record = [], {}
+    for gpu in PROFILE_GPUS:
+        path = PROFILE_DIR / gpu / "decode_bs2time.csv"
+        points = dict(tuple(float(v) for v in line.split(",")[:2])
+                      for line in path.read_text(encoding="utf-8").split()
+                      if line.strip())
+        sizes = sorted(size for size in points if size > 0)
+        first, last = sizes[0], max(size for size in sizes if size <= 10)
+        interpolated = points[first] / first  # linear from (0, 0), as model.py does
+        record[gpu] = {"profile": path.relative_to(ROOT).as_posix(),
+                       "sha256": digest(path),
+                       "smallest_measured_batch": first,
+                       "time_at_smallest_batch": points[first],
+                       "time_at_batch_le_10": points[last], "batch_le_10": last,
+                       "batch1_rule_off": interpolated,
+                       "batch1_rule_on": 2 * interpolated}
+        rows.append(f"| {gpu.upper()} | {first:g} | {points[first]:g} | {last:g} | "
+                    f"{points[last]:g} | {interpolated:g} | {2 * interpolated:g} |")
+    analysis["execution_model"] = record
+    return ["", "## 执行模型解读：哪一种 batch = 1 设定与画像一致", "",
+            "Decode 画像没有 batch = 1 的测量点，最小测量点是 batch = 2。模拟器在 (0, 0) 与最小测量点之间"
+            "线性插值估计 batch = 1，得到最小测量点耗时的一半；2 倍规则（`simulator/event_simulator/model.py`"
+            " 中 `decode_phase_tokens == 1` 分支）再乘 2，使 batch = 1 与 batch = 2 的耗时相等。", "",
+            "| GPU | 最小测量 batch | 该点耗时 | batch ≤ 10 的最大测量点 | 该点耗时 | batch = 1：规则关 | batch = 1：规则开 |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | ---: |", *rows, "",
+            "画像显示，从最小测量点到 batch 10，每步 Decode 耗时几乎不变，这是显存带宽受限的 Decode 的典型特征。"
+            "规则开时 batch = 1 的耗时与这一趋势一致；规则关时 batch = 1 只需 batch = 2 的一半时间，"
+            "与画像的平坦趋势相矛盾。因此：", "",
+            "- 规则关的窗口是**执行模型敏感性**结果，不代表更真实的设定。它回答的是：如果单请求 Decode "
+            "明显更便宜，权衡会如何变化。",
+            "- 效率主张在两种设定下都成立。",
+            "- 延迟收益成立的条件是小 batch 下 Decode 每步耗时基本平坦，这正是画像本身反映的情形；"
+            "C2 在规则关时的延迟反转，来自与画像不一致的设定。",
+            "- 画像来自 Helix 仓库的离线测量。真实 GPU 上小 batch 的 Decode 耗时曲线，仍应在论文中引用"
+            "实测文献或自行测量佐证。"]
 
 
 if __name__ == "__main__":
