@@ -16,11 +16,11 @@ from .placement import HERE, validate
 from .prepare import CASES, VARIANTS, files
 
 
-def audit(cases=CASES) -> dict:
+def audit(cases=CASES, *, model_name: ModelName = ModelName.LLaMa70B) -> dict:
     records = {}
     for case in cases:
         physical, _, _ = files(case)
-        model = TopologyModel(physical)
+        model = TopologyModel(physical, model_name=model_name)
         records[case] = {}
         for variant in VARIANTS:
             folder = HERE / "layouts" / case / variant
@@ -28,7 +28,7 @@ def audit(cases=CASES) -> dict:
                 continue
             placement = json.loads((folder / "placement.json").read_text(encoding="utf-8"))
             expected = validate(model, placement["state"])
-            simulator = ClusterSimulator(model_name=ModelName.LLaMa70B,
+            simulator = ClusterSimulator(model_name=model_name,
                                          machine_num_dict=model.machine_counts)
             simulator.logger = _NullLogger()
             simulator.from_ini_file(config_file_name=str(folder / "simulator_cluster.ini"))

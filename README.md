@@ -16,6 +16,7 @@ physical GPU deployment.
 | Frozen V3 identity and V3–Helix evidence | [`experiments/v3_release/README_CN.md`](experiments/v3_release/README_CN.md) |
 | V3 experiment index | [`experiments/README.md`](experiments/README.md) |
 | Paper evidence and claim boundaries | [`paper/V3_EVIDENCE_CN.md`](paper/V3_EVIDENCE_CN.md) |
+| Independent code and experiment review | [`REVIEW_GUIDE_CN.md`](REVIEW_GUIDE_CN.md) |
 
 The adopted V3 rule is `multi_any`: M2 searches at most two branch boundaries
 and permits any GPU type in the initial shared segment. A selected layout may
@@ -42,6 +43,10 @@ Pipelines are separate external comparisons at a common lower load; see the
 [four-method report](experiments/v3_four_method_comparison/RESULTS_CN.md).
 The runner checks layout identity before reusing a result, and comparison
 checks the paired request traces.
+
+`fixed_window.py` includes an opt-in diagnostic probe. The release manifest
+records this runner along with the V3 layouts and evidence, so strict
+verification covers the current tree.
 
 ## Repository scope
 

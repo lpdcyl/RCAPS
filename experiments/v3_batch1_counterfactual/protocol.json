@@ -1,0 +1,18 @@
+{
+  "experiment": "v3_batch1_counterfactual",
+  "question": "Does the GPU waste from decode-batch fragmentation remain when the simulator no longer charges a one-request decode batch twice its profile?",
+  "intervention": "In the run process, ModelLayer.get_inference_statistics subtracts get_decode_inference_time(1) whenever a batch holds exactly one decode request, undoing simulator/event_simulator/model.py:131-132. Simulator source unchanged; unit test in run.py --phase test.",
+  "unchanged": "Frozen layouts, traces, route price (frozen V3 including its own x2 decode coefficient), gated scheduler experiments/v3_gated_pathspace/scheduler.py, slow-link threshold.",
+  "cells": {"v3": "full-DAG frozen V3 M3", "gated": "slow-link-gated admission (equals canonical routes on these flat pools)"},
+  "conditions": {"C1_single": 700.0, "C2": 160.0},
+  "formal": {"seeds": [0, 1, 2], "duration_s": 1800, "warmup_s": 0, "tail_drain": false, "pythonhashseed": "0"},
+  "primary_metric": "GPU busy seconds per output token = sum over GPUs of busy fraction / output token throughput (same window)",
+  "decision": {
+    "efficiency_claim_stands": "In both C1_single and C2, gated GPU-seconds per output token is at least 20% lower than full-DAG V3 on every one of the three seeds.",
+    "partially_artefact": "Gated is lower on every seed in both pools but the reduction is below 20% on at least one seed: report the claim as real but smaller without the doubling rule.",
+    "artefact": "Otherwise: the GPU waste is mainly produced by the doubling rule; the efficiency claim must not be made.",
+    "retained_share": "Descriptive: (rule-off reduction) / (rule-on reduction) per pool, using rule-on windows experiments/v3_cycle_pricing/runs/formal/C1_single/v3_seed*.json, experiments/v3_gated_pathspace/runs/formal/C1_single/gated_seed*.json and experiments/v3_gated_generalization/runs/formal/C2/*_seed*.json.",
+    "reported_not_decisive": "Mean decode batch, one-request batch share, throughput, P95 TTFT/TPOT, completion, backlog.",
+    "failures": "Failed windows are kept as .failure.json and count as not supporting the claim; no reruns to fill the table."
+  }
+}

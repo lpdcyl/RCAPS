@@ -1,0 +1,240 @@
+{
+  "development_seed": 100,
+  "development_seconds": 300,
+  "formal_seeds": [
+    0,
+    1,
+    2
+  ],
+  "pool_rule": "released V3, all six search-sensitivity layouts, all three capacity-search exported layouts, and three earlier joint-candidate layouts; duplicate deployment hashes collapsed",
+  "cases": {
+    "C1_single": {
+      "physical_sha256": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+      "template_sha256": "f772ffc21608b77270be6401c60adfa1f5dfb23f3dbe8ce210bb2ecbf4b24ab3",
+      "training_offered_tokens_per_s": 700,
+      "training_arrivals": 220,
+      "training_requests_per_s": 0.7333333333333333,
+      "workload_classes": [
+        {
+          "name": "input_short_output_short",
+          "input_tokens": 398,
+          "output_tokens": 92,
+          "probability": 0.4090909090909091,
+          "decode_batch": 8
+        },
+        {
+          "name": "input_short_output_long",
+          "input_tokens": 202,
+          "output_tokens": 188,
+          "probability": 0.09090909090909091,
+          "decode_batch": 8
+        },
+        {
+          "name": "input_long_output_short",
+          "input_tokens": 1346,
+          "output_tokens": 90,
+          "probability": 0.09090909090909091,
+          "decode_batch": 8
+        },
+        {
+          "name": "input_long_output_long",
+          "input_tokens": 1074,
+          "output_tokens": 400,
+          "probability": 0.4090909090909091,
+          "decode_batch": 8
+        }
+      ],
+      "candidate_count": 8,
+      "candidates": [
+        {
+          "label": "rcaps/v3_layouts/single",
+          "solution_sha256": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+          "sim_cluster_sha256": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+          "weighted_score": 0.7083960852089655,
+          "linear_score": 12.312875047936712,
+          "linear_max_utilization": 1.0
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_single/beam128_budget1000",
+          "solution_sha256": "7c14d0060fd25745c9a1bcac7b55c68e8f47a5deb3df4c6c60837999c502da89",
+          "sim_cluster_sha256": "3d5ee28d5981e76f26b91d3548b671af067608d66678792aea252e0e240e169e",
+          "weighted_score": 0.7083960852089655,
+          "linear_score": 12.312875047936716,
+          "linear_max_utilization": 1.0
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_single/beam32_budget500",
+          "solution_sha256": "2ed87f4ab8826bed11f67536b0357306e33fc4e3d301d63adb36761cf1331f04",
+          "sim_cluster_sha256": "3f834f1e25232b86489ca5174c2840835f3c33c6364620a651b122a6153230ab",
+          "weighted_score": 0.7083960852089655,
+          "linear_score": 12.312875047936712,
+          "linear_max_utilization": 1.0
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_single/beam64_budget250",
+          "solution_sha256": "f4046d1bbdbddb2a28c9baad706cc0be2547d453b252c3d305f7701fda6a752f",
+          "sim_cluster_sha256": "8e9be8af86788b128fe78a7e103e0736c5619d719d19ef6cbb87beff1112a999",
+          "weighted_score": 0.711348597150627,
+          "linear_score": 13.546373328,
+          "linear_max_utilization": 0.6656629333333334
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_single/capacity_1",
+          "solution_sha256": "a49d09c09fb2fc9c1a73ded1fe4d9379a60044dc6af855f2acd80590bcbcef02",
+          "sim_cluster_sha256": "aacfaefb38bef50bb1b7fd2130cbb87ddab7bfcc795f796b44ef2e3cdc29f1dc",
+          "weighted_score": 0.714795774666884,
+          "linear_score": 12.32924158109091,
+          "linear_max_utilization": 1.0
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_single/capacity_2",
+          "solution_sha256": "cfc5e7e9afaa0818d0189da829f411614e7a3dfc03aff35f8ec6196eab5e5564",
+          "sim_cluster_sha256": "3dd2a04d1a1dd7c33849ad0547e095531487e3415c087f6900b312d40cbf7f94",
+          "weighted_score": 0.8575456853337039,
+          "linear_score": 15.112113170727273,
+          "linear_max_utilization": 0.9984944
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_single/capacity_3",
+          "solution_sha256": "54511fe5e3db096402f2323bfd193805de9ab3f6590c80d2f5cec87f8c878e36",
+          "sim_cluster_sha256": "ee00ccb70decb94a4fe24c6e3f6b8b7f970bdb63fabbf7effcd0e6eecc59966e",
+          "weighted_score": 0.7380062774658566,
+          "linear_score": 12.207537581090909,
+          "linear_max_utilization": 0.9984944
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/layouts/C1_single/local_neighbor",
+          "solution_sha256": "9d7e2a75d8afe57ad7ccfc3d47f70ef8da36faf923a71b337ec1030f19393c2c",
+          "sim_cluster_sha256": "47fd96cfd094471a4864011c661d7c30588ba65c3e7cb68d5ab0f2ba3515b23a",
+          "weighted_score": 0.7083960852089655,
+          "linear_score": 12.312875047936712,
+          "linear_max_utilization": 1.0
+        }
+      ],
+      "weighted_selected": "rcaps/v3_layouts/single",
+      "linear_selected": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_single/capacity_3"
+    },
+    "C1_multi": {
+      "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+      "template_sha256": "1733392a562d7a860415fed0932826a59b6c5a6b9caec6e45e380762e9e031f0",
+      "training_offered_tokens_per_s": 320,
+      "training_arrivals": 99,
+      "training_requests_per_s": 0.33,
+      "workload_classes": [
+        {
+          "name": "input_short_output_short",
+          "input_tokens": 382,
+          "output_tokens": 110,
+          "probability": 0.4444444444444444,
+          "decode_batch": 8
+        },
+        {
+          "name": "input_short_output_long",
+          "input_tokens": 212,
+          "output_tokens": 220,
+          "probability": 0.06060606060606061,
+          "decode_batch": 8
+        },
+        {
+          "name": "input_long_output_short",
+          "input_tokens": 1316,
+          "output_tokens": 116,
+          "probability": 0.06060606060606061,
+          "decode_batch": 8
+        },
+        {
+          "name": "input_long_output_long",
+          "input_tokens": 1081,
+          "output_tokens": 400,
+          "probability": 0.43434343434343436,
+          "decode_batch": 8
+        }
+      ],
+      "candidate_count": 10,
+      "candidates": [
+        {
+          "label": "rcaps/v3_layouts/multi",
+          "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+          "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+          "weighted_score": 0.9028485262483839,
+          "linear_score": 47.081318606813994,
+          "linear_max_utilization": 0.45920736000000006
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_multi/beam128_budget1000",
+          "solution_sha256": "8aa1a3b89762d7944f3ed6fcd78242899d153e61325b22de60e41eb17bb5baff",
+          "sim_cluster_sha256": "67666eb456c29dcabf050959867d5d6e4211378aa50249199382b4d4cb2f2361",
+          "weighted_score": 0.8979273906059195,
+          "linear_score": 47.094821649269335,
+          "linear_max_utilization": 0.47716080000000005
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_multi/beam128_budget500",
+          "solution_sha256": "e218abc942c1b4338337c158e49f73f57ddc3506a2ace1ba701f411d155095a3",
+          "sim_cluster_sha256": "fa75fda271b2ec5484cb616fd79e5c82862104ebb8e0d49a50b707f472bf7e60",
+          "weighted_score": 0.8991522682182242,
+          "linear_score": 47.094821649269335,
+          "linear_max_utilization": 0.47716080000000005
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_multi/beam32_budget500",
+          "solution_sha256": "150047880ed5605f7daa9d1ec7892255aeb9339b89eb5eb19e9486082f2a69b2",
+          "sim_cluster_sha256": "be562609bdd6cc8d4a1eae7d2a768c0bac8edc9075c4cef0161e1fcba41eeeb6",
+          "weighted_score": 0.8963517593899011,
+          "linear_score": 47.082822977184094,
+          "linear_max_utilization": 0.45920736000000006
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_multi/beam64_budget1000",
+          "solution_sha256": "eb899c42794767ce037d5a32da676d99caa4a040675638144596ae07fce32429",
+          "sim_cluster_sha256": "113e7808fb89aa78ec83e3228c575118268473197a1fba185eac1d37ba08c123",
+          "weighted_score": 0.8943635899291026,
+          "linear_score": 47.082860454046376,
+          "linear_max_utilization": 0.45920736000000006
+        },
+        {
+          "label": "experiments/v3_search_sensitivity/layouts/C1_multi/beam64_budget250",
+          "solution_sha256": "7d9c27896cb211692d83e74a1b5a5ed6f75bd8c440f1bfb5f831c6ce5a7252e4",
+          "sim_cluster_sha256": "48cac4ac056fd0f6ce08efb750952081da823a44ec19f5211b223da878206b99",
+          "weighted_score": 0.906512156280477,
+          "linear_score": 47.08148610816301,
+          "linear_max_utilization": 0.45920736000000006
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_multi/capacity_1",
+          "solution_sha256": "5b801da44742a5246d94842ae747507b32e3e141e3319525e7f17aec6ee69c6d",
+          "sim_cluster_sha256": "9fedefe457872e711e189a24e2690d249cc8e6c1127423700caebde268fb0598",
+          "weighted_score": 0.969877665907656,
+          "linear_score": 47.04185312011069,
+          "linear_max_utilization": 0.47716080000000005
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_multi/capacity_2",
+          "solution_sha256": "9727d094f616857e019644d8536a5afdbf033fe309315fed8f5e5948e221a045",
+          "sim_cluster_sha256": "65eb65a35a94071aa8dde3be1455ea3d2f8d4be10a8989d6a8128559d6b2654e",
+          "weighted_score": 1.5353131992625606,
+          "linear_score": 62.175151748490485,
+          "linear_max_utilization": 0.5566876000000001
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_multi/capacity_3",
+          "solution_sha256": "74942b5fc300c4fb04858b76b6e8d01c88f8d3683adbdd9f9a5077d8652010df",
+          "sim_cluster_sha256": "b9b0c48ff8d6fa5293d15c556678b4bd1a21708c7a7954e9d8531fd4d143bac4",
+          "weighted_score": 1.2873784026989323,
+          "linear_score": 57.92783238751809,
+          "linear_max_utilization": 0.47716080000000005
+        },
+        {
+          "label": "experiments/v3_joint_routing_candidate/layouts/C1_multi/local_neighbor",
+          "solution_sha256": "02138852ef4e7062f4569b2703758842db0b283cb135bb12c7b7cd992d0dd88f",
+          "sim_cluster_sha256": "9fc06d9e5fa36f37c6aa8f340184ed75fed54128747179347a3d1563fcdf2e4d",
+          "weighted_score": 0.8992630194304388,
+          "linear_score": 47.08274118439502,
+          "linear_max_utilization": 0.45920736000000006
+        }
+      ],
+      "weighted_selected": "experiments/v3_search_sensitivity/layouts/C1_multi/beam64_budget1000",
+      "linear_selected": "experiments/v3_joint_routing_candidate/capacity_joint/layouts/C1_multi/capacity_1"
+    }
+  }
+}

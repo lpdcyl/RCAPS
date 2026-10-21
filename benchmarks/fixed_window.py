@@ -63,7 +63,9 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         machine_profile: Path | None = None,
         trace_override: list[tuple[float, int, int]] | None = None,
         allow_force_set: bool = False,
-        include_distributions: bool = False) -> dict:
+        include_distributions: bool = False,
+        phase_link_probe=None,
+        model_name: ModelName = ModelName.LLaMa70B) -> dict:
     cluster, profile, helix_solution, helix_sim_cluster = scenario(name)
     cluster = physical_cluster or cluster
     profile = machine_profile or profile
@@ -73,12 +75,12 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
     layout = None
     if method in ("helix", "swarm", "separate"):
         from simulator.initial_layout.layout_synthesizer import LayoutMethod, LayoutSynthesizer
-        layout = LayoutSynthesizer(str(cluster), str(profile), ModelName.LLaMa70B,
+        layout = LayoutSynthesizer(str(cluster), str(profile), model_name,
                                    str(ROOT / "benchmarks/runs"),
                                    LayoutMethod.LoadExisting, machines)
         layout.synthesize({"solution_file_name": str(solution),
                            "simulator_cluster_file_name": str(sim_cluster)})
-    simulator = ClusterSimulator(model_name=ModelName.LLaMa70B,
+    simulator = ClusterSimulator(model_name=model_name,
                                  machine_num_dict=machines)
     simulator.model_manager.allow_force_set = allow_force_set
     simulator.logger = _NullLogger()
@@ -109,6 +111,8 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
     if layout is not None:
         simulator.update_scheduler()
     beginning, ending = start + warmup, start + duration
+    if phase_link_probe is not None:
+        phase_link_probe.install(simulator, beginning, ending)
     scheduler_calls: dict[str, list[int]] = {}
     if profile_scheduler:
         for operation in ("schedule_transmission", "schedule_execution",
@@ -336,6 +340,9 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         result["query_samples"] = accumulator.query_samples
     if resource_profile is not None:
         result.update(resource_profile.summary())
+    if phase_link_probe is not None:
+        result["phase_link_profile"] = phase_link_probe.summary(
+            result.get("query_samples", {}))
     if checkpoint_file is not None:
         checkpoint_file.unlink(missing_ok=True)
     return result
@@ -344,13 +351,13 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", choices=("single", "multi"), required=True)
-    parser.add_argument("--method", choices=("graph", "helix"), required=True)
+    parser.add_argument("--method", choices=("rcaps_v3", "helix"), required=True)
     parser.add_argument("--solution", type=Path)
     parser.add_argument("--sim-cluster", type=Path)
     parser.add_argument("--physical-cluster", type=Path)
     parser.add_argument("--offered", type=float, required=True)
     parser.add_argument("--duration", type=int, default=1980)
-    parser.add_argument("--warmup", type=int, default=180)
+    parser.add_argument("--warmup", type=int)
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--profile-resources", action="store_true")
     parser.add_argument("--profile-scheduler", action="store_true")
@@ -359,12 +366,20 @@ def main() -> None:
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    warmup = args.warmup if args.warmup is not None else (
+        180 if args.duration > 180 else 0)
+    scheduler_factory = None
+    if args.method == "rcaps_v3":
+        from rcaps.v3.scheduler import GraphModeledQueueAwareDagScheduler
+
+        scheduler_factory = GraphModeledQueueAwareDagScheduler
     result = run(args.scenario, args.method, args.offered, args.duration,
-                 args.warmup, args.seed, args.solution, args.sim_cluster,
+                 warmup, args.seed, args.solution, args.sim_cluster,
                  args.profile_resources, checkpoint_file=args.checkpoint_file,
                  checkpoint_every=args.checkpoint_every, compact=args.compact,
                  physical_cluster=args.physical_cluster,
-                 profile_scheduler=args.profile_scheduler)
+                 profile_scheduler=args.profile_scheduler,
+                 scheduler_factory=scheduler_factory)
     content = json.dumps(result, indent=2)
     print(content)
     if args.output:

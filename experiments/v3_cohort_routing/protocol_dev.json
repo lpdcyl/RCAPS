@@ -1,0 +1,12 @@
+{
+  "experiment": "v3_cohort_routing",
+  "variants": {"step": "cohort_tokens = 1 (one decode step per new wave)",
+               "lifetime": "cohort_tokens = 154 (median output tokens of the pooled seed-100 traces of both topologies, from experiments/v3_cycle_pricing/runs/dev/*/v3_seed100.json)"},
+  "parity": "cohort_tokens = 0 must reproduce frozen V3 on both topologies (seed 100, 60 s): throughput, P95 TTFT/TPOT, completion, route_counts, query_samples identical",
+  "selection": {
+    "data": "seed 100, 300 s, both topologies; control is experiments/v3_cycle_pricing/runs/dev/<case>/v3_seed100.json (same trace)",
+    "eligible": "relative throughput change vs frozen V3 >= -0.5% on both topologies",
+    "score": "worst of the two topologies' relative P95 TPOT change vs frozen V3 (lower is better)",
+    "pick": "eligible variant with the lowest score; if none is eligible or the best score is >= 0, stop and report without formal windows"
+  }
+}

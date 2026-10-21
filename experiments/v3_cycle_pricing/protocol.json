@@ -1,0 +1,30 @@
+{
+  "experiment": "v3_cycle_pricing",
+  "candidate": "FullCycleSessionScheduler (experiments/v3_cycle_pricing/scheduler.py)",
+  "change": "In the frozen V3 M3 route price, the KV-session term of a visited GPU uses the decode service of all resident layers of that GPU instead of only the layer slice the request runs there. Canonical (full-segment) paths are priced exactly as in frozen V3.",
+  "free_parameters": 0,
+  "selection_on_formal_seeds": "none; the rule was fixed before the development window and is not tuned",
+  "development": {"seed": 100, "duration_s": 300, "use": "runner check and mechanism description only; not part of the decision"},
+  "formal": {
+    "seeds": [0, 1, 2], "duration_s": 1800, "warmup_s": 0, "tail_drain": false,
+    "loads": {"C1_single": 700.0, "C1_multi": 320.0},
+    "layouts": "frozen rcaps/v3_layouts/{single,multi}",
+    "pythonhashseed": "0",
+    "controls": {
+      "v3": "released benchmarks/runs/{single,multi}/seed*/rcaps_v3.json; rerun here for parity and hop records",
+      "canonical": "experiments/v3_pathspace_ablation/runs/formal/*/seed*.json"
+    }
+  },
+  "decision": {
+    "min_relative_throughput_delta": -0.005,
+    "min_single_tpot_gap_closed": 0.5,
+    "max_multi_relative_ttft_increase": 0.02,
+    "rules": {
+      "R1_no_harm": "On both topologies the mean throughput change vs frozen V3 is >= -0.5% and the mean P95 TPOT change is <= 0.",
+      "R2_single_gap": "On C1_single the mean P95 TPOT gap between frozen V3 and canonical routes shrinks by >= 50%, and P95 TPOT falls on all three seeds.",
+      "R3_multi_retained": "On C1_multi the mean P95 TTFT rises by at most 2% vs frozen V3, and the candidate keeps lower mean P95 TTFT and P95 TPOT than canonical routes."
+    },
+    "adopt_if": "R1 and R2 and R3; otherwise report as a negative result",
+    "failures": "Any failed window is kept as .failure.json and counts as not passing; it is not rerun to fill the table."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "phase": "formal",
+  "case": "C1_multi",
+  "variant": "k3",
+  "treatment": "prompt_zero",
+  "load": 320,
+  "seed": 2,
+  "duration_s": 600,
+  "profile_enabled": true,
+  "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+  "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+  "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+  "source_sha256": {
+    "benchmarks/fixed_window.py": "ffe08af340d40f28e0fb8ec1f201fe6eefa9e33c9848f6a93a2c78733b756ce3",
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "simulator/event_simulator/network_link.py": "8d120242eb9c50f08a37c625a5582fd6ad37a8483d87970ae2b9239dd9290bbd",
+    "simulator/event_simulator/cluster_simulator.py": "bf9eefd601571393286e9caf654607fd4476e55b7c7fe5d1efd6b65aaecfa282",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "experiments/v3_phase_link_diagnosis/probe.py": "66c1129875977dbc2a56de9b197eb06c0ca998406771fc4e807f25ade83e7157",
+    "experiments/v3_phase_link_diagnosis/run.py": "fac223c9f4b286aa3c9c42e4c0a1f551af836a5086a7905cecd98ea49ed7a862"
+  },
+  "status": "failed",
+  "error": "TypeError('string indices must be integers')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v3_phase_link_diagnosis\\run.py\", line 153, in run_one\n    row = fixed_window_run(\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 196, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 695, in handle_start_transmission\n    cur_trans: TransmissionObject = cur_link.start_sending(requests=schedule.requests,\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v3_phase_link_diagnosis\\probe.py\", line 211, in start\n    stats[f\"{phase}_effective_bytes\"] += self.effective_bytes(_link, request)\nTypeError: string indices must be integers\n"
+}

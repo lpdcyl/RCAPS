@@ -1,0 +1,21 @@
+{"phase": "formal", "scenario": "multi", "seed": 0, "cell": "RH", "expected": {"scenario": "multi", "seed": 0, "offered_tokens_per_s": 320.0, "duration_s": 1800, "warmup_s": 0, "evaluation_protocol": "fixed_window_no_tail_drain", "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e", "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da", "physical_cluster_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57", "placement": "v3", "scheduler": "helix", "cell": "RH"}}
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\v3_method_validation\crossover.py", line 221, in _execute
+    row = _read(source)
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 110, in run
+    simulator.update_scheduler()
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 440, in update_scheduler
+    self.scheduler.update_scheduler(time_stamp=self.current_time)
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\global_maxflow\global_maxflow_scheduler.py", line 47, in update_scheduler
+    self.flow_graph.update_flow(time_stamp=time_stamp)
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\global_maxflow\network_flow.py", line 169, in update_flow
+    inference_throughput: float = self.cluster_simulator.model_manager.get_typical_token_throughput(
+  File "D:\PythonProject\Helix-GREEN\simulator\model_manager\model_manager.py", line 93, in get_typical_token_throughput
+    return self.model_statistics.get_typical_token_throughput(machine_type=machine_type,
+  File "D:\PythonProject\Helix-GREEN\simulator\model_manager\llama2_70b\llama2_70b.py", line 234, in get_typical_token_throughput
+    return self.t4.get_typical_token_throughput(num_on_node_layers=num_on_node_layers)
+  File "D:\PythonProject\Helix-GREEN\simulator\model_manager\llama2_70b\t4\llama2_70b_t4.py", line 130, in get_typical_token_throughput
+    inference_settings = self.get_inference_settings(num_on_node_layers=num_on_node_layers)
+  File "D:\PythonProject\Helix-GREEN\simulator\model_manager\llama2_70b\t4\llama2_70b_t4.py", line 120, in get_inference_settings
+    assert 0 < num_on_node_layers <= self.max_num_layers, "Bad number of layers on node!"
+AssertionError: Bad number of layers on node!
