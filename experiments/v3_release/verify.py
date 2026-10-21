@@ -2,6 +2,8 @@
 
 Use --write-manifest only when deliberately establishing a new release. The
 default command checks the saved manifest and never modifies released files.
+The optional diagnostic-probe mode accepts exactly one pinned, opt-in benchmark
+instrumentation variant while keeping every other frozen hash strict.
 """
 
 from __future__ import annotations
@@ -31,6 +33,11 @@ CORE = (
     "rcaps/v3_method.py",
     "benchmarks/fixed_window.py",
 )
+DIAGNOSTIC_PROBE_FILE = "benchmarks/fixed_window.py"
+# The only change to the frozen runner is an optional phase_link_probe hook.
+# Pin the complete file hash so unrelated benchmark edits still fail review.
+DIAGNOSTIC_PROBE_SHA256 = (
+    "ffe08af340d40f28e0fb8ec1f201fe6eefa9e33c9848f6a93a2c78733b756ce3")
 
 
 def digest(path: Path) -> str:
@@ -91,7 +98,11 @@ def snapshot() -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write-manifest", action="store_true")
+    parser.add_argument("--allow-diagnostic-probe", action="store_true",
+                        help="accept the exact pinned optional phase-link probe variant")
     args = parser.parse_args()
+    if args.write_manifest and args.allow_diagnostic_probe:
+        parser.error("Do not combine --write-manifest with --allow-diagnostic-probe")
     current = snapshot()
     if args.write_manifest:
         MANIFEST.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n",
@@ -99,9 +110,15 @@ def main() -> None:
         print(f"wrote {MANIFEST}")
     else:
         saved = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        if args.allow_diagnostic_probe:
+            if current["code_sha256"][DIAGNOSTIC_PROBE_FILE] != DIAGNOSTIC_PROBE_SHA256:
+                raise ValueError("Diagnostic benchmark probe hash is not the reviewed variant")
+            current["code_sha256"][DIAGNOSTIC_PROBE_FILE] = saved["code_sha256"][
+                DIAGNOSTIC_PROBE_FILE]
         if current != saved:
             raise ValueError("V3 release manifest drifted; inspect code, layouts, or evidence")
-        print(f"V3 release verified: {len(current['layouts'])} layouts")
+        qualifier = " (pinned diagnostic benchmark probe)" if args.allow_diagnostic_probe else ""
+        print(f"V3 release verified: {len(current['layouts'])} layouts{qualifier}")
 
 
 if __name__ == "__main__":
