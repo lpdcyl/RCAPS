@@ -15,6 +15,9 @@
 
 - 全部代码编写与实验运行都在本地仓库 `D:\PythonProject\Helix-GREEN` 完成，包括 1800 秒正式窗口。每张任务卡的实验全部跑完、报告生成后，再提交并推送到 GitHub。
 - 命令在仓库根目录用 PowerShell 执行，形式为 `python -m experiments.<目录>.run --phase ...`；并行时用各实验已有的 `--workers` 参数，每个窗口是独立进程。
+- **每次启动 Python 前必须固定哈希种子**：在同一个 PowerShell 会话里先执行 `$env:PYTHONHASHSEED="0"` 和 `$env:MPLBACKEND="Agg"`，再运行实验命令。只有 `benchmarks/run.py` 会自动设置 `PYTHONHASHSEED`；`m3_run.py` 等直接调用模拟器的实验入口**不会**自动设置，不设置会导致同一种子、同一代码的两次运行结果不同。每个正式结果 JSON 中须记录运行时的 `PYTHONHASHSEED` 取值（新建实验在写结果时加入 `"pythonhashseed": os.environ.get("PYTHONHASHSEED")` 字段）；已有实验不改代码，在报告中写明运行时的取值。
+- **确定性抽查**：每张卡的正式窗口开始前，任选一个 60 秒窗口连续跑两次，确认两次结果除时间类字段外逐项相同；不同则停下报告，不进入正式运行。
+- **代码身份比较一律先规范化换行**：Windows 检出的文件是 CRLF，git 中是 LF，字节哈希会不同但内容相同。判断适配器或方法代码"是否被改动"时，比较把 CRLF 统一为 LF 之后的内容；不要因为换行不同而重跑窗口。
 - 推送前检查单个文件大小：超过 50 MB 的逐消息事件流（如 `*.jsonl.gz`）只保留在本地，不提交，与 `v3_phase_link_diagnosis` 的现有做法一致；汇总 JSON 与报告必须提交。
 - 一张卡的实验没有全部跑完时，不提交该卡的报告；可以先提交代码，提交信息注明"结果待运行"。
 
@@ -230,10 +233,17 @@ W_{d,\ell} = \frac{\lambda_{p,\ell}\,\mathbb{E}[S_{p,\ell}^2] + \lambda_{d,\ell}
 3. 正式：`python -m experiments.v3_method_validation.m3_run --phase formal --workers 4`。该命令会复用 `static`、`full`，跳过已存在且身份一致的 8 个单集群窗口，只运行上表 16 个。
 4. 报告：`python -m experiments.v3_method_validation.m3_run --phase report`，生成 `m3_formal_report.md` 与 `m3_formal_analysis.json`。
 
+**确定性与失败处理**（T3 执行中出现过：未固定 `PYTHONHASHSEED` 的两轮运行中，`single/seed2/observed_eft` 一次通过、一次触发 KV 容量断言）：
+- 所有 16 个正式窗口必须在 `PYTHONHASHSEED=0` 下运行。此前未固定哈希种子的各轮结果全部保留在 `runs/m3_formal_audit/<轮次>/` 下作为审计材料，不进入正式汇总；在报告中说明原因。这是按全局规则 3 修正协议，不属于重跑凑数。
+- 先把 `single/seed2/observed_eft` 在 `PYTHONHASHSEED=0` 下连续跑两次：
+  - 两次结果一致且都通过：正常纳入。
+  - 两次一致且都触发 KV 断言：这是该变体的真实结果，保留 `.failure.json`，报告中列为"observed_eft 在单集群种子 2 触发 KV 容量断言"，不折算为零，不再重跑。该变体不含 KV 会话定价，这一失败本身可作为会话定价必要性的证据。
+  - 两次结果不一致：停下报告，说明还存在 `PYTHONHASHSEED` 以外的非确定性来源，需要先定位再继续。
+
 **验收**：
-1. `m3_formal_index.json` 共 36 项（2 拓扑 × 3 种子 × 6 变体），状态均为 `passed` 或 `reused`；若有 `failed`，保留 `.failure.json`，在报告中列出，不重跑凑数。
+1. `m3_formal_index.json` 共 36 项（2 拓扑 × 3 种子 × 6 变体），状态为 `passed`、`reused`，或经上述确定性检查确认的 `failed`；`failed` 项保留 `.failure.json` 并在报告中列出，不重跑凑数。
 2. 同一拓扑、同一种子下 6 个变体的 `trace_sha256` 相同（`report` 中的配对检查会自动校验，报错即不通过）。
-3. 新跑窗口的 `adapter_sha256` 与单集群种子 0、1 已有窗口一致，证明 `m3_state.py` 没有被改动。
+3. 规范化换行（CRLF 统一为 LF）后，`m3_state.py` 的内容与 git 中已发布版本一致，证明适配器没有被改动。新旧窗口的 `adapter_sha256` 字节哈希可以因换行不同而不同，不作为不通过的理由。
 4. 在 `m3_formal_report.md` 末尾追加一张表，列出每一项状态的贡献，按三种子均值与逐种子差值报告：
    - KV 会话定价的贡献 = `full` − `full_no_session`
    - 动态链路等待的贡献 = `full` − `full_no_link`
