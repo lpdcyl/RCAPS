@@ -126,11 +126,53 @@ LLaMA-70B 被写死在以下位置：
 
 ### T3 补齐 M3 状态消融（挑战三）
 
-背景：`experiments/v3_method_validation/m3_formal_index.json` 中，单集群种子 2 缺 `queue_only`、`observed_eft`、`full_no_session`、`full_no_link` 四个变体；三集群只有 `static` 和 `full`。
+**现状**（以合并后的 `main` 为准）：`experiments/v3_method_validation/m3_formal_index.json` 共 20 项。
+- 单集群种子 0、1：六个变体齐全（`static`、`full` 为复用，其余 4 个为新跑）。
+- 单集群种子 2：只有 `static`、`full`。`runs/m3_formal/single/seed2/` 下有 4 个变体的 `.log`，但没有 `.json` 和 `.failure.json`，日志停在 `arrivals=800` 和 `arrivals=200` 附近，没有异常栈，判断为进程被中断，不是方法失败。
+- 三集群种子 0–2：只有 `static`、`full`。
 
-做法：直接使用现有 `experiments/v3_method_validation/m3_run.py --phase formal`，补齐这 4 个变体在单集群种子 2、以及三集群种子 0–2 上的窗口（共 4 + 12 = 16 个）。不改 `m3_state.py`。然后运行 `--phase report`，生成 `m3_formal_report.md`。
+**协议**（全部沿用现有实现，不改任何参数）：
+- 入口：`experiments/v3_method_validation/m3_run.py`，变体定义在同目录 `m3_state.py` 的 `VARIANTS`，**不修改这两个文件**。
+- 布局：冻结 V3 布局（`rcaps.v3_method.layout`），即 `rcaps/v3_layouts/single/` 与 `rcaps/v3_layouts/multi/`。
+- 负载：单集群 700、三集群 320 offered token/s（`m3_run.py` 中的 `LOADS`）。
+- 窗口：1800 秒、零预热、不排空；种子 0、1、2；`compact=True`、`record_query_samples=True`。
+- 每个变体只改变一项动态状态：
 
-**验收**：报告中两种拓扑、三个种子、六个变体（含 static 与 full）齐全；每一项状态的贡献按"full 减去去掉该项"的配对差值报告。
+| 变体 | 含义 |
+| --- | --- |
+| `static` | 静态 DAG，不用实时状态（复用 `v3_core_ablations` 的 B 格） |
+| `queue_only` | 只计 GPU 当前执行与排队工作；不计链路等待与 KV 会话 |
+| `observed_eft` | 再加入链路等待；不计 KV 会话 |
+| `full_no_session` | 完整状态，但去掉 KV 会话定价 |
+| `full_no_link` | 完整状态，但去掉动态链路等待 |
+| `full` | 冻结 V3 的完整 M3（复用主对照窗口） |
+
+**16 个待跑窗口**：
+
+| # | 拓扑 | 种子 | 变体 | 输出路径（相对 `experiments/v3_method_validation/`） |
+| ---: | --- | ---: | --- | --- |
+| 1–4 | single | 2 | queue_only、observed_eft、full_no_session、full_no_link | `runs/m3_formal/single/seed2/<变体>.json` |
+| 5–8 | multi | 0 | 同上四个 | `runs/m3_formal/multi/seed0/<变体>.json` |
+| 9–12 | multi | 1 | 同上四个 | `runs/m3_formal/multi/seed1/<变体>.json` |
+| 13–16 | multi | 2 | 同上四个 | `runs/m3_formal/multi/seed2/<变体>.json` |
+
+**执行步骤**：
+1. 把 `runs/m3_formal/single/seed2/` 下 4 个残留的 `.log` 移到 `runs/m3_formal/single/seed2/interrupted/`，保留不删，并在 `RESULTS` 中注明。
+2. 冒烟：`python -m experiments.v3_method_validation.m3_run --phase smoke --workers 4`（种子 100、60 秒），确认两种拓扑的 4 个变体都能运行。
+3. 正式：`python -m experiments.v3_method_validation.m3_run --phase formal --workers 4`。该命令会复用 `static`、`full`，跳过已存在且身份一致的 8 个单集群窗口，只运行上表 16 个。
+4. 报告：`python -m experiments.v3_method_validation.m3_run --phase report`，生成 `m3_formal_report.md` 与 `m3_formal_analysis.json`。
+
+**验收**：
+1. `m3_formal_index.json` 共 36 项（2 拓扑 × 3 种子 × 6 变体），状态均为 `passed` 或 `reused`；若有 `failed`，保留 `.failure.json`，在报告中列出，不重跑凑数。
+2. 同一拓扑、同一种子下 6 个变体的 `trace_sha256` 相同（`report` 中的配对检查会自动校验，报错即不通过）。
+3. 新跑窗口的 `adapter_sha256` 与单集群种子 0、1 已有窗口一致，证明 `m3_state.py` 没有被改动。
+4. 在 `m3_formal_report.md` 末尾追加一张表，列出每一项状态的贡献，按三种子均值与逐种子差值报告：
+   - KV 会话定价的贡献 = `full` − `full_no_session`
+   - 动态链路等待的贡献 = `full` − `full_no_link`
+   - 链路等待在只看队列基础上的贡献 = `observed_eft` − `queue_only`
+   - 实时状态整体的贡献 = `full` − `static`
+
+   指标为吞吐、P95 TTFT、P95 TPOT、完成率、末端积压，以及两变体共同完成请求上的 P95 TTFT/TPOT。只陈述方向与数值，不写成显著性结论。
 
 ---
 
