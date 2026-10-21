@@ -37,7 +37,9 @@ def factory_for(cell: str):
             "lifetime": cohort.LifetimeCohortScheduler}[cell]
 
 
-def run_one(case: str, cell: str, seed: int, duration: int, output: Path) -> str:
+def run_one(case: str, cell: str, seed: int, duration: int, output: Path,
+            builder=None, here: Path = HERE) -> str:
+    """Run one window; ``builder(case, cell)`` returns the scheduler class."""
     if output.exists():
         return rel(output)
     import contextlib
@@ -47,7 +49,7 @@ def run_one(case: str, cell: str, seed: int, duration: int, output: Path) -> str
 
     physical, topology = physical_input(case)
     deployment = ROOT / "rcaps/v3_layouts" / topology
-    base = factory_for(cell)
+    base = (builder or (lambda _case, name: factory_for(name)))(case, cell)
     holder = {}
     stats = defaultdict(lambda: [0, 0, 0])  # decode executions, decode requests, single
 
@@ -90,7 +92,7 @@ def run_one(case: str, cell: str, seed: int, duration: int, output: Path) -> str
     row.update({"case": case, "cell": cell, "seed": seed, "duration_s": duration,
                 "cohort_tokens": getattr(holder["scheduler"], "cohort_tokens", None),
                 "pythonhashseed": os.environ.get("PYTHONHASHSEED"),
-                "scheduler_sha256": digest(HERE / "scheduler.py"),
+                "scheduler_sha256": digest(here / "scheduler.py"),
                 "solution_sha256": digest(deployment / "solution.ini"),
                 "sim_cluster_sha256": digest(deployment / "simulator_cluster.ini"),
                 "physical_sha256": digest(physical),
