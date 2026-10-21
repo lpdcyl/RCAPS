@@ -1,0 +1,214 @@
+{
+  "algorithm": "bounded two-boundary shared-replicated search",
+  "state": {
+    "segments": [
+      {
+        "start": 0,
+        "end": 48,
+        "replicas": [
+          [
+            8,
+            21,
+            35,
+            40
+          ]
+        ]
+      },
+      {
+        "start": 48,
+        "end": 80,
+        "replicas": [
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            27
+          ],
+          [
+            20,
+            31
+          ],
+          [
+            32,
+            33
+          ]
+        ]
+      }
+    ],
+    "lengths": {
+      "8": 12,
+      "21": 12,
+      "35": 12,
+      "40": 12,
+      "1": 14,
+      "4": 18,
+      "5": 14,
+      "27": 18,
+      "20": 14,
+      "31": 18,
+      "32": 14,
+      "33": 18
+    }
+  },
+  "intervals": {
+    "8": [
+      0,
+      12
+    ],
+    "21": [
+      12,
+      24
+    ],
+    "35": [
+      24,
+      36
+    ],
+    "40": [
+      36,
+      48
+    ],
+    "1": [
+      48,
+      62
+    ],
+    "4": [
+      62,
+      80
+    ],
+    "5": [
+      48,
+      62
+    ],
+    "27": [
+      62,
+      80
+    ],
+    "20": [
+      48,
+      62
+    ],
+    "31": [
+      62,
+      80
+    ],
+    "32": [
+      48,
+      62
+    ],
+    "33": [
+      62,
+      80
+    ]
+  },
+  "widths": [
+    1,
+    4
+  ],
+  "layer_copies": 176,
+  "active_gpus": 12,
+  "idle_gpus": 30,
+  "compatibility_edges": 28,
+  "compatible_paths": 16,
+  "solution": "/home/user/RCAPS/experiments/v3_cluster42/layout/solution.ini",
+  "simulator_cluster": "/home/user/RCAPS/experiments/v3_cluster42/layout/simulator_cluster.ini",
+  "solution_sha256": "7fa243933f6c137f37bcd9c06c3b9565182c3654477a092bd500277bac09113d",
+  "sim_cluster_sha256": "d14c42c9a3b87dd23539cd83c1974702ac0aaef7222c66063a07b0942f0bc681",
+  "metrics": {
+    "ttft_s": 1.329318,
+    "tpot_s": 0.16749831799999998,
+    "bottleneck_s": 0.2304,
+    "bottleneck_resource": "gpu:8"
+  },
+  "score": 0.8879310344827587,
+  "reference": {
+    "ttft_s": 1.329318,
+    "tpot_s": 0.16749831799999998,
+    "bottleneck_s": 0.41759999999999997,
+    "bottleneck_resource": "gpu:4"
+  },
+  "initialization": {
+    "failure_counts": {},
+    "feasible_families": 18,
+    "initial_candidates": 144
+  },
+  "common_evaluations": 457,
+  "additional_evaluations": 399,
+  "candidate_evaluations": 856,
+  "trace": [
+    {
+      "start": 1,
+      "step": 1,
+      "move": "add20",
+      "score": 0.9243054709256927
+    },
+    {
+      "start": 1,
+      "step": 1,
+      "move": "boundary1-1",
+      "score": 0.8970081800735756
+    },
+    {
+      "start": 2,
+      "step": 1,
+      "move": "boundary1+1",
+      "score": 0.9155972830455998
+    }
+  ],
+  "extension_s": 86.934197134,
+  "version": "RCAPS V3",
+  "candidate_variant": "multi_any",
+  "case": "cluster42",
+  "physical": "artifact_evaluation/high_heterogeneity/config/cluster42.ini",
+  "physical_sha256": "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6",
+  "template": "artifact_evaluation/high_heterogeneity/layout_llama70b/ilp/simulator_cluster.ini",
+  "template_sha256": "540a0bcbd60b4ea172b92d4fa1c8a1696e9339c8b245c8110f1327ba5784177e",
+  "reference_state": {
+    "segments": [
+      {
+        "start": 0,
+        "end": 48,
+        "replicas": [
+          [
+            8,
+            21,
+            35,
+            40
+          ]
+        ]
+      },
+      {
+        "start": 48,
+        "end": 80,
+        "replicas": [
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            27
+          ]
+        ]
+      }
+    ],
+    "lengths": {
+      "8": 12,
+      "21": 12,
+      "35": 12,
+      "40": 12,
+      "1": 14,
+      "4": 18,
+      "5": 14,
+      "27": 18
+    }
+  },
+  "reference_metrics": {
+    "ttft_s": 1.329318,
+    "tpot_s": 0.16749831799999998,
+    "bottleneck_s": 0.41759999999999997,
+    "bottleneck_resource": "gpu:4"
+  },
+  "planning_wall_s": 91.175535172
+}

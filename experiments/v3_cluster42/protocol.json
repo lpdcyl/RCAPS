@@ -1,0 +1,21 @@
+{
+  "experiment": "v3_cluster42",
+  "cluster": "Helix 42-node high-heterogeneity cluster (A100 x4, V100 x6, L4 x8, L4x2 x4, T4 x10, T4x2 x6, T4x4 x4), all links 1000 Mbps; artifact_evaluation/high_heterogeneity/config/cluster42.ini",
+  "v3_layout": "experiments/v3_cluster42/layout, planned by plan.py with the frozen V3 M2 search (multi_any) in 91 s; result 1 -> 4 (shared layers 0-47, four replicas of 48-79). No frozen seed or reference existed for this cluster: the reference is the cheapest legal single-boundary initializer from the frozen initial_states.",
+  "helix": "Helix artifact ILP layout (layout_llama70b/ilp) with Helix MaxFlow online scheduling, as in fixed_window.run method 'helix'. gurobipy 13.0.3 (pip, restricted license) is needed only at import; the existing layout is loaded, not re-solved.",
+  "loads": "2150 offered token/s (Helix artifact MaxFlow load) and 1450 (Helix artifact Swarm load)",
+  "formal": {
+    "seeds": [0, 1, 2], "duration_s": 1800, "warmup_s": 0, "tail_drain": false, "pythonhashseed": "0",
+    "cells": {"2150": ["helix", "v3", "gated", "v3_off", "gated_off"],
+              "1450": ["helix", "v3", "gated"]}
+  },
+  "smoke": "seed 100, 60 s, runner check only; not used for any decision",
+  "decision": {
+    "Q1_v3_vs_helix": "At each load, V3 beats Helix if its throughput is higher and its P95 TPOT lower on all three seeds.",
+    "Q2_latency": "At each load, gated improves latency over full-DAG V3 if P95 TPOT is lower on all three seeds and mean relative throughput >= -0.5% (flat-pool rule of v3_gated_generalization).",
+    "Q2_efficiency": "At each load, gated is more efficient if GPU-seconds per output token is at least 20% lower than full-DAG V3 on all three seeds.",
+    "Q3_counterfactual": "At 2150 with the one-request decode doubling off, the efficiency claim stands if gated_off GPU-seconds per output token is at least 20% lower than v3_off on all three seeds; latency under the counterfactual is reported, not judged.",
+    "reported_not_decisive": "P95 TTFT, completion, backlog, common-completed P95, decode batch statistics, paths used",
+    "failures": "Failed windows are kept as .failure.json, count as not passing for the questions that need them, and are not rerun to fill the table."
+  }
+}
