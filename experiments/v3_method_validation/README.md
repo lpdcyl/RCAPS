@@ -51,7 +51,9 @@ python -m experiments.v3_method_validation.m2_search_efficiency
 ## M3 实时状态
 
 所有方法固定 V3 布局和完整 M1 执行 DAG。`queue_only` 只计当前 GPU 工作；
-`observed_eft` 再计链路等待；`full_no_session` 加入已承诺路径的后续工作；
+`observed_eft` 再计链路等待；`full_no_session` 在当前实现下与
+`observed_eft` 等价，因为冻结基类已关闭已承诺路径工作量，且两者均关闭
+KV 会话定价；
 `full_no_link` 保留其余完整状态但关闭动态链路等待。完整 M3 为冻结实现。
 基础计算、传输、Decode 固定路径与传输合并在各组相同。静态 DAG 和完整 M3
 正式窗口经协议核验后复用。
@@ -60,7 +62,15 @@ python -m experiments.v3_method_validation.m2_search_efficiency
 python -m experiments.v3_method_validation.m3_run --phase smoke --workers 4
 python -m experiments.v3_method_validation.m3_run --phase formal --workers 4
 python -m experiments.v3_method_validation.m3_run --phase report
+python -m experiments.v3_method_validation.m3_contributions
 ```
 
 正式表包括逐种子吞吐、P95 TTFT／TPOT、完成率、积压和共同完成请求；
-短窗口记录选路耗时。三个种子只描述波动，不用于统计显著性声明。
+短窗口记录选路耗时。`m3_contributions` 不改 M3 入口或变体定义，先核验
+36 个窗口及配对轨迹，再把四项状态贡献和三种子均值 ± 样本标准差追加到
+`m3_formal_report.md`，同时输出 `m3_formal_contributions.json`。三个种子
+只描述波动，不用于统计显著性声明。
+
+T3 的额外复跑曾出现 KV Cache 异常和进程池中断；首轮完整结果及隔离诊断
+的可比性、换行符哈希等价关系与尚未解决的重复性问题记录在
+`T3_DETERMINISM_AUDIT_CN.md`。目前应暂停机制结论，不把额外失败折算为零。
