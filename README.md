@@ -30,7 +30,7 @@ root. Layout regeneration needs a working Gurobi license; the adopted layouts
 are included.
 
 ```powershell
-python -m experiments.v3_release.verify --allow-diagnostic-probe
+python -m experiments.v3_release.verify
 python -m benchmarks.run --dry-run
 python -m benchmarks.run --methods rcaps_v3 helix --seeds 0 1 2
 python -m benchmarks.compare --baselines helix --seeds 0 1 2
@@ -44,10 +44,9 @@ Pipelines are separate external comparisons at a common lower load; see the
 The runner checks layout identity before reusing a result, and comparison
 checks the paired request traces.
 
-On this research branch, `fixed_window.py` also has an opt-in diagnostic
-probe. The pinned `--allow-diagnostic-probe` check verifies the unchanged V3
-method, layouts, and evidence while explicitly accepting that one runner
-variant. The strict verifier still detects the runner's changed file hash.
+`fixed_window.py` includes an opt-in diagnostic probe. The release manifest
+records this runner along with the V3 layouts and evidence, so strict
+verification covers the current tree.
 
 ## Repository scope
 

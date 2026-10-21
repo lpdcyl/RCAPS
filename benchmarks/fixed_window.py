@@ -64,7 +64,8 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
         trace_override: list[tuple[float, int, int]] | None = None,
         allow_force_set: bool = False,
         include_distributions: bool = False,
-        phase_link_probe=None) -> dict:
+        phase_link_probe=None,
+        model_name: ModelName = ModelName.LLaMa70B) -> dict:
     cluster, profile, helix_solution, helix_sim_cluster = scenario(name)
     cluster = physical_cluster or cluster
     profile = machine_profile or profile
@@ -74,12 +75,12 @@ def run(name: str, method: str, offered: float, duration: int, warmup: int,
     layout = None
     if method in ("helix", "swarm", "separate"):
         from simulator.initial_layout.layout_synthesizer import LayoutMethod, LayoutSynthesizer
-        layout = LayoutSynthesizer(str(cluster), str(profile), ModelName.LLaMa70B,
+        layout = LayoutSynthesizer(str(cluster), str(profile), model_name,
                                    str(ROOT / "benchmarks/runs"),
                                    LayoutMethod.LoadExisting, machines)
         layout.synthesize({"solution_file_name": str(solution),
                            "simulator_cluster_file_name": str(sim_cluster)})
-    simulator = ClusterSimulator(model_name=ModelName.LLaMa70B,
+    simulator = ClusterSimulator(model_name=model_name,
                                  machine_num_dict=machines)
     simulator.model_manager.allow_force_set = allow_force_set
     simulator.logger = _NullLogger()

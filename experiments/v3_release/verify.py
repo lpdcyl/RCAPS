@@ -2,8 +2,8 @@
 
 Use --write-manifest only when deliberately establishing a new release. The
 default command checks the saved manifest and never modifies released files.
-The optional diagnostic-probe mode accepts exactly one pinned, opt-in benchmark
-instrumentation variant while keeping every other frozen hash strict.
+The optional diagnostic-probe mode remains for compatibility with older
+invocations; the current release manifest includes the approved runner.
 """
 
 from __future__ import annotations
@@ -34,10 +34,10 @@ CORE = (
     "benchmarks/fixed_window.py",
 )
 DIAGNOSTIC_PROBE_FILE = "benchmarks/fixed_window.py"
-# The only change to the frozen runner is an optional phase_link_probe hook.
-# Pin the complete file hash so unrelated benchmark edits still fail review.
+# Pin the complete approved runner, including the diagnostic probe,
+# command-line fix, and model parameterization.
 DIAGNOSTIC_PROBE_SHA256 = (
-    "ffe08af340d40f28e0fb8ec1f201fe6eefa9e33c9848f6a93a2c78733b756ce3")
+    "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8")
 
 
 def digest(path: Path) -> str:

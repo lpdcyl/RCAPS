@@ -30,7 +30,8 @@ class TopologyModel:
     """Deterministic hardware attributes; no request or event prediction."""
 
     def __init__(self, cluster_file: Path, *, prompt_tokens: int = 1000,
-                 decode_batch: int = 8):
+                 decode_batch: int = 8,
+                 model_name: ModelName = ModelName.LLaMa70B):
         self.cluster_file = Path(cluster_file)
         self.config = ConfigParser()
         if not self.config.read(self.cluster_file):
@@ -39,7 +40,7 @@ class TopologyModel:
         self.types = {node: self.config[f"ComputeNode-{node}"]["type"]
                       for node in range(count)}
         self.machine_counts = dict(Counter(self.types.values()))
-        self.manager = ModelManager(ModelName.LLaMa70B, self.machine_counts)
+        self.manager = ModelManager(model_name, self.machine_counts)
         self.layers = self.manager.get_num_layers()
         self.capacity = {node: self.manager.get_max_num_layers(kind)
                          for node, kind in self.types.items()}
