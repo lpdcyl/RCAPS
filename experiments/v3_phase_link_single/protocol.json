@@ -1,0 +1,32 @@
+{
+  "task": "T1",
+  "purpose": "诊断单集群全部计算节点间链路的 Prefill/Decode 阶段间干扰",
+  "plan_commit": "35e874f",
+  "scenario": "single",
+  "layouts": {
+    "k1": "experiments/v3_m2_branch_parallelism/layouts/C1_single/k1",
+    "k3": "experiments/v3_m2_branch_parallelism/layouts/C1_single/k3",
+    "v3": "rcaps/v3_layouts/single"
+  },
+  "loads_offered_token_per_s": [350, 600, 700],
+  "formal_seeds": [0, 1, 2],
+  "window": {"duration_s": 1800, "warmup_s": 0, "drain_at_end": false},
+  "environment": {"PYTHONHASHSEED": "0", "MPLBACKEND": "Agg"},
+  "precheck": "同一 60 秒窗口连续运行两次，排除时间类字段后逐项相同才可开始正式窗口",
+  "schedule": [
+    {"treatment": "baseline", "layouts": ["k1", "k3", "v3"], "loads": [350, 600, 700], "seeds": [0, 1, 2], "windows": 27},
+    {"treatment": "prompt_zero", "layouts": ["k1", "k3", "v3"], "loads": [350, 600, 700], "seeds": [0, 1, 2], "windows": 27},
+    {"treatment": "decode_zero", "layouts": ["k1", "k3", "v3"], "loads": "decision_load", "seeds": [0, 1, 2], "windows": 9},
+    {"treatment": "ideal_bandwidth", "layouts": ["k1", "k3", "v3"], "loads": "decision_load", "seeds": [0, 1, 2], "windows": 9}
+  ],
+  "decision_load_rule": "先完成全部 27 个 baseline。判定负载为 600；若 k1/600 baseline 任一种子失败，则改取 350，并在报告中注明。",
+  "primary_statistic": "判定负载下 k1 的 prompt_zero 相对 baseline 的 P95 TPOT 下降比例，取种子 0、1、2 的均值",
+  "decision_rules": [
+    {"condition": "mean_relative_reduction < 0.10", "conclusion": "阶段间干扰主要出现在跨集群带宽受限场景；科学问题加该限定"},
+    {"condition": "mean_relative_reduction >= 0.10", "conclusion": "单集群也存在同类干扰；按实测比例报告，与三集群的 39.1% 并列"}
+  ],
+  "additional_statistic": "冻结 V3 布局的同一比例仅作附加报告，不参与判定",
+  "link_population": "全部计算节点间链路，不设带宽阈值",
+  "failure_policy": "KV 断言和其他失败保留 .failure.json 与完整日志，不折算为零，不重跑；TypeError/SystemError 立即停止正式任务队列",
+  "reporting": "吞吐、P95 TTFT、P95 TPOT、完成率、末端积压；双方共同完成请求的 P95；逐种子、三种子均值±样本标准差、逐种子配对差值；不做显著性检验"
+}
