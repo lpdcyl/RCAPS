@@ -61,7 +61,11 @@ def physical_input(case: str) -> tuple[Path, str]:
     not used here (its recorded hash is of a CRLF checkout)."""
     item = read(ROOT / "rcaps/v3/planning_inputs.json")[case]
     physical = ROOT / item["physical"]
-    if digest(physical) != item["physical_sha256"]:
+    data = physical.read_bytes()
+    # Some recorded hashes are of a CRLF checkout; compare newline-normalized.
+    lf = data.replace(b"\r\n", b"\n")
+    if item["physical_sha256"] not in (hashlib.sha256(data).hexdigest(),
+                                       hashlib.sha256(lf.replace(b"\n", b"\r\n")).hexdigest()):
         raise ValueError(f"Physical resource changed for {case}")
     return physical, item["scenario"]
 

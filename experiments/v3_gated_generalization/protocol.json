@@ -1,0 +1,25 @@
+{
+  "experiment": "v3_gated_generalization",
+  "question": "Does slow-link-gated path admission (experiments/v3_gated_pathspace, adopted under protocol v2 on C1) generalize to other GPU pools and to other cross-cluster bandwidths?",
+  "candidate": "SlowLinkGatedScheduler, experiments/v3_gated_pathspace/scheduler.py unchanged (sha256 recorded per window); slow-link threshold 50 Mbps unchanged",
+  "control": "frozen V3 M3 (GraphModeledQueueAwareDagScheduler with passive route recording) rerun in this environment on the same trace; released windows are not used because full-DAG V3 diverges across Python 3.10/3.13 on flat pools",
+  "layouts": "frozen rcaps/v3_layouts/{C2,C3,multi}; no re-planning, so the test isolates the M3 admission rule",
+  "conditions": {
+    "C2": {"load": 160.0, "network": "flat 1000 Mbps; no slow link, admitted edges equal canonical edges", "class": "flat"},
+    "C3": {"load": 400.0, "network": "flat 1000 Mbps; no slow link, admitted edges equal canonical edges", "class": "flat"},
+    "C1_multi_bw0.5": {"load": 320.0, "network": "every link <= 50 Mbps (31 cross-cluster links incl. source/sink) x0.5", "class": "slow"},
+    "C1_multi_bw2": {"load": 320.0, "network": "every link <= 50 Mbps x2 (still below the threshold, same 4 detours)", "class": "slow"}
+  },
+  "formal": {"seeds": [0, 1, 2], "duration_s": 1800, "warmup_s": 0, "tail_drain": false, "pythonhashseed": "0"},
+  "smoke": "seed 100, 60 s, runner check only; not used for any decision",
+  "decision": {
+    "relative_change": "per seed (gated - v3) / v3, then averaged over the three seeds",
+    "flat": "P95 TPOT below frozen V3 on all three seeds, and mean relative throughput >= -0.5% (same as NI2 of experiments/v3_gated_pathspace/protocol.json)",
+    "slow": "mean relative P95 TPOT <= +2% and mean relative throughput >= -0.5% (same as NI1)",
+    "per_condition": "Each condition is judged and reported separately.",
+    "generalizes_if": "all four conditions pass; otherwise the claim is limited to the passing conditions and the failures are reported",
+    "reported_not_decisive": "P95 TTFT, completion fraction, end backlog, common-completed P95, decode batch statistics, paths used",
+    "failures": "A failed window is kept as .failure.json, counts as not passing for its condition, and is not rerun to fill the table.",
+    "no_tuning": "Scheduler, threshold, loads and margins are fixed before formal windows."
+  }
+}
