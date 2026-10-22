@@ -34,10 +34,12 @@ def run_helix(seed: int, duration: int, output: Path):
     return result
 
 
-def run_one(name: str, seed: int, duration: int, output: Path):
+def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full"):
     from benchmarks.fixed_window import run
-    from experiments.v3_cluster42.kv_admission import (KVAdmittedV3,
+    from experiments.v3_cluster42.kv_admission import (KVAdmittedV3, KVAdmittedGated,
                                                        install_completion_wakeup)
+    from experiments.v3_pathspace_ablation.run import canonical_edges
+    from rcaps.v3.placement import validate
     from rcaps.v3.topology import TopologyModel
 
     if output.exists():
@@ -45,9 +47,18 @@ def run_one(name: str, seed: int, duration: int, output: Path):
     layout = ROOT / name
     counters = {}
     started = time.perf_counter()
+    state = json.loads((layout / "placement.json").read_text())["state"]
+    allowed = None
+    if mode == "gated":
+        model = TopologyModel(PHYSICAL)
+        allowed = canonical_edges(state, validate(model, state)["dag"])
+        allowed = frozenset((a if isinstance(a, str) else a + 2,
+                             b if isinstance(b, str) else b + 2)
+                            for a, b in allowed)
 
     def factory(simulator):
-        scheduler = KVAdmittedV3(simulator)
+        scheduler = (KVAdmittedGated(simulator, allowed_edges=allowed)
+                     if mode == "gated" else KVAdmittedV3(simulator))
         install_completion_wakeup(simulator, scheduler)
         counters["scheduler"] = scheduler
         return scheduler
@@ -70,7 +81,8 @@ def run_one(name: str, seed: int, duration: int, output: Path):
                 json.dumps(failure, indent=2) + "\n", encoding="utf-8")
             raise
     scheduler = counters["scheduler"]
-    result.update({"candidate": name, "kv_admission": scheduler.kv_admission,
+    result.update({"candidate": name, "mode": mode,
+                   "kv_admission": scheduler.kv_admission,
                    "wall_time_s": time.perf_counter() - started,
                    "peak_reserved_kv_units": scheduler.peak_reserved,
                    "active_gpus": json.loads((layout / "placement.json").read_text())["active_gpus"],
@@ -85,6 +97,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase", choices=("smoke", "formal"), required=True)
     parser.add_argument("--candidate")
+    parser.add_argument("--mode", choices=("full", "gated"), default="full")
     parser.add_argument("--seed", type=int)
     args = parser.parse_args()
     if os.environ.get("PYTHONHASHSEED") != "0":
@@ -99,10 +112,11 @@ def main():
         seeds = [args.seed]
     for name in names:
         for seed in seeds:
-            output = ROOT / "runs" / args.phase / f"{name}_seed{seed}.json"
+            suffix = "_gated" if args.mode == "gated" and name != "helix" else ""
+            output = ROOT / "runs" / args.phase / f"{name}{suffix}_seed{seed}.json"
             try:
                 row = (run_helix(seed, duration, output) if name == "helix"
-                       else run_one(name, seed, duration, output))
+                       else run_one(name, seed, duration, output, args.mode))
                 print(json.dumps({k: row.get(k) for k in ("candidate", "seed",
                     "active_gpus", "output_throughput_tokens_per_s",
                     "ttft_p95_s", "tpot_p95_s", "backlog_at_window_end",
