@@ -1,0 +1,23 @@
+{
+  "experiment": "v3_dynamic_pathspace",
+  "status": "development_protocol_v2_after_non-decisive_60s_smoke",
+  "claim": "Work 3 controls the admissible path set independently of frozen M3 route ranking; any benefit must be explained by the batch-concentration versus congestion-bypass tradeoff.",
+  "candidate": {
+    "base": "canonical edges plus the previously frozen static slow-link detours",
+    "dynamic_escape": "For each other legal cross-replica compute edge, compare observed GPU-release plus link-release and prompt-transfer pressure against the least-pressure canonical successor of the same tail. Admit only if relief exceeds the positive difference in marginal decode-batch GPU work for a 154-token median output.",
+    "batch_penalty": "154 is the preexisting pooled seed-100 trace median output length in v3_cohort_routing/protocol_dev.json. For candidate and reference successor, estimate one decode round with currently active sessions versus one added session, using profiled batch times and the simulator's batch-1 doubling. Multiply max(0, marginal candidate work minus marginal reference work) by 154. No actual future output length is read.",
+    "ranking": "The frozen V3 M3 queue/link/KV cost and route tie order are unchanged after edge admission.",
+    "kv_guard": "All comparison cells use the same executed-layer full-lifetime KV admission from v3_cluster42/kv_admission.py. Capacity waiting is reported, never treated as an unobserved gain."
+  },
+  "cells": ["full", "canonical", "static", "dynamic", "dynamic_no_batch"],
+  "conditions": {
+    "C1_single": {"offered_tokens_per_s": 700.0, "role": "compute/batch stress"},
+    "C1_multi": {"offered_tokens_per_s": 320.0, "role": "network stress"},
+    "C1_single_low": {"offered_tokens_per_s": 350.0, "role": "negative low-load control"}
+  },
+  "development": {"seed": 100, "duration_s": 300, "warmup_s": 0, "tail_drain": false, "pythonhashseed": "0"},
+  "go_rule": "Proceed to formal only if dynamic selects a non-static detour in at least one high-load condition, and vs static on each high-load condition throughput changes by at least -0.5% and P95 TPOT changes by at most +2%, with strictly lower P95 TPOT in at least one. Keep all failures and negative results.",
+  "prior_smoke": "Version 1 used a standalone batch-1 versus typical-batch penalty times 154. In both 60-second high-load windows it admitted zero additional edges, so no dynamic policy was actually exercised. Those raw windows remain under runs/smoke; version 2 uses relative marginal batch cost and will be screened with fresh 300-second development windows. No formal window has been run.",
+  "mechanism_observables": ["decode mean batch and single-request share", "GPU busy seconds per output token", "per-link service and dispatch waiting", "static and dynamic detour selections", "KV peak reservations, admission waiting and capacity failures", "throughput, P95 TTFT/TPOT, completion and backlog"],
+  "boundaries": ["No M2 replanning", "M1 has no standalone contribution claim", "42-node validation is a paired scale check only after candidate freeze", "No claim from a development window or a three-seed mean alone"]
+}
