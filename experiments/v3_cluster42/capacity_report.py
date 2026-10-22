@@ -77,6 +77,14 @@ def main():
                         record["baseline_metrics"] = {key: baseline_result.get(key)
                             for key in record["metrics"]}
                         record.update(pair(result, baseline_result, devices))
+                        record["checks"].update({
+                            "same_candidate": result.get("candidate") == name,
+                            "same_layout": result.get("layout_sha256") == digest(root / name / "placement.json"),
+                            "same_node_count": result.get("active_gpus") == len(types),
+                            "same_admission": result.get("kv_reservation_mode", "resident_layers") ==
+                                              layout.get("kv_reservation_mode", "resident_layers"),
+                            "full_dag": result.get("mode") == "full"})
+                        record["pass"] = all(record["checks"].values())
                         record["status"] = "pass" if record["pass"] else "not_pass"
                 records.append(record)
     formal = [row for row in records if row["phase"] == "formal"]
