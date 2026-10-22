@@ -34,7 +34,7 @@ def run_helix(seed: int, duration: int, output: Path):
     return result
 
 
-def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full"):
+def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full", root: Path = ROOT):
     from benchmarks.fixed_window import run
     from experiments.v3_cluster42.kv_admission import (KVAdmittedV3, KVAdmittedGated,
                                                        install_completion_wakeup)
@@ -44,7 +44,8 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
 
     if output.exists():
         return json.loads(output.read_text(encoding="utf-8"))
-    layout = ROOT / name
+    layout = root / name
+    source_sha = digest(HERE / "kv_admission.py")
     counters = {}
     started = time.perf_counter()
     state = json.loads((layout / "placement.json").read_text())["state"]
@@ -86,7 +87,7 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
                    "wall_time_s": time.perf_counter() - started,
                    "peak_reserved_kv_units": scheduler.peak_reserved,
                    "active_gpus": json.loads((layout / "placement.json").read_text())["active_gpus"],
-                   "scheduler_sha256": digest(HERE / "kv_admission.py"),
+                   "scheduler_sha256": source_sha,
                    "layout_sha256": digest(layout / "placement.json"),
                    "pythonhashseed": os.environ.get("PYTHONHASHSEED")})
     output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
@@ -95,34 +96,45 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--phase", choices=("smoke", "formal"), required=True)
+    parser.add_argument("--phase", choices=("smoke", "screening", "formal"), required=True)
+    parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--duration", type=int, help="Screening window only")
     parser.add_argument("--candidate")
     parser.add_argument("--mode", choices=("full", "gated"), default="full")
     parser.add_argument("--seed", type=int)
     args = parser.parse_args()
     if os.environ.get("PYTHONHASHSEED") != "0":
         raise SystemExit("PYTHONHASHSEED=0 required")
-    names = [row["name"] for row in json.loads((ROOT / "shortlist.json").read_text())]
+    names = [row["name"] for row in json.loads((args.root / "shortlist.json").read_text())]
     if args.candidate:
         if args.candidate not in names and args.candidate != "helix":
             raise SystemExit(f"Unknown candidate: {args.candidate}")
         names = [args.candidate]
-    seeds, duration = (([100], 180) if args.phase == "smoke" else ([0, 1, 2], 1800))
+    seeds, duration = {"smoke": ([100], 180), "screening": ([101], 600),
+                       "formal": ([0, 1, 2], 1800)}[args.phase]
+    if args.duration is not None:
+        if args.phase != "screening" or args.duration <= 0:
+            raise SystemExit("--duration must be positive and is only allowed for screening")
+        duration = args.duration
     if args.seed is not None:
         seeds = [args.seed]
+    failures = 0
     for name in names:
         for seed in seeds:
             suffix = "_gated" if args.mode == "gated" and name != "helix" else ""
-            output = ROOT / "runs" / args.phase / f"{name}{suffix}_seed{seed}.json"
+            output = args.root / "runs" / args.phase / f"{name}{suffix}_seed{seed}.json"
             try:
                 row = (run_helix(seed, duration, output) if name == "helix"
-                       else run_one(name, seed, duration, output, args.mode))
+                       else run_one(name, seed, duration, output, args.mode, args.root))
                 print(json.dumps({k: row.get(k) for k in ("candidate", "seed",
                     "active_gpus", "output_throughput_tokens_per_s",
                     "ttft_p95_s", "tpot_p95_s", "backlog_at_window_end",
                     "trace_sha256", "kv_admission")}), flush=True)
             except Exception as error:
+                failures += 1
                 print(f"FAILED {name} seed={seed}: {error!r}", file=sys.stderr, flush=True)
+    if failures:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

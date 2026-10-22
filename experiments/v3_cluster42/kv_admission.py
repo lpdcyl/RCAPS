@@ -22,12 +22,15 @@ class _KVAdmission:
     def __init__(self, simulator, *args, **kwargs):
         super().__init__(simulator, *args, **kwargs)
         self.kv_admission = {"admitted": 0, "deferred_checks": 0,
+                             "cached_deferred_checks": 0,
                              "peak_waiting": 0, "minimum_headroom": None}
         self._routing_request = None
         self._reserved = {}
         self.peak_reserved = {}
         self._session_reservations = {}
         self._capacity_veto = False
+        self._reservation_version = 0
+        self._blocked_at = None
 
     def reap_finished(self):
         """Release reservations after the simulator has removed finished KV."""
@@ -41,6 +44,8 @@ class _KVAdmission:
                 assert self._reserved[node_uid] >= 0
             self.session_paths.pop(uid, None)
             released = True
+        if released:
+            self._reservation_version += 1
         return released
 
     def _allow_placement_edge(self, left_uid, right_uid):
@@ -58,6 +63,10 @@ class _KVAdmission:
 
     def _admit(self, request):
         self.reap_finished()
+        blocked_key = (request.request_uid, self._reservation_version)
+        if self._blocked_at == blocked_key:
+            self.kv_admission["cached_deferred_checks"] += 1
+            return False
         self._routing_request = request
         self._capacity_veto = False
         try:
@@ -66,6 +75,7 @@ class _KVAdmission:
             if not self._capacity_veto or "source-to-sink layer route" not in str(error):
                 raise
             self.kv_admission["deferred_checks"] += 1
+            self._blocked_at = blocked_key
             return False
         finally:
             self._routing_request = None
@@ -77,6 +87,7 @@ class _KVAdmission:
                        for uid in set(path)}
         assert request.base_query_uid not in self._session_reservations
         self._session_reservations[request.base_query_uid] = reservation
+        self._reservation_version += 1
         for uid, amount in reservation.items():
             self._reserved[uid] = self._reserved.get(uid, 0) + amount
             assert self._reserved[uid] <= self.simulator.compute_nodes[uid].kv_cache.max_capacity

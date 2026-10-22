@@ -1,0 +1,26 @@
+{
+  "study": "Concurrent-KV-capacity constrained sub-42-GPU placement",
+  "predecessor": "../kv_candidate/protocol.json; 22-GPU formal result failed all seeds",
+  "offered_tokens_per_s": 2150,
+  "physical_cluster": "artifact_evaluation/high_heterogeneity/config/cluster42.ini",
+  "placement": {
+    "minimum_kv_tokens_per_resident_layer": 400000,
+    "reason": "One-session feasibility did not provide enough concurrent KV capacity at high load",
+    "active_gpu_limit_exclusive": 42,
+    "generator": "memory_plan.memory_shortlist(min_kv_tokens=400000)",
+    "widths": [2, 3, 4],
+    "selection": "Static score shortlist; test w3 first, then w2 if w3 fails. Screening outcomes select the formal candidate; preserve all outcomes."
+  },
+  "admission": "FIFO source waiting; reserve prompt plus public maximum 1000 output tokens on all resident layers of visited GPUs; release on session completion; no future-output oracle, drops or preemption",
+  "smoke": {"seed": 100, "duration_s": 180, "warmup_s": 0},
+  "screening": {"seed": 101, "duration_s": 600, "warmup_s": 0},
+  "formal": {
+    "candidate": null,
+    "seeds": [0, 1, 2], "duration_s": 1800, "warmup_s": 0,
+    "tail_drain": false, "pythonhashseed": "0",
+    "baseline": "../runs/formal/load2150/helix_seed{seed}.json",
+    "pass": "Every paired seed must have identical trace_sha256, successful run, active GPUs <42, throughput >=Helix, P95 TTFT <=Helix and P95 TPOT <=Helix",
+    "report_also": ["completion_fraction", "first_tokens_in_window", "arrivals", "backlog_at_window_end", "kv_admission", "peak_reserved_kv_units"]
+  },
+  "optimization": "Failed-route checks are cached only while request and reservation-capacity version are unchanged; validate scheduling parity on the original smoke trace."
+}

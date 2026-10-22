@@ -65,12 +65,16 @@ def plan() -> dict:
     return save(model, template, state, DESTINATION, metadata)
 
 
-def memory_shortlist():
+def memory_shortlist(min_kv_tokens=3047, destination=None):
     """Shortlist diverse sub-42-GPU placements by capacity and path cost."""
     from rcaps.v3.placement import measure
     from rcaps.v3.search import assignments, build
 
     model = TopologyModel(PHYSICAL)
+    for node, maximum in model.capacity.items():
+        model.capacity[node] = max((layers for layers in range(1, maximum + 1)
+            if model.manager.get_kv_cache_capacity(model.types[node], layers) // layers
+            >= min_kv_tokens), default=0)
     ranked = []
     for boundary in (1, 4, 8, 12, 16, 20, 24, 32, 40, 48):
         for width in (2, 3, 4):
@@ -82,7 +86,7 @@ def memory_shortlist():
                 kv = {node: model.manager.get_kv_cache_capacity(
                     model.types[node], layers) // layers
                     for node, layers in state["lengths"].items()}
-                if min(kv.values()) < 3047:
+                if min(kv.values()) < min_kv_tokens:
                     continue
                 paths = [prefix + branch
                          for prefix in state["segments"][0]["replicas"]
@@ -101,16 +105,18 @@ def memory_shortlist():
     chosen = {}
     for row in ranked:
         chosen.setdefault(row[2], row)
-    destination = HERE / "kv_candidate"
+    destination = destination or HERE / "kv_candidate"
     records = []
     for width in (2, 3, 4):
         if width not in chosen:
             continue
         score, boundary, _, state, metrics = chosen[width]
-        name = f"w{width}_b{boundary}"
+        prefix = f"c{min_kv_tokens // 1000}k_" if min_kv_tokens > 3047 else ""
+        name = f"{prefix}w{width}_b{boundary}"
         save(model, BASE / "layout_llama70b/ilp/simulator_cluster.ini",
              state, destination / name,
              {"candidate": name, "selection_score": score,
+              "minimum_kv_tokens_per_resident_layer": min_kv_tokens,
               "capacity_profile": metrics})
         records.append({"name": name, "score": score, **metrics})
     destination.mkdir(parents=True, exist_ok=True)
@@ -120,7 +126,13 @@ def memory_shortlist():
 
 
 if __name__ == "__main__":
+    import argparse
+    from pathlib import Path
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--min-kv-tokens", type=int, default=3047)
+    parser.add_argument("--destination", type=Path)
+    args = parser.parse_args()
     print(json.dumps([{key: row[key] for key in
                       ("name", "active_gpus", "max_hops",
                        "min_session_slots", "score")}
-                      for row in memory_shortlist()], indent=2))
+                      for row in memory_shortlist(args.min_kv_tokens, args.destination)], indent=2))
