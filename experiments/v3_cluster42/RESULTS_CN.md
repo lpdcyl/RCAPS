@@ -17,16 +17,35 @@ V3（冻结 M2 搜索，`plan.py`）：层 0–47 × 1 副本；层 48–79 × 4
 | 1450 | 0 | v3 | 332.49 | 2.727 | 0.392 | 0.946 | 145 | 10.43 | 0.0209 | 16 |
 | 1450 | 0 | gated | 332.19 | 2.613 | 0.394 | 0.944 | 151 | 22.38 | 0.0119 | 4 |
 | 1450 | 1 | helix | 308.08 | 4.657 | 1.019 | 0.902 | 251 | — | 0.0709 | 150 |
+| 1450 | 1 | v3 | 321.60 | 2.616 | 0.377 | 0.952 | 124 | 9.75 | 0.0219 | 16 |
 | 1450 | 1 | gated | 321.54 | 2.559 | 0.380 | 0.951 | 127 | 20.96 | 0.0132 | 4 |
 | 1450 | 2 | helix | 304.80 | 4.827 | 1.025 | 0.899 | 265 | — | 0.0715 | 150 |
+| 1450 | 2 | v3 | 318.98 | 2.732 | 0.383 | 0.949 | 134 | 9.84 | 0.0218 | 16 |
 | 1450 | 2 | gated | 318.89 | 2.599 | 0.396 | 0.949 | 135 | 20.94 | 0.0134 | 4 |
 
 ## 配对相对变化（右 − 左）/ 左
 
 | 负载 | 对照 | 种子 | 吞吐 | P95 TTFT | P95 TPOT | GPU 秒/token | 完成率 Δ | 共同完成 TPOT |
 | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1450 | v3 vs helix | 0 | +5.38% | -42.94% | -61.45% | -69.62% | +0.0595 | -60.78% |
+| 1450 | v3 vs helix | 1 | +4.39% | -43.83% | -62.98% | -69.19% | +0.0495 | -62.55% |
+| 1450 | v3 vs helix | 2 | +4.65% | -43.40% | -62.66% | -69.44% | +0.0498 | -61.56% |
+| 1450 | v3 vs helix | 均值 ± SD | +4.81% ± 0.52% | -43.39% ± 0.44% | -62.36% ± 0.81% | -69.42% ± 0.22% | +0.0530 ± 0.0057 | -61.63% ± 0.89% |
+| 1450 | gated vs v3 | 0 | -0.09% | -4.16% | +0.63% | -43.02% | -0.0022 | +0.15% |
+| 1450 | gated vs v3 | 1 | -0.02% | -2.16% | +0.77% | -39.43% | -0.0012 | +0.83% |
+| 1450 | gated vs v3 | 2 | -0.03% | -4.87% | +3.38% | -38.74% | -0.0004 | +3.28% |
+| 1450 | gated vs v3 | 均值 ± SD | -0.05% ± 0.04% | -3.73% ± 1.41% | +1.59% ± 1.55% | -40.40% ± 2.30% | -0.0013 ± 0.0009 | +1.42% ± 1.64% |
 
 ## 预注册判定
 
+窗口状态：成功 12，失败 12，缺失 0，计划 24。
+- 负载 2150，helix vs v3：**不通过**（正式窗口失败）。
+- 负载 2150，v3 vs gated：**不通过**（正式窗口失败）。
+- 负载 2150，v3_off vs gated_off：**不通过**（正式窗口失败）。
+- Q1 负载 1450：V3 三种子吞吐均高于且 P95 TPOT 均低于 Helix → **是**
+- Q2 负载 1450 延迟：门控三种子 P95 TPOT 均低于完整 DAG 且吞吐 ≥ −0.5% → **不通过**（TPOT 均值 +1.59%）
+- Q2 负载 1450 效率：三种子 GPU 秒/token 均降 ≥ 20% → **通过**（均值 -40.40%）
 
-失败窗口（保留，不重跑；对应问题记为不通过）：experiments/v3_cluster42/runs/formal/load2150/v3_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_off_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_off_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_off_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_off_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_seed2.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_off_seed2.failure.json
+成功窗口包含不同 Python 环境：3.10.16、3.13.16。跨环境配对以同种子 trace_sha256 一致为前提；代码文件哈希受检出换行符影响。
+
+失败窗口（保留，不重跑；对应问题记为不通过）：experiments/v3_cluster42/runs/formal/load2150/v3_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_off_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_off_seed0.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_off_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_off_seed1.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_seed2.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_seed2.failure.json、experiments/v3_cluster42/runs/formal/load2150/v3_off_seed2.failure.json、experiments/v3_cluster42/runs/formal/load2150/gated_off_seed2.failure.json

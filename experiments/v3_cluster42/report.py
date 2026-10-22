@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from statistics import mean, stdev
 
 from experiments.v3_cluster42.run import HERE, PHYSICAL
@@ -26,7 +27,7 @@ def main() -> None:
     cells = protocol["formal"]["cells"]
     analysis = {"protocol_sha256": digest(HERE / "protocol.json"),
                 "physical_sha256": digest(PHYSICAL), "inputs": {}, "failures": [],
-                "comparisons": {}, "verdicts": {}}
+                "status": {}, "comparisons": {}, "verdicts": {}}
     rows = {}
     out = ["# 42 节点高异构集群：V3 核心实验", "",
            "协议见 `protocol.json`（先于正式窗口提交）。种子 0/1/2，1800 秒，零预热，不排空。"
@@ -44,7 +45,12 @@ def main() -> None:
         for seed in FORMAL_SEEDS:
             for cell in names:
                 path = HERE / "runs/formal" / f"load{float(load):g}" / f"{cell}_seed{seed}.json"
-                if path.with_suffix(".failure.json").exists():
+                failure = path.with_suffix(".failure.json")
+                if path.exists() and failure.exists():
+                    raise ValueError(f"Both result and failure exist: {path}")
+                state = "passed" if path.exists() else "failed" if failure.exists() else "missing"
+                analysis["status"][f"{load}/{cell}/seed{seed}"] = state
+                if failure.exists():
                     analysis["failures"].append(rel(path.with_suffix(".failure.json")))
                 if not path.exists():
                     continue
@@ -94,6 +100,21 @@ def main() -> None:
                    f"{col('gpu')} | {ms([p['completion'] for p in per], False)} | {col('common_tpot')} |")
 
     v, lines = analysis["verdicts"], []
+    def failed_or_missing(load: str, names: tuple[str, str], keys: tuple[str, ...]) -> bool:
+        states = [analysis["status"][f"{load}/{cell}/seed{seed}"]
+                  for seed in FORMAL_SEEDS for cell in names]
+        if "failed" in states:
+            for key in keys:
+                v[f"{key}/{load}"] = False
+            lines.append(f"- 负载 {load}，{' vs '.join(names)}：**不通过**（正式窗口失败）。")
+            return True
+        if "missing" in states:
+            for key in keys:
+                v[f"{key}/{load}"] = None
+            lines.append(f"- 负载 {load}，{' vs '.join(names)}：待补全。")
+            return True
+        return False
+
     for load in cells:
         c = analysis["comparisons"]
         hv = c.get(f"{load}/v3-helix")
@@ -101,6 +122,8 @@ def main() -> None:
             ok = all(p["throughput"] > 0 and p["tpot"] < 0 for p in hv)
             v[f"Q1/{load}"] = ok
             lines.append(f"- Q1 负载 {load}：V3 三种子吞吐均高于且 P95 TPOT 均低于 Helix → **{'是' if ok else '否'}**")
+        else:
+            failed_or_missing(load, ("helix", "v3"), ("Q1",))
         gv = c.get(f"{load}/gated-v3")
         if gv:
             lat = all(p["tpot"] < 0 for p in gv) and mean(p["throughput"] for p in gv) >= -0.005
@@ -110,24 +133,44 @@ def main() -> None:
                          f"**{'通过' if lat else '不通过'}**（TPOT 均值 {mean(p['tpot'] for p in gv):+.2%}）")
             lines.append(f"- Q2 负载 {load} 效率：三种子 GPU 秒/token 均降 ≥ 20% → **{'通过' if eff else '不通过'}**"
                          f"（均值 {mean(p['gpu'] for p in gv):+.2%}）")
-        ov = c.get(f"{load}/gated_off-v3_off")
-        if ov:
-            eff = all(p["gpu"] <= -0.20 for p in ov)
-            v[f"Q3/{load}"] = eff
-            lines.append(f"- Q3 负载 {load}（关闭 2 倍规则）：三种子 GPU 秒/token 均降 ≥ 20% → "
-                         f"**{'通过' if eff else '不通过'}**（均值 {mean(p['gpu'] for p in ov):+.2%}；"
-                         f"TPOT 均值 {mean(p['tpot'] for p in ov):+.2%}，仅报告）")
+        else:
+            failed_or_missing(load, ("v3", "gated"), ("Q2_latency", "Q2_efficiency"))
+        if "v3_off" in cells[load] and "gated_off" in cells[load]:
+            ov = c.get(f"{load}/gated_off-v3_off")
+            if ov:
+                eff = all(p["gpu"] <= -0.20 for p in ov)
+                v[f"Q3/{load}"] = eff
+                lines.append(f"- Q3 负载 {load}（关闭 2 倍规则）：三种子 GPU 秒/token 均降 ≥ 20% → "
+                             f"**{'通过' if eff else '不通过'}**（均值 {mean(p['gpu'] for p in ov):+.2%}；"
+                             f"TPOT 均值 {mean(p['tpot'] for p in ov):+.2%}，仅报告）")
+            else:
+                failed_or_missing(load, ("v3_off", "gated_off"), ("Q3",))
     expected = sum(len(n) for n in cells.values()) * len(FORMAL_SEEDS)
     out += ["", "## 预注册判定", ""]
-    if len(rows) < expected and not analysis["failures"]:
-        out.append(f"正式窗口未全部完成（{len(rows)}/{expected}），暂不判定。")
-    else:
-        out += lines
+    counts = {state: list(analysis["status"].values()).count(state)
+              for state in ("passed", "failed", "missing")}
+    out.append(f"窗口状态：成功 {counts['passed']}，失败 {counts['failed']}，缺失 {counts['missing']}，计划 {expected}。")
+    out += lines
+    versions = sorted({row["python_version"] for row in rows.values()})
+    if len(versions) > 1:
+        out += ["", "成功窗口包含不同 Python 环境：" + "、".join(versions) +
+                "。跨环境配对以同种子 trace_sha256 一致为前提；代码文件哈希受检出换行符影响。"]
     if analysis["failures"]:
         out += ["", "失败窗口（保留，不重跑；对应问题记为不通过）：" + "、".join(analysis["failures"])]
+    status = ["# 42 节点正式窗口状态", "",
+              "协议未改动；已有成功结果和失败记录均保留。失败不折算为零。", "",
+              f"成功：{counts['passed']}；失败：{counts['failed']}；缺失：{counts['missing']}；计划：{expected}。",
+              "", "| 负载 | 种子 | 方法 | 状态 |", "| ---: | ---: | --- | --- |"]
+    for load, names in cells.items():
+        for seed in FORMAL_SEEDS:
+            for cell in names:
+                status.append(f"| {load} | {seed} | {cell} | {analysis['status'][f'{load}/{cell}/seed{seed}']} |")
+    (HERE / "STATUS_CN.md").write_text("\n".join(status) + "\n", encoding="utf-8")
     (HERE / "analysis.json").write_text(json.dumps(analysis, indent=2, ensure_ascii=False) + "\n",
                                         encoding="utf-8")
     (HERE / "RESULTS_CN.md").write_text("\n".join(out) + "\n", encoding="utf-8")
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     print("\n".join(out))
 
 
