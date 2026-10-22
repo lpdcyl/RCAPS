@@ -2,8 +2,8 @@
 
 The Azure Conversation trace has at most 1000 output tokens. That declared
 bound is used for every query; the generated output length is never read when
-selecting a route. Reservations cover all layers resident on each selected GPU,
-including layers skipped by a cross-replica edge.
+selecting a route. The original classes reserve every resident layer.
+SliceKVAdmittedV3 reserves only the executed suffix, matching per-layer KV allocation.
 """
 
 from __future__ import annotations
@@ -19,6 +19,13 @@ MAX_OUTPUT_TOKENS = 1000
 
 
 class _KVAdmission:
+    def _edge_layer_count(self, left_uid, right_uid):
+        return len(self.simulator.compute_nodes[right_uid].in_vram_model_layers)
+
+    def _route_layer_counts(self, route):
+        return {stage.node_uid: len(self.simulator.compute_nodes[stage.node_uid].in_vram_model_layers)
+                for stage in route[:-1]}
+
     def __init__(self, simulator, *args, **kwargs):
         super().__init__(simulator, *args, **kwargs)
         self.kv_admission = {"admitted": 0, "deferred_checks": 0,
@@ -54,7 +61,8 @@ class _KVAdmission:
         node = self.simulator.compute_nodes.get(right_uid)
         if node is None:
             return True
-        needed = (self._routing_request.token_seq_length + MAX_OUTPUT_TOKENS) * len(node.in_vram_model_layers)
+        needed = ((self._routing_request.token_seq_length + MAX_OUTPUT_TOKENS) *
+                  self._edge_layer_count(left_uid, right_uid))
         headroom = node.kv_cache.max_capacity - self._reserved.get(right_uid, 0)
         if headroom < needed:
             self._capacity_veto = True
@@ -82,9 +90,8 @@ class _KVAdmission:
         request.set_pipeline(route)
         path = [stage.node_uid for stage in route[:-1]]
         self.session_paths[request.base_query_uid] = path
-        reservation = {uid: (request.token_seq_length + MAX_OUTPUT_TOKENS) *
-                       len(self.simulator.compute_nodes[uid].in_vram_model_layers)
-                       for uid in set(path)}
+        reservation = {uid: (request.token_seq_length + MAX_OUTPUT_TOKENS) * count
+                       for uid, count in self._route_layer_counts(route).items()}
         assert request.base_query_uid not in self._session_reservations
         self._session_reservations[request.base_query_uid] = reservation
         self._reservation_version += 1
@@ -158,3 +165,34 @@ class KVAdmittedV3(_KVAdmission, RecordedV3Scheduler):
 
 class KVAdmittedGated(_KVAdmission, SlowLinkGatedScheduler):
     pass
+
+
+class SliceKVAdmittedV3(KVAdmittedV3):
+    """Reserve prompt plus the public output bound for executed layers only.
+
+    The routing DP executes a node's suffix from the preceding node's end to
+    this node's end. Decode follows that same route. ComputeNode allocates KV
+    one executed layer at a time, so skipped resident layers need no KV.
+    """
+
+    def _edge_layer_count(self, left_uid, right_uid):
+        sim = self.simulator
+        boundary = (0 if left_uid == sim.source_node.node_uid else
+                    max(sim.compute_nodes[left_uid].in_vram_model_layers) + 1)
+        resident = sorted(sim.compute_nodes[right_uid].in_vram_model_layers)
+        end = resident[-1] + 1
+        assert resident == list(range(resident[0], end))
+        assert resident[0] <= boundary < end
+        return end - boundary
+
+    def _route_layer_counts(self, route):
+        counts = {}
+        previous = self.simulator.source_node.node_uid
+        for stage in route[:-1]:
+            assert stage.node_uid not in counts, "Route repeats a compute node"
+            expected = self._edge_layer_count(previous, stage.node_uid)
+            end = max(self.simulator.compute_nodes[stage.node_uid].in_vram_model_layers) + 1
+            assert stage.layers_to_infer == list(range(end - expected, end))
+            counts[stage.node_uid] = expected
+            previous = stage.node_uid
+        return counts

@@ -49,7 +49,7 @@ def run_helix(seed: int, duration: int, output: Path):
 
 def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full", root: Path = ROOT):
     from benchmarks.fixed_window import run
-    from experiments.v3_cluster42.kv_admission import (KVAdmittedV3, KVAdmittedGated,
+    from experiments.v3_cluster42.kv_admission import (KVAdmittedV3, KVAdmittedGated, SliceKVAdmittedV3,
                                                        install_completion_wakeup)
     from experiments.v3_pathspace_ablation.run import canonical_edges
     from rcaps.v3.placement import validate
@@ -68,7 +68,13 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
                      for path in source_files}
     counters = {}
     started = time.perf_counter()
-    state = json.loads((layout / "placement.json").read_text())["state"]
+    placement = json.loads((layout / "placement.json").read_text())
+    state = placement["state"]
+    admission_mode = placement.get("kv_reservation_mode", "resident_layers")
+    if admission_mode not in ("resident_layers", "executed_layers"):
+        raise ValueError(f"Unknown KV reservation mode: {admission_mode}")
+    if admission_mode == "executed_layers" and mode != "full":
+        raise ValueError("Executed-layer reservation requires full DAG mode")
     allowed = None
     if mode == "gated":
         model = TopologyModel(PHYSICAL)
@@ -79,7 +85,8 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
 
     def factory(simulator):
         scheduler = (KVAdmittedGated(simulator, allowed_edges=allowed)
-                     if mode == "gated" else KVAdmittedV3(simulator))
+                     if mode == "gated" else
+                     (SliceKVAdmittedV3 if admission_mode == "executed_layers" else KVAdmittedV3)(simulator))
         install_completion_wakeup(simulator, scheduler)
         counters["scheduler"] = scheduler
         return scheduler
@@ -103,6 +110,7 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
             raise
     scheduler = counters["scheduler"]
     result.update({"candidate": name, "mode": mode,
+                   "kv_reservation_mode": admission_mode,
                    "kv_admission": scheduler.kv_admission,
                    "wall_time_s": time.perf_counter() - started,
                    "peak_reserved_kv_units": scheduler.peak_reserved,
