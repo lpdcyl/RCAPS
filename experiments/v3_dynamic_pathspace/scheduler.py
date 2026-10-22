@@ -167,3 +167,18 @@ class KVStatic(ExecutedLayerKVAdmission, SlowLinkGatedScheduler):
 
 class KVDynamic(ExecutedLayerKVAdmission, DynamicPathScheduler):
     pass
+
+
+class LinkPressureDynamicPathScheduler(DynamicPathScheduler):
+    """Open new detours for link relief only; M3 still ranks by GPU and link."""
+
+    def _pressure(self, left, right, request, gpu_release, link_release):
+        now = self.simulator.current_time
+        return min(
+            max(0.0, link_release[link.link_uid] - now) +
+            self._transfer_time(link, request)
+            for link in self._links[(left, right)])
+
+
+class KVLinkDynamic(ExecutedLayerKVAdmission, LinkPressureDynamicPathScheduler):
+    pass

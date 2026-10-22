@@ -1,0 +1,12 @@
+{
+  "experiment": "v3_dynamic_pathspace_link_pressure",
+  "prior_candidate": "The GPU-plus-link pressure candidate in protocol_dev.json failed its 300-second C1_single go rule and is frozen at git commit 915287c.",
+  "new_candidate": "Keep canonical edges and frozen static slow-link detours. Admit another legal compute edge only if the canonical successor's observed link-release wait plus this request's transfer time exceeds the candidate edge's corresponding link pressure by more than 154 times the positive relative marginal decode-batch work. GPU-release wait is excluded from the gate; the frozen M3 ranking still uses it.",
+  "units": "All pressures and the fragmentation penalty are seconds; 154 is the previously recorded pooled seed-100 output median, never this request's future length.",
+  "fixed_inputs": "M2 layout, M1 DAG, M3 costs/ties, simulator, trace seed 100, executed-layer KV admission and public 1000-token output bound are identical across comparison cells.",
+  "development": {"seed": 100, "duration_s": 300, "warmup_s": 0, "tail_drain": false, "pythonhashseed": "0", "conditions": {"C1_single": 700.0, "C1_multi": 320.0}, "cells": ["static", "dynamic_link", "dynamic_link_no_batch"]},
+  "go_rule": "At least one added detour is selected. On BOTH high-load conditions, dynamic_link relative to static has throughput >= -0.5% and P95 TPOT <= +2%; at least one high-load condition has lower P95 TPOT. If it fails, no formal runs.",
+  "counterfactual": "dynamic_link_no_batch removes only the marginal batch penalty while keeping link-relief calculation and M3 ranking. It is explanatory, not a candidate eligible for formal selection.",
+  "low_load_control": "If high-load go rule passes, run C1_single at 350 offered token/s with the same seed/duration, static versus dynamic_link; report extra paths and any degradation as a negative control.",
+  "formal_gate": "Write and commit a new protocol.json with exact seeds, windows, comparisons, failure handling, and frozen code/config hashes before launching any formal window. The old candidate's development outcomes are not pooled with the new one."
+}

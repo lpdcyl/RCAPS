@@ -15,7 +15,7 @@ from experiments.v3_cycle_pricing.run import (
     ROOT, digest, physical_input, read, rel, scheduler_factory, write)
 from experiments.v3_cluster42.kv_admission import install_completion_wakeup
 from experiments.v3_dynamic_pathspace.scheduler import (
-    KVCanonical, KVDynamic, KVFull, KVStatic)
+    KVCanonical, KVDynamic, KVFull, KVLinkDynamic, KVStatic)
 
 HERE = Path(__file__).resolve().parent
 HIGH = {"C1_single": 700.0, "C1_multi": 320.0}
@@ -36,6 +36,10 @@ def builder(condition: str, cell: str):
         return partial(KVDynamic, allowed_edges=canonical)
     if cell == "dynamic_no_batch":
         return partial(KVDynamic, allowed_edges=canonical, protect_batches=False)
+    if cell == "dynamic_link":
+        return partial(KVLinkDynamic, allowed_edges=canonical)
+    if cell == "dynamic_link_no_batch":
+        return partial(KVLinkDynamic, allowed_edges=canonical, protect_batches=False)
     raise ValueError(cell)
 
 
@@ -137,6 +141,10 @@ def run_one(condition: str, cell: str, seed: int, duration: int, phase: str) -> 
 
 
 def jobs(phase: str):
+    if phase == "dev_link":
+        return [(case, cell, 100, 300, phase)
+                for case in HIGH for cell in ("static", "dynamic_link",
+                                              "dynamic_link_no_batch")]
     if phase == "smoke":
         return [(case, cell, 100, 60, phase)
                 for case in HIGH for cell in CELLS]
@@ -156,7 +164,7 @@ def jobs(phase: str):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--phase", choices=("smoke", "dev", "formal"), required=True)
+    parser.add_argument("--phase", choices=("smoke", "dev", "dev_link", "formal"), required=True)
     parser.add_argument("--workers", type=int, default=2)
     args = parser.parse_args()
     if os.environ.get("PYTHONHASHSEED") != "0":
