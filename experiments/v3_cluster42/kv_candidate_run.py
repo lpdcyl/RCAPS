@@ -59,7 +59,7 @@ def run_one(name: str, seed: int, duration: int, output: Path):
             result = run(
                 "single", "queue_dag", 2150.0, duration, 0, seed,
                 layout / "solution.ini", layout / "simulator_cluster.ini",
-                profile_resources=False, compact=True, record_query_samples=True,
+                profile_resources=False, compact=True, record_query_samples=False,
                 physical_cluster=PHYSICAL, machine_profile=PROFILE,
                 machine_counts=TopologyModel(PHYSICAL).machine_counts,
                 scheduler_factory=factory)
