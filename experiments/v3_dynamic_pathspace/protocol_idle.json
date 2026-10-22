@@ -1,0 +1,8 @@
+{
+  "purpose": "Exploratory low-load negative control for the static path-space mechanism.",
+  "reason_for_amendment": "The earlier 350 offered-token/s condition left 28-39 requests backlogged and completed only 63-73% in 300 seconds, so it was not an idle control.",
+  "condition": "C1_single frozen placement, 100 offered token/s, seed 100, 300 seconds, zero warmup, no tail drain",
+  "cells": ["full", "static"],
+  "controls": "Same M3 ranking, executed-layer KV admission, physical resources, model and request trace; only allowed path space differs.",
+  "interpretation": "Exploratory because the load was chosen after observing the 350-window backlog. Report completion and backlog alongside latency; do not use this to select a method or claim statistical significance."
+}

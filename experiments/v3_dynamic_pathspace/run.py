@@ -7,7 +7,6 @@ import contextlib
 import os
 import traceback
 from collections import defaultdict
-from concurrent.futures import ProcessPoolExecutor, as_completed
 from functools import partial
 from pathlib import Path
 
@@ -19,14 +18,14 @@ from experiments.v3_dynamic_pathspace.scheduler import (
 
 HERE = Path(__file__).resolve().parent
 HIGH = {"C1_single": 700.0, "C1_multi": 320.0}
-CONDITIONS = {**HIGH, "C1_single_low": 350.0}
+CONDITIONS = {**HIGH, "C1_single_low": 350.0, "C1_single_idle": 100.0}
 CELLS = ("full", "canonical", "static", "dynamic", "dynamic_no_batch")
 
 
 def builder(condition: str, cell: str):
     if cell == "full":
         return KVFull
-    case = condition.removesuffix("_low")
+    case = "C1_single" if condition.startswith("C1_single_") else condition
     canonical = scheduler_factory(case, "canonical").keywords["allowed_edges"]
     if cell == "canonical":
         return partial(KVCanonical, allowed_edges=canonical)
@@ -48,7 +47,7 @@ def run_one(condition: str, cell: str, seed: int, duration: int, phase: str) -> 
     from rcaps.v3.topology import TopologyModel
     from simulator.event_simulator.request import RequestPhase
 
-    case = condition.removesuffix("_low")
+    case = "C1_single" if condition.startswith("C1_single_") else condition
     physical, topology = physical_input(case)
     deployment = ROOT / "rcaps/v3_layouts" / topology
     output = HERE / "runs" / phase / condition / f"{cell}_seed{seed}.json"
@@ -165,10 +164,18 @@ def jobs(phase: str):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--phase", choices=("smoke", "dev", "dev_link", "formal"), required=True)
-    parser.add_argument("--workers", type=int, default=2)
+    parser.add_argument("--workers", type=int, default=1)
     args = parser.parse_args()
     if os.environ.get("PYTHONHASHSEED") != "0":
         raise SystemExit("Set PYTHONHASHSEED=0 before simulation")
+    if args.workers == 1:
+        for job in jobs(args.phase):
+            try:
+                print("done", run_one(*job), flush=True)
+            except Exception as error:
+                print("failed", job[:3], repr(error), flush=True)
+        return
+    from concurrent.futures import ProcessPoolExecutor, as_completed
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         futures = {pool.submit(run_one, *job): job for job in jobs(args.phase)}
         for future in as_completed(futures):
