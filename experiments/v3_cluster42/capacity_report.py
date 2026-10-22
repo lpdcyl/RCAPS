@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -19,10 +20,19 @@ def read(path):
 
 def pair(candidate, baseline, devices):
     identity = ("trace_sha256", "offered_tokens_per_s", "duration_s", "warmup_s",
-                "arrivals", "evaluation_protocol", "physical_cluster_sha256", "seed")
+                "arrivals", "evaluation_protocol", "seed")
+    # Historical Linux results hash LF bytes, Windows checkout hashes CRLF.
+    # Accept only hashes reproduced from these exact two byte encodings of
+    # the current physical file, keeping all other content identical.
+    physical = PHYSICAL.read_bytes().replace(b"\r\n", b"\n")
+    encodings = {hashlib.sha256(data).hexdigest(): label for label, data in
+                 (("LF", physical), ("CRLF", physical.replace(b"\n", b"\r\n")))}
+    cluster_hashes = [row.get("physical_cluster_sha256") for row in (candidate, baseline)]
+    same_cluster = all(value in encodings for value in cluster_hashes)
     same = all(candidate.get(key) == baseline.get(key) and key in candidate
                for key in identity)
-    checks = {"same_input": same, "fewer_physical_gpus": devices < 64}
+    checks = {"same_input": same, "same_physical_cluster": same_cluster,
+              "fewer_physical_gpus": devices < 64}
     deltas = {}
     for key, higher in (("output_throughput_tokens_per_s", True),
                         ("ttft_p95_s", False), ("tpot_p95_s", False)):
@@ -30,7 +40,11 @@ def pair(candidate, baseline, devices):
         valid = all(isinstance(x, (int, float)) and math.isfinite(x) for x in (a, b))
         checks[key] = valid and (a >= b if higher else a <= b)
         deltas[key] = (a / b - 1) if valid and b else None
-    return {"checks": checks, "relative_change": deltas, "pass": all(checks.values())}
+    return {"checks": checks, "relative_change": deltas, "pass": all(checks.values()),
+            "physical_cluster_hash_evidence": {
+                "candidate": cluster_hashes[0], "baseline": cluster_hashes[1],
+                "recognized_byte_encodings": encodings,
+                "reason": "Same file content; only LF/CRLF encoding is accepted"}}
 
 
 def main():
@@ -126,6 +140,7 @@ def main():
                   "", "正式判定：" + ("三个种子全部通过。" if passed else
                   "尚未达到三个正式种子全部通过；缺失窗口不计通过。"), "",
                   "180 秒 smoke 和 600 秒 screening 仅用于选型；1800 秒、seed 0/1/2 才用于最终判定。完整输入一致性检查、相对变化及结果哈希见 analysis.json。",
+                  "", "集群身份按文件内容核对：历史 Linux 结果记录 LF 字节哈希，Windows 检出记录 CRLF 哈希。仅接受由当前同一文件复算出的这两种换行形式，保留原始哈希及核对证据；不改写历史结果。",
                   "", "原 22 节点方案的三个正式负结果见 ../kv_candidate/RESULTS_CN.md；原 V3 的 KV 断言失败见 ../RESULTS_CN.md，均保留。"])
     (root / "RESULTS_CN.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(json.dumps({"formal_pass": passed, "windows": [

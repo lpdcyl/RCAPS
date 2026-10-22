@@ -21,4 +21,6 @@
 
 180 秒 smoke 和 600 秒 screening 仅用于选型；1800 秒、seed 0/1/2 才用于最终判定。完整输入一致性检查、相对变化及结果哈希见 analysis.json。
 
+集群身份按文件内容核对：历史 Linux 结果记录 LF 字节哈希，Windows 检出记录 CRLF 哈希。仅接受由当前同一文件复算出的这两种换行形式，保留原始哈希及核对证据；不改写历史结果。
+
 原 22 节点方案的三个正式负结果见 ../kv_candidate/RESULTS_CN.md；原 V3 的 KV 断言失败见 ../RESULTS_CN.md，均保留。

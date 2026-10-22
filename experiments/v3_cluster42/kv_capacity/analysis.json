@@ -50,6 +50,7 @@
       },
       "checks": {
         "same_input": true,
+        "same_physical_cluster": true,
         "fewer_physical_gpus": true,
         "output_throughput_tokens_per_s": true,
         "ttft_p95_s": true,
@@ -65,7 +66,16 @@
         "ttft_p95_s": -0.07434591022114578,
         "tpot_p95_s": -0.34213760503831714
       },
-      "pass": true
+      "pass": true,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     },
     {
       "phase": "smoke",
@@ -125,6 +135,7 @@
       },
       "checks": {
         "same_input": true,
+        "same_physical_cluster": true,
         "fewer_physical_gpus": true,
         "output_throughput_tokens_per_s": true,
         "ttft_p95_s": false,
@@ -140,7 +151,16 @@
         "ttft_p95_s": 1.0273998338645094,
         "tpot_p95_s": -0.3537751819511007
       },
-      "pass": false
+      "pass": false,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     },
     {
       "phase": "screening",

@@ -71,6 +71,7 @@
       },
       "checks": {
         "same_input": true,
+        "same_physical_cluster": true,
         "fewer_physical_gpus": true,
         "output_throughput_tokens_per_s": true,
         "ttft_p95_s": true,
@@ -86,7 +87,16 @@
         "ttft_p95_s": -0.04580038079359283,
         "tpot_p95_s": -0.3590303893152992
       },
-      "pass": true
+      "pass": true,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     },
     {
       "phase": "screening",
@@ -126,6 +136,7 @@
       },
       "checks": {
         "same_input": true,
+        "same_physical_cluster": true,
         "fewer_physical_gpus": true,
         "output_throughput_tokens_per_s": false,
         "ttft_p95_s": false,
@@ -141,7 +152,16 @@
         "ttft_p95_s": 21.566002623334157,
         "tpot_p95_s": -0.2772398847446389
       },
-      "pass": false
+      "pass": false,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     },
     {
       "phase": "screening",
@@ -181,6 +201,7 @@
       },
       "checks": {
         "same_input": true,
+        "same_physical_cluster": true,
         "fewer_physical_gpus": true,
         "output_throughput_tokens_per_s": false,
         "ttft_p95_s": false,
@@ -196,7 +217,16 @@
         "ttft_p95_s": 23.867555233226465,
         "tpot_p95_s": -0.2639164308132397
       },
-      "pass": false
+      "pass": false,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     },
     {
       "phase": "formal",
@@ -206,7 +236,62 @@
       "physical_gpu_devices": 53,
       "source": "kv_slice/runs/formal/c400k_slice_w3_b1_seed0.json",
       "baseline": "runs/formal/load2150/helix_seed0.json",
-      "status": "not_run"
+      "status": "not_pass",
+      "metrics": {
+        "output_throughput_tokens_per_s": 467.895,
+        "ttft_p95_s": 4.938193506715299,
+        "tpot_p95_s": 0.9184532216825486,
+        "completion_fraction": 0.8964992389649924,
+        "first_tokens_in_window": 3939,
+        "arrivals": 3942,
+        "backlog_at_window_end": 408,
+        "kv_admission": {
+          "admitted": 3942,
+          "deferred_checks": 0,
+          "cached_deferred_checks": 0,
+          "peak_waiting": 0,
+          "minimum_headroom": 35
+        }
+      },
+      "result_sha256": "ab3698bb7b00ca2775a548509677219277f57f78cb41c86a0b24320e8d83e1be",
+      "baseline_metrics": {
+        "output_throughput_tokens_per_s": 459.79833333333335,
+        "ttft_p95_s": 4.913920920861938,
+        "tpot_p95_s": 1.3711501389881426,
+        "completion_fraction": 0.8792491121258245,
+        "first_tokens_in_window": 3939,
+        "arrivals": 3942,
+        "backlog_at_window_end": 476,
+        "kv_admission": null
+      },
+      "checks": {
+        "same_input": true,
+        "same_physical_cluster": true,
+        "fewer_physical_gpus": true,
+        "output_throughput_tokens_per_s": true,
+        "ttft_p95_s": false,
+        "tpot_p95_s": true,
+        "same_candidate": true,
+        "same_layout": true,
+        "same_node_count": true,
+        "same_admission": true,
+        "full_dag": true
+      },
+      "relative_change": {
+        "output_throughput_tokens_per_s": 0.017609169237237987,
+        "ttft_p95_s": 0.004939555651030547,
+        "tpot_p95_s": -0.3301585321937591
+      },
+      "pass": false,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     },
     {
       "phase": "formal",
@@ -216,7 +301,62 @@
       "physical_gpu_devices": 53,
       "source": "kv_slice/runs/formal/c400k_slice_w3_b1_seed1.json",
       "baseline": "runs/formal/load2150/helix_seed1.json",
-      "status": "not_run"
+      "status": "pass",
+      "metrics": {
+        "output_throughput_tokens_per_s": 466.62555555555554,
+        "ttft_p95_s": 4.86822696709962,
+        "tpot_p95_s": 0.9081583501663167,
+        "completion_fraction": 0.8934655479277905,
+        "first_tokens_in_window": 3925,
+        "arrivals": 3933,
+        "backlog_at_window_end": 419,
+        "kv_admission": {
+          "admitted": 3933,
+          "deferred_checks": 0,
+          "cached_deferred_checks": 0,
+          "peak_waiting": 0,
+          "minimum_headroom": 90
+        }
+      },
+      "result_sha256": "a91aec8650c3e66af35ce9be692ebf296bcb128869df734ca76d55f4a5fe7b8b",
+      "baseline_metrics": {
+        "output_throughput_tokens_per_s": 458.68333333333334,
+        "ttft_p95_s": 5.1429779738776915,
+        "tpot_p95_s": 1.384262803451478,
+        "completion_fraction": 0.8756674294431731,
+        "first_tokens_in_window": 3927,
+        "arrivals": 3933,
+        "backlog_at_window_end": 489,
+        "kv_admission": null
+      },
+      "checks": {
+        "same_input": true,
+        "same_physical_cluster": true,
+        "fewer_physical_gpus": true,
+        "output_throughput_tokens_per_s": true,
+        "ttft_p95_s": true,
+        "tpot_p95_s": true,
+        "same_candidate": true,
+        "same_layout": true,
+        "same_node_count": true,
+        "same_admission": true,
+        "full_dag": true
+      },
+      "relative_change": {
+        "output_throughput_tokens_per_s": 0.017315262284558486,
+        "ttft_p95_s": -0.053422551714899846,
+        "tpot_p95_s": -0.34394079801758526
+      },
+      "pass": true,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     },
     {
       "phase": "formal",
@@ -226,7 +366,62 @@
       "physical_gpu_devices": 53,
       "source": "kv_slice/runs/formal/c400k_slice_w3_b1_seed2.json",
       "baseline": "runs/formal/load2150/helix_seed2.json",
-      "status": "not_run"
+      "status": "pass",
+      "metrics": {
+        "output_throughput_tokens_per_s": 466.7388888888889,
+        "ttft_p95_s": 4.959965582900667,
+        "tpot_p95_s": 0.9212599660265738,
+        "completion_fraction": 0.9169859514687101,
+        "first_tokens_in_window": 3909,
+        "arrivals": 3915,
+        "backlog_at_window_end": 325,
+        "kv_admission": {
+          "admitted": 3915,
+          "deferred_checks": 0,
+          "cached_deferred_checks": 0,
+          "peak_waiting": 0,
+          "minimum_headroom": 10
+        }
+      },
+      "result_sha256": "458aa7c2c3e47a48c5ee8f982905fbd26c20aa33ef8a4310c23d417c0a39e27d",
+      "baseline_metrics": {
+        "output_throughput_tokens_per_s": 460.70444444444445,
+        "ttft_p95_s": 5.155947961288812,
+        "tpot_p95_s": 1.3752920830819413,
+        "completion_fraction": 0.8978288633461047,
+        "first_tokens_in_window": 3908,
+        "arrivals": 3915,
+        "backlog_at_window_end": 400,
+        "kv_admission": null
+      },
+      "checks": {
+        "same_input": true,
+        "same_physical_cluster": true,
+        "fewer_physical_gpus": true,
+        "output_throughput_tokens_per_s": true,
+        "ttft_p95_s": true,
+        "tpot_p95_s": true,
+        "same_candidate": true,
+        "same_layout": true,
+        "same_node_count": true,
+        "same_admission": true,
+        "full_dag": true
+      },
+      "relative_change": {
+        "output_throughput_tokens_per_s": 0.013098298740576109,
+        "ttft_p95_s": -0.03801093026143665,
+        "tpot_p95_s": -0.3301350474132816
+      },
+      "pass": true,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
     }
   ]
 }
