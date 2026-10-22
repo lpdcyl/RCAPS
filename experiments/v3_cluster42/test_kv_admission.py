@@ -13,6 +13,9 @@ def test_full_lifetime_reservation_and_release():
     scheduler.simulator = SimpleNamespace(compute_nodes={9: node},
                                           query_manager=SimpleNamespace(queries_on_the_fly=live))
     scheduler.session_paths = {}
+    scheduler.execution_dag = SimpleNamespace(edge_set={("source", 9)})
+    scheduler.simulator.source_node = SimpleNamespace(node_uid=0)
+    scheduler.simulator.sink_node = SimpleNamespace(node_uid=10)
     scheduler._reserved = {}
     scheduler.peak_reserved = {}
     scheduler._session_reservations = {}
