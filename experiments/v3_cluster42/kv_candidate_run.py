@@ -8,6 +8,7 @@ import json
 import os
 import sys
 import traceback
+import time
 from pathlib import Path
 
 from experiments.v3_cluster42.run import BASE, HERE, PHYSICAL, PROFILE, digest
@@ -43,6 +44,7 @@ def run_one(name: str, seed: int, duration: int, output: Path):
         return json.loads(output.read_text(encoding="utf-8"))
     layout = ROOT / name
     counters = {}
+    started = time.perf_counter()
 
     def factory(simulator):
         scheduler = KVAdmittedV3(simulator)
@@ -57,7 +59,7 @@ def run_one(name: str, seed: int, duration: int, output: Path):
             result = run(
                 "single", "queue_dag", 2150.0, duration, 0, seed,
                 layout / "solution.ini", layout / "simulator_cluster.ini",
-                profile_resources=True, compact=True, record_query_samples=True,
+                profile_resources=False, compact=True, record_query_samples=True,
                 physical_cluster=PHYSICAL, machine_profile=PROFILE,
                 machine_counts=TopologyModel(PHYSICAL).machine_counts,
                 scheduler_factory=factory)
@@ -69,6 +71,7 @@ def run_one(name: str, seed: int, duration: int, output: Path):
             raise
     scheduler = counters["scheduler"]
     result.update({"candidate": name, "kv_admission": scheduler.kv_admission,
+                   "wall_time_s": time.perf_counter() - started,
                    "peak_reserved_kv_units": scheduler.peak_reserved,
                    "active_gpus": json.loads((layout / "placement.json").read_text())["active_gpus"],
                    "scheduler_sha256": digest(HERE / "kv_admission.py"),
