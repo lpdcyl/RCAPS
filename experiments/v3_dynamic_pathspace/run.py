@@ -153,11 +153,7 @@ def jobs(phase: str):
                 ("C1_single_low", cell, 100, 300, phase)
                 for cell in ("static", "dynamic")]
     if phase == "formal":
-        if not (HERE / "protocol.json").exists():
-            raise ValueError("Freeze protocol.json before formal runs")
-        return [(case, cell, seed, 1800, phase)
-                for case in HIGH for cell in ("full", "canonical", "static", "dynamic")
-                for seed in (0, 1, 2)]
+        raise ValueError("Both dynamic candidates failed development go rules; freeze a new candidate and formal protocol first")
     raise ValueError(phase)
 
 
@@ -168,22 +164,13 @@ def main():
     args = parser.parse_args()
     if os.environ.get("PYTHONHASHSEED") != "0":
         raise SystemExit("Set PYTHONHASHSEED=0 before simulation")
-    if args.workers == 1:
-        for job in jobs(args.phase):
-            try:
-                print("done", run_one(*job), flush=True)
-            except Exception as error:
-                print("failed", job[:3], repr(error), flush=True)
-        return
-    from concurrent.futures import ProcessPoolExecutor, as_completed
-    with ProcessPoolExecutor(max_workers=args.workers) as pool:
-        futures = {pool.submit(run_one, *job): job for job in jobs(args.phase)}
-        for future in as_completed(futures):
-            job = futures[future]
-            try:
-                print("done", future.result(), flush=True)
-            except Exception as error:
-                print("failed", job[:3], repr(error), flush=True)
+    if args.workers != 1:
+        raise SystemExit("Use one worker: the four-process smoke was terminated by the host")
+    for job in jobs(args.phase):
+        try:
+            print("done", run_one(*job), flush=True)
+        except Exception as error:
+            print("failed", job[:3], repr(error), flush=True)
 
 
 if __name__ == "__main__":

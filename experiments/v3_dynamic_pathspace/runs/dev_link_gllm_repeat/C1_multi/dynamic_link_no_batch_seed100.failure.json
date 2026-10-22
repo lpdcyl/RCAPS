@@ -1,0 +1,14 @@
+{
+  "condition": "C1_multi",
+  "cell": "dynamic_link_no_batch",
+  "seed": 100,
+  "duration_s": 300,
+  "offered_tokens_per_s": 320.0,
+  "pythonhashseed": "0",
+  "scheduler_sha256": "06f24d8e0f363d3378dc79dc6666f9f2e75fc7476ce09b87177c7f09e1b05b59",
+  "solution_sha256": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+  "sim_cluster_sha256": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+  "physical_sha256": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+  "error": "TypeError(\"argument of type 'bool' is not iterable\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\RCAPS-cluster42\\experiments\\v3_dynamic_pathspace\\run.py\", line 96, in run_one\n    row = fixed_window.run(\n  File \"D:\\PythonProject\\RCAPS-cluster42\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1229, in handle_event\n    trigger_network_send = self.handle_finish_execution(event=event)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 972, in handle_finish_execution\n    current_inference_batch, trigger_network_send = execution_node.finish_execution(\n  File \"D:\\PythonProject\\RCAPS-cluster42\\benchmarks\\resource_profile.py\", line 78, in finish_execution\n    batch, trigger = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\compute_node.py\", line 668, in finish_execution\n    self.kv_cache.grow_query_kv_cache(layers=kv_update_layer_ids, query_uid=request.base_query_uid)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\kv_cache.py\", line 120, in grow_query_kv_cache\n    assert query_uid in self.kv_cache[layer_id], \"Query not initialized!\"\nTypeError: argument of type 'bool' is not iterable\n"
+}
