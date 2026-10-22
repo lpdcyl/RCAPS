@@ -16,11 +16,24 @@ from experiments.v3_cluster42.run import BASE, HERE, PHYSICAL, PROFILE, digest
 ROOT = HERE / "kv_candidate"
 
 
+def existing_result(output, seed, duration, name=None, mode=None):
+    if not output.exists():
+        return None
+    result = json.loads(output.read_text(encoding="utf-8"))
+    expected = {"seed": seed, "duration_s": duration, "offered_tokens_per_s": 2150.0}
+    if name is not None:
+        expected.update(candidate=name, mode=mode)
+    if any(result.get(key) != value for key, value in expected.items()):
+        raise ValueError(f"Existing result has different run identity: {output}")
+    return result
+
+
 def run_helix(seed: int, duration: int, output: Path):
     from benchmarks.fixed_window import run
     from rcaps.v3.topology import TopologyModel
-    if output.exists():
-        return json.loads(output.read_text(encoding="utf-8"))
+    previous = existing_result(output, seed, duration)
+    if previous is not None:
+        return previous
     layout = BASE / "layout_llama70b/ilp"
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.with_suffix(".log").open("w", encoding="utf-8") as stream, \
@@ -42,10 +55,17 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
     from rcaps.v3.placement import validate
     from rcaps.v3.topology import TopologyModel
 
-    if output.exists():
-        return json.loads(output.read_text(encoding="utf-8"))
+    previous = existing_result(output, seed, duration, name, mode)
+    if previous is not None:
+        return previous
     layout = root / name
     source_sha = digest(HERE / "kv_admission.py")
+    source_files = [HERE / "kv_admission.py", Path(__file__).resolve(),
+                    HERE.parents[1] / "benchmarks/fixed_window.py",
+                    *[HERE.parents[1] / "rcaps/v3" / f"{part}.py"
+                      for part in ("scheduler", "online_scheduler", "queue_cost", "routing")]]
+    source_hashes = {path.relative_to(HERE.parents[1]).as_posix(): digest(path)
+                     for path in source_files}
     counters = {}
     started = time.perf_counter()
     state = json.loads((layout / "placement.json").read_text())["state"]
@@ -88,6 +108,7 @@ def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full
                    "peak_reserved_kv_units": scheduler.peak_reserved,
                    "active_gpus": json.loads((layout / "placement.json").read_text())["active_gpus"],
                    "scheduler_sha256": source_sha,
+                   "source_sha256": source_hashes,
                    "layout_sha256": digest(layout / "placement.json"),
                    "pythonhashseed": os.environ.get("PYTHONHASHSEED")})
     output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
@@ -118,6 +139,17 @@ def main():
         duration = args.duration
     if args.seed is not None:
         seeds = [args.seed]
+    if args.phase == "formal":
+        protocol = json.loads((args.root / "protocol.json").read_text())
+        selected = protocol["formal"].get("candidate")
+        if selected is None:
+            raise SystemExit("Freeze a formal candidate in protocol.json before formal runs")
+        if args.candidate is None:
+            names = [selected]
+        if any(name not in (selected, "helix") for name in names):
+            raise SystemExit("Formal candidate differs from protocol.json")
+        if args.mode != "full" or any(seed not in (0, 1, 2) for seed in seeds):
+            raise SystemExit("Formal protocol requires full mode and seeds 0/1/2")
     failures = 0
     for name in names:
         for seed in seeds:

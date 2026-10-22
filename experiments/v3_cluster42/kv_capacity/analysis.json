@@ -1,0 +1,95 @@
+{
+  "formal_pass": false,
+  "formal_candidate": null,
+  "windows": [
+    {
+      "phase": "smoke",
+      "candidate": "c400k_w2_b12",
+      "seed": 100,
+      "active_nodes": 14,
+      "physical_gpu_devices": 32,
+      "source": "kv_capacity/runs/smoke/c400k_w2_b12_seed100.json",
+      "baseline": "kv_candidate/runs/smoke/helix_seed100.json",
+      "status": "not_run"
+    },
+    {
+      "phase": "smoke",
+      "candidate": "c400k_w3_b1",
+      "seed": 100,
+      "active_nodes": 31,
+      "physical_gpu_devices": 53,
+      "source": "kv_capacity/runs/smoke/c400k_w3_b1_seed100.json",
+      "baseline": "kv_candidate/runs/smoke/helix_seed100.json",
+      "status": "pass",
+      "metrics": {
+        "output_throughput_tokens_per_s": 216.27777777777777,
+        "ttft_p95_s": 4.723154110859265,
+        "tpot_p95_s": 0.8450885867915865,
+        "completion_fraction": 0.32678132678132676,
+        "first_tokens_in_window": 404,
+        "arrivals": 407,
+        "backlog_at_window_end": 274,
+        "kv_admission": {
+          "admitted": 407,
+          "deferred_checks": 0,
+          "peak_waiting": 0,
+          "minimum_headroom": 80
+        }
+      },
+      "result_sha256": "4105ad30fa3471bf7f680fc6320b60f7eeb3a0452ac69a5c0b401abf8d0b080a",
+      "checks": {
+        "same_input": true,
+        "fewer_nodes": true,
+        "output_throughput_tokens_per_s": true,
+        "ttft_p95_s": true,
+        "tpot_p95_s": true
+      },
+      "relative_change": {
+        "output_throughput_tokens_per_s": 0.0901708204984597,
+        "ttft_p95_s": -0.07434591022114578,
+        "tpot_p95_s": -0.34213760503831714
+      },
+      "pass": true
+    },
+    {
+      "phase": "smoke",
+      "candidate": "c400k_w4_b32",
+      "seed": 100,
+      "active_nodes": 27,
+      "physical_gpu_devices": 49,
+      "source": "kv_capacity/runs/smoke/c400k_w4_b32_seed100.json",
+      "baseline": "kv_candidate/runs/smoke/helix_seed100.json",
+      "status": "not_run"
+    },
+    {
+      "phase": "screening",
+      "candidate": "c400k_w2_b12",
+      "seed": 101,
+      "active_nodes": 14,
+      "physical_gpu_devices": 32,
+      "source": "kv_capacity/runs/screening/c400k_w2_b12_seed101.json",
+      "baseline": "kv_capacity/runs/screening/helix_seed101.json",
+      "status": "not_run"
+    },
+    {
+      "phase": "screening",
+      "candidate": "c400k_w3_b1",
+      "seed": 101,
+      "active_nodes": 31,
+      "physical_gpu_devices": 53,
+      "source": "kv_capacity/runs/screening/c400k_w3_b1_seed101.json",
+      "baseline": "kv_capacity/runs/screening/helix_seed101.json",
+      "status": "not_run"
+    },
+    {
+      "phase": "screening",
+      "candidate": "c400k_w4_b32",
+      "seed": 101,
+      "active_nodes": 27,
+      "physical_gpu_devices": 49,
+      "source": "kv_capacity/runs/screening/c400k_w4_b32_seed101.json",
+      "baseline": "kv_capacity/runs/screening/helix_seed101.json",
+      "status": "not_run"
+    }
+  ]
+}
