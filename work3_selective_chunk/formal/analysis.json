@@ -1,0 +1,262 @@
+{
+  "protocol": {
+    "version": 1,
+    "registration_context": "Registered after seeing smoke seed143 and development seeds141/142. The numerical margins below are confirmatory criteria for unseen seeds201/202/203, not retrospectively applied to development windows.",
+    "case": "C1_multi",
+    "seeds": [
+      201,
+      202,
+      203
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "offered_tokens_per_s": 320.0,
+    "layout": "frozen rcaps/v3_layouts/multi",
+    "chunk_bytes": 1048576,
+    "slow_link_threshold_Bps": 50000000,
+    "methods": [
+      "v3",
+      "gate",
+      "chunk_all",
+      "chunk_slow"
+    ],
+    "primary_gate_each_seed_chunk_slow_vs_gate": {
+      "tpot_p95_relative_max": -0.1,
+      "common_completed_tpot_p95_relative_max": -0.05,
+      "ttft_p95_relative_max": 0.02,
+      "throughput_relative_min": -0.01,
+      "gpu_seconds_per_token_relative_max": 0.05,
+      "completion_fraction_absolute_min": -0.01
+    },
+    "overall_work3_gate_each_seed_chunk_slow_vs_v3": {
+      "tpot_p95_relative_max": 0.0,
+      "gpu_seconds_per_token_relative_max": 0.0,
+      "throughput_relative_min": -0.01
+    },
+    "selectivity_gate_each_seed_chunk_slow_vs_chunk_all": {
+      "tpot_p95_relative_max": 0.05,
+      "throughput_relative_min": -0.01,
+      "pause_count_relative_max": -0.7
+    },
+    "decision": "All three gates must pass in each of three paired seeds. Report all-sample and common-completed endpoints, TTFT, throughput, GPU work, completion fraction, backlog, route count and chunk pauses. Any failure remains a failure; do not alter chunk size or margins on these seeds.",
+    "claim_limit": "Simulation-only systems evidence. Existing MoLink-related chunking is not an independent novelty claim."
+  },
+  "audit_sha256": "0ca647108241c22e15870f4b76d966127293bc4d2fb4370adf2e1afc4d988832",
+  "rows": [
+    {
+      "seed": 201,
+      "chunk_slow_vs_gate": {
+        "tpot_relative": -0.2157168127347694,
+        "common_tpot_relative": -0.2161116116374584,
+        "ttft_relative": -0.17287396119690213,
+        "throughput_relative": 0.007002130747614466,
+        "gpu_work_relative": 0.078581130033196,
+        "completion_absolute": 0.01041666666666674,
+        "common_completed_n": 530,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 46,
+        "backlog_candidate": 40
+      },
+      "chunk_slow_vs_v3": {
+        "tpot_relative": -0.1877670623302934,
+        "common_tpot_relative": -0.1859398249308789,
+        "ttft_relative": -0.1590535743595023,
+        "throughput_relative": 0.0066135728727754195,
+        "gpu_work_relative": -0.25325255440202843,
+        "completion_absolute": 0.00694444444444442,
+        "common_completed_n": 532,
+        "route_count_base": 32,
+        "route_count_candidate": 8,
+        "backlog_base": 44,
+        "backlog_candidate": 40
+      },
+      "chunk_slow_vs_chunk_all": {
+        "tpot_relative": 0.0018361128128043802,
+        "common_tpot_relative": 0.0010139268744280283,
+        "ttft_relative": -0.05309850715169928,
+        "throughput_relative": 9.967337800720344e-05,
+        "gpu_work_relative": -0.021455565300552037,
+        "completion_absolute": 0.0,
+        "common_completed_n": 536,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 40,
+        "backlog_candidate": 40
+      },
+      "slow_pauses": 6867,
+      "all_pauses": 62228,
+      "pause_relative": -0.8896477469949219,
+      "tpot_seconds": {
+        "v3": 0.6980864668510464,
+        "gate": 0.7229643972033017,
+        "chunk_all": 0.5659696376146093,
+        "chunk_slow": 0.5670088217178917
+      },
+      "throughput": {
+        "v3": 71.99,
+        "gate": 71.96222222222222,
+        "chunk_all": 72.4588888888889,
+        "chunk_slow": 72.4661111111111
+      },
+      "gpu_seconds_per_token": {
+        "v3": 0.08924459729152974,
+        "gate": 0.061787818463705534,
+        "chunk_all": 0.06810439331897933,
+        "chunk_slow": 0.06664317506086949
+      }
+    },
+    {
+      "seed": 202,
+      "chunk_slow_vs_gate": {
+        "tpot_relative": -0.2291961096372267,
+        "common_tpot_relative": -0.22776613748884433,
+        "ttft_relative": -0.1358609151039163,
+        "throughput_relative": 0.010790524936021395,
+        "gpu_work_relative": 0.058512622537796544,
+        "completion_absolute": 0.011904761904761973,
+        "common_completed_n": 531,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 57,
+        "backlog_candidate": 50
+      },
+      "chunk_slow_vs_v3": {
+        "tpot_relative": -0.19797468297079934,
+        "common_tpot_relative": -0.1959526638285305,
+        "ttft_relative": -0.0935724970509132,
+        "throughput_relative": 0.011477112139973933,
+        "gpu_work_relative": -0.252280664556934,
+        "completion_absolute": 0.008503401360544283,
+        "common_completed_n": 533,
+        "route_count_base": 31,
+        "route_count_candidate": 8,
+        "backlog_base": 55,
+        "backlog_candidate": 50
+      },
+      "chunk_slow_vs_chunk_all": {
+        "tpot_relative": 0.0015221598259487212,
+        "common_tpot_relative": 0.004531530247482873,
+        "ttft_relative": -0.034215295842559224,
+        "throughput_relative": -0.0004089379957407102,
+        "gpu_work_relative": -0.01389800212069825,
+        "completion_absolute": -0.00170068027210879,
+        "common_completed_n": 538,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 49,
+        "backlog_candidate": 50
+      },
+      "slow_pauses": 7063,
+      "all_pauses": 64688,
+      "pause_relative": -0.8908143705169429,
+      "tpot_seconds": {
+        "v3": 0.7151197750937451,
+        "gate": 0.7440857155812708,
+        "chunk_all": 0.5726724653132848,
+        "chunk_slow": 0.5735441643334116
+      },
+      "throughput": {
+        "v3": 71.15611111111112,
+        "gate": 71.20444444444445,
+        "chunk_all": 72.00222222222222,
+        "chunk_slow": 71.97277777777778
+      },
+      "gpu_seconds_per_token": {
+        "v3": 0.08828506606239828,
+        "gate": 0.06236340457372912,
+        "chunk_all": 0.06694282241359327,
+        "chunk_slow": 0.06601245092572362
+      }
+    },
+    {
+      "seed": 203,
+      "chunk_slow_vs_gate": {
+        "tpot_relative": -0.23008917447173827,
+        "common_tpot_relative": -0.23453361072266632,
+        "ttft_relative": -0.07239153892299732,
+        "throughput_relative": 0.009649109488164553,
+        "gpu_work_relative": 0.10650831858812038,
+        "completion_absolute": 0.010238907849829393,
+        "common_completed_n": 538,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 48,
+        "backlog_candidate": 42
+      },
+      "chunk_slow_vs_v3": {
+        "tpot_relative": -0.2150506734377643,
+        "common_tpot_relative": -0.20890068468962653,
+        "ttft_relative": -0.06533135078519692,
+        "throughput_relative": 0.009457520854364798,
+        "gpu_work_relative": -0.2399570335657646,
+        "completion_absolute": 0.010238907849829393,
+        "common_completed_n": 538,
+        "route_count_base": 32,
+        "route_count_candidate": 8,
+        "backlog_base": 48,
+        "backlog_candidate": 42
+      },
+      "chunk_slow_vs_chunk_all": {
+        "tpot_relative": 0.005087128952901532,
+        "common_tpot_relative": 0.006728318451909798,
+        "ttft_relative": -0.011767545757500053,
+        "throughput_relative": -0.0007138134166867482,
+        "gpu_work_relative": -0.001302055381489975,
+        "completion_absolute": -0.0017064846416381396,
+        "common_completed_n": 544,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 41,
+        "backlog_candidate": 42
+      },
+      "slow_pauses": 7266,
+      "all_pauses": 65808,
+      "pause_relative": -0.8895878920495989,
+      "tpot_seconds": {
+        "v3": 0.7356381953233974,
+        "gate": 0.750007256510985,
+        "chunk_all": 0.5745160686856413,
+        "chunk_slow": 0.5774387060125592
+      },
+      "throughput": {
+        "v3": 73.19277777777778,
+        "gate": 73.17888888888889,
+        "chunk_all": 73.93777777777778,
+        "chunk_slow": 73.885
+      },
+      "gpu_seconds_per_token": {
+        "v3": 0.0846342303390511,
+        "gate": 0.05813390682037424,
+        "chunk_all": 0.06440951624601805,
+        "chunk_slow": 0.06432565148877076
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "seed": 201,
+      "primary_pass": false,
+      "overall_work3_pass": true,
+      "selectivity_pass": true,
+      "all_pass": false
+    },
+    {
+      "seed": 202,
+      "primary_pass": false,
+      "overall_work3_pass": true,
+      "selectivity_pass": true,
+      "all_pass": false
+    },
+    {
+      "seed": 203,
+      "primary_pass": false,
+      "overall_work3_pass": true,
+      "selectivity_pass": true,
+      "all_pass": false
+    }
+  ],
+  "formal_joint_gate_passed": false,
+  "status": "completed"
+}

@@ -1,0 +1,84 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Check exact behavior parity between the old sparse gate and the selected 4 MiB slow-link chunk hook on resource pools where the admitted graph has no slow compute-to-compute edge.",
+    "cases": [
+      "C1_single",
+      "C2",
+      "C3"
+    ],
+    "seed": 311,
+    "duration_s": 60,
+    "warmup_s": 0,
+    "offered_tokens_per_s": {
+      "C1_single": 700.0,
+      "C2": 160.0,
+      "C3": 400.0
+    },
+    "chunk_bytes": 4194304,
+    "slow_link_threshold_Bps": 50000000,
+    "decision": "Each case must have identical trace, arrivals, output throughput, TTFT, TPOT, completion fraction, backlog, route counts, request samples and GPU busy fractions, with zero paused chunks. This is a smoke safety check, not a long-window performance claim."
+  },
+  "audit_sha256": "4793702ff86ba61015eb8a329b3fe10a366f99007c81c78abc82c724456b39ce",
+  "rows": [
+    {
+      "case": "C1_single",
+      "allowed_edges": 36,
+      "exact_fields": [
+        "trace_sha256",
+        "arrivals",
+        "output_throughput_tokens_per_s",
+        "ttft_p95_s",
+        "tpot_p95_s",
+        "completion_fraction",
+        "backlog_at_window_end",
+        "route_counts",
+        "query_samples",
+        "gpu_busy_fraction"
+      ],
+      "paused_chunks": 0,
+      "instrumented_slow_links": 0,
+      "passed": true
+    },
+    {
+      "case": "C2",
+      "allowed_edges": 26,
+      "exact_fields": [
+        "trace_sha256",
+        "arrivals",
+        "output_throughput_tokens_per_s",
+        "ttft_p95_s",
+        "tpot_p95_s",
+        "completion_fraction",
+        "backlog_at_window_end",
+        "route_counts",
+        "query_samples",
+        "gpu_busy_fraction"
+      ],
+      "paused_chunks": 0,
+      "instrumented_slow_links": 0,
+      "passed": true
+    },
+    {
+      "case": "C3",
+      "allowed_edges": 12,
+      "exact_fields": [
+        "trace_sha256",
+        "arrivals",
+        "output_throughput_tokens_per_s",
+        "ttft_p95_s",
+        "tpot_p95_s",
+        "completion_fraction",
+        "backlog_at_window_end",
+        "route_counts",
+        "query_samples",
+        "gpu_busy_fraction"
+      ],
+      "paused_chunks": 0,
+      "instrumented_slow_links": 0,
+      "passed": true
+    }
+  ],
+  "safety_parity_passed": true,
+  "status": "smoke_safety_only"
+}

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "registered_question": "Does the unchanged sparse-edge gate reduce GPU busy seconds per output token on held-out C2/C3 resource pools while preserving service metrics?",
+  "discovery_disclosure": "GPU work per token was selected after observing C1 replication and C2/C3 seeds 124/125 development results. Formal gated runs for seeds 0/1/2 on C2/C3 did not exist in this checkout before registration.",
+  "cases": ["C2", "C3"],
+  "seeds": [0, 1, 2],
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "offered_tokens_per_s": {"C2": 160, "C3": 400},
+  "candidate": "Unchanged SlowLinkGatedScheduler; canonical edges from frozen placement plus only preexisting fast detours around slow canonical edges",
+  "control": "experiments/m2_multistage_candidate/runs/formal/{case}/seed{seed}/single_a100.json; all four search variants export identical deployment on C2/C3",
+  "primary_metric": "sum(gpu_busy_fraction.values()) / output_throughput_tokens_per_s, measured GPU busy seconds per output token during the fixed window",
+  "gate": {
+    "gpu_seconds_per_token_relative_max_each_seed": -0.20,
+    "mean_throughput_relative_min_each_case": -0.01,
+    "mean_tpot_p95_relative_max_each_case": 0.05,
+    "mean_common_completed_tpot_p95_relative_max_each_case": 0.03,
+    "mean_completion_fraction_absolute_min_each_case": -0.01
+  },
+  "secondary_report": ["P95 TTFT", "end backlog", "route count", "per-seed TPOT", "per-seed completion"],
+  "if_fail": "Report failure without threshold adjustment or coefficient tuning."
+}

@@ -1,0 +1,60 @@
+{
+  "protocol": {
+    "version": 1,
+    "question": "Can interrupting long Prompt activation transfers only on slow physical links improve C1 multi-cluster Decode tail latency on the validated sparse DAG while preserving throughput and GPU efficiency?",
+    "disclosure": "Fixed-size Prompt transfer chunking and Decode prioritization are related to MoLink and are not claimed as independently novel. This experiment tests whether topology-selective application is useful jointly with sparse path admission.",
+    "case": "C1_multi",
+    "offered_tokens_per_s": 320.0,
+    "chunk_bytes": 1048576,
+    "slow_link_threshold_Bps": 50000000,
+    "smoke_seed": 143,
+    "smoke_duration_s": 60,
+    "development_seeds": [
+      141,
+      142
+    ],
+    "development_duration_s": 300,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "cells": [
+      "gate",
+      "chunk_all",
+      "chunk_slow"
+    ],
+    "primary_comparison": "chunk_slow versus gate on paired seeds and traces",
+    "development_screen": {
+      "tpot_p95_relative_max_each_seed": -0.05,
+      "common_completed_tpot_p95_relative_max_each_seed": 0.0,
+      "ttft_p95_relative_max_each_seed": 0.02,
+      "throughput_relative_min_each_seed": -0.01,
+      "gpu_seconds_per_token_relative_max_each_seed": 0.05
+    },
+    "secondary_comparison": "chunk_slow versus chunk_all; report relative endpoints and number of transfer pauses, regardless of primary decision",
+    "if_fail": "Preserve the negative result and stop this candidate; do not adjust chunk size or gate margins on these seeds.",
+    "if_pass": "Freeze an independent 1800-second held-out comparison against both gate and chunk_all."
+  },
+  "sources_sha256": {
+    "artifact_evaluation/distributed_clusters/config/3cluster24.ini": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "experiments/v3_cycle_pricing/run.py": "aaad0984b43523f65ff5926b117c64ad099de80f21517d93141b77cd9f1e507c",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "experiments/v3_phase_link_diagnosis/chunking.py": "438a86bc01f38f6a35967a340b62fc1c382dd7ec596551fbf9dda1930249c770",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/multi/simulator_cluster.ini": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+    "rcaps/v3_layouts/multi/solution.ini": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+    "work3_selective_chunk/chunking.py": "35e837cee433598e3e39724954ebcc9ff121f5ee3e9471868b702e69cdadc52e",
+    "work3_selective_chunk/protocol.json": "9b184838602a3ad0659f9f264ca56aa574c0b430195f375f99b0e0bf8cdcb399",
+    "work3_selective_chunk/run.py": "05b1b6c80cf4e0ba46e321bb08e7cc03053f2832faed34aa8c395a556f35f3e3"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

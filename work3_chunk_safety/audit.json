@@ -1,0 +1,55 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Check exact behavior parity between the old sparse gate and the selected 4 MiB slow-link chunk hook on resource pools where the admitted graph has no slow compute-to-compute edge.",
+    "cases": [
+      "C1_single",
+      "C2",
+      "C3"
+    ],
+    "seed": 311,
+    "duration_s": 60,
+    "warmup_s": 0,
+    "offered_tokens_per_s": {
+      "C1_single": 700.0,
+      "C2": 160.0,
+      "C3": 400.0
+    },
+    "chunk_bytes": 4194304,
+    "slow_link_threshold_Bps": 50000000,
+    "decision": "Each case must have identical trace, arrivals, output throughput, TTFT, TPOT, completion fraction, backlog, route counts, request samples and GPU busy fractions, with zero paused chunks. This is a smoke safety check, not a long-window performance claim."
+  },
+  "sources_sha256": {
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "examples/simulation/config/single24.ini": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+    "experiments/v3_cycle_pricing/run.py": "aaad0984b43523f65ff5926b117c64ad099de80f21517d93141b77cd9f1e507c",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "experiments/v3_phase_link_diagnosis/chunking.py": "438a86bc01f38f6a35967a340b62fc1c382dd7ec596551fbf9dda1930249c770",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/pools/C2/physical.ini": "45a82926c0f81b96bf7a3ae91ad697b5e5ad6321606347bf8195e1ba45f0738d",
+    "rcaps/v3/pools/C3/physical.ini": "96a359d052beffad72d30a2ee1ac880973fb22a9a7d5ab9a39f581ca26d6d898",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/C2/simulator_cluster.ini": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+    "rcaps/v3_layouts/C2/solution.ini": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+    "rcaps/v3_layouts/C3/simulator_cluster.ini": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+    "rcaps/v3_layouts/C3/solution.ini": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+    "rcaps/v3_layouts/single/simulator_cluster.ini": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+    "rcaps/v3_layouts/single/solution.ini": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+    "work3_chunk_safety/protocol.json": "13d798c9e882251a963b4afc889f56719380616891bd01b50366b45245027e4d",
+    "work3_chunk_safety/report.py": "81161d8721e9515b21f3695f640af255071ec32ab0e1a09af4c634c5d615a454",
+    "work3_chunk_safety/run.py": "0f1293f1ce2ee8a5bf735a28cd7fab4a9e9b391f86813693a557bd69cc3eb655",
+    "work3_chunk_size/formal/analysis.json": "54ae8627dc03a9a986d09e91f9ef82f258733dfa0f30a83cc9a28cf266b14347",
+    "work3_selective_chunk/chunking.py": "35e837cee433598e3e39724954ebcc9ff121f5ee3e9471868b702e69cdadc52e",
+    "work3_transfer/run.py": "728d583ca659a4fb5d1e3acbee22bb1379e3e853539931cf142b9716dc3dfe99"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

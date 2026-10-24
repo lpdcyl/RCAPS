@@ -1,0 +1,252 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Locate unnecessary fast detours in the already validated C1 multi-cluster sparse pathspace; this is development, not a new confirmatory result.",
+    "case": "C1_multi",
+    "offered_tokens_per_s": 320.0,
+    "seeds": [
+      121,
+      122
+    ],
+    "duration_s": 300,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "detours_from_frozen_audit": [
+      [
+        6,
+        13
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        20,
+        22
+      ],
+      [
+        23,
+        18
+      ]
+    ],
+    "cells": "unchanged sparse gate and four leave-one-detour-out variants",
+    "control": "work3_link_price/runs/v1/development/C1_multi/gated_seed{seed}.json",
+    "diagnostics": [
+      "all-completed P95 TPOT",
+      "common-completed P95 TPOT",
+      "P95 TTFT",
+      "output throughput",
+      "GPU busy seconds per output token",
+      "route counts"
+    ],
+    "selection_rule": "A variant merits held-out testing only if mean all-completed and common-completed P95 TPOT are both lower than the unchanged gate, mean throughput drops by no more than 0.5%, and mean GPU busy seconds per output token rises by no more than 10%. Do not claim improvement from these two development seeds.",
+    "no_fitting": "Only the four existing detour edges are individually removed. No route prices, bandwidth thresholds, workloads, placements, or margins are tuned after results."
+  },
+  "audit_sha256": "cc449db3868e79477344a23e1c55fe795720d1103415b6c23dab843f692ef5a5",
+  "unchanged_gate_parity_seeds": [
+    121,
+    122
+  ],
+  "pairs": [
+    {
+      "seed": 121,
+      "excluded_edge": [
+        6,
+        13
+      ],
+      "tpot_relative": -0.007872911941641747,
+      "common_tpot_relative": 0.03126247150453465,
+      "ttft_relative": -0.026086115729138326,
+      "throughput_relative": -0.007297201558625566,
+      "gpu_work_relative": -0.1358149657298675,
+      "completion_absolute": 0.01041666666666663,
+      "common_completed_n": 48,
+      "route_count_base": 8,
+      "route_count_candidate": 6,
+      "allowed_edges": 29
+    },
+    {
+      "seed": 121,
+      "excluded_edge": [
+        11,
+        8
+      ],
+      "tpot_relative": -0.027544013135067935,
+      "common_tpot_relative": 0.04987488251145522,
+      "ttft_relative": -0.02076178320210631,
+      "throughput_relative": -0.02699256110520709,
+      "gpu_work_relative": -0.16001532000046947,
+      "completion_absolute": 0.01041666666666663,
+      "common_completed_n": 48,
+      "route_count_base": 8,
+      "route_count_candidate": 6,
+      "allowed_edges": 29
+    },
+    {
+      "seed": 121,
+      "excluded_edge": [
+        20,
+        22
+      ],
+      "tpot_relative": -0.04958670051992964,
+      "common_tpot_relative": -0.018473997278081855,
+      "ttft_relative": -0.041354925423992994,
+      "throughput_relative": -0.011335458731845494,
+      "gpu_work_relative": -0.07604783863744202,
+      "completion_absolute": 0.0,
+      "common_completed_n": 48,
+      "route_count_base": 8,
+      "route_count_candidate": 7,
+      "allowed_edges": 29
+    },
+    {
+      "seed": 121,
+      "excluded_edge": [
+        23,
+        18
+      ],
+      "tpot_relative": -0.04075259316084434,
+      "common_tpot_relative": 0.037486617217973084,
+      "ttft_relative": -0.004344932676085045,
+      "throughput_relative": -0.017074034714842257,
+      "gpu_work_relative": -0.15569527409016914,
+      "completion_absolute": 0.01041666666666663,
+      "common_completed_n": 48,
+      "route_count_base": 8,
+      "route_count_candidate": 7,
+      "allowed_edges": 29
+    },
+    {
+      "seed": 122,
+      "excluded_edge": [
+        6,
+        13
+      ],
+      "tpot_relative": 0.03057323936229661,
+      "common_tpot_relative": -0.03407778982685439,
+      "ttft_relative": 0.04245080715024607,
+      "throughput_relative": -0.006297958592731967,
+      "gpu_work_relative": -0.13960429975907318,
+      "completion_absolute": 0.0,
+      "common_completed_n": 50,
+      "route_count_base": 8,
+      "route_count_candidate": 6,
+      "allowed_edges": 29
+    },
+    {
+      "seed": 122,
+      "excluded_edge": [
+        11,
+        8
+      ],
+      "tpot_relative": 0.03831431765998761,
+      "common_tpot_relative": 0.007469020268304538,
+      "ttft_relative": 0.05936032453508777,
+      "throughput_relative": -0.030838280005791252,
+      "gpu_work_relative": -0.11471755971081776,
+      "completion_absolute": -0.06060606060606066,
+      "common_completed_n": 46,
+      "route_count_base": 8,
+      "route_count_candidate": 6,
+      "allowed_edges": 29
+    },
+    {
+      "seed": 122,
+      "excluded_edge": [
+        20,
+        22
+      ],
+      "tpot_relative": -0.008230541953054615,
+      "common_tpot_relative": -0.040207623654623714,
+      "ttft_relative": 0.09633176743433514,
+      "throughput_relative": -0.007745765165773855,
+      "gpu_work_relative": -0.06354369112339919,
+      "completion_absolute": -0.04040404040404044,
+      "common_completed_n": 48,
+      "route_count_base": 8,
+      "route_count_candidate": 7,
+      "allowed_edges": 29
+    },
+    {
+      "seed": 122,
+      "excluded_edge": [
+        23,
+        18
+      ],
+      "tpot_relative": 0.018383072209701812,
+      "common_tpot_relative": 0.010209708429922637,
+      "ttft_relative": 0.15278498461463896,
+      "throughput_relative": -0.01853192413493554,
+      "gpu_work_relative": -0.1545257920067169,
+      "completion_absolute": -0.03030303030303033,
+      "common_completed_n": 48,
+      "route_count_base": 8,
+      "route_count_candidate": 6,
+      "allowed_edges": 29
+    }
+  ],
+  "decisions": [
+    {
+      "excluded_edge": [
+        6,
+        13
+      ],
+      "means": {
+        "tpot_relative": 0.011350163710327432,
+        "common_tpot_relative": -0.0014076591611598688,
+        "ttft_relative": 0.008182345710553873,
+        "throughput_relative": -0.006797580075678766,
+        "gpu_work_relative": -0.13770963274447034,
+        "completion_absolute": 0.005208333333333315
+      },
+      "merits_held_out_test": false
+    },
+    {
+      "excluded_edge": [
+        11,
+        8
+      ],
+      "means": {
+        "tpot_relative": 0.005385152262459836,
+        "common_tpot_relative": 0.02867195138987988,
+        "ttft_relative": 0.01929927066649073,
+        "throughput_relative": -0.02891542055549917,
+        "gpu_work_relative": -0.13736643985564362,
+        "completion_absolute": -0.025094696969697017
+      },
+      "merits_held_out_test": false
+    },
+    {
+      "excluded_edge": [
+        20,
+        22
+      ],
+      "means": {
+        "tpot_relative": -0.028908621236492127,
+        "common_tpot_relative": -0.029340810466352785,
+        "ttft_relative": 0.02748842100517107,
+        "throughput_relative": -0.009540611948809674,
+        "gpu_work_relative": -0.06979576488042061,
+        "completion_absolute": -0.02020202020202022
+      },
+      "merits_held_out_test": false
+    },
+    {
+      "excluded_edge": [
+        23,
+        18
+      ],
+      "means": {
+        "tpot_relative": -0.011184760475571265,
+        "common_tpot_relative": 0.02384816282394786,
+        "ttft_relative": 0.07422002596927696,
+        "throughput_relative": -0.0178029794248889,
+        "gpu_work_relative": -0.15511053304844302,
+        "completion_absolute": -0.009943181818181851
+      },
+      "merits_held_out_test": false
+    }
+  ],
+  "selected_for_held_out_test": null,
+  "status": "exploratory_development_only"
+}

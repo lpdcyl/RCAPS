@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "purpose": "Development-only 2x3 orthogonal diagnosis before designing a distinct edge-admission algorithm; no confirmatory claim from these seeds.",
+  "case": "C1_multi",
+  "seeds": [161, 162],
+  "duration_s": 300,
+  "warmup_s": 0,
+  "offered_tokens_per_s": 320.0,
+  "slow_link_threshold_Bps": 50000000,
+  "chunk_bytes": 4194304,
+  "cells": ["full", "gate", "full_slow4", "gate_slow4", "full_all4", "gate_all4"],
+  "readout": {
+    "primary": ["tpot_p95_s", "gpu_seconds_per_output_token", "output_throughput_tokens_per_s"],
+    "secondary": ["ttft_p95_s", "completion_fraction", "common_completed_tpot_p95_s", "route_count", "paused_chunks"],
+    "interaction": "log(TPOT_gate_slow4/TPOT_gate) - log(TPOT_full_slow4/TPOT_full); negative means chunking helps more on the gated graph",
+    "slow_selectivity": "Compare slow4 to all4 at fixed graph, including paused chunk counts"
+  },
+  "decision": "Diagnostic only. No new algorithm or formal run will be declared successful from this matrix. Design and freeze a new edge-admission rule separately, then screen on different development seeds before unseen formal seeds."
+}

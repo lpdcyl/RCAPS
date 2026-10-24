@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "registration_context": "Registered after seeing smoke seed143 and development seeds141/142. The numerical margins below are confirmatory criteria for unseen seeds201/202/203, not retrospectively applied to development windows.",
+  "case": "C1_multi",
+  "seeds": [201, 202, 203],
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "offered_tokens_per_s": 320.0,
+  "layout": "frozen rcaps/v3_layouts/multi",
+  "chunk_bytes": 1048576,
+  "slow_link_threshold_Bps": 50000000,
+  "methods": ["v3", "gate", "chunk_all", "chunk_slow"],
+  "primary_gate_each_seed_chunk_slow_vs_gate": {
+    "tpot_p95_relative_max": -0.10,
+    "common_completed_tpot_p95_relative_max": -0.05,
+    "ttft_p95_relative_max": 0.02,
+    "throughput_relative_min": -0.01,
+    "gpu_seconds_per_token_relative_max": 0.05,
+    "completion_fraction_absolute_min": -0.01
+  },
+  "overall_work3_gate_each_seed_chunk_slow_vs_v3": {
+    "tpot_p95_relative_max": 0.0,
+    "gpu_seconds_per_token_relative_max": 0.0,
+    "throughput_relative_min": -0.01
+  },
+  "selectivity_gate_each_seed_chunk_slow_vs_chunk_all": {
+    "tpot_p95_relative_max": 0.05,
+    "throughput_relative_min": -0.01,
+    "pause_count_relative_max": -0.70
+  },
+  "decision": "All three gates must pass in each of three paired seeds. Report all-sample and common-completed endpoints, TTFT, throughput, GPU work, completion fraction, backlog, route count and chunk pauses. Any failure remains a failure; do not alter chunk size or margins on these seeds.",
+  "claim_limit": "Simulation-only systems evidence. Existing MoLink-related chunking is not an independent novelty claim."
+}

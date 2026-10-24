@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "purpose": "Replay C2/C3 full-DAG V3 controls with the exact current runtime used by work3_efficiency_formal, because archived M2 controls have a different execution source hash.",
+  "cases": ["C2", "C3"],
+  "seeds": [0, 1, 2],
+  "duration_s": 1800,
+  "offered_tokens_per_s": {"C2": 160, "C3": 400},
+  "warmup_s": 0,
+  "tail_drain": false,
+  "candidate": "work3_efficiency_formal/runs/{case}/gated_seed{seed}.json",
+  "decision_rule": "Apply unchanged work3_efficiency_formal/protocol.json thresholds to the new same-environment V3 controls. Report archived-versus-replayed V3 drift separately."
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "purpose": "Check exact behavior parity between the old sparse gate and the selected 4 MiB slow-link chunk hook on resource pools where the admitted graph has no slow compute-to-compute edge.",
+  "cases": ["C1_single", "C2", "C3"],
+  "seed": 311,
+  "duration_s": 60,
+  "warmup_s": 0,
+  "offered_tokens_per_s": {"C1_single": 700.0, "C2": 160.0, "C3": 400.0},
+  "chunk_bytes": 4194304,
+  "slow_link_threshold_Bps": 50000000,
+  "decision": "Each case must have identical trace, arrivals, output throughput, TTFT, TPOT, completion fraction, backlog, route counts, request samples and GPU busy fractions, with zero paused chunks. This is a smoke safety check, not a long-window performance claim."
+}

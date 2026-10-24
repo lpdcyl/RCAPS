@@ -1,0 +1,313 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Development-only 2x3 orthogonal diagnosis before designing a distinct edge-admission algorithm; no confirmatory claim from these seeds.",
+    "case": "C1_multi",
+    "seeds": [
+      161,
+      162
+    ],
+    "duration_s": 300,
+    "warmup_s": 0,
+    "offered_tokens_per_s": 320.0,
+    "slow_link_threshold_Bps": 50000000,
+    "chunk_bytes": 4194304,
+    "cells": [
+      "full",
+      "gate",
+      "full_slow4",
+      "gate_slow4",
+      "full_all4",
+      "gate_all4"
+    ],
+    "readout": {
+      "primary": [
+        "tpot_p95_s",
+        "gpu_seconds_per_output_token",
+        "output_throughput_tokens_per_s"
+      ],
+      "secondary": [
+        "ttft_p95_s",
+        "completion_fraction",
+        "common_completed_tpot_p95_s",
+        "route_count",
+        "paused_chunks"
+      ],
+      "interaction": "log(TPOT_gate_slow4/TPOT_gate) - log(TPOT_full_slow4/TPOT_full); negative means chunking helps more on the gated graph",
+      "slow_selectivity": "Compare slow4 to all4 at fixed graph, including paused chunk counts"
+    },
+    "decision": "Diagnostic only. No new algorithm or formal run will be declared successful from this matrix. Design and freeze a new edge-admission rule separately, then screen on different development seeds before unseen formal seeds."
+  },
+  "audit_sha256": "e9878181dc8079258565ccd8267844b9926fdb98a0f799c5e8a84ecec1f33753",
+  "rows": [
+    {
+      "seed": 161,
+      "comparisons": {
+        "gate_vs_full": {
+          "tpot_relative": -0.031201472372853645,
+          "common_completed_tpot_relative": -0.012472205485189347,
+          "common_completed_n": 41,
+          "ttft_relative": -0.0021717175079070117,
+          "throughput_relative": 0.006157354618015809,
+          "gpu_work_relative": -0.2480369790160759,
+          "completion_absolute": -0.022222222222222254,
+          "route_count_base": 16,
+          "route_count_candidate": 8
+        },
+        "gate_slow4_vs_gate": {
+          "tpot_relative": -0.12164662868813192,
+          "common_completed_tpot_relative": -0.1662927273493896,
+          "common_completed_n": 41,
+          "ttft_relative": -0.11186777722345342,
+          "throughput_relative": 0.06572982774252045,
+          "gpu_work_relative": 0.032046066477769974,
+          "completion_absolute": 0.033333333333333326,
+          "route_count_base": 8,
+          "route_count_candidate": 8
+        },
+        "full_slow4_vs_full": {
+          "tpot_relative": -0.12990413593997996,
+          "common_completed_tpot_relative": -0.17943076105661993,
+          "common_completed_n": 43,
+          "ttft_relative": -0.04492358262759577,
+          "throughput_relative": 0.06674268339034573,
+          "gpu_work_relative": -0.0322113664908632,
+          "completion_absolute": 0.0222222222222222,
+          "route_count_base": 16,
+          "route_count_candidate": 16
+        },
+        "gate_slow4_vs_full_slow4": {
+          "tpot_relative": -0.022007243095481743,
+          "common_completed_tpot_relative": 0.004978390529810195,
+          "common_completed_n": 43,
+          "ttft_relative": -0.07211251962736176,
+          "throughput_relative": 0.005202023801040623,
+          "gpu_work_relative": -0.1981095343832916,
+          "completion_absolute": -0.011111111111111127,
+          "route_count_base": 16,
+          "route_count_candidate": 8
+        },
+        "gate_all4_vs_gate_slow4": {
+          "tpot_relative": -0.010724109342829413,
+          "common_completed_tpot_relative": -0.02584611636278955,
+          "common_completed_n": 44,
+          "ttft_relative": 0.007726151941377379,
+          "throughput_relative": 0.004111725506876329,
+          "gpu_work_relative": -0.020951283247270247,
+          "completion_absolute": 0.0222222222222222,
+          "route_count_base": 8,
+          "route_count_candidate": 8
+        },
+        "full_all4_vs_full_slow4": {
+          "tpot_relative": -0.0048432482305641456,
+          "common_completed_tpot_relative": 0.02631022506473424,
+          "common_completed_n": 44,
+          "ttft_relative": -0.014986727838870784,
+          "throughput_relative": 0.010617829402123524,
+          "gpu_work_relative": -0.08312900268306245,
+          "completion_absolute": 0.033333333333333326,
+          "route_count_base": 16,
+          "route_count_candidate": 15
+        }
+      },
+      "interaction_log_tpot": 0.009445591531876407,
+      "raw": {
+        "full": {
+          "tpot_p95_s": 0.7147926350460834,
+          "ttft_p95_s": 6.339457667286637,
+          "throughput": 43.85,
+          "gpu_seconds_per_token": 0.10596639431627813,
+          "completion_fraction": 0.4777777777777778,
+          "backlog": 47,
+          "route_count": 16,
+          "paused_chunks": 0
+        },
+        "gate": {
+          "tpot_p95_s": 0.6924900523913737,
+          "ttft_p95_s": 6.325690156079955,
+          "throughput": 44.12,
+          "gpu_seconds_per_token": 0.07968280999284223,
+          "completion_fraction": 0.45555555555555555,
+          "backlog": 49,
+          "route_count": 8,
+          "paused_chunks": 0
+        },
+        "full_slow4": {
+          "tpot_p95_s": 0.6219381154141604,
+          "ttft_p95_s": 6.05466651695614,
+          "throughput": 46.776666666666664,
+          "gpu_seconds_per_token": 0.10255307195324118,
+          "completion_fraction": 0.5,
+          "backlog": 45,
+          "route_count": 16,
+          "paused_chunks": 254
+        },
+        "gate_slow4": {
+          "tpot_p95_s": 0.6082509721178952,
+          "ttft_p95_s": 5.61804925891501,
+          "throughput": 47.02,
+          "gpu_seconds_per_token": 0.08223633061900837,
+          "completion_fraction": 0.4888888888888889,
+          "backlog": 46,
+          "route_count": 8,
+          "paused_chunks": 253
+        },
+        "full_all4": {
+          "tpot_p95_s": 0.6189259147371604,
+          "ttft_p95_s": 5.963926877711395,
+          "throughput": 47.27333333333333,
+          "gpu_seconds_per_token": 0.0940279373596839,
+          "completion_fraction": 0.5333333333333333,
+          "backlog": 42,
+          "route_count": 15,
+          "paused_chunks": 2399
+        },
+        "gate_all4": {
+          "tpot_p95_s": 0.6017280221850206,
+          "ttft_p95_s": 5.661455161103531,
+          "throughput": 47.21333333333333,
+          "gpu_seconds_per_token": 0.08051337396299336,
+          "completion_fraction": 0.5111111111111111,
+          "backlog": 44,
+          "route_count": 8,
+          "paused_chunks": 2366
+        }
+      }
+    },
+    {
+      "seed": 162,
+      "comparisons": {
+        "gate_vs_full": {
+          "tpot_relative": 0.015357565660766959,
+          "common_completed_tpot_relative": 0.02048971237250119,
+          "common_completed_n": 56,
+          "ttft_relative": 0.03257692187129235,
+          "throughput_relative": 0.004716663297621437,
+          "gpu_work_relative": -0.2835792478891337,
+          "completion_absolute": -0.00990099009900991,
+          "route_count_base": 20,
+          "route_count_candidate": 8
+        },
+        "gate_slow4_vs_gate": {
+          "tpot_relative": -0.10179207361674691,
+          "common_completed_tpot_relative": -0.10335241136771334,
+          "common_completed_n": 57,
+          "ttft_relative": -0.0755547800803198,
+          "throughput_relative": 0.028032995774931235,
+          "gpu_work_relative": 0.006119960700528004,
+          "completion_absolute": 0.02970297029702973,
+          "route_count_base": 8,
+          "route_count_candidate": 8
+        },
+        "full_slow4_vs_full": {
+          "tpot_relative": -0.07111623240901,
+          "common_completed_tpot_relative": -0.07973086586535072,
+          "common_completed_n": 58,
+          "ttft_relative": -0.0517737899556272,
+          "throughput_relative": 0.03369045212586741,
+          "gpu_work_relative": -0.022861797815091345,
+          "completion_absolute": 0.00990099009900991,
+          "route_count_base": 20,
+          "route_count_candidate": 18
+        },
+        "gate_slow4_vs_full_slow4": {
+          "tpot_relative": -0.01817402197162532,
+          "common_completed_tpot_relative": -0.007959090557269066,
+          "common_completed_n": 59,
+          "ttft_relative": 0.006680462437991697,
+          "throughput_relative": -0.0007822175868587022,
+          "gpu_work_relative": -0.26233032610219653,
+          "completion_absolute": 0.00990099009900991,
+          "route_count_base": 18,
+          "route_count_candidate": 8
+        },
+        "gate_all4_vs_gate_slow4": {
+          "tpot_relative": 0.012008770481777287,
+          "common_completed_tpot_relative": 0.01158979115164116,
+          "common_completed_n": 60,
+          "ttft_relative": -0.0025287009889600753,
+          "throughput_relative": 0.0009133015852305082,
+          "gpu_work_relative": 0.08042830549794289,
+          "completion_absolute": 0.00990099009900991,
+          "route_count_base": 8,
+          "route_count_candidate": 8
+        },
+        "full_all4_vs_full_slow4": {
+          "tpot_relative": 0.0049350568577304355,
+          "common_completed_tpot_relative": 0.004285192834323048,
+          "common_completed_n": 59,
+          "ttft_relative": -0.00792720990348117,
+          "throughput_relative": -0.0026725767551006863,
+          "gpu_work_relative": 0.0451861864224663,
+          "completion_absolute": 0.0,
+          "route_count_base": 18,
+          "route_count_candidate": 18
+        }
+      },
+      "interaction_log_tpot": -0.03358203001165998,
+      "raw": {
+        "full": {
+          "tpot_p95_s": 0.6366342924476968,
+          "ttft_p95_s": 4.903714590211426,
+          "throughput": 49.47,
+          "gpu_seconds_per_token": 0.11304545920468859,
+          "completion_fraction": 0.5742574257425742,
+          "backlog": 43,
+          "route_count": 20,
+          "paused_chunks": 0
+        },
+        "gate": {
+          "tpot_p95_s": 0.6464114453958582,
+          "ttft_p95_s": 5.063462517295861,
+          "throughput": 49.70333333333333,
+          "gpu_seconds_per_token": 0.08098811290614125,
+          "completion_fraction": 0.5643564356435643,
+          "backlog": 44,
+          "route_count": 8,
+          "paused_chunks": 0
+        },
+        "full_slow4": {
+          "tpot_p95_s": 0.5913592601464407,
+          "ttft_p95_s": 4.649830701015476,
+          "throughput": 51.13666666666666,
+          "gpu_seconds_per_token": 0.11046103677243684,
+          "completion_fraction": 0.5841584158415841,
+          "backlog": 42,
+          "route_count": 18,
+          "paused_chunks": 198
+        },
+        "gate_slow4": {
+          "tpot_p95_s": 0.5806118839594152,
+          "ttft_p95_s": 4.68089372035663,
+          "throughput": 51.096666666666664,
+          "gpu_seconds_per_token": 0.08148375697433675,
+          "completion_fraction": 0.594059405940594,
+          "backlog": 41,
+          "route_count": 8,
+          "paused_chunks": 199
+        },
+        "full_all4": {
+          "tpot_p95_s": 0.5942776517186088,
+          "ttft_p95_s": 4.612970517032875,
+          "throughput": 51.0,
+          "gpu_seconds_per_token": 0.11545234977245507,
+          "completion_fraction": 0.5841584158415841,
+          "backlog": 42,
+          "route_count": 18,
+          "paused_chunks": 1892
+        },
+        "gate_all4": {
+          "tpot_p95_s": 0.5875843188128761,
+          "ttft_p95_s": 4.669057139776747,
+          "throughput": 51.14333333333333,
+          "gpu_seconds_per_token": 0.08803735747338884,
+          "completion_fraction": 0.6039603960396039,
+          "backlog": 40,
+          "route_count": 8,
+          "paused_chunks": 1863
+        }
+      }
+    }
+  ],
+  "status": "development_diagnostic_only"
+}

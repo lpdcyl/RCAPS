@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "question": "Can interrupting long Prompt activation transfers only on slow physical links improve C1 multi-cluster Decode tail latency on the validated sparse DAG while preserving throughput and GPU efficiency?",
+  "disclosure": "Fixed-size Prompt transfer chunking and Decode prioritization are related to MoLink and are not claimed as independently novel. This experiment tests whether topology-selective application is useful jointly with sparse path admission.",
+  "case": "C1_multi",
+  "offered_tokens_per_s": 320.0,
+  "chunk_bytes": 1048576,
+  "slow_link_threshold_Bps": 50000000,
+  "smoke_seed": 143,
+  "smoke_duration_s": 60,
+  "development_seeds": [141, 142],
+  "development_duration_s": 300,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "cells": ["gate", "chunk_all", "chunk_slow"],
+  "primary_comparison": "chunk_slow versus gate on paired seeds and traces",
+  "development_screen": {
+    "tpot_p95_relative_max_each_seed": -0.05,
+    "common_completed_tpot_p95_relative_max_each_seed": 0.0,
+    "ttft_p95_relative_max_each_seed": 0.02,
+    "throughput_relative_min_each_seed": -0.01,
+    "gpu_seconds_per_token_relative_max_each_seed": 0.05
+  },
+  "secondary_comparison": "chunk_slow versus chunk_all; report relative endpoints and number of transfer pauses, regardless of primary decision",
+  "if_fail": "Preserve the negative result and stop this candidate; do not adjust chunk size or gate margins on these seeds.",
+  "if_pass": "Freeze an independent 1800-second held-out comparison against both gate and chunk_all."
+}

@@ -1,0 +1,61 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Independently reproduce the previously published gated-pathspace formal comparison when its candidate raw windows and original runner dependency are absent from this checkout.",
+    "original_protocol": "experiments/v3_gated_pathspace/protocol.json",
+    "candidate": "experiments.v3_gated_pathspace.scheduler.SlowLinkGatedScheduler, unchanged",
+    "control": "benchmarks/runs/{single,multi}/seed{seed}/rcaps_v3.json",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "tail_drain": false,
+    "loads": {
+      "C1_single": 700,
+      "C1_multi": 320
+    },
+    "decision": {
+      "multi_mean_relative_tpot_max": 0.02,
+      "multi_mean_relative_throughput_min": -0.005,
+      "single_tpot_below_v3_each_seed": true,
+      "single_mean_relative_throughput_min": -0.005
+    },
+    "disclosure": "This is a replication of the original non-inferiority protocol, which followed a failed development rule; it is not a new independent method-selection test."
+  },
+  "sources_sha256": {
+    "artifact_evaluation/distributed_clusters/config/3cluster24.ini": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "benchmarks/runs/multi/seed0/rcaps_v3.json": "9b9697eb87f4377ed571baee2ebcce4e99cf717b5274fe09a91488308f25e932",
+    "benchmarks/runs/multi/seed1/rcaps_v3.json": "0cafa0353244abf453ccf2173d67aef4fa2859bd7a48f83764afe33cb3e56cd3",
+    "benchmarks/runs/multi/seed2/rcaps_v3.json": "d49be1310379092840e36bb9050ff828b5d7e905383dc4dd1e94457b5528647f",
+    "benchmarks/runs/single/seed0/rcaps_v3.json": "c0b782a952c17f3ec7daf37dc65514e8b202410d277d0e2a8aea51b2b80b59c3",
+    "benchmarks/runs/single/seed1/rcaps_v3.json": "fa99d53600d3237988fe709b74e1751ac7b3b37aa822d7d5a91797d955a3df67",
+    "benchmarks/runs/single/seed2/rcaps_v3.json": "2969c8024d74b5f62e8228ff7820b0851ad4ddadc14c40cac0cadaac6c528186",
+    "examples/simulation/config/single24.ini": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+    "experiments/v3_cycle_pricing/run.py": "aaad0984b43523f65ff5926b117c64ad099de80f21517d93141b77cd9f1e507c",
+    "experiments/v3_gated_pathspace/protocol.json": "6301f60afed1597815bba1883ab4b5948eb636f7a909fa9bda5f958eb540e024",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/multi/simulator_cluster.ini": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+    "rcaps/v3_layouts/multi/solution.ini": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+    "rcaps/v3_layouts/single/simulator_cluster.ini": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+    "rcaps/v3_layouts/single/solution.ini": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+    "work3_sparse_replication/protocol.json": "ed0e696e6b83d9540f9c14fdd70ac2ca36f1e7dc4141a50644ae9c0d8ef1de60",
+    "work3_sparse_replication/report.py": "540bc89d3f4e9758b6a10b197ccc6bde2bcb6de06fb443a4a4948a0f9ede555c",
+    "work3_sparse_replication/run.py": "395500c14fef9ac443fb99d616c0b4d0bece64850598076e4683d910bf624e6c"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "registration_context": "Registered after the separate 4 MiB formal 301/302/303 results and after seeing the historical seed 0/1/2 V3 and gated controls. The new 4 MiB candidate outcomes on 0/1/2 are unseen. This is a preregistered supplementary known-seed replay, not another independent held-out confirmation.",
+  "case": "C1_multi",
+  "seeds": [0, 1, 2],
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "offered_tokens_per_s": 320.0,
+  "slow_link_threshold_Bps": 50000000,
+  "chunk_bytes": 4194304,
+  "candidate": "SlowLinkGatedScheduler plus SlowLinkPromptTransferChunkHook on physical compute links <=50 MB/s; existing route price, placement, and arrival generator unchanged.",
+  "controls": {
+    "gate": "work3_sparse_replication/runs/C1_multi/gated_seed{seed}.json",
+    "v3": "benchmarks/runs/multi/seed{seed}/rcaps_v3.json"
+  },
+  "primary_gate_each_seed_vs_gate": {
+    "tpot_p95_relative_max": -0.10,
+    "common_completed_tpot_p95_relative_max": -0.05,
+    "ttft_p95_relative_max": 0.02,
+    "throughput_relative_min": -0.01,
+    "gpu_seconds_per_token_relative_max": 0.05,
+    "completion_fraction_absolute_min": -0.01
+  },
+  "overall_work3_gate_each_seed_vs_v3": {
+    "tpot_p95_relative_max": 0.0,
+    "gpu_seconds_per_token_relative_max": 0.0,
+    "throughput_relative_min": -0.01
+  },
+  "decision": "Both reused 301/302/303 gate families must pass for every one of seeds 0/1/2. Preserve any failure; do not change chunk size, sources, seeds, or thresholds after running.",
+  "claim_limit": "Known-seed full-length simulation replay. Seeds 0/1/2 were observed in prior method development; results cannot be labeled independent unseen-seed confirmation or hardware measurements."
+}

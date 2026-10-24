@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "question": "Can one or two frequently used fast V3 edges improve C1 multi-cluster latency over the validated sparse gate without losing its GPU-work advantage?",
+  "edge_selection_evidence": "Only C1_multi V3 development seed121/122 route_counts were used. Among edges omitted by the old sparse gate, 19->16 appeared in 53/192 routed prompts and 17->19 in 42/192; both are legal 1.16-1.175 GB/s links. The next omitted fast edge appeared in 21/192. Old formal seed0/1/2 outcomes were not used to choose these edges.",
+  "case": "C1_multi",
+  "offered_tokens_per_s": 320.0,
+  "duration_s": 300,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "parity_seed": 121,
+  "development_seeds": [131, 132],
+  "additional_edge_sets": {
+    "gate": [],
+    "add_19_16": [[19, 16]],
+    "add_17_19": [[17, 19]],
+    "add_both": [[19, 16], [17, 19]]
+  },
+  "control": "old sparse gate, paired by seed, trace, layout, simulator and runtime",
+  "screen": {
+    "mean_tpot_relative_max": -0.02,
+    "mean_common_completed_tpot_relative_max": 0.0,
+    "mean_throughput_relative_min": -0.005,
+    "mean_gpu_seconds_per_token_relative_max": 0.10,
+    "mean_ttft_relative_max": 0.02
+  },
+  "selection": "A candidate enters new-seed long-window confirmation only if all five screening constraints pass. Among passers select lowest mean common-completed P95 TPOT; do not change this screen after seeing the development results.",
+  "scope": "Exploratory method development. Unseen 1800-second seeds are required before any performance claim."
+}

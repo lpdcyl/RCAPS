@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "registration_context": "Sequential revision after the 1 MiB slow-link method exceeded its +5% GPU-work guard on unseen formal seeds201 and203 (+7.86% and +10.65% versus the sparse gate). Formal seed202 was still running. These outcomes are discovery evidence only; no candidate in this directory is judged on seeds201/202/203.",
+  "case": "C1_multi",
+  "offered_tokens_per_s": 320.0,
+  "development_seeds": [151, 152],
+  "duration_s": 300,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "slow_link_threshold_Bps": 50000000,
+  "cells": {"gate": null, "chunk_1MiB": 1048576, "chunk_2MiB": 2097152, "chunk_4MiB": 4194304},
+  "eligible_candidates": ["chunk_2MiB", "chunk_4MiB"],
+  "screen_each_seed_vs_gate": {
+    "tpot_p95_relative_max": -0.10,
+    "common_completed_tpot_p95_relative_max": -0.05,
+    "ttft_p95_relative_max": 0.02,
+    "throughput_relative_min": -0.01,
+    "gpu_seconds_per_token_relative_max": 0.05,
+    "completion_fraction_absolute_min": -0.01
+  },
+  "selection": "Each eligible candidate must pass every guard on both unseen development seeds. If both pass, select the one with lower mean common-completed P95 TPOT. The 1 MiB cell is a same-seed tradeoff reference, not eligible because its earlier formal guard has already failed.",
+  "if_fail": "Stop this chunk-size revision; do not change the guard or choose a new size on seeds151/152.",
+  "if_pass": "Freeze a separate 1800-second protocol on seeds301/302/303, including full V3, sparse gate, old 1 MiB and the selected size."
+}

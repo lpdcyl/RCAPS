@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "purpose": "Independently reproduce the previously published gated-pathspace formal comparison when its candidate raw windows and original runner dependency are absent from this checkout.",
+  "original_protocol": "experiments/v3_gated_pathspace/protocol.json",
+  "candidate": "experiments.v3_gated_pathspace.scheduler.SlowLinkGatedScheduler, unchanged",
+  "control": "benchmarks/runs/{single,multi}/seed{seed}/rcaps_v3.json",
+  "seeds": [0, 1, 2],
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "tail_drain": false,
+  "loads": {"C1_single": 700, "C1_multi": 320},
+  "decision": {
+    "multi_mean_relative_tpot_max": 0.02,
+    "multi_mean_relative_throughput_min": -0.005,
+    "single_tpot_below_v3_each_seed": true,
+    "single_mean_relative_throughput_min": -0.005
+  },
+  "disclosure": "This is a replication of the original non-inferiority protocol, which followed a failed development rule; it is not a new independent method-selection test."
+}

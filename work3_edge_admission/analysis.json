@@ -1,0 +1,723 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Development-only exact search over the four physically motivated bypass edges, assessing global latency/throughput guards and GPU work. This is not a formal confirmation or a novelty claim.",
+    "case": "C1_multi",
+    "seeds": [
+      171,
+      172
+    ],
+    "duration_s": 180,
+    "warmup_s": 0,
+    "offered_tokens_per_s": 320.0,
+    "cells": [
+      "full",
+      "mask00",
+      "mask01",
+      "mask02",
+      "mask03",
+      "mask04",
+      "mask05",
+      "mask06",
+      "mask07",
+      "mask08",
+      "mask09",
+      "mask10",
+      "mask11",
+      "mask12",
+      "mask13",
+      "mask14",
+      "mask15"
+    ],
+    "edge_order": [
+      [
+        6,
+        13
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        20,
+        22
+      ],
+      [
+        23,
+        18
+      ]
+    ],
+    "mask_interpretation": "Bit i opens edge_order[i] in addition to every canonical edge. mask15 reproduces the current static gate; mask00 is canonical only.",
+    "selection_guard_each_seed_vs_full": {
+      "tpot_p95_relative_max": 0.08,
+      "common_completed_tpot_p95_relative_max": 0.08,
+      "ttft_p95_relative_max": 0.08,
+      "throughput_relative_min": -0.02,
+      "completion_fraction_absolute_min": -0.02,
+      "gpu_seconds_per_token_relative_max": -0.15
+    },
+    "selection_rule": "Among masks satisfying all guards in both development seeds, minimize mean GPU seconds/output token; break ties by smaller maximum seed GPU work, then fewer admitted detours, then lower integer mask. If none pass, select no candidate. Do not alter guards after seeing results.",
+    "next_step_if_selected": "Recheck selected mask against full and mask15 on distinct 300 s development seeds under a separately frozen protocol before any unseen 1800 s formal seeds.",
+    "claim_limit": "A selected edge subset is an exploratory configuration, not evidence that the black-box search is independently novel or transferable."
+  },
+  "audit_sha256": "c39bc2cda5638a50ae86778a7f73e802068107e2de3294e881d0184a03bf935f",
+  "rows": [
+    {
+      "cell": "mask00",
+      "mask": 0,
+      "detours": [],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.13805421918373928,
+          "common_tpot_relative": 0.03262513465377204,
+          "common_completed_n": 20,
+          "ttft_relative": 0.13567404767079627,
+          "throughput_relative": -0.07444636406470861,
+          "gpu_work_relative": -0.4489303770815025,
+          "completion_absolute": -0.03448275862068961,
+          "route_count": 3,
+          "gpu_seconds_per_token": 0.07293852100631877
+        },
+        "172": {
+          "tpot_relative": 0.0473902222389786,
+          "common_tpot_relative": 0.01185218837363311,
+          "common_completed_n": 19,
+          "ttft_relative": 0.21730785492611737,
+          "throughput_relative": -0.06955857060959292,
+          "gpu_work_relative": -0.3988810571511723,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 3,
+          "gpu_seconds_per_token": 0.09088603207482532
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.08191227654057204,
+      "max_gpu_seconds_per_token": 0.09088603207482532
+    },
+    {
+      "cell": "mask01",
+      "mask": 1,
+      "detours": [
+        [
+          6,
+          13
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.1846994169473386,
+          "common_tpot_relative": 0.10223113594601019,
+          "common_completed_n": 20,
+          "ttft_relative": 0.19417483523670098,
+          "throughput_relative": -0.07648814198209519,
+          "gpu_work_relative": -0.41351911914826645,
+          "completion_absolute": -0.03448275862068961,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.07762548735903589
+        },
+        "172": {
+          "tpot_relative": 0.0473902222389786,
+          "common_tpot_relative": 0.01185218837363311,
+          "common_completed_n": 19,
+          "ttft_relative": 0.21730785492611737,
+          "throughput_relative": -0.06955857060959292,
+          "gpu_work_relative": -0.3988810571511723,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 3,
+          "gpu_seconds_per_token": 0.09088603207482532
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.08425575971693061,
+      "max_gpu_seconds_per_token": 0.09088603207482532
+    },
+    {
+      "cell": "mask02",
+      "mask": 2,
+      "detours": [
+        [
+          11,
+          8
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.14925863364088254,
+          "common_tpot_relative": -0.011074858334868765,
+          "common_completed_n": 20,
+          "ttft_relative": 0.16243371762141368,
+          "throughput_relative": -0.05292916601225062,
+          "gpu_work_relative": -0.3760237857381602,
+          "completion_absolute": -0.03448275862068961,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.0825882979547062
+        },
+        "172": {
+          "tpot_relative": -0.00014868366475229156,
+          "common_tpot_relative": -0.005040103723109368,
+          "common_completed_n": 19,
+          "ttft_relative": 0.2192616198074817,
+          "throughput_relative": -0.04758264857634242,
+          "gpu_work_relative": -0.3301737366069545,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.10127421866093242
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.09193125830781931,
+      "max_gpu_seconds_per_token": 0.10127421866093242
+    },
+    {
+      "cell": "mask03",
+      "mask": 3,
+      "detours": [
+        [
+          6,
+          13
+        ],
+        [
+          11,
+          8
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.23948439739138072,
+          "common_tpot_relative": 0.0703265779452995,
+          "common_completed_n": 21,
+          "ttft_relative": 0.11656053904820629,
+          "throughput_relative": -0.05088738809486404,
+          "gpu_work_relative": -0.32870716666719746,
+          "completion_absolute": -0.017241379310344807,
+          "route_count": 6,
+          "gpu_seconds_per_token": 0.08885103513077774
+        },
+        "172": {
+          "tpot_relative": 0.0564734354970704,
+          "common_tpot_relative": 0.019785664136465764,
+          "common_completed_n": 19,
+          "ttft_relative": 0.22154850516015512,
+          "throughput_relative": -0.04223198929868144,
+          "gpu_work_relative": -0.2783146692853,
+          "completion_absolute": -0.038461538461538436,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.10911503770687576
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.09898303641882675,
+      "max_gpu_seconds_per_token": 0.10911503770687576
+    },
+    {
+      "cell": "mask04",
+      "mask": 4,
+      "detours": [
+        [
+          20,
+          22
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.0873240646148774,
+          "common_tpot_relative": 0.05372551644931978,
+          "common_completed_n": 20,
+          "ttft_relative": -0.01637986375529943,
+          "throughput_relative": -0.046018533061096156,
+          "gpu_work_relative": -0.4433111006829117,
+          "completion_absolute": -0.017241379310344807,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.07368227767987351
+        },
+        "172": {
+          "tpot_relative": 0.1164914497458891,
+          "common_tpot_relative": 0.08413470796160327,
+          "common_completed_n": 19,
+          "ttft_relative": 0.08316708317666377,
+          "throughput_relative": -0.06210586661570805,
+          "gpu_work_relative": -0.4718202049116347,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 3,
+          "gpu_seconds_per_token": 0.07985801540402987
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.07677014654195169,
+      "max_gpu_seconds_per_token": 0.07985801540402987
+    },
+    {
+      "cell": "mask05",
+      "mask": 5,
+      "detours": [
+        [
+          6,
+          13
+        ],
+        [
+          20,
+          22
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.09790053988941416,
+          "common_tpot_relative": -0.002501776735010286,
+          "common_completed_n": 21,
+          "ttft_relative": -0.01637986375529943,
+          "throughput_relative": -0.05449976441024029,
+          "gpu_work_relative": -0.39604299525231823,
+          "completion_absolute": -0.017241379310344807,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.07993859368332003
+        },
+        "172": {
+          "tpot_relative": 0.0955694774675655,
+          "common_tpot_relative": 0.036934899741495775,
+          "common_completed_n": 19,
+          "ttft_relative": 0.0837035791507994,
+          "throughput_relative": -0.05656411236384484,
+          "gpu_work_relative": -0.37646169240269045,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.09427572246450273
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.08710715807391138,
+      "max_gpu_seconds_per_token": 0.09427572246450273
+    },
+    {
+      "cell": "mask06",
+      "mask": 6,
+      "detours": [
+        [
+          11,
+          8
+        ],
+        [
+          20,
+          22
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.08494077031357561,
+          "common_tpot_relative": 0.04519319532976418,
+          "common_completed_n": 21,
+          "ttft_relative": 0.05886903869246218,
+          "throughput_relative": -0.014449505261504458,
+          "gpu_work_relative": -0.413114352443831,
+          "completion_absolute": -0.017241379310344807,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.07767906150565237
+        },
+        "172": {
+          "tpot_relative": 0.0952590603815453,
+          "common_tpot_relative": 0.002575751473710808,
+          "common_completed_n": 19,
+          "ttft_relative": 0.030480149055001737,
+          "throughput_relative": -0.02732658131091148,
+          "gpu_work_relative": -0.35015272945533427,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.09825349970598643
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.0879662806058194,
+      "max_gpu_seconds_per_token": 0.09825349970598643
+    },
+    {
+      "cell": "mask07",
+      "mask": 7,
+      "detours": [
+        [
+          6,
+          13
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          20,
+          22
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.024173311136019615,
+          "common_tpot_relative": -0.00525977973510805,
+          "common_completed_n": 22,
+          "ttft_relative": 0.04508351799232657,
+          "throughput_relative": -0.011779487984922232,
+          "gpu_work_relative": -0.30420637508700865,
+          "completion_absolute": 0.0,
+          "route_count": 6,
+          "gpu_seconds_per_token": 0.09209391303044985
+        },
+        "172": {
+          "tpot_relative": 0.04427184208478896,
+          "common_tpot_relative": 0.0053069293481544655,
+          "common_completed_n": 19,
+          "ttft_relative": -0.010782341607481483,
+          "throughput_relative": -0.023504681826867935,
+          "gpu_work_relative": -0.24646999895899202,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.11392978487650027
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.10301184895347507,
+      "max_gpu_seconds_per_token": 0.11392978487650027
+    },
+    {
+      "cell": "mask08",
+      "mask": 8,
+      "detours": [
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.04526482660115172,
+          "common_tpot_relative": -0.008497016422897907,
+          "common_completed_n": 21,
+          "ttft_relative": 0.11484218985206551,
+          "throughput_relative": -0.03471022459557083,
+          "gpu_work_relative": -0.4284753208320461,
+          "completion_absolute": -0.017241379310344807,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.07564591311774543
+        },
+        "172": {
+          "tpot_relative": -0.0021224003406200564,
+          "common_tpot_relative": -0.050051083126749996,
+          "common_completed_n": 22,
+          "ttft_relative": 0.14780208498749214,
+          "throughput_relative": -0.032677240588572465,
+          "gpu_work_relative": -0.3708561210332745,
+          "completion_absolute": 0.0,
+          "route_count": 4,
+          "gpu_seconds_per_token": 0.09512325546165633
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.08538458428970089,
+      "max_gpu_seconds_per_token": 0.09512325546165633
+    },
+    {
+      "cell": "mask09",
+      "mask": 9,
+      "detours": [
+        [
+          6,
+          13
+        ],
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": -0.0021352910027433447,
+          "common_tpot_relative": -0.04860585487563307,
+          "common_completed_n": 22,
+          "ttft_relative": 0.04367190039517843,
+          "throughput_relative": -0.027171352285220607,
+          "gpu_work_relative": -0.41016367714985624,
+          "completion_absolute": 0.0,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.07806960724245528
+        },
+        "172": {
+          "tpot_relative": -0.0077120325362739495,
+          "common_tpot_relative": -0.024996098389514998,
+          "common_completed_n": 22,
+          "ttft_relative": 0.12599160086933892,
+          "throughput_relative": -0.02598891649149626,
+          "gpu_work_relative": -0.30392760488743265,
+          "completion_absolute": 0.019230769230769218,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.10524249615023532
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.0916560516963453,
+      "max_gpu_seconds_per_token": 0.10524249615023532
+    },
+    {
+      "cell": "mask10",
+      "mask": 10,
+      "detours": [
+        [
+          11,
+          8
+        ],
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": -0.01995531741716261,
+          "common_tpot_relative": -0.05126428945932704,
+          "common_completed_n": 22,
+          "ttft_relative": 0.025825999981455183,
+          "throughput_relative": -0.008324171509345057,
+          "gpu_work_relative": -0.3854801534540184,
+          "completion_absolute": 0.0,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.08133667121535931
+        },
+        "172": {
+          "tpot_relative": 0.08051562219697206,
+          "common_tpot_relative": 0.004107042235191871,
+          "common_completed_n": 20,
+          "ttft_relative": 0.023786188257951757,
+          "throughput_relative": -0.006306134148671871,
+          "gpu_work_relative": -0.28184759301684836,
+          "completion_absolute": -0.038461538461538436,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.10858087816423735
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.09495877468979833,
+      "max_gpu_seconds_per_token": 0.10858087816423735
+    },
+    {
+      "cell": "mask11",
+      "mask": 11,
+      "detours": [
+        [
+          6,
+          13
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": -0.025202269379834052,
+          "common_tpot_relative": -0.0738233899417351,
+          "common_completed_n": 22,
+          "ttft_relative": 0.025825999981455183,
+          "throughput_relative": -0.012250667504319024,
+          "gpu_work_relative": -0.23504393177287197,
+          "completion_absolute": 0.017241379310344862,
+          "route_count": 7,
+          "gpu_seconds_per_token": 0.1012481217088378
+        },
+        "172": {
+          "tpot_relative": -0.00811706781258692,
+          "common_tpot_relative": 0.0032397578265757065,
+          "common_completed_n": 20,
+          "ttft_relative": 0.09740547791612686,
+          "throughput_relative": -0.011083508503726414,
+          "gpu_work_relative": -0.15320613238467828,
+          "completion_absolute": -0.019230769230769218,
+          "route_count": 7,
+          "gpu_seconds_per_token": 0.12803079245533977
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.11463945708208878,
+      "max_gpu_seconds_per_token": 0.12803079245533977
+    },
+    {
+      "cell": "mask12",
+      "mask": 12,
+      "detours": [
+        [
+          20,
+          22
+        ],
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.03410866792611045,
+          "common_tpot_relative": 0.009428454574934797,
+          "common_completed_n": 21,
+          "ttft_relative": 0.022655917061080277,
+          "throughput_relative": -0.029841369561802944,
+          "gpu_work_relative": -0.4277395954134954,
+          "completion_absolute": -0.017241379310344807,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.07574329232658596
+        },
+        "172": {
+          "tpot_relative": -0.004274570800402833,
+          "common_tpot_relative": -0.07043255187551956,
+          "common_completed_n": 19,
+          "ttft_relative": 0.06256518373143849,
+          "throughput_relative": -0.043187464169692324,
+          "gpu_work_relative": -0.3604475573933297,
+          "completion_absolute": -0.038461538461538436,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.09669697570469113
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.08622013401563855,
+      "max_gpu_seconds_per_token": 0.09669697570469113
+    },
+    {
+      "cell": "mask13",
+      "mask": 13,
+      "detours": [
+        [
+          6,
+          13
+        ],
+        [
+          20,
+          22
+        ],
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.05747746545789667,
+          "common_tpot_relative": -0.017294815364475635,
+          "common_completed_n": 21,
+          "ttft_relative": 0.06120195191877875,
+          "throughput_relative": -0.019789539814669244,
+          "gpu_work_relative": -0.3504711003506257,
+          "completion_absolute": -0.017241379310344807,
+          "route_count": 6,
+          "gpu_seconds_per_token": 0.0859704025062797
+        },
+        "172": {
+          "tpot_relative": 0.014894010861832507,
+          "common_tpot_relative": 0.020863518336242448,
+          "common_completed_n": 19,
+          "ttft_relative": 0.07792074155328033,
+          "throughput_relative": -0.031339575769157246,
+          "gpu_work_relative": -0.3152822080630894,
+          "completion_absolute": -0.05769230769230771,
+          "route_count": 6,
+          "gpu_seconds_per_token": 0.10352573969014289
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.09474807109821129,
+      "max_gpu_seconds_per_token": 0.10352573969014289
+    },
+    {
+      "cell": "mask14",
+      "mask": 14,
+      "detours": [
+        [
+          11,
+          8
+        ],
+        [
+          20,
+          22
+        ],
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": 0.03416060151433564,
+          "common_tpot_relative": -0.015377970729429369,
+          "common_completed_n": 22,
+          "ttft_relative": 0.03966203450850703,
+          "throughput_relative": -0.011465368305324186,
+          "gpu_work_relative": -0.3692862001195544,
+          "completion_absolute": 0.0,
+          "route_count": 5,
+          "gpu_seconds_per_token": 0.08348007189712006
+        },
+        "172": {
+          "tpot_relative": -0.04766047964618647,
+          "common_tpot_relative": -0.07079699562488129,
+          "common_completed_n": 22,
+          "ttft_relative": 0.12904635463611935,
+          "throughput_relative": 0.0034397095356391016,
+          "gpu_work_relative": -0.27970797794936486,
+          "completion_absolute": 0.019230769230769218,
+          "route_count": 6,
+          "gpu_seconds_per_token": 0.10890437674295372
+        }
+      },
+      "eligible": false,
+      "mean_gpu_seconds_per_token": 0.09619222432003689,
+      "max_gpu_seconds_per_token": 0.10890437674295372
+    },
+    {
+      "cell": "mask15",
+      "mask": 15,
+      "detours": [
+        [
+          6,
+          13
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          20,
+          22
+        ],
+        [
+          23,
+          18
+        ]
+      ],
+      "paired": {
+        "171": {
+          "tpot_relative": -0.04742371589915395,
+          "common_tpot_relative": -0.07832562895590012,
+          "common_completed_n": 22,
+          "ttft_relative": 0.03966203450850703,
+          "throughput_relative": 0.0003141196795979351,
+          "gpu_work_relative": -0.25729332251747106,
+          "completion_absolute": 0.0,
+          "route_count": 8,
+          "gpu_seconds_per_token": 0.09830323491647917
+        },
+        "172": {
+          "tpot_relative": -0.029736786941351623,
+          "common_tpot_relative": 0.016768496109274222,
+          "common_completed_n": 22,
+          "ttft_relative": 0.06739726118846523,
+          "throughput_relative": 0.004204089432447766,
+          "gpu_work_relative": -0.17621165759178814,
+          "completion_absolute": 0.019230769230769218,
+          "route_count": 8,
+          "gpu_seconds_per_token": 0.12455247767796399
+        }
+      },
+      "eligible": true,
+      "mean_gpu_seconds_per_token": 0.11142785629722157,
+      "max_gpu_seconds_per_token": 0.12455247767796399
+    }
+  ],
+  "selected_mask": 15,
+  "status": "development_only"
+}

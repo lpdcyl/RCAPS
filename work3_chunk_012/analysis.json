@@ -1,0 +1,271 @@
+{
+  "protocol": {
+    "version": 1,
+    "registration_context": "Registered after the separate 4 MiB formal 301/302/303 results and after seeing the historical seed 0/1/2 V3 and gated controls. The new 4 MiB candidate outcomes on 0/1/2 are unseen. This is a preregistered supplementary known-seed replay, not another independent held-out confirmation.",
+    "case": "C1_multi",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "offered_tokens_per_s": 320.0,
+    "slow_link_threshold_Bps": 50000000,
+    "chunk_bytes": 4194304,
+    "candidate": "SlowLinkGatedScheduler plus SlowLinkPromptTransferChunkHook on physical compute links <=50 MB/s; existing route price, placement, and arrival generator unchanged.",
+    "controls": {
+      "gate": "work3_sparse_replication/runs/C1_multi/gated_seed{seed}.json",
+      "v3": "benchmarks/runs/multi/seed{seed}/rcaps_v3.json"
+    },
+    "primary_gate_each_seed_vs_gate": {
+      "tpot_p95_relative_max": -0.1,
+      "common_completed_tpot_p95_relative_max": -0.05,
+      "ttft_p95_relative_max": 0.02,
+      "throughput_relative_min": -0.01,
+      "gpu_seconds_per_token_relative_max": 0.05,
+      "completion_fraction_absolute_min": -0.01
+    },
+    "overall_work3_gate_each_seed_vs_v3": {
+      "tpot_p95_relative_max": 0.0,
+      "gpu_seconds_per_token_relative_max": 0.0,
+      "throughput_relative_min": -0.01
+    },
+    "decision": "Both reused 301/302/303 gate families must pass for every one of seeds 0/1/2. Preserve any failure; do not change chunk size, sources, seeds, or thresholds after running.",
+    "claim_limit": "Known-seed full-length simulation replay. Seeds 0/1/2 were observed in prior method development; results cannot be labeled independent unseen-seed confirmation or hardware measurements."
+  },
+  "audit_sha256": "0ae76750f3bb69c5b7c3d0d0dcfa45425a3ed2a22ce99bac890e77898b9fb929",
+  "rows": [
+    {
+      "seed": 0,
+      "versus_gate": {
+        "tpot_relative": -0.1380026462907321,
+        "common_tpot_relative": -0.1344660506413392,
+        "common_completed_n": 537,
+        "ttft_relative": -0.005693472110784525,
+        "throughput_relative": 0.006357722694744217,
+        "gpu_work_relative": 0.041497721405453714,
+        "completion_absolute": 0.006849315068493178,
+        "backlog_base": 47,
+        "backlog_candidate": 43,
+        "routes_base": 8,
+        "routes_candidate": 8
+      },
+      "versus_v3": {
+        "tpot_relative": -0.13214504665225402,
+        "common_tpot_relative": -0.13628790645224254,
+        "common_completed_n": 538,
+        "ttft_relative": -0.025350786400740066,
+        "throughput_relative": 0.005531324806519855,
+        "gpu_work_relative": -0.26547638563268317,
+        "completion_absolute": 0.005136986301369828,
+        "backlog_base": 46,
+        "backlog_candidate": 43,
+        "routes_base": 32,
+        "routes_candidate": 8
+      },
+      "primary_pass": true,
+      "overall_pass": true,
+      "all_pass": true,
+      "paused_chunks": 1414,
+      "eligible_slow_link_uids": [
+        10004,
+        10005,
+        10006,
+        10008,
+        10009,
+        10011,
+        10012,
+        10014,
+        10015,
+        10017,
+        10018,
+        10020,
+        10021,
+        10024,
+        10026,
+        10029,
+        10032,
+        10035,
+        10036,
+        10040,
+        10043,
+        10044,
+        10045,
+        10048,
+        10051,
+        10054,
+        10055
+      ],
+      "raw": {
+        "v3": {
+          "tpot_p95_s": 0.6992093827588951,
+          "gpu_seconds_per_token": 0.08800656295987216
+        },
+        "gate": {
+          "tpot_p95_s": 0.7039607762638111,
+          "gpu_seconds_per_token": 0.06206724929373584
+        },
+        "chunk_4MiB": {
+          "tpot_p95_s": 0.6068123262545272,
+          "gpu_seconds_per_token": 0.06464289871333014
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "versus_gate": {
+        "tpot_relative": -0.14101154913985126,
+        "common_tpot_relative": -0.13439935643057066,
+        "common_completed_n": 523,
+        "ttft_relative": -0.09883796655563137,
+        "throughput_relative": 0.006958673517637015,
+        "gpu_work_relative": 0.02306378237617923,
+        "completion_absolute": 0.0035149384885764245,
+        "backlog_base": 46,
+        "backlog_candidate": 44,
+        "routes_base": 8,
+        "routes_candidate": 8
+      },
+      "versus_v3": {
+        "tpot_relative": -0.13241819092595064,
+        "common_tpot_relative": -0.13819455915340262,
+        "common_completed_n": 521,
+        "ttft_relative": -0.05413407332842812,
+        "throughput_relative": 0.006625490412340174,
+        "gpu_work_relative": -0.2761762689707793,
+        "completion_absolute": 0.007029876977152849,
+        "backlog_base": 48,
+        "backlog_candidate": 44,
+        "routes_base": 35,
+        "routes_candidate": 8
+      },
+      "primary_pass": true,
+      "overall_pass": true,
+      "all_pass": true,
+      "paused_chunks": 1432,
+      "eligible_slow_link_uids": [
+        10004,
+        10005,
+        10006,
+        10008,
+        10009,
+        10011,
+        10012,
+        10014,
+        10015,
+        10017,
+        10018,
+        10020,
+        10021,
+        10024,
+        10026,
+        10029,
+        10032,
+        10035,
+        10036,
+        10040,
+        10043,
+        10044,
+        10045,
+        10048,
+        10051,
+        10054,
+        10055
+      ],
+      "raw": {
+        "v3": {
+          "tpot_p95_s": 0.702764090012156,
+          "gpu_seconds_per_token": 0.08856552456023752
+        },
+        "gate": {
+          "tpot_p95_s": 0.709794572854263,
+          "gpu_seconds_per_token": 0.06266063712944495
+        },
+        "chunk_4MiB": {
+          "tpot_p95_s": 0.6097053405650243,
+          "gpu_seconds_per_token": 0.0641058284277512
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "versus_gate": {
+        "tpot_relative": -0.16851760219392986,
+        "common_tpot_relative": -0.16933016800522394,
+        "common_completed_n": 539,
+        "ttft_relative": -0.0379039101806683,
+        "throughput_relative": 0.004874579467631923,
+        "gpu_work_relative": 0.0368672511996635,
+        "completion_absolute": 0.0,
+        "backlog_base": 47,
+        "backlog_candidate": 47,
+        "routes_base": 8,
+        "routes_candidate": 8
+      },
+      "versus_v3": {
+        "tpot_relative": -0.13726266108120178,
+        "common_tpot_relative": -0.13769351214249637,
+        "common_completed_n": 537,
+        "ttft_relative": -0.043832742169373384,
+        "throughput_relative": 0.005244098390797314,
+        "gpu_work_relative": -0.2791312487965778,
+        "completion_absolute": 0.0034129692832765013,
+        "backlog_base": 49,
+        "backlog_candidate": 47,
+        "routes_base": 32,
+        "routes_candidate": 8
+      },
+      "primary_pass": true,
+      "overall_pass": true,
+      "all_pass": true,
+      "paused_chunks": 1393,
+      "eligible_slow_link_uids": [
+        10004,
+        10005,
+        10006,
+        10008,
+        10009,
+        10011,
+        10012,
+        10014,
+        10015,
+        10017,
+        10018,
+        10020,
+        10021,
+        10024,
+        10026,
+        10029,
+        10032,
+        10035,
+        10036,
+        10040,
+        10043,
+        10044,
+        10045,
+        10048,
+        10051,
+        10054,
+        10055
+      ],
+      "raw": {
+        "v3": {
+          "tpot_p95_s": 0.6950792342615104,
+          "gpu_seconds_per_token": 0.09213334939066407
+        },
+        "gate": {
+          "tpot_p95_s": 0.7212068595640373,
+          "gpu_seconds_per_token": 0.06405453778445862
+        },
+        "chunk_4MiB": {
+          "tpot_p95_s": 0.5996708089044914,
+          "gpu_seconds_per_token": 0.0664160525194366
+        }
+      }
+    }
+  ],
+  "known_seed_joint_gate_passed": true,
+  "status": "completed_known_seed_supplementary_replay"
+}

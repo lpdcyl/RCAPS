@@ -1,0 +1,168 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Test whether admission-visible link externality can improve a strong sparse-DAG baseline without losing Decode batching.",
+    "topologies": [
+      "C1_multi",
+      "C1_single"
+    ],
+    "offered_tokens_per_s": {
+      "C1_multi": 320,
+      "C1_single": 700
+    },
+    "development_seeds": [
+      121,
+      122
+    ],
+    "development_duration_s": 300,
+    "smoke_seed": 123,
+    "smoke_duration_s": 60,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "methods": [
+      "gated",
+      "priced",
+      "v3"
+    ],
+    "primary_comparison": "priced versus gated on C1_multi, paired by seed and trace",
+    "primary_gate": {
+      "tpot_p95_relative_max_each_seed": -0.03,
+      "throughput_relative_min_each_seed": -0.01,
+      "ttft_p95_relative_max_each_seed": 0.02,
+      "completion_fraction_absolute_min_each_seed": -0.01,
+      "common_completed_tpot_p95_relative_max_each_seed": 0.0
+    },
+    "single_cluster_safety": {
+      "tpot_p95_relative_max_each_seed": 0.01,
+      "throughput_relative_min_each_seed": -0.01
+    },
+    "if_development_fails": "Stop. Report the negative result; do not tune the coefficient on these seeds or claim closure.",
+    "if_development_passes": "Freeze a separate formal protocol and run unseen seeds with full-length windows.",
+    "limits": "Discrete-event simulation; two short development seeds are only a gate, not final evidence."
+  },
+  "smoke_checks": [
+    {
+      "case": "C1_multi",
+      "switch_off_parity": true,
+      "price_evaluations": 373
+    },
+    {
+      "case": "C1_single",
+      "switch_off_parity": true,
+      "price_evaluations": 1115
+    }
+  ],
+  "pairs": [
+    {
+      "trace_sha256": "4507bdb333b595e8a8e4fab7c0aec68182c3ad0302d35775eb83a0487dad69c7",
+      "arrivals": 96,
+      "tpot_base_s": 0.7195871878871011,
+      "tpot_candidate_s": 0.6659196711452183,
+      "tpot_relative": -0.07458097871289904,
+      "throughput_base": 47.05,
+      "throughput_candidate": 47.13666666666666,
+      "throughput_relative": 0.0018420120439248677,
+      "ttft_relative": 0.036487283856842856,
+      "completion_absolute": 0.02083333333333337,
+      "common_completed_n": 48,
+      "common_completed_tpot_base_s": 0.6585058352131592,
+      "common_completed_tpot_candidate_s": 0.6600825905332994,
+      "common_completed_tpot_relative": 0.002394443960591186,
+      "route_count_base": 8,
+      "route_count_candidate": 8,
+      "backlog_base": 48,
+      "backlog_candidate": 46,
+      "evaluated_positive_link_prices": 2380,
+      "seed": 121,
+      "case": "C1_multi",
+      "control": "gated",
+      "candidate": "priced",
+      "v3_tpot_s": 0.6892046753928451,
+      "v3_throughput": 47.093333333333334,
+      "gate_passed": false
+    },
+    {
+      "trace_sha256": "683505d589e24dd30082c56568b53b20281021e47b8f29fda8d74459847fef32",
+      "arrivals": 200,
+      "tpot_base_s": 0.48586085784011174,
+      "tpot_candidate_s": 0.4724358231573871,
+      "tpot_relative": -0.027631439055217366,
+      "throughput_base": 114.37,
+      "throughput_candidate": 114.43,
+      "throughput_relative": 0.0005246130978404651,
+      "ttft_relative": -0.04255640790372861,
+      "completion_absolute": 0.0050000000000000044,
+      "common_completed_n": 126,
+      "common_completed_tpot_base_s": 0.4728266946818772,
+      "common_completed_tpot_candidate_s": 0.467327755831077,
+      "common_completed_tpot_relative": -0.011629924690482962,
+      "route_count_base": 12,
+      "route_count_candidate": 12,
+      "backlog_base": 73,
+      "backlog_candidate": 72,
+      "evaluated_positive_link_prices": 6274,
+      "seed": 121,
+      "case": "C1_single",
+      "control": "gated",
+      "candidate": "priced",
+      "gate_passed": true
+    },
+    {
+      "trace_sha256": "de03f9ff649b881adfe22aa370cab7d2602088df86d90e7a47d8dd3d94b4093b",
+      "arrivals": 99,
+      "tpot_base_s": 0.6754108578612037,
+      "tpot_candidate_s": 0.6943194581632574,
+      "tpot_relative": 0.02799570081228886,
+      "throughput_base": 46.04666666666667,
+      "throughput_candidate": 45.89666666666667,
+      "throughput_relative": -0.003257564789344136,
+      "ttft_relative": 0.17175286632773656,
+      "completion_absolute": 0.0,
+      "common_completed_n": 51,
+      "common_completed_tpot_base_s": 0.6843020888046929,
+      "common_completed_tpot_candidate_s": 0.6815024460281295,
+      "common_completed_tpot_relative": -0.004091238098445249,
+      "route_count_base": 8,
+      "route_count_candidate": 8,
+      "backlog_base": 47,
+      "backlog_candidate": 47,
+      "evaluated_positive_link_prices": 2446,
+      "seed": 122,
+      "case": "C1_multi",
+      "control": "gated",
+      "candidate": "priced",
+      "v3_tpot_s": 0.688529298943815,
+      "v3_throughput": 46.013333333333335,
+      "gate_passed": false
+    },
+    {
+      "trace_sha256": "023fd85a345d9ee991df47a356efb107ef8457b51ebab951e6371f8621fbf877",
+      "arrivals": 202,
+      "tpot_base_s": 0.4847284188559242,
+      "tpot_candidate_s": 0.4789504128324509,
+      "tpot_relative": -0.011920089267946854,
+      "throughput_base": 117.12333333333333,
+      "throughput_candidate": 117.39333333333333,
+      "throughput_relative": 0.0023052622591570593,
+      "ttft_relative": -0.008566552609546974,
+      "completion_absolute": -0.00990099009900991,
+      "common_completed_n": 130,
+      "common_completed_tpot_base_s": 0.4816450252096946,
+      "common_completed_tpot_candidate_s": 0.4725674442355133,
+      "common_completed_tpot_relative": -0.018847035677840074,
+      "route_count_base": 12,
+      "route_count_candidate": 12,
+      "backlog_base": 69,
+      "backlog_candidate": 71,
+      "evaluated_positive_link_prices": 6346,
+      "seed": 122,
+      "case": "C1_single",
+      "control": "gated",
+      "candidate": "priced",
+      "gate_passed": true
+    }
+  ],
+  "development_passed": false,
+  "all_windows_valid": true,
+  "interpretation": "Stop; do not tune on these seeds or claim closure"
+}

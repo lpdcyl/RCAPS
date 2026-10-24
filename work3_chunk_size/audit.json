@@ -1,0 +1,66 @@
+{
+  "protocol": {
+    "version": 1,
+    "registration_context": "Sequential revision after the 1 MiB slow-link method exceeded its +5% GPU-work guard on unseen formal seeds201 and203 (+7.86% and +10.65% versus the sparse gate). Formal seed202 was still running. These outcomes are discovery evidence only; no candidate in this directory is judged on seeds201/202/203.",
+    "case": "C1_multi",
+    "offered_tokens_per_s": 320.0,
+    "development_seeds": [
+      151,
+      152
+    ],
+    "duration_s": 300,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "slow_link_threshold_Bps": 50000000,
+    "cells": {
+      "gate": null,
+      "chunk_1MiB": 1048576,
+      "chunk_2MiB": 2097152,
+      "chunk_4MiB": 4194304
+    },
+    "eligible_candidates": [
+      "chunk_2MiB",
+      "chunk_4MiB"
+    ],
+    "screen_each_seed_vs_gate": {
+      "tpot_p95_relative_max": -0.1,
+      "common_completed_tpot_p95_relative_max": -0.05,
+      "ttft_p95_relative_max": 0.02,
+      "throughput_relative_min": -0.01,
+      "gpu_seconds_per_token_relative_max": 0.05,
+      "completion_fraction_absolute_min": -0.01
+    },
+    "selection": "Each eligible candidate must pass every guard on both unseen development seeds. If both pass, select the one with lower mean common-completed P95 TPOT. The 1 MiB cell is a same-seed tradeoff reference, not eligible because its earlier formal guard has already failed.",
+    "if_fail": "Stop this chunk-size revision; do not change the guard or choose a new size on seeds151/152.",
+    "if_pass": "Freeze a separate 1800-second protocol on seeds301/302/303, including full V3, sparse gate, old 1 MiB and the selected size."
+  },
+  "sources_sha256": {
+    "artifact_evaluation/distributed_clusters/config/3cluster24.ini": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "experiments/v3_cycle_pricing/run.py": "aaad0984b43523f65ff5926b117c64ad099de80f21517d93141b77cd9f1e507c",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "experiments/v3_phase_link_diagnosis/chunking.py": "438a86bc01f38f6a35967a340b62fc1c382dd7ec596551fbf9dda1930249c770",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/multi/simulator_cluster.ini": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+    "rcaps/v3_layouts/multi/solution.ini": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+    "work3_chunk_size/protocol.json": "d63c8a73cfaf7e5555791854f023ff241eb693690c34cc0430f2cb6c2820ad9a",
+    "work3_chunk_size/report.py": "38d6c5a22d7bca2bd0cbfa5047d124532e64eb572f6bfa22b9cf789eed8f06d4",
+    "work3_chunk_size/run.py": "cb28ed0f094df46f77031eee968924b5644983f2f152c1c631636fc9d9d745a0",
+    "work3_selective_chunk/chunking.py": "35e837cee433598e3e39724954ebcc9ff121f5ee3e9471868b702e69cdadc52e",
+    "work3_selective_chunk/formal/runs/C1_multi/chunk_slow_seed201.json": "044f0bd2b9e3bf194d2ab03ceaf36bc43ae17358a7c9a57256a7af25014079af",
+    "work3_selective_chunk/formal/runs/C1_multi/chunk_slow_seed203.json": "deba66d43541f8ac1c241bde680753cdf345b31a4c5b5c95f1a7a9432f620173",
+    "work3_selective_chunk/formal/runs/C1_multi/gate_seed201.json": "71f7eaef3907907c9ba367227e676da97a338454f0d70c39ce48cfbfa2097b24",
+    "work3_selective_chunk/formal/runs/C1_multi/gate_seed203.json": "6048d636bbbd1cd269a4acbabacb15dedb5108afb1aa43b0b2f8c15064929c56"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

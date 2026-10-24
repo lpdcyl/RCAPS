@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "purpose": "Untuned transfer check of the C1 sparse-edge rule on previously unused C2/C3 physical pools and placements.",
+  "cases": ["C2", "C3"],
+  "seeds": [124, 125],
+  "duration_s": 300,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "offered_tokens_per_s": {"C2": 160, "C3": 400},
+  "methods": ["v3", "gated"],
+  "path_audit_before_outcomes": {"C2": {"full_edges": 46, "canonical_edges": 26, "admitted_edges": 26}, "C3": {"full_edges": 14, "canonical_edges": 12, "admitted_edges": 12}},
+  "gate": {"C2_tpot_relative_max_each_seed": -0.03,
+           "C3_tpot_relative_max_each_seed": 0.01,
+           "throughput_relative_min_each_seed": -0.01,
+           "common_completed_tpot_relative_max_each_seed": 0.01},
+  "if_fail": "Report the transfer failure without retuning or a post-hoc threshold change.",
+  "if_pass": "Register full-length unseen-seed validation separately; no formal claim from these short windows."
+}

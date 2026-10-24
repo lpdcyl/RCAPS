@@ -1,0 +1,181 @@
+{
+  "protocol": {
+    "version": 1,
+    "question": "Can one or two frequently used fast V3 edges improve C1 multi-cluster latency over the validated sparse gate without losing its GPU-work advantage?",
+    "edge_selection_evidence": "Only C1_multi V3 development seed121/122 route_counts were used. Among edges omitted by the old sparse gate, 19->16 appeared in 53/192 routed prompts and 17->19 in 42/192; both are legal 1.16-1.175 GB/s links. The next omitted fast edge appeared in 21/192. Old formal seed0/1/2 outcomes were not used to choose these edges.",
+    "case": "C1_multi",
+    "offered_tokens_per_s": 320.0,
+    "duration_s": 300,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "parity_seed": 121,
+    "development_seeds": [
+      131,
+      132
+    ],
+    "additional_edge_sets": {
+      "gate": [],
+      "add_19_16": [
+        [
+          19,
+          16
+        ]
+      ],
+      "add_17_19": [
+        [
+          17,
+          19
+        ]
+      ],
+      "add_both": [
+        [
+          19,
+          16
+        ],
+        [
+          17,
+          19
+        ]
+      ]
+    },
+    "control": "old sparse gate, paired by seed, trace, layout, simulator and runtime",
+    "screen": {
+      "mean_tpot_relative_max": -0.02,
+      "mean_common_completed_tpot_relative_max": 0.0,
+      "mean_throughput_relative_min": -0.005,
+      "mean_gpu_seconds_per_token_relative_max": 0.1,
+      "mean_ttft_relative_max": 0.02
+    },
+    "selection": "A candidate enters new-seed long-window confirmation only if all five screening constraints pass. Among passers select lowest mean common-completed P95 TPOT; do not change this screen after seeing the development results.",
+    "scope": "Exploratory method development. Unseen 1800-second seeds are required before any performance claim."
+  },
+  "audit_sha256": "6ecbf1c922f9f4cc45e8c629c7f167a8a844a1589b5b1e41e27410b45b8583d6",
+  "unchanged_gate_parity": true,
+  "parity_seed": 121,
+  "pairs": [
+    {
+      "seed": 131,
+      "cell": "add_19_16",
+      "tpot_relative": 0.007340194835413261,
+      "common_tpot_relative": -0.0221160576837659,
+      "ttft_relative": 0.0,
+      "throughput_relative": 0.008093994778067826,
+      "gpu_work_relative": 0.13338845460654114,
+      "completion_absolute": 0.009615384615384581,
+      "common_completed_n": 54,
+      "route_count_base": 8,
+      "route_count_candidate": 10,
+      "allowed_edges": 31
+    },
+    {
+      "seed": 131,
+      "cell": "add_17_19",
+      "tpot_relative": -0.017761872253667432,
+      "common_tpot_relative": -0.016975135451446022,
+      "ttft_relative": 0.054582424147390896,
+      "throughput_relative": 0.006527415143602999,
+      "gpu_work_relative": 0.034236861363215576,
+      "completion_absolute": -0.019230769230769273,
+      "common_completed_n": 53,
+      "route_count_base": 8,
+      "route_count_candidate": 9,
+      "allowed_edges": 31
+    },
+    {
+      "seed": 131,
+      "cell": "add_both",
+      "tpot_relative": -0.029925153938067828,
+      "common_tpot_relative": -0.010233992545225723,
+      "ttft_relative": 0.03874269002540709,
+      "throughput_relative": 0.0072454308093994335,
+      "gpu_work_relative": 0.232840963909845,
+      "completion_absolute": 0.009615384615384581,
+      "common_completed_n": 54,
+      "route_count_base": 8,
+      "route_count_candidate": 12,
+      "allowed_edges": 32
+    },
+    {
+      "seed": 132,
+      "cell": "add_19_16",
+      "tpot_relative": 0.007302197093337348,
+      "common_tpot_relative": 0.030037531019706742,
+      "ttft_relative": -0.03490588180394416,
+      "throughput_relative": -0.00033012016373956676,
+      "gpu_work_relative": 0.11558470623772954,
+      "completion_absolute": 0.0,
+      "common_completed_n": 45,
+      "route_count_base": 8,
+      "route_count_candidate": 11,
+      "allowed_edges": 31
+    },
+    {
+      "seed": 132,
+      "cell": "add_17_19",
+      "tpot_relative": 0.002986885608412093,
+      "common_tpot_relative": 0.016594937041770175,
+      "ttft_relative": -6.488690699424371e-05,
+      "throughput_relative": 0.003961441964875245,
+      "gpu_work_relative": 0.10281835523994354,
+      "completion_absolute": -0.01010101010101011,
+      "common_completed_n": 45,
+      "route_count_base": 8,
+      "route_count_candidate": 9,
+      "allowed_edges": 31
+    },
+    {
+      "seed": 132,
+      "cell": "add_both",
+      "tpot_relative": 0.021018227007591594,
+      "common_tpot_relative": -0.010470180044609756,
+      "ttft_relative": -0.04995482205267987,
+      "throughput_relative": 0.0009243364584707869,
+      "gpu_work_relative": 0.20171269356647992,
+      "completion_absolute": 0.0,
+      "common_completed_n": 46,
+      "route_count_base": 8,
+      "route_count_candidate": 12,
+      "allowed_edges": 32
+    }
+  ],
+  "decisions": [
+    {
+      "cell": "add_19_16",
+      "means": {
+        "tpot_relative": 0.007321195964375304,
+        "common_tpot_relative": 0.0039607366679704215,
+        "ttft_relative": -0.01745294090197208,
+        "throughput_relative": 0.0038819373071641294,
+        "gpu_work_relative": 0.12448658042213534,
+        "completion_absolute": 0.004807692307692291
+      },
+      "screen_passed": false
+    },
+    {
+      "cell": "add_17_19",
+      "means": {
+        "tpot_relative": -0.0073874933226276696,
+        "common_tpot_relative": -0.00019009920483792353,
+        "ttft_relative": 0.027258768620198326,
+        "throughput_relative": 0.005244428554239122,
+        "gpu_work_relative": 0.06852760830157956,
+        "completion_absolute": -0.014665889665889692
+      },
+      "screen_passed": false
+    },
+    {
+      "cell": "add_both",
+      "means": {
+        "tpot_relative": -0.004453463465238117,
+        "common_tpot_relative": -0.01035208629491774,
+        "ttft_relative": -0.0056060660136363905,
+        "throughput_relative": 0.00408488363393511,
+        "gpu_work_relative": 0.21727682873816245,
+        "completion_absolute": 0.004807692307692291
+      },
+      "screen_passed": false
+    }
+  ],
+  "selected_for_held_out_test": null,
+  "status": "exploratory_development_only"
+}

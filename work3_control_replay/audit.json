@@ -1,0 +1,57 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Replay C2/C3 full-DAG V3 controls with the exact current runtime used by work3_efficiency_formal, because archived M2 controls have a different execution source hash.",
+    "cases": [
+      "C2",
+      "C3"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "offered_tokens_per_s": {
+      "C2": 160,
+      "C3": 400
+    },
+    "warmup_s": 0,
+    "tail_drain": false,
+    "candidate": "work3_efficiency_formal/runs/{case}/gated_seed{seed}.json",
+    "decision_rule": "Apply unchanged work3_efficiency_formal/protocol.json thresholds to the new same-environment V3 controls. Report archived-versus-replayed V3 drift separately."
+  },
+  "sources_sha256": {
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "benchmarks/resource_profile.py": "98c13359ac543560354c41a8ec47279e75e57e90281f069a0971d09de80afd95",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/pools/C2/physical.ini": "45a82926c0f81b96bf7a3ae91ad697b5e5ad6321606347bf8195e1ba45f0738d",
+    "rcaps/v3/pools/C3/physical.ini": "96a359d052beffad72d30a2ee1ac880973fb22a9a7d5ab9a39f581ca26d6d898",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/resource_graph.py": "af0fefd288b3c57fdad9050a27bebfcdda38873ede338418721130b29536b42d",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/C2/simulator_cluster.ini": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+    "rcaps/v3_layouts/C2/solution.ini": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+    "rcaps/v3_layouts/C3/simulator_cluster.ini": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+    "rcaps/v3_layouts/C3/solution.ini": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+    "work3_control_replay/protocol.json": "4e3e1d7758237043552309aa35062ebceffee4b19c0d873531db058f5227bccf",
+    "work3_control_replay/report.py": "2dd3e4d262c1307b397a2213a4e0ebfe2de6c3e790c6ce265883fc7dacc9a865",
+    "work3_control_replay/run.py": "c08a5f31c77a3238a9b9a4fbbe95367f69a98f54eddf7a62f75cbbd441f5f760",
+    "work3_efficiency_formal/audit.json": "a2042c1ce6bf01d650d6f006b5827a6d196025e008e3b5f3fd08aa83274fd5dd",
+    "work3_efficiency_formal/protocol.json": "db95e3c5e9c3fcf067a32d0b9b57ffbb70cc8dc0b9cccaa25a0622c9063c2625",
+    "work3_efficiency_formal/runs/C2/gated_seed0.json": "83639f16d7b57b6069c2dad1d23d9a6573f95154e400eae9fb4db88b8ac949dc",
+    "work3_efficiency_formal/runs/C2/gated_seed1.json": "09146c165975b5f464550c9e5bcfb2705530d1f4fc18053ea82181ba1e12a238",
+    "work3_efficiency_formal/runs/C2/gated_seed2.json": "baf259cae983be5c3fcef7e1d1847af2a87862ca696b85eba1793757ac540dbc",
+    "work3_efficiency_formal/runs/C3/gated_seed0.json": "0e1ae1cf3e5d11f403f9aa76988e52885d57383fab980f254717b1f087e837bf",
+    "work3_efficiency_formal/runs/C3/gated_seed1.json": "7b40aa60c729d72bd6ea3f86f7cec0f3b52d263f67c6c65fcbe70c9af3b74a3a",
+    "work3_efficiency_formal/runs/C3/gated_seed2.json": "5168556cc31d93f34ebce28895f6668a085bbfe0b09e6c57709fc89203b858ca"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

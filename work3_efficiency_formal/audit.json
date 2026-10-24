@@ -1,0 +1,77 @@
+{
+  "protocol": {
+    "version": 1,
+    "registered_question": "Does the unchanged sparse-edge gate reduce GPU busy seconds per output token on held-out C2/C3 resource pools while preserving service metrics?",
+    "discovery_disclosure": "GPU work per token was selected after observing C1 replication and C2/C3 seeds 124/125 development results. Formal gated runs for seeds 0/1/2 on C2/C3 did not exist in this checkout before registration.",
+    "cases": [
+      "C2",
+      "C3"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "offered_tokens_per_s": {
+      "C2": 160,
+      "C3": 400
+    },
+    "candidate": "Unchanged SlowLinkGatedScheduler; canonical edges from frozen placement plus only preexisting fast detours around slow canonical edges",
+    "control": "experiments/m2_multistage_candidate/runs/formal/{case}/seed{seed}/single_a100.json; all four search variants export identical deployment on C2/C3",
+    "primary_metric": "sum(gpu_busy_fraction.values()) / output_throughput_tokens_per_s, measured GPU busy seconds per output token during the fixed window",
+    "gate": {
+      "gpu_seconds_per_token_relative_max_each_seed": -0.2,
+      "mean_throughput_relative_min_each_case": -0.01,
+      "mean_tpot_p95_relative_max_each_case": 0.05,
+      "mean_common_completed_tpot_p95_relative_max_each_case": 0.03,
+      "mean_completion_fraction_absolute_min_each_case": -0.01
+    },
+    "secondary_report": [
+      "P95 TTFT",
+      "end backlog",
+      "route count",
+      "per-seed TPOT",
+      "per-seed completion"
+    ],
+    "if_fail": "Report failure without threshold adjustment or coefficient tuning."
+  },
+  "sources_sha256": {
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "benchmarks/resource_profile.py": "98c13359ac543560354c41a8ec47279e75e57e90281f069a0971d09de80afd95",
+    "experiments/m2_multistage_candidate/placement.py": "e925454df2ebadc598a16cace3d0291ae3ae97d903df931b31005480ac342fef",
+    "experiments/m2_multistage_candidate/runs/formal/C2/seed0/single_a100.json": "ff687d7e0a19585e251219f616535d0926cbf63f7e30971e027c92282347157c",
+    "experiments/m2_multistage_candidate/runs/formal/C2/seed1/single_a100.json": "f882f636d7e0f5a1ed5405130bc3cee8e3d60e590912b6389308c5d0c924f464",
+    "experiments/m2_multistage_candidate/runs/formal/C2/seed2/single_a100.json": "71fe9d26474b68b823e83df0176f035a8e489eba1abacf01f727b9c5a2501f86",
+    "experiments/m2_multistage_candidate/runs/formal/C3/seed0/single_a100.json": "766071d0eaab65227d3aa05379adf7b06d71e7ddaa7d45bfc2a4ac2f435e1601",
+    "experiments/m2_multistage_candidate/runs/formal/C3/seed1/single_a100.json": "1f2029d50649a04fbe64231adacdb8cb4a6e3272d654048eed1a55625611e303",
+    "experiments/m2_multistage_candidate/runs/formal/C3/seed2/single_a100.json": "934fb01825b71459236315567708f22ba1fd15f3314ca761ea6f36199e263179",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/pools/C2/physical.ini": "45a82926c0f81b96bf7a3ae91ad697b5e5ad6321606347bf8195e1ba45f0738d",
+    "rcaps/v3/pools/C3/physical.ini": "96a359d052beffad72d30a2ee1ac880973fb22a9a7d5ab9a39f581ca26d6d898",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/C2/placement.json": "950b50dfdb77355fa29dc54e0467400e82d0773039ccae448a183e6a2d94db9c",
+    "rcaps/v3_layouts/C2/simulator_cluster.ini": "323dbfb79a2722fe3441c564ead834c5c7733051557580005c6c584606bda6c2",
+    "rcaps/v3_layouts/C2/solution.ini": "726c467ca9dcbe873e17ddfa968b73adbb9b80ddedd1d216a38bc036b7fd55f2",
+    "rcaps/v3_layouts/C3/placement.json": "473c136807ee2821c4c108854f0e18da16d8777cdde7f3a54d4052e0ac7d1eb6",
+    "rcaps/v3_layouts/C3/simulator_cluster.ini": "122caa578cb04df9bcd0aae3e1c701f07ca59d41a7fe785598991651b5f289ab",
+    "rcaps/v3_layouts/C3/solution.ini": "e15867103f21ec135abddbe1c290547f7005eb81607316d56ab7686dfd732704",
+    "work3_efficiency_formal/protocol.json": "db95e3c5e9c3fcf067a32d0b9b57ffbb70cc8dc0b9cccaa25a0622c9063c2625",
+    "work3_efficiency_formal/report.py": "1e2b0e21ef97a4248b82368a2b425bd4c3500f701c94a95e393e4350b0878da6",
+    "work3_efficiency_formal/run.py": "8833d4fb446ebd27449459d577deb5877a4a05ab071afb46c6aa02e2e3fa0c7b",
+    "work3_transfer/run.py": "728d583ca659a4fb5d1e3acbee22bb1379e3e853539931cf142b9716dc3dfe99"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

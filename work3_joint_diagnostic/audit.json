@@ -1,0 +1,67 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Development-only 2x3 orthogonal diagnosis before designing a distinct edge-admission algorithm; no confirmatory claim from these seeds.",
+    "case": "C1_multi",
+    "seeds": [
+      161,
+      162
+    ],
+    "duration_s": 300,
+    "warmup_s": 0,
+    "offered_tokens_per_s": 320.0,
+    "slow_link_threshold_Bps": 50000000,
+    "chunk_bytes": 4194304,
+    "cells": [
+      "full",
+      "gate",
+      "full_slow4",
+      "gate_slow4",
+      "full_all4",
+      "gate_all4"
+    ],
+    "readout": {
+      "primary": [
+        "tpot_p95_s",
+        "gpu_seconds_per_output_token",
+        "output_throughput_tokens_per_s"
+      ],
+      "secondary": [
+        "ttft_p95_s",
+        "completion_fraction",
+        "common_completed_tpot_p95_s",
+        "route_count",
+        "paused_chunks"
+      ],
+      "interaction": "log(TPOT_gate_slow4/TPOT_gate) - log(TPOT_full_slow4/TPOT_full); negative means chunking helps more on the gated graph",
+      "slow_selectivity": "Compare slow4 to all4 at fixed graph, including paused chunk counts"
+    },
+    "decision": "Diagnostic only. No new algorithm or formal run will be declared successful from this matrix. Design and freeze a new edge-admission rule separately, then screen on different development seeds before unseen formal seeds."
+  },
+  "sources_sha256": {
+    "artifact_evaluation/distributed_clusters/config/3cluster24.ini": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "experiments/v3_cycle_pricing/run.py": "aaad0984b43523f65ff5926b117c64ad099de80f21517d93141b77cd9f1e507c",
+    "experiments/v3_cycle_pricing/scheduler.py": "b9c0491eb48e48813b16b6d0611624627b693e1170464184b12e867b6378a334",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "experiments/v3_phase_link_diagnosis/chunking.py": "438a86bc01f38f6a35967a340b62fc1c382dd7ec596551fbf9dda1930249c770",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/multi/simulator_cluster.ini": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+    "rcaps/v3_layouts/multi/solution.ini": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+    "work3_joint_diagnostic/protocol.json": "36c1c1f451b280e12752011de97cb4c7c0bbad3073d34ee16920cb3c4bf0f340",
+    "work3_joint_diagnostic/report.py": "80d511c53bf579e6b52251626336fccdd54d7323b7ad20ca5c616c01d5e941d0",
+    "work3_joint_diagnostic/run.py": "14860d755a375b760967d7ca80ae3ddc4b8767ac31e4110c4f2ba23d49ee55ee",
+    "work3_selective_chunk/chunking.py": "35e837cee433598e3e39724954ebcc9ff121f5ee3e9471868b702e69cdadc52e"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "purpose": "Development-only exact search over the four physically motivated bypass edges, assessing global latency/throughput guards and GPU work. This is not a formal confirmation or a novelty claim.",
+  "case": "C1_multi",
+  "seeds": [171, 172],
+  "duration_s": 180,
+  "warmup_s": 0,
+  "offered_tokens_per_s": 320.0,
+  "cells": ["full", "mask00", "mask01", "mask02", "mask03", "mask04", "mask05", "mask06", "mask07", "mask08", "mask09", "mask10", "mask11", "mask12", "mask13", "mask14", "mask15"],
+  "edge_order": [[6, 13], [11, 8], [20, 22], [23, 18]],
+  "mask_interpretation": "Bit i opens edge_order[i] in addition to every canonical edge. mask15 reproduces the current static gate; mask00 is canonical only.",
+  "selection_guard_each_seed_vs_full": {
+    "tpot_p95_relative_max": 0.08,
+    "common_completed_tpot_p95_relative_max": 0.08,
+    "ttft_p95_relative_max": 0.08,
+    "throughput_relative_min": -0.02,
+    "completion_fraction_absolute_min": -0.02,
+    "gpu_seconds_per_token_relative_max": -0.15
+  },
+  "selection_rule": "Among masks satisfying all guards in both development seeds, minimize mean GPU seconds/output token; break ties by smaller maximum seed GPU work, then fewer admitted detours, then lower integer mask. If none pass, select no candidate. Do not alter guards after seeing results.",
+  "next_step_if_selected": "Recheck selected mask against full and mask15 on distinct 300 s development seeds under a separately frozen protocol before any unseen 1800 s formal seeds.",
+  "claim_limit": "A selected edge subset is an exploratory configuration, not evidence that the black-box search is independently novel or transferable."
+}

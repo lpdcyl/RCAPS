@@ -1,0 +1,73 @@
+{
+  "protocol": {
+    "version": 1,
+    "purpose": "Test whether admission-visible link externality can improve a strong sparse-DAG baseline without losing Decode batching.",
+    "topologies": [
+      "C1_multi",
+      "C1_single"
+    ],
+    "offered_tokens_per_s": {
+      "C1_multi": 320,
+      "C1_single": 700
+    },
+    "development_seeds": [
+      121,
+      122
+    ],
+    "development_duration_s": 300,
+    "smoke_seed": 123,
+    "smoke_duration_s": 60,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "methods": [
+      "gated",
+      "priced",
+      "v3"
+    ],
+    "primary_comparison": "priced versus gated on C1_multi, paired by seed and trace",
+    "primary_gate": {
+      "tpot_p95_relative_max_each_seed": -0.03,
+      "throughput_relative_min_each_seed": -0.01,
+      "ttft_p95_relative_max_each_seed": 0.02,
+      "completion_fraction_absolute_min_each_seed": -0.01,
+      "common_completed_tpot_p95_relative_max_each_seed": 0.0
+    },
+    "single_cluster_safety": {
+      "tpot_p95_relative_max_each_seed": 0.01,
+      "throughput_relative_min_each_seed": -0.01
+    },
+    "if_development_fails": "Stop. Report the negative result; do not tune the coefficient on these seeds or claim closure.",
+    "if_development_passes": "Freeze a separate formal protocol and run unseen seeds with full-length windows.",
+    "limits": "Discrete-event simulation; two short development seeds are only a gate, not final evidence."
+  },
+  "sources_sha256": {
+    "artifact_evaluation/distributed_clusters/config/3cluster24.ini": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "examples/simulation/config/single24.ini": "6ba9c132c24a8d56fb17e48aee563e1fa76b54279d6f2446516180dccf23dfaf",
+    "experiments/v3_cycle_pricing/run.py": "aaad0984b43523f65ff5926b117c64ad099de80f21517d93141b77cd9f1e507c",
+    "experiments/v3_cycle_pricing/scheduler.py": "b9c0491eb48e48813b16b6d0611624627b693e1170464184b12e867b6378a334",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_m3_interference/scheduler.py": "4cd0663de14250bb5555cdff0f4c92add243473461a543ab11d8a72b10f0c57b",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/multi/simulator_cluster.ini": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+    "rcaps/v3_layouts/multi/solution.ini": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+    "rcaps/v3_layouts/single/simulator_cluster.ini": "d82bbd1c4880fc833bca084e9a1eeda2537c5571a999439702bcd08afc3d5691",
+    "rcaps/v3_layouts/single/solution.ini": "d6aa8d511e37f8e0d98bfde3f371e183aaa32e93fb3d285262c94cdc7f814cb9",
+    "work3_link_price/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "work3_link_price/protocol.json": "3d05cc01739e9f1d364b9ab639cd8d3e35b2485dcfb925b92fa17603764710d2",
+    "work3_link_price/report.py": "ef25db5e2e33c5d591ba4d0f0a2b45d8587c65ef7d8d0f3e4acd399f8ff814b2",
+    "work3_link_price/run.py": "d316ebbdf42e2a56c1da76bfaafd2285bb30f965d5ee4a7dc526a0f4c2cb3c7c",
+    "work3_link_price/scheduler.py": "2fc93b7d6c75576252e2b3e8e31fa19e2d490b6159ad8173f9630592935825cc"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

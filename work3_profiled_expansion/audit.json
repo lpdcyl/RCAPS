@@ -1,0 +1,79 @@
+{
+  "protocol": {
+    "version": 1,
+    "question": "Can one or two frequently used fast V3 edges improve C1 multi-cluster latency over the validated sparse gate without losing its GPU-work advantage?",
+    "edge_selection_evidence": "Only C1_multi V3 development seed121/122 route_counts were used. Among edges omitted by the old sparse gate, 19->16 appeared in 53/192 routed prompts and 17->19 in 42/192; both are legal 1.16-1.175 GB/s links. The next omitted fast edge appeared in 21/192. Old formal seed0/1/2 outcomes were not used to choose these edges.",
+    "case": "C1_multi",
+    "offered_tokens_per_s": 320.0,
+    "duration_s": 300,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "parity_seed": 121,
+    "development_seeds": [
+      131,
+      132
+    ],
+    "additional_edge_sets": {
+      "gate": [],
+      "add_19_16": [
+        [
+          19,
+          16
+        ]
+      ],
+      "add_17_19": [
+        [
+          17,
+          19
+        ]
+      ],
+      "add_both": [
+        [
+          19,
+          16
+        ],
+        [
+          17,
+          19
+        ]
+      ]
+    },
+    "control": "old sparse gate, paired by seed, trace, layout, simulator and runtime",
+    "screen": {
+      "mean_tpot_relative_max": -0.02,
+      "mean_common_completed_tpot_relative_max": 0.0,
+      "mean_throughput_relative_min": -0.005,
+      "mean_gpu_seconds_per_token_relative_max": 0.1,
+      "mean_ttft_relative_max": 0.02
+    },
+    "selection": "A candidate enters new-seed long-window confirmation only if all five screening constraints pass. Among passers select lowest mean common-completed P95 TPOT; do not change this screen after seeing the development results.",
+    "scope": "Exploratory method development. Unseen 1800-second seeds are required before any performance claim."
+  },
+  "sources_sha256": {
+    "artifact_evaluation/distributed_clusters/config/3cluster24.ini": "164c2e054e2827af818a402166eeea31ce75b1996c6395bb6a18ecd4e42d5c57",
+    "benchmarks/accumulator.py": "ece5cd5865381e1c9d975659c7373ebc8beeb99e4c6d68a564bb4727aca2afc0",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8",
+    "experiments/v3_cycle_pricing/run.py": "aaad0984b43523f65ff5926b117c64ad099de80f21517d93141b77cd9f1e507c",
+    "experiments/v3_cycle_pricing/scheduler.py": "b9c0491eb48e48813b16b6d0611624627b693e1170464184b12e867b6378a334",
+    "experiments/v3_gated_pathspace/scheduler.py": "c5c288e84a84f99dfae81a9121e545be7b73934f1c480c3ad1b1451f01b88357",
+    "experiments/v3_pathspace_ablation/run.py": "77156376e59087689e776703064774bb701722c76ea2cb066dcbe3c96de887b6",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "rcaps/v3/scheduler.py": "109af9d3ddca4d217fa8f1b2f8205972705c5d924af576ad1fed823eb1d9f363",
+    "rcaps/v3_layouts/multi/simulator_cluster.ini": "57a9b7d552ed1457dba22afc470b827b01094cd219ca3b0cbb236f37849062da",
+    "rcaps/v3_layouts/multi/solution.ini": "52ba2333aff5501d4f39d6ce97819129f3eb36dc89b4b8ccf047a39fa6fbe98e",
+    "work3_link_price/runs/v1/development/C1_multi/gated_seed121.json": "13a3def76d70ba43c01b9d4321061b02efb46711c77d608ae01d07a77b904f45",
+    "work3_link_price/runs/v1/development/C1_multi/v3_seed121.json": "36c0480bba127c1f4080fe954fee9098a5092fa7ed1a0181f11ce89d918ca55c",
+    "work3_link_price/runs/v1/development/C1_multi/v3_seed122.json": "aa0a9c2964391aef39af59dcc0b78289acf0f8a7e230094b9ba029c4eee13f0b",
+    "work3_profiled_expansion/protocol.json": "9dc9bfe9913eb2949f7121829217e03a61c3b7d6f450b9abc49fd008efaa10d3",
+    "work3_profiled_expansion/run.py": "99bbbae3803278a39e3ebb12d40671d8276b23dc84da6c29093a4eecad0a57fa",
+    "work3_profiled_expansion/scheduler.py": "b7de40012ec39e5e375ad2cf364acd364f05f1bd5b0b65210b7e323908e81801"
+  },
+  "environment": {
+    "python": "3.10.16",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": "0",
+    "MPLBACKEND": "Agg"
+  }
+}

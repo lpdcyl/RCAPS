@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "registration_context": "Registered after the 1 MiB formal seeds201/203 exceeded the GPU-work guard and after a fresh development screen on seeds151/152 selected 4 MiB over 2 MiB. The 1 MiB formal seed202 was still in progress. Seeds301/302/303 and their outcomes were unseen when this protocol was frozen.",
+  "case": "C1_multi",
+  "seeds": [301, 302, 303],
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "offered_tokens_per_s": 320.0,
+  "slow_link_threshold_Bps": 50000000,
+  "methods": {"v3": null, "gate": null, "chunk_1MiB": 1048576, "chunk_4MiB": 4194304},
+  "primary_gate_each_seed_4MiB_vs_gate": {
+    "tpot_p95_relative_max": -0.10,
+    "common_completed_tpot_p95_relative_max": -0.05,
+    "ttft_p95_relative_max": 0.02,
+    "throughput_relative_min": -0.01,
+    "gpu_seconds_per_token_relative_max": 0.05,
+    "completion_fraction_absolute_min": -0.01
+  },
+  "overall_work3_gate_each_seed_4MiB_vs_v3": {
+    "tpot_p95_relative_max": 0.0,
+    "gpu_seconds_per_token_relative_max": 0.0,
+    "throughput_relative_min": -0.01
+  },
+  "chunk_tradeoff_gate_each_seed_4MiB_vs_1MiB": {
+    "tpot_p95_relative_max": 0.12,
+    "throughput_relative_min": -0.01,
+    "pause_count_relative_max": -0.60
+  },
+  "decision": "All three gates must pass for each of three paired seeds. Preserve failure without changing chunk size, seed list or margins.",
+  "claim_limit": "Simulation-only systems evidence, with chunking related to MoLink; this does not establish an independently novel transmission scheduling method."
+}

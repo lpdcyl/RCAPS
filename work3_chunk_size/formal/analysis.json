@@ -1,0 +1,266 @@
+{
+  "protocol": {
+    "version": 1,
+    "registration_context": "Registered after the 1 MiB formal seeds201/203 exceeded the GPU-work guard and after a fresh development screen on seeds151/152 selected 4 MiB over 2 MiB. The 1 MiB formal seed202 was still in progress. Seeds301/302/303 and their outcomes were unseen when this protocol was frozen.",
+    "case": "C1_multi",
+    "seeds": [
+      301,
+      302,
+      303
+    ],
+    "duration_s": 1800,
+    "warmup_s": 0,
+    "drain_tail": false,
+    "offered_tokens_per_s": 320.0,
+    "slow_link_threshold_Bps": 50000000,
+    "methods": {
+      "v3": null,
+      "gate": null,
+      "chunk_1MiB": 1048576,
+      "chunk_4MiB": 4194304
+    },
+    "primary_gate_each_seed_4MiB_vs_gate": {
+      "tpot_p95_relative_max": -0.1,
+      "common_completed_tpot_p95_relative_max": -0.05,
+      "ttft_p95_relative_max": 0.02,
+      "throughput_relative_min": -0.01,
+      "gpu_seconds_per_token_relative_max": 0.05,
+      "completion_fraction_absolute_min": -0.01
+    },
+    "overall_work3_gate_each_seed_4MiB_vs_v3": {
+      "tpot_p95_relative_max": 0.0,
+      "gpu_seconds_per_token_relative_max": 0.0,
+      "throughput_relative_min": -0.01
+    },
+    "chunk_tradeoff_gate_each_seed_4MiB_vs_1MiB": {
+      "tpot_p95_relative_max": 0.12,
+      "throughput_relative_min": -0.01,
+      "pause_count_relative_max": -0.6
+    },
+    "decision": "All three gates must pass for each of three paired seeds. Preserve failure without changing chunk size, seed list or margins.",
+    "claim_limit": "Simulation-only systems evidence, with chunking related to MoLink; this does not establish an independently novel transmission scheduling method."
+  },
+  "audit_sha256": "3b72790a86d03a5878ffff05bced44a530a4331fbcaaa7b17dbf3eb6694e787d",
+  "rows": [
+    {
+      "seed": 301,
+      "chunk_4MiB_vs_gate": {
+        "tpot_relative": -0.15080258121975176,
+        "common_tpot_relative": -0.13883737279872688,
+        "ttft_relative": -0.1020906045030473,
+        "throughput_relative": 0.005836061237311174,
+        "gpu_work_relative": 0.030628735685652275,
+        "completion_absolute": 0.0034965034965034336,
+        "common_completed_n": 527,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 45,
+        "backlog_candidate": 43
+      },
+      "chunk_4MiB_vs_v3": {
+        "tpot_relative": -0.12799881235460975,
+        "common_tpot_relative": -0.12694709099329904,
+        "ttft_relative": -0.06682473074199657,
+        "throughput_relative": 0.006984789049439888,
+        "gpu_work_relative": -0.2691708653951411,
+        "completion_absolute": 0.005244755244755206,
+        "common_completed_n": 526,
+        "route_count_base": 27,
+        "route_count_candidate": 8,
+        "backlog_base": 46,
+        "backlog_candidate": 43
+      },
+      "chunk_4MiB_vs_1MiB": {
+        "tpot_relative": 0.053113216082661285,
+        "common_tpot_relative": 0.05955807069510288,
+        "ttft_relative": 0.0001357163515796067,
+        "throughput_relative": -0.0027701285077365023,
+        "gpu_work_relative": -0.00995606271020777,
+        "completion_absolute": -0.006993006993006978,
+        "common_completed_n": 529,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 39,
+        "backlog_candidate": 43
+      },
+      "pause_counts": {
+        "chunk_1MiB": 6576,
+        "chunk_4MiB": 1384
+      },
+      "pause_relative": -0.7895377128953771,
+      "tpot_seconds": {
+        "v3": 0.6906965644977041,
+        "gate": 0.7092440594198821,
+        "chunk_1MiB": 0.5719121319025531,
+        "chunk_4MiB": 0.6022882245445889
+      },
+      "throughput": {
+        "v3": 67.13,
+        "gate": 67.20666666666666,
+        "chunk_1MiB": 67.78666666666666,
+        "chunk_4MiB": 67.5988888888889
+      },
+      "gpu_seconds_per_token": {
+        "v3": 0.09385120556417273,
+        "gate": 0.0665508276347994,
+        "chunk_1MiB": 0.06927894082342183,
+        "chunk_4MiB": 0.06858919534408707
+      }
+    },
+    {
+      "seed": 302,
+      "chunk_4MiB_vs_gate": {
+        "tpot_relative": -0.14711162024373203,
+        "common_tpot_relative": -0.15343182208967443,
+        "ttft_relative": -0.0076539840305276385,
+        "throughput_relative": 0.006911258814189969,
+        "gpu_work_relative": 0.0354427138181963,
+        "completion_absolute": 0.0103270223752151,
+        "common_completed_n": 526,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 55,
+        "backlog_candidate": 49
+      },
+      "chunk_4MiB_vs_v3": {
+        "tpot_relative": -0.11601952226550816,
+        "common_tpot_relative": -0.12053532572345738,
+        "ttft_relative": 0.03868978982000959,
+        "throughput_relative": 0.006057778296201466,
+        "gpu_work_relative": -0.27705812169117483,
+        "completion_absolute": 0.008605851979345935,
+        "common_completed_n": 527,
+        "route_count_base": 33,
+        "route_count_candidate": 8,
+        "backlog_base": 54,
+        "backlog_candidate": 49
+      },
+      "chunk_4MiB_vs_1MiB": {
+        "tpot_relative": 0.07500808252875624,
+        "common_tpot_relative": 0.07175402850275647,
+        "ttft_relative": 0.02652510132804542,
+        "throughput_relative": -0.002821026668722082,
+        "gpu_work_relative": -0.034952593307664426,
+        "completion_absolute": -0.0034423407917384408,
+        "common_completed_n": 532,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 47,
+        "backlog_candidate": 49
+      },
+      "pause_counts": {
+        "chunk_1MiB": 6869,
+        "chunk_4MiB": 1456
+      },
+      "pause_relative": -0.7880331926044548,
+      "tpot_seconds": {
+        "v3": 0.7071123061201048,
+        "gate": 0.7328901284299562,
+        "chunk_1MiB": 0.5814593251295559,
+        "chunk_4MiB": 0.6250734741759885
+      },
+      "throughput": {
+        "v3": 71.44166666666666,
+        "gate": 71.38111111111111,
+        "chunk_1MiB": 72.07777777777778,
+        "chunk_4MiB": 71.87444444444445
+      },
+      "gpu_seconds_per_token": {
+        "v3": 0.0889996941982596,
+        "gate": 0.062139223381408606,
+        "chunk_1MiB": 0.06667196414021703,
+        "chunk_4MiB": 0.06434160609260084
+      }
+    },
+    {
+      "seed": 303,
+      "chunk_4MiB_vs_gate": {
+        "tpot_relative": -0.17054341734388168,
+        "common_tpot_relative": -0.16577597102342045,
+        "ttft_relative": -0.046416866041854576,
+        "throughput_relative": 0.009278952729015577,
+        "gpu_work_relative": 0.04992616672054617,
+        "completion_absolute": 0.0068728522336769515,
+        "common_completed_n": 524,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 58,
+        "backlog_candidate": 54
+      },
+      "chunk_4MiB_vs_v3": {
+        "tpot_relative": -0.13411304744247865,
+        "common_tpot_relative": -0.14109393962031558,
+        "ttft_relative": -0.056751771752842406,
+        "throughput_relative": 0.008131358467983185,
+        "gpu_work_relative": -0.28036057425534944,
+        "completion_absolute": 0.0068728522336769515,
+        "common_completed_n": 524,
+        "route_count_base": 32,
+        "route_count_candidate": 8,
+        "backlog_base": 58,
+        "backlog_candidate": 54
+      },
+      "chunk_4MiB_vs_1MiB": {
+        "tpot_relative": 0.05156297482025729,
+        "common_tpot_relative": 0.040220834591423005,
+        "ttft_relative": 0.027492276284950767,
+        "throughput_relative": -0.0038731327287107042,
+        "gpu_work_relative": -0.022075562460381115,
+        "completion_absolute": -0.0034364261168384758,
+        "common_completed_n": 528,
+        "route_count_base": 8,
+        "route_count_candidate": 8,
+        "backlog_base": 52,
+        "backlog_candidate": 54
+      },
+      "pause_counts": {
+        "chunk_1MiB": 7167,
+        "chunk_4MiB": 1517
+      },
+      "pause_relative": -0.7883354262592437,
+      "tpot_seconds": {
+        "v3": 0.7134713977207944,
+        "gate": 0.7448076092555885,
+        "chunk_1MiB": 0.5874927028645255,
+        "chunk_4MiB": 0.6177855743094139
+      },
+      "throughput": {
+        "v3": 74.26666666666667,
+        "gate": 74.18222222222222,
+        "chunk_1MiB": 75.16166666666666,
+        "chunk_4MiB": 74.87055555555555
+      },
+      "gpu_seconds_per_token": {
+        "v3": 0.08593337885754969,
+        "gate": 0.05890037735368157,
+        "chunk_1MiB": 0.0632370406541141,
+        "chunk_4MiB": 0.06184104741334455
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "seed": 301,
+      "primary_pass": true,
+      "overall_work3_pass": true,
+      "chunk_tradeoff_pass": true,
+      "all_pass": true
+    },
+    {
+      "seed": 302,
+      "primary_pass": true,
+      "overall_work3_pass": true,
+      "chunk_tradeoff_pass": true,
+      "all_pass": true
+    },
+    {
+      "seed": 303,
+      "primary_pass": true,
+      "overall_work3_pass": true,
+      "chunk_tradeoff_pass": true,
+      "all_pass": true
+    }
+  ],
+  "formal_joint_gate_passed": true,
+  "status": "completed"
+}

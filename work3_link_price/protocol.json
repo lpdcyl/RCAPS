@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "purpose": "Test whether admission-visible link externality can improve a strong sparse-DAG baseline without losing Decode batching.",
+  "topologies": ["C1_multi", "C1_single"],
+  "offered_tokens_per_s": {"C1_multi": 320, "C1_single": 700},
+  "development_seeds": [121, 122],
+  "development_duration_s": 300,
+  "smoke_seed": 123,
+  "smoke_duration_s": 60,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "methods": ["gated", "priced", "v3"],
+  "primary_comparison": "priced versus gated on C1_multi, paired by seed and trace",
+  "primary_gate": {
+    "tpot_p95_relative_max_each_seed": -0.03,
+    "throughput_relative_min_each_seed": -0.01,
+    "ttft_p95_relative_max_each_seed": 0.02,
+    "completion_fraction_absolute_min_each_seed": -0.01,
+    "common_completed_tpot_p95_relative_max_each_seed": 0.0
+  },
+  "single_cluster_safety": {
+    "tpot_p95_relative_max_each_seed": 0.01,
+    "throughput_relative_min_each_seed": -0.01
+  },
+  "if_development_fails": "Stop. Report the negative result; do not tune the coefficient on these seeds or claim closure.",
+  "if_development_passes": "Freeze a separate formal protocol and run unseen seeds with full-length windows.",
+  "limits": "Discrete-event simulation; two short development seeds are only a gate, not final evidence."
+}
