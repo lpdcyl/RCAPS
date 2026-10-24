@@ -1,0 +1,21 @@
+{
+  "phase": "smoke",
+  "revision": "v1",
+  "expected": 5,
+  "jobs": {
+    "canonical/seed106": {
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 328, in <module>\n    main()\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 322, in main\n    print(json.dumps(execute(args.revision, args.phase, args.one[0], int(args.one[1]))))\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 202, in execute\n    trace = trace_for(seed, stage_duration)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 79, in trace_for\n    feeder = OnlineRequestFeeder(spec[\"offered\"], 0.0, stage_duration,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\trace_generator\\simulator_query_feeder.py\", line 37, in __init__\n    self.trace: List[Tuple[float, int, int]] = self.trace_generator.generate_trace(start_time=start_time,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\trace_generator\\trace_generator.py\", line 45, in generate_trace\n    assert duration % 3 == 0, \"Duration must be a multiple of 3!\"\nAssertionError: Duration must be a multiple of 3!\n",
+      "result_exists": false
+    },
+    "partial/seed106": {
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 328, in <module>\n    main()\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 322, in main\n    print(json.dumps(execute(args.revision, args.phase, args.one[0], int(args.one[1]))))\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 202, in execute\n    trace = trace_for(seed, stage_duration)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 79, in trace_for\n    feeder = OnlineRequestFeeder(spec[\"offered\"], 0.0, stage_duration,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\trace_generator\\simulator_query_feeder.py\", line 37, in __init__\n    self.trace: List[Tuple[float, int, int]] = self.trace_generator.generate_trace(start_time=start_time,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\trace_generator\\trace_generator.py\", line 45, in generate_trace\n    assert duration % 3 == 0, \"Duration must be a multiple of 3!\"\nAssertionError: Duration must be a multiple of 3!\n",
+      "result_exists": false
+    }
+  },
+  "started_at_utc": "2026-10-23T16:01:46.190468+00:00",
+  "complete": false
+}

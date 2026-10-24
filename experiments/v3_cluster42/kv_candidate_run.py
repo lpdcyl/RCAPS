@@ -1,0 +1,181 @@
+"""Run capacity-admitted candidate layouts in a fixed simulation window."""
+
+from __future__ import annotations
+
+import argparse
+import contextlib
+import json
+import os
+import sys
+import traceback
+import time
+from pathlib import Path
+
+from experiments.v3_cluster42.run import BASE, HERE, PHYSICAL, PROFILE, digest
+
+ROOT = HERE / "kv_candidate"
+
+
+def existing_result(output, seed, duration, name=None, mode=None):
+    if not output.exists():
+        return None
+    result = json.loads(output.read_text(encoding="utf-8"))
+    expected = {"seed": seed, "duration_s": duration, "offered_tokens_per_s": 2150.0}
+    if name is not None:
+        expected.update(candidate=name, mode=mode)
+    if any(result.get(key) != value for key, value in expected.items()):
+        raise ValueError(f"Existing result has different run identity: {output}")
+    return result
+
+
+def run_helix(seed: int, duration: int, output: Path):
+    from benchmarks.fixed_window import run
+    from rcaps.v3.topology import TopologyModel
+    previous = existing_result(output, seed, duration)
+    if previous is not None:
+        return previous
+    layout = BASE / "layout_llama70b/ilp"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.with_suffix(".log").open("w", encoding="utf-8") as stream, \
+            contextlib.redirect_stdout(stream), contextlib.redirect_stderr(stream):
+        result = run("single", "helix", 2150.0, duration, 0, seed,
+                     layout / "ilp_sol.ini", layout / "simulator_cluster.ini",
+                     profile_resources=True, compact=True, record_query_samples=True,
+                     physical_cluster=PHYSICAL, machine_profile=PROFILE,
+                     machine_counts=TopologyModel(PHYSICAL).machine_counts)
+    output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    return result
+
+
+def run_one(name: str, seed: int, duration: int, output: Path, mode: str = "full", root: Path = ROOT):
+    from benchmarks.fixed_window import run
+    from experiments.v3_cluster42.kv_admission import (KVAdmittedV3, KVAdmittedGated, SliceKVAdmittedV3,
+                                                       install_completion_wakeup)
+    from experiments.v3_pathspace_ablation.run import canonical_edges
+    from rcaps.v3.placement import validate
+    from rcaps.v3.topology import TopologyModel
+
+    previous = existing_result(output, seed, duration, name, mode)
+    if previous is not None:
+        return previous
+    layout = root / name
+    source_sha = digest(HERE / "kv_admission.py")
+    source_files = [HERE / "kv_admission.py", Path(__file__).resolve(),
+                    HERE.parents[1] / "benchmarks/fixed_window.py",
+                    *[HERE.parents[1] / "rcaps/v3" / f"{part}.py"
+                      for part in ("scheduler", "online_scheduler", "queue_cost", "routing")]]
+    source_hashes = {path.relative_to(HERE.parents[1]).as_posix(): digest(path)
+                     for path in source_files}
+    counters = {}
+    started = time.perf_counter()
+    placement = json.loads((layout / "placement.json").read_text())
+    state = placement["state"]
+    admission_mode = placement.get("kv_reservation_mode", "resident_layers")
+    if admission_mode not in ("resident_layers", "executed_layers"):
+        raise ValueError(f"Unknown KV reservation mode: {admission_mode}")
+    if admission_mode == "executed_layers" and mode != "full":
+        raise ValueError("Executed-layer reservation requires full DAG mode")
+    allowed = None
+    if mode == "gated":
+        model = TopologyModel(PHYSICAL)
+        allowed = canonical_edges(state, validate(model, state)["dag"])
+        allowed = frozenset((a if isinstance(a, str) else a + 2,
+                             b if isinstance(b, str) else b + 2)
+                            for a, b in allowed)
+
+    def factory(simulator):
+        scheduler = (KVAdmittedGated(simulator, allowed_edges=allowed)
+                     if mode == "gated" else
+                     (SliceKVAdmittedV3 if admission_mode == "executed_layers" else KVAdmittedV3)(simulator))
+        install_completion_wakeup(simulator, scheduler)
+        counters["scheduler"] = scheduler
+        return scheduler
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.with_suffix(".log").open("w", encoding="utf-8") as stream, \
+            contextlib.redirect_stdout(stream), contextlib.redirect_stderr(stream):
+        try:
+            result = run(
+                "single", "queue_dag", 2150.0, duration, 0, seed,
+                layout / "solution.ini", layout / "simulator_cluster.ini",
+                profile_resources=False, compact=True, record_query_samples=False,
+                physical_cluster=PHYSICAL, machine_profile=PROFILE,
+                machine_counts=TopologyModel(PHYSICAL).machine_counts,
+                scheduler_factory=factory)
+        except Exception as error:
+            failure = {"candidate": name, "seed": seed, "duration_s": duration,
+                       "error": repr(error), "traceback": traceback.format_exc()}
+            output.with_suffix(".failure.json").write_text(
+                json.dumps(failure, indent=2) + "\n", encoding="utf-8")
+            raise
+    scheduler = counters["scheduler"]
+    result.update({"candidate": name, "mode": mode,
+                   "kv_reservation_mode": admission_mode,
+                   "kv_admission": scheduler.kv_admission,
+                   "wall_time_s": time.perf_counter() - started,
+                   "peak_reserved_kv_units": scheduler.peak_reserved,
+                   "active_gpus": json.loads((layout / "placement.json").read_text())["active_gpus"],
+                   "scheduler_sha256": source_sha,
+                   "source_sha256": source_hashes,
+                   "layout_sha256": digest(layout / "placement.json"),
+                   "pythonhashseed": os.environ.get("PYTHONHASHSEED")})
+    output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--phase", choices=("smoke", "screening", "formal"), required=True)
+    parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--duration", type=int, help="Screening window only")
+    parser.add_argument("--candidate")
+    parser.add_argument("--mode", choices=("full", "gated"), default="full")
+    parser.add_argument("--seed", type=int)
+    args = parser.parse_args()
+    if os.environ.get("PYTHONHASHSEED") != "0":
+        raise SystemExit("PYTHONHASHSEED=0 required")
+    names = [row["name"] for row in json.loads((args.root / "shortlist.json").read_text())]
+    if args.candidate:
+        if args.candidate not in names and args.candidate != "helix":
+            raise SystemExit(f"Unknown candidate: {args.candidate}")
+        names = [args.candidate]
+    seeds, duration = {"smoke": ([100], 180), "screening": ([101], 600),
+                       "formal": ([0, 1, 2], 1800)}[args.phase]
+    if args.duration is not None:
+        if args.phase != "screening" or args.duration <= 0:
+            raise SystemExit("--duration must be positive and is only allowed for screening")
+        duration = args.duration
+    if args.seed is not None:
+        seeds = [args.seed]
+    if args.phase == "formal":
+        protocol = json.loads((args.root / "protocol.json").read_text())
+        selected = protocol["formal"].get("candidate")
+        if selected is None:
+            raise SystemExit("Freeze a formal candidate in protocol.json before formal runs")
+        if args.candidate is None:
+            names = [selected]
+        if any(name not in (selected, "helix") for name in names):
+            raise SystemExit("Formal candidate differs from protocol.json")
+        if args.mode != "full" or any(seed not in (0, 1, 2) for seed in seeds):
+            raise SystemExit("Formal protocol requires full mode and seeds 0/1/2")
+    failures = 0
+    for name in names:
+        for seed in seeds:
+            suffix = "_gated" if args.mode == "gated" and name != "helix" else ""
+            output = args.root / "runs" / args.phase / f"{name}{suffix}_seed{seed}.json"
+            try:
+                row = (run_helix(seed, duration, output) if name == "helix"
+                       else run_one(name, seed, duration, output, args.mode, args.root))
+                print(json.dumps({k: row.get(k) for k in ("candidate", "seed",
+                    "active_gpus", "output_throughput_tokens_per_s",
+                    "ttft_p95_s", "tpot_p95_s", "backlog_at_window_end",
+                    "trace_sha256", "kv_admission")}), flush=True)
+            except Exception as error:
+                failures += 1
+                print(f"FAILED {name} seed={seed}: {error!r}", file=sys.stderr, flush=True)
+    if failures:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()

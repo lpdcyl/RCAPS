@@ -1,0 +1,63 @@
+{
+  "classification": "runtime_diagnostic_only",
+  "mode": "both",
+  "duration": 60,
+  "contract_wrapper": false,
+  "environment": {
+    "python": "3.10.20",
+    "numpy": "1.26.4",
+    "executable": "D:\\software\\miniconda\\envs\\gllm\\python.exe",
+    "conda_default_env": "gllm",
+    "conda_prefix": "D:\\software\\miniconda\\envs\\gllm",
+    "pythonhashseed": "0"
+  },
+  "probe_sha256": "7dc7786b3a163a5ce63b5a56c648ca9b7c17d2afe38e5a563593144477583d34",
+  "layer_function": {
+    "qualname": "ModelLayer.get_inference_statistics",
+    "source": "D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\model.py",
+    "bytecode_sha256": "c160ec526f34f4a3f5eba7b9fea415fa783410619783446ea936a758b32a0c3f",
+    "last_instructions": [
+      [
+        "LOAD_FAST",
+        "prompt_time"
+      ],
+      [
+        "LOAD_FAST",
+        "decode_time"
+      ],
+      [
+        "BINARY_ADD",
+        "None"
+      ],
+      [
+        "LOAD_FAST",
+        "prompt_vram"
+      ],
+      [
+        "LOAD_FAST",
+        "decode_vram"
+      ],
+      [
+        "BINARY_ADD",
+        "None"
+      ],
+      [
+        "BUILD_TUPLE",
+        "2"
+      ],
+      [
+        "RETURN_VALUE",
+        "None"
+      ]
+    ]
+  },
+  "stats_calls": 0,
+  "bad_returns": [],
+  "status": "passed",
+  "arrivals": 3,
+  "output_count": 135.0,
+  "route_counts": {
+    "3-5-2-4-10-8-9-12-15-6-7": 3
+  },
+  "wall_seconds": 0.6204880000004778
+}

@@ -1,0 +1,20 @@
+{
+  "study": "Executed-layer KV admission on capacity-constrained sub-pool placements",
+  "offered_tokens_per_s": 2150,
+  "physical_cluster": "artifact_evaluation/high_heterogeneity/config/cluster42.ini",
+  "admission": "FIFO source waiting; reserve prompt plus public output bound 1000 tokens for each actually executed layer; decode keeps prompt route; release only after actual KV removal. No future output length, dropping or preemption.",
+  "selection": "Screen all three preregistered candidates at seed101 for 600 seconds. Require throughput >= Helix and P95 TTFT/TPOT <= Helix. Select fewest physical GPUs among passing candidates, then greatest throughput. If none passes, preserve negative evidence and revise placement in a new protocol.",
+  "screening": {
+    "seed": 101, "duration_s": 600, "warmup_s": 0,
+    "baseline": "../kv_capacity/runs/screening/helix_seed101.json"
+  },
+  "formal": {
+    "candidate": "c400k_slice_w3_b1",
+    "selection_evidence": "runs/screening/c400k_slice_w3_b1_seed101.json; all three paired criteria pass; other two candidates fail; frozen after all preregistered screening windows completed",
+    "seeds": [0, 1, 2], "duration_s": 1800, "warmup_s": 0,
+    "tail_drain": false, "pythonhashseed": "0",
+    "baseline": "../runs/formal/load2150/helix_seed{seed}.json",
+    "pass": "Every paired seed has identical trace, load, duration, warmup, arrivals, evaluation protocol and physical cluster; fewer than 64 physical GPU devices; throughput >= Helix, P95 TTFT <= Helix, P95 TPOT <= Helix",
+    "report_also": ["completion_fraction", "first_tokens_in_window", "arrivals", "backlog_at_window_end", "kv_admission", "peak_reserved_kv_units"]
+  }
+}

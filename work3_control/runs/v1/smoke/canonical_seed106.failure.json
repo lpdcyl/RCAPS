@@ -1,0 +1,13 @@
+{
+  "experiment": "work3_whole_route_control_v1",
+  "revision": "v1",
+  "phase": "smoke",
+  "policy": "canonical",
+  "seed": 106,
+  "duration_s": 30,
+  "audit_sha256": "51208d1b9d929190cc250c164eb401cbe9a4ecb369555f430c1f2ac526ee7b1a",
+  "classification": "simulation_only",
+  "error": "AssertionError('Duration must be a multiple of 3!')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 202, in execute\n    trace = trace_for(seed, stage_duration)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 79, in trace_for\n    feeder = OnlineRequestFeeder(spec[\"offered\"], 0.0, stage_duration,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\trace_generator\\simulator_query_feeder.py\", line 37, in __init__\n    self.trace: List[Tuple[float, int, int]] = self.trace_generator.generate_trace(start_time=start_time,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\trace_generator\\trace_generator.py\", line 45, in generate_trace\n    assert duration % 3 == 0, \"Duration must be a multiple of 3!\"\nAssertionError: Duration must be a multiple of 3!\n",
+  "failed_at_utc": "2026-10-23T16:01:46.911817+00:00"
+}

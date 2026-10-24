@@ -1,0 +1,42 @@
+{
+  "experiment": "v3_dynamic_pathspace_adaptive_link_deadband",
+  "status": "registered_before_seed101_development_and_seed012_formal_runs",
+  "claim": "Work 3 dynamically controls the admissible path set from observed link pressure while preserving canonical paths and frozen M3 ranking.",
+  "candidate": {
+    "base": "Canonical edges plus the frozen static slow-link detours.",
+    "pressure": "For each legal non-static compute edge, use link release wait plus this request's transfer time; compare against the least-pressure canonical successor of the same tail.",
+    "admission": "Admit a candidate edge iff positive link relief is strictly greater than 0.010 seconds.",
+    "min_link_relief_s": 0.01,
+    "batch_policy": "No future-output-length batch penalty is used. The simulator's unchanged M3 ranking and observed decode batching remain in force.",
+    "kv_policy": "Reserve prompt plus the declared 1000-token output bound for every executed layer for the full query lifetime; capacity veto defers the prompt and wakes it after query completion."
+  },
+  "fixed": {
+    "m1_layout": "Frozen C1_single and C1_multi layouts.",
+    "m3": "Frozen queue-aware route ranking and tie order over the admitted edge set.",
+    "trace": "Same seed, offered load and fixed-window feeder within each static/adaptive pair.",
+    "window": "1800 seconds, zero warmup, no tail drain, Python hash seed 0, one process."
+  },
+  "development": {
+    "seed": 101,
+    "duration_s": 300,
+    "conditions": {"C1_single": 700.0, "C1_multi": 320.0},
+    "cells": ["static", "adaptive_link"]
+  },
+  "formal": {
+    "seeds": [0, 1, 2],
+    "duration_s": 1800,
+    "conditions": {"C1_single": 700.0, "C1_multi": 320.0},
+    "cells": ["static", "adaptive_link"]
+  },
+  "go_rule": "Development must select at least one dynamic edge in each high-load condition; relative to static, throughput must be >= -0.5% and P95 TPOT <= +2% in each condition, with strictly lower P95 TPOT in at least one. Formal results report all three paired seeds and descriptive means only.",
+  "failure_handling": "Keep failure JSON and logs. Reject windows with incomplete query samples, trace or layout hash mismatch, KV capacity assertion, or reservation overflow. Report legitimate deferred KV admissions and peak reserved fractions as mechanism metrics. Do not replace a failed seed with another seed.",
+  "frozen_sources": {
+    "experiments/v3_dynamic_pathspace/scheduler.py": "4ed3b000f4b0d5e8e3953ae90e5d22e88a67f43deaf86d74bb079a37a1c14116",
+    "experiments/v3_dynamic_pathspace/run.py": "22149e8528fb70cafffa798a5ada203fafbde30464739c7e7853f141a8c3a5f7",
+    "experiments/v3_cluster42/kv_admission.py": "cd75370f98f9c799111b9b1508c15eda1d16663a46016fb541535668415fdb62",
+    "rcaps/v3/online_scheduler.py": "8d46ae5e307ffa6f0fe4c5d479738b6da216e326fe89789dafd38c3e2751aacc",
+    "rcaps/v3/queue_cost.py": "f4ac952fffb5a989b8aedcaba6969514bb89aeac7639ac9d308af273a774b9c7",
+    "rcaps/v3/routing.py": "415a866f23c885054c1d906069f08b7776514b3acaf1f393b161167062670415",
+    "benchmarks/fixed_window.py": "6565238771015b7cb672d9bacf23dbccd56de57714d414d2429b5fb7f4b064e8"
+  }
+}

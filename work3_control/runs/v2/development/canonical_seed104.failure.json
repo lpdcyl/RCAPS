@@ -1,0 +1,13 @@
+{
+  "experiment": "work3_whole_route_control_v1",
+  "revision": "v2",
+  "phase": "development",
+  "policy": "canonical",
+  "seed": 104,
+  "duration_s": 600,
+  "audit_sha256": "4fa19f78d9010457889494423828d99ad4aa65207da87b3d2776ee5436ebc473",
+  "classification": "simulation_only",
+  "error": "TypeError('cannot unpack non-iterable float object')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 207, in execute\n    window = fixed_window.run(context[\"topology\"], \"queue_dag\", 0.0, duration, 0, seed,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 938, in handle_start_execution\n    inference_batch: InferenceBatch = execution_node.start_execution(requests=schedule.requests)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 127, in record\n    batch = original_start(requests)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\compute_node.py\", line 550, in start_execution\n    inference_time, inference_vram_usage = self.get_inference_statistics(\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\compute_node.py\", line 469, in get_inference_statistics\n    cur_layer_time, cur_layer_vram_usage = cur_layer.get_inference_statistics(requests=requests)\nTypeError: cannot unpack non-iterable float object\n",
+  "failed_at_utc": "2026-10-23T16:03:42.876659+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "experiment": "v3_gated_pathspace",
+  "candidate": "SlowLinkGatedScheduler: canonical routes plus fast cross-replica edges that bypass a slow (<= 50 MB/s, threshold from experiments/v3_phase_link_diagnosis) canonical compute-to-compute edge; frozen V3 route price",
+  "free_parameters": 0,
+  "audit": "audit.json lists admitted edges; C1_single admits no detour, so its admitted set equals the canonical set",
+  "development": {
+    "data": "seed 100, 300 s, both topologies; controls experiments/v3_cycle_pricing/runs/dev/<case>/{v3,canonical}_seed100.json",
+    "single_check": "C1_single must reproduce the canonical development window (same admitted edges)",
+    "go": "C1_multi relative throughput change vs frozen V3 >= -0.5% and relative P95 TPOT change <= 0; otherwise stop and report without formal windows"
+  }
+}

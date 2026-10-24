@@ -1,0 +1,21 @@
+{
+  "phase": "development",
+  "revision": "v2",
+  "expected": 10,
+  "jobs": {
+    "canonical/seed104": {
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 332, in <module>\n    main()\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 326, in main\n    print(json.dumps(execute(args.revision, args.phase, args.one[0], int(args.one[1]))))\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 207, in execute\n    window = fixed_window.run(context[\"topology\"], \"queue_dag\", 0.0, duration, 0, seed,\n  File \"D:\\PythonProject\\RCAPS-cluster42\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\cluster_simulator.py\", line 938, in handle_start_execution\n    inference_batch: InferenceBatch = execution_node.start_execution(requests=schedule.requests)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\work3_control\\run.py\", line 127, in record\n    batch = original_start(requests)\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\compute_node.py\", line 550, in start_execution\n    inference_time, inference_vram_usage = self.get_inference_statistics(\n  File \"D:\\PythonProject\\RCAPS-cluster42\\simulator\\event_simulator\\compute_node.py\", line 469, in get_inference_statistics\n    cur_layer_time, cur_layer_vram_usage = cur_layer.get_inference_statistics(requests=requests)\nTypeError: cannot unpack non-iterable float object\n",
+      "result_exists": false
+    },
+    "partial/seed104": {
+      "exit_code": 0,
+      "stdout": "{\"status\": \"passed\", \"source\": \"work3_control\\\\runs\\\\v2\\\\development\\\\partial_seed104.json\", \"wall_seconds\": 115.80793070000072, \"arrivals\": 109}\n",
+      "stderr": "",
+      "result_exists": true
+    }
+  },
+  "started_at_utc": "2026-10-23T16:03:41.234933+00:00",
+  "complete": false
+}

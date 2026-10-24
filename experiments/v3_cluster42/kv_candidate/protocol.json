@@ -1,0 +1,18 @@
+{
+  "study": "KV-admitted sub-42-GPU continuation of cluster42, separate from frozen V3 protocol",
+  "physical_cluster": "artifact_evaluation/high_heterogeneity/config/cluster42.ini",
+  "model": "LLaMa70B",
+  "load_offered_tokens_per_s": 2150,
+  "kv_admission": "Reserve prompt tokens plus public 1000 output-token maximum on every resident layer of every visited GPU; hold prompt at source until a full route is available; FIFO; retry on query completion",
+  "candidate_generation": "memory_plan.memory_shortlist, deterministic static score across 2/3/4 branches; active GPU count <42; at least 3047 KV tokens per resident layer",
+  "smoke": {"seed": 100, "duration_s": 180, "warmup_s": 0, "tail_drain": false,
+    "candidates": ["w2_b8", "w3_b1", "w4_b4"],
+    "purpose": "Select one feasible layout; not used as the final claim"},
+  "formal": {"candidate": "w3_b1", "seeds": [0, 1, 2], "duration_s": 1800,
+    "warmup_s": 0, "tail_drain": false, "pythonhashseed": "0",
+    "baseline": "Helix 42-GPU MaxFlow under identical fixed-window trace",
+    "decision": "Pass only if, on each paired seed, candidate throughput >= Helix, P95 TTFT <= Helix, and P95 TPOT <= Helix, with all windows successful and identical trace_sha256",
+    "report_also": ["completion_fraction", "backlog_at_window_end", "kv_admission", "peak_reserved_kv_units", "gpu_busy_fraction"],
+    "failures": "Preserve every failed window; a failure does not count as passing"},
+  "smoke_selection_record": "At 180 s, w3_b1 used 22 GPUs and exceeded Helix throughput while lowering both P95 latencies. w2_b8 had worse TTFT; w4_b4 had worse TTFT despite greater throughput. Selection made before formal outcomes."
+}

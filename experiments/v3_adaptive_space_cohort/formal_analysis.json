@@ -1,0 +1,401 @@
+{
+  "phase": "formal",
+  "created_at_utc": "2026-10-23T14:07:29.065972+00:00",
+  "classification": "simulation_only",
+  "audit_sha256": "ad1cdc297b3368359d28309eec68c06c27e3d0ed27cc060a70543bf9c41959f4",
+  "expected_cells": 27,
+  "available_cells": 27,
+  "complete_and_valid": true,
+  "missing": [],
+  "invalid": {},
+  "failure_files": [],
+  "inputs_sha256": {
+    "runs/formal/middle/nominal/canonical_seed0.json": "d18c7e2d8b2aa0116eb030f849c358a77443360dbe5b5591424cf28630d9775e",
+    "runs/formal/middle/nominal/partial_seed0.json": "00d568978189738c7b2e0b00f268eacc8f5b0727b00f1fcecfdbb2184e1c6988",
+    "runs/formal/middle/nominal/full_seed0.json": "11fc926041040b2a89dabdc732c1673f061ceedd8e0403754df1975f77a8a0ab",
+    "runs/formal/high/nominal/canonical_seed0.json": "813399f0cf84cfc94a6843331935c5f0a0666db1b8e3fc3cb2f3f5fce6c35b96",
+    "runs/formal/high/nominal/partial_seed0.json": "b478c466071658dc82352df184f7ff10d53f27fee08c38521a9d7b52daf14878",
+    "runs/formal/high/nominal/full_seed0.json": "faf1172d302e5444a9c9d4f9aef1c64784345ce5751f949ac6537c1569b6015f",
+    "runs/formal/high/crosslink_4x/canonical_seed0.json": "452d49b3f060fcac399f65e1f6e06fab13f8f3adb14658b8161e1f400bd868b4",
+    "runs/formal/high/crosslink_4x/partial_seed0.json": "7334355d47fac20cda1b14f589bce50466d372a2c40c7e5ac9306bb02302e2c7",
+    "runs/formal/high/crosslink_4x/full_seed0.json": "0c9c79798879eb33fbb3078fd8cbf5109817643dbc278de177e1c8cd0a1a71e0",
+    "runs/formal/middle/nominal/canonical_seed1.json": "9b565ea47f12ea8d470c0acc94bbb64166ff9d113681052baff78c808bc59d79",
+    "runs/formal/middle/nominal/partial_seed1.json": "c071a7ded2b26af9235d8591885aba10c65b34e3b9a4785801109f798b5e0c45",
+    "runs/formal/middle/nominal/full_seed1.json": "ddc1aed2e69fa172e22ef3aa072c71d38ea29a1f91575b4d510a19d699b5aa36",
+    "runs/formal/high/nominal/canonical_seed1.json": "81c7ec8a023a0a71c5e5b41e9e21d9ca3cfca0398e03941fb7159f6b31ecaf34",
+    "runs/formal/high/nominal/partial_seed1.json": "1f658f4a57a8f4000ecf6bccd77b8d0bf8f71460b02d2dd8780d998363207c99",
+    "runs/formal/high/nominal/full_seed1.json": "470462613de9a2abe31628dff51a8bc4eedd3c20c09569a0642e68c39bf3f8df",
+    "runs/formal/high/crosslink_4x/canonical_seed1.json": "37cc37a0299261bebb0134a54f326ac6883504f4546c5f0dfa808a018bdd5261",
+    "runs/formal/high/crosslink_4x/partial_seed1.json": "1cbafdfc203a4321de1e9a7de10cb17a944514b3602490acba9fdbf3c9f66315",
+    "runs/formal/high/crosslink_4x/full_seed1.json": "a9a8a202c085ecac2cd12b1a56111eb6d57304d61f22e95a0c103fd5ba11f2eb",
+    "runs/formal/middle/nominal/canonical_seed2.json": "37a41aa275e4729b575e54b596215784262f6f5ada9b2659b4d7395d2f572af5",
+    "runs/formal/middle/nominal/partial_seed2.json": "8eb688d55f12c2fb77b91f1bdbd2248d064c193be29a5809985eee39b842cfb0",
+    "runs/formal/middle/nominal/full_seed2.json": "379ebb4be00b02203ff741ce5c7e036a65740b938d529c9ce831cf73199c7479",
+    "runs/formal/high/nominal/canonical_seed2.json": "62424df1e1858cd0aae55e8bf9e648cab6977b03326321ca2db477bec71ae0a9",
+    "runs/formal/high/nominal/partial_seed2.json": "873f7ed55f93cdcfa43e685f30b515da16329f7af82591dd4434056081603a05",
+    "runs/formal/high/nominal/full_seed2.json": "a38be850729fcdad69eede0212bf1ec58d6d46c448dd2ac44a2a30866e3bdb66",
+    "runs/formal/high/crosslink_4x/canonical_seed2.json": "c10f6605aa8bc4247d82ba94db45675bee72d85734029068a919ec0a435b1719",
+    "runs/formal/high/crosslink_4x/partial_seed2.json": "10e2f94f7c0f427acaeffc3975ad16acbf59bc12da5d2955cc5cb998d666ede7",
+    "runs/formal/high/crosslink_4x/full_seed2.json": "647a75ad09f7e8c1a20086a35b12067521ec8b84a282e3a171cc68911a98861b"
+  },
+  "external_reviewer": "unavailable",
+  "conditions": {
+    "middle/nominal": {
+      "winner": "partial",
+      "policies": {
+        "canonical": {
+          "lifecycle_tpot_per_seed_s": [
+            0.6089985218149635,
+            0.611462713030049,
+            0.615758391219021
+          ],
+          "lifecycle_tpot_mean_s": 0.6120732086880112,
+          "lifecycle_tpot_sample_sd_s": 0.0034210359982425114,
+          "prefix_tpot_per_seed_s": [
+            0.6133783141715923,
+            0.616940489190621,
+            0.6115090158381812
+          ],
+          "prefix_tpot_mean_s": 0.6139426064001315,
+          "window_throughput_mean": 35.747962962962966,
+          "window_completion_mean": 0.9303196250164284,
+          "lifecycle_ttft_mean_s": 5.984288369863717,
+          "lifecycle_e2e_mean_s": 263.83043448494806,
+          "arrivals_per_seed": [
+            287,
+            283,
+            291
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            177.22028967107303,
+            218.66502302444337,
+            190.1020574685965
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.21531607071798078,
+            0.19583878119492923,
+            0.19096057643112954
+          ]
+        },
+        "partial": {
+          "lifecycle_tpot_per_seed_s": [
+            0.5726123231188952,
+            0.5670134779871948,
+            0.5624575371982965
+          ],
+          "lifecycle_tpot_mean_s": 0.5673611127681288,
+          "lifecycle_tpot_sample_sd_s": 0.005086310718879031,
+          "prefix_tpot_per_seed_s": [
+            0.5718339490115002,
+            0.5701436486340763,
+            0.5659829968869697
+          ],
+          "prefix_tpot_mean_s": 0.5693201981775154,
+          "window_throughput_mean": 35.90833333333333,
+          "window_completion_mean": 0.9373055848514115,
+          "lifecycle_ttft_mean_s": 5.14168778204291,
+          "lifecycle_e2e_mean_s": 243.42323258918285,
+          "arrivals_per_seed": [
+            287,
+            283,
+            291
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            173.13644402511045,
+            214.08561493935713,
+            169.35039178289753
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.19497896651696892,
+            0.1829948553237451,
+            0.1736683531351259
+          ]
+        },
+        "full": {
+          "lifecycle_tpot_per_seed_s": [
+            0.5810925584011242,
+            0.5830226395992097,
+            0.5753977907539692
+          ],
+          "lifecycle_tpot_mean_s": 0.579837662918101,
+          "lifecycle_tpot_sample_sd_s": 0.0039642971613105945,
+          "prefix_tpot_per_seed_s": [
+            0.5849057919731827,
+            0.5872768094304218,
+            0.5753079946407076
+          ],
+          "prefix_tpot_mean_s": 0.5824968653481041,
+          "window_throughput_mean": 35.89851851851852,
+          "window_completion_mean": 0.9396284652230724,
+          "lifecycle_ttft_mean_s": 5.066332201548415,
+          "lifecycle_e2e_mean_s": 246.294812802989,
+          "arrivals_per_seed": [
+            287,
+            283,
+            291
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            173.96338688439073,
+            215.38079182861634,
+            170.62210612529975
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.19497896651696892,
+            0.1829948553237451,
+            0.1736683531351259
+          ]
+        }
+      }
+    },
+    "high/nominal": {
+      "winner": null,
+      "policies": {
+        "canonical": {
+          "lifecycle_tpot_per_seed_s": [
+            0.8099246947235448,
+            0.8532446211691936,
+            0.797358664462097
+          ],
+          "lifecycle_tpot_mean_s": 0.8201759934516119,
+          "lifecycle_tpot_sample_sd_s": 0.029319394323142504,
+          "prefix_tpot_per_seed_s": [
+            0.8159387367260742,
+            0.8413705496620765,
+            0.7842780642963575
+          ],
+          "prefix_tpot_mean_s": 0.8138624502281694,
+          "window_throughput_mean": 69.82296296296296,
+          "window_completion_mean": 0.9044816718775587,
+          "lifecycle_ttft_mean_s": 6.7805036390184465,
+          "lifecycle_e2e_mean_s": 332.1315644265777,
+          "arrivals_per_seed": [
+            584,
+            569,
+            586
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            262.76573176507827,
+            404.63830063726255,
+            245.5768012973199
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.47843002103348303,
+            0.47642970837360016,
+            0.45944303905406175
+          ]
+        },
+        "partial": {
+          "lifecycle_tpot_per_seed_s": [
+            0.6936709513950957,
+            0.7023807087671808,
+            0.7141738000193644
+          ],
+          "lifecycle_tpot_mean_s": 0.7034084867272137,
+          "lifecycle_tpot_sample_sd_s": 0.010289992520831376,
+          "prefix_tpot_per_seed_s": [
+            0.6944304270220664,
+            0.7026922959040065,
+            0.7066967491076553
+          ],
+          "prefix_tpot_mean_s": 0.7012731573445761,
+          "window_throughput_mean": 70.55703703703703,
+          "window_completion_mean": 0.9194907281836502,
+          "lifecycle_ttft_mean_s": 5.3694016593488385,
+          "lifecycle_e2e_mean_s": 289.6453933339522,
+          "arrivals_per_seed": [
+            584,
+            569,
+            586
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            227.3731127854071,
+            343.42813117263813,
+            233.56679104885416
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.4235155761468933,
+            0.4225953612642829,
+            0.39924535273719514
+          ]
+        },
+        "full": {
+          "lifecycle_tpot_per_seed_s": [
+            0.6977533409675019,
+            0.7021301129275892,
+            0.6902527337804647
+          ],
+          "lifecycle_tpot_mean_s": 0.6967120625585186,
+          "lifecycle_tpot_sample_sd_s": 0.006006765302132091,
+          "prefix_tpot_per_seed_s": [
+            0.6991037891223723,
+            0.7080281053853924,
+            0.6855061708405089
+          ],
+          "prefix_tpot_mean_s": 0.6975460217827578,
+          "window_throughput_mean": 70.57592592592593,
+          "window_completion_mean": 0.9177522018487403,
+          "lifecycle_ttft_mean_s": 5.369210007841877,
+          "lifecycle_e2e_mean_s": 286.3240491937224,
+          "arrivals_per_seed": [
+            584,
+            569,
+            586
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            233.0263629969554,
+            353.5211522113077,
+            232.11272909245508
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.43132496731283043,
+            0.4021196918878972,
+            0.3902848047296913
+          ]
+        }
+      }
+    },
+    "high/crosslink_4x": {
+      "winner": "partial",
+      "policies": {
+        "canonical": {
+          "lifecycle_tpot_per_seed_s": [
+            0.6431251865805299,
+            0.6443003084996769,
+            0.650474182402875
+          ],
+          "lifecycle_tpot_mean_s": 0.6459665591610273,
+          "lifecycle_tpot_sample_sd_s": 0.003947686455260796,
+          "prefix_tpot_per_seed_s": [
+            0.6433814654595305,
+            0.6432994535930822,
+            0.6521804196465336
+          ],
+          "prefix_tpot_mean_s": 0.6462871128997154,
+          "window_throughput_mean": 70.81925925925925,
+          "window_completion_mean": 0.9217888800322029,
+          "lifecycle_ttft_mean_s": 4.087835298041705,
+          "lifecycle_e2e_mean_s": 275.39481383428443,
+          "arrivals_per_seed": [
+            584,
+            569,
+            586
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            246.69653510272792,
+            368.82028402820106,
+            250.02077613502797
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.40718620317207666,
+            0.37540858961969187,
+            0.37394832584844523
+          ]
+        },
+        "partial": {
+          "lifecycle_tpot_per_seed_s": [
+            0.6040636107985908,
+            0.6063131935532343,
+            0.5945338080210002
+          ],
+          "lifecycle_tpot_mean_s": 0.6016368707909417,
+          "lifecycle_tpot_sample_sd_s": 0.006253421557659056,
+          "prefix_tpot_per_seed_s": [
+            0.6065891091748805,
+            0.6053766804353408,
+            0.5958363564384288
+          ],
+          "prefix_tpot_mean_s": 0.6026007153495501,
+          "window_throughput_mean": 71.10240740740741,
+          "window_completion_mean": 0.9235293544089411,
+          "lifecycle_ttft_mean_s": 3.857800219517564,
+          "lifecycle_e2e_mean_s": 251.6491824721028,
+          "arrivals_per_seed": [
+            584,
+            569,
+            586
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            229.56194805126052,
+            339.40961927918306,
+            236.08389585050963
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.3771495366949008,
+            0.35829046103120915,
+            0.36085924620544596
+          ]
+        },
+        "full": {
+          "lifecycle_tpot_per_seed_s": [
+            0.633636294002422,
+            0.6380356248573402,
+            0.629778715396893
+          ],
+          "lifecycle_tpot_mean_s": 0.6338168780855518,
+          "lifecycle_tpot_sample_sd_s": 0.004131415788542171,
+          "prefix_tpot_per_seed_s": [
+            0.641521699289677,
+            0.6393401080274428,
+            0.6274334890234331
+          ],
+          "prefix_tpot_mean_s": 0.6360984321135176,
+          "window_throughput_mean": 71.07203703703703,
+          "window_completion_mean": 0.9240870318807556,
+          "lifecycle_ttft_mean_s": 3.836323658420929,
+          "lifecycle_e2e_mean_s": 251.6557301850726,
+          "arrivals_per_seed": [
+            584,
+            569,
+            586
+          ],
+          "drain_to_last_completion_per_seed_s": [
+            215.02420214762674,
+            335.4552280876146,
+            237.6899511850106
+          ],
+          "kv_peak_fraction_per_seed": [
+            0.38127806833039624,
+            0.3629341708828378,
+            0.35726010459894264
+          ]
+        }
+      }
+    }
+  },
+  "crossovers": [
+    {
+      "conditions": [
+        "middle/nominal",
+        "high/nominal"
+      ],
+      "confirmed": false,
+      "reason": "No different unique primary winners"
+    },
+    {
+      "conditions": [
+        "high/nominal",
+        "high/crosslink_4x"
+      ],
+      "confirmed": false,
+      "reason": "No different unique primary winners"
+    }
+  ],
+  "adaptive_space_confirmed_in_tested_scope": false,
+  "formal_claim_allowed": true,
+  "optimistic_offline_reference": {
+    "condition_selections": {
+      "middle/nominal": "partial",
+      "high/nominal": "full",
+      "high/crosslink_4x": "partial"
+    },
+    "pooled_fixed_p95_tpot_s": {
+      "canonical": 0.7789541900976937,
+      "partial": 0.675940721037652,
+      "full": 0.6736162822930029
+    },
+    "best_pooled_fixed_policy": "full",
+    "pooled_selected_p95_tpot_s": 0.6737307656480886,
+    "relative_pooled_p95_reduction": -0.00016995336676850492,
+    "limitation": "Selected using evaluation outcomes; independent states, no switching/transients. An optimistic diagnostic, not a proven bound or deployable controller."
+  }
+}

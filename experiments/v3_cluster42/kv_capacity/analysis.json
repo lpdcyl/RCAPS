@@ -1,0 +1,176 @@
+{
+  "formal_pass": false,
+  "screening_selection": null,
+  "formal_candidate": null,
+  "windows": [
+    {
+      "phase": "smoke",
+      "candidate": "c400k_w2_b12",
+      "seed": 100,
+      "active_nodes": 14,
+      "physical_gpu_devices": 32,
+      "source": "kv_capacity/runs/smoke/c400k_w2_b12_seed100.json",
+      "baseline": "kv_candidate/runs/smoke/helix_seed100.json",
+      "status": "not_run"
+    },
+    {
+      "phase": "smoke",
+      "candidate": "c400k_w3_b1",
+      "seed": 100,
+      "active_nodes": 31,
+      "physical_gpu_devices": 53,
+      "source": "kv_capacity/runs/smoke/c400k_w3_b1_seed100.json",
+      "baseline": "kv_candidate/runs/smoke/helix_seed100.json",
+      "status": "pass",
+      "metrics": {
+        "output_throughput_tokens_per_s": 216.27777777777777,
+        "ttft_p95_s": 4.723154110859265,
+        "tpot_p95_s": 0.8450885867915865,
+        "completion_fraction": 0.32678132678132676,
+        "first_tokens_in_window": 404,
+        "arrivals": 407,
+        "backlog_at_window_end": 274,
+        "kv_admission": {
+          "admitted": 407,
+          "deferred_checks": 0,
+          "peak_waiting": 0,
+          "minimum_headroom": 80
+        }
+      },
+      "result_sha256": "4105ad30fa3471bf7f680fc6320b60f7eeb3a0452ac69a5c0b401abf8d0b080a",
+      "baseline_metrics": {
+        "output_throughput_tokens_per_s": 198.38888888888889,
+        "ttft_p95_s": 5.102504448489675,
+        "tpot_p95_s": 1.2845978023121516,
+        "completion_fraction": 0.2972972972972973,
+        "first_tokens_in_window": 405,
+        "arrivals": 407,
+        "backlog_at_window_end": 286,
+        "kv_admission": null
+      },
+      "checks": {
+        "same_input": true,
+        "same_physical_cluster": true,
+        "fewer_physical_gpus": true,
+        "output_throughput_tokens_per_s": true,
+        "ttft_p95_s": true,
+        "tpot_p95_s": true,
+        "same_candidate": true,
+        "same_layout": true,
+        "same_node_count": true,
+        "same_admission": true,
+        "full_dag": true
+      },
+      "relative_change": {
+        "output_throughput_tokens_per_s": 0.0901708204984597,
+        "ttft_p95_s": -0.07434591022114578,
+        "tpot_p95_s": -0.34213760503831714
+      },
+      "pass": true,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
+    },
+    {
+      "phase": "smoke",
+      "candidate": "c400k_w4_b32",
+      "seed": 100,
+      "active_nodes": 27,
+      "physical_gpu_devices": 49,
+      "source": "kv_capacity/runs/smoke/c400k_w4_b32_seed100.json",
+      "baseline": "kv_candidate/runs/smoke/helix_seed100.json",
+      "status": "not_run"
+    },
+    {
+      "phase": "screening",
+      "candidate": "c400k_w2_b12",
+      "seed": 101,
+      "active_nodes": 14,
+      "physical_gpu_devices": 32,
+      "source": "kv_capacity/runs/screening/c400k_w2_b12_seed101.json",
+      "baseline": "kv_capacity/runs/screening/helix_seed101.json",
+      "status": "not_run"
+    },
+    {
+      "phase": "screening",
+      "candidate": "c400k_w3_b1",
+      "seed": 101,
+      "active_nodes": 31,
+      "physical_gpu_devices": 53,
+      "source": "kv_capacity/runs/screening/c400k_w3_b1_seed101.json",
+      "baseline": "kv_capacity/runs/screening/helix_seed101.json",
+      "status": "not_pass",
+      "metrics": {
+        "output_throughput_tokens_per_s": 373.515,
+        "ttft_p95_s": 10.756229523605281,
+        "tpot_p95_s": 0.9668879639242923,
+        "completion_fraction": 0.6481069042316259,
+        "first_tokens_in_window": 1319,
+        "arrivals": 1347,
+        "backlog_at_window_end": 474,
+        "kv_admission": {
+          "admitted": 1326,
+          "deferred_checks": 246,
+          "cached_deferred_checks": 78388,
+          "peak_waiting": 24,
+          "minimum_headroom": 0
+        }
+      },
+      "result_sha256": "a3bd687f8986d1a3f4f29530123c01dcef546854f7cf76132a69890227876940",
+      "baseline_metrics": {
+        "output_throughput_tokens_per_s": 354.105,
+        "ttft_p95_s": 5.305430800545344,
+        "tpot_p95_s": 1.496209889993932,
+        "completion_fraction": 0.6095025983667409,
+        "first_tokens_in_window": 1342,
+        "arrivals": 1347,
+        "backlog_at_window_end": 526,
+        "kv_admission": null
+      },
+      "checks": {
+        "same_input": true,
+        "same_physical_cluster": true,
+        "fewer_physical_gpus": true,
+        "output_throughput_tokens_per_s": true,
+        "ttft_p95_s": false,
+        "tpot_p95_s": true,
+        "same_candidate": true,
+        "same_layout": true,
+        "same_node_count": true,
+        "same_admission": true,
+        "full_dag": true
+      },
+      "relative_change": {
+        "output_throughput_tokens_per_s": 0.05481425001058993,
+        "ttft_p95_s": 1.0273998338645094,
+        "tpot_p95_s": -0.3537751819511007
+      },
+      "pass": false,
+      "physical_cluster_hash_evidence": {
+        "candidate": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "baseline": "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4",
+        "recognized_byte_encodings": {
+          "8c318c1807d423cc3cb42271363a525f232a1f41aeaa949b334ed04e47ff6cf6": "LF",
+          "a39c596bbd5ecafa5a0f9c05aeb63cecf13d6607f55a0f4969d3496b9d06dbc4": "CRLF"
+        },
+        "reason": "Same file content; only LF/CRLF encoding is accepted"
+      }
+    },
+    {
+      "phase": "screening",
+      "candidate": "c400k_w4_b32",
+      "seed": 101,
+      "active_nodes": 27,
+      "physical_gpu_devices": 49,
+      "source": "kv_capacity/runs/screening/c400k_w4_b32_seed101.json",
+      "baseline": "kv_capacity/runs/screening/helix_seed101.json",
+      "status": "not_run"
+    }
+  ]
+}

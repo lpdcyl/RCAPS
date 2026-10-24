@@ -1,0 +1,125 @@
+{
+  "revision": "v2",
+  "phase": "smoke",
+  "classification": "simulation_only",
+  "metrics": {
+    "106": {
+      "canonical": {
+        "tpot": 0.5460721577574225,
+        "ttft": 6.875155785989888,
+        "throughput": 2.0,
+        "window_completion": 0.0,
+        "gpu_per_token": 0.250879477992721,
+        "window_gpu_per_token": 0.40192351115431957,
+        "batch": 1.2101127799454807,
+        "single_share": 0.8611898016997167,
+        "expanded_selected": 0,
+        "different_candidates": 0,
+        "switches": 0,
+        "kv_deferred": 0,
+        "route_cpu_p95_us": 1649.9399999999998
+      },
+      "partial": {
+        "tpot": 0.5208324939303668,
+        "ttft": 5.548210502314087,
+        "throughput": 2.6666666666666665,
+        "window_completion": 0.0,
+        "gpu_per_token": 0.2629632027361024,
+        "window_gpu_per_token": 0.3506015528554601,
+        "batch": 1.1677928508794553,
+        "single_share": 0.8815959147882602,
+        "expanded_selected": 0,
+        "different_candidates": 0,
+        "switches": 0,
+        "kv_deferred": 0,
+        "route_cpu_p95_us": 1720.7799999999997
+      },
+      "full": {
+        "tpot": 0.5186646944600768,
+        "ttft": 5.721464754936844,
+        "throughput": 2.6,
+        "window_completion": 0.0,
+        "gpu_per_token": 0.278410948545213,
+        "window_gpu_per_token": 0.35648868497350694,
+        "batch": 1.066063945001648,
+        "single_share": 0.9355134906060179,
+        "expanded_selected": 0,
+        "different_candidates": 0,
+        "switches": 0,
+        "kv_deferred": 0,
+        "route_cpu_p95_us": 1875.9599999999998
+      },
+      "adaptive_link": {
+        "tpot": 0.5208324939303668,
+        "ttft": 5.548210502314087,
+        "throughput": 2.6666666666666665,
+        "window_completion": 0.0,
+        "gpu_per_token": 0.2629632027361024,
+        "window_gpu_per_token": 0.3506015528554601,
+        "batch": 1.1677928508794553,
+        "single_share": 0.8815959147882602,
+        "expanded_selected": 0,
+        "different_candidates": 0,
+        "switches": 0,
+        "kv_deferred": 0,
+        "route_cpu_p95_us": 1961.2399999999998
+      },
+      "route_control": {
+        "tpot": 0.5144493111150894,
+        "ttft": 5.729461707699296,
+        "throughput": 2.6333333333333333,
+        "window_completion": 0.0,
+        "gpu_per_token": 0.29512208444902616,
+        "window_gpu_per_token": 0.39540978495309465,
+        "batch": 1.0041803887650667,
+        "single_share": 0.9971058847011077,
+        "expanded_selected": 3,
+        "different_candidates": 4,
+        "switches": 1,
+        "kv_deferred": 0,
+        "route_cpu_p95_us": 3041.86
+      }
+    }
+  },
+  "validation": [
+    {
+      "policy": "canonical",
+      "seed": 106,
+      "issues": [],
+      "source": "work3_control\\runs\\v2\\smoke\\canonical_seed106.json",
+      "sha256": "e264a14480d287d5bed22f312b5224637b3909cde17ceeebf85963af1c365dad"
+    },
+    {
+      "policy": "partial",
+      "seed": 106,
+      "issues": [],
+      "source": "work3_control\\runs\\v2\\smoke\\partial_seed106.json",
+      "sha256": "034034f7f63bf8e8ebdf702ee51b118a3c519265a7df1396af3844e9d91defc3"
+    },
+    {
+      "policy": "full",
+      "seed": 106,
+      "issues": [],
+      "source": "work3_control\\runs\\v2\\smoke\\full_seed106.json",
+      "sha256": "2e11b10377057ac045fab6cc385f006bbe7850a73491ebda1ea51a7b1f0b6a49"
+    },
+    {
+      "policy": "adaptive_link",
+      "seed": 106,
+      "issues": [],
+      "source": "work3_control\\runs\\v2\\smoke\\adaptive_link_seed106.json",
+      "sha256": "42ddae477b66bcebba6ce7cc48ea213ded61fe3a882afbc1476537c9e71eeb3b"
+    },
+    {
+      "policy": "route_control",
+      "seed": 106,
+      "issues": [],
+      "source": "work3_control\\runs\\v2\\smoke\\route_control_seed106.json",
+      "sha256": "40cc91af77d1973daf4ef04ddf8ceed59fb82828e25a56c43e74bd1074e09574"
+    }
+  ],
+  "decision": {
+    "smoke_valid": true
+  },
+  "independent_review": "Unavailable; deterministic checks only"
+}

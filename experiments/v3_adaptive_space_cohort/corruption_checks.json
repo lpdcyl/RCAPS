@@ -1,0 +1,48 @@
+{
+  "classification": "deterministic_corruption_checks_not_external_review",
+  "checks": {
+    "untouched_result_valid": true,
+    "reported_latency": {
+      "rejected": true,
+      "issues": [
+        "lifecycle metric/tpot_p95_s"
+      ]
+    },
+    "lost_decode": {
+      "rejected": true,
+      "issues": [
+        "decode count/30000000",
+        "query finish differs from last token/30000000",
+        "request TPOT/30000000",
+        "lifecycle metric/output_tokens_completed"
+      ]
+    },
+    "trace_input": {
+      "rejected": true,
+      "issues": [
+        "trace differs from regenerated registered workload",
+        "trace hash",
+        "window input mismatch/30000000/input_tokens"
+      ]
+    },
+    "kv_overflow": {
+      "rejected": true,
+      "issues": [
+        "KV overflow/lifecycle",
+        "KV peak fraction/lifecycle"
+      ]
+    },
+    "illegal_route": {
+      "rejected": true,
+      "issues": [
+        "illegal route/30000000"
+      ]
+    },
+    "incomplete_query": {
+      "rejected": true,
+      "issues": [
+        "incomplete request/30000000"
+      ]
+    }
+  }
+}

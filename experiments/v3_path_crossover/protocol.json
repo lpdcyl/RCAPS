@@ -1,0 +1,50 @@
+{
+  "experiment": "v3_fixed_topology_path_crossover_v2_isolated_windows",
+  "version_note": "The first formal attempt used one Python interpreter for serial windows and exited natively during middle-load crosslink_4x/canonical/seed0. Its log and partial trace remain under runs/formal. Formal V2 uses an independent interpreter per cell; physics, schedulers, cells, seeds, metrics, and thresholds are unchanged.",
+  "question": "Does the best fixed path space change with offered load or cross-cluster link capacity on the same heterogeneous GPU topology?",
+  "scope": "C1_multi / frozen 24-GPU three-cluster placement only; this validates motivation for dynamic path control and does not validate an adaptive controller.",
+  "frozen": {
+    "topology": "C1_multi",
+    "layout": "rcaps/v3_layouts/multi",
+    "path_spaces": [
+      "canonical: only canonical segment transitions",
+      "partial: canonical transitions plus the four frozen nominal-network slow-link bypass edges from v3_gated_pathspace/audit.json",
+      "full: all layer-compatible physical DAG edges"
+    ],
+    "network_intervention": "Scale the bandwidth of compute-to-compute links whose nominal capacity is <= 50,000,000 B/s; keep link latency, all other links, NIC capacities, placement, M3 costs, and the partial edge set fixed.",
+    "network_profiles": {
+      "nominal": 1.0,
+      "crosslink_4x": 4.0
+    },
+    "kv_admission": "Use the same full-lifetime prompt-plus-1000-output-token reservation and completion wakeup for all path spaces."
+  },
+  "matrix": {
+    "offered_tokens_per_s": {
+      "low": 50.0,
+      "middle": 160.0,
+      "high": 320.0
+    },
+    "development": {
+      "seed": 102,
+      "duration_s": 300,
+      "cells": 18
+    },
+    "formal": {
+      "seeds": [0, 1, 2],
+      "duration_s": 1800,
+      "warmup_s": 0,
+      "tail_drain": false,
+      "pythonhashseed": "0",
+      "cells": 54,
+      "execution": "one fresh Python process per window"
+    }
+  },
+  "analysis": {
+    "primary_metric": "P95 TPOT, with output throughput and completion fraction as guardrails; also report P95 TTFT, end backlog, common-completed request tails, path use, Decode batch size, and KV reservation utilization.",
+    "trace_pairing": "For each load and seed, all six path-space/network cells must have the exact same trace hash.",
+    "descriptive_winner": "A unique winner is reported only if it has the lowest three-seed mean P95 TPOT, mean output throughput at least 99% of the best policy, mean completion fraction no more than 1 percentage point below the best policy, and its mean P95 TPOT is at least 1% lower than the next eligible policy. Otherwise report a latency-throughput tradeoff or tie.",
+    "crossover": "Evidence for changing path-space preference requires different unique winners across load or network conditions and a matching directional preference in at least two of the three paired seeds. Three seeds are descriptive, not a significance test.",
+    "negative_result": "If one fixed path space remains the unique winner throughout the tested matrix, this experiment does not support a path-space-switching motivation for Work 3 in the tested range."
+  },
+  "failure_policy": "Preserve failures and logs; do not replace seeds or impute failed metrics. Any missing or trace-mismatched formal cell prevents a complete crossover claim."
+}
