@@ -64,7 +64,8 @@ def collect():
         states[directory] = {"queue_status": index["queue_status"], "selected_windows": index["selected_windows"],
                              "completed": sum(j["status"] == "completed" for j in index["jobs"].values()),
                              "failed": {k: v for k, v in index["jobs"].items() if v["status"] == "failed"},
-                             "running": [k for k, v in index["jobs"].items() if v["status"] == "running"]}
+                             "running": [k for k, v in index["jobs"].items() if v["status"] == "running"],
+                             "unstarted": index["selected_windows"] - len(index["jobs"])}
         for key, item in index["jobs"].items():
             if item["status"] != "completed":
                 continue
@@ -224,12 +225,17 @@ def main():
     if args.require_complete and not complete:
         raise RuntimeError(f"Formal batches incomplete: {states}")
     effects = []
+    for sc, loads in (("single", (100,200,350,500,700,900)), ("multi", (50,100,160,240,320,400))):
+        for load in loads:
+            effects.append(paired(rows,sc,load,"v3","v4"))
     for load in (320,160):
         for a,b in (("v3","spatial"),("v3","temporal"),("spatial","v4"),("temporal","v4"),("v3","v4")):
             effects.append(paired(rows,"multi",load,a,b))
     for sc,load in (("single",700),("multi",320)):
         for cell in ("static","single_boundary"):
             effects.append(paired(rows,sc,load,cell,"v4"))
+    for cell in ("canonical4","all4","chunk1","chunk2","chunk8"):
+        effects.append(paired(rows,"multi",320,cell,"v4"))
     for sc,load in (("single",350),("multi",160)):
         for cell in ("v3","helix","swarm","separate"):
             effects.append(paired(rows,sc,load,cell,"v4"))
@@ -248,11 +254,18 @@ def main():
             "mechanism":[{"scenario":k[0],"load":k[1],"cell":k[2],"seed":k[3],**mechanism(r)}
                          for k,r in sorted(rows.items()) if r.get("phase_link_profile",{}).get("schema")=="v4_chunk_aware_v1"]}
     write(HERE / "analysis.json",data)
-    lines = ["# V4 正式实验结果", "", "状态：" + ("本次 93+27 个窗口均完成。" if complete else "执行中；只对齐全的 0/1/2 三种子组给均值。"), "",
+    halted = any(v.get("queue_status") in {"halted", "halting_after_failure"} for v in states.values())
+    status = "本次 93+27 个窗口均完成。" if complete else ("因异常中止；失败保留，未自动重试。" if halted else "执行中。")
+    lines = ["# V4 正式实验结果", "", "状态：" + status + "只对齐全的 0/1/2 三种子组给均值。", "",
              "主协议：1800 秒、零预热、不排空。TPOT 为请求平均 token 间隔的 P95；GPU 秒/token 为忙碌工作量，不等于能耗。",
              "历史负载曲线 71 个成功窗口已审核复用，三集群负载 400 的 Helix seed 0 失败保留，不计零值、不生成该点三种子均值。", "",
-             "## 执行状态", "", "| 批次 | 完成 | 总窗口 | 状态 |", "|---|---:|---:|---|"]
-    for name,state in states.items(): lines.append(f"| {name} | {state.get('completed',0)} | {state.get('selected_windows','—')} | {state['queue_status']} |")
+             "## 执行状态", "", "| 批次 | 完成 | 失败 | 未启动 | 总窗口 | 状态 |", "|---|---:|---:|---:|---:|---|"]
+    for name,state in states.items(): lines.append(f"| {name} | {state.get('completed',0)} | {len(state.get('failed',{}))} | {state.get('unstarted',0)} | {state.get('selected_windows','—')} | {state['queue_status']} |")
+    for name,state in states.items():
+        for key,item in state.get("failed",{}).items():
+            lines += ["",f"保留失败：`{name}/{key}`，退出码 `{item.get('exit_code')}`；该组不生成三种子均值。"]
+    if halted:
+        lines += ["", "异常诊断、恢复前提和证据缺口见 [中止审计与阶段结论](EXECUTION_AUDIT_CN.md)。"]
     tables = [("共同负载五方法", [(sc,load,c) for sc,load in (("single",350),("multi",160)) for c in ("v4","v3","helix","swarm","separate")]),
               ("空间 × 时间正式消融",[("multi",load,c) for load in (320,160) for c in ("v3","spatial","temporal","v4")]),
               ("机制、参数与组件",[("multi",320,c) for c in ("canonical4","all4","chunk1","chunk2","v4","chunk8")]+[(sc,load,c) for sc,load in (("single",700),("multi",320)) for c in ("v4","static","single_boundary")]),

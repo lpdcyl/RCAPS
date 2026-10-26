@@ -1,4 +1,9 @@
-# RCAPS V4 — formal evaluation in progress
+# RCAPS V4 — formal evaluation halted with failure retained
+
+The current campaign has 97 successful windows, one preserved native-process
+failure, and 22 unstarted windows. See the
+[execution audit and interim conclusions](experiments/v4_paper/EXECUTION_AUDIT_CN.md)
+and [verified partial results](experiments/v4_paper/RESULTS_CN.md).
 
 RCAPS V4 is the **current integrated research method** for heterogeneous LLM
 serving. It retains frozen V3's physical-resource and layer-compatibility graph
