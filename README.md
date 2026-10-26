@@ -1,13 +1,12 @@
-# RCAPS V4 — authorized recovery in progress
+# RCAPS V4 — registered three-seed campaign complete
 
-The original campaign stopped with 97 successful windows, one preserved native-process
-failure, and 22 unstarted windows. The user authorized a separate second attempt
-and continuation in [`experiments/v4_recovery`](experiments/v4_recovery/README.md).
-After another native failure at C2/V4/seed1, a second explicit authorization
-registered the [remaining eight windows](experiments/v4_recovery2/README.md).
-The failure remains recorded. See the
-[execution audit and interim conclusions](experiments/v4_paper/EXECUTION_AUDIT_CN.md)
-and [verified partial results](experiments/v4_paper/RESULTS_CN.md).
+The registered campaign has 120 successful windows from 122 attempts, with two
+native-process failures retained and two explicitly authorized retries.
+See the [final Chinese report](experiments/v4_paper/FINAL_RESULTS_CN.md),
+[verified numerical tables](experiments/v4_paper/RESULTS_CN.md), and
+[failure and recovery audit](experiments/v4_paper/EXECUTION_AUDIT_CN.md).
+Broader robustness and real-hardware evidence remain incomplete; the native
+crash and historical TypeError root causes remain unresolved.
 
 RCAPS V4 is the **current integrated research method** for heterogeneous LLM
 serving. It retains frozen V3's physical-resource and layer-compatibility graph
@@ -44,7 +43,7 @@ For the frozen paper campaign, follow the V4 formal and external batch READMEs
 above. All formal windows use seeds **0/1/2**, 1800 seconds, zero warmup and no
 tail drain. Historical intermittent runtime failures remain documented; a fresh
 failure stops new dispatch rather than being silently retried. The complete
-paper claim is pending the campaign and its audits.
+paper claim remains limited to the audited configurations and stated evidence gaps.
 
 Install [`requirements.txt`](requirements.txt), then run from the repository
 root. Layout regeneration needs a working Gurobi license; the adopted layouts

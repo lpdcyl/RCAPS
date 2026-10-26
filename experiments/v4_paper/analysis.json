@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-26T10:45:54.114797+00:00",
-  "analysis_script_sha256": "b9d167d4f35fdb01878368045cb825a20bc0d9e8315d12132b3bb82c82767265",
-  "all_two_batches_complete": false,
+  "generated_at": "2026-10-26T12:42:22.819470+00:00",
+  "analysis_script_sha256": "5bc0f7206dcd185c6f4bed58db6dbe6968008245ea7c7ae73ada3256b29920e8",
+  "all_two_batches_complete": true,
   "batch_states": {
     "v4_formal": {
       "queue_status": "halted",
@@ -36,6 +36,43 @@
       "queue_status": "completed",
       "selected_windows": 27,
       "completed": 27,
+      "failed": {},
+      "running": [],
+      "unstarted": 0
+    },
+    "v4_recovery": {
+      "queue_status": "halted",
+      "selected_windows": 23,
+      "completed": 15,
+      "failed": {
+        "C2/load160/v4/seed1": {
+          "status": "failed",
+          "pid": 16168,
+          "started_at": "2026-10-26T11:53:01.837002+00:00",
+          "command": [
+            "D:\\software\\miniconda\\python.exe",
+            "-u",
+            "-X",
+            "faulthandler",
+            "-m",
+            "experiments.v4_recovery.run",
+            "one",
+            "--key",
+            "C2/load160/v4/seed1"
+          ],
+          "attempt_number": 1,
+          "exit_code": 3221225477,
+          "finished_at": "2026-10-26T11:53:35.971838+00:00",
+          "result_sha256": null
+        }
+      },
+      "running": [],
+      "unstarted": 7
+    },
+    "v4_recovery2": {
+      "queue_status": "completed",
+      "selected_windows": 8,
+      "completed": 8,
       "failed": {},
       "running": [],
       "unstarted": 0
@@ -1889,6 +1926,259 @@
       "source": "experiments/v4_external/runs/multi/load320/helix/seed2/result.json",
       "sha256": "6d6fbea9beffe1ae056309a36bf00cce2d56b6e50d224b2f061f623f2db534d3",
       "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "static",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/static/seed1/result.json",
+      "sha256": "c21b8256d6b8b34c1e0d70b144230f62e560e4edf1fdf8b9746ecd6cee66a81f",
+      "kind": "authorized_second_attempt"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "static",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/static/seed2/result.json",
+      "sha256": "487b1217a199433edc438783deedd2520e9f6dceb1ec99fba6aea39f772ba59e",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "single_boundary",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/single_boundary/seed0/result.json",
+      "sha256": "a5dee2b01cdf0333cbcdac2009606b93632ca9a49739a4c240ad6ba7dde80743",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "single_boundary",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/single_boundary/seed1/result.json",
+      "sha256": "a5e117d9ebdd014d74d0f5d0139d4110333d0338584aa9d4176e762e291758a2",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "single_boundary",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/single_boundary/seed2/result.json",
+      "sha256": "847629ba74916a3fdd39b52e465ccffffc422cb2ddc4f26a4ea0d236ed5b8452",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "static",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/static/seed0/result.json",
+      "sha256": "1488de417676dbe5bb01cad905bcda43389336c610f900ba1a50f004b5c67a30",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "static",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/static/seed1/result.json",
+      "sha256": "4ebf8333e02f53bbdb45b939cb14a94691a53033061973c88565c30269376afd",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "static",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/static/seed2/result.json",
+      "sha256": "23e06588fc03abb27bec5f5a250bb0f4558e44ec3c154d1986f5158853e07b98",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "single_boundary",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/single_boundary/seed0/result.json",
+      "sha256": "a576a6e8674fd6b7923750f2d0ce4fe836cab55e27d17c75ac1b85a22895645f",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "single_boundary",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/single_boundary/seed1/result.json",
+      "sha256": "165c952754a38a33ebbf273f9471ad39fb5664215872c96d133706233b78ae9d",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "single_boundary",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/single_boundary/seed2/result.json",
+      "sha256": "4356b97df4234d5d5b77215c287728c88e59fb976287e2d4dc0dfc6724332ab3",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v3",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v3/seed0/result.json",
+      "sha256": "8dfa49ad0227fca3ddeb01339cff5e08716362dbb9483f7aa96ccbf312249e6e",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v3",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v3/seed1/result.json",
+      "sha256": "d9ea99c6a73861b652b4b83d1d91d3c18bdf3c380e505027c964c62bbf61449f",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v3",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v3/seed2/result.json",
+      "sha256": "cc102a00eee952dce5a610ad3d22637eacd3e4013385ab2dd4bf1898e7639f0b",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v4/seed0/result.json",
+      "sha256": "ba94d34e5a0bdb0320653bb94726846905e5fe38c71bf991db39abfa7f33ce44",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_recovery2/runs/C2/load160/v4/seed1/result.json",
+      "sha256": "f3ce1180c6fa52fbd48a36e7e680e92af8195d19d9768feaa6d72218d9fbb475",
+      "kind": "authorized_second_attempt"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_recovery2/runs/C2/load160/v4/seed2/result.json",
+      "sha256": "634f9278a3786d162cbb1fcc5d26145a6820493a5e9e8d72a87a369a4116ade1",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v3",
+        0
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v3/seed0/result.json",
+      "sha256": "8abfaa91092a54c67c9011fd51cd2a2da009a4a8cd0a1f10defd8e63e06e2a0b",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v3",
+        1
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v3/seed1/result.json",
+      "sha256": "d5513c48f6e990badf0bdd145bb53389d7db964f090fb08b28422bff4c4d9062",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v3",
+        2
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v3/seed2/result.json",
+      "sha256": "4772d165e1e7633498921ed709bec4d0a126e54f7170445769cb463c75f1d4c0",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v4/seed0/result.json",
+      "sha256": "d40a2f0b392d94a24932982f649fb27d178a97a8a95071bed6543f3a8db59934",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v4/seed1/result.json",
+      "sha256": "7a0b49b5303c5f6d030af5de54e6fb36bd82b1a31a0a9e932fa4e9d2f204e8f3",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v4/seed2/result.json",
+      "sha256": "ab44f34d4d5e29123194ba1e2be048a642bacb6eb59036519fa2214ccbe0893e",
+      "kind": "authorized_continuation"
     }
   ],
   "paired_effects": [
@@ -3544,37 +3834,277 @@
             ],
             "relative": -0.5833954109923433
           }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.5993921614402196,
+            "ttft_p95_s": -0.23753685997645524,
+            "output_throughput_tokens_per_s": 0.07902385562956571,
+            "gpu_seconds_per_output_token": 3.0092343717389367,
+            "completion_fraction": 0.12476722532588469,
+            "backlog_at_window_end": -0.6175115207373272
+          },
+          "common_completed": {
+            "count": 1074,
+            "tpot_p95_s": [
+              1.2196470814990685,
+              0.5035947379181008
+            ],
+            "relative": -0.5870979846898561
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.6164692198102424,
+            "ttft_p95_s": -0.2282695487027392,
+            "output_throughput_tokens_per_s": 0.07701795205005091,
+            "gpu_seconds_per_output_token": 3.047311221188722,
+            "completion_fraction": 0.09576427255985287,
+            "backlog_at_window_end": -0.574585635359116
+          },
+          "common_completed": {
+            "count": 1086,
+            "tpot_p95_s": [
+              1.2116845279933433,
+              0.5040840109022128
+            ],
+            "relative": -0.5839808141009933
+          }
         }
       ],
-      "complete": false,
-      "mean_paired_relative": null
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.5994281386668184,
+        "ttft_p95_s": -0.23497567731727706,
+        "output_throughput_tokens_per_s": 0.07444397556166422,
+        "gpu_seconds_per_output_token": 3.0323013540877306,
+        "completion_fraction": 0.10609644847312327,
+        "backlog_at_window_end": -0.6014855688860803
+      }
     },
     {
       "scenario": "single",
       "load": 700,
       "left": "single_boundary",
       "right": "v4",
-      "seeds": [],
-      "complete": false,
-      "mean_paired_relative": null
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.3007702381282271,
+            "ttft_p95_s": -0.2235351361064014,
+            "output_throughput_tokens_per_s": 0.01683424574872583,
+            "gpu_seconds_per_output_token": 1.750600180371228,
+            "completion_fraction": 0.030303030303030276,
+            "backlog_at_window_end": -0.34285714285714286
+          },
+          "common_completed": {
+            "count": 1188,
+            "tpot_p95_s": [
+              0.7266033210799452,
+              0.506548580081882
+            ],
+            "relative": -0.3028540258679212
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.3180524306037611,
+            "ttft_p95_s": -0.221822166042007,
+            "output_throughput_tokens_per_s": 0.02282371026558061,
+            "gpu_seconds_per_output_token": 1.71182167348213,
+            "completion_fraction": 0.030716723549488067,
+            "backlog_at_window_end": -0.3025210084033614
+          },
+          "common_completed": {
+            "count": 1172,
+            "tpot_p95_s": [
+              0.7364706618619208,
+              0.5041280773701814
+            ],
+            "relative": -0.31548111353728414
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.3257476884444055,
+            "ttft_p95_s": -0.19308937880732657,
+            "output_throughput_tokens_per_s": 0.021808383012495325,
+            "gpu_seconds_per_output_token": 1.7420282528905227,
+            "completion_fraction": 0.02674719585849883,
+            "backlog_at_window_end": -0.2870370370370371
+          },
+          "common_completed": {
+            "count": 1159,
+            "tpot_p95_s": [
+              0.721157813156516,
+              0.5003679690754452
+            ],
+            "relative": -0.30616023296575134
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.31485678572546455,
+        "ttft_p95_s": -0.21281556031857832,
+        "output_throughput_tokens_per_s": 0.020488779675600588,
+        "gpu_seconds_per_output_token": 1.7348167022479604,
+        "completion_fraction": 0.029255649903672392,
+        "backlog_at_window_end": -0.31080506276584713
+      }
     },
     {
       "scenario": "multi",
       "load": 320,
       "left": "static",
       "right": "v4",
-      "seeds": [],
-      "complete": false,
-      "mean_paired_relative": null
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.31151217916064255,
+            "ttft_p95_s": -0.08738422597135953,
+            "output_throughput_tokens_per_s": 0.02494511915854658,
+            "gpu_seconds_per_output_token": 2.7515934280870074,
+            "completion_fraction": 0.04038461538461546,
+            "backlog_at_window_end": -0.328125
+          },
+          "common_completed": {
+            "count": 520,
+            "tpot_p95_s": [
+              0.8785845603429194,
+              0.6040683646802213
+            ],
+            "relative": -0.31245278832984724
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.31362769563984205,
+            "ttft_p95_s": -0.10793644832884008,
+            "output_throughput_tokens_per_s": 0.028237812434616094,
+            "gpu_seconds_per_output_token": 2.457210356096656,
+            "completion_fraction": 0.04373757455268401,
+            "backlog_at_window_end": -0.33333333333333337
+          },
+          "common_completed": {
+            "count": 503,
+            "tpot_p95_s": [
+              0.8926110249573079,
+              0.6101436681956129
+            ],
+            "relative": -0.3164506698482745
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.31904749959494905,
+            "ttft_p95_s": -0.07085784105576132,
+            "output_throughput_tokens_per_s": 0.021577181480668894,
+            "gpu_seconds_per_output_token": 2.4945974160185225,
+            "completion_fraction": 0.024714828897338448,
+            "backlog_at_window_end": -0.21666666666666667
+          },
+          "common_completed": {
+            "count": 526,
+            "tpot_p95_s": [
+              0.8790327087251992,
+              0.5974031809484419
+            ],
+            "relative": -0.32038572055547887
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.31472912479847787,
+        "ttft_p95_s": -0.08872617178532032,
+        "output_throughput_tokens_per_s": 0.02492003769127719,
+        "gpu_seconds_per_output_token": 2.5678004000673953,
+        "completion_fraction": 0.03627900627821264,
+        "backlog_at_window_end": -0.29270833333333335
+      }
     },
     {
       "scenario": "multi",
       "load": 320,
       "left": "single_boundary",
       "right": "v4",
-      "seeds": [],
-      "complete": false,
-      "mean_paired_relative": null
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": 0.0029686884629249732,
+            "ttft_p95_s": 0.0464841705184762,
+            "output_throughput_tokens_per_s": 0.0006784417426701772,
+            "gpu_seconds_per_output_token": 0.001610341257309189,
+            "completion_fraction": 0.0037105751391466324,
+            "backlog_at_window_end": -0.0444444444444444
+          },
+          "common_completed": {
+            "count": 539,
+            "tpot_p95_s": [
+              0.6038040869555428,
+              0.6039782632338498
+            ],
+            "relative": 0.00028846488798262016
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": 0.007760240516093919,
+            "ttft_p95_s": -0.0004996256275383582,
+            "output_throughput_tokens_per_s": 0.000665674680867756,
+            "gpu_seconds_per_output_token": -0.013113957276697175,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 524,
+            "tpot_p95_s": [
+              0.6045424021275275,
+              0.6098540799905146
+            ],
+            "relative": 0.008786278421983207
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.006022310317334134,
+            "ttft_p95_s": -0.001895993401300422,
+            "output_throughput_tokens_per_s": -0.0003656743113796823,
+            "gpu_seconds_per_output_token": 0.010672488536176195,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 538,
+            "tpot_p95_s": [
+              0.6004829184168047,
+              0.5976851761272896
+            ],
+            "relative": -0.0046591538305393865
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": 0.0015688728872282527,
+        "ttft_p95_s": 0.01469618382987914,
+        "output_throughput_tokens_per_s": 0.00032614737071941696,
+        "gpu_seconds_per_output_token": -0.0002770424944039303,
+        "completion_fraction": 0.0012368583797155441,
+        "backlog_at_window_end": -0.0148148148148148
+      }
     },
     {
       "scenario": "multi",
@@ -4543,18 +5073,148 @@
       "load": 160,
       "left": "v3",
       "right": "v4",
-      "seeds": [],
-      "complete": false,
-      "mean_paired_relative": null
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.041230828190819024,
+            "ttft_p95_s": -0.021056280271746664,
+            "output_throughput_tokens_per_s": 0.003148001019352753,
+            "gpu_seconds_per_output_token": -0.7438556504967515,
+            "completion_fraction": 0.003676470588235281,
+            "backlog_at_window_end": -0.06666666666666665
+          },
+          "common_completed": {
+            "count": 272,
+            "tpot_p95_s": [
+              0.5907605974546294,
+              0.5662784657965655
+            ],
+            "relative": -0.041441713891462006
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": 0.014196271831840246,
+            "ttft_p95_s": -0.019477552651776975,
+            "output_throughput_tokens_per_s": 0.0037517712224655053,
+            "gpu_seconds_per_output_token": -0.723527549399257,
+            "completion_fraction": 0.0038022813688212143,
+            "backlog_at_window_end": -0.050000000000000044
+          },
+          "common_completed": {
+            "count": 263,
+            "tpot_p95_s": [
+              0.5782871921674866,
+              0.5862843105520352
+            ],
+            "relative": 0.013828973722510574
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": 0.01480885712541724,
+            "ttft_p95_s": -0.03807336545522089,
+            "output_throughput_tokens_per_s": 0.0031505594959104766,
+            "gpu_seconds_per_output_token": -0.7271418038844377,
+            "completion_fraction": 0.0074349442379182396,
+            "backlog_at_window_end": -0.09090909090909094
+          },
+          "common_completed": {
+            "count": 269,
+            "tpot_p95_s": [
+              0.575051435467879,
+              0.5808337320675541
+            ],
+            "relative": 0.010055268525624106
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.004075233077853846,
+        "ttft_p95_s": -0.02620239945958151,
+        "output_throughput_tokens_per_s": 0.0033501105792429118,
+        "gpu_seconds_per_output_token": -0.7315083345934821,
+        "completion_fraction": 0.004971232064991578,
+        "backlog_at_window_end": -0.06919191919191921
+      }
     },
     {
       "scenario": "C3",
       "load": 400,
       "left": "v3",
       "right": "v4",
-      "seeds": [],
-      "complete": false,
-      "mean_paired_relative": null
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": 0.0005089553506398836,
+            "ttft_p95_s": 5.5922457738777354e-05,
+            "output_throughput_tokens_per_s": -6.628822118570632e-05,
+            "gpu_seconds_per_output_token": -0.3199774469415603,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 724,
+            "tpot_p95_s": [
+              0.22121238673380175,
+              0.2211933288221814
+            ],
+            "relative": -8.615209980666894e-05
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": 0.0028196650331437922,
+            "ttft_p95_s": 0.0357246228297472,
+            "output_throughput_tokens_per_s": 0.0003929538463427473,
+            "gpu_seconds_per_output_token": -0.3316807984800909,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 700,
+            "tpot_p95_s": [
+              0.2193970684864757,
+              0.2198890656717606
+            ],
+            "relative": 0.002242496623491741
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": 0.006545779371310623,
+            "ttft_p95_s": 0.028824997925865015,
+            "output_throughput_tokens_per_s": 6.081467336449542e-05,
+            "gpu_seconds_per_output_token": -0.3306419998631227,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 713,
+            "tpot_p95_s": [
+              0.21627750609895968,
+              0.21730045774051154
+            ],
+            "relative": 0.004729810603067541
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": 0.003291466585031433,
+        "ttft_p95_s": 0.021535181071116998,
+        "output_throughput_tokens_per_s": 0.0001291600995071788,
+        "gpu_seconds_per_output_token": -0.32743341509492463,
+        "completion_fraction": 0.0,
+        "backlog_at_window_end": 0.0
+      }
     }
   ],
   "interactions": [
@@ -4590,6 +5250,210 @@
     }
   ],
   "mechanism": [
+    {
+      "scenario": "C2",
+      "load": 160,
+      "cell": "v3",
+      "seed": 0,
+      "actual_paths": 241,
+      "token_weighted_decode_batch": 1.5718049947390667,
+      "singleton_execution_fraction": 0.8098405745097816,
+      "decode_layer_token_executions": 5337456,
+      "prompt_only_busy_s": 554.9868796863931,
+      "decode_only_busy_s": 23094.577732805934,
+      "mixed_busy_s": 113.15873560000475,
+      "decode_network_wait_s": 4.304594185967865,
+      "decode_wait_overlapping_prompt_same_link_s": 4.304594177965392,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C2",
+      "load": 160,
+      "cell": "v3",
+      "seed": 1,
+      "actual_paths": 219,
+      "token_weighted_decode_batch": 1.4882981923922505,
+      "singleton_execution_fraction": 0.8275795250503422,
+      "decode_layer_token_executions": 4969275,
+      "prompt_only_busy_s": 548.9893642239388,
+      "decode_only_busy_s": 22027.795283812244,
+      "mixed_busy_s": 104.07100515199286,
+      "decode_network_wait_s": 3.1585488828130757,
+      "decode_wait_overlapping_prompt_same_link_s": 3.1585488828128483,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C2",
+      "load": 160,
+      "cell": "v3",
+      "seed": 2,
+      "actual_paths": 234,
+      "token_weighted_decode_batch": 1.5155487091119875,
+      "singleton_execution_fraction": 0.8237696776578494,
+      "decode_layer_token_executions": 5155637,
+      "prompt_only_busy_s": 572.6278381055902,
+      "decode_only_busy_s": 22677.40411307324,
+      "mixed_busy_s": 97.20369885119507,
+      "decode_network_wait_s": 3.754137316400019,
+      "decode_wait_overlapping_prompt_same_link_s": 3.7541373163996212,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C2",
+      "load": 160,
+      "cell": "v4",
+      "seed": 0,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 8.921083679053707,
+      "singleton_execution_fraction": 0.4734620860071557,
+      "decode_layer_token_executions": 5354279,
+      "prompt_only_busy_s": 647.1940646143916,
+      "decode_only_busy_s": 5455.282466689858,
+      "mixed_busy_s": 3.371680988802666,
+      "decode_network_wait_s": 4.109731497324006,
+      "decode_wait_overlapping_prompt_same_link_s": 4.109731497324006,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C2",
+      "load": 160,
+      "cell": "v4",
+      "seed": 1,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 8.064481508444057,
+      "singleton_execution_fraction": 0.4910604077942471,
+      "decode_layer_token_executions": 4987709,
+      "prompt_only_busy_s": 635.0383036351278,
+      "decode_only_busy_s": 5658.34711229914,
+      "mixed_busy_s": 0.7723039487993617,
+      "decode_network_wait_s": 3.2807371704223947,
+      "decode_wait_overlapping_prompt_same_link_s": 3.2807371704223947,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C2",
+      "load": 160,
+      "cell": "v4",
+      "seed": 2,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 8.326049704310416,
+      "singleton_execution_fraction": 0.5019966335883673,
+      "decode_layer_token_executions": 5172147,
+      "prompt_only_busy_s": 651.6411048767891,
+      "decode_only_busy_s": 5737.504736638854,
+      "mixed_busy_s": 1.409352998399072,
+      "decode_network_wait_s": 3.378505080639556,
+      "decode_wait_overlapping_prompt_same_link_s": 3.378505080639556,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C3",
+      "load": 400,
+      "cell": "v3",
+      "seed": 0,
+      "actual_paths": 4,
+      "token_weighted_decode_batch": 5.7696207626987785,
+      "singleton_execution_fraction": 0.2660808642147305,
+      "decode_layer_token_executions": 13275962,
+      "prompt_only_busy_s": 490.0876013823439,
+      "decode_only_busy_s": 6645.184586384203,
+      "mixed_busy_s": 25.58800128000722,
+      "decode_network_wait_s": 47.198591259531796,
+      "decode_wait_overlapping_prompt_same_link_s": 47.19859122953325,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C3",
+      "load": 400,
+      "cell": "v3",
+      "seed": 1,
+      "actual_paths": 4,
+      "token_weighted_decode_batch": 5.638431327890512,
+      "singleton_execution_fraction": 0.2748659008857057,
+      "decode_layer_token_executions": 13031353,
+      "prompt_only_busy_s": 469.8684644094608,
+      "decode_only_busy_s": 6899.4501079318425,
+      "mixed_busy_s": 20.124505369617168,
+      "decode_network_wait_s": 40.72602880512747,
+      "decode_wait_overlapping_prompt_same_link_s": 40.72602880512747,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C3",
+      "load": 400,
+      "cell": "v3",
+      "seed": 2,
+      "actual_paths": 4,
+      "token_weighted_decode_batch": 5.4431023419967275,
+      "singleton_execution_fraction": 0.25189981020640845,
+      "decode_layer_token_executions": 13155313,
+      "prompt_only_busy_s": 473.73027694067173,
+      "decode_only_busy_s": 6830.173883752353,
+      "mixed_busy_s": 22.565374156801724,
+      "decode_network_wait_s": 39.63625497614816,
+      "decode_wait_overlapping_prompt_same_link_s": 39.63625497614816,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C3",
+      "load": 400,
+      "cell": "v4",
+      "seed": 0,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 9.21487558856277,
+      "singleton_execution_fraction": 0.3804113721282202,
+      "decode_layer_token_executions": 13275347,
+      "prompt_only_busy_s": 500.8327383295418,
+      "decode_only_busy_s": 4355.475840192952,
+      "mixed_busy_s": 12.915055756801024,
+      "decode_network_wait_s": 47.21286564155159,
+      "decode_wait_overlapping_prompt_same_link_s": 47.21286564155159,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C3",
+      "load": 400,
+      "cell": "v4",
+      "seed": 1,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 8.988931641251144,
+      "singleton_execution_fraction": 0.388706080467054,
+      "decode_layer_token_executions": 13035537,
+      "prompt_only_busy_s": 478.8287394558551,
+      "decode_only_busy_s": 4452.062621333033,
+      "mixed_busy_s": 9.555941785613527,
+      "decode_network_wait_s": 40.27012832065412,
+      "decode_wait_overlapping_prompt_same_link_s": 40.27012832065412,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "C3",
+      "load": 400,
+      "cell": "v4",
+      "seed": 2,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 8.927185350112998,
+      "singleton_execution_fraction": 0.3818662838630138,
+      "decode_layer_token_executions": 13155924,
+      "prompt_only_busy_s": 484.9109233150732,
+      "decode_only_busy_s": 4410.219124538143,
+      "mixed_busy_s": 9.199185100807178,
+      "decode_network_wait_s": 39.88760975179413,
+      "decode_wait_overlapping_prompt_same_link_s": 39.88760975179413,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
     {
       "scenario": "multi",
       "load": 50,
@@ -5205,6 +6069,57 @@
     {
       "scenario": "multi",
       "load": 320,
+      "cell": "single_boundary",
+      "seed": 0,
+      "actual_paths": 8,
+      "token_weighted_decode_batch": 8.94628337657808,
+      "singleton_execution_fraction": 0.23251754117612228,
+      "decode_layer_token_executions": 10378910,
+      "prompt_only_busy_s": 806.2439309312159,
+      "decode_only_busy_s": 7530.134818484424,
+      "mixed_busy_s": 34.906373980794854,
+      "decode_network_wait_s": 2893.7093914140205,
+      "decode_wait_overlapping_prompt_same_link_s": 2892.3708123211914,
+      "paused_chunks": 1428,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "single_boundary",
+      "seed": 1,
+      "actual_paths": 8,
+      "token_weighted_decode_batch": 8.870804736353785,
+      "singleton_execution_fraction": 0.23674858177885807,
+      "decode_layer_token_executions": 10216551,
+      "prompt_only_busy_s": 803.9604090623284,
+      "decode_only_busy_s": 7455.443665769985,
+      "mixed_busy_s": 35.0421708064037,
+      "decode_network_wait_s": 2734.846156658761,
+      "decode_wait_overlapping_prompt_same_link_s": 2734.084343713892,
+      "paused_chunks": 1425,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "single_boundary",
+      "seed": 2,
+      "actual_paths": 8,
+      "token_weighted_decode_batch": 8.641420242252824,
+      "singleton_execution_fraction": 0.2209701609271917,
+      "decode_layer_token_executions": 10066508,
+      "prompt_only_busy_s": 798.5367781099935,
+      "decode_only_busy_s": 7433.762246388471,
+      "mixed_busy_s": 34.283297123198174,
+      "decode_network_wait_s": 2564.4222557737144,
+      "decode_wait_overlapping_prompt_same_link_s": 2563.6847075840265,
+      "paused_chunks": 1394,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
       "cell": "spatial",
       "seed": 0,
       "actual_paths": 8,
@@ -5251,6 +6166,57 @@
       "decode_network_wait_s": 7707.0834534064315,
       "decode_wait_overlapping_prompt_same_link_s": 7706.510433633365,
       "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "static",
+      "seed": 0,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 59.26422825038405,
+      "singleton_execution_fraction": 0.4385276568792581,
+      "decode_layer_token_executions": 10134064,
+      "prompt_only_busy_s": 736.4759564032377,
+      "decode_only_busy_s": 1416.9331229883273,
+      "mixed_busy_s": 28.663035878396705,
+      "decode_network_wait_s": 6951.253595946015,
+      "decode_wait_overlapping_prompt_same_link_s": 6900.034201324869,
+      "paused_chunks": 1379,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "static",
+      "seed": 1,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 57.043765506578836,
+      "singleton_execution_fraction": 0.4917022878360618,
+      "decode_layer_token_executions": 9941345,
+      "prompt_only_busy_s": 733.5864034687074,
+      "decode_only_busy_s": 1542.48943690727,
+      "mixed_busy_s": 28.14463072000082,
+      "decode_network_wait_s": 6905.415200046774,
+      "decode_wait_overlapping_prompt_same_link_s": 6861.09098840988,
+      "paused_chunks": 1391,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "static",
+      "seed": 2,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 54.91035582515165,
+      "singleton_execution_fraction": 0.5070356368419621,
+      "decode_layer_token_executions": 9850456,
+      "prompt_only_busy_s": 726.2412779215257,
+      "decode_only_busy_s": 1587.2855476670134,
+      "mixed_busy_s": 25.89891635840617,
+      "decode_network_wait_s": 6674.582263786251,
+      "decode_wait_overlapping_prompt_same_link_s": 6633.017276866395,
+      "paused_chunks": 1356,
       "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
     },
     {
@@ -5664,6 +6630,57 @@
     {
       "scenario": "single",
       "load": 700,
+      "cell": "single_boundary",
+      "seed": 0,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 51.526287860676646,
+      "singleton_execution_fraction": 0.413781826618357,
+      "decode_layer_token_executions": 22014629,
+      "prompt_only_busy_s": 1898.0213334542113,
+      "decode_only_busy_s": 3383.991944732556,
+      "mixed_busy_s": 77.6615253823987,
+      "decode_network_wait_s": 45.621246056852094,
+      "decode_wait_overlapping_prompt_same_link_s": 45.6212458548523,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "single_boundary",
+      "seed": 1,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 53.957765288666856,
+      "singleton_execution_fraction": 0.4219787569862909,
+      "decode_layer_token_executions": 22796036,
+      "prompt_only_busy_s": 1930.9944260604873,
+      "decode_only_busy_s": 3390.596897802303,
+      "mixed_busy_s": 92.60692169599716,
+      "decode_network_wait_s": 42.77376862612428,
+      "decode_wait_overlapping_prompt_same_link_s": 42.77376818012442,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "single_boundary",
+      "seed": 2,
+      "actual_paths": 2,
+      "token_weighted_decode_batch": 49.29012926026903,
+      "singleton_execution_fraction": 0.4187922304489901,
+      "decode_layer_token_executions": 21679206,
+      "prompt_only_busy_s": 1910.4173372789319,
+      "decode_only_busy_s": 3420.72336757938,
+      "mixed_busy_s": 81.31753456638785,
+      "decode_network_wait_s": 63.75406099869165,
+      "decode_wait_overlapping_prompt_same_link_s": 63.754060332691786,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "single",
+      "load": 700,
       "cell": "static",
       "seed": 0,
       "actual_paths": 1,
@@ -5675,6 +6692,40 @@
       "mixed_busy_s": 188.03099945999077,
       "decode_network_wait_s": 7.083295089279272,
       "decode_wait_overlapping_prompt_same_link_s": 7.083290439278937,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "static",
+      "seed": 1,
+      "actual_paths": 1,
+      "token_weighted_decode_batch": 171.03818283447106,
+      "singleton_execution_fraction": 0.40645040315019687,
+      "decode_layer_token_executions": 21622334,
+      "prompt_only_busy_s": 1744.3232660092651,
+      "decode_only_busy_s": 1530.5185998248514,
+      "mixed_busy_s": 196.54948246241636,
+      "decode_network_wait_s": 1.9623327964948558,
+      "decode_wait_overlapping_prompt_same_link_s": 1.9623280244946173,
+      "paused_chunks": 0,
+      "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "static",
+      "seed": 2,
+      "actual_paths": 1,
+      "token_weighted_decode_batch": 158.0209022680653,
+      "singleton_execution_fraction": 0.40492660033330063,
+      "decode_layer_token_executions": 20572600,
+      "prompt_only_busy_s": 1709.0678121341089,
+      "decode_only_busy_s": 1565.3954754476645,
+      "mixed_busy_s": 204.47241130721872,
+      "decode_network_wait_s": 1.1318261804093979,
+      "decode_wait_overlapping_prompt_same_link_s": 1.1318222064095593,
       "paused_chunks": 0,
       "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
     },

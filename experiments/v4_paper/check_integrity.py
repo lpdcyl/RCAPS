@@ -7,7 +7,7 @@ import importlib
 
 from experiments.v4_formal.run import validate as validate_main
 from experiments.v4_external.run import validate as validate_external
-from .build_report import ROOT, HERE, BATCHES, collect, digest, paired, read, write
+from .build_report import ROOT, HERE, BATCHES, campaign_complete, collect, digest, paired, read, write
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
         if name.startswith("v4_recovery") and (ROOT / "experiments" / name / "index.json").exists():
             importlib.import_module(f"experiments.{name}.run").validate()
     rows, provenance, states = collect()
-    campaign = {}
+    campaign, failures, successful_keys = {}, [], set()
     for name in BATCHES:
         folder = ROOT / "experiments" / name
         if not (folder / "index.json").exists():
@@ -33,9 +33,18 @@ def main():
             if item["status"] == "failed":
                 assert item["exit_code"] != 0 and item["result_sha256"] is None
                 assert not output.exists(), "Failed attempt must not have a replacement result"
+                worker = output.with_name("worker.log")
+                failures.append({"batch":name,"key":key,"exit_code":item["exit_code"],
+                                 "worker_log_sha256":digest(worker),"result_absent":True})
             if item["status"] != "completed":
                 continue
             row = read(output)
+            job = expected[key]
+            cell = job.get("cell",job.get("method"))
+            cell = "v3" if cell == "rcaps_v3" else cell
+            identity = (job["scenario"],job["load"],cell,job["seed"])
+            assert identity not in successful_keys, "Duplicate successful attempt"
+            successful_keys.add(identity)
             assert row["seed"] == expected[key]["seed"] in (0, 1, 2)
             assert row["duration_s"] == 1800 and row["warmup_s"] == 0
             assert row["evaluation_protocol"] == "fixed_window_no_tail_drain"
@@ -64,15 +73,31 @@ def main():
     log = ROOT / "experiments/v4_formal/runs/single/load700/static/seed1/worker.log"
     copy = HERE / "diagnostics/static_seed1_worker.txt"
     assert digest(log) == digest(copy)
+    second_log = ROOT / "experiments/v4_recovery/runs/C2/load160/v4/seed1/worker.log"
+    if second_log.exists():
+        assert digest(second_log) == digest(HERE / "diagnostics/c2_v4_seed1_worker.txt")
+    attempts = sum(sum(c["counts"].values()) for c in campaign.values())
+    if campaign_complete(states):
+        expected_keys = set()
+        for manifest in (main_manifest,external_manifest):
+            for j in manifest["jobs"]:
+                c = j.get("cell",j.get("method"))
+                expected_keys.add((j["scenario"],j["load"],"v3" if c == "rcaps_v3" else c,j["seed"]))
+        assert successful_keys == expected_keys and len(successful_keys) == 120
+        assert attempts == 122 and len(failures) == 2
     write(HERE / "diagnostics/integrity_audit.json", {
         "checked_at":datetime.now(timezone.utc).isoformat(), "status":"passed_for_recorded_checks",
         "scope":"File integrity, protocol fields, accounting and trace pairing; does not certify host stability or numerical correctness",
         "main_source_files":len(main_manifest["sources_sha256"]),
         "external_source_files":len(external_manifest["sources_sha256"]),
         "campaign":campaign,"trace_pairing":comparisons,
+        "recorded_attempts":attempts,"unique_successful_windows":len(successful_keys),"preserved_failures":failures,
         "failure_worker_log_sha256":digest(log),
         "analysis_sha256":digest(HERE / "analysis.json"),
-        "figures_visually_checked":["v4_load_curves.png","v4_factorial_320.png","v4_mechanism_320.png"]})
+        "report_artifacts_sha256":{p.relative_to(HERE).as_posix():digest(p)
+                                   for p in [HERE/"FINAL_RESULTS_CN.md", *sorted((HERE/"figures").glob("*"))] if p.is_file()},
+        "figures_visually_checked":["v4_load_curves.png","v4_factorial_320.png","v4_mechanism_320.png",
+                                    "v4_components_pools.png","v4_gpu_work_curves.png"]})
     print(json.dumps({"audit":"passed","completed":sum(s["completed"] for s in states.values()),
                       "pair_groups":len(comparisons),"complete_pair_groups":sum(c["complete"] for c in comparisons)}))
 

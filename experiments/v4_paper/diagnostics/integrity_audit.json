@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-26T10:51:51.148832+00:00",
+  "checked_at": "2026-10-26T12:44:02.286905+00:00",
   "status": "passed_for_recorded_checks",
   "scope": "File integrity, protocol fields, accounting and trace pairing; does not certify host stability or numerical correctness",
   "main_source_files": 177,
@@ -44,9 +44,56 @@
       "unstarted": [],
       "manifest_sha256": "0d07b4cf7f7f1488e681acc5ae586eadc1be27c87b618b0343cfb8f9d5345c0b",
       "index_sha256": "9d55f390c9c9d5487328d834be949cd78c56e4a4f2b28feff525b419648b452f"
+    },
+    "v4_recovery": {
+      "counts": {
+        "completed": 15,
+        "failed": 1
+      },
+      "unstarted": [
+        "C2/load160/v4/seed2",
+        "C3/load400/v3/seed0",
+        "C3/load400/v3/seed1",
+        "C3/load400/v3/seed2",
+        "C3/load400/v4/seed0",
+        "C3/load400/v4/seed1",
+        "C3/load400/v4/seed2"
+      ],
+      "manifest_sha256": "76da52618c94031024e31c4ee3ae1020a4664e560626824fc115b5a99e5ed2d9",
+      "index_sha256": "3f803345d6b061d49309c2623e5ffb3e89263656dba3986d0ae399ca324bc711"
+    },
+    "v4_recovery2": {
+      "counts": {
+        "completed": 8
+      },
+      "unstarted": [],
+      "manifest_sha256": "3800f6e03be063a7fffcb11b3d0cddab56ad1553d6e367f94cc20975ca80b97e",
+      "index_sha256": "cb747d89bf9c194f4d4329b8fac8853a41090799ab07e4955f43d9114853d2e5"
     }
   },
   "trace_pairing": [
+    {
+      "scenario": "C2",
+      "load": 160,
+      "baseline": "v3",
+      "paired_seeds": [
+        0,
+        1,
+        2
+      ],
+      "complete": true
+    },
+    {
+      "scenario": "C3",
+      "load": 400,
+      "baseline": "v3",
+      "paired_seeds": [
+        0,
+        1,
+        2
+      ],
+      "complete": true
+    },
     {
       "scenario": "multi",
       "load": 50,
@@ -248,7 +295,29 @@
     {
       "scenario": "multi",
       "load": 320,
+      "baseline": "single_boundary",
+      "paired_seeds": [
+        0,
+        1,
+        2
+      ],
+      "complete": true
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
       "baseline": "spatial",
+      "paired_seeds": [
+        0,
+        1,
+        2
+      ],
+      "complete": true
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "baseline": "static",
       "paired_seeds": [
         0,
         1,
@@ -423,11 +492,24 @@
     {
       "scenario": "single",
       "load": 700,
+      "baseline": "single_boundary",
+      "paired_seeds": [
+        0,
+        1,
+        2
+      ],
+      "complete": true
+    },
+    {
+      "scenario": "single",
+      "load": 700,
       "baseline": "static",
       "paired_seeds": [
-        0
+        0,
+        1,
+        2
       ],
-      "complete": false
+      "complete": true
     },
     {
       "scenario": "single",
@@ -463,11 +545,44 @@
       "complete": true
     }
   ],
+  "recorded_attempts": 122,
+  "unique_successful_windows": 120,
+  "preserved_failures": [
+    {
+      "batch": "v4_formal",
+      "key": "single/load700/static/seed1",
+      "exit_code": 3221225477,
+      "worker_log_sha256": "2c71f62d390635bb58391ebfbd18265f48c5860bad1f39f891c08c401b0675cc",
+      "result_absent": true
+    },
+    {
+      "batch": "v4_recovery",
+      "key": "C2/load160/v4/seed1",
+      "exit_code": 3221225477,
+      "worker_log_sha256": "971cb524db68f8c812021c57dbd6d7ac0dc5710912c3586da8ea0d8feedd2122",
+      "result_absent": true
+    }
+  ],
   "failure_worker_log_sha256": "2c71f62d390635bb58391ebfbd18265f48c5860bad1f39f891c08c401b0675cc",
-  "analysis_sha256": "7bee9e132a8d4794c5fe2496811d1cfe3a18d5d9e37ecca906f8fd07a2196722",
+  "analysis_sha256": "0f664f84a6cf526b5b49bcf0a556e162ee0476b452deeadea46014965254d67c",
+  "report_artifacts_sha256": {
+    "FINAL_RESULTS_CN.md": "946861ac6908261432644714656941029b96d75e15c359f0e3cbc722a6511a5c",
+    "figures/v4_components_pools.pdf": "a98a01ffb38a6547829057df8df8a26667009b48101106931da6792f63e0c56b",
+    "figures/v4_components_pools.png": "3c67735d2e2f72cfb6e61b6ec4049aa543ad259b1251ce71b2eb8885be030529",
+    "figures/v4_factorial_320.pdf": "65ffd5177f5836cafdb9dd0bc362bb6f5cc54fa443d66048219a082f9b5fbac8",
+    "figures/v4_factorial_320.png": "ebf3c3753a7a8fdb8f6821dbcd90821fa11b3d8eecbaa9d8c414f0b564da154e",
+    "figures/v4_gpu_work_curves.pdf": "dc05cb9af5867e606447d0ac96fc274e60a91cbe4fb2aa322654b25bab76bb66",
+    "figures/v4_gpu_work_curves.png": "aa5aa7c5c17171304c5227e2a4b0550afd6af55f4c4bfaba82597ba1118304f9",
+    "figures/v4_load_curves.pdf": "0bf153262f0540ea4d197110b331472cfe1d0d5adfd4fdb75639212dccdf97fe",
+    "figures/v4_load_curves.png": "62f9bb8c03b2e2e411a4fb840630da52df29b1915f83bcd0074e2d1bd41dccef",
+    "figures/v4_mechanism_320.pdf": "e77405dc7cf5544cb647279d994a4bb5b4ed4becc4e3ab61cc968aa3b9468b98",
+    "figures/v4_mechanism_320.png": "38365dcff4b3723a4fa956b2df69dfe77459abf42bb80cc05ad22139537e0e9f"
+  },
   "figures_visually_checked": [
     "v4_load_curves.png",
     "v4_factorial_320.png",
-    "v4_mechanism_320.png"
+    "v4_mechanism_320.png",
+    "v4_components_pools.png",
+    "v4_gpu_work_curves.png"
   ]
 }

@@ -311,6 +311,9 @@ def main():
                   "恢复登记见 [恢复批次](../v4_recovery/README.md)，此前系统诊断见 [中止审计](EXECUTION_AUDIT_CN.md)。"]
     if "v4_recovery2" in states:
         lines += ["", "第二次恢复授权见 [恢复批次二](../v4_recovery2/README.md)：C2/V4/seed1 的第二尝试及 7 格续跑。全部补齐须报告 122 次尝试、120 个成功窗口、2 次保留失败。"]
+    if complete:
+        lines += ["", "去重后已补齐 120/120 格，累计 122 次尝试、2 次保留失败。上表的未启动数属于各历史批次快照，不能相加作为当前剩余量。", "",
+                  "完整结论、配对效应与剩余论文缺口见 [正式完成报告](FINAL_RESULTS_CN.md)。"]
     if halted:
         lines += ["", "异常诊断、恢复前提和证据缺口见 [中止审计与阶段结论](EXECUTION_AUDIT_CN.md)。"]
     tables = [("共同负载五方法", [(sc,load,c) for sc,load in (("single",350),("multi",160)) for c in ("v4","v3","helix","swarm","separate")]),
