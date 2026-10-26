@@ -6,7 +6,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from .build_report import campaign_complete, campaign_halted
+from .build_report import BATCHES, campaign_complete, campaign_halted
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -16,9 +16,9 @@ def main():
     previous = None
     while True:
         states = {}
-        for name in ("v4_formal", "v4_external", "v4_recovery"):
+        for name in BATCHES:
             p = ROOT / "experiments" / name / "index.json"
-            if not p.exists() and name == "v4_recovery":
+            if not p.exists() and name.startswith("v4_recovery"):
                 continue
             data = json.loads(p.read_text(encoding="utf-8"))
             states[name] = {"queue_status": data["queue_status"],

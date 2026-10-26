@@ -19,6 +19,12 @@ class RecoveryControl(unittest.TestCase):
         states["v4_recovery"].update(queue_status="halted",completed=22)
         self.assertFalse(campaign_complete(states))
         self.assertTrue(campaign_halted(states))
+        states["v4_recovery"].update(completed=15)
+        states["v4_recovery2"] = {"queue_status":"running","completed":0}
+        self.assertFalse(campaign_complete(states))
+        self.assertFalse(campaign_halted(states))
+        states["v4_recovery2"].update(queue_status="completed",completed=8)
+        self.assertTrue(campaign_complete(states))
 
     def test_failure_stops_dispatch_and_retains_attempt(self):
         self.check_queue(fail=True)

@@ -3,22 +3,22 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 import json
+import importlib
 
 from experiments.v4_formal.run import validate as validate_main
 from experiments.v4_external.run import validate as validate_external
-from .build_report import ROOT, HERE, collect, digest, paired, read, write
+from .build_report import ROOT, HERE, BATCHES, collect, digest, paired, read, write
 
 
 def main():
     main_manifest = validate_main()
     external_manifest = validate_external()
-    recovery_folder = ROOT / "experiments/v4_recovery"
-    if (recovery_folder / "index.json").exists():
-        from experiments.v4_recovery.run import validate as validate_recovery
-        validate_recovery()
+    for name in BATCHES:
+        if name.startswith("v4_recovery") and (ROOT / "experiments" / name / "index.json").exists():
+            importlib.import_module(f"experiments.{name}.run").validate()
     rows, provenance, states = collect()
     campaign = {}
-    for name in ("v4_formal", "v4_external", "v4_recovery"):
+    for name in BATCHES:
         folder = ROOT / "experiments" / name
         if not (folder / "index.json").exists():
             continue
@@ -39,7 +39,7 @@ def main():
             assert row["seed"] == expected[key]["seed"] in (0, 1, 2)
             assert row["duration_s"] == 1800 and row["warmup_s"] == 0
             assert row["evaluation_protocol"] == "fixed_window_no_tail_drain"
-            if name == "v4_recovery":
+            if name.startswith("v4_recovery"):
                 assert row["manifest_sha256"] == manifest["core_manifest_sha256"]
                 assert row["recovery_manifest_sha256"] == digest(folder / "manifest.json")
             else:

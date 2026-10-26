@@ -3,6 +3,8 @@
 The original campaign stopped with 97 successful windows, one preserved native-process
 failure, and 22 unstarted windows. The user authorized a separate second attempt
 and continuation in [`experiments/v4_recovery`](experiments/v4_recovery/README.md).
+After another native failure at C2/V4/seed1, a second explicit authorization
+registered the [remaining eight windows](experiments/v4_recovery2/README.md).
 The failure remains recorded. See the
 [execution audit and interim conclusions](experiments/v4_paper/EXECUTION_AUDIT_CN.md)
 and [verified partial results](experiments/v4_paper/RESULTS_CN.md).

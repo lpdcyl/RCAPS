@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 METRICS = ("tpot_p95_s", "ttft_p95_s", "output_throughput_tokens_per_s",
            "gpu_seconds_per_output_token", "completion_fraction", "backlog_at_window_end")
+BATCHES = ("v4_formal", "v4_external", "v4_recovery", "v4_recovery2")
 LABELS = {"v3": "V3", "spatial": "V3+S", "temporal": "V3+T", "v4": "V4",
           "helix": "Helix", "swarm": "Swarm", "separate": "SP",
           "canonical4": "Canonical+T", "all4": "Sparse+all-link T",
@@ -54,20 +55,22 @@ def collect():
         row["_evidence"] = "audited_historical"
         rows[k] = row
         provenance.append({"key": list(k), "source": item["source"], "sha256": item["sha256"], "kind": "audited_historical"})
-    for directory in ("v4_formal", "v4_external", "v4_recovery"):
+    for directory in BATCHES:
         folder = ROOT / "experiments" / directory
         if not (folder / "index.json").exists():
-            if directory == "v4_recovery":
+            if directory.startswith("v4_recovery"):
                 continue
             states[directory] = {"queue_status": "not_started"}
             continue
         index = read(folder / "index.json")
         assert digest(folder / "manifest.json") == index["manifest_sha256"]
-        if directory == "v4_recovery":
+        if directory.startswith("v4_recovery"):
             recovery = read(folder / "manifest.json")
             original = ROOT / "experiments/v4_formal"
             assert digest(original / "manifest.json") == recovery["core_manifest_sha256"]
             assert digest(original / "index.json") == recovery["original_index_sha256"]
+            if "predecessor_index" in recovery:
+                assert digest(ROOT / recovery["predecessor_index"]) == recovery["predecessor_index_sha256"]
             for category in ("sources_sha256", "original_failure_files_sha256"):
                 for name, expected in recovery[category].items():
                     assert digest(ROOT / name) == expected, name
@@ -86,7 +89,7 @@ def collect():
             path = folder / "runs" / key / "result.json"
             assert digest(path) == item["result_sha256"], path
             row = read(path)
-            if directory == "v4_recovery":
+            if directory.startswith("v4_recovery"):
                 assert row["recovery_manifest_sha256"] == digest(folder / "manifest.json")
                 assert row["manifest_sha256"] == recovery["core_manifest_sha256"]
                 assert row["attempt_number"] == (2 if key in recovery["retry_keys"] else 1)
@@ -105,8 +108,10 @@ def collect():
             cell = "v3" if cell == "rcaps_v3" else cell
             k = (job["scenario"], job["load"], cell, job["seed"])
             row["_source"] = path.relative_to(ROOT).as_posix()
-            row["_evidence"] = ("authorized_second_attempt" if directory == "v4_recovery" and row["attempt_number"] == 2
-                                else "authorized_continuation" if directory == "v4_recovery" else "fresh_formal")
+            if directory.startswith("v4_recovery"):
+                assert k not in rows or rows[k]["_evidence"] == "audited_historical", "Duplicate successful formal cell"
+            row["_evidence"] = ("authorized_second_attempt" if directory.startswith("v4_recovery") and row["attempt_number"] == 2
+                                else "authorized_continuation" if directory.startswith("v4_recovery") else "fresh_formal")
             rows[k] = row
             provenance.append({"key": list(k), "source": row["_source"], "sha256": item["result_sha256"], "kind": row["_evidence"]})
     return rows, provenance, states
@@ -115,15 +120,17 @@ def collect():
 def campaign_complete(states):
     main = states.get("v4_formal",{})
     external = states.get("v4_external",{})
-    recovery = states.get("v4_recovery",{})
-    return (main.get("completed",0)+recovery.get("completed",0) == 93
+    recoveries = [states[k] for k in BATCHES if k.startswith("v4_recovery") and k in states]
+    current = recoveries[-1] if recoveries else main
+    return (main.get("completed",0)+sum(s.get("completed",0) for s in recoveries) == 93
             and external.get("completed",0) == 27
-            and (recovery or main).get("queue_status") == "completed"
+            and current.get("queue_status") == "completed"
             and external.get("queue_status") == "completed")
 
 
 def campaign_halted(states):
-    current = states.get("v4_recovery",states.get("v4_formal",{}))
+    recoveries = [states[k] for k in BATCHES if k.startswith("v4_recovery") and k in states]
+    current = recoveries[-1] if recoveries else states.get("v4_formal",{})
     return any(s.get("queue_status") in {"halted","halting_after_failure"}
                for s in (current,states.get("v4_external",{})))
 
@@ -300,8 +307,10 @@ def main():
         for key,item in state.get("failed",{}).items():
             lines += ["",f"保留失败尝试：`{name}/{key}`，退出码 `{item.get('exit_code')}`；失败不计零值。仅有明确授权的独立成功尝试才能补齐该种子。"]
     if "v4_recovery" in states:
-        lines += ["", "用户已明确授权失败窗口的第二次尝试及 22 个未启动窗口续跑。原始主队列保持 halted，不覆盖失败；恢复结果来源和尝试身份单列。最终 120 格齐全不等于 120 次首次运行全部成功。", "",
+        lines += ["", "用户明确授权的恢复批次单独登记；此前中止队列保持 halted，不覆盖失败。恢复结果来源和尝试身份单列。最终 120 格齐全不等于 120 次首次运行全部成功。", "",
                   "恢复登记见 [恢复批次](../v4_recovery/README.md)，此前系统诊断见 [中止审计](EXECUTION_AUDIT_CN.md)。"]
+    if "v4_recovery2" in states:
+        lines += ["", "第二次恢复授权见 [恢复批次二](../v4_recovery2/README.md)：C2/V4/seed1 的第二尝试及 7 格续跑。全部补齐须报告 122 次尝试、120 个成功窗口、2 次保留失败。"]
     if halted:
         lines += ["", "异常诊断、恢复前提和证据缺口见 [中止审计与阶段结论](EXECUTION_AUDIT_CN.md)。"]
     tables = [("共同负载五方法", [(sc,load,c) for sc,load in (("single",350),("multi",160)) for c in ("v4","v3","helix","swarm","separate")]),
