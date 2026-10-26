@@ -1,8 +1,13 @@
-# RCAPS V3 benchmark protocol
+# RCAPS V4 benchmark protocol
 
-The active research method is `rcaps_v3`. The registered external systems are
+The active research method is `rcaps_v4`; frozen `rcaps_v3` is an internal
+baseline. The registered external systems are
 Helix ILP (`helix`), Swarm (`swarm`), and Separate Pipelines (`separate`).
-The repository has one RCAPS method identity, `rcaps_v3`.
+V4 reuses V3's deployed layouts and route prices, adding static sparse admission
+and slow-link 4 MiB transfer chunks. The frozen paper runs use the dedicated
+[`v4_formal`](../experiments/v4_formal/README.md) and
+[`v4_external`](../experiments/v4_external/README.md) manifests, which include
+full runtime/data hashes and preserve every failed attempt.
 
 The primary C1 comparison uses the Helix event simulator, 24 heterogeneous
 GPUs, offered loads of 700 token/s (single cluster) and 320 token/s (three
@@ -12,10 +17,8 @@ seed, request trace, and measurement window. The four-method common-load
 experiment instead uses 350/160 token/s and reports its results separately.
 
 ```powershell
-python -m benchmarks.manifest --output paper/V3_RUN_MANIFEST.json
 python -m benchmarks.run --dry-run
-python -m benchmarks.run --methods rcaps_v3 helix --seeds 0 1 2
-python -m benchmarks.compare --baselines helix --seeds 0 1 2
+python -m benchmarks.run --methods rcaps_v4 rcaps_v3 helix --seeds 0 1 2 --results-dir benchmarks/v4_ad_hoc
 python -m experiments.v3_release.verify
 ```
 

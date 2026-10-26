@@ -65,7 +65,14 @@ def main():
     for p in list((ROOT / "rcaps/v3").glob("*.py")) + [ROOT / f"benchmarks/{n}.py" for n in ("layout", "resource_profile", "accumulator")]:
         name = p.relative_to(ROOT).as_posix()
         if name == "rcaps/v3/topology.py":
-            continue  # only read-only machine-count lookup is used for frozen deployments
+            old = ast.parse(git_blob(name).decode("utf-8"))
+            new = ast.parse(p.read_text(encoding="utf-8"))
+            select = lambda t: ast.dump(next(n for n in t.body if isinstance(n, ast.FunctionDef)
+                                             and n.name == "profile_at"), include_attributes=False)
+            assert select(old) == select(new), "Runtime interpolation helper changed"
+            source_checks[name] = {"runtime_profile_at_ast_equal": True,
+                                   "planning_constructor_not_used_in_historical_fixed_layout_runs": True}
+            continue
         old = git_blob(name)
         equal = old.replace(b"\r\n", b"\n") == p.read_bytes().replace(b"\r\n", b"\n")
         source_checks[name] = {"current_sha256": sha(p.read_bytes()), "historical_sha256": sha(old),

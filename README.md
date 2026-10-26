@@ -1,8 +1,10 @@
-# RCAPS V3
+# RCAPS V4 — formal evaluation in progress
 
-RCAPS V3 is the **current research method** for heterogeneous LLM serving. It
-combines a physical-resource and layer-compatibility graph (M1), multistage
-shared/replicated placement (M2), and live resource-aware DAG routing (M3).
+RCAPS V4 is the **current integrated research method** for heterogeneous LLM
+serving. It retains frozen V3's physical-resource and layer-compatibility graph
+(M1), multistage shared/replicated placement (M2), and live resource-aware DAG
+routing (M3), and adds static sparse edge admission plus fixed 4 MiB Prompt
+activation-transfer chunks on slow compute links. Frozen V3 remains a baseline.
 M1 defines legal execution relationships; performance claims concern M2, M3,
 and the complete system. Results are from the Helix event simulator, not a
 physical GPU deployment.
@@ -11,6 +13,10 @@ physical GPU deployment.
 
 | Purpose | Entry |
 | --- | --- |
+| V4 implementation and integrated adapter | [`rcaps/v4/`](rcaps/v4/), [`rcaps/v4_method.py`](rcaps/v4_method.py) |
+| V4 formal protocol, queue and failure policy | [`experiments/v4_formal/README.md`](experiments/v4_formal/README.md) |
+| Uniform external-baseline resource accounting | [`experiments/v4_external/README.md`](experiments/v4_external/README.md) |
+| V4 paper plan | [`paper/V4_EXPERIMENT_PLAN_20261026_CN.md`](paper/V4_EXPERIMENT_PLAN_20261026_CN.md) |
 | V3 implementation and adopted layouts | [`rcaps/v3/`](rcaps/v3/), [`rcaps/v3_layouts/`](rcaps/v3_layouts/) |
 | Fixed-window protocol and baseline adapters | [`benchmarks/README.md`](benchmarks/README.md), [`baselines/`](baselines/) |
 | Frozen V3 identity and V3–Helix evidence | [`experiments/v3_release/README_CN.md`](experiments/v3_release/README_CN.md) |
@@ -25,6 +31,12 @@ three-cluster layout is `1→3`.
 
 ## Run the current method
 
+For the frozen paper campaign, follow the V4 formal and external batch READMEs
+above. All formal windows use seeds **0/1/2**, 1800 seconds, zero warmup and no
+tail drain. Historical intermittent runtime failures remain documented; a fresh
+failure stops new dispatch rather than being silently retried. The complete
+paper claim is pending the campaign and its audits.
+
 Install [`requirements.txt`](requirements.txt), then run from the repository
 root. Layout regeneration needs a working Gurobi license; the adopted layouts
 are included.
@@ -32,11 +44,10 @@ are included.
 ```powershell
 python -m experiments.v3_release.verify
 python -m benchmarks.run --dry-run
-python -m benchmarks.run --methods rcaps_v3 helix --seeds 0 1 2
-python -m benchmarks.compare --baselines helix --seeds 0 1 2
+python -m benchmarks.run --methods rcaps_v4 rcaps_v3 helix --seeds 0 1 2 --results-dir benchmarks/v4_ad_hoc
 ```
 
-The benchmark defaults are V3 and Helix ILP on the C1 single- and
+The shared benchmark defaults are V4 and Helix ILP on the C1 single- and
 three-cluster topologies, with offered loads of 700/320 token/s, seeds 0/1/2,
 1800-second windows, zero warmup, and no tail drain. Swarm and Separate
 Pipelines are separate external comparisons at a common lower load; see the
@@ -50,7 +61,7 @@ verification covers the current tree.
 
 ## Repository scope
 
-The current tree contains the V3 method, its controlled experiments, and
+The current tree contains V4, frozen V3, their controlled experiments, and
 the Helix simulator and artifact inputs needed to reproduce the comparisons.
 The paper evidence index separates the high-load and common-load protocols.
 
