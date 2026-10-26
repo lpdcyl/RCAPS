@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "seeds": [0, 1, 2],
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "primary_table": {"single": 350, "multi": 160},
+  "primary_table_new_methods": ["helix", "swarm", "separate"],
+  "additional_v3_anchor": {"single": 350},
+  "additional_helix_resource_anchors": {"single": 700, "multi": 320},
+  "method_semantics": "Original baseline adapters, placements, trace partitioning and scheduling. Only passive resource profiling added. SP sums all three subclusters with disjoint GPU labels.",
+  "concurrency": 2,
+  "failure_policy": "Preserve exceptions and process crashes, stop new dispatch, no automatic retries. Numeric regressions are reported, not filtered.",
+  "analysis": "Paired seeds 0/1/2 only; no new tuning, no held-out claim. Require exact original end-to-end and per-request parity when historical anchors exist. GPU work is not energy consumption."
+}
