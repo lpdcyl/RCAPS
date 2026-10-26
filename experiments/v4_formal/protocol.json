@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "registered_on": "2026-10-26",
+  "context": "User authorized execution of the V4 paper plan with formal seeds 0/1/2 only. These are known seeds; no held-out or statistical-significance claim. No parameter selection on formal outcomes.",
+  "seeds": [0, 1, 2],
+  "duration_s": 1800,
+  "warmup_s": 0,
+  "drain_tail": false,
+  "model": "LLaMA70B",
+  "chunk_bytes": 4194304,
+  "slow_link_threshold_Bps": 50000000,
+  "first_batch": {"scenario": "multi", "loads_in_order": [320, 160], "methods": ["v3", "spatial", "temporal", "v4"]},
+  "primary_metrics": ["tpot_p95_s", "gpu_seconds_per_output_token"],
+  "required_companion_metrics": ["ttft_p95_s", "output_throughput_tokens_per_s", "completion_fraction", "backlog_at_window_end", "common_completed_tpot_p95_s"],
+  "analysis": "All individual seeds and paired relative changes; mean and sample SD. No dropping failures or outliers, no zero substitution, no alternate seeds, no automatic retries. Factorial interaction is descriptive; no synergy claim unless supported.",
+  "anchor_numeric_checks": {"v4_vs_spatial_each_seed_at_multi_320": {"tpot_relative_max": -0.10, "common_completed_tpot_relative_max": -0.05, "gpu_work_relative_max": 0.05, "ttft_relative_max": 0.02, "throughput_relative_min": -0.01, "completion_absolute_min": -0.01}, "scope": "Inherited historical anchor checks only. Other loads are descriptive and cannot change default parameters. Numerical guard failures are retained and do not stop acquisition."},
+  "runtime_failure_policy": "Any simulation exception, process crash, source drift or anchor semantic parity mismatch stops new dispatch. Already running processes may finish. Preserve attempt outputs; never auto-retry. Historical intermittent TypeError root cause remains unresolved.",
+  "engineering_checks": "seed 0, 60 s parity fixtures only; not development tuning or formal performance evidence",
+  "concurrency": 2,
+  "worker_isolation": "one new Python process per window; fixed PYTHONHASHSEED=0; no GPU allocation"
+}
