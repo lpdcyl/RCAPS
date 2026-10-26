@@ -12,10 +12,16 @@ from .build_report import ROOT, HERE, collect, digest, paired, read, write
 def main():
     main_manifest = validate_main()
     external_manifest = validate_external()
+    recovery_folder = ROOT / "experiments/v4_recovery"
+    if (recovery_folder / "index.json").exists():
+        from experiments.v4_recovery.run import validate as validate_recovery
+        validate_recovery()
     rows, provenance, states = collect()
     campaign = {}
-    for name in ("v4_formal", "v4_external"):
+    for name in ("v4_formal", "v4_external", "v4_recovery"):
         folder = ROOT / "experiments" / name
+        if not (folder / "index.json").exists():
+            continue
         manifest = read(folder / "manifest.json")
         index = read(folder / "index.json")
         expected = {j["key"]: j for j in manifest["jobs"]}
@@ -33,7 +39,11 @@ def main():
             assert row["seed"] == expected[key]["seed"] in (0, 1, 2)
             assert row["duration_s"] == 1800 and row["warmup_s"] == 0
             assert row["evaluation_protocol"] == "fixed_window_no_tail_drain"
-            assert row["manifest_sha256"] == digest(folder / "manifest.json")
+            if name == "v4_recovery":
+                assert row["manifest_sha256"] == manifest["core_manifest_sha256"]
+                assert row["recovery_manifest_sha256"] == digest(folder / "manifest.json")
+            else:
+                assert row["manifest_sha256"] == digest(folder / "manifest.json")
             assert row["environment"] == main_manifest["environment"]
             assert row["arrivals"] == len(row["query_samples"])
             gpu = sum(row["gpu_busy_fraction"].values()) / row["output_throughput_tokens_per_s"]

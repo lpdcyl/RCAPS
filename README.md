@@ -1,7 +1,9 @@
-# RCAPS V4 — formal evaluation halted with failure retained
+# RCAPS V4 — authorized recovery in progress
 
-The current campaign has 97 successful windows, one preserved native-process
-failure, and 22 unstarted windows. See the
+The original campaign stopped with 97 successful windows, one preserved native-process
+failure, and 22 unstarted windows. The user authorized a separate second attempt
+and continuation in [`experiments/v4_recovery`](experiments/v4_recovery/README.md).
+The failure remains recorded. See the
 [execution audit and interim conclusions](experiments/v4_paper/EXECUTION_AUDIT_CN.md)
 and [verified partial results](experiments/v4_paper/RESULTS_CN.md).
 

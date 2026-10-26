@@ -5,7 +5,8 @@ V4 将冻结 V3 的放置与路由同静态稀疏准入、慢链路固定 4 MiB 
 [`V4_EXPERIMENT_PLAN_20261026_CN.md`](V4_EXPERIMENT_PLAN_20261026_CN.md)，
 执行协议见 [`../experiments/v4_formal/README.md`](../experiments/v4_formal/README.md)，
 外部比较资源计量见 [`../experiments/v4_external/README.md`](../experiments/v4_external/README.md)。
-本批因原生进程崩溃中止，97 格成功、1 格失败、22 格未启动；详见
+原批次因原生进程崩溃中止，97 格成功、1 格失败、22 格未启动；用户随后明确
+授权[独立重跑与续跑](../experiments/v4_recovery/README.md)，原失败仍保留。详见
 [`中止审计与阶段结论`](../experiments/v4_paper/EXECUTION_AUDIT_CN.md)。
 只对齐全三种子的组写正式均值，不能将部分完成写成全部验证。
 

@@ -54,13 +54,27 @@ def collect():
         row["_evidence"] = "audited_historical"
         rows[k] = row
         provenance.append({"key": list(k), "source": item["source"], "sha256": item["sha256"], "kind": "audited_historical"})
-    for directory in ("v4_formal", "v4_external"):
+    for directory in ("v4_formal", "v4_external", "v4_recovery"):
         folder = ROOT / "experiments" / directory
         if not (folder / "index.json").exists():
+            if directory == "v4_recovery":
+                continue
             states[directory] = {"queue_status": "not_started"}
             continue
         index = read(folder / "index.json")
         assert digest(folder / "manifest.json") == index["manifest_sha256"]
+        if directory == "v4_recovery":
+            recovery = read(folder / "manifest.json")
+            original = ROOT / "experiments/v4_formal"
+            assert digest(original / "manifest.json") == recovery["core_manifest_sha256"]
+            assert digest(original / "index.json") == recovery["original_index_sha256"]
+            for category in ("sources_sha256", "original_failure_files_sha256"):
+                for name, expected in recovery[category].items():
+                    assert digest(ROOT / name) == expected, name
+            original_jobs = read(original / "index.json")["jobs"]
+            allowed = {j["key"] for j in recovery["jobs"]}
+            assert set(index["jobs"]) <= allowed
+            assert all(original_jobs.get(k,{}).get("status") != "completed" for k in allowed)
         states[directory] = {"queue_status": index["queue_status"], "selected_windows": index["selected_windows"],
                              "completed": sum(j["status"] == "completed" for j in index["jobs"].values()),
                              "failed": {k: v for k, v in index["jobs"].items() if v["status"] == "failed"},
@@ -72,6 +86,10 @@ def collect():
             path = folder / "runs" / key / "result.json"
             assert digest(path) == item["result_sha256"], path
             row = read(path)
+            if directory == "v4_recovery":
+                assert row["recovery_manifest_sha256"] == digest(folder / "manifest.json")
+                assert row["manifest_sha256"] == recovery["core_manifest_sha256"]
+                assert row["attempt_number"] == (2 if key in recovery["retry_keys"] else 1)
             if len(row["query_samples"]) != row["arrivals"]:
                 raise RuntimeError(f"Missing query samples: {path}")
             for field in ("gpu_busy_fraction", "link_occupied_fraction"):
@@ -87,10 +105,27 @@ def collect():
             cell = "v3" if cell == "rcaps_v3" else cell
             k = (job["scenario"], job["load"], cell, job["seed"])
             row["_source"] = path.relative_to(ROOT).as_posix()
-            row["_evidence"] = "fresh_formal"
+            row["_evidence"] = ("authorized_second_attempt" if directory == "v4_recovery" and row["attempt_number"] == 2
+                                else "authorized_continuation" if directory == "v4_recovery" else "fresh_formal")
             rows[k] = row
-            provenance.append({"key": list(k), "source": row["_source"], "sha256": item["result_sha256"], "kind": "fresh_formal"})
+            provenance.append({"key": list(k), "source": row["_source"], "sha256": item["result_sha256"], "kind": row["_evidence"]})
     return rows, provenance, states
+
+
+def campaign_complete(states):
+    main = states.get("v4_formal",{})
+    external = states.get("v4_external",{})
+    recovery = states.get("v4_recovery",{})
+    return (main.get("completed",0)+recovery.get("completed",0) == 93
+            and external.get("completed",0) == 27
+            and (recovery or main).get("queue_status") == "completed"
+            and external.get("queue_status") == "completed")
+
+
+def campaign_halted(states):
+    current = states.get("v4_recovery",states.get("v4_formal",{}))
+    return any(s.get("queue_status") in {"halted","halting_after_failure"}
+               for s in (current,states.get("v4_external",{})))
 
 
 def group(rows, sc, load, cell):
@@ -221,7 +256,7 @@ def main():
     p.add_argument("--plots", action="store_true")
     args = p.parse_args()
     rows, provenance, states = collect()
-    complete = all(v.get("queue_status") == "completed" for v in states.values())
+    complete = campaign_complete(states)
     if args.require_complete and not complete:
         raise RuntimeError(f"Formal batches incomplete: {states}")
     effects = []
@@ -254,8 +289,8 @@ def main():
             "mechanism":[{"scenario":k[0],"load":k[1],"cell":k[2],"seed":k[3],**mechanism(r)}
                          for k,r in sorted(rows.items()) if r.get("phase_link_profile",{}).get("schema")=="v4_chunk_aware_v1"]}
     write(HERE / "analysis.json",data)
-    halted = any(v.get("queue_status") in {"halted", "halting_after_failure"} for v in states.values())
-    status = "本次 93+27 个窗口均完成。" if complete else ("因异常中止；失败保留，未自动重试。" if halted else "执行中。")
+    halted = campaign_halted(states)
+    status = "本次 93+27 个窗口均已有成功结果；尝试失败另列。" if complete else ("因异常中止；失败保留。" if halted else "执行中。")
     lines = ["# V4 正式实验结果", "", "状态：" + status + "只对齐全的 0/1/2 三种子组给均值。", "",
              "主协议：1800 秒、零预热、不排空。TPOT 为请求平均 token 间隔的 P95；GPU 秒/token 为忙碌工作量，不等于能耗。",
              "历史负载曲线 71 个成功窗口已审核复用，三集群负载 400 的 Helix seed 0 失败保留，不计零值、不生成该点三种子均值。", "",
@@ -263,7 +298,10 @@ def main():
     for name,state in states.items(): lines.append(f"| {name} | {state.get('completed',0)} | {len(state.get('failed',{}))} | {state.get('unstarted',0)} | {state.get('selected_windows','—')} | {state['queue_status']} |")
     for name,state in states.items():
         for key,item in state.get("failed",{}).items():
-            lines += ["",f"保留失败：`{name}/{key}`，退出码 `{item.get('exit_code')}`；该组不生成三种子均值。"]
+            lines += ["",f"保留失败尝试：`{name}/{key}`，退出码 `{item.get('exit_code')}`；失败不计零值。仅有明确授权的独立成功尝试才能补齐该种子。"]
+    if "v4_recovery" in states:
+        lines += ["", "用户已明确授权失败窗口的第二次尝试及 22 个未启动窗口续跑。原始主队列保持 halted，不覆盖失败；恢复结果来源和尝试身份单列。最终 120 格齐全不等于 120 次首次运行全部成功。", "",
+                  "恢复登记见 [恢复批次](../v4_recovery/README.md)，此前系统诊断见 [中止审计](EXECUTION_AUDIT_CN.md)。"]
     if halted:
         lines += ["", "异常诊断、恢复前提和证据缺口见 [中止审计与阶段结论](EXECUTION_AUDIT_CN.md)。"]
     tables = [("共同负载五方法", [(sc,load,c) for sc,load in (("single",350),("multi",160)) for c in ("v4","v3","helix","swarm","separate")]),
