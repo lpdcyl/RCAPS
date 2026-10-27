@@ -1,0 +1,85 @@
+{
+  "status": "blocked_preflight",
+  "jobs": {},
+  "finished_at": "2026-10-26T17:53:22.026310+00:00",
+  "failure": {
+    "status": "failed",
+    "kind": "engineering_only",
+    "exception_type": "AssertionError",
+    "error": "AssertionError('Inference layer is not continuous!')",
+    "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\neighbor_run.py\", line 86, in after_validation\n    row=evaluate(dict(scenario='multi',load=320,seed=0,cell='parallax_p2'),60)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\parallax_mechanism.py\", line 82, in evaluate\n    row=diagnostics.evaluate(dict(job,condition='reference',cell='v4'),duration,duration)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\diagnostics.py\", line 180, in evaluate\n    row = fixed_window.run(job['scenario'], 'queue_dag', job['load'], duration, 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\diagnostics.py\", line 123, in simulate\n    return original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 267, in finish_transmission\n    self.node_out.receive_request(request=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 59, in receive_request\n    result = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py\", line 332, in receive_request\n    assert last_layer_inferred + 1 == min(cur_layers_to_infer), \"Inference layer is not continuous!\"\nAssertionError: Inference layer is not continuous!\n",
+    "frames": [
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\neighbor_run.py",
+        "function": "after_validation",
+        "line": 86
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\parallax_mechanism.py",
+        "function": "evaluate",
+        "line": 82
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\diagnostics.py",
+        "function": "evaluate",
+        "line": 180
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py",
+        "function": "run",
+        "line": 197
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\diagnostics.py",
+        "function": "simulate",
+        "line": 123
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+        "function": "simulate",
+        "line": 1450,
+        "locals": {}
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+        "function": "simulate_next_event",
+        "line": 1330,
+        "locals": {}
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py",
+        "function": "handle",
+        "line": 156
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+        "function": "handle_event",
+        "line": 1169,
+        "locals": {}
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+        "function": "handle_finish_transmission",
+        "line": 793,
+        "locals": {}
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py",
+        "function": "finish_transmission",
+        "line": 267,
+        "locals": {}
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py",
+        "function": "receive_request",
+        "line": 59
+      },
+      {
+        "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py",
+        "function": "receive_request",
+        "line": 332,
+        "locals": {}
+      }
+    ]
+  }
+}

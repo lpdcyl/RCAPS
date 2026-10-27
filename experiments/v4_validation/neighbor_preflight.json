@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "kind": "engineering_only",
+  "duration_s": 60,
+  "identity": {
+    "display_name": "Boundary-constrained Parallax-inspired DAG latency routing + common RCAPS placement/S/T",
+    "kind": "mechanism_control_not_full_system",
+    "source": "arXiv:2509.26182v1, section 3.3, P2 recurrence",
+    "fixed": "RCAPS M2 layout, legal/admitted links, Prompt/Decode execution, S/T and batch profiles",
+    "changed": "M3 replaced by per-layer min-sum DP with live GPU latency and physical one-way latency",
+    "tau_definition": "Profiled Prompt layer service plus current unfinished GPU wait divided by loaded layer count",
+    "rho_definition": "Physical one-way propagation latency; no payload serialization or link queue price in route objective",
+    "deviations": [
+      "No Parallax phase-1 allocation or water-filling",
+      "No distributed DHT, periodic telemetry, membership changes, or original inference engine",
+      "Live latency definition is an explicit simulator adaptation, not verified original code",
+      "GPU handoff is restricted to resident-span ends, as required by the common executor and RCAPS routes; arbitrary early per-layer handoffs are not evaluated",
+      "Common S admissibility constrains candidate links; this is not unrestricted Parallax routing"
+    ],
+    "allowed_claim": "Difference between these routing mechanisms under common simulated execution; not RCAPS versus full Parallax"
+  }
+}

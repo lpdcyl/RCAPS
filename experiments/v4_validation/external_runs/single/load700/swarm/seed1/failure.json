@@ -1,0 +1,92 @@
+{
+  "exception_type": "AssertionError",
+  "error": "AssertionError('Exceed KV-cache capacity!')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\external_high.py\", line 66, in one\n    row = evaluate(job['scenario'], job['method'], job['load'], 1800, job['seed'], ROOT)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py\", line 22, in evaluate\n    row = adapter.evaluate(scenario, offered, duration, 0, seed, solution, cluster)\n  File \"D:\\PythonProject\\Helix-GREEN\\baselines\\swarm.py\", line 25, in evaluate\n    result = run(scenario, NAME, offered, duration, warmup, seed,\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py\", line 17, in profiled\n    return original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1229, in handle_event\n    trigger_network_send = self.handle_finish_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 972, in handle_finish_execution\n    current_inference_batch, trigger_network_send = execution_node.finish_execution(\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 78, in finish_execution\n    batch, trigger = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py\", line 661, in finish_execution\n    self.kv_cache.initialize_query_kv_cache(layers=kv_update_layer_ids,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\kv_cache.py\", line 97, in initialize_query_kv_cache\n    assert self.available_capacity >= total_num_tokens, \"Exceed KV-cache capacity!\"\nAssertionError: Exceed KV-cache capacity!\n",
+  "frames": [
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\experiments\\v4_validation\\external_high.py",
+      "function": "one",
+      "line": 66
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py",
+      "function": "evaluate",
+      "line": 22
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\baselines\\swarm.py",
+      "function": "evaluate",
+      "line": 25
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py",
+      "function": "profiled",
+      "line": 17
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py",
+      "function": "run",
+      "line": 197
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+      "function": "simulate",
+      "line": 1450,
+      "locals": {}
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+      "function": "simulate_next_event",
+      "line": 1330,
+      "locals": {}
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+      "function": "handle_event",
+      "line": 1229,
+      "locals": {}
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py",
+      "function": "handle_finish_execution",
+      "line": 972,
+      "locals": {}
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py",
+      "function": "finish_execution",
+      "line": 78
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py",
+      "function": "finish_execution",
+      "line": 661,
+      "locals": {}
+    },
+    {
+      "file": "D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\kv_cache.py",
+      "function": "initialize_query_kv_cache",
+      "line": 97,
+      "locals": {
+        "query_uid": {
+          "type": "int",
+          "repr": "30000483"
+        },
+        "num_tokens": {
+          "type": "int",
+          "repr": "1232"
+        }
+      }
+    }
+  ],
+  "job": {
+    "key": "single/load700/swarm/seed1",
+    "scenario": "single",
+    "load": 700,
+    "method": "swarm",
+    "seed": 1
+  },
+  "pid": 54336,
+  "elapsed_wall_s": 254.7892488000216,
+  "finished_at": "2026-10-26T14:06:13.897633+00:00"
+}

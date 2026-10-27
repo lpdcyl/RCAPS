@@ -1,0 +1,6446 @@
+{
+  "audit_date": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "head": "fc8bf99a1cc0dcc5bcc366f8aa1ef95883feb6b5",
+  "fetched_head": "fc8bf99a1cc0dcc5bcc366f8aa1ef95883feb6b5",
+  "scope": "Offline source and frozen-result review; no new simulation, replan, retry, or parameter selection.",
+  "integrity": {
+    "checked_at": "2026-10-26T13:18:39.016583+00:00",
+    "status": "passed_for_recorded_checks",
+    "scope": "File integrity, protocol fields, accounting and trace pairing; does not certify host stability or numerical correctness",
+    "main_source_files": 177,
+    "external_source_files": 67,
+    "campaign": {
+      "v4_formal": {
+        "counts": {
+          "completed": 70,
+          "failed": 1
+        },
+        "unstarted": [
+          "C2/load160/v3/seed0",
+          "C2/load160/v3/seed1",
+          "C2/load160/v3/seed2",
+          "C2/load160/v4/seed0",
+          "C2/load160/v4/seed1",
+          "C2/load160/v4/seed2",
+          "C3/load400/v3/seed0",
+          "C3/load400/v3/seed1",
+          "C3/load400/v3/seed2",
+          "C3/load400/v4/seed0",
+          "C3/load400/v4/seed1",
+          "C3/load400/v4/seed2",
+          "multi/load320/single_boundary/seed0",
+          "multi/load320/single_boundary/seed1",
+          "multi/load320/single_boundary/seed2",
+          "multi/load320/static/seed0",
+          "multi/load320/static/seed1",
+          "multi/load320/static/seed2",
+          "single/load700/single_boundary/seed0",
+          "single/load700/single_boundary/seed1",
+          "single/load700/single_boundary/seed2",
+          "single/load700/static/seed2"
+        ],
+        "manifest_sha256": "0f1f759cb244e4d3bdc7d917b3fe2cccbc811e823d8591625dd6935c051bc0b3",
+        "index_sha256": "6d677a96c7af87e37baf3cf421e28eac746d3460914a8cf14ca84d8900be73b2"
+      },
+      "v4_external": {
+        "counts": {
+          "completed": 27
+        },
+        "unstarted": [],
+        "manifest_sha256": "0d07b4cf7f7f1488e681acc5ae586eadc1be27c87b618b0343cfb8f9d5345c0b",
+        "index_sha256": "9d55f390c9c9d5487328d834be949cd78c56e4a4f2b28feff525b419648b452f"
+      },
+      "v4_recovery": {
+        "counts": {
+          "completed": 15,
+          "failed": 1
+        },
+        "unstarted": [
+          "C2/load160/v4/seed2",
+          "C3/load400/v3/seed0",
+          "C3/load400/v3/seed1",
+          "C3/load400/v3/seed2",
+          "C3/load400/v4/seed0",
+          "C3/load400/v4/seed1",
+          "C3/load400/v4/seed2"
+        ],
+        "manifest_sha256": "76da52618c94031024e31c4ee3ae1020a4664e560626824fc115b5a99e5ed2d9",
+        "index_sha256": "3f803345d6b061d49309c2623e5ffb3e89263656dba3986d0ae399ca324bc711"
+      },
+      "v4_recovery2": {
+        "counts": {
+          "completed": 8
+        },
+        "unstarted": [],
+        "manifest_sha256": "3800f6e03be063a7fffcb11b3d0cddab56ad1553d6e367f94cc20975ca80b97e",
+        "index_sha256": "cb747d89bf9c194f4d4329b8fac8853a41090799ab07e4955f43d9114853d2e5"
+      }
+    },
+    "trace_pairing": [
+      {
+        "scenario": "C2",
+        "load": 160,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "C3",
+        "load": 400,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 50,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 50,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 100,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 100,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 160,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 160,
+        "baseline": "separate",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 160,
+        "baseline": "spatial",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 160,
+        "baseline": "swarm",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 160,
+        "baseline": "temporal",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 160,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 240,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 240,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "all4",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "canonical4",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "chunk1",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "chunk2",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "chunk8",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "single_boundary",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "spatial",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "static",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "temporal",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 320,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "multi",
+        "load": 400,
+        "baseline": "helix",
+        "paired_seeds": [
+          1,
+          2
+        ],
+        "complete": false
+      },
+      {
+        "scenario": "multi",
+        "load": 400,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 100,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 100,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 200,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 200,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 350,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 350,
+        "baseline": "separate",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 350,
+        "baseline": "swarm",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 350,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 500,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 500,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 700,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 700,
+        "baseline": "single_boundary",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 700,
+        "baseline": "static",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 700,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 900,
+        "baseline": "helix",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      },
+      {
+        "scenario": "single",
+        "load": 900,
+        "baseline": "v3",
+        "paired_seeds": [
+          0,
+          1,
+          2
+        ],
+        "complete": true
+      }
+    ],
+    "recorded_attempts": 122,
+    "unique_successful_windows": 120,
+    "preserved_failures": [
+      {
+        "batch": "v4_formal",
+        "key": "single/load700/static/seed1",
+        "exit_code": 3221225477,
+        "worker_log_sha256": "2c71f62d390635bb58391ebfbd18265f48c5860bad1f39f891c08c401b0675cc",
+        "result_absent": true
+      },
+      {
+        "batch": "v4_recovery",
+        "key": "C2/load160/v4/seed1",
+        "exit_code": 3221225477,
+        "worker_log_sha256": "971cb524db68f8c812021c57dbd6d7ac0dc5710912c3586da8ea0d8feedd2122",
+        "result_absent": true
+      }
+    ],
+    "failure_worker_log_sha256": "2c71f62d390635bb58391ebfbd18265f48c5860bad1f39f891c08c401b0675cc",
+    "analysis_sha256": "0f664f84a6cf526b5b49bcf0a556e162ee0476b452deeadea46014965254d67c",
+    "report_artifacts_sha256": {
+      "FINAL_RESULTS_CN.md": "946861ac6908261432644714656941029b96d75e15c359f0e3cbc722a6511a5c",
+      "figures/v4_components_pools.pdf": "a98a01ffb38a6547829057df8df8a26667009b48101106931da6792f63e0c56b",
+      "figures/v4_components_pools.png": "3c67735d2e2f72cfb6e61b6ec4049aa543ad259b1251ce71b2eb8885be030529",
+      "figures/v4_factorial_320.pdf": "65ffd5177f5836cafdb9dd0bc362bb6f5cc54fa443d66048219a082f9b5fbac8",
+      "figures/v4_factorial_320.png": "ebf3c3753a7a8fdb8f6821dbcd90821fa11b3d8eecbaa9d8c414f0b564da154e",
+      "figures/v4_gpu_work_curves.pdf": "dc05cb9af5867e606447d0ac96fc274e60a91cbe4fb2aa322654b25bab76bb66",
+      "figures/v4_gpu_work_curves.png": "aa5aa7c5c17171304c5227e2a4b0550afd6af55f4c4bfaba82597ba1118304f9",
+      "figures/v4_load_curves.pdf": "0bf153262f0540ea4d197110b331472cfe1d0d5adfd4fdb75639212dccdf97fe",
+      "figures/v4_load_curves.png": "62f9bb8c03b2e2e411a4fb840630da52df29b1915f83bcd0074e2d1bd41dccef",
+      "figures/v4_mechanism_320.pdf": "e77405dc7cf5544cb647279d994a4bb5b4ed4becc4e3ab61cc968aa3b9468b98",
+      "figures/v4_mechanism_320.png": "38365dcff4b3723a4fa956b2df69dfe77459abf42bb80cc05ad22139537e0e9f"
+    },
+    "figures_visually_checked": [
+      "v4_load_curves.png",
+      "v4_factorial_320.png",
+      "v4_mechanism_320.png",
+      "v4_components_pools.png",
+      "v4_gpu_work_curves.png"
+    ]
+  },
+  "external_and_components": [
+    {
+      "scenario": "single",
+      "load": 350,
+      "cell": "v4",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.39464376793784983,
+            0.39641233486829225,
+            0.39169130203907554
+          ],
+          "mean": 0.39424913494840585,
+          "sd": 0.002385128747238519
+        },
+        "ttft_p95_s": {
+          "values": [
+            3.211889685723719,
+            3.2020322002729245,
+            3.069477512122284
+          ],
+          "mean": 3.161133132706309,
+          "sd": 0.07952897015135567
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            76.86444444444444,
+            76.14333333333333,
+            75.26222222222222
+          ],
+          "mean": 76.09,
+          "sd": 0.802441490501964
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.11841503322642087,
+            0.12312490405981594,
+            0.12356924760890953
+          ],
+          "mean": 0.12170306163171545,
+          "sd": 0.0028561702317829825
+        },
+        "completion_fraction": {
+          "values": [
+            0.944620253164557,
+            0.9484702093397746,
+            0.9518459069020867
+          ],
+          "mean": 0.9483121231354728,
+          "sd": 0.0036154199506643974
+        },
+        "backlog_at_window_end": {
+          "values": [
+            35,
+            32,
+            30
+          ],
+          "mean": 32.333333333333336,
+          "sd": 2.516611478423583
+        }
+      },
+      "sources": [
+        "experiments/v4_formal/runs/single/load350/v4/seed0/result.json",
+        "experiments/v4_formal/runs/single/load350/v4/seed1/result.json",
+        "experiments/v4_formal/runs/single/load350/v4/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "single",
+      "load": 350,
+      "cell": "helix",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            1.0664213223715926,
+            1.097571862068471,
+            1.033237011723623
+          ],
+          "mean": 1.0657433987212288,
+          "sd": 0.03217278240345849
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.537305225798666,
+            5.681864499710762,
+            5.25392488423605
+          ],
+          "mean": 5.491031536581826,
+          "sd": 0.2176901912316297
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            72.71222222222222,
+            71.60055555555556,
+            71.34555555555555
+          ],
+          "mean": 71.8861111111111,
+          "sd": 0.7267055290321722
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.15208460573635488,
+            0.15510005238729083,
+            0.15837739566647152
+          ],
+          "mean": 0.1551873512633724,
+          "sd": 0.0031473031465793356
+        },
+        "completion_fraction": {
+          "values": [
+            0.8876582278481012,
+            0.8808373590982287,
+            0.8924558587479936
+          ],
+          "mean": 0.8869838152314412,
+          "sd": 0.0058385364442666236
+        },
+        "backlog_at_window_end": {
+          "values": [
+            71,
+            74,
+            67
+          ],
+          "mean": 70.66666666666667,
+          "sd": 3.5118845842842465
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/single/load350/helix/seed0/result.json",
+        "experiments/v4_external/runs/single/load350/helix/seed1/result.json",
+        "experiments/v4_external/runs/single/load350/helix/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "single",
+      "load": 350,
+      "cell": "swarm",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            1.3631121415981227,
+            1.453772292820498,
+            1.3535100628669783
+          ],
+          "mean": 1.3901314990951996,
+          "sd": 0.0553232586574512
+        },
+        "ttft_p95_s": {
+          "values": [
+            6.695531984244261,
+            6.346919178874483,
+            6.172488409381799
+          ],
+          "mean": 6.404979857500181,
+          "sd": 0.2663117104129734
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            69.79222222222222,
+            68.52666666666667,
+            69.16055555555556
+          ],
+          "mean": 69.15981481481482,
+          "sd": 0.6327781029492199
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.13547638621880023,
+            0.14159870982440764,
+            0.14447528729532386
+          ],
+          "mean": 0.14051679444617723,
+          "sd": 0.004595972237786373
+        },
+        "completion_fraction": {
+          "values": [
+            0.8401898734177216,
+            0.8260869565217391,
+            0.8443017656500803
+          ],
+          "mean": 0.8368595318631803,
+          "sd": 0.009553177432032928
+        },
+        "backlog_at_window_end": {
+          "values": [
+            101,
+            108,
+            97
+          ],
+          "mean": 102,
+          "sd": 5.5677643628300215
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/single/load350/swarm/seed0/result.json",
+        "experiments/v4_external/runs/single/load350/swarm/seed1/result.json",
+        "experiments/v4_external/runs/single/load350/swarm/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "single",
+      "load": 350,
+      "cell": "separate",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            1.035292866875515,
+            1.0939247275847512,
+            1.0647899045053193
+          ],
+          "mean": 1.064669166321862,
+          "sd": 0.029316116827413
+        },
+        "ttft_p95_s": {
+          "values": [
+            4.309791785229344,
+            4.447529822051592,
+            4.303322485475098
+          ],
+          "mean": 4.353548030918678,
+          "sd": 0.08145486945689988
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            76.89944444444446,
+            75.45555555555556,
+            74.55388888888888
+          ],
+          "mean": 75.6362962962963,
+          "sd": 1.1831771327962863
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.1425743018812283,
+            0.13948631751591745,
+            0.14163337652743493
+          ],
+          "mean": 0.14123133197486024,
+          "sd": 0.0015827639516972564
+        },
+        "completion_fraction": {
+          "values": [
+            0.944620253164557,
+            0.9323671497584541,
+            0.9454253611556982
+          ],
+          "mean": 0.9408042546929031,
+          "sd": 0.007317827852274693
+        },
+        "backlog_at_window_end": {
+          "values": [
+            35,
+            42,
+            34
+          ],
+          "mean": 37,
+          "sd": 4.358898943540674
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/single/load350/separate/seed0/result.json",
+        "experiments/v4_external/runs/single/load350/separate/seed1/result.json",
+        "experiments/v4_external/runs/single/load350/separate/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "v4",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.5333424735480379,
+            0.5187970182115019,
+            0.5245948605784422
+          ],
+          "mean": 0.525578117445994,
+          "sd": 0.007322408298332004
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.010319512095293,
+            4.843891478331727,
+            5.038745272814083
+          ],
+          "mean": 4.964318754413701,
+          "sd": 0.10525707855770763
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            37.21111111111111,
+            34.69222222222222,
+            36.025555555555556
+          ],
+          "mean": 35.9762962962963,
+          "sd": 1.260166720957609
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.11114160914426693,
+            0.11558731425618474,
+            0.11516259412027822
+          ],
+          "mean": 0.11396383917357664,
+          "sd": 0.0024533311134484425
+        },
+        "completion_fraction": {
+          "values": [
+            0.9581881533101045,
+            0.9363957597173145,
+            0.9312714776632303
+          ],
+          "mean": 0.9419517968968831,
+          "sd": 0.014292621132084914
+        },
+        "backlog_at_window_end": {
+          "values": [
+            12,
+            18,
+            20
+          ],
+          "mean": 16.666666666666668,
+          "sd": 4.163331998932265
+        }
+      },
+      "sources": [
+        "experiments/v4_formal/runs/multi/load160/v4/seed0/result.json",
+        "experiments/v4_formal/runs/multi/load160/v4/seed1/result.json",
+        "experiments/v4_formal/runs/multi/load160/v4/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "helix",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            1.6396060155633188,
+            1.4254285650832021,
+            1.5636700417515725
+          ],
+          "mean": 1.5429015407993645,
+          "sd": 0.10858864142898235
+        },
+        "ttft_p95_s": {
+          "values": [
+            12.377189482999231,
+            10.846680419504768,
+            13.704069079308113
+          ],
+          "mean": 12.30931299393737,
+          "sd": 1.429903109171636
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            35.132222222222225,
+            32.085,
+            33.42722222222222
+          ],
+          "mean": 33.54814814814815,
+          "sd": 1.5272059872761172
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.22364250577709635,
+            0.23940542337351722,
+            0.22982224986687685
+          ],
+          "mean": 0.23095672633916348,
+          "sd": 0.007942459973932359
+        },
+        "completion_fraction": {
+          "values": [
+            0.8606271777003485,
+            0.8374558303886925,
+            0.8247422680412371
+          ],
+          "mean": 0.8409417587100927,
+          "sd": 0.018194654641050526
+        },
+        "backlog_at_window_end": {
+          "values": [
+            40,
+            46,
+            51
+          ],
+          "mean": 45.666666666666664,
+          "sd": 5.507570547286102
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/multi/load160/helix/seed0/result.json",
+        "experiments/v4_external/runs/multi/load160/helix/seed1/result.json",
+        "experiments/v4_external/runs/multi/load160/helix/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "swarm",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            2.7996446055285213,
+            2.4048198027064975,
+            2.5473787854349443
+          ],
+          "mean": 2.583947731223321,
+          "sd": 0.19993654512849177
+        },
+        "ttft_p95_s": {
+          "values": [
+            18.356077729821028,
+            17.92311262656515,
+            17.902387736161643
+          ],
+          "mean": 18.060526030849275,
+          "sd": 0.2561649572919316
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            30.967222222222222,
+            28.74888888888889,
+            30.19611111111111
+          ],
+          "mean": 29.97074074074074,
+          "sd": 1.1262080390962868
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.2110483087483038,
+            0.2310305852285343,
+            0.21772294599655112
+          ],
+          "mean": 0.21993394665779642,
+          "sd": 0.010172965952764894
+        },
+        "completion_fraction": {
+          "values": [
+            0.7038327526132404,
+            0.734982332155477,
+            0.7319587628865979
+          ],
+          "mean": 0.7235912825517717,
+          "sd": 0.017178041849402043
+        },
+        "backlog_at_window_end": {
+          "values": [
+            85,
+            75,
+            78
+          ],
+          "mean": 79.33333333333333,
+          "sd": 5.131601439446884
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/multi/load160/swarm/seed0/result.json",
+        "experiments/v4_external/runs/multi/load160/swarm/seed1/result.json",
+        "experiments/v4_external/runs/multi/load160/swarm/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "separate",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            2.1013934899756577,
+            2.542595349930847,
+            2.2843407588546696
+          ],
+          "mean": 2.309443199587058,
+          "sd": 0.22166950558212087
+        },
+        "ttft_p95_s": {
+          "values": [
+            17.33123871605877,
+            17.577242874204696,
+            16.719538439625126
+          ],
+          "mean": 17.209340009962865,
+          "sd": 0.4416544975263552
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            33.28944444444444,
+            29.94611111111111,
+            31.714444444444442
+          ],
+          "mean": 31.65,
+          "sd": 1.6725980566948098
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.28113753933783586,
+            0.31078106832032404,
+            0.2945347093629758
+          ],
+          "mean": 0.29548443900704524,
+          "sd": 0.014844567775166857
+        },
+        "completion_fraction": {
+          "values": [
+            0.7874564459930313,
+            0.7703180212014135,
+            0.7766323024054983
+          ],
+          "mean": 0.7781355898666477,
+          "sd": 0.008667543249250172
+        },
+        "backlog_at_window_end": {
+          "values": [
+            61,
+            65,
+            65
+          ],
+          "mean": 63.666666666666664,
+          "sd": 2.309401076758503
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/multi/load160/separate/seed0/result.json",
+        "experiments/v4_external/runs/multi/load160/separate/seed1/result.json",
+        "experiments/v4_external/runs/multi/load160/separate/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "v4",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.5074428118269296,
+            0.5050282920064837,
+            0.5066339353303448
+          ],
+          "mean": 0.5063683463879194,
+          "sd": 0.0012289750223603302
+        },
+        "ttft_p95_s": {
+          "values": [
+            3.4441187518096967,
+            3.496284167999622,
+            3.5920228211635274
+          ],
+          "mean": 3.510808580324282,
+          "sd": 0.075014147651548
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            155.40277777777777,
+            161.90333333333334,
+            153.785
+          ],
+          "mean": 157.03037037037038,
+          "sd": 4.296932308446867
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.05359012730713312,
+            0.05153090535630762,
+            0.05478346065998275
+          ],
+          "mean": 0.053301497774474495,
+          "sd": 0.0016453751110942325
+        },
+        "completion_fraction": {
+          "values": [
+            0.9466357308584686,
+            0.935708752904725,
+            0.9392265193370166
+          ],
+          "mean": 0.9405236677000701,
+          "sd": 0.005577782463240129
+        },
+        "backlog_at_window_end": {
+          "values": [
+            69,
+            83,
+            77
+          ],
+          "mean": 76.33333333333333,
+          "sd": 7.023769168568493
+        }
+      },
+      "sources": [
+        "experiments/v4_formal/runs/single/load700/v4/seed0/result.json",
+        "experiments/v4_formal/runs/single/load700/v4/seed1/result.json",
+        "experiments/v4_formal/runs/single/load700/v4/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "helix",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            1.6664643282103238,
+            1.7076062446955207,
+            1.7429101023750648
+          ],
+          "mean": 1.7056602250936364,
+          "sd": 0.038260022753911646
+        },
+        "ttft_p95_s": {
+          "values": [
+            6.398921780319483,
+            6.599190518599925,
+            6.725523762558377
+          ],
+          "mean": 6.574545353825928,
+          "sd": 0.16468986553715675
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            141.5677777777778,
+            145.885,
+            139.3661111111111
+          ],
+          "mean": 142.27296296296296,
+          "sd": 3.316163852325939
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.058266928517809145,
+            0.05671430233875479,
+            0.05975680600348293
+          ],
+          "mean": 0.05824601228668229,
+          "sd": 0.001521359672797481
+        },
+        "completion_fraction": {
+          "values": [
+            0.8275328692962104,
+            0.8086754453911696,
+            0.8224151539068666
+          ],
+          "mean": 0.8195411561980822,
+          "sd": 0.009751692479060953
+        },
+        "backlog_at_window_end": {
+          "values": [
+            223,
+            247,
+            225
+          ],
+          "mean": 231.66666666666666,
+          "sd": 13.316656236958787
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/single/load700/helix/seed0/result.json",
+        "experiments/v4_external/runs/single/load700/helix/seed1/result.json",
+        "experiments/v4_external/runs/single/load700/helix/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "static",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            1.215207863592571,
+            1.2606550431516863,
+            1.3209733390359961
+          ],
+          "mean": 1.2656120819267511,
+          "sd": 0.05305669725874921
+        },
+        "ttft_p95_s": {
+          "values": [
+            4.526497704042498,
+            4.585512380167856,
+            4.654504451814
+          ],
+          "mean": 4.588838178674784,
+          "sd": 0.06406814786257466
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            145.605,
+            150.04611111111112,
+            142.7877777777778
+          ],
+          "mean": 146.1462962962963,
+          "sd": 3.6593171432293885
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.01326370610772722,
+            0.012853053869723503,
+            0.013535766751313107
+          ],
+          "mean": 0.013217508909587943,
+          "sd": 0.00034369296691819974
+        },
+        "completion_fraction": {
+          "values": [
+            0.8623356535189481,
+            0.8319132455460883,
+            0.8571428571428571
+          ],
+          "mean": 0.8504639187359645,
+          "sd": 0.016273809953390787
+        },
+        "backlog_at_window_end": {
+          "values": [
+            178,
+            217,
+            181
+          ],
+          "mean": 192,
+          "sd": 21.702534414210707
+        }
+      },
+      "sources": [
+        "experiments/v4_formal/runs/single/load700/static/seed0/result.json",
+        "experiments/v4_recovery/runs/single/load700/static/seed1/result.json",
+        "experiments/v4_recovery/runs/single/load700/static/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "cell": "single_boundary",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.7257168380083716,
+            0.7405676252407639,
+            0.751401110010983
+          ],
+          "mean": 0.7392285244200395,
+          "sd": 0.012894392204833856
+        },
+        "ttft_p95_s": {
+          "values": [
+            4.435640184076192,
+            4.492911536964128,
+            4.451574594289331
+          ],
+          "mean": 4.460042105109884,
+          "sd": 0.029559702637640756
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            152.83,
+            158.29055555555556,
+            150.50277777777777
+          ],
+          "mean": 153.87444444444444,
+          "sd": 3.99756411170109
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.019483066891932094,
+            0.019002320786874995,
+            0.019979174394805194
+          ],
+          "mean": 0.01948818735787076,
+          "sd": 0.0004884469338732034
+        },
+        "completion_fraction": {
+          "values": [
+            0.9187935034802784,
+            0.9078233927188226,
+            0.914759273875296
+          ],
+          "mean": 0.9137920566914657,
+          "sd": 0.0055486452707102
+        },
+        "backlog_at_window_end": {
+          "values": [
+            105,
+            119,
+            108
+          ],
+          "mean": 110.66666666666667,
+          "sd": 7.371114795831994
+        }
+      },
+      "sources": [
+        "experiments/v4_recovery/runs/single/load700/single_boundary/seed0/result.json",
+        "experiments/v4_recovery/runs/single/load700/single_boundary/seed1/result.json",
+        "experiments/v4_recovery/runs/single/load700/single_boundary/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "v4",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.6068123262545272,
+            0.6097053405650243,
+            0.5996708089044914
+          ],
+          "mean": 0.605396158574681,
+          "sd": 0.005164988343127225
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.096229897216742,
+            5.11958421438901,
+            5.103566450768902
+          ],
+          "mean": 5.106460187458218,
+          "sd": 0.011943044698319062
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            72.10944444444445,
+            70.98611111111111,
+            69.86055555555555
+          ],
+          "mean": 70.98537037037038,
+          "sd": 1.1244446274337483
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.06464289871333014,
+            0.0641058284277512,
+            0.0664160525194366
+          ],
+          "mean": 0.06505492655350598,
+          "sd": 0.0012089702412635633
+        },
+        "completion_fraction": {
+          "values": [
+            0.9263698630136986,
+            0.9226713532513181,
+            0.9197952218430034
+          ],
+          "mean": 0.92294547936934,
+          "sd": 0.0032958815933352846
+        },
+        "backlog_at_window_end": {
+          "values": [
+            43,
+            44,
+            47
+          ],
+          "mean": 44.666666666666664,
+          "sd": 2.0816659994661326
+        }
+      },
+      "sources": [
+        "experiments/v4_formal/runs/multi/load320/v4/seed0/result.json",
+        "experiments/v4_formal/runs/multi/load320/v4/seed1/result.json",
+        "experiments/v4_formal/runs/multi/load320/v4/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "helix",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            3.2296279199337863,
+            3.2059142687154667,
+            3.147861473225592
+          ],
+          "mean": 3.194467887291615,
+          "sd": 0.042067834358286434
+        },
+        "ttft_p95_s": {
+          "values": [
+            15.867151985799817,
+            15.387764893273005,
+            15.494305105426928
+          ],
+          "mean": 15.58307399483325,
+          "sd": 0.251719949378573
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            59.324444444444445,
+            57.406666666666666,
+            58.03388888888889
+          ],
+          "mean": 58.255,
+          "sd": 0.9778218108771976
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.08533417667715619,
+            0.09096784915359746,
+            0.09240809486027285
+          ],
+          "mean": 0.08957004023034217,
+          "sd": 0.0037383795894486444
+        },
+        "completion_fraction": {
+          "values": [
+            0.6832191780821918,
+            0.6994727592267135,
+            0.7235494880546075
+          ],
+          "mean": 0.7020804751211709,
+          "sd": 0.0202912200780889
+        },
+        "backlog_at_window_end": {
+          "values": [
+            185,
+            171,
+            162
+          ],
+          "mean": 172.66666666666666,
+          "sd": 11.590225767142474
+        }
+      },
+      "sources": [
+        "experiments/v4_external/runs/multi/load320/helix/seed0/result.json",
+        "experiments/v4_external/runs/multi/load320/helix/seed1/result.json",
+        "experiments/v4_external/runs/multi/load320/helix/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "static",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.8813697321685995,
+            0.8883011984776933,
+            0.8806352991549179
+          ],
+          "mean": 0.8834354099337369,
+          "sd": 0.004229866614772783
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.58420097728533,
+            5.739035301686931,
+            5.492772447832912
+          ],
+          "mean": 5.605336242268391,
+          "sd": 0.12448442820895174
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            70.35444444444444,
+            69.03666666666666,
+            68.385
+          ],
+          "mean": 69.2587037037037,
+          "sd": 1.0033210798644683
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.017230784719199303,
+            0.01854264618717894,
+            0.019005351579268887
+          ],
+          "mean": 0.018259594161882376,
+          "sd": 0.0009205219834325899
+        },
+        "completion_fraction": {
+          "values": [
+            0.8904109589041096,
+            0.8840070298769771,
+            0.8976109215017065
+          ],
+          "mean": 0.8906763034275977,
+          "sd": 0.006805826373149306
+        },
+        "backlog_at_window_end": {
+          "values": [
+            64,
+            66,
+            60
+          ],
+          "mean": 63.333333333333336,
+          "sd": 3.0550504633038935
+        }
+      },
+      "sources": [
+        "experiments/v4_recovery/runs/multi/load320/static/seed0/result.json",
+        "experiments/v4_recovery/runs/multi/load320/static/seed1/result.json",
+        "experiments/v4_recovery/runs/multi/load320/static/seed2/result.json"
+      ]
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "single_boundary",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.6050162215776472,
+            0.6050103150058611,
+            0.6033040933704864
+          ],
+          "mean": 0.6044435433179982,
+          "sd": 0.0009867970201926646
+        },
+        "ttft_p95_s": {
+          "values": [
+            4.869858561445642,
+            5.1221433684838305,
+            5.113261160187744
+          ],
+          "mean": 5.035087696705738,
+          "sd": 0.14316153030808695
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            72.06055555555555,
+            70.93888888888888,
+            69.8861111111111
+          ],
+          "mean": 70.96185185185185,
+          "sd": 1.0874040802502345
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.06453896894892748,
+            0.06495768067694195,
+            0.06571471299830409
+          ],
+          "mean": 0.06507045420805783,
+          "sd": 0.0005959294584104604
+        },
+        "completion_fraction": {
+          "values": [
+            0.922945205479452,
+            0.9226713532513181,
+            0.9197952218430034
+          ],
+          "mean": 0.9218039268579246,
+          "sd": 0.0017449700967180806
+        },
+        "backlog_at_window_end": {
+          "values": [
+            45,
+            44,
+            47
+          ],
+          "mean": 45.333333333333336,
+          "sd": 1.5275252316519468
+        }
+      },
+      "sources": [
+        "experiments/v4_recovery/runs/multi/load320/single_boundary/seed0/result.json",
+        "experiments/v4_recovery/runs/multi/load320/single_boundary/seed1/result.json",
+        "experiments/v4_recovery/runs/multi/load320/single_boundary/seed2/result.json"
+      ]
+    }
+  ],
+  "paired_effects": [
+    {
+      "scenario": "single",
+      "load": 350,
+      "left": "helix",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.6299363491155544,
+            "ttft_p95_s": -0.41995437225325494,
+            "output_throughput_tokens_per_s": 0.057104873091792685,
+            "gpu_seconds_per_output_token": -0.22138711769619623,
+            "completion_fraction": 0.06417112299465244,
+            "backlog_at_window_end": -0.5070422535211268
+          },
+          "common_completed": {
+            "count": 561,
+            "tpot_p95_s": [
+              1.070204682226454,
+              0.39764504893541924
+            ],
+            "relative": -0.6284401894895858
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.6388278995042582,
+            "ttft_p95_s": -0.43644692680792974,
+            "output_throughput_tokens_per_s": 0.06344612471970268,
+            "gpu_seconds_per_output_token": -0.20615820456096112,
+            "completion_fraction": 0.07678244972577697,
+            "backlog_at_window_end": -0.5675675675675675
+          },
+          "common_completed": {
+            "count": 547,
+            "tpot_p95_s": [
+              1.0828370298826082,
+              0.38851337936794916
+            ],
+            "relative": -0.6412078931119779
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.6209085644486692,
+            "ttft_p95_s": -0.41577438205635797,
+            "output_throughput_tokens_per_s": 0.05489713600473456,
+            "gpu_seconds_per_output_token": -0.2197797729346731,
+            "completion_fraction": 0.06654676258992809,
+            "backlog_at_window_end": -0.5522388059701493
+          },
+          "common_completed": {
+            "count": 556,
+            "tpot_p95_s": [
+              1.0188501740203002,
+              0.39159407970569654
+            ],
+            "relative": -0.615650966461047
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.6298909376894939,
+        "ttft_p95_s": -0.4240585603725142,
+        "output_throughput_tokens_per_s": 0.05848271127207664,
+        "gpu_seconds_per_output_token": -0.21577503173061016,
+        "completion_fraction": 0.06916677843678583,
+        "backlog_at_window_end": -0.5422828756862812
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.008959753839075517,
+        "ttft_p95_s": 0.010930315490192225,
+        "output_throughput_tokens_per_s": 0.004437919619647163,
+        "gpu_seconds_per_output_token": 0.00836710301739938,
+        "completion_fraction": 0.006701473924304511,
+        "backlog_at_window_end": 0.031466948072032694
+      }
+    },
+    {
+      "scenario": "single",
+      "load": 350,
+      "left": "swarm",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.7104832714092278,
+            "ttft_p95_s": -0.5202935788699318,
+            "output_throughput_tokens_per_s": 0.10133252670625503,
+            "gpu_seconds_per_output_token": -0.12593599127175226,
+            "completion_fraction": 0.12429378531073443,
+            "backlog_at_window_end": -0.6534653465346535
+          },
+          "common_completed": {
+            "count": 531,
+            "tpot_p95_s": [
+              1.3801474955182864,
+              0.3985598264466481
+            ],
+            "relative": -0.7112193966652984
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.7273215779211177,
+            "ttft_p95_s": -0.4954981921101522,
+            "output_throughput_tokens_per_s": 0.11114894444984902,
+            "gpu_seconds_per_output_token": -0.13046591870434787,
+            "completion_fraction": 0.14814814814814814,
+            "backlog_at_window_end": -0.7037037037037037
+          },
+          "common_completed": {
+            "count": 513,
+            "tpot_p95_s": [
+              1.3644135846531729,
+              0.39066835215826956
+            ],
+            "relative": -0.713673070575902
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.7106107203891763,
+            "ttft_p95_s": -0.5027163586962968,
+            "output_throughput_tokens_per_s": 0.08822466241997273,
+            "gpu_seconds_per_output_token": -0.14470322279878922,
+            "completion_fraction": 0.12737642585551323,
+            "backlog_at_window_end": -0.6907216494845361
+          },
+          "common_completed": {
+            "count": 526,
+            "tpot_p95_s": [
+              1.3227508884315746,
+              0.39166886611598806
+            ],
+            "relative": -0.7038982399925646
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.7161385232398406,
+        "ttft_p95_s": -0.5061693765587936,
+        "output_throughput_tokens_per_s": 0.10023537785869226,
+        "gpu_seconds_per_output_token": -0.1337017109249631,
+        "completion_fraction": 0.13327278643813192,
+        "backlog_at_window_end": -0.6826302332409644
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.009685019092079684,
+        "ttft_p95_s": 0.012753246661568343,
+        "output_throughput_tokens_per_s": 0.01150145548796362,
+        "gpu_seconds_per_output_token": 0.009793110244891464,
+        "completion_fraction": 0.01297431916074754,
+        "backlog_at_window_end": 0.02607827439424082
+      }
+    },
+    {
+      "scenario": "single",
+      "load": 350,
+      "left": "separate",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.6188095363499666,
+            "ttft_p95_s": -0.25474597247792585,
+            "output_throughput_tokens_per_s": -0.0004551398290698616,
+            "gpu_seconds_per_output_token": -0.16945037314601996,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 585,
+            "tpot_p95_s": [
+              1.0368797410076211,
+              0.3974996242415334
+            ],
+            "relative": -0.6166386433056832
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.6376237552070689,
+            "ttft_p95_s": -0.2800425565677567,
+            "output_throughput_tokens_per_s": 0.009115005153879974,
+            "gpu_seconds_per_output_token": -0.11729762278823108,
+            "completion_fraction": 0.017271157167530138,
+            "backlog_at_window_end": -0.23809523809523814
+          },
+          "common_completed": {
+            "count": 570,
+            "tpot_p95_s": [
+              1.0669117957220244,
+              0.3885083868553858
+            ],
+            "relative": -0.6358570704596385
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.6321421715384805,
+            "ttft_p95_s": -0.28671915189191177,
+            "output_throughput_tokens_per_s": 0.009500957547486255,
+            "gpu_seconds_per_output_token": -0.12754146911851894,
+            "completion_fraction": 0.00679117147707986,
+            "backlog_at_window_end": -0.11764705882352944
+          },
+          "common_completed": {
+            "count": 579,
+            "tpot_p95_s": [
+              1.0680661908357438,
+              0.3905697271647039
+            ],
+            "relative": -0.634320671774949
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.629525154365172,
+        "ttft_p95_s": -0.27383589364586475,
+        "output_throughput_tokens_per_s": 0.006053607624098789,
+        "gpu_seconds_per_output_token": -0.13809648835092334,
+        "completion_fraction": 0.008020776214869999,
+        "backlog_at_window_end": -0.11858076563958919
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.009676274694570214,
+        "ttft_p95_s": 0.016866032400337197,
+        "output_throughput_tokens_per_s": 0.005640042984710281,
+        "gpu_seconds_per_output_token": 0.027632112943417518,
+        "completion_fraction": 0.008700986342638339,
+        "backlog_at_window_end": 0.11905036521246293
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "left": "helix",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.6747130295415527,
+            "ttft_p95_s": -0.5951973168886806,
+            "output_throughput_tokens_per_s": 0.05917328188747262,
+            "gpu_seconds_per_output_token": -0.5030389739281433,
+            "completion_fraction": 0.11336032388663964,
+            "backlog_at_window_end": -0.7
+          },
+          "common_completed": {
+            "count": 247,
+            "tpot_p95_s": [
+              1.6475438284333663,
+              0.5349621344225869
+            ],
+            "relative": -0.6752971755954575
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.6360413766639932,
+            "ttft_p95_s": -0.5534217575341003,
+            "output_throughput_tokens_per_s": 0.08125984797326535,
+            "gpu_seconds_per_output_token": -0.5171900760332947,
+            "completion_fraction": 0.11814345991561193,
+            "backlog_at_window_end": -0.6086956521739131
+          },
+          "common_completed": {
+            "count": 237,
+            "tpot_p95_s": [
+              1.4118956612853202,
+              0.5191152242252668
+            ],
+            "relative": -0.6323274881709815
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.6645105127224872,
+            "ttft_p95_s": -0.6323175807379631,
+            "output_throughput_tokens_per_s": 0.07773105752131504,
+            "gpu_seconds_per_output_token": -0.4989058100902526,
+            "completion_fraction": 0.12916666666666665,
+            "backlog_at_window_end": -0.607843137254902
+          },
+          "common_completed": {
+            "count": 240,
+            "tpot_p95_s": [
+              1.5399571415389095,
+              0.5252578603470401
+            ],
+            "relative": -0.6589139748252086
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.6584216396426776,
+        "ttft_p95_s": -0.593645551720248,
+        "output_throughput_tokens_per_s": 0.07272139579401767,
+        "gpu_seconds_per_output_token": -0.5063782866838968,
+        "completion_fraction": 0.1202234834896394,
+        "backlog_at_window_end": -0.6388462631429384
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.020041955134345927,
+        "ttft_p95_s": 0.03947079567360233,
+        "output_throughput_tokens_per_s": 0.011864932925726277,
+        "gpu_seconds_per_output_token": 0.009588631421090609,
+        "completion_fraction": 0.008105861556386871,
+        "backlog_at_window_end": 0.05296240500684268
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "left": "swarm",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.8094963651833399,
+            "ttft_p95_s": -0.7270484694039185,
+            "output_throughput_tokens_per_s": 0.2016289625230978,
+            "gpu_seconds_per_output_token": -0.47338308559101316,
+            "completion_fraction": 0.3613861386138615,
+            "backlog_at_window_end": -0.8588235294117648
+          },
+          "common_completed": {
+            "count": 202,
+            "tpot_p95_s": [
+              2.825605965880906,
+              0.5364687903643249
+            ],
+            "relative": -0.8101402683735217
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.7842678201386968,
+            "ttft_p95_s": -0.7297404988041952,
+            "output_throughput_tokens_per_s": 0.20673262734791686,
+            "gpu_seconds_per_output_token": -0.49968825927594684,
+            "completion_fraction": 0.27403846153846145,
+            "backlog_at_window_end": -0.76
+          },
+          "common_completed": {
+            "count": 208,
+            "tpot_p95_s": [
+              2.406096543845525,
+              0.5219374211152503
+            ],
+            "relative": -0.7830771078366341
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.794064838893258,
+            "ttft_p95_s": -0.7185433950446649,
+            "output_throughput_tokens_per_s": 0.19305282137140534,
+            "gpu_seconds_per_output_token": -0.4710589938365868,
+            "completion_fraction": 0.27230046948356823,
+            "backlog_at_window_end": -0.7435897435897436
+          },
+          "common_completed": {
+            "count": 213,
+            "tpot_p95_s": [
+              2.5675396082916344,
+              0.5266790049174702
+            ],
+            "relative": -0.7948701538170595
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.7959430080717649,
+        "ttft_p95_s": -0.7251107877509262,
+        "output_throughput_tokens_per_s": 0.20047147041414,
+        "gpu_seconds_per_output_token": -0.4813767795678489,
+        "completion_fraction": 0.3025750232119637,
+        "backlog_at_window_end": -0.7874710910005028
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.012718707122373588,
+        "ttft_p95_s": 0.00584463350362358,
+        "output_throughput_tokens_per_s": 0.006912967081903024,
+        "gpu_seconds_per_output_token": 0.015900725374831472,
+        "completion_fraction": 0.050939332791146964,
+        "backlog_at_window_end": 0.062335399086612814
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "left": "separate",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.7461958095462569,
+            "ttft_p95_s": -0.7109081702594728,
+            "output_throughput_tokens_per_s": 0.11780511006158112,
+            "gpu_seconds_per_output_token": -0.6046717581506933,
+            "completion_fraction": 0.2168141592920354,
+            "backlog_at_window_end": -0.8032786885245902
+          },
+          "common_completed": {
+            "count": 226,
+            "tpot_p95_s": [
+              2.103059293227731,
+              0.5350188906389393
+            ],
+            "relative": -0.7455997116382755
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.7959576940838768,
+            "ttft_p95_s": -0.7244225665539201,
+            "output_throughput_tokens_per_s": 0.15848839582212482,
+            "gpu_seconds_per_output_token": -0.6280747894944226,
+            "completion_fraction": 0.2155963302752293,
+            "backlog_at_window_end": -0.7230769230769231
+          },
+          "common_completed": {
+            "count": 218,
+            "tpot_p95_s": [
+              2.4257891172068784,
+              0.5228675268690935
+            ],
+            "relative": -0.7844546654281565
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.7703517487288256,
+            "ttft_p95_s": -0.6986313174248692,
+            "output_throughput_tokens_per_s": 0.13593525557930142,
+            "gpu_seconds_per_output_token": -0.6090016203205604,
+            "completion_fraction": 0.1991150442477876,
+            "backlog_at_window_end": -0.6923076923076923
+          },
+          "common_completed": {
+            "count": 226,
+            "tpot_p95_s": [
+              2.3224218122257736,
+              0.525744792372128
+            ],
+            "relative": -0.7736221776748375
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.7708350841196531,
+        "ttft_p95_s": -0.7113206847460873,
+        "output_throughput_tokens_per_s": 0.1374095871543358,
+        "gpu_seconds_per_output_token": -0.6139160559885588,
+        "completion_fraction": 0.2105085112716841,
+        "backlog_at_window_end": -0.7395544346364018
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.024884462984136817,
+        "ttft_p95_s": 0.012900572043922821,
+        "output_throughput_tokens_per_s": 0.020381674986697535,
+        "gpu_seconds_per_output_token": 0.01245147491143381,
+        "completion_fraction": 0.00988580269866876,
+        "backlog_at_window_end": 0.05729111441346955
+      }
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "left": "helix",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.6954973453455852,
+            "ttft_p95_s": -0.46176576772630284,
+            "output_throughput_tokens_per_s": 0.09772704083634842,
+            "gpu_seconds_per_output_token": -0.08026510629003847,
+            "completion_fraction": 0.14392523364485976,
+            "backlog_at_window_end": -0.6905829596412556
+          },
+          "common_completed": {
+            "count": 1070,
+            "tpot_p95_s": [
+              1.670327355731505,
+              0.5101174031255156
+            ],
+            "relative": -0.6946003420376755
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.7042478067907663,
+            "ttft_p95_s": -0.4701949946519518,
+            "output_throughput_tokens_per_s": 0.10980109903919755,
+            "gpu_seconds_per_output_token": -0.09139488222012704,
+            "completion_fraction": 0.15708812260536398,
+            "backlog_at_window_end": -0.6639676113360324
+          },
+          "common_completed": {
+            "count": 1044,
+            "tpot_p95_s": [
+              1.6635225759985317,
+              0.5056843298241507
+            ],
+            "relative": -0.6960159500566965
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.7093172306248301,
+            "ttft_p95_s": -0.4659118088080134,
+            "output_throughput_tokens_per_s": 0.10346050968870957,
+            "gpu_seconds_per_output_token": -0.08322642517423562,
+            "completion_fraction": 0.14203454894433798,
+            "backlog_at_window_end": -0.6577777777777778
+          },
+          "common_completed": {
+            "count": 1042,
+            "tpot_p95_s": [
+              1.6938763082379307,
+              0.5046627757298956
+            ],
+            "relative": -0.7020663354959635
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.7030207942537272,
+        "ttft_p95_s": -0.46595752372875604,
+        "output_throughput_tokens_per_s": 0.10366288318808518,
+        "gpu_seconds_per_output_token": -0.08496213789480038,
+        "completion_fraction": 0.1476826350648539,
+        "backlog_at_window_end": -0.6707761162516886
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.006991171368762966,
+        "ttft_p95_s": 0.004214799405844271,
+        "output_throughput_tokens_per_s": 0.006039572554939978,
+        "gpu_seconds_per_output_token": 0.005764330147531667,
+        "completion_fraction": 0.008200065186644215,
+        "backlog_at_window_end": 0.017430197751713807
+      }
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "left": "static",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.5824230347499935,
+            "ttft_p95_s": -0.23912062327263672,
+            "output_throughput_tokens_per_s": 0.06729011900537607,
+            "gpu_seconds_per_output_token": 3.0403584693355334,
+            "completion_fraction": 0.09775784753363226,
+            "backlog_at_window_end": -0.6123595505617978
+          },
+          "common_completed": {
+            "count": 1115,
+            "tpot_p95_s": [
+              1.2215906770941416,
+              0.5089202819663899
+            ],
+            "relative": -0.5833954109923433
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.5993921614402196,
+            "ttft_p95_s": -0.23753685997645524,
+            "output_throughput_tokens_per_s": 0.07902385562956571,
+            "gpu_seconds_per_output_token": 3.0092343717389367,
+            "completion_fraction": 0.12476722532588469,
+            "backlog_at_window_end": -0.6175115207373272
+          },
+          "common_completed": {
+            "count": 1074,
+            "tpot_p95_s": [
+              1.2196470814990685,
+              0.5035947379181008
+            ],
+            "relative": -0.5870979846898561
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.6164692198102424,
+            "ttft_p95_s": -0.2282695487027392,
+            "output_throughput_tokens_per_s": 0.07701795205005091,
+            "gpu_seconds_per_output_token": 3.047311221188722,
+            "completion_fraction": 0.09576427255985287,
+            "backlog_at_window_end": -0.574585635359116
+          },
+          "common_completed": {
+            "count": 1086,
+            "tpot_p95_s": [
+              1.2116845279933433,
+              0.5040840109022128
+            ],
+            "relative": -0.5839808141009933
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.5994281386668184,
+        "ttft_p95_s": -0.23497567731727706,
+        "output_throughput_tokens_per_s": 0.07444397556166422,
+        "gpu_seconds_per_output_token": 3.0323013540877306,
+        "completion_fraction": 0.10609644847312327,
+        "backlog_at_window_end": -0.6014855688860803
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.01702312104344572,
+        "ttft_p95_s": 0.005861415980002233,
+        "output_throughput_tokens_per_s": 0.006276078394470378,
+        "gpu_seconds_per_output_token": 0.020276820401450683,
+        "completion_fraction": 0.016200062237788734,
+        "backlog_at_window_end": 0.023438014356781823
+      }
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "left": "single_boundary",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.3007702381282271,
+            "ttft_p95_s": -0.2235351361064014,
+            "output_throughput_tokens_per_s": 0.01683424574872583,
+            "gpu_seconds_per_output_token": 1.750600180371228,
+            "completion_fraction": 0.030303030303030276,
+            "backlog_at_window_end": -0.34285714285714286
+          },
+          "common_completed": {
+            "count": 1188,
+            "tpot_p95_s": [
+              0.7266033210799452,
+              0.506548580081882
+            ],
+            "relative": -0.3028540258679212
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.3180524306037611,
+            "ttft_p95_s": -0.221822166042007,
+            "output_throughput_tokens_per_s": 0.02282371026558061,
+            "gpu_seconds_per_output_token": 1.71182167348213,
+            "completion_fraction": 0.030716723549488067,
+            "backlog_at_window_end": -0.3025210084033614
+          },
+          "common_completed": {
+            "count": 1172,
+            "tpot_p95_s": [
+              0.7364706618619208,
+              0.5041280773701814
+            ],
+            "relative": -0.31548111353728414
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.3257476884444055,
+            "ttft_p95_s": -0.19308937880732657,
+            "output_throughput_tokens_per_s": 0.021808383012495325,
+            "gpu_seconds_per_output_token": 1.7420282528905227,
+            "completion_fraction": 0.02674719585849883,
+            "backlog_at_window_end": -0.2870370370370371
+          },
+          "common_completed": {
+            "count": 1159,
+            "tpot_p95_s": [
+              0.721157813156516,
+              0.5003679690754452
+            ],
+            "relative": -0.30616023296575134
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.31485678572546455,
+        "ttft_p95_s": -0.21281556031857832,
+        "output_throughput_tokens_per_s": 0.020488779675600588,
+        "gpu_seconds_per_output_token": 1.7348167022479604,
+        "completion_fraction": 0.029255649903672392,
+        "backlog_at_window_end": -0.31080506276584713
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.012791691276583675,
+        "ttft_p95_s": 0.017104831024348524,
+        "output_throughput_tokens_per_s": 0.003205376112833471,
+        "gpu_seconds_per_output_token": 0.020370272362922315,
+        "completion_fraction": 0.0021822103010713475,
+        "backlog_at_window_end": 0.028817359715151137
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "left": "helix",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.8121107628190903,
+            "ttft_p95_s": -0.6788188641680893,
+            "output_throughput_tokens_per_s": 0.2155098142043752,
+            "gpu_seconds_per_output_token": -0.24247351728847322,
+            "completion_fraction": 0.3558897243107768,
+            "backlog_at_window_end": -0.7675675675675675
+          },
+          "common_completed": {
+            "count": 399,
+            "tpot_p95_s": [
+              3.2654713802369497,
+              0.6097367488414303
+            ],
+            "relative": -0.8132775707263475
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.8098185760877135,
+            "ttft_p95_s": -0.6672951367597828,
+            "output_throughput_tokens_per_s": 0.23654821352533584,
+            "gpu_seconds_per_output_token": -0.29529136915714316,
+            "completion_fraction": 0.3190954773869348,
+            "backlog_at_window_end": -0.7426900584795322
+          },
+          "common_completed": {
+            "count": 398,
+            "tpot_p95_s": [
+              3.0564438551937387,
+              0.610818016908569
+            ],
+            "relative": -0.8001540202118809
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.8094989839911815,
+            "ttft_p95_s": -0.6706166287521109,
+            "output_throughput_tokens_per_s": 0.2037889738754175,
+            "gpu_seconds_per_output_token": -0.28127451799691294,
+            "completion_fraction": 0.27122641509433976,
+            "backlog_at_window_end": -0.7098765432098766
+          },
+          "common_completed": {
+            "count": 424,
+            "tpot_p95_s": [
+              3.200492380672036,
+              0.5995590641688916
+            ],
+            "relative": -0.812666617240002
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.8104761076326618,
+        "ttft_p95_s": -0.672243543226661,
+        "output_throughput_tokens_per_s": 0.21861566720170952,
+        "gpu_seconds_per_output_token": -0.27301313481417644,
+        "completion_fraction": 0.3154038722640171,
+        "backlog_at_window_end": -0.7400447230856587
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.0014246430994918756,
+        "ttft_p95_s": 0.005931628054410046,
+        "output_throughput_tokens_per_s": 0.016598996588377966,
+        "gpu_seconds_per_output_token": 0.02736090656528382,
+        "completion_fraction": 0.042452207753627756,
+        "backlog_at_window_end": 0.028936342587989262
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "left": "static",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": -0.31151217916064255,
+            "ttft_p95_s": -0.08738422597135953,
+            "output_throughput_tokens_per_s": 0.02494511915854658,
+            "gpu_seconds_per_output_token": 2.7515934280870074,
+            "completion_fraction": 0.04038461538461546,
+            "backlog_at_window_end": -0.328125
+          },
+          "common_completed": {
+            "count": 520,
+            "tpot_p95_s": [
+              0.8785845603429194,
+              0.6040683646802213
+            ],
+            "relative": -0.31245278832984724
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": -0.31362769563984205,
+            "ttft_p95_s": -0.10793644832884008,
+            "output_throughput_tokens_per_s": 0.028237812434616094,
+            "gpu_seconds_per_output_token": 2.457210356096656,
+            "completion_fraction": 0.04373757455268401,
+            "backlog_at_window_end": -0.33333333333333337
+          },
+          "common_completed": {
+            "count": 503,
+            "tpot_p95_s": [
+              0.8926110249573079,
+              0.6101436681956129
+            ],
+            "relative": -0.3164506698482745
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.31904749959494905,
+            "ttft_p95_s": -0.07085784105576132,
+            "output_throughput_tokens_per_s": 0.021577181480668894,
+            "gpu_seconds_per_output_token": 2.4945974160185225,
+            "completion_fraction": 0.024714828897338448,
+            "backlog_at_window_end": -0.21666666666666667
+          },
+          "common_completed": {
+            "count": 526,
+            "tpot_p95_s": [
+              0.8790327087251992,
+              0.5974031809484419
+            ],
+            "relative": -0.32038572055547887
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": -0.31472912479847787,
+        "ttft_p95_s": -0.08872617178532032,
+        "output_throughput_tokens_per_s": 0.02492003769127719,
+        "gpu_seconds_per_output_token": 2.5678004000673953,
+        "completion_fraction": 0.03627900627821264,
+        "backlog_at_window_end": -0.29270833333333335
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.003886530992484065,
+        "ttft_p95_s": 0.01857569361433127,
+        "output_throughput_tokens_per_s": 0.0033303863118518524,
+        "gpu_seconds_per_output_token": 0.16026339545842566,
+        "completion_fraction": 0.010154222405872616,
+        "backlog_at_window_end": 0.06590548525055492
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "left": "single_boundary",
+      "right": "v4",
+      "seeds": [
+        {
+          "seed": 0,
+          "relative": {
+            "tpot_p95_s": 0.0029686884629249732,
+            "ttft_p95_s": 0.0464841705184762,
+            "output_throughput_tokens_per_s": 0.0006784417426701772,
+            "gpu_seconds_per_output_token": 0.001610341257309189,
+            "completion_fraction": 0.0037105751391466324,
+            "backlog_at_window_end": -0.0444444444444444
+          },
+          "common_completed": {
+            "count": 539,
+            "tpot_p95_s": [
+              0.6038040869555428,
+              0.6039782632338498
+            ],
+            "relative": 0.00028846488798262016
+          }
+        },
+        {
+          "seed": 1,
+          "relative": {
+            "tpot_p95_s": 0.007760240516093919,
+            "ttft_p95_s": -0.0004996256275383582,
+            "output_throughput_tokens_per_s": 0.000665674680867756,
+            "gpu_seconds_per_output_token": -0.013113957276697175,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 524,
+            "tpot_p95_s": [
+              0.6045424021275275,
+              0.6098540799905146
+            ],
+            "relative": 0.008786278421983207
+          }
+        },
+        {
+          "seed": 2,
+          "relative": {
+            "tpot_p95_s": -0.006022310317334134,
+            "ttft_p95_s": -0.001895993401300422,
+            "output_throughput_tokens_per_s": -0.0003656743113796823,
+            "gpu_seconds_per_output_token": 0.010672488536176195,
+            "completion_fraction": 0.0,
+            "backlog_at_window_end": 0.0
+          },
+          "common_completed": {
+            "count": 538,
+            "tpot_p95_s": [
+              0.6004829184168047,
+              0.5976851761272896
+            ],
+            "relative": -0.0046591538305393865
+          }
+        }
+      ],
+      "complete": true,
+      "mean_paired_relative": {
+        "tpot_p95_s": 0.0015688728872282527,
+        "ttft_p95_s": 0.01469618382987914,
+        "output_throughput_tokens_per_s": 0.00032614737071941696,
+        "gpu_seconds_per_output_token": -0.0002770424944039303,
+        "completion_fraction": 0.0012368583797155441,
+        "backlog_at_window_end": -0.0148148148148148
+      },
+      "sd_paired_relative": {
+        "tpot_p95_s": 0.006997091510297649,
+        "ttft_p95_s": 0.027538056104702054,
+        "output_throughput_tokens_per_s": 0.0005991691575286457,
+        "gpu_seconds_per_output_token": 0.01200501620872972,
+        "completion_fraction": 0.0021423015554346415,
+        "backlog_at_window_end": 0.02566001196398334
+      }
+    }
+  ],
+  "mechanism": [
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "v3",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.5810925584011242,
+            0.5830226395992097,
+            0.5753977907539692
+          ],
+          "mean": 0.579837662918101,
+          "sd": 0.0039642971613105945
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.247280021434362,
+            4.904108335931244,
+            5.047608247279641
+          ],
+          "mean": 5.066332201548415,
+          "sd": 0.1723503445901897
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            37.14222222222222,
+            34.63611111111111,
+            35.91722222222222
+          ],
+          "mean": 35.89851851851852,
+          "sd": 1.2531602438267095
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.14174334691718538,
+            0.15063536347949744,
+            0.15013318101953518
+          ],
+          "mean": 0.147503963805406,
+          "sd": 0.0049951553534813035
+        },
+        "completion_fraction": {
+          "values": [
+            0.9581881533101045,
+            0.9328621908127208,
+            0.9278350515463918
+          ],
+          "mean": 0.9396284652230724,
+          "sd": 0.016268514029151814
+        },
+        "backlog_at_window_end": {
+          "values": [
+            12,
+            19,
+            21
+          ],
+          "mean": 17.333333333333332,
+          "sd": 4.725815626252608
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 20,
+          "token_weighted_decode_batch": 3.3114949845624917,
+          "singleton_execution_fraction": 0.4473838365930357,
+          "decode_layer_token_executions": 5348985,
+          "prompt_only_busy_s": 403.5783240831759,
+          "decode_only_busy_s": 9052.805418356163,
+          "mixed_busy_s": 20.009459056002953,
+          "decode_network_wait_s": 1949.807804058254,
+          "decode_wait_overlapping_prompt_same_link_s": 1949.8065181738239,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 17,
+          "token_weighted_decode_batch": 3.0130366121246066,
+          "singleton_execution_fraction": 0.47423000540130905,
+          "decode_layer_token_executions": 4988566,
+          "prompt_only_busy_s": 392.82947340792174,
+          "decode_only_busy_s": 8977.120323057345,
+          "mixed_busy_s": 21.411939664000727,
+          "decode_network_wait_s": 1764.870180269998,
+          "decode_wait_overlapping_prompt_same_link_s": 1764.8622940590412,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 20,
+          "token_weighted_decode_batch": 3.0230161111231393,
+          "singleton_execution_fraction": 0.4566012529630208,
+          "decode_layer_token_executions": 5173072,
+          "prompt_only_busy_s": 402.9904138624071,
+          "decode_only_busy_s": 9278.09831877556,
+          "mixed_busy_s": 25.17155345600422,
+          "decode_network_wait_s": 1831.8085819608912,
+          "decode_wait_overlapping_prompt_same_link_s": 1831.806742647939,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 19,
+        "token_weighted_decode_batch": 3.115849235936746,
+        "singleton_execution_fraction": 0.45940503165245516,
+        "decode_layer_token_executions": 5170207.666666667,
+        "prompt_only_busy_s": 399.7994037845016,
+        "decode_only_busy_s": 9102.67468672969,
+        "mixed_busy_s": 22.197650725335965,
+        "decode_network_wait_s": 1848.8288554297144,
+        "decode_wait_overlapping_prompt_same_link_s": 1848.825184960268,
+        "paused_chunks": 0
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "spatial",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.5726123231188952,
+            0.5670134779871948,
+            0.5631022035089872
+          ],
+          "mean": 0.5675760015383591,
+          "sd": 0.004779949613531506
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.148102991803273,
+            5.073410163111521,
+            5.203550191213935
+          ],
+          "mean": 5.14168778204291,
+          "sd": 0.06530676010817263
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            37.14,
+            34.64888888888889,
+            35.93611111111111
+          ],
+          "mean": 35.90833333333333,
+          "sd": 1.245787841359439
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.10624267081683765,
+            0.1177424215232079,
+            0.11710438720855003
+          ],
+          "mean": 0.11369649318286519,
+          "sd": 0.006463077660440847
+        },
+        "completion_fraction": {
+          "values": [
+            0.9512195121951219,
+            0.9328621908127208,
+            0.9278350515463918
+          ],
+          "mean": 0.9373055848514115,
+          "sd": 0.012309186118314478
+        },
+        "backlog_at_window_end": {
+          "values": [
+            14,
+            19,
+            21
+          ],
+          "mean": 18,
+          "sd": 3.605551275463989
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 4.700188094338847,
+          "singleton_execution_fraction": 0.3818450287045144,
+          "decode_layer_token_executions": 5348380,
+          "prompt_only_busy_s": 421.7757407743724,
+          "decode_only_busy_s": 6675.953382189656,
+          "mixed_busy_s": 4.8059064832015395,
+          "decode_network_wait_s": 2033.2877034170579,
+          "decode_wait_overlapping_prompt_same_link_s": 2033.2877034170579,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 7,
+          "token_weighted_decode_batch": 4.18637642968433,
+          "singleton_execution_fraction": 0.3996032990158866,
+          "decode_layer_token_executions": 4990175,
+          "prompt_only_busy_s": 411.7581778943352,
+          "decode_only_busy_s": 6925.701960580294,
+          "mixed_busy_s": 5.8992070848005795,
+          "decode_network_wait_s": 1745.2489743646322,
+          "decode_wait_overlapping_prompt_same_link_s": 1745.248109703328,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 4.171323988998558,
+          "singleton_execution_fraction": 0.3870185083794053,
+          "decode_layer_token_executions": 5175685,
+          "prompt_only_busy_s": 424.53888080641485,
+          "decode_only_busy_s": 7146.338192057045,
+          "mixed_busy_s": 4.020213721599873,
+          "decode_network_wait_s": 1874.8516470341367,
+          "decode_wait_overlapping_prompt_same_link_s": 1874.8475421081775,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 7.666666666666667,
+        "token_weighted_decode_batch": 4.3526295043405785,
+        "singleton_execution_fraction": 0.3894889453666021,
+        "decode_layer_token_executions": 5171413.333333333,
+        "prompt_only_busy_s": 419.35759982504084,
+        "decode_only_busy_s": 6915.9978449423315,
+        "mixed_busy_s": 4.908442429867331,
+        "decode_network_wait_s": 1884.4627749386088,
+        "decode_wait_overlapping_prompt_same_link_s": 1884.461118409521,
+        "paused_chunks": 0
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "temporal",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.5419382755106441,
+            0.5353172679194657,
+            0.5347039966406437
+          ],
+          "mean": 0.5373198466902511,
+          "sd": 0.004011413590261432
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.03103671135309,
+            4.706190979845087,
+            4.878677335973521
+          ],
+          "mean": 4.8719683423905655,
+          "sd": 0.1625267524622159
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            37.21,
+            34.71277777777778,
+            36.00888888888889
+          ],
+          "mean": 35.977222222222224,
+          "sd": 1.248912242763059
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.14430124163764507,
+            0.14851281839461364,
+            0.14899806076091587
+          ],
+          "mean": 0.1472707069310582,
+          "sd": 0.002583052096861861
+        },
+        "completion_fraction": {
+          "values": [
+            0.9581881533101045,
+            0.9328621908127208,
+            0.9347079037800687
+          ],
+          "mean": 0.9419194159676314,
+          "sd": 0.014119331610534719
+        },
+        "backlog_at_window_end": {
+          "values": [
+            12,
+            19,
+            19
+          ],
+          "mean": 16.666666666666668,
+          "sd": 4.041451884327381
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 18,
+          "token_weighted_decode_batch": 3.2135576747586785,
+          "singleton_execution_fraction": 0.47335943819090387,
+          "decode_layer_token_executions": 5358618,
+          "prompt_only_busy_s": 399.7930688447736,
+          "decode_only_busy_s": 9242.337586739015,
+          "mixed_busy_s": 22.877906822401258,
+          "decode_network_wait_s": 713.4170774732173,
+          "decode_wait_overlapping_prompt_same_link_s": 713.385027272063,
+          "paused_chunks": 720,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 17,
+          "token_weighted_decode_batch": 3.074577181036238,
+          "singleton_execution_fraction": 0.46374323729469297,
+          "decode_layer_token_executions": 4999894,
+          "prompt_only_busy_s": 393.0313061887272,
+          "decode_only_busy_s": 8865.470120457912,
+          "mixed_busy_s": 21.02500510400634,
+          "decode_network_wait_s": 663.1155536951629,
+          "decode_wait_overlapping_prompt_same_link_s": 663.0636329250284,
+          "paused_chunks": 703,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 22,
+          "token_weighted_decode_batch": 3.00691018590093,
+          "singleton_execution_fraction": 0.4532235937455771,
+          "decode_layer_token_executions": 5186257,
+          "prompt_only_busy_s": 401.39143612801587,
+          "decode_only_busy_s": 9232.322997188301,
+          "mixed_busy_s": 23.74387296320627,
+          "decode_network_wait_s": 714.2532377971656,
+          "decode_wait_overlapping_prompt_same_link_s": 714.2092920549952,
+          "paused_chunks": 714,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 19,
+        "token_weighted_decode_batch": 3.098348347231949,
+        "singleton_execution_fraction": 0.46344208974372464,
+        "decode_layer_token_executions": 5181589.666666667,
+        "prompt_only_busy_s": 398.0719370538389,
+        "decode_only_busy_s": 9113.376901461743,
+        "mixed_busy_s": 22.548928296537955,
+        "decode_network_wait_s": 696.9286229885153,
+        "decode_wait_overlapping_prompt_same_link_s": 696.8859840840289,
+        "paused_chunks": 712.3333333333334
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "cell": "v4",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.5333424735480379,
+            0.5187970182115019,
+            0.5245948605784422
+          ],
+          "mean": 0.525578117445994,
+          "sd": 0.007322408298332004
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.010319512095293,
+            4.843891478331727,
+            5.038745272814083
+          ],
+          "mean": 4.964318754413701,
+          "sd": 0.10525707855770763
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            37.21111111111111,
+            34.69222222222222,
+            36.025555555555556
+          ],
+          "mean": 35.9762962962963,
+          "sd": 1.260166720957609
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.11114160914426693,
+            0.11558731425618474,
+            0.11516259412027822
+          ],
+          "mean": 0.11396383917357664,
+          "sd": 0.0024533311134484425
+        },
+        "completion_fraction": {
+          "values": [
+            0.9581881533101045,
+            0.9363957597173145,
+            0.9312714776632303
+          ],
+          "mean": 0.9419517968968831,
+          "sd": 0.014292621132084914
+        },
+        "backlog_at_window_end": {
+          "values": [
+            12,
+            18,
+            20
+          ],
+          "mean": 16.666666666666668,
+          "sd": 4.163331998932265
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 4.417683251693645,
+          "singleton_execution_fraction": 0.36719545864293246,
+          "decode_layer_token_executions": 5358709,
+          "prompt_only_busy_s": 420.01927407357334,
+          "decode_only_busy_s": 7019.50081990702,
+          "mixed_busy_s": 4.744886502404739,
+          "decode_network_wait_s": 746.9764332306456,
+          "decode_wait_overlapping_prompt_same_link_s": 746.9325226972924,
+          "paused_chunks": 720,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 7,
+          "token_weighted_decode_batch": 4.267458841701686,
+          "singleton_execution_fraction": 0.39427978412036074,
+          "decode_layer_token_executions": 4996623,
+          "prompt_only_busy_s": 410.288326284714,
+          "decode_only_busy_s": 6802.604043065799,
+          "mixed_busy_s": 5.073056691199582,
+          "decode_network_wait_s": 674.5185597078513,
+          "decode_wait_overlapping_prompt_same_link_s": 674.487843037976,
+          "paused_chunks": 703,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 4.2123360872569435,
+          "singleton_execution_fraction": 0.37933856305069513,
+          "decode_layer_token_executions": 5188355,
+          "prompt_only_busy_s": 422.94643093761505,
+          "decode_only_busy_s": 7039.024209600345,
+          "mixed_busy_s": 5.862937785601147,
+          "decode_network_wait_s": 692.1865015080577,
+          "decode_wait_overlapping_prompt_same_link_s": 692.1653610744934,
+          "paused_chunks": 714,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 7.666666666666667,
+        "token_weighted_decode_batch": 4.299159393550758,
+        "singleton_execution_fraction": 0.38027126860466276,
+        "decode_layer_token_executions": 5181229,
+        "prompt_only_busy_s": 417.7513437653008,
+        "decode_only_busy_s": 6953.709690857721,
+        "mixed_busy_s": 5.226960326401823,
+        "decode_network_wait_s": 704.5604981488516,
+        "decode_wait_overlapping_prompt_same_link_s": 704.5285756032539,
+        "paused_chunks": 712.3333333333334
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "v3",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.6992093827588951,
+            0.702764090012156,
+            0.6950792342615104
+          ],
+          "mean": 0.6990175690108539,
+          "sd": 0.003846016947766986
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.228783675305078,
+            5.4125897445153,
+            5.3375247991109696
+          ],
+          "mean": 5.326299406310449,
+          "sd": 0.09241577166410897
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            71.71277777777777,
+            70.5188888888889,
+            69.4961111111111
+          ],
+          "mean": 70.57592592592593,
+          "sd": 1.109433502051048
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.08800656295987216,
+            0.08856552456023752,
+            0.09213334939066407
+          ],
+          "mean": 0.08956847897025792,
+          "sd": 0.0022387562892768357
+        },
+        "completion_fraction": {
+          "values": [
+            0.9212328767123288,
+            0.9156414762741653,
+            0.9163822525597269
+          ],
+          "mean": 0.9177522018487403,
+          "sd": 0.003037023296885462
+        },
+        "backlog_at_window_end": {
+          "values": [
+            46,
+            48,
+            49
+          ],
+          "mean": 47.666666666666664,
+          "sd": 1.5275252316519468
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 32,
+          "token_weighted_decode_batch": 7.0308730568433235,
+          "singleton_execution_fraction": 0.3352501075897793,
+          "decode_layer_token_executions": 10328812,
+          "prompt_only_busy_s": 780.3230844288213,
+          "decode_only_busy_s": 10507.19906882436,
+          "mixed_busy_s": 72.62901329599832,
+          "decode_network_wait_s": 7787.7655308008125,
+          "decode_wait_overlapping_prompt_same_link_s": 7787.312537601383,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 35,
+          "token_weighted_decode_batch": 6.854229077509491,
+          "singleton_execution_fraction": 0.3383886075617714,
+          "decode_layer_token_executions": 10157156,
+          "prompt_only_busy_s": 779.1801338495161,
+          "decode_only_busy_s": 10395.176842241272,
+          "mixed_busy_s": 67.61931843839938,
+          "decode_network_wait_s": 7646.339318434726,
+          "decode_wait_overlapping_prompt_same_link_s": 7645.959342691139,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 32,
+          "token_weighted_decode_batch": 6.521760148700385,
+          "singleton_execution_fraction": 0.3341240962709285,
+          "decode_layer_token_executions": 10009927,
+          "prompt_only_busy_s": 773.0437072944925,
+          "decode_only_busy_s": 10683.520753938143,
+          "mixed_busy_s": 68.67261409370796,
+          "decode_network_wait_s": 7206.707773377633,
+          "decode_wait_overlapping_prompt_same_link_s": 7206.254343771682,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 33,
+        "token_weighted_decode_batch": 6.8022874276844,
+        "singleton_execution_fraction": 0.3359209371408264,
+        "decode_layer_token_executions": 10165298.333333334,
+        "prompt_only_busy_s": 777.5156418576099,
+        "decode_only_busy_s": 10528.632221667925,
+        "mixed_busy_s": 69.64031527603522,
+        "decode_network_wait_s": 7546.9375408710575,
+        "decode_wait_overlapping_prompt_same_link_s": 7546.508741354734,
+        "paused_chunks": 0
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "spatial",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.7039607762638111,
+            0.709794572854263,
+            0.7212068595640373
+          ],
+          "mean": 0.7116540695607038,
+          "sd": 0.008772123078282306
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.125411283415167,
+            5.6810917730535495,
+            5.30463277501448
+          ],
+          "mean": 5.370378610494399,
+          "sd": 0.28361432933369685
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            71.65388888888889,
+            70.49555555555555,
+            69.52166666666666
+          ],
+          "mean": 70.55703703703703,
+          "sd": 1.0674398721513259
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.06206724929373584,
+            0.06266063712944495,
+            0.06405453778445862
+          ],
+          "mean": 0.0629274747358798,
+          "sd": 0.0010201620545264938
+        },
+        "completion_fraction": {
+          "values": [
+            0.9195205479452054,
+            0.9191564147627417,
+            0.9197952218430034
+          ],
+          "mean": 0.9194907281836502,
+          "sd": 0.00032044583798599704
+        },
+        "backlog_at_window_end": {
+          "values": [
+            47,
+            46,
+            47
+          ],
+          "mean": 46.666666666666664,
+          "sd": 0.5773502691896257
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 9.762049762540697,
+          "singleton_execution_fraction": 0.22473487170516798,
+          "decode_layer_token_executions": 10321137,
+          "prompt_only_busy_s": 822.980801804805,
+          "decode_only_busy_s": 7157.6656050221645,
+          "mixed_busy_s": 24.601205331194535,
+          "decode_network_wait_s": 8265.842827084127,
+          "decode_wait_overlapping_prompt_same_link_s": 8264.50377555906,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 9.7220457832531,
+          "singleton_execution_fraction": 0.2396637418708191,
+          "decode_layer_token_executions": 10152708,
+          "prompt_only_busy_s": 821.9551991807132,
+          "decode_only_busy_s": 7109.88059164721,
+          "mixed_busy_s": 19.297775801604836,
+          "decode_network_wait_s": 8066.303842946059,
+          "decode_wait_overlapping_prompt_same_link_s": 8065.378525339758,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 9.506072538115015,
+          "singleton_execution_fraction": 0.2359182964583484,
+          "decode_layer_token_executions": 10013770,
+          "prompt_only_busy_s": 817.1710315034325,
+          "decode_only_busy_s": 7181.202759057936,
+          "mixed_busy_s": 17.347013247997374,
+          "decode_network_wait_s": 7707.0834534064315,
+          "decode_wait_overlapping_prompt_same_link_s": 7706.510433633365,
+          "paused_chunks": 0,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 8,
+        "token_weighted_decode_batch": 9.663389361302936,
+        "singleton_execution_fraction": 0.23343897001144515,
+        "decode_layer_token_executions": 10162538.333333334,
+        "prompt_only_busy_s": 820.7023441629835,
+        "decode_only_busy_s": 7149.582985242437,
+        "mixed_busy_s": 20.41533146026558,
+        "decode_network_wait_s": 8013.076707812206,
+        "decode_wait_overlapping_prompt_same_link_s": 8012.130911510728,
+        "paused_chunks": 0
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "temporal",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.6236360126588713,
+            0.6267305945780411,
+            0.6215320060877111
+          ],
+          "mean": 0.6239662044415412,
+          "sd": 0.00261497620122155
+        },
+        "ttft_p95_s": {
+          "values": [
+            4.970718017988383,
+            5.093267310449948,
+            5.120818548586999
+          ],
+          "mean": 5.061601292341777,
+          "sd": 0.07990365979488545
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            72.07777777777778,
+            70.98444444444445,
+            69.86666666666666
+          ],
+          "mean": 70.9762962962963,
+          "sd": 1.1055780753336462
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.08877381906595651,
+            0.0908248703417609,
+            0.0915087861307568
+          ],
+          "mean": 0.09036915851282473,
+          "sd": 0.0014232941244380383
+        },
+        "completion_fraction": {
+          "values": [
+            0.9246575342465754,
+            0.9226713532513181,
+            0.9215017064846417
+          ],
+          "mean": 0.9229435313275117,
+          "sd": 0.0015954224815446796
+        },
+        "backlog_at_window_end": {
+          "values": [
+            44,
+            44,
+            46
+          ],
+          "mean": 44.666666666666664,
+          "sd": 1.1547005383792515
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 31,
+          "token_weighted_decode_batch": 6.693160629208011,
+          "singleton_execution_fraction": 0.32192701189579737,
+          "decode_layer_token_executions": 10381686,
+          "prompt_only_busy_s": 777.4025546816166,
+          "decode_only_busy_s": 10669.434252333984,
+          "mixed_busy_s": 70.67847860160055,
+          "decode_network_wait_s": 2746.21651145666,
+          "decode_wait_overlapping_prompt_same_link_s": 2745.201446862651,
+          "paused_chunks": 1398,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 32,
+          "token_weighted_decode_batch": 6.515136991928763,
+          "singleton_execution_fraction": 0.33511464872395835,
+          "decode_layer_token_executions": 10223960,
+          "prompt_only_busy_s": 775.0713673983181,
+          "decode_only_busy_s": 10754.010167563561,
+          "mixed_busy_s": 75.79379834559015,
+          "decode_network_wait_s": 2542.0827996031117,
+          "decode_wait_overlapping_prompt_same_link_s": 2541.1932046473303,
+          "paused_chunks": 1413,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 30,
+          "token_weighted_decode_batch": 6.517532127667799,
+          "singleton_execution_fraction": 0.3520727956617713,
+          "decode_layer_token_executions": 10063211,
+          "prompt_only_busy_s": 772.4214498559594,
+          "decode_only_busy_s": 10669.898884683898,
+          "mixed_busy_s": 65.82460926411343,
+          "decode_network_wait_s": 2490.97492885521,
+          "decode_wait_overlapping_prompt_same_link_s": 2490.1560157758913,
+          "paused_chunks": 1373,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 31,
+        "token_weighted_decode_batch": 6.575276582934857,
+        "singleton_execution_fraction": 0.33637148542717565,
+        "decode_layer_token_executions": 10222952.333333334,
+        "prompt_only_busy_s": 774.9651239786314,
+        "decode_only_busy_s": 10697.781101527147,
+        "mixed_busy_s": 70.76562873710138,
+        "decode_network_wait_s": 2593.0914133049937,
+        "decode_wait_overlapping_prompt_same_link_s": 2592.1835557619575,
+        "paused_chunks": 1394.6666666666667
+      }
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "cell": "v4",
+      "metrics": {
+        "tpot_p95_s": {
+          "values": [
+            0.6068123262545272,
+            0.6097053405650243,
+            0.5996708089044914
+          ],
+          "mean": 0.605396158574681,
+          "sd": 0.005164988343127225
+        },
+        "ttft_p95_s": {
+          "values": [
+            5.096229897216742,
+            5.11958421438901,
+            5.103566450768902
+          ],
+          "mean": 5.106460187458218,
+          "sd": 0.011943044698319062
+        },
+        "output_throughput_tokens_per_s": {
+          "values": [
+            72.10944444444445,
+            70.98611111111111,
+            69.86055555555555
+          ],
+          "mean": 70.98537037037038,
+          "sd": 1.1244446274337483
+        },
+        "gpu_seconds_per_output_token": {
+          "values": [
+            0.06464289871333014,
+            0.0641058284277512,
+            0.0664160525194366
+          ],
+          "mean": 0.06505492655350598,
+          "sd": 0.0012089702412635633
+        },
+        "completion_fraction": {
+          "values": [
+            0.9263698630136986,
+            0.9226713532513181,
+            0.9197952218430034
+          ],
+          "mean": 0.92294547936934,
+          "sd": 0.0032958815933352846
+        },
+        "backlog_at_window_end": {
+          "values": [
+            43,
+            44,
+            47
+          ],
+          "mean": 44.666666666666664,
+          "sd": 2.0816659994661326
+        }
+      },
+      "seeds": [
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 9.267246294253342,
+          "singleton_execution_fraction": 0.2450085484372705,
+          "decode_layer_token_executions": 10385289,
+          "prompt_only_busy_s": 822.4283638016065,
+          "decode_only_busy_s": 7547.57250564451,
+          "mixed_busy_s": 20.453454847998266,
+          "decode_network_wait_s": 2910.4744121281747,
+          "decode_wait_overlapping_prompt_same_link_s": 2909.2992822516535,
+          "paused_chunks": 1414,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 9.422666699141176,
+          "singleton_execution_fraction": 0.25877387793805684,
+          "decode_layer_token_executions": 10223403,
+          "prompt_only_busy_s": 821.8737243775291,
+          "decode_only_busy_s": 7348.92662215598,
+          "mixed_busy_s": 20.32188082240026,
+          "decode_network_wait_s": 2730.1989611245353,
+          "decode_wait_overlapping_prompt_same_link_s": 2729.2281402898852,
+          "paused_chunks": 1432,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        },
+        {
+          "actual_paths": 8,
+          "token_weighted_decode_batch": 8.94657699001214,
+          "singleton_execution_fraction": 0.2522019715652791,
+          "decode_layer_token_executions": 10063117,
+          "prompt_only_busy_s": 816.7924281041234,
+          "decode_only_busy_s": 7516.251352405711,
+          "mixed_busy_s": 18.70840775679674,
+          "decode_network_wait_s": 2692.879009096754,
+          "decode_wait_overlapping_prompt_same_link_s": 2692.0223381725523,
+          "paused_chunks": 1393,
+          "network_note": "Overlap is not all causal delay; NIC overlap counters cannot be summed."
+        }
+      ],
+      "mean": {
+        "actual_paths": 8,
+        "token_weighted_decode_batch": 9.21216332780222,
+        "singleton_execution_fraction": 0.25199479931353547,
+        "decode_layer_token_executions": 10223936.333333334,
+        "prompt_only_busy_s": 820.3648387610863,
+        "decode_only_busy_s": 7470.916826735401,
+        "mixed_busy_s": 19.827914475731756,
+        "decode_network_wait_s": 2777.850794116488,
+        "decode_wait_overlapping_prompt_same_link_s": 2776.8499202380303,
+        "paused_chunks": 1413
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "cell": "v4",
+      "scenario": "C2",
+      "load": 160,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "C3",
+      "load": 400,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "multi",
+      "load": 50,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "multi",
+      "load": 100,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "multi",
+      "load": 160,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "multi",
+      "load": 240,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "multi",
+      "load": 320,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "multi",
+      "load": 400,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "single",
+      "load": 100,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "single",
+      "load": 200,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "single",
+      "load": 350,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "single",
+      "load": 500,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "single",
+      "load": 700,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "v4",
+      "scenario": "single",
+      "load": 900,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "helix",
+      "scenario": "multi",
+      "load": 50,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "helix",
+      "scenario": "multi",
+      "load": 100,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "helix",
+      "scenario": "multi",
+      "load": 160,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "helix",
+      "scenario": "multi",
+      "load": 240,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "helix",
+      "scenario": "multi",
+      "load": 320,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "helix",
+      "scenario": "multi",
+      "load": 400,
+      "seeds": [
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "helix",
+      "scenario": "single",
+      "load": 100,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "helix",
+      "scenario": "single",
+      "load": 200,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "helix",
+      "scenario": "single",
+      "load": 350,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "helix",
+      "scenario": "single",
+      "load": 500,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "helix",
+      "scenario": "single",
+      "load": 700,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "helix",
+      "scenario": "single",
+      "load": 900,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": []
+    },
+    {
+      "cell": "swarm",
+      "scenario": "multi",
+      "load": 160,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "swarm",
+      "scenario": "single",
+      "load": 350,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "separate",
+      "scenario": "multi",
+      "load": 160,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "cell": "separate",
+      "scenario": "single",
+      "load": 350,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "gpu_metric_seeds": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "scenario": "single",
+      "variant": "full",
+      "path": "rcaps/v3_layouts/single/placement.json",
+      "sha256": "aad51c3d4684e5164cd93443910dc4ada4a14bfc56c04779d385253818572c90",
+      "state": {
+        "segments": [
+          {
+            "start": 0,
+            "end": 48,
+            "replicas": [
+              [
+                6,
+                9,
+                10,
+                17
+              ]
+            ]
+          },
+          {
+            "start": 48,
+            "end": 51,
+            "replicas": [
+              [
+                16
+              ],
+              [
+                15
+              ],
+              [
+                13
+              ],
+              [
+                12
+              ]
+            ]
+          },
+          {
+            "start": 51,
+            "end": 80,
+            "replicas": [
+              [
+                0,
+                3,
+                1,
+                2,
+                8,
+                22
+              ],
+              [
+                4,
+                5,
+                11,
+                21,
+                19
+              ],
+              [
+                7,
+                14,
+                18,
+                23,
+                20
+              ]
+            ]
+          }
+        ],
+        "lengths": {
+          "6": 12,
+          "9": 12,
+          "10": 12,
+          "17": 12,
+          "16": 3,
+          "15": 3,
+          "13": 3,
+          "12": 3,
+          "0": 7,
+          "3": 7,
+          "1": 3,
+          "2": 4,
+          "8": 4,
+          "22": 4,
+          "4": 4,
+          "5": 7,
+          "11": 7,
+          "21": 7,
+          "19": 4,
+          "7": 4,
+          "14": 7,
+          "18": 7,
+          "23": 7,
+          "20": 4
+        }
+      },
+      "widths": [
+        1,
+        4,
+        3
+      ],
+      "active_gpus": 24,
+      "idle_gpus": 0,
+      "layer_copies": 147,
+      "common_evaluations": 343,
+      "additional_evaluations": 409,
+      "candidate_evaluations": 752
+    },
+    {
+      "scenario": "single",
+      "variant": "restricted",
+      "path": "experiments/m2_multistage_candidate/layouts/C1_single/single_any/placement.json",
+      "sha256": "d9752a4f86e046a8168086a899135e120583dacabd9ed933752b3c2bd38155d2",
+      "state": {
+        "segments": [
+          {
+            "start": 0,
+            "end": 48,
+            "replicas": [
+              [
+                6,
+                9,
+                10,
+                17
+              ]
+            ]
+          },
+          {
+            "start": 48,
+            "end": 80,
+            "replicas": [
+              [
+                0,
+                3,
+                5,
+                11,
+                1,
+                4,
+                8,
+                13,
+                16,
+                20
+              ],
+              [
+                14,
+                18,
+                21,
+                23,
+                2,
+                7,
+                12,
+                15,
+                19,
+                22
+              ]
+            ]
+          }
+        ],
+        "lengths": {
+          "6": 12,
+          "9": 12,
+          "10": 12,
+          "17": 12,
+          "0": 4,
+          "3": 4,
+          "5": 4,
+          "11": 4,
+          "1": 3,
+          "4": 3,
+          "8": 3,
+          "13": 3,
+          "16": 2,
+          "20": 2,
+          "14": 4,
+          "18": 4,
+          "21": 4,
+          "23": 4,
+          "2": 3,
+          "7": 3,
+          "12": 3,
+          "15": 3,
+          "19": 2,
+          "22": 2
+        }
+      },
+      "widths": [
+        1,
+        2
+      ],
+      "active_gpus": 24,
+      "idle_gpus": 0,
+      "layer_copies": 112,
+      "common_evaluations": 343,
+      "additional_evaluations": 33,
+      "candidate_evaluations": 376
+    },
+    {
+      "scenario": "multi",
+      "variant": "full",
+      "path": "rcaps/v3_layouts/multi/placement.json",
+      "sha256": "ac51964500f3cfd621c4ce1963497f56cfad6ab4dbde4924e8180fd3c618cde5",
+      "state": {
+        "segments": [
+          {
+            "start": 0,
+            "end": 48,
+            "replicas": [
+              [
+                1,
+                3,
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "start": 48,
+            "end": 80,
+            "replicas": [
+              [
+                8,
+                6,
+                7,
+                10,
+                13,
+                4,
+                5
+              ],
+              [
+                18,
+                15,
+                14,
+                21,
+                11,
+                12
+              ],
+              [
+                9,
+                20,
+                22,
+                17,
+                16,
+                19
+              ]
+            ]
+          }
+        ],
+        "lengths": {
+          "1": 12,
+          "3": 12,
+          "0": 12,
+          "2": 12,
+          "8": 4,
+          "6": 4,
+          "7": 4,
+          "10": 4,
+          "13": 4,
+          "4": 6,
+          "5": 6,
+          "18": 6,
+          "15": 7,
+          "14": 7,
+          "21": 4,
+          "11": 4,
+          "12": 4,
+          "9": 4,
+          "20": 4,
+          "22": 4,
+          "17": 7,
+          "16": 7,
+          "19": 6
+        }
+      },
+      "widths": [
+        1,
+        3
+      ],
+      "active_gpus": 23,
+      "idle_gpus": 1,
+      "layer_copies": 144,
+      "common_evaluations": 499,
+      "additional_evaluations": 498,
+      "candidate_evaluations": 997
+    },
+    {
+      "scenario": "multi",
+      "variant": "restricted",
+      "path": "experiments/m2_multistage_candidate/layouts/C1_multi/single_any/placement.json",
+      "sha256": "f62abb4b78185445c2b675d02b71ffe7e021a271bb33d55296fe6edecc934eac",
+      "state": {
+        "segments": [
+          {
+            "start": 0,
+            "end": 48,
+            "replicas": [
+              [
+                1,
+                0,
+                3,
+                2
+              ]
+            ]
+          },
+          {
+            "start": 48,
+            "end": 80,
+            "replicas": [
+              [
+                8,
+                12,
+                7,
+                10,
+                13,
+                4,
+                5
+              ],
+              [
+                18,
+                19,
+                14,
+                21,
+                11,
+                6
+              ],
+              [
+                9,
+                20,
+                22,
+                17,
+                16,
+                15
+              ]
+            ]
+          }
+        ],
+        "lengths": {
+          "1": 12,
+          "0": 12,
+          "3": 12,
+          "2": 12,
+          "8": 4,
+          "12": 4,
+          "7": 4,
+          "10": 4,
+          "13": 4,
+          "4": 6,
+          "5": 6,
+          "18": 7,
+          "19": 6,
+          "14": 7,
+          "21": 4,
+          "11": 4,
+          "6": 4,
+          "9": 4,
+          "20": 4,
+          "22": 3,
+          "17": 7,
+          "16": 7,
+          "15": 7
+        }
+      },
+      "widths": [
+        1,
+        3
+      ],
+      "active_gpus": 23,
+      "idle_gpus": 1,
+      "layer_copies": 144,
+      "common_evaluations": 499,
+      "additional_evaluations": 498,
+      "candidate_evaluations": 997
+    }
+  ],
+  "provenance": [
+    {
+      "key": [
+        "single",
+        100,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load100/seed0/rcaps_v3.json",
+      "sha256": "f0609ba04b8fcd060273d47b66b5b293351feb32764bf9be2bb8334aaac25ed1",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load100/seed0/helix.json",
+      "sha256": "fca855e08b64171285c7324214ad6e135c968504ba6d731e821a45dbea606451",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load100/seed1/rcaps_v3.json",
+      "sha256": "d1cf7b30cf624134e3508362b1360d17a16bfed6836056723dee55e0f85c94fa",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load100/seed1/helix.json",
+      "sha256": "900f0166e79f2a83f19257c4a41d20071f0bd1f6bc4b6cc5ff9c5307599443ac",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load100/seed2/rcaps_v3.json",
+      "sha256": "3772be44fa24d7dea63c715c7fda1c7204f897030370b32f93ca1451abf52f9a",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load100/seed2/helix.json",
+      "sha256": "f84194093dfbb183bdc6165f79b85b2849943f535af0c6952cdd8a2e4bd7a9dd",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load200/seed0/helix.json",
+      "sha256": "b3d2f8d9e856d1ee8ecb9d1dcf24575c4f55a2a75c199420f8a5abbec96358fa",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load200/seed0/rcaps_v3.json",
+      "sha256": "b82c4ea844ab36e98b6ab86c79003c35686289c0ea6ff4b4177351f6fbfb8b00",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load200/seed1/helix.json",
+      "sha256": "8df9ab1a5ec77c06c31ff8f83568be9dc55c3374d477975e9514990917ee55f0",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load200/seed1/rcaps_v3.json",
+      "sha256": "57e7f2a387368bb70c13437292842be31ca3aa86d96f83c1b729bb1997befa36",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load200/seed2/rcaps_v3.json",
+      "sha256": "503bfeecc3a96dec2884e7bbbd0451e50dca3dcd95962fc125e80c345eb28a90",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load200/seed2/helix.json",
+      "sha256": "504389a19bc9181b74d1278933defa8d4d24b5a4a69aad54105222552b8cfc65",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load350/seed1/helix.json",
+      "sha256": "7f357afda07b80a436d5cfcadfa9b071349c3770eaf9993ff681a24968cd0ab4",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load350/seed2/helix.json",
+      "sha256": "f29ff7b1f6f017284667e273ac3467dbd20c813dec0e1f75889827b78d86386f",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load350/seed0/helix.json",
+      "sha256": "d95e45d532bc30795bdb32019fdea8ee0b5b45c2e6e7e47fae0f36fab04f3cb9",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load350/seed1/rcaps_v3.json",
+      "sha256": "1ac57e3e0a10b2622319013aabf614485a62d1cd2080f8a6673c797da4a99605",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load350/seed2/rcaps_v3.json",
+      "sha256": "91c91a0a8e335580c392ae7c35719715c68b87b84488f89dfb0861de1ecef367",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load350/seed0/rcaps_v3.json",
+      "sha256": "ee4c7c780bc2a58b850dedd9d6d23582a3e8676d68ce9e077aaf1d3df4093b80",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load500/seed1/helix.json",
+      "sha256": "73c9a2ef1e662dec94c0ede66fd057cd71bb60e9933a03dce5f02bb1c0a5971e",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load500/seed2/helix.json",
+      "sha256": "1dbc342822688f3f6311c4557ebb219d36a9571b99d045d7e33eccb2b5dd3334",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load500/seed1/rcaps_v3.json",
+      "sha256": "20eb6af4838d00459c08e8eff8a53d3f562e8f5604a49ae641323f4977083aa3",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load500/seed2/rcaps_v3.json",
+      "sha256": "e776309b13b5fbe3bf81cc1665b33fbc7e0bd74c00046c0b6e29997e4ed09bae",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load500/seed0/helix.json",
+      "sha256": "eaeda6962f1828c210918f8bd2d2bbaf8280b53d66ae1dde1baa9d718b875f42",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load500/seed0/rcaps_v3.json",
+      "sha256": "d4d8141594df8498421774a8901e0cde5c71214cc40582d405203c81799a7fa5",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load700/seed0/rcaps_v3.json",
+      "sha256": "7d5f1baa2ed19bbb62f6420c552ffbde8e440f3b71ed611169d6d51b2d5c2386",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load700/seed1/rcaps_v3.json",
+      "sha256": "d8f0addbea18f6ca615766c7051e718ea4f36f1deada41c196aecffe81407dfa",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load700/seed2/rcaps_v3.json",
+      "sha256": "fcbcf12930c32b036dd52800b95bd0511555fd46286b63813e36048145782948",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load700/seed0/helix.json",
+      "sha256": "f8b778207f6263183b40013551a78267c31fd209c5c712accd0dee58aacb842c",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load700/seed2/helix.json",
+      "sha256": "a72904c88756a3b00515a7f36815a3e7f36568a4ea4453292088fdb8cd2330bf",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load50/seed0/rcaps_v3.json",
+      "sha256": "195d3d715ded446c5aa55ccd7516e1f6b34bf6a5a62ca2cc9d982e0f05b24b47",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load700/seed1/helix.json",
+      "sha256": "522a74332329208ded207a8c5af841a4e92c8d0a4fa765821140e2d91c0fa915",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load50/seed0/helix.json",
+      "sha256": "70a8105550538043f7f799afd723c46a27e19b6222291169a70cdf66fa18e91d",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load50/seed1/rcaps_v3.json",
+      "sha256": "67331a2c66b1ea916d1519108cbf430ad5246309c590aa8c081ba8c7d438d4ee",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load50/seed1/helix.json",
+      "sha256": "7675a88acdb3f870e0657800a3f56df2e02cd3e86468fa884669d25d5ce9bc2b",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load900/seed0/rcaps_v3.json",
+      "sha256": "319ce5e717f9b581d283f7a93424b65ed9f5ea5f4f89097650d5ab2b6d61bfca",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load50/seed2/rcaps_v3.json",
+      "sha256": "8d816adea860941f383ed9eb1a22446e34db2bfbbc3cb5d6e51275c39c535722",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load900/seed1/rcaps_v3.json",
+      "sha256": "15e8aedd6dd3852602232376a569088512cf059ff868899bf05bfc72f3763d36",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load50/seed2/helix.json",
+      "sha256": "3a08a5aa6192efba29e9f2b1e7931bf74c8b75e2679cf47ed225de06dc192aa8",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load900/seed2/rcaps_v3.json",
+      "sha256": "2ea9f60333404d36a3c204cd25f5509036866865b45309050d0a572027163922",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load100/seed1/rcaps_v3.json",
+      "sha256": "eff6e7692e8e98fe51d5b24dd1759bb25f990f4686915cc6dee1a47f91319d83",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load100/seed0/rcaps_v3.json",
+      "sha256": "354f3f7c6dc50d59032e65d3b52198209798a4ce90a3fd42f84380066206382a",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load900/seed0/helix.json",
+      "sha256": "61bd1187e3e8d03a518c34d2116040c95790ec8434926e2fc9525e267c3ae390",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load100/seed1/helix.json",
+      "sha256": "5aeb7c88014190fe1309cafc3b225e2f3c786dc7c696958800bbbdaf4f2cf747",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load100/seed0/helix.json",
+      "sha256": "95aea1f68c6d9999b23af42a60db8eaf342a5d530afa5c0a3e113c11042d2fdb",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load100/seed2/rcaps_v3.json",
+      "sha256": "e82246a25a6690569d57b0f6da863d8deb5930086dfe0c83b2b3b344ea9f9e7b",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load900/seed2/helix.json",
+      "sha256": "e564f04f3426e2b8264b79ab8ed6d54078e77be7a314cc12c40cfd295a428437",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/single/load900/seed1/helix.json",
+      "sha256": "82470bb6c73c27277d941d8cbaea24d5733cb63c6706a3fa04a841f022d88476",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load100/seed2/helix.json",
+      "sha256": "06f4a2834c5c4bc75206f4989ce16fc1c90f096d626188f999850d41afbbdeab",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load160/seed0/rcaps_v3.json",
+      "sha256": "65c571e500321d52eb51fe98f8f528bee32e3de963d796e7a127fc648886512d",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load160/seed1/rcaps_v3.json",
+      "sha256": "15b67368ebf924c90575d8ed0d1b95325380664882d1b09c871e63299dcb48ba",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load160/seed2/rcaps_v3.json",
+      "sha256": "3975022387437ff6373781d6b14937601e73747f04e028d3cfddbfdf3037c49a",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load160/seed0/helix.json",
+      "sha256": "97d78411b652b86a2770b702586bfdc09d96214a203db710c5ead1bec52a2bdf",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load160/seed1/helix.json",
+      "sha256": "ff80f50cf56fb791fd35ea2d450eb427c99b4fcf12223f099a36ae0cfd896a85",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load240/seed1/rcaps_v3.json",
+      "sha256": "0430c7a1e988fb3490455d9b9f90e256a53e49781bbf03dcc3475bb866e85f78",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load240/seed0/rcaps_v3.json",
+      "sha256": "2cfa23ab877614cdcd5e45b306bc193bc2aac3312979e645da3eeb055f4457a6",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load160/seed2/helix.json",
+      "sha256": "816872b4f9acfaed8ccc82e614e63d736f615495735494cef580efd55d4d9e4d",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load240/seed2/rcaps_v3.json",
+      "sha256": "ee7bcf66285d21c7719481e48629bb41c75754ea88b855495ed7ff49712030ef",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load240/seed0/helix.json",
+      "sha256": "62d1868fea19df99ed12964ba8234a4e100be5294d8d20cebf00751efd350daa",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load240/seed1/helix.json",
+      "sha256": "233041756aca2545db61a3e1bb03842d6452b5b1d79a61e18b537083af85381f",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load240/seed2/helix.json",
+      "sha256": "3d07fad54e472bf6d9f8be815ac36abc8c35fc25d443a6bf65192c1c582f1222",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load320/seed0/rcaps_v3.json",
+      "sha256": "c2f5e1d8319ce8ef71b96f40650421063bc1b6b89ded67a49566c5491cf1d80d",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "helix",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load320/seed0/helix.json",
+      "sha256": "1bb638a0a4c5820fe53459c4ef3dceeb53b462c65358e8ddd3f095d1b745e27b",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load320/seed1/rcaps_v3.json",
+      "sha256": "ce3bf5c9f1c8a5e3107c2e96d6edfb8eec11ee182df056e701633d8d7aeb5c5e",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load320/seed1/helix.json",
+      "sha256": "9b957029af735bca1b64a18c75a3a016ec260eebf9067c32712910e8617ff2dc",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load320/seed2/rcaps_v3.json",
+      "sha256": "0e916480f8eee7ae0d5e29ea3ed0da732159eafcb1ae758d421af2cf2410fc53",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "v3",
+        0
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load400/seed0/rcaps_v3.json",
+      "sha256": "829319397399e5db040fca4ba21d0028e5ee11733e273ba91aa470ca2dbd0069",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load320/seed2/helix.json",
+      "sha256": "a99a9916e4710f0612012a345be795292a02148434ee3d0997733cfdc2643164",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "v3",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load400/seed1/rcaps_v3.json",
+      "sha256": "f18865bed99f649deb9b6082ae789110f9e3e72ba81ced13ee277dae7baee482",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "helix",
+        1
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load400/seed1/helix.json",
+      "sha256": "05ab9f7364b9b49b9073409163a1643dace5c329e6aa8b68f8cf8206a9d34263",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "v3",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load400/seed2/rcaps_v3.json",
+      "sha256": "c1e9819eaa6b4a71c7e961f4e0a45048b81042748bb0575a6332b4dfd95b88bd",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "helix",
+        2
+      ],
+      "source": "experiments/v3_load_boundary/runs/multi/load400/seed2/helix.json",
+      "sha256": "89300d5b7e3170db8c199d4c483aaa3593584a6f89b2e668e74dd62e6c03a6bc",
+      "kind": "audited_historical"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v3",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/v3/seed0/result.json",
+      "sha256": "91e41657d512772accce1e6e1695185c300b810fa4e9be56c1f8de2231dfba2e",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v3",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/v3/seed1/result.json",
+      "sha256": "89932cbe96a4f878d260a36c5d7131060e8df1735ca645f695a7014966205f08",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v3",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/v3/seed2/result.json",
+      "sha256": "e17c6491564e3996a659d7b62c605b82af7042a0992496b6cbb2de762bc13250",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "spatial",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/spatial/seed0/result.json",
+      "sha256": "49ea30e97be25546953a44d6c8682d7365fe9756dd53576d9fe552c76f255985",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "spatial",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/spatial/seed1/result.json",
+      "sha256": "3e822d2e50db6620d576a7a75bc9aa785fa2af5091998ef4848af17e77aff2d5",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "spatial",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/spatial/seed2/result.json",
+      "sha256": "4e10b51abb0655aad66fec4920df958b2958720970bb87b5bd0cbf517cf58414",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "temporal",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/temporal/seed0/result.json",
+      "sha256": "21c8b0e9293545b7523b20f245037432ef4ece4713532c44def5736e81cf9b51",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "temporal",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/temporal/seed1/result.json",
+      "sha256": "266f33494464844d06589961d9e17880a8b56fcdd8a44be9335fe8375c595f9f",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "temporal",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/temporal/seed2/result.json",
+      "sha256": "982c0d4bdbdf6b4232e73e5f97b96fc43c0b937346265e9647573e2bf4e1a7b3",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/v4/seed0/result.json",
+      "sha256": "e0b6acb58f6b609edd555c68e29c5f63331231431e2ad47deb6f52096154c37b",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/v4/seed1/result.json",
+      "sha256": "013603ec5d429011d995188deba871e3ba3a89c330a3b8bfb131f4b55da65a64",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/v4/seed2/result.json",
+      "sha256": "6731385e70b4644a2fd9d5a3552e87460a6c3082d5d53f41764f261a41613190",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v3",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/v3/seed0/result.json",
+      "sha256": "9fbee071e6a60df28ebb6d4b53cd387ba2c8b9a6cf00f833f49477ea1dfeaf95",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v3",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/v3/seed1/result.json",
+      "sha256": "0b1a1ed6456cbba8f0cc7572dfa67cbd844b44add91355e9d0833bc93f59a04c",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v3",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/v3/seed2/result.json",
+      "sha256": "b6ff75bc72e0e6cb161337f2d3071d8a443b33d2d05d6bd245bbad732494a6f6",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "spatial",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/spatial/seed0/result.json",
+      "sha256": "b0c28e4adcd45885356c119c76a650569db6a7dca6175cadf434cf250cc863e3",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "spatial",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/spatial/seed1/result.json",
+      "sha256": "a1d082f00024174f8d8ca207ed46aee353dd2e43db935fd57fc3a1c54d9f5759",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "spatial",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/spatial/seed2/result.json",
+      "sha256": "321f6c67e070dac4f75242dea337a0a2b051e68bf27e88215682dbf4e9f9a76d",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "temporal",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/temporal/seed0/result.json",
+      "sha256": "ab1c4886c6223d9ca07f5661af0c7d62fd3a6c2eac7d1de11ceae0ef3b28740c",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "temporal",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/temporal/seed1/result.json",
+      "sha256": "d681f0831589414f78e25de0de88a4491df25fc988e2434f9278240b9c0a1fa3",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "temporal",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/temporal/seed2/result.json",
+      "sha256": "7cbe71da1d951b4cee1b2cd6e6fd6a19c312da76725d14697858a29202031326",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/v4/seed0/result.json",
+      "sha256": "22df7854b68fcc11b53307347eee7ab69fd26df88f801a7d5f467c0e8dd4e060",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/v4/seed1/result.json",
+      "sha256": "6609abab6e7db5479750a61f6dde167ed74f51b14c8c621fa988be2ddc2d5b67",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load160/v4/seed2/result.json",
+      "sha256": "d8cfc4594078c735ce5ba20cf8b6b6bbef433ca553b4b2f0420820bb7f7668d5",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/single/load100/v4/seed0/result.json",
+      "sha256": "cecd6cb64f56d01d2923434b626e32b915def50a3435bbb7a985aa4339c03124",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/single/load100/v4/seed1/result.json",
+      "sha256": "71e175f3dfdb2e1b136359b14c55dadd8d9056e5323119d5408a8aaca110185b",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        100,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/single/load100/v4/seed2/result.json",
+      "sha256": "0c62eb4950c27de1f477697644f9feb6aac9b601b169f22ddf33ccd9964d24e5",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/single/load200/v4/seed0/result.json",
+      "sha256": "c8f368936dc9def3597b22f6934ad79237650bcd523a3e7bc599e8c3e4965ae6",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/single/load200/v4/seed1/result.json",
+      "sha256": "31dbe7255490eda3818c8180eacd753654c12ec39361fc15381e13464a85a218",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        200,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/single/load200/v4/seed2/result.json",
+      "sha256": "9af1c3a878349eab9d025818b1aa8e1963d718a1f33dc752530357402d775cfb",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/single/load350/v4/seed0/result.json",
+      "sha256": "23027be7c8856ab33cdcd600a1dade605656055e7d7613e9680cc574993cd4ef",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/single/load350/v4/seed1/result.json",
+      "sha256": "af13361c07a5e6a8877de5a4ab439434a2ca1af82b5671f25f4c882bd2c5e49e",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/single/load350/v4/seed2/result.json",
+      "sha256": "560e66edbbb286621a8843abef97ca421f69673b56e969722dde1c430d536acb",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/single/load500/v4/seed0/result.json",
+      "sha256": "9d7e7c5c36b94d27222feec1be70e02f19fe9196ee77474de31e7f9bd6f61538",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/single/load500/v4/seed1/result.json",
+      "sha256": "57e90b77475c0304337c5e044f59d7d7d9575bbb2f448817edf570ac286c5eb9",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        500,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/single/load500/v4/seed2/result.json",
+      "sha256": "780fea888910a35afd7ce9121ac05ccb953cd28339b6aecbeb96b04c48da0567",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/single/load700/v4/seed0/result.json",
+      "sha256": "394c1bf255e99e3c0dad2eacf056619f94cfa012ac832cd939c2466d19874788",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/single/load700/v4/seed1/result.json",
+      "sha256": "ebad77843f6e9f464362a1a87d6ef67e3f2e7b216c991757d3bc4ccc3ba08e6a",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/single/load700/v4/seed2/result.json",
+      "sha256": "0cc63241eb2ff77f9b2536de75423a56ec9d34f96516049aff968d11179e1e75",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/single/load900/v4/seed0/result.json",
+      "sha256": "2f7f64dddd85b70f6aca08badd722cba9b11a86974375cad94f37ab678f146ff",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/single/load900/v4/seed1/result.json",
+      "sha256": "a6ac2604eac9ccda3f73208146e626fe01f4cf0cf04dab03fac012483c5b7814",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        900,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/single/load900/v4/seed2/result.json",
+      "sha256": "fc688337b6440566713fa71cfec9ba698410be99526bb764ce1d27794d886343",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load50/v4/seed0/result.json",
+      "sha256": "e65912c4ce4225e6c8fdc26cc839067f810c73dcde9bb2f7b104b5920bb6012c",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load50/v4/seed1/result.json",
+      "sha256": "157f5b14851c833388d5b38a636f4770c36a6cef3c0846ebe2467e7ddfcd10cb",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        50,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load50/v4/seed2/result.json",
+      "sha256": "134eb4fefc869ae30d1d1f8b3113b79dd0c43393d41ac7bf9c74a671ddee0639",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load100/v4/seed0/result.json",
+      "sha256": "e14cf07298170934233d02f7e66589626879fb05ab5a9f5b57483a2c6a51496d",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load100/v4/seed1/result.json",
+      "sha256": "2b651ecd091cb022fb804421d8b5cd5198d6a6ca446b9cafdfcc8966b5b91e6a",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        100,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load100/v4/seed2/result.json",
+      "sha256": "d487e8eb2b1f4acb0c27fc714447f880fa13da9489340bda268683aa18b67abd",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load240/v4/seed0/result.json",
+      "sha256": "1135832479d236129b1377d26b108bfbf10b414be9786c384df43c489bc46a20",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load240/v4/seed1/result.json",
+      "sha256": "0ac5e6806913c6357b0212f24883cd89a1b8a457bff9780ef9e40c2cabf0c517",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        240,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load240/v4/seed2/result.json",
+      "sha256": "6b9e24ef26a69a82f65780bc083200decb764bea08eed2733c2d781d2bc68c38",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load400/v4/seed0/result.json",
+      "sha256": "30d88fef165fe495872d34a6ec4bf2114b2e46123b99161257c1f23e60dacfc1",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load400/v4/seed1/result.json",
+      "sha256": "4f05cdc7218fc42d180a54e9cf4060580b516022be32a05b62d6836747785bb7",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        400,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load400/v4/seed2/result.json",
+      "sha256": "da2f694387fde3857badbe1ba544aa86e9358bdb4386aaca3c33b5bd2f4e38f1",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "canonical4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/canonical4/seed0/result.json",
+      "sha256": "133a5a734db8cf64d4002b8ec3f8267ec49fc2fdd40d38f13ebe9129ad8b365c",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "canonical4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/canonical4/seed1/result.json",
+      "sha256": "cd3f4c9e9cd31a5ad788809275d571d7514dd45b8c531a8f2d4ff05721fcd393",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "canonical4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/canonical4/seed2/result.json",
+      "sha256": "9c2a2a41605f404f25e0b542c656902b1e4bf112c7c44a03536ccf4b22753f2b",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "all4",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/all4/seed0/result.json",
+      "sha256": "1631be713e78476e7f44843183aa6cec71d0ab74c89ca7940ea6b29c678f4507",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "all4",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/all4/seed1/result.json",
+      "sha256": "9e9dc8ff5d9137459e0de32752b68892faf00ef872f2661e23b5fced7fa06db1",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "all4",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/all4/seed2/result.json",
+      "sha256": "5d5b7d444ebf29e11fc8c64a10fac53ddb27cf2b2dae7b3869fd583d0a4ab049",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk1",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk1/seed0/result.json",
+      "sha256": "859a44a5760c5e2dde0084af70807d901923e140d0ce9f85f8246780ce8ab7b0",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk1",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk1/seed1/result.json",
+      "sha256": "ce7be8be4bd8b93e4f3cba4a761363d65f399ef8d7398f79bc062f2af51eaa44",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk1",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk1/seed2/result.json",
+      "sha256": "836a78158550d569d31f0057ac22f1b7b97146d8ff88d062970c770423fab9d3",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk2",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk2/seed0/result.json",
+      "sha256": "ffb7c1f43fc46282fc49b2da76fc52d711ac1fcdb2fab977246820bb4f86eaa5",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk2",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk2/seed1/result.json",
+      "sha256": "be22c13b17b7b10033503ecf8713a781d7ac01d03cdf810c6531b159381f6f80",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk2",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk2/seed2/result.json",
+      "sha256": "2dfadba94f245ee36bc6fd7d3fe960734805785d9ef921cea990a3c5ad13914a",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk8",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk8/seed0/result.json",
+      "sha256": "f4397d76d2326fff489d82256befbe1a5061d58eb16e4f621b73d9c53fb91ec9",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk8",
+        1
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk8/seed1/result.json",
+      "sha256": "38d01d5f549771a47ac0dfd0dc067cc57a1d68b9e21eabd1702532517a4e1f98",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "chunk8",
+        2
+      ],
+      "source": "experiments/v4_formal/runs/multi/load320/chunk8/seed2/result.json",
+      "sha256": "f827fce13e5f06638a6a43506b02756be515d27677a4c177050b2b46a0f2287e",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "static",
+        0
+      ],
+      "source": "experiments/v4_formal/runs/single/load700/static/seed0/result.json",
+      "sha256": "cb8568aedc4b6f7ef390083291a7e5fb5a146c988b1db1dc6275ccb24a9582bd",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "helix",
+        0
+      ],
+      "source": "experiments/v4_external/runs/single/load350/helix/seed0/result.json",
+      "sha256": "37e7ffc068a135c34aca86fa64290b3a7de2eff0a940bde4c4ed018fb5988a21",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "helix",
+        1
+      ],
+      "source": "experiments/v4_external/runs/single/load350/helix/seed1/result.json",
+      "sha256": "3020106beca8a878bb587da28c60fe5fcae468f42cccf57841ef3928f4bb5ac8",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "helix",
+        2
+      ],
+      "source": "experiments/v4_external/runs/single/load350/helix/seed2/result.json",
+      "sha256": "28e90be886763e4da9a5a7fdd06a669f6981548c61b2b7cd067ead6c53748eb6",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "swarm",
+        0
+      ],
+      "source": "experiments/v4_external/runs/single/load350/swarm/seed0/result.json",
+      "sha256": "38f0dd25303d37e850dd9da0690499aea025616fa48e8d3aac480eb65c0153eb",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "swarm",
+        1
+      ],
+      "source": "experiments/v4_external/runs/single/load350/swarm/seed1/result.json",
+      "sha256": "58afb15ed5a655edd268f9469590073129b5dc6c519708e605f1d5a3294562e1",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "swarm",
+        2
+      ],
+      "source": "experiments/v4_external/runs/single/load350/swarm/seed2/result.json",
+      "sha256": "fc4b26139175f64df16aeed29dafec1ffbe0ff82a1f803df52c0a074b8036514",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "separate",
+        0
+      ],
+      "source": "experiments/v4_external/runs/single/load350/separate/seed0/result.json",
+      "sha256": "476985a911c787faa89ac65face42b63f8c6ff1288e16b396345da90813e19dc",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "separate",
+        1
+      ],
+      "source": "experiments/v4_external/runs/single/load350/separate/seed1/result.json",
+      "sha256": "3ae04c614e1b04dd75801f91b4ae29d59eae9efe8e10a4a24880c18e4d471ccc",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "separate",
+        2
+      ],
+      "source": "experiments/v4_external/runs/single/load350/separate/seed2/result.json",
+      "sha256": "3ea343de8d6a3483edade88e523dc5c04d35438c35847dbfe1d2fd1e130e1212",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "helix",
+        0
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/helix/seed0/result.json",
+      "sha256": "088087d8ccfa59b89d765c36aa914f574f6d603be33e1d719fc37e55af1d94ae",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "helix",
+        1
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/helix/seed1/result.json",
+      "sha256": "3c61534f97e31ad997d943e8df329bec1fb53d587266bda1f600680374155d64",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "helix",
+        2
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/helix/seed2/result.json",
+      "sha256": "23d727ffa6db0fe8b1b4c1d71d62bc21779a3b2c8da560ae8a210ef76f87f91f",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "swarm",
+        0
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/swarm/seed0/result.json",
+      "sha256": "82781b7c0891c51cf86ca8e7a57ebe64feb666a19f673fb0a7642340233edccb",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "swarm",
+        1
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/swarm/seed1/result.json",
+      "sha256": "5ade39b3928c33bcf39428c4573c00e241cab81cd03ec54cda96f22004742262",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "swarm",
+        2
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/swarm/seed2/result.json",
+      "sha256": "b8d799f096516cd7885ce6d84552f7cd5657bd1bf8e108954961a64ee16b40c4",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "separate",
+        0
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/separate/seed0/result.json",
+      "sha256": "2e3b0d24a5067a4e88c440fa3227995c811ad9e5e78fd10b539dacf23c8b8d0e",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "separate",
+        1
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/separate/seed1/result.json",
+      "sha256": "f88c8607d601c3f6e871591d96ca2ac384b8a3a0b5fc4e7d50285e9fa365377b",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        160,
+        "separate",
+        2
+      ],
+      "source": "experiments/v4_external/runs/multi/load160/separate/seed2/result.json",
+      "sha256": "6557e871cd8497576942cee5545cc0821161343503bf4ee5dc4528d00f3317e1",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v3",
+        0
+      ],
+      "source": "experiments/v4_external/runs/single/load350/rcaps_v3/seed0/result.json",
+      "sha256": "7111bd58d5b72f81aa02606505f69cd13e0832d255dd6a5aa2dc397ccb56ef5f",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v3",
+        1
+      ],
+      "source": "experiments/v4_external/runs/single/load350/rcaps_v3/seed1/result.json",
+      "sha256": "134da3e3a818c71a670a3db11eae7eb15c248d57ded2db79ecbbb6ad336cb2f7",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        350,
+        "v3",
+        2
+      ],
+      "source": "experiments/v4_external/runs/single/load350/rcaps_v3/seed2/result.json",
+      "sha256": "aa29368b2acc66e87097badacd02837925d61dc6c8c6a3aefdc0aaf56c93448b",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "helix",
+        0
+      ],
+      "source": "experiments/v4_external/runs/single/load700/helix/seed0/result.json",
+      "sha256": "60c865841b1bc344b460755f66f634a97c7bb71031dbe5e0ac2cdf92db64957b",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "helix",
+        1
+      ],
+      "source": "experiments/v4_external/runs/single/load700/helix/seed1/result.json",
+      "sha256": "250a0eb3de439b5ab00ed30f2f6147e35491d6a06be2db9e68ba8ca8a138d177",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "helix",
+        2
+      ],
+      "source": "experiments/v4_external/runs/single/load700/helix/seed2/result.json",
+      "sha256": "8a07aad4579cbcdba0e2b65c0dbae0ac255f4fda8cf2590a2dc21e7416f10ee5",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "helix",
+        0
+      ],
+      "source": "experiments/v4_external/runs/multi/load320/helix/seed0/result.json",
+      "sha256": "797aec1f9c8098f217375f19edcafe11709376d9b65b6cc3b29a8f2c2387126a",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "helix",
+        1
+      ],
+      "source": "experiments/v4_external/runs/multi/load320/helix/seed1/result.json",
+      "sha256": "a7d39efd78fc7edca8a59e0cdb73b036a2e59a117cc259762612b5f81ddeedf2",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "helix",
+        2
+      ],
+      "source": "experiments/v4_external/runs/multi/load320/helix/seed2/result.json",
+      "sha256": "6d6fbea9beffe1ae056309a36bf00cce2d56b6e50d224b2f061f623f2db534d3",
+      "kind": "fresh_formal"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "static",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/static/seed1/result.json",
+      "sha256": "c21b8256d6b8b34c1e0d70b144230f62e560e4edf1fdf8b9746ecd6cee66a81f",
+      "kind": "authorized_second_attempt"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "static",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/static/seed2/result.json",
+      "sha256": "487b1217a199433edc438783deedd2520e9f6dceb1ec99fba6aea39f772ba59e",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "single_boundary",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/single_boundary/seed0/result.json",
+      "sha256": "a5dee2b01cdf0333cbcdac2009606b93632ca9a49739a4c240ad6ba7dde80743",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "single_boundary",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/single_boundary/seed1/result.json",
+      "sha256": "a5e117d9ebdd014d74d0f5d0139d4110333d0338584aa9d4176e762e291758a2",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "single",
+        700,
+        "single_boundary",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/single/load700/single_boundary/seed2/result.json",
+      "sha256": "847629ba74916a3fdd39b52e465ccffffc422cb2ddc4f26a4ea0d236ed5b8452",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "static",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/static/seed0/result.json",
+      "sha256": "1488de417676dbe5bb01cad905bcda43389336c610f900ba1a50f004b5c67a30",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "static",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/static/seed1/result.json",
+      "sha256": "4ebf8333e02f53bbdb45b939cb14a94691a53033061973c88565c30269376afd",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "static",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/static/seed2/result.json",
+      "sha256": "23e06588fc03abb27bec5f5a250bb0f4558e44ec3c154d1986f5158853e07b98",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "single_boundary",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/single_boundary/seed0/result.json",
+      "sha256": "a576a6e8674fd6b7923750f2d0ce4fe836cab55e27d17c75ac1b85a22895645f",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "single_boundary",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/single_boundary/seed1/result.json",
+      "sha256": "165c952754a38a33ebbf273f9471ad39fb5664215872c96d133706233b78ae9d",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "multi",
+        320,
+        "single_boundary",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/multi/load320/single_boundary/seed2/result.json",
+      "sha256": "4356b97df4234d5d5b77215c287728c88e59fb976287e2d4dc0dfc6724332ab3",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v3",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v3/seed0/result.json",
+      "sha256": "8dfa49ad0227fca3ddeb01339cff5e08716362dbb9483f7aa96ccbf312249e6e",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v3",
+        1
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v3/seed1/result.json",
+      "sha256": "d9ea99c6a73861b652b4b83d1d91d3c18bdf3c380e505027c964c62bbf61449f",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v3",
+        2
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v3/seed2/result.json",
+      "sha256": "cc102a00eee952dce5a610ad3d22637eacd3e4013385ab2dd4bf1898e7639f0b",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_recovery/runs/C2/load160/v4/seed0/result.json",
+      "sha256": "ba94d34e5a0bdb0320653bb94726846905e5fe38c71bf991db39abfa7f33ce44",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_recovery2/runs/C2/load160/v4/seed1/result.json",
+      "sha256": "f3ce1180c6fa52fbd48a36e7e680e92af8195d19d9768feaa6d72218d9fbb475",
+      "kind": "authorized_second_attempt"
+    },
+    {
+      "key": [
+        "C2",
+        160,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_recovery2/runs/C2/load160/v4/seed2/result.json",
+      "sha256": "634f9278a3786d162cbb1fcc5d26145a6820493a5e9e8d72a87a369a4116ade1",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v3",
+        0
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v3/seed0/result.json",
+      "sha256": "8abfaa91092a54c67c9011fd51cd2a2da009a4a8cd0a1f10defd8e63e06e2a0b",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v3",
+        1
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v3/seed1/result.json",
+      "sha256": "d5513c48f6e990badf0bdd145bb53389d7db964f090fb08b28422bff4c4d9062",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v3",
+        2
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v3/seed2/result.json",
+      "sha256": "4772d165e1e7633498921ed709bec4d0a126e54f7170445769cb463c75f1d4c0",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v4",
+        0
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v4/seed0/result.json",
+      "sha256": "d40a2f0b392d94a24932982f649fb27d178a97a8a95071bed6543f3a8db59934",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v4",
+        1
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v4/seed1/result.json",
+      "sha256": "7a0b49b5303c5f6d030af5de54e6fb36bd82b1a31a0a9e932fa4e9d2f204e8f3",
+      "kind": "authorized_continuation"
+    },
+    {
+      "key": [
+        "C3",
+        400,
+        "v4",
+        2
+      ],
+      "source": "experiments/v4_recovery2/runs/C3/load400/v4/seed2/result.json",
+      "sha256": "ab44f34d4d5e29123194ba1e2be048a642bacb6eb59036519fa2214ccbe0893e",
+      "kind": "authorized_continuation"
+    }
+  ]
+}

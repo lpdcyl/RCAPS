@@ -1,0 +1,147 @@
+{
+  "registered_at": "2026-10-26T18:14:34.329347+00:00",
+  "environment": {
+    "python": "3.10.16",
+    "executable": "D:\\software\\miniconda\\python.exe",
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "networkx": "3.4.2",
+      "matplotlib": "3.10.9",
+      "gurobipy": "13.0.3"
+    },
+    "env": {
+      "PYTHONHASHSEED": "0",
+      "MPLBACKEND": "Agg",
+      "PYTHONIOENCODING": "utf-8",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "jobs": [
+    {
+      "scenario": "single",
+      "load": 350,
+      "seed": 0,
+      "cell": "parallax_p2",
+      "key": "single/load350/parallax_p2/seed0"
+    },
+    {
+      "scenario": "single",
+      "load": 350,
+      "seed": 1,
+      "cell": "parallax_p2",
+      "key": "single/load350/parallax_p2/seed1"
+    },
+    {
+      "scenario": "single",
+      "load": 350,
+      "seed": 2,
+      "cell": "parallax_p2",
+      "key": "single/load350/parallax_p2/seed2"
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "seed": 0,
+      "cell": "parallax_p2",
+      "key": "single/load700/parallax_p2/seed0"
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "seed": 1,
+      "cell": "parallax_p2",
+      "key": "single/load700/parallax_p2/seed1"
+    },
+    {
+      "scenario": "single",
+      "load": 700,
+      "seed": 2,
+      "cell": "parallax_p2",
+      "key": "single/load700/parallax_p2/seed2"
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "seed": 0,
+      "cell": "parallax_p2",
+      "key": "multi/load160/parallax_p2/seed0"
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "seed": 1,
+      "cell": "parallax_p2",
+      "key": "multi/load160/parallax_p2/seed1"
+    },
+    {
+      "scenario": "multi",
+      "load": 160,
+      "seed": 2,
+      "cell": "parallax_p2",
+      "key": "multi/load160/parallax_p2/seed2"
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "seed": 0,
+      "cell": "parallax_p2",
+      "key": "multi/load320/parallax_p2/seed0"
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "seed": 1,
+      "cell": "parallax_p2",
+      "key": "multi/load320/parallax_p2/seed1"
+    },
+    {
+      "scenario": "multi",
+      "load": 320,
+      "seed": 2,
+      "cell": "parallax_p2",
+      "key": "multi/load320/parallax_p2/seed2"
+    }
+  ],
+  "sources_sha256": {
+    "experiments/v4_validation/neighbor_run.py": "05eb3436f7141c194d67212206565ab1bcf8994316725557a6676286190cfe46",
+    "experiments/v4_validation/parallax_mechanism.py": "b58364c41f2c43c80e40642112c8d62304a677b83fe127cb7d0c0182763e6841",
+    "experiments/v4_validation/diagnostics.py": "42311e5eb3bbbee3dcf414b49e2c5816b1ba88ff0ad72f4bc6ae86198fdf58ad",
+    "experiments/v4_validation/neighbor_preflight.json": "6cc852cabad6a5ac966c1ee867666398b02333c2f2961e6d89ccdbb6e5a70aed",
+    "novelty_check/html/2509.26182.txt": "1e1960098100e73cb543647ddcd4707117a8f38f0c1c6cddf2737e56237b4a69",
+    "experiments/v4_formal/manifest.json": "0f1f759cb244e4d3bdc7d917b3fe2cccbc811e823d8591625dd6935c051bc0b3"
+  },
+  "identity": {
+    "display_name": "Boundary-constrained Parallax-inspired DAG latency routing + common RCAPS placement/S/T",
+    "kind": "mechanism_control_not_full_system",
+    "source": "arXiv:2509.26182v1, section 3.3, P2 recurrence",
+    "fixed": "RCAPS M2 layout, legal/admitted links, Prompt/Decode execution, S/T and batch profiles",
+    "changed": "M3 replaced by per-layer min-sum DP with live GPU latency and physical one-way latency",
+    "tau_definition": "Profiled Prompt layer service plus current unfinished GPU wait divided by loaded layer count",
+    "rho_definition": "Physical one-way propagation latency; no payload serialization or link queue price in route objective",
+    "deviations": [
+      "No Parallax phase-1 allocation or water-filling",
+      "No distributed DHT, periodic telemetry, membership changes, or original inference engine",
+      "Live latency definition is an explicit simulator adaptation, not verified original code",
+      "GPU handoff is restricted to resident-span ends, as required by the common executor and RCAPS routes; arbitrary early per-layer handoffs are not evaluated",
+      "Common S admissibility constrains candidate links; this is not unrestricted Parallax routing"
+    ],
+    "allowed_claim": "Difference between these routing mechanisms under common simulated execution; not RCAPS versus full Parallax"
+  },
+  "protocol": {
+    "duration_s": 1800,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "concurrency": 2,
+    "failure_policy": "record and continue; no automatic retry",
+    "tuning": "None",
+    "warmup_s": 0,
+    "drain": false
+  }
+}

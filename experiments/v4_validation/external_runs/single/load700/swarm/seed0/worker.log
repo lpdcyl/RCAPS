@@ -1,0 +1,31 @@
+Online Request Feeder: avg token feeding throughput 688.4916666666667.
+progress: single/swarm, arrivals=100, sim_time=151.6
+progress: single/swarm, arrivals=200, sim_time=294.3
+Traceback (most recent call last):
+  File "D:\software\miniconda\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\software\miniconda\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_validation\external_high.py", line 132, in <module>
+    one(args.key)
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_validation\external_high.py", line 66, in one
+    row = evaluate(job['scenario'], job['method'], job['load'], 1800, job['seed'], ROOT)
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_external\evaluate.py", line 22, in evaluate
+    row = adapter.evaluate(scenario, offered, duration, 0, seed, solution, cluster)
+  File "D:\PythonProject\Helix-GREEN\baselines\swarm.py", line 25, in evaluate
+    result = run(scenario, NAME, offered, duration, warmup, seed,
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_external\evaluate.py", line 17, in profiled
+    return original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1093, in handle_event
+    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 632, in handle_start_transmission
+    schedules, retransmission_node_uids = self.scheduler.schedule_transmission(node=transmission_node)
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\swarm\swarm_scheduler.py", line 173, in schedule_transmission
+    assert last_node_uid in self.nodes, "Unknown node found!"
+AssertionError: Unknown node found!

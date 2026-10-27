@@ -1,6 +1,20 @@
-# RCAPS V4 — registered three-seed campaign complete
+# RCAPS — integrated method, V4 implementation
 
-The registered campaign has 120 successful windows from 122 attempts, with two
+The paper's subject is the complete **RCAPS** system. V4 identifies its current
+implementation; V3 is an internal historical reference or the verified
+S/T-disabled condition. Present external comparisons first, final-system
+M2/M3/S/T ablations second, and mechanisms, sensitivity and scope afterward.
+See the [current code and evidence overview](paper/RCAPS_V4_SYSTEM_OVERVIEW_20261026_CN.md)
+and its [offline verification record](paper/RCAPS_V4_OVERVIEW_AUDIT_20261026.json).
+
+The subsequent validation extension has finished: all 75 registered windows
+were attempted, with 63 successful runs and 12 retained failures. See the
+[final validation report](experiments/v4_validation/RESULTS_CN.md),
+[current evidence status](paper/RCAPS_V4_EVIDENCE_STATUS_CN.md), and
+[writing blueprint](paper/RCAPS_WRITING_BLUEPRINT_CN.md). Hardware calibration
+and complete higher-load external comparisons remain evidence gaps.
+
+The earlier registered campaign has 120 successful windows from 122 attempts, with two
 native-process failures retained and two explicitly authorized retries.
 See the [final Chinese report](experiments/v4_paper/FINAL_RESULTS_CN.md),
 [verified numerical tables](experiments/v4_paper/RESULTS_CN.md), and
@@ -12,7 +26,8 @@ RCAPS V4 is the **current integrated research method** for heterogeneous LLM
 serving. It retains frozen V3's physical-resource and layer-compatibility graph
 (M1), multistage shared/replicated placement (M2), and live resource-aware DAG
 routing (M3), and adds static sparse edge admission plus fixed 4 MiB Prompt
-activation-transfer chunks on slow compute links. Frozen V3 remains a baseline.
+activation-transfer chunks on slow compute links. Frozen V3 remains an internal
+reference and a joint S/T-disabled condition where equivalence is verified.
 M1 defines legal execution relationships; performance claims concern M2, M3,
 and the complete system. Results are from the Helix event simulator, not a
 physical GPU deployment.
@@ -30,7 +45,8 @@ physical GPU deployment.
 | Frozen V3 identity and V3–Helix evidence | [`experiments/v3_release/README_CN.md`](experiments/v3_release/README_CN.md) |
 | V3 experiment index | [`experiments/README.md`](experiments/README.md) |
 | Paper evidence and claim boundaries | [`paper/V3_EVIDENCE_CN.md`](paper/V3_EVIDENCE_CN.md) |
-| Independent code and experiment review | [`REVIEW_GUIDE_CN.md`](REVIEW_GUIDE_CN.md) |
+| Current complete-system review | [`paper/RCAPS_V4_SYSTEM_OVERVIEW_20261026_CN.md`](paper/RCAPS_V4_SYSTEM_OVERVIEW_20261026_CN.md) |
+| Historical V3 code and experiment review | [`REVIEW_GUIDE_CN.md`](REVIEW_GUIDE_CN.md) |
 
 The adopted V3 rule is `multi_any`: M2 searches at most two branch boundaries
 and permits any GPU type in the initial shared segment. A selected layout may

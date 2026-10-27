@@ -1,0 +1,34 @@
+Online Request Feeder: avg token feeding throughput 310.60277777777776.
+progress: multi/separate, arrivals=100, sim_time=482.8
+Traceback (most recent call last):
+  File "D:\software\miniconda\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\software\miniconda\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_validation\external_high.py", line 132, in <module>
+    one(args.key)
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_validation\external_high.py", line 66, in one
+    row = evaluate(job['scenario'], job['method'], job['load'], 1800, job['seed'], ROOT)
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_external\evaluate.py", line 22, in evaluate
+    row = adapter.evaluate(scenario, offered, duration, 0, seed, solution, cluster)
+  File "D:\PythonProject\Helix-GREEN\baselines\separate.py", line 87, in evaluate
+    result = run(scenario, NAME, offered * weights[group] / sum(weights.values()),
+  File "D:\PythonProject\Helix-GREEN\experiments\v4_external\evaluate.py", line 17, in profiled
+    return original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1229, in handle_event
+    trigger_network_send = self.handle_finish_execution(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 972, in handle_finish_execution
+    current_inference_batch, trigger_network_send = execution_node.finish_execution(
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 78, in finish_execution
+    batch, trigger = _original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 661, in finish_execution
+    self.kv_cache.initialize_query_kv_cache(layers=kv_update_layer_ids,
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\kv_cache.py", line 97, in initialize_query_kv_cache
+    assert self.available_capacity >= total_num_tokens, "Exceed KV-cache capacity!"
+AssertionError: Exceed KV-cache capacity!
