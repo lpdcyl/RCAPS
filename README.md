@@ -14,6 +14,15 @@ were attempted, with 63 successful runs and 12 retained failures. See the
 [writing blueprint](paper/RCAPS_WRITING_BLUEPRINT_CN.md). Hardware calibration
 and complete higher-load external comparisons remain evidence gaps.
 
+The core supplement is also complete: six session-cost ablations and nine
+registered chunk-boundary-cost conditions produced 14 successful windows and
+one retained native failure. All 14 accepted results passed the recorded
+727 reconciliation checks; nine frozen reference windows are reused.
+See the [core results](experiments/v4_core_validation/RESULTS_CN.md),
+[publication index](experiments/PUBLISHED_RESULTS_CN.md), and
+[Chinese research report](paper/RCAPS_研究主线与实验进展汇报.docx).
+The chunk costs are simulation assumptions, not measured hardware overhead.
+
 The earlier registered campaign has 120 successful windows from 122 attempts, with two
 native-process failures retained and two explicitly authorized retries.
 See the [final Chinese report](experiments/v4_paper/FINAL_RESULTS_CN.md),
