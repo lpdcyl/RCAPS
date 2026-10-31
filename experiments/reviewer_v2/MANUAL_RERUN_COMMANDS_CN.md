@@ -109,7 +109,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E2b' --key 'single/lo
 
 ### E3b 001 · multi/400/Helix+/seed0
 
-原失败 SHA256：5a0b38d8bac42b4394923c143d71baf59905da76fed6f59f03e52bd73c02de4b；最后重放失败 SHA256：5a0b38d8bac42b4394923c143d71baf59905da76fed6f59f03e52bd73c02de4b。
+原失败 SHA256：5a0b38d8bac42b4394923c143d71baf59905da76fed6f59f03e52bd73c02de4b；最后重放失败 SHA256：0ea3d2795f9ecfd784e08802f91e5f9b2ed5a90d42ae72d2bd108191eb4c50eb。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -122,7 +122,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 002 · multi/400/Helix+/seed1
 
-原失败 SHA256：eacafddd9c2b704e1d823bbda115948a3772b1278215cc50c7b1385c751fb05f；最后重放失败 SHA256：eacafddd9c2b704e1d823bbda115948a3772b1278215cc50c7b1385c751fb05f。
+原失败 SHA256：eacafddd9c2b704e1d823bbda115948a3772b1278215cc50c7b1385c751fb05f；最后重放失败 SHA256：d1f71cbf6dedef0b9def0e63199419b9880012c54b4fa4168eeee3a9f6ce890f。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -135,7 +135,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 003 · multi/400/Helix+/seed2
 
-原失败 SHA256：9328afc49345e923f80f78cf9d23806b0e94fd879ab04cd06144a5fad0572ea6；最后重放失败 SHA256：9328afc49345e923f80f78cf9d23806b0e94fd879ab04cd06144a5fad0572ea6。
+原失败 SHA256：9328afc49345e923f80f78cf9d23806b0e94fd879ab04cd06144a5fad0572ea6；最后重放失败 SHA256：c12cae6d70c15b15ae19777ee9b1084b652bcd62d33880dcff25c8c29638a660。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -148,7 +148,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 004 · multi/400/Helix+/seed3
 
-原失败 SHA256：c3b2afdb2046aff11ec9edd474f3e97a7df3f3c296323507add4b6d54ea43fa6；最后重放失败 SHA256：c3b2afdb2046aff11ec9edd474f3e97a7df3f3c296323507add4b6d54ea43fa6。
+原失败 SHA256：c3b2afdb2046aff11ec9edd474f3e97a7df3f3c296323507add4b6d54ea43fa6；最后重放失败 SHA256：67be84ed013dc4231fd77f357a26ecdc9ec1ae72ec6c47d1fd1006495769feac。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -161,7 +161,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 005 · multi/400/Helix+/seed4
 
-原失败 SHA256：bb0c5618905297fa92a04f828db2aabc64b393d21541260e94211366fa16a155；最后重放失败 SHA256：bb0c5618905297fa92a04f828db2aabc64b393d21541260e94211366fa16a155。
+原失败 SHA256：bb0c5618905297fa92a04f828db2aabc64b393d21541260e94211366fa16a155；最后重放失败 SHA256：1a17d9422b931608b93be2721eea4214edb2fc86289a0b1ca98643782dbee7a3。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -174,7 +174,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 006 · multi/400/Helix-tuned/seed0
 
-原失败 SHA256：efdbb2f000c5dbb10f90bd1e33f3e8efbbf0583a8c2ed9bf10ed80092c409d74；最后重放失败 SHA256：efdbb2f000c5dbb10f90bd1e33f3e8efbbf0583a8c2ed9bf10ed80092c409d74。
+原失败 SHA256：efdbb2f000c5dbb10f90bd1e33f3e8efbbf0583a8c2ed9bf10ed80092c409d74；最后重放失败 SHA256：dbf4c403bc2b71cc2980499285233347845f0765e273cc9584a5fbc36b2fb0b6。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -187,7 +187,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 007 · multi/400/Helix-tuned/seed3
 
-原失败 SHA256：82c73d386123e44ba5b3f7532c20da7f9d1d4bacbc2cabc13a645c04899e2774；最后重放失败 SHA256：82c73d386123e44ba5b3f7532c20da7f9d1d4bacbc2cabc13a645c04899e2774。
+原失败 SHA256：82c73d386123e44ba5b3f7532c20da7f9d1d4bacbc2cabc13a645c04899e2774；最后重放失败 SHA256：8a176c5756a776adc4278d2ab8ccce7e4ea0de5f5b03b31a6b42c276e9d454b5。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -200,7 +200,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 008 · multi/400/Helix-tuned/seed4
 
-原失败 SHA256：fd19f1c79f1865315dc047ae262f2ba08e506312fb1d545ca313d58e6c5fb177；最后重放失败 SHA256：fd19f1c79f1865315dc047ae262f2ba08e506312fb1d545ca313d58e6c5fb177。
+原失败 SHA256：fd19f1c79f1865315dc047ae262f2ba08e506312fb1d545ca313d58e6c5fb177；最后重放失败 SHA256：f22ee290db74fda4617e56156a7e4e2d9650878b7fd01a9500be5b6c7edf2f91。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -213,7 +213,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 009 · multi/400/Helix/seed0
 
-原失败 SHA256：e6f70e680e40511618e52caa24f33728ecb397856ec061fce43223e40eb70cab；最后重放失败 SHA256：e6f70e680e40511618e52caa24f33728ecb397856ec061fce43223e40eb70cab。
+原失败 SHA256：e6f70e680e40511618e52caa24f33728ecb397856ec061fce43223e40eb70cab；最后重放失败 SHA256：56c1e8a4ee7af169d677f4691c02b60968a3a2b77e65fa6568dc6b4992462c55。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -226,7 +226,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 010 · multi/400/Helix/seed1
 
-原失败 SHA256：7279dc0afc097610f9f085c3bc7a4f9314d110e13ddb9efe1e22a198d2a195a2；最后重放失败 SHA256：7279dc0afc097610f9f085c3bc7a4f9314d110e13ddb9efe1e22a198d2a195a2。
+原失败 SHA256：7279dc0afc097610f9f085c3bc7a4f9314d110e13ddb9efe1e22a198d2a195a2；最后重放失败 SHA256：f6f809eb654c1ec5e19522741f963cabc5aea8b787a41169fafe22c0a909a7fb。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -239,7 +239,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 011 · multi/400/Helix/seed3
 
-原失败 SHA256：7e83aefdd96ca8781dd02816deef6d40b5edfe8a06b854c31658380b1b127330；最后重放失败 SHA256：7e83aefdd96ca8781dd02816deef6d40b5edfe8a06b854c31658380b1b127330。
+原失败 SHA256：7e83aefdd96ca8781dd02816deef6d40b5edfe8a06b854c31658380b1b127330；最后重放失败 SHA256：3bee8171f082b142555e8ea59fe4c2a93e523eb8c159863312fee80553e3ee48。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'
@@ -252,7 +252,7 @@ python -u -m experiments.reviewer_v2.manual_rerun --group 'E3b' --key 'multi/400
 
 ### E3b 012 · multi/400/Helix/seed4
 
-原失败 SHA256：34668a4d62ecbe93528bcfdfe8ca24f7545c6ebcddb19d99e72c7dd0492b39a7；最后重放失败 SHA256：34668a4d62ecbe93528bcfdfe8ca24f7545c6ebcddb19d99e72c7dd0492b39a7。
+原失败 SHA256：34668a4d62ecbe93528bcfdfe8ca24f7545c6ebcddb19d99e72c7dd0492b39a7；最后重放失败 SHA256：3b78a0f939fbeff4687d3f0e4c073bfc3821f64ff67282740e125255c56dfa86。
 
 ~~~powershell
 $ErrorActionPreference = 'Stop'

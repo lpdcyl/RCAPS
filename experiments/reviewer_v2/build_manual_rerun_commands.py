@@ -8,7 +8,7 @@ from .manual_rerun import verify_registry
 
 INDEXES = {
     'E2b': 'experiments/reviewer_v2/E2b_parallax/failure_replay_round2/index.json',
-    'E3b': 'experiments/reviewer_v2/E3b_goodput/formal/index.json',
+    'E3b': 'experiments/reviewer_v2/E3b_goodput/failure_replay/index.json',
     'E5a': 'experiments/reviewer_v2/E5_scale_kv/E5a_failure_replay/index.json',
     'E5b': 'experiments/reviewer_v2/E5_scale_kv/E5b/boundary_failure_replay/index.json',
     'V5': 'experiments/v5_failure_replay/formal/index.json',

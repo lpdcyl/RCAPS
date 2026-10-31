@@ -12,7 +12,7 @@ from experiments.v5_core_supplement.run import ROOT, ENV, read, sha, write, now
 
 CAMPAIGNS = {
     'E2b': ('E2b_parallax/formal', 'E2b_parallax/failure_replay_round2'),
-    'E3b': ('E3b_goodput/formal', 'E3b_goodput/formal'),
+    'E3b': ('E3b_goodput/formal', 'E3b_goodput/failure_replay'),
     'E5a': ('E5_scale_kv/formal', 'E5_scale_kv/E5a_failure_replay'),
     'E5b': ('E5_scale_kv/E5b/formal_boundary_diagnostic', 'E5_scale_kv/E5b/boundary_failure_replay'),
 }
