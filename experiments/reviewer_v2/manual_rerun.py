@@ -88,16 +88,16 @@ def verify_registry(group, key):
     return job, manifest, original, replay
 
 
-def evaluate(group, job, folder):
+def evaluate(group, key, job, folder):
     if group == 'V5':
         from experiments.v5_failure_replay.run import evaluate as run
         manifest = read(EXTRA[group] / 'manifest.json')
-        replay_job = next(j for j in manifest['jobs'] if j['job'] == job)
+        replay_job = next(j for j in manifest['jobs'] if j['key'] == key)
         return run(replay_job, folder)
     if group == 'V6':
         from experiments.v6_completion.failure_replay import evaluate as run
         manifest = read(EXTRA[group] / 'manifest.json')
-        replay_job = next(j for j in manifest['jobs'] if j['original_job'] == job)
+        replay_job = next(j for j in manifest['jobs'] if j['key'] == key)
         return run(replay_job)
     if group == 'E2b':
         from experiments.reviewer_v2.E2b_parallax.run import evaluate as run
@@ -139,7 +139,7 @@ def main():
     if args.internal:
         start = time.perf_counter()
         try:
-            result = evaluate(args.group, job, dest)
+            result = evaluate(args.group, args.key, job, dest)
             if 'query_samples' in result and len(result['query_samples']) != result.get('arrivals'):
                 raise RuntimeError('Query sample count mismatch')
             result.update(status='completed', job=job, origin='user_manual_independent_rerun',
