@@ -1,0 +1,143 @@
+{
+  "passed": true,
+  "original_failed": 11,
+  "replay_completed": 5,
+  "replay_failed": 6,
+  "original_reasons": {
+    "windows_native_access_violation": 5,
+    "python_exception": 3,
+    "kv_capacity_assertion": 1,
+    "reboot_interruption": 2
+  },
+  "replay_reasons": {
+    "success": 5,
+    "python_exception": 4,
+    "kv_capacity_assertion": 1,
+    "windows_native_access_violation": 1
+  },
+  "original_index_sha256": "23ae902141cd4f30ad93d982b2b1545e85ca647eb9d381be4bd9733a225a7b71",
+  "replay_index_sha256": "afa0125ad1a924bbc9cbaceb6cb4fc757e130f9058eb99b973de8d6cd59ca8ab",
+  "rows": [
+    {
+      "key": "multi/load320/fifo/seed2",
+      "original": "windows_native_access_violation",
+      "original_error": null,
+      "replay": "success",
+      "replay_error": null,
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/multi/load320/fifo/seed2/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/multi/load320/fifo/seed2/result.json",
+      "original_sha256": "158c0d92d56a55eaf0c3b3f235efb50ccb5fc61867bf8eb6d1abdc6fd6cf05cd",
+      "replay_sha256": "dd5b8bf2bffaacf16fe1ff5a5d1e1179db757000398c2d583e44edcf58667a35"
+    },
+    {
+      "key": "multi/load320/shared/seed1",
+      "original": "windows_native_access_violation",
+      "original_error": null,
+      "replay": "python_exception",
+      "replay_error": "TypeError(\"unhashable type: 'dict'\")",
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/multi/load320/shared/seed1/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/multi/load320/shared/seed1/failure.json",
+      "original_sha256": "5828a2372721b785ab728358151e8ae5a864f9a9f15c3558f025422fc4f071e9",
+      "replay_sha256": "562de6504c8a79c6861034aa4ad17ca8b534ee62f53688661e9b9ef35b81c20f"
+    },
+    {
+      "key": "multi/load320/shared/seed3",
+      "original": "python_exception",
+      "original_error": "AttributeError(\"'list_iterator' object has no attribute 'request_uid'\")",
+      "replay": "success",
+      "replay_error": null,
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/multi/load320/shared/seed3/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/multi/load320/shared/seed3/result.json",
+      "original_sha256": "1dde6a5868c504a5d4b5845ab51c44c3c92c96ba7e950686b41a4f009548280a",
+      "replay_sha256": "044452342c6b140f93c5ea5af0ac106f2fac9f5e01b24f6b0d5cb95dfb13501a"
+    },
+    {
+      "key": "multi/load320/shared/seed4",
+      "original": "python_exception",
+      "original_error": "TypeError(\"unhashable type: 'dict'\")",
+      "replay": "python_exception",
+      "replay_error": "AttributeError(\"'RequestPhase' object has no attribute 'grow_query_kv_cache'\")",
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/multi/load320/shared/seed4/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/multi/load320/shared/seed4/failure.json",
+      "original_sha256": "adc6c2c6b23e64bacc8a93020c8cc5e3a0fa45544b344fceac5871a0d4ba5f92",
+      "replay_sha256": "845d9c1758191e0b03560a4673f96696e0a09ea365470ba7d56ff366d228370a"
+    },
+    {
+      "key": "single/load350/fifo/seed1",
+      "original": "python_exception",
+      "original_error": "AttributeError(\"'list' object has no attribute 'in_vram_model_layers'\")",
+      "replay": "success",
+      "replay_error": null,
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/single/load350/fifo/seed1/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/single/load350/fifo/seed1/result.json",
+      "original_sha256": "fd066df8050bb16c2a8fad4f369e2d9a0f87e495f73d88dabde8c8c7c2a56600",
+      "replay_sha256": "8e77c1185a038acfde15ecde0e740a94797673b8b626502c84eb8421a2b29b8f"
+    },
+    {
+      "key": "single/load700/fifo/seed0",
+      "original": "windows_native_access_violation",
+      "original_error": null,
+      "replay": "python_exception",
+      "replay_error": "TypeError(\"unhashable type: 'dict'\")",
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/single/load700/fifo/seed0/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/single/load700/fifo/seed0/failure.json",
+      "original_sha256": "4e563c2a5edcf83944411ee86be723e6f79b83853a08d724378aa149e2af3362",
+      "replay_sha256": "2bc56167ac86d3cd7f6a832269c83ee567a4aec2b0beffcdcce66f6c9c6dfc1c"
+    },
+    {
+      "key": "single/load700/fifo/seed1",
+      "original": "kv_capacity_assertion",
+      "original_error": "AssertionError('Exceed KV-cache capacity!')",
+      "replay": "kv_capacity_assertion",
+      "replay_error": "AssertionError('Exceed KV-cache capacity!')",
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/single/load700/fifo/seed1/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/single/load700/fifo/seed1/failure.json",
+      "original_sha256": "af6de9be94a91e5986d28e86f4c6c56e03e663687e7f49a6844bec6711853bf1",
+      "replay_sha256": "a906a8950520b9c5abeefa524bf72865922a4c72e96aee90ffe60e5e0c0a590f"
+    },
+    {
+      "key": "single/load700/fifo/seed4",
+      "original": "reboot_interruption",
+      "original_error": null,
+      "replay": "python_exception",
+      "replay_error": "AttributeError(\"'NoneType' object has no attribute 'current_time'\")",
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/single/load700/fifo/seed4/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/single/load700/fifo/seed4/failure.json",
+      "original_sha256": "465c8d8e71a1ac6df4542c634cd7ef812c3d6bf50a2ac2ca0845c3a086490d43",
+      "replay_sha256": "ef51b82f1cfcdb63070389fc9a7b7cfbda2a49574605539198466f5064384f16"
+    },
+    {
+      "key": "single/load700/shared/seed0",
+      "original": "windows_native_access_violation",
+      "original_error": null,
+      "replay": "success",
+      "replay_error": null,
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/single/load700/shared/seed0/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/single/load700/shared/seed0/result.json",
+      "original_sha256": "b6cf4ff38d3a098c02039aaed695049e0cd87383c8bf442a4e9efa0f75d20249",
+      "replay_sha256": "40623d30c810d4d62f7e138143350e69ab0feddcc63869f2cda9ef076e30b029"
+    },
+    {
+      "key": "single/load700/shared/seed1",
+      "original": "reboot_interruption",
+      "original_error": null,
+      "replay": "success",
+      "replay_error": null,
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/single/load700/shared/seed1/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/single/load700/shared/seed1/result.json",
+      "original_sha256": "e17a210e124545ae9e96fc880d3dd8ea5524b72c68aceae190833c14002af131",
+      "replay_sha256": "0d5233defa3ccba67a38f1a0f81c7e8aa48249b2ceb8bb4fee1a3ec3f83252b6"
+    },
+    {
+      "key": "single/load700/shared/seed4",
+      "original": "windows_native_access_violation",
+      "original_error": null,
+      "replay": "windows_native_access_violation",
+      "replay_error": null,
+      "original_source": "experiments/reviewer_v2/E2b_parallax/formal/runs/single/load700/shared/seed4/failure.json",
+      "replay_source": "experiments/reviewer_v2/E2b_parallax/failure_replay/runs/single/load700/shared/seed4/failure.json",
+      "original_sha256": "2da70fafdbaf12ca0847bd1932141717a67a78649656d003cfca2c5bba1eef0a",
+      "replay_sha256": "fc13d4d001f75dc94978a1e623b9a49598c7f0026c4e277fc3369f3bb3408996"
+    }
+  ]
+}
