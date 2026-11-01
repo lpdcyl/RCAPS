@@ -1,0 +1,773 @@
+{
+  "scenario": "multi",
+  "method": "HHplus",
+  "cell": "HHplus",
+  "model": "LLaMa30B",
+  "model_layers": 60,
+  "solution": "D:\\PythonProject\\Helix-GREEN\\experiments\\v5_model30b_pools\\layouts\\multi.json",
+  "sim_cluster": "D:\\PythonProject\\Helix-GREEN\\experiments\\v5_model30b_pools\\layouts\\multi.json",
+  "offered_tokens_per_s": 525,
+  "duration_s": 60,
+  "warmup_s": 0,
+  "seed": 100,
+  "arrivals": 30,
+  "evaluation_protocol": "fixed_window_no_tail_drain",
+  "python_version": "3.10.20",
+  "numpy_version": "1.26.4",
+  "trace_sha256": "285d8fc454375b60ff5eb1554cd4729a7b225acccec415cfe6409493ba976ef5",
+  "output_throughput_tokens_per_s": 48.36666666666666,
+  "completed_request_throughput_per_s": 0.16666666666666666,
+  "ttft_p95_s": 4.935168403876284,
+  "tpot_p95_s": 0.5915186018136449,
+  "e2e_p95_s": 32.8381376219218,
+  "completion_fraction": 0.3333333333333333,
+  "backlog_at_window_start": 0,
+  "backlog_at_window_end": 20,
+  "first_tokens_in_window": 30,
+  "queries_with_tpot_samples": 30,
+  "paper_prompt_request_p95_s": 4.480746504311066,
+  "paper_decode_request_p95_s": 0.45455793543390294,
+  "paper_prompt_request_count": 30,
+  "paper_decode_request_count": 2902,
+  "route_counts": {
+    "a100/3-4-5-2": 20,
+    "l4/2-3-4-5-6-7-8-9": 5,
+    "t4/2-3-4-5-6-7-8-9-10-11-12-13": 5
+  },
+  "query_samples": {
+    "30000000": {
+      "arrival_s": 1.37858635458932,
+      "input_tokens": 181,
+      "output_tokens": 154,
+      "ttft_s": 0.3220147194407694,
+      "tpot_s": 0.16930324652042722,
+      "completed": true
+    },
+    "30000001": {
+      "arrival_s": 5.195876919099767,
+      "input_tokens": 1037,
+      "output_tokens": 424,
+      "ttft_s": 3.324662966798165,
+      "tpot_s": 0.4913512235505012,
+      "completed": false
+    },
+    "30000002": {
+      "arrival_s": 7.598704243927713,
+      "input_tokens": 1314,
+      "output_tokens": 136,
+      "ttft_s": 5.810597928321091,
+      "tpot_s": 0.6285099529083864,
+      "completed": false
+    },
+    "30000003": {
+      "arrival_s": 8.400061371400284,
+      "input_tokens": 956,
+      "output_tokens": 405,
+      "ttft_s": 0.6130444313442567,
+      "tpot_s": 0.17047241893936646,
+      "completed": false
+    },
+    "30000004": {
+      "arrival_s": 9.143662549379826,
+      "input_tokens": 209,
+      "output_tokens": 217,
+      "ttft_s": 0.330361599354589,
+      "tpot_s": 0.17078911080498316,
+      "completed": true
+    },
+    "30000005": {
+      "arrival_s": 11.798887200225153,
+      "input_tokens": 412,
+      "output_tokens": 90,
+      "ttft_s": 0.39087647873062537,
+      "tpot_s": 0.17319364171572668,
+      "completed": true
+    },
+    "30000006": {
+      "arrival_s": 12.928217787420103,
+      "input_tokens": 1076,
+      "output_tokens": 81,
+      "ttft_s": 0.648816773832543,
+      "tpot_s": 0.171153324951928,
+      "completed": true
+    },
+    "30000007": {
+      "arrival_s": 14.304054446235241,
+      "input_tokens": 1164,
+      "output_tokens": 414,
+      "ttft_s": 3.6300334839305144,
+      "tpot_s": 0.4683930247751045,
+      "completed": false
+    },
+    "30000008": {
+      "arrival_s": 15.565784742523455,
+      "input_tokens": 1041,
+      "output_tokens": 395,
+      "ttft_s": 4.693539347004261,
+      "tpot_s": 0.5919360387752489,
+      "completed": false
+    },
+    "30000009": {
+      "arrival_s": 18.63250197626055,
+      "input_tokens": 1312,
+      "output_tokens": 251,
+      "ttft_s": 0.7191690473929171,
+      "tpot_s": 0.1707255800082422,
+      "completed": false
+    },
+    "30000010": {
+      "arrival_s": 19.878964917578394,
+      "input_tokens": 473,
+      "output_tokens": 110,
+      "ttft_s": 0.4090607528287933,
+      "tpot_s": 0.1711086835357942,
+      "completed": true
+    },
+    "30000011": {
+      "arrival_s": 20.88994735110259,
+      "input_tokens": 1081,
+      "output_tokens": 400,
+      "ttft_s": 0.6503072881030505,
+      "tpot_s": 0.16935728822206814,
+      "completed": false
+    },
+    "30000012": {
+      "arrival_s": 23.56945007998965,
+      "input_tokens": 209,
+      "output_tokens": 162,
+      "ttft_s": 0.3303615993545961,
+      "tpot_s": 0.16864085105500648,
+      "completed": true
+    },
+    "30000013": {
+      "arrival_s": 24.0169352576754,
+      "input_tokens": 210,
+      "output_tokens": 83,
+      "ttft_s": 1.2688417023119598,
+      "tpot_s": 0.476879030210593,
+      "completed": false
+    },
+    "30000014": {
+      "arrival_s": 28.698473121878656,
+      "input_tokens": 1081,
+      "output_tokens": 385,
+      "ttft_s": 4.875215329614726,
+      "tpot_s": 0.5727250051299133,
+      "completed": false
+    },
+    "30000015": {
+      "arrival_s": 29.32050210650634,
+      "input_tokens": 91,
+      "output_tokens": 16,
+      "ttft_s": 0.29518546257433087,
+      "tpot_s": 0.161058102854156,
+      "completed": true
+    },
+    "30000016": {
+      "arrival_s": 32.74133052674769,
+      "input_tokens": 402,
+      "output_tokens": 91,
+      "ttft_s": 0.3878954501898164,
+      "tpot_s": 0.17123926072659007,
+      "completed": true
+    },
+    "30000017": {
+      "arrival_s": 35.398209317873416,
+      "input_tokens": 642,
+      "output_tokens": 113,
+      "ttft_s": 0.4935201351664773,
+      "tpot_s": 0.17100549586065364,
+      "completed": true
+    },
+    "30000018": {
+      "arrival_s": 35.76694855620734,
+      "input_tokens": 1042,
+      "output_tokens": 380,
+      "ttft_s": 0.6386812767941166,
+      "tpot_s": 0.1696311455583716,
+      "completed": false
+    },
+    "30000019": {
+      "arrival_s": 38.27058488060215,
+      "input_tokens": 1103,
+      "output_tokens": 393,
+      "ttft_s": 3.5020205420927724,
+      "tpot_s": 0.4576528644219265,
+      "completed": false
+    },
+    "30000020": {
+      "arrival_s": 41.15191223365446,
+      "input_tokens": 405,
+      "output_tokens": 104,
+      "ttft_s": 2.2188912234966622,
+      "tpot_s": 0.5910084010827956,
+      "completed": false
+    },
+    "30000021": {
+      "arrival_s": 43.01614591169758,
+      "input_tokens": 1072,
+      "output_tokens": 395,
+      "ttft_s": 0.6476243624163445,
+      "tpot_s": 0.16825349269588852,
+      "completed": false
+    },
+    "30000022": {
+      "arrival_s": 44.069282336317926,
+      "input_tokens": 193,
+      "output_tokens": 121,
+      "ttft_s": 0.32559195368937566,
+      "tpot_s": 0.1694509214739979,
+      "completed": false
+    },
+    "30000023": {
+      "arrival_s": 46.20520868364353,
+      "input_tokens": 376,
+      "output_tokens": 69,
+      "ttft_s": 0.43217488873348486,
+      "tpot_s": 0.16869446045119105,
+      "completed": true
+    },
+    "30000024": {
+      "arrival_s": 49.9545201979829,
+      "input_tokens": 452,
+      "output_tokens": 86,
+      "ttft_s": 0.402800592893243,
+      "tpot_s": 0.16889540832875377,
+      "completed": false
+    },
+    "30000025": {
+      "arrival_s": 50.67137086316718,
+      "input_tokens": 406,
+      "output_tokens": 102,
+      "ttft_s": 1.747428350179895,
+      "tpot_s": 0.4312044922606655,
+      "completed": false
+    },
+    "30000026": {
+      "arrival_s": 52.54073691668604,
+      "input_tokens": 1105,
+      "output_tokens": 992,
+      "ttft_s": 4.9842209191811975,
+      "tpot_s": 0.4544218995652187,
+      "completed": false
+    },
+    "30000027": {
+      "arrival_s": 53.30087372410077,
+      "input_tokens": 387,
+      "output_tokens": 84,
+      "ttft_s": 0.3834239073789121,
+      "tpot_s": 0.17500170650376193,
+      "completed": false
+    },
+    "30000028": {
+      "arrival_s": 54.17465782186335,
+      "input_tokens": 181,
+      "output_tokens": 81,
+      "ttft_s": 0.3284363142871314,
+      "tpot_s": 0.17681499772466547,
+      "completed": false
+    },
+    "30000029": {
+      "arrival_s": 55.75605658876913,
+      "input_tokens": 871,
+      "output_tokens": 134,
+      "ttft_s": 0.5878109291988949,
+      "tpot_s": 0.16609073224889412,
+      "completed": false
+    }
+  },
+  "sp_allocation": {
+    "a100": {
+      "requests": 20,
+      "offered_tokens": 15058,
+      "artifact_weight": 560,
+      "component_trace_sha256": "9ababc07b504bb0ccacf0d3d6f1862baf0b5da3feb20c91d721507e0535d66e7",
+      "component_solution_sha256": "ecfaddb35b8a2ae7a15b4e451e96d6102b96f23d2b916bc82c730ed071a429c7"
+    },
+    "l4": {
+      "requests": 5,
+      "offered_tokens": 5336,
+      "artifact_weight": 140,
+      "component_trace_sha256": "82ff43be089dda5fb7f974718966bef182b4ec58a8ad6f90ce31689f49d0dc08",
+      "component_solution_sha256": "be150939ccd13757e81e7f52a08ee82f06bbcefb10b932c2e6b66e574f1c09d5"
+    },
+    "t4": {
+      "requests": 5,
+      "offered_tokens": 6958,
+      "artifact_weight": 140,
+      "component_trace_sha256": "3b285f45277e730f5934a33c24499fa107ecf2a94195542d7345c5d084c4eed0",
+      "component_solution_sha256": "61a7ab17f3969407d66fb5ebe8f7f8203ba5e3ca14adfde8b06b55e1766f338e"
+    }
+  },
+  "sp_components": {
+    "a100": {
+      "scenario": "multi",
+      "method": "queue_dag",
+      "offered_tokens_per_s": 350.0,
+      "duration_s": 60,
+      "warmup_s": 0,
+      "seed": 100,
+      "arrivals": 20,
+      "evaluation_protocol": "fixed_window_no_tail_drain",
+      "python_version": "3.10.20",
+      "numpy_version": "1.26.4",
+      "trace_sha256": "9ababc07b504bb0ccacf0d3d6f1862baf0b5da3feb20c91d721507e0535d66e7",
+      "output_throughput_tokens_per_s": 39.18333333333333,
+      "completed_request_throughput_per_s": 0.16666666666666666,
+      "ttft_p95_s": 0.6537503760675438,
+      "tpot_p95_s": 0.1750923710648071,
+      "e2e_p95_s": 32.8381376219218,
+      "completion_fraction": 0.5,
+      "backlog_at_window_start": 0,
+      "backlog_at_window_end": 10,
+      "first_tokens_in_window": 20,
+      "queries_with_tpot_samples": 20,
+      "paper_prompt_request_p95_s": 0.5581109445387611,
+      "paper_decode_request_p95_s": 0.17358102854038293,
+      "paper_prompt_request_count": 20,
+      "paper_decode_request_count": 2351,
+      "physical_cluster": "D:\\PythonProject\\Helix-GREEN\\artifact_evaluation\\distributed_clusters\\config\\a100.ini",
+      "physical_cluster_sha256": "45ba3ccced74c240114afeac693097d78f85627e9927bf657c1d92bf608c31ec",
+      "gpu_busy_fraction": {
+        "Compute-2": 0.22647966496021912,
+        "Compute-3": 0.22975466496022764,
+        "Compute-4": 0.2273421649602244,
+        "Compute-5": 0.22691716496021966
+      },
+      "gpu_queue_request_s": {
+        "Compute-2": 4.201363875320322,
+        "Compute-3": 0.6263367957041694,
+        "Compute-4": 2.5688102662672385,
+        "Compute-5": 4.211115147753009
+      },
+      "gpu_queue_exits": {
+        "Compute-2": 35565,
+        "Compute-3": 35565,
+        "Compute-4": 35565,
+        "Compute-5": 35565
+      },
+      "gpu_queued_at_end": 0,
+      "outbound_wait_request_s": {
+        "Compute-2": 0.0,
+        "Compute-3": 0.001695124382592894,
+        "Compute-4": 0.006247487999807788,
+        "Compute-5": 0.0,
+        "Source-0": 0.0
+      },
+      "outbound_wait_exits": {
+        "Compute-2": 2371,
+        "Compute-3": 2371,
+        "Compute-4": 2371,
+        "Compute-5": 2371,
+        "Source-0": 2381
+      },
+      "outbound_queued_at_end": 0,
+      "link_dispatch_wait_request_s": {
+        "Compute-2->Sink-1": 0.0,
+        "Compute-3->Compute-4": 0.001695124382592894,
+        "Compute-4->Compute-5": 0.006247487999807788,
+        "Compute-5->Compute-2": 0.0,
+        "Source-0->Compute-3": 0.0
+      },
+      "link_occupied_fraction": {
+        "Compute-2->Sink-1": 4.157440474070739e-05,
+        "Compute-3->Compute-4": 0.0026954096521848215,
+        "Compute-4->Compute-5": 0.0027553076444319182,
+        "Compute-5->Compute-2": 0.0024178791731790383,
+        "Source-0->Compute-3": 3.8509641860666004e-05
+      },
+      "link_service_request_s": {
+        "Compute-2->Sink-1": 0.004231249998277065,
+        "Compute-3->Compute-4": 0.2722886660871424,
+        "Compute-4->Compute-5": 0.2798306933332739,
+        "Compute-5->Compute-2": 0.2458520452417865,
+        "Source-0->Compute-3": 0.0039003305757105977
+      },
+      "link_propagation_request_s": {
+        "Compute-2->Sink-1": 139.8889999999948,
+        "Compute-3->Compute-4": 2.37100000000018,
+        "Compute-4->Compute-5": 2.37100000000018,
+        "Compute-5->Compute-2": 2.371000000000187,
+        "Source-0->Compute-3": 106.83789122830542
+      },
+      "link_request_count": {
+        "Compute-2->Sink-1": 2371,
+        "Compute-3->Compute-4": 2371,
+        "Compute-4->Compute-5": 2371,
+        "Compute-5->Compute-2": 2371,
+        "Source-0->Compute-3": 2381
+      },
+      "phase_link_profile": {
+        "maxflow_omitted_disconnected_unloaded_nodes": []
+      }
+    },
+    "l4": {
+      "scenario": "multi",
+      "method": "queue_dag",
+      "offered_tokens_per_s": 87.5,
+      "duration_s": 60,
+      "warmup_s": 0,
+      "seed": 100,
+      "arrivals": 5,
+      "evaluation_protocol": "fixed_window_no_tail_drain",
+      "python_version": "3.10.20",
+      "numpy_version": "1.26.4",
+      "trace_sha256": "82ff43be089dda5fb7f974718966bef182b4ec58a8ad6f90ce31689f49d0dc08",
+      "output_throughput_tokens_per_s": 5.433333333333334,
+      "completed_request_throughput_per_s": 0.0,
+      "ttft_p95_s": 3.604430895562966,
+      "tpot_p95_s": 0.4884567848825196,
+      "e2e_p95_s": null,
+      "completion_fraction": 0.0,
+      "backlog_at_window_start": 0,
+      "backlog_at_window_end": 5,
+      "first_tokens_in_window": 5,
+      "queries_with_tpot_samples": 5,
+      "paper_prompt_request_p95_s": 3.198828991669636,
+      "paper_decode_request_p95_s": 0.44681796904357896,
+      "paper_prompt_request_count": 5,
+      "paper_decode_request_count": 326,
+      "physical_cluster": "D:\\PythonProject\\Helix-GREEN\\artifact_evaluation\\distributed_clusters\\config\\l4.ini",
+      "physical_cluster_sha256": "dedf9ab84c045c3b58c53f5aa40a92f7ba0538f8fba0455e0c645ab0c14e9328",
+      "gpu_busy_fraction": {
+        "Compute-2": 0.13357841983999943,
+        "Compute-3": 0.13357841983999943,
+        "Compute-4": 0.13202675317333276,
+        "Compute-5": 0.13202675317333293,
+        "Compute-6": 0.15060325928390828,
+        "Compute-7": 0.15022698666666734,
+        "Compute-8": 0.15022698666666745,
+        "Compute-9": 0.15002891105303842
+      },
+      "gpu_queue_request_s": {
+        "Compute-2": 0.2246823325414411,
+        "Compute-3": 0.3422001398945511,
+        "Compute-4": 1.0577293704392936,
+        "Compute-5": 0.8921232636321967,
+        "Compute-6": 1.0417021950437828,
+        "Compute-7": 1.0303110689549477,
+        "Compute-8": 1.047695485011726,
+        "Compute-9": 1.0498956533674182
+      },
+      "gpu_queue_exits": {
+        "Compute-2": 2352,
+        "Compute-3": 2352,
+        "Compute-4": 2352,
+        "Compute-5": 2352,
+        "Compute-6": 2686,
+        "Compute-7": 2680,
+        "Compute-8": 2680,
+        "Compute-9": 2672
+      },
+      "gpu_queued_at_end": 0,
+      "outbound_wait_request_s": {
+        "Compute-2": 0.0,
+        "Compute-3": 5.545995809998892,
+        "Compute-4": 0.0,
+        "Compute-5": 0.0,
+        "Compute-6": 0.0,
+        "Compute-7": 0.0,
+        "Compute-8": 0.0,
+        "Compute-9": 0.0,
+        "Source-0": 0.0
+      },
+      "outbound_wait_exits": {
+        "Compute-2": 336,
+        "Compute-3": 336,
+        "Compute-4": 336,
+        "Compute-5": 336,
+        "Compute-6": 335,
+        "Compute-7": 335,
+        "Compute-8": 335,
+        "Compute-9": 331,
+        "Source-0": 336
+      },
+      "outbound_queued_at_end": 0,
+      "link_dispatch_wait_request_s": {
+        "Compute-2->Compute-3": 0.0,
+        "Compute-3->Compute-4": 5.545995809998892,
+        "Compute-4->Compute-5": 0.0,
+        "Compute-5->Compute-6": 0.0,
+        "Compute-6->Compute-7": 0.0,
+        "Compute-7->Compute-8": 0.0,
+        "Compute-8->Compute-9": 0.0,
+        "Compute-9->Sink-1": 0.0,
+        "Source-0->Compute-2": 0.0
+      },
+      "link_occupied_fraction": {
+        "Compute-2->Compute-3": 0.0007808749172170633,
+        "Compute-3->Compute-4": 0.07731941803279427,
+        "Compute-4->Compute-5": 0.0007687831295789908,
+        "Compute-5->Compute-6": 0.0007619522617092755,
+        "Compute-6->Compute-7": 0.0007248847040731476,
+        "Compute-7->Compute-8": 0.0007704861111132999,
+        "Compute-8->Compute-9": 0.0007945029486066346,
+        "Compute-9->Sink-1": 1.003782505577533e-05,
+        "Source-0->Compute-2": 1.1427419357475561e-05
+      },
+      "link_service_request_s": {
+        "Compute-2->Compute-3": 0.05075411423823262,
+        "Compute-3->Compute-4": 5.038585081967748,
+        "Compute-4->Compute-5": 0.05009840097743101,
+        "Compute-5->Compute-6": 0.049653261712048646,
+        "Compute-6->Compute-7": 0.04723860415086989,
+        "Compute-7->Compute-8": 0.05021031372544371,
+        "Compute-8->Compute-9": 0.0517754203874361,
+        "Compute-9->Sink-1": 0.0006524822694800037,
+        "Source-0->Compute-2": 0.0007427419359036236
+      },
+      "link_propagation_request_s": {
+        "Compute-2->Compute-3": 0.33599999999976937,
+        "Compute-3->Compute-4": 15.791999999999163,
+        "Compute-4->Compute-5": 0.33599999999976937,
+        "Compute-5->Compute-6": 0.33599999999977115,
+        "Compute-6->Compute-7": 0.3349999999997664,
+        "Compute-7->Compute-8": 0.33499999999979124,
+        "Compute-8->Compute-9": 0.3349999999997877,
+        "Compute-9->Sink-1": 18.535999999999284,
+        "Source-0->Compute-2": 17.136000000000493
+      },
+      "link_request_count": {
+        "Compute-2->Compute-3": 336,
+        "Compute-3->Compute-4": 336,
+        "Compute-4->Compute-5": 336,
+        "Compute-5->Compute-6": 336,
+        "Compute-6->Compute-7": 335,
+        "Compute-7->Compute-8": 335,
+        "Compute-8->Compute-9": 335,
+        "Compute-9->Sink-1": 331,
+        "Source-0->Compute-2": 336
+      },
+      "phase_link_profile": {
+        "maxflow_omitted_disconnected_unloaded_nodes": []
+      }
+    },
+    "t4": {
+      "scenario": "multi",
+      "method": "queue_dag",
+      "offered_tokens_per_s": 87.5,
+      "duration_s": 60,
+      "warmup_s": 0,
+      "seed": 100,
+      "arrivals": 5,
+      "evaluation_protocol": "fixed_window_no_tail_drain",
+      "python_version": "3.10.20",
+      "numpy_version": "1.26.4",
+      "trace_sha256": "3b285f45277e730f5934a33c24499fa107ecf2a94195542d7345c5d084c4eed0",
+      "output_throughput_tokens_per_s": 3.75,
+      "completed_request_throughput_per_s": 0.0,
+      "ttft_p95_s": 5.6453225264931115,
+      "tpot_p95_s": 0.621195170081759,
+      "e2e_p95_s": null,
+      "completion_fraction": 0.0,
+      "backlog_at_window_start": 0,
+      "backlog_at_window_end": 5,
+      "first_tokens_in_window": 5,
+      "queries_with_tpot_samples": 5,
+      "paper_prompt_request_p95_s": 5.356176028755822,
+      "paper_decode_request_p95_s": 0.47068759826133544,
+      "paper_prompt_request_count": 5,
+      "paper_decode_request_count": 225,
+      "physical_cluster": "D:\\PythonProject\\Helix-GREEN\\artifact_evaluation\\distributed_clusters\\config\\t4.ini",
+      "physical_cluster_sha256": "d07ee5926069d6dcbfd47d9f446ffefdfce38d9f59a28d94a55f96cbad4ef0da",
+      "gpu_busy_fraction": {
+        "Compute-10": 0.07329493930666953,
+        "Compute-11": 0.07329493930666953,
+        "Compute-12": 0.07329493930666953,
+        "Compute-13": 0.07329493930666953,
+        "Compute-2": 0.07486210517333663,
+        "Compute-3": 0.07407666874972779,
+        "Compute-4": 0.07368670581333622,
+        "Compute-5": 0.07368670581333622,
+        "Compute-6": 0.07368670581333622,
+        "Compute-7": 0.07368670581333622,
+        "Compute-8": 0.07330882436543969,
+        "Compute-9": 0.07329493930666961
+      },
+      "gpu_queue_request_s": {
+        "Compute-10": 1.8669941832374413,
+        "Compute-11": 1.7539203577496387,
+        "Compute-12": 1.7579875397406255,
+        "Compute-13": 1.7610435362232728,
+        "Compute-2": 0.49184780816100826,
+        "Compute-3": 1.424672812800793,
+        "Compute-4": 1.6801272951565487,
+        "Compute-5": 1.7498711726117477,
+        "Compute-6": 1.7597661579540933,
+        "Compute-7": 1.7668738234816672,
+        "Compute-8": 1.7541293320889153,
+        "Compute-9": 1.7512235119079484
+      },
+      "gpu_queue_exits": {
+        "Compute-10": 1150,
+        "Compute-11": 1150,
+        "Compute-12": 1150,
+        "Compute-13": 1150,
+        "Compute-2": 1175,
+        "Compute-3": 1159,
+        "Compute-4": 1155,
+        "Compute-5": 1155,
+        "Compute-6": 1155,
+        "Compute-7": 1155,
+        "Compute-8": 1151,
+        "Compute-9": 1150
+      },
+      "gpu_queued_at_end": 0,
+      "outbound_wait_request_s": {
+        "Compute-10": 0.0,
+        "Compute-11": 0.0,
+        "Compute-12": 0.0,
+        "Compute-13": 0.0,
+        "Compute-2": 0.0,
+        "Compute-3": 0.0,
+        "Compute-4": 0.0,
+        "Compute-5": 0.0,
+        "Compute-6": 0.0,
+        "Compute-7": 0.0,
+        "Compute-8": 0.0,
+        "Compute-9": 10.756435428186858,
+        "Source-0": 0.0
+      },
+      "outbound_wait_exits": {
+        "Compute-10": 230,
+        "Compute-11": 230,
+        "Compute-12": 230,
+        "Compute-13": 230,
+        "Compute-2": 235,
+        "Compute-3": 231,
+        "Compute-4": 231,
+        "Compute-5": 231,
+        "Compute-6": 231,
+        "Compute-7": 231,
+        "Compute-8": 230,
+        "Compute-9": 230,
+        "Source-0": 235
+      },
+      "outbound_queued_at_end": 0,
+      "link_dispatch_wait_request_s": {
+        "Compute-10->Compute-11": 0.0,
+        "Compute-11->Compute-12": 0.0,
+        "Compute-12->Compute-13": 0.0,
+        "Compute-13->Sink-1": 0.0,
+        "Compute-2->Compute-3": 0.0,
+        "Compute-3->Compute-4": 0.0,
+        "Compute-4->Compute-5": 0.0,
+        "Compute-5->Compute-6": 0.0,
+        "Compute-6->Compute-7": 0.0,
+        "Compute-7->Compute-8": 0.0,
+        "Compute-8->Compute-9": 0.0,
+        "Compute-9->Compute-10": 10.756435428186858,
+        "Source-0->Compute-2": 0.0
+      },
+      "link_occupied_fraction": {
+        "Compute-10->Compute-11": 0.0008833294072333686,
+        "Compute-11->Compute-12": 0.0009231254223668846,
+        "Compute-12->Compute-13": 0.0009530273255808316,
+        "Compute-13->Sink-1": 1.1491111107631014e-05,
+        "Compute-2->Compute-3": 0.000838360875911152,
+        "Compute-3->Compute-4": 0.000950842419219633,
+        "Compute-4->Compute-5": 0.0008438726470604212,
+        "Compute-5->Compute-6": 0.0009407104918044714,
+        "Compute-6->Compute-7": 0.0010102700704236688,
+        "Compute-7->Compute-8": 0.0008855453703733456,
+        "Compute-8->Compute-9": 0.0008569416728878565,
+        "Compute-9->Compute-10": 0.10723784112149382,
+        "Source-0->Compute-2": 1.5134502921299032e-05
+      },
+      "link_service_request_s": {
+        "Compute-10->Compute-11": 0.055603117782698774,
+        "Compute-11->Compute-12": 0.058108165728157246,
+        "Compute-12->Compute-13": 0.05999040697667013,
+        "Compute-13->Sink-1": 0.0007233333330631808,
+        "Compute-2->Compute-3": 0.052789524087561546,
+        "Compute-3->Compute-4": 0.059808208782033745,
+        "Compute-4->Compute-5": 0.05311894411768314,
+        "Compute-5->Compute-6": 0.05921456065580344,
+        "Compute-6->Compute-7": 0.06359310211269253,
+        "Compute-7->Compute-8": 0.05574210185219641,
+        "Compute-8->Compute-9": 0.05394208364420905,
+        "Compute-9->Compute-10": 6.750322429906518,
+        "Source-0->Compute-2": 0.0009526315787553585
+      },
+      "link_propagation_request_s": {
+        "Compute-10->Compute-11": 0.22999999999973042,
+        "Compute-11->Compute-12": 0.22999999999973042,
+        "Compute-12->Compute-13": 0.22999999999973042,
+        "Compute-13->Sink-1": 13.340000000000103,
+        "Compute-2->Compute-3": 0.23499999999975962,
+        "Compute-3->Compute-4": 0.23099999999974052,
+        "Compute-4->Compute-5": 0.23099999999974052,
+        "Compute-5->Compute-6": 0.23099999999974052,
+        "Compute-6->Compute-7": 0.23099999999974052,
+        "Compute-7->Compute-8": 0.23099999999974052,
+        "Compute-8->Compute-9": 0.22999999999973575,
+        "Compute-9->Compute-10": 11.04000000000029,
+        "Source-0->Compute-2": 12.925000000000104
+      },
+      "link_request_count": {
+        "Compute-10->Compute-11": 230,
+        "Compute-11->Compute-12": 230,
+        "Compute-12->Compute-13": 230,
+        "Compute-13->Sink-1": 230,
+        "Compute-2->Compute-3": 235,
+        "Compute-3->Compute-4": 231,
+        "Compute-4->Compute-5": 231,
+        "Compute-5->Compute-6": 231,
+        "Compute-6->Compute-7": 231,
+        "Compute-7->Compute-8": 231,
+        "Compute-8->Compute-9": 230,
+        "Compute-9->Compute-10": 230,
+        "Source-0->Compute-2": 235
+      },
+      "phase_link_profile": {
+        "maxflow_omitted_disconnected_unloaded_nodes": []
+      }
+    }
+  },
+  "sp_manifest_sha256": "a1fbc366732980ea5fd0e95e235a17decebab1bd1fa38abf9628fd8f8dfffd98",
+  "gpu_busy_fraction": {
+    "a100/Compute-2": 0.22647966496021912,
+    "a100/Compute-3": 0.22975466496022764,
+    "a100/Compute-4": 0.2273421649602244,
+    "a100/Compute-5": 0.22691716496021966,
+    "l4/Compute-2": 0.13357841983999943,
+    "l4/Compute-3": 0.13357841983999943,
+    "l4/Compute-4": 0.13202675317333276,
+    "l4/Compute-5": 0.13202675317333293,
+    "l4/Compute-6": 0.15060325928390828,
+    "l4/Compute-7": 0.15022698666666734,
+    "l4/Compute-8": 0.15022698666666745,
+    "l4/Compute-9": 0.15002891105303842,
+    "t4/Compute-10": 0.07329493930666953,
+    "t4/Compute-11": 0.07329493930666953,
+    "t4/Compute-12": 0.07329493930666953,
+    "t4/Compute-13": 0.07329493930666953,
+    "t4/Compute-2": 0.07486210517333663,
+    "t4/Compute-3": 0.07407666874972779,
+    "t4/Compute-4": 0.07368670581333622,
+    "t4/Compute-5": 0.07368670581333622,
+    "t4/Compute-6": 0.07368670581333622,
+    "t4/Compute-7": 0.07368670581333622,
+    "t4/Compute-8": 0.07330882436543969,
+    "t4/Compute-9": 0.07329493930666961
+  },
+  "gpu_seconds_per_output_token": 0.060501569971323936,
+  "solution_sha256": "a1fbc366732980ea5fd0e95e235a17decebab1bd1fa38abf9628fd8f8dfffd98",
+  "sim_cluster_sha256": "a1fbc366732980ea5fd0e95e235a17decebab1bd1fa38abf9628fd8f8dfffd98",
+  "condition": "30b_multi_rate525",
+  "status": "completed",
+  "job": {
+    "key": "30b_multi_rate525/HHplus/seed100",
+    "mode": "30b_multi_rate525",
+    "model": "30B",
+    "scenario": "multi",
+    "prompt_scale": 0,
+    "target_rate": 525,
+    "cell": "HHplus",
+    "seed": 100,
+    "duration": 60
+  },
+  "manifest_sha256": "9b5e0435fa38c26f1294185e93086cd017ace9bbf7f4d9c0ebb7fffc45c77300",
+  "elapsed_wall_s": 5.864062299951911,
+  "finished_at": "2026-10-29T03:56:16.648140+00:00"
+}

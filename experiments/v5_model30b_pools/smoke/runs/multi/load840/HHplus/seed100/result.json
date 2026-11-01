@@ -1,0 +1,963 @@
+{
+  "scenario": "multi",
+  "method": "HHplus",
+  "cell": "HHplus",
+  "model": "LLaMa30B",
+  "model_layers": 60,
+  "solution": "D:\\PythonProject\\Helix-GREEN\\experiments\\v5_model30b_pools\\layouts\\multi.json",
+  "sim_cluster": "D:\\PythonProject\\Helix-GREEN\\experiments\\v5_model30b_pools\\layouts\\multi.json",
+  "offered_tokens_per_s": 840,
+  "duration_s": 60,
+  "warmup_s": 0,
+  "seed": 100,
+  "arrivals": 52,
+  "evaluation_protocol": "fixed_window_no_tail_drain",
+  "python_version": "3.10.20",
+  "numpy_version": "1.26.4",
+  "trace_sha256": "a992f869684a76d98e28173edb366f0d5462920ecfda5c1625faa122a4fe53ba",
+  "output_throughput_tokens_per_s": 76.43333333333334,
+  "completed_request_throughput_per_s": 0.21666666666666667,
+  "ttft_p95_s": 4.8837471081676505,
+  "tpot_p95_s": 0.7569768346050224,
+  "e2e_p95_s": 38.67932657087459,
+  "completion_fraction": 0.25,
+  "backlog_at_window_start": 0,
+  "backlog_at_window_end": 39,
+  "first_tokens_in_window": 51,
+  "queries_with_tpot_samples": 51,
+  "paper_prompt_request_p95_s": 4.4409339122546,
+  "paper_decode_request_p95_s": 0.47810949782643064,
+  "paper_prompt_request_count": 51,
+  "paper_decode_request_count": 4586,
+  "route_counts": {
+    "a100/3-4-5-2": 34,
+    "l4/2-3-4-5-6-7-8-9": 9,
+    "t4/2-3-4-5-6-7-8-9-10-11-12-13": 8
+  },
+  "query_samples": {
+    "30000000": {
+      "arrival_s": 1.37858635458932,
+      "input_tokens": 181,
+      "output_tokens": 154,
+      "ttft_s": 0.3220147194407694,
+      "tpot_s": 0.18632594534664912,
+      "completed": true
+    },
+    "30000001": {
+      "arrival_s": 2.855153108480211,
+      "input_tokens": 941,
+      "output_tokens": 88,
+      "ttft_s": 3.093831709753209,
+      "tpot_s": 0.6399050589068594,
+      "completed": false
+    },
+    "30000002": {
+      "arrival_s": 3.2404611275355055,
+      "input_tokens": 956,
+      "output_tokens": 405,
+      "ttft_s": 4.339157883956828,
+      "tpot_s": 0.6704140462089567,
+      "completed": false
+    },
+    "30000003": {
+      "arrival_s": 4.300543304686212,
+      "input_tokens": 406,
+      "output_tokens": 105,
+      "ttft_s": 0.38908786160621744,
+      "tpot_s": 0.18878385691252678,
+      "completed": true
+    },
+    "30000004": {
+      "arrival_s": 4.598704243927713,
+      "input_tokens": 1009,
+      "output_tokens": 415,
+      "ttft_s": 0.6288438826099956,
+      "tpot_s": 0.19226109827597662,
+      "completed": false
+    },
+    "30000005": {
+      "arrival_s": 5.400061371400284,
+      "input_tokens": 209,
+      "output_tokens": 217,
+      "ttft_s": 0.3323780675808905,
+      "tpot_s": 0.19217524613577985,
+      "completed": true
+    },
+    "30000006": {
+      "arrival_s": 6.689115650417044,
+      "input_tokens": 1076,
+      "output_tokens": 81,
+      "ttft_s": 0.6501004800901242,
+      "tpot_s": 0.18842382136681257,
+      "completed": true
+    },
+    "30000007": {
+      "arrival_s": 8.516713181913303,
+      "input_tokens": 1164,
+      "output_tokens": 414,
+      "ttft_s": 3.6300334839305144,
+      "tpot_s": 0.6257139881653394,
+      "completed": false
+    },
+    "30000008": {
+      "arrival_s": 9.565784742523457,
+      "input_tokens": 382,
+      "output_tokens": 106,
+      "ttft_s": 2.14202753349584,
+      "tpot_s": 0.6787185323697763,
+      "completed": false
+    },
+    "30000009": {
+      "arrival_s": 10.041013360844453,
+      "input_tokens": 483,
+      "output_tokens": 100,
+      "ttft_s": 0.41204178136956315,
+      "tpot_s": 0.1898253871212553,
+      "completed": true
+    },
+    "30000010": {
+      "arrival_s": 10.878964917578394,
+      "input_tokens": 1312,
+      "output_tokens": 251,
+      "ttft_s": 0.7191690473929064,
+      "tpot_s": 0.19370106856202318,
+      "completed": false
+    },
+    "30000011": {
+      "arrival_s": 12.827336376186132,
+      "input_tokens": 209,
+      "output_tokens": 162,
+      "ttft_s": 0.330361599354589,
+      "tpot_s": 0.19195859415310285,
+      "completed": true
+    },
+    "30000012": {
+      "arrival_s": 13.125297035882365,
+      "input_tokens": 1016,
+      "output_tokens": 397,
+      "ttft_s": 0.6309306025884958,
+      "tpot_s": 0.19358601848085802,
+      "completed": false
+    },
+    "30000013": {
+      "arrival_s": 14.376978385851196,
+      "input_tokens": 1028,
+      "output_tokens": 394,
+      "ttft_s": 3.3030225364502286,
+      "tpot_s": 0.6179560124133557,
+      "completed": false
+    },
+    "30000014": {
+      "arrival_s": 15.442813480798172,
+      "input_tokens": 215,
+      "output_tokens": 217,
+      "ttft_s": 1.5503303060968676,
+      "tpot_s": 0.7169741875485798,
+      "completed": false
+    },
+    "30000015": {
+      "arrival_s": 17.554495399433918,
+      "input_tokens": 1081,
+      "output_tokens": 385,
+      "ttft_s": 0.6503072881030505,
+      "tpot_s": 0.19542205328346526,
+      "completed": false
+    },
+    "30000016": {
+      "arrival_s": 20.52352414338592,
+      "input_tokens": 402,
+      "output_tokens": 91,
+      "ttft_s": 0.8911617627087125,
+      "tpot_s": 0.18840932949546463,
+      "completed": true
+    },
+    "30000017": {
+      "arrival_s": 20.74133052674769,
+      "input_tokens": 1644,
+      "output_tokens": 123,
+      "ttft_s": 1.1506996103577904,
+      "tpot_s": 0.1891084488028714,
+      "completed": true
+    },
+    "30000018": {
+      "arrival_s": 21.379845625695715,
+      "input_tokens": 1103,
+      "output_tokens": 393,
+      "ttft_s": 0.6568655508924692,
+      "tpot_s": 0.1938101992837276,
+      "completed": false
+    },
+    "30000019": {
+      "arrival_s": 22.661854857732244,
+      "input_tokens": 397,
+      "output_tokens": 55,
+      "ttft_s": 1.7257879198319728,
+      "tpot_s": 0.6452765841299901,
+      "completed": true
+    },
+    "30000020": {
+      "arrival_s": 25.016145911697578,
+      "input_tokens": 1072,
+      "output_tokens": 395,
+      "ttft_s": 4.834338233527426,
+      "tpot_s": 0.7570321170794347,
+      "completed": false
+    },
+    "30000021": {
+      "arrival_s": 26.069282336317926,
+      "input_tokens": 193,
+      "output_tokens": 121,
+      "ttft_s": 0.5710276171668909,
+      "tpot_s": 0.19698849235375954,
+      "completed": true
+    },
+    "30000022": {
+      "arrival_s": 26.14182995907639,
+      "input_tokens": 1057,
+      "output_tokens": 500,
+      "ttft_s": 0.6431528196054188,
+      "tpot_s": 0.19553087135049269,
+      "completed": false
+    },
+    "30000023": {
+      "arrival_s": 29.284504854573527,
+      "input_tokens": 1219,
+      "output_tokens": 365,
+      "ttft_s": 0.6914454819645499,
+      "tpot_s": 0.19640624802879603,
+      "completed": false
+    },
+    "30000024": {
+      "arrival_s": 29.441455478250738,
+      "input_tokens": 452,
+      "output_tokens": 86,
+      "ttft_s": 0.6068220256820709,
+      "tpot_s": 0.19804615761918368,
+      "completed": true
+    },
+    "30000025": {
+      "arrival_s": 29.671370863167184,
+      "input_tokens": 406,
+      "output_tokens": 102,
+      "ttft_s": 1.747428350179895,
+      "tpot_s": 0.6898100134893301,
+      "completed": false
+    },
+    "30000026": {
+      "arrival_s": 31.480445777662396,
+      "input_tokens": 387,
+      "output_tokens": 84,
+      "ttft_s": 2.1587370313221683,
+      "tpot_s": 0.7569215521306101,
+      "completed": false
+    },
+    "30000027": {
+      "arrival_s": 31.540736916686043,
+      "input_tokens": 1050,
+      "output_tokens": 411,
+      "ttft_s": 0.641066099626947,
+      "tpot_s": 0.19748497871858628,
+      "completed": false
+    },
+    "30000028": {
+      "arrival_s": 32.300873724100775,
+      "input_tokens": 1091,
+      "output_tokens": 378,
+      "ttft_s": 0.6532883166436605,
+      "tpot_s": 0.19475027533456982,
+      "completed": false
+    },
+    "30000029": {
+      "arrival_s": 36.36300955827095,
+      "input_tokens": 380,
+      "output_tokens": 61,
+      "ttft_s": 0.381337187400419,
+      "tpot_s": 0.2045710221775521,
+      "completed": true
+    },
+    "30000030": {
+      "arrival_s": 36.494113751975874,
+      "input_tokens": 383,
+      "output_tokens": 80,
+      "ttft_s": 0.3822314959625217,
+      "tpot_s": 0.19927119643980407,
+      "completed": true
+    },
+    "30000031": {
+      "arrival_s": 38.11854618108228,
+      "input_tokens": 1681,
+      "output_tokens": 46,
+      "ttft_s": 4.933155982807875,
+      "tpot_s": 0.7238829392399764,
+      "completed": false
+    },
+    "30000032": {
+      "arrival_s": 38.26163109261879,
+      "input_tokens": 384,
+      "output_tokens": 71,
+      "ttft_s": 2.148711332626405,
+      "tpot_s": 0.9184384237852047,
+      "completed": false
+    },
+    "30000033": {
+      "arrival_s": 40.07167279721217,
+      "input_tokens": 181,
+      "output_tokens": 133,
+      "ttft_s": 0.322014719440574,
+      "tpot_s": 0.20676609064108856,
+      "completed": false
+    },
+    "30000034": {
+      "arrival_s": 40.36706896154271,
+      "input_tokens": 1317,
+      "output_tokens": 148,
+      "ttft_s": 0.7206595616632043,
+      "tpot_s": 0.20152657541622754,
+      "completed": false
+    },
+    "30000035": {
+      "arrival_s": 42.13182843602847,
+      "input_tokens": 1071,
+      "output_tokens": 387,
+      "ttft_s": 0.85057947279887,
+      "tpot_s": 0.20056300152485393,
+      "completed": false
+    },
+    "30000036": {
+      "arrival_s": 42.357256532909865,
+      "input_tokens": 1477,
+      "output_tokens": 105,
+      "ttft_s": 0.7683560183145275,
+      "tpot_s": 0.19885818435346045,
+      "completed": false
+    },
+    "30000037": {
+      "arrival_s": 43.78700247129378,
+      "input_tokens": 1042,
+      "output_tokens": 394,
+      "ttft_s": 3.336685428102406,
+      "tpot_s": 0.6288660933506712,
+      "completed": false
+    },
+    "30000038": {
+      "arrival_s": 44.46619645190127,
+      "input_tokens": 1103,
+      "output_tokens": 418,
+      "ttft_s": 4.9751371200506185,
+      "tpot_s": 1.052417363151525,
+      "completed": false
+    },
+    "30000039": {
+      "arrival_s": 45.116618842650226,
+      "input_tokens": 1320,
+      "output_tokens": 192,
+      "ttft_s": 0.721553870225307,
+      "tpot_s": 0.19706376512731744,
+      "completed": false
+    },
+    "30000040": {
+      "arrival_s": 46.335701536263386,
+      "input_tokens": 1213,
+      "output_tokens": 397,
+      "ttft_s": 0.6896568648399466,
+      "tpot_s": 0.19400517630017786,
+      "completed": false
+    },
+    "30000041": {
+      "arrival_s": 48.11715357318474,
+      "input_tokens": 381,
+      "output_tokens": 98,
+      "ttft_s": 0.38163529025470666,
+      "tpot_s": 0.1987879153241338,
+      "completed": false
+    },
+    "30000042": {
+      "arrival_s": 48.472406635306925,
+      "input_tokens": 1212,
+      "output_tokens": 396,
+      "ttft_s": 0.6893587619860568,
+      "tpot_s": 0.19049883285039446,
+      "completed": false
+    },
+    "30000043": {
+      "arrival_s": 50.80212392469036,
+      "input_tokens": 1314,
+      "output_tokens": 206,
+      "ttft_s": 4.006067323063064,
+      "tpot_s": 0.48928185186561846,
+      "completed": false
+    },
+    "30000044": {
+      "arrival_s": 50.986660060244546,
+      "input_tokens": 1319,
+      "output_tokens": 189,
+      "ttft_s": 5.823707426147372,
+      "tpot_s": 0.4544218995652187,
+      "completed": false
+    },
+    "30000045": {
+      "arrival_s": 53.06264398870985,
+      "input_tokens": 1136,
+      "output_tokens": 418,
+      "ttft_s": 0.6667029450767785,
+      "tpot_s": 0.19063603447276378,
+      "completed": false
+    },
+    "30000046": {
+      "arrival_s": 53.19968988154878,
+      "input_tokens": 407,
+      "output_tokens": 132,
+      "ttft_s": 0.6068499393311839,
+      "tpot_s": 0.1942954908398422,
+      "completed": false
+    },
+    "30000047": {
+      "arrival_s": 55.35151787870373,
+      "input_tokens": 788,
+      "output_tokens": 52,
+      "ttft_s": 0.5629631518609841,
+      "tpot_s": 0.18643900030239788,
+      "completed": false
+    },
+    "30000048": {
+      "arrival_s": 56.08639491619657,
+      "input_tokens": 398,
+      "output_tokens": 129,
+      "ttft_s": 0.389287626561412,
+      "tpot_s": 0.18633430523094952,
+      "completed": false
+    },
+    "30000049": {
+      "arrival_s": 57.43599231153223,
+      "input_tokens": 391,
+      "output_tokens": 96,
+      "ttft_s": 1.7113609662661702,
+      "tpot_s": 0.431204492260548,
+      "completed": false
+    },
+    "30000050": {
+      "arrival_s": 57.62604293588604,
+      "input_tokens": 1219,
+      "output_tokens": 114,
+      "ttft_s": null,
+      "tpot_s": null,
+      "completed": false
+    },
+    "30000051": {
+      "arrival_s": 58.23816224360645,
+      "input_tokens": 1066,
+      "output_tokens": 415,
+      "ttft_s": 0.645835745291734,
+      "tpot_s": 0.161058102854156,
+      "completed": false
+    }
+  },
+  "sp_allocation": {
+    "a100": {
+      "requests": 34,
+      "offered_tokens": 35801,
+      "artifact_weight": 560,
+      "component_trace_sha256": "d83cf974723e33cc0dc3ca2f8e5d798a6860a89754a86d042a7bbcb0ad92b83a",
+      "component_solution_sha256": "ecfaddb35b8a2ae7a15b4e451e96d6102b96f23d2b916bc82c730ed071a429c7"
+    },
+    "l4": {
+      "requests": 9,
+      "offered_tokens": 10159,
+      "artifact_weight": 140,
+      "component_trace_sha256": "ae6865079bb2282082b9dd43bd7d001c538375821a459522a5da90d08cd13d9f",
+      "component_solution_sha256": "be150939ccd13757e81e7f52a08ee82f06bbcefb10b932c2e6b66e574f1c09d5"
+    },
+    "t4": {
+      "requests": 9,
+      "offered_tokens": 9036,
+      "artifact_weight": 140,
+      "component_trace_sha256": "6a25bb7b720ff9f302ff7513f16ee993517fe2320aeb2cbfcd1ddc56689b76de",
+      "component_solution_sha256": "61a7ab17f3969407d66fb5ebe8f7f8203ba5e3ca14adfde8b06b55e1766f338e"
+    }
+  },
+  "sp_components": {
+    "a100": {
+      "scenario": "multi",
+      "method": "queue_dag",
+      "offered_tokens_per_s": 560.0,
+      "duration_s": 60,
+      "warmup_s": 0,
+      "seed": 100,
+      "arrivals": 34,
+      "evaluation_protocol": "fixed_window_no_tail_drain",
+      "python_version": "3.10.20",
+      "numpy_version": "1.26.4",
+      "trace_sha256": "d83cf974723e33cc0dc3ca2f8e5d798a6860a89754a86d042a7bbcb0ad92b83a",
+      "output_throughput_tokens_per_s": 64.9,
+      "completed_request_throughput_per_s": 0.2,
+      "ttft_p95_s": 0.8647832742673148,
+      "tpot_p95_s": 0.20259213178269114,
+      "e2e_p95_s": 36.00863644671148,
+      "completion_fraction": 0.35294117647058826,
+      "backlog_at_window_start": 0,
+      "backlog_at_window_end": 22,
+      "first_tokens_in_window": 34,
+      "queries_with_tpot_samples": 34,
+      "paper_prompt_request_p95_s": 0.6072979154603715,
+      "paper_decode_request_p95_s": 0.4273650018699158,
+      "paper_prompt_request_count": 34,
+      "paper_decode_request_count": 3894,
+      "physical_cluster": "D:\\PythonProject\\Helix-GREEN\\artifact_evaluation\\distributed_clusters\\config\\a100.ini",
+      "physical_cluster_sha256": "45ba3ccced74c240114afeac693097d78f85627e9927bf657c1d92bf608c31ec",
+      "gpu_busy_fraction": {
+        "Compute-2": 0.20166680576011256,
+        "Compute-3": 0.20543680576011766,
+        "Compute-4": 0.20189180576011292,
+        "Compute-5": 0.20166680576011256
+      },
+      "gpu_queue_request_s": {
+        "Compute-2": 23.876751401761993,
+        "Compute-3": 6.735353872405842,
+        "Compute-4": 21.575959032070177,
+        "Compute-5": 23.2202291543867
+      },
+      "gpu_queue_exits": {
+        "Compute-2": 59250,
+        "Compute-3": 59250,
+        "Compute-4": 59250,
+        "Compute-5": 59250
+      },
+      "gpu_queued_at_end": 0,
+      "outbound_wait_request_s": {
+        "Compute-2": 5.1785714347829526e-06,
+        "Compute-3": 0.028073853286663564,
+        "Compute-4": 0.03508332053301899,
+        "Compute-5": 0.0058847419430421155,
+        "Source-0": 0.0006012497418765861
+      },
+      "outbound_wait_exits": {
+        "Compute-2": 3950,
+        "Compute-3": 3950,
+        "Compute-4": 3950,
+        "Compute-5": 3950,
+        "Source-0": 3950
+      },
+      "outbound_queued_at_end": 0,
+      "link_dispatch_wait_request_s": {
+        "Compute-2->Sink-1": 5.1785714347829526e-06,
+        "Compute-3->Compute-4": 0.028073853286663564,
+        "Compute-4->Compute-5": 0.03508332053301899,
+        "Compute-5->Compute-2": 0.0058847419430421155,
+        "Source-0->Compute-3": 0.0006012497418765861
+      },
+      "link_occupied_fraction": {
+        "Compute-2->Sink-1": 9.475892856081932e-05,
+        "Compute-3->Compute-4": 0.006143542695659873,
+        "Compute-4->Compute-5": 0.0062800658666630465,
+        "Compute-5->Compute-2": 0.005510978237132965,
+        "Source-0->Compute-3": 8.771074380344856e-05
+      },
+      "link_service_request_s": {
+        "Compute-2->Sink-1": 0.014127321428059503,
+        "Compute-3->Compute-4": 0.9103418556541847,
+        "Compute-4->Compute-5": 0.9358499360037555,
+        "Compute-5->Compute-2": 0.821615040557397,
+        "Source-0->Compute-3": 0.01294859504288226
+      },
+      "link_propagation_request_s": {
+        "Compute-2->Sink-1": 232.79185325030414,
+        "Compute-3->Compute-4": 3.950000000000731,
+        "Compute-4->Compute-5": 3.950000000000731,
+        "Compute-5->Compute-2": 3.950000000000731,
+        "Source-0->Compute-3": 177.75000000002217
+      },
+      "link_request_count": {
+        "Compute-2->Sink-1": 3950,
+        "Compute-3->Compute-4": 3950,
+        "Compute-4->Compute-5": 3950,
+        "Compute-5->Compute-2": 3950,
+        "Source-0->Compute-3": 3950
+      },
+      "phase_link_profile": {
+        "maxflow_omitted_disconnected_unloaded_nodes": []
+      }
+    },
+    "l4": {
+      "scenario": "multi",
+      "method": "queue_dag",
+      "offered_tokens_per_s": 140.0,
+      "duration_s": 60,
+      "warmup_s": 0,
+      "seed": 100,
+      "arrivals": 9,
+      "evaluation_protocol": "fixed_window_no_tail_drain",
+      "python_version": "3.10.20",
+      "numpy_version": "1.26.4",
+      "trace_sha256": "ae6865079bb2282082b9dd43bd7d001c538375821a459522a5da90d08cd13d9f",
+      "output_throughput_tokens_per_s": 6.433333333333334,
+      "completed_request_throughput_per_s": 0.016666666666666666,
+      "ttft_p95_s": 4.56232051890995,
+      "tpot_p95_s": 0.7102537689397178,
+      "e2e_p95_s": 36.57072346285144,
+      "completion_fraction": 0.1111111111111111,
+      "backlog_at_window_start": 0,
+      "backlog_at_window_end": 8,
+      "first_tokens_in_window": 9,
+      "queries_with_tpot_samples": 9,
+      "paper_prompt_request_p95_s": 4.501951490546993,
+      "paper_decode_request_p95_s": 2.5506892595165667,
+      "paper_prompt_request_count": 9,
+      "paper_decode_request_count": 386,
+      "physical_cluster": "D:\\PythonProject\\Helix-GREEN\\artifact_evaluation\\distributed_clusters\\config\\l4.ini",
+      "physical_cluster_sha256": "dedf9ab84c045c3b58c53f5aa40a92f7ba0538f8fba0455e0c645ab0c14e9328",
+      "gpu_busy_fraction": {
+        "Compute-2": 0.11338026538666164,
+        "Compute-3": 0.11286693205332768,
+        "Compute-4": 0.11080193205332783,
+        "Compute-5": 0.11080193205332725,
+        "Compute-6": 0.12650586538665978,
+        "Compute-7": 0.1259858371202357,
+        "Compute-8": 0.12583849983999368,
+        "Compute-9": 0.12583849983999368
+      },
+      "gpu_queue_request_s": {
+        "Compute-2": 2.21095613351984,
+        "Compute-3": 3.752266762450418,
+        "Compute-4": 5.548227486215918,
+        "Compute-5": 4.89859296603964,
+        "Compute-6": 5.691746231236927,
+        "Compute-7": 5.499192515191982,
+        "Compute-8": 5.520317662069996,
+        "Compute-9": 5.531443617444335
+      },
+      "gpu_queue_exits": {
+        "Compute-2": 2821,
+        "Compute-3": 2821,
+        "Compute-4": 2821,
+        "Compute-5": 2821,
+        "Compute-6": 3224,
+        "Compute-7": 3182,
+        "Compute-8": 3168,
+        "Compute-9": 3168
+      },
+      "gpu_queued_at_end": 0,
+      "outbound_wait_request_s": {
+        "Compute-2": 0.0,
+        "Compute-3": 33.06220790335008,
+        "Compute-4": 0.0,
+        "Compute-5": 0.0,
+        "Compute-6": 0.0,
+        "Compute-7": 0.0,
+        "Compute-8": 0.0,
+        "Compute-9": 0.0,
+        "Source-0": 0.0
+      },
+      "outbound_wait_exits": {
+        "Compute-2": 403,
+        "Compute-3": 403,
+        "Compute-4": 403,
+        "Compute-5": 403,
+        "Compute-6": 403,
+        "Compute-7": 396,
+        "Compute-8": 396,
+        "Compute-9": 396,
+        "Source-0": 403
+      },
+      "outbound_queued_at_end": 0,
+      "link_dispatch_wait_request_s": {
+        "Compute-2->Compute-3": 0.0,
+        "Compute-3->Compute-4": 33.06220790335008,
+        "Compute-4->Compute-5": 0.0,
+        "Compute-5->Compute-6": 0.0,
+        "Compute-6->Compute-7": 0.0,
+        "Compute-7->Compute-8": 0.0,
+        "Compute-8->Compute-9": 0.0,
+        "Compute-9->Sink-1": 0.0,
+        "Source-0->Compute-2": 0.0
+      },
+      "link_occupied_fraction": {
+        "Compute-2->Compute-3": 0.0016087749999984227,
+        "Compute-3->Compute-4": 0.15929509836065817,
+        "Compute-4->Compute-5": 0.001583863243683492,
+        "Compute-5->Compute-6": 0.001569790145396599,
+        "Compute-6->Compute-7": 0.0014937741737121848,
+        "Compute-7->Compute-8": 0.0015864762254903001,
+        "Compute-8->Compute-9": 0.001635928306654281,
+        "Compute-9->Sink-1": 2.0687943260947842e-05,
+        "Source-0->Compute-2": 2.3543010753446224e-05
+      },
+      "link_service_request_s": {
+        "Compute-2->Compute-3": 0.1096641556287441,
+        "Compute-3->Compute-4": 10.897836393442898,
+        "Compute-4->Compute-5": 0.10835664547721713,
+        "Compute-5->Compute-6": 0.10739386429756159,
+        "Compute-6->Compute-7": 0.10219339277452733,
+        "Compute-7->Compute-8": 0.1080892303919736,
+        "Compute-8->Compute-9": 0.11145848188698793,
+        "Compute-9->Sink-1": 0.0014095035459504857,
+        "Source-0->Compute-2": 0.0016016129032419002
+      },
+      "link_propagation_request_s": {
+        "Compute-2->Compute-3": 0.4029999999998335,
+        "Compute-3->Compute-4": 18.940999999999043,
+        "Compute-4->Compute-5": 0.4029999999998779,
+        "Compute-5->Compute-6": 0.4029999999998779,
+        "Compute-6->Compute-7": 0.4029999999998779,
+        "Compute-7->Compute-8": 0.3959999999998445,
+        "Compute-8->Compute-9": 0.3959999999998445,
+        "Compute-9->Sink-1": 22.166237737679694,
+        "Source-0->Compute-2": 20.553000000000537
+      },
+      "link_request_count": {
+        "Compute-2->Compute-3": 403,
+        "Compute-3->Compute-4": 403,
+        "Compute-4->Compute-5": 403,
+        "Compute-5->Compute-6": 403,
+        "Compute-6->Compute-7": 403,
+        "Compute-7->Compute-8": 396,
+        "Compute-8->Compute-9": 396,
+        "Compute-9->Sink-1": 396,
+        "Source-0->Compute-2": 403
+      },
+      "phase_link_profile": {
+        "maxflow_omitted_disconnected_unloaded_nodes": []
+      }
+    },
+    "t4": {
+      "scenario": "multi",
+      "method": "queue_dag",
+      "offered_tokens_per_s": 140.0,
+      "duration_s": 60,
+      "warmup_s": 0,
+      "seed": 100,
+      "arrivals": 9,
+      "evaluation_protocol": "fixed_window_no_tail_drain",
+      "python_version": "3.10.20",
+      "numpy_version": "1.26.4",
+      "trace_sha256": "6a25bb7b720ff9f302ff7513f16ee993517fe2320aeb2cbfcd1ddc56689b76de",
+      "output_throughput_tokens_per_s": 5.1,
+      "completed_request_throughput_per_s": 0.0,
+      "ttft_p95_s": 5.526707819013508,
+      "tpot_p95_s": 1.005524734373313,
+      "e2e_p95_s": null,
+      "completion_fraction": 0.0,
+      "backlog_at_window_start": 0,
+      "backlog_at_window_end": 9,
+      "first_tokens_in_window": 8,
+      "queries_with_tpot_samples": 8,
+      "paper_prompt_request_p95_s": 5.3692855265821535,
+      "paper_decode_request_p95_s": 4.196677797755676,
+      "paper_prompt_request_count": 8,
+      "paper_decode_request_count": 306,
+      "physical_cluster": "D:\\PythonProject\\Helix-GREEN\\artifact_evaluation\\distributed_clusters\\config\\t4.ini",
+      "physical_cluster_sha256": "d07ee5926069d6dcbfd47d9f446ffefdfce38d9f59a28d94a55f96cbad4ef0da",
+      "gpu_busy_fraction": {
+        "Compute-10": 0.07674775349333415,
+        "Compute-11": 0.07674775349333415,
+        "Compute-12": 0.07674775349333415,
+        "Compute-13": 0.07674775349333415,
+        "Compute-2": 0.08360259050666695,
+        "Compute-3": 0.08283592384000042,
+        "Compute-4": 0.08283592384000042,
+        "Compute-5": 0.08245259050666712,
+        "Compute-6": 0.08245259050666724,
+        "Compute-7": 0.0820692571733342,
+        "Compute-8": 0.0820692571733342,
+        "Compute-9": 0.0820692571733342
+      },
+      "gpu_queue_request_s": {
+        "Compute-10": 4.884995999641323,
+        "Compute-11": 4.595717563839372,
+        "Compute-12": 4.60643362792479,
+        "Compute-13": 4.614485456986216,
+        "Compute-2": 0.7576381908223979,
+        "Compute-3": 4.727739393691284,
+        "Compute-4": 6.244186149840054,
+        "Compute-5": 6.307809557614043,
+        "Compute-6": 6.523095047694138,
+        "Compute-7": 6.589271145746011,
+        "Compute-8": 6.5742211448218555,
+        "Compute-9": 6.563509396927444
+      },
+      "gpu_queue_exits": {
+        "Compute-10": 1570,
+        "Compute-11": 1570,
+        "Compute-12": 1570,
+        "Compute-13": 1570,
+        "Compute-2": 1615,
+        "Compute-3": 1615,
+        "Compute-4": 1615,
+        "Compute-5": 1615,
+        "Compute-6": 1615,
+        "Compute-7": 1615,
+        "Compute-8": 1615,
+        "Compute-9": 1615
+      },
+      "gpu_queued_at_end": 0,
+      "outbound_wait_request_s": {
+        "Compute-10": 0.0,
+        "Compute-11": 0.0,
+        "Compute-12": 0.0,
+        "Compute-13": 0.0,
+        "Compute-2": 0.0,
+        "Compute-3": 0.0,
+        "Compute-4": 0.0,
+        "Compute-5": 0.0,
+        "Compute-6": 0.0,
+        "Compute-7": 0.0,
+        "Compute-8": 0.0,
+        "Compute-9": 28.49920781456224,
+        "Source-0": 0.0
+      },
+      "outbound_wait_exits": {
+        "Compute-10": 314,
+        "Compute-11": 314,
+        "Compute-12": 314,
+        "Compute-13": 314,
+        "Compute-2": 323,
+        "Compute-3": 323,
+        "Compute-4": 323,
+        "Compute-5": 323,
+        "Compute-6": 323,
+        "Compute-7": 323,
+        "Compute-8": 323,
+        "Compute-9": 315,
+        "Source-0": 323
+      },
+      "outbound_queued_at_end": 8,
+      "link_dispatch_wait_request_s": {
+        "Compute-10->Compute-11": 0.0,
+        "Compute-11->Compute-12": 0.0,
+        "Compute-12->Compute-13": 0.0,
+        "Compute-13->Sink-1": 0.0,
+        "Compute-2->Compute-3": 0.0,
+        "Compute-3->Compute-4": 0.0,
+        "Compute-4->Compute-5": 0.0,
+        "Compute-5->Compute-6": 0.0,
+        "Compute-6->Compute-7": 0.0,
+        "Compute-7->Compute-8": 0.0,
+        "Compute-8->Compute-9": 0.0,
+        "Compute-9->Compute-10": 28.164834172652334,
+        "Source-0->Compute-2": 0.0
+      },
+      "link_occupied_fraction": {
+        "Compute-10->Compute-11": 0.0010461244033863615,
+        "Compute-11->Compute-12": 0.0010932547063577046,
+        "Compute-12->Compute-13": 0.0011286674418597839,
+        "Compute-13->Sink-1": 1.3608888887469324e-05,
+        "Compute-2->Compute-3": 0.0011906473722625025,
+        "Compute-3->Compute-4": 0.001351439022369109,
+        "Compute-4->Compute-5": 0.0011994021323525968,
+        "Compute-5->Compute-6": 0.0013370384426253897,
+        "Compute-6->Compute-7": 0.001435903961267293,
+        "Compute-7->Compute-8": 0.0012586318672831295,
+        "Compute-8->Compute-9": 0.001218212770722212,
+        "Compute-9->Compute-10": 0.12814053508457093,
+        "Source-0->Compute-2": 2.1494152045686833e-05
+      },
+      "link_service_request_s": {
+        "Compute-10->Compute-11": 0.07084400923792167,
+        "Compute-11->Compute-12": 0.07403569428822365,
+        "Compute-12->Compute-13": 0.0764338604649506,
+        "Compute-13->Sink-1": 0.0009215999999252489,
+        "Compute-2->Compute-3": 0.07927175036505041,
+        "Compute-3->Compute-4": 0.09021972328092076,
+        "Compute-4->Compute-5": 0.0800700044115299,
+        "Compute-5->Compute-6": 0.0893238442626263,
+        "Compute-6->Compute-7": 0.09592877640823261,
+        "Compute-7->Compute-8": 0.08416790277737185,
+        "Compute-8->Compute-9": 0.08146497535446251,
+        "Compute-9->Compute-10": 8.668939768625805,
+        "Source-0->Compute-2": 0.0014278947368797645
+      },
+      "link_propagation_request_s": {
+        "Compute-10->Compute-11": 0.31399999999957195,
+        "Compute-11->Compute-12": 0.31399999999957195,
+        "Compute-12->Compute-13": 0.31399999999957195,
+        "Compute-13->Sink-1": 18.211999999999946,
+        "Compute-2->Compute-3": 0.32299999999956164,
+        "Compute-3->Compute-4": 0.3229999999996256,
+        "Compute-4->Compute-5": 0.3229999999996256,
+        "Compute-5->Compute-6": 0.32299999999961315,
+        "Compute-6->Compute-7": 0.32299999999961493,
+        "Compute-7->Compute-8": 0.32299999999961493,
+        "Compute-8->Compute-9": 0.32299999999961493,
+        "Compute-9->Compute-10": 15.072000000000267,
+        "Source-0->Compute-2": 17.764999999999908
+      },
+      "link_request_count": {
+        "Compute-10->Compute-11": 314,
+        "Compute-11->Compute-12": 314,
+        "Compute-12->Compute-13": 314,
+        "Compute-13->Sink-1": 314,
+        "Compute-2->Compute-3": 323,
+        "Compute-3->Compute-4": 323,
+        "Compute-4->Compute-5": 323,
+        "Compute-5->Compute-6": 323,
+        "Compute-6->Compute-7": 323,
+        "Compute-7->Compute-8": 323,
+        "Compute-8->Compute-9": 323,
+        "Compute-9->Compute-10": 315,
+        "Source-0->Compute-2": 323
+      },
+      "phase_link_profile": {
+        "maxflow_omitted_disconnected_unloaded_nodes": []
+      }
+    }
+  },
+  "sp_manifest_sha256": "a1fbc366732980ea5fd0e95e235a17decebab1bd1fa38abf9628fd8f8dfffd98",
+  "gpu_busy_fraction": {
+    "a100/Compute-2": 0.20166680576011256,
+    "a100/Compute-3": 0.20543680576011766,
+    "a100/Compute-4": 0.20189180576011292,
+    "a100/Compute-5": 0.20166680576011256,
+    "l4/Compute-2": 0.11338026538666164,
+    "l4/Compute-3": 0.11286693205332768,
+    "l4/Compute-4": 0.11080193205332783,
+    "l4/Compute-5": 0.11080193205332725,
+    "l4/Compute-6": 0.12650586538665978,
+    "l4/Compute-7": 0.1259858371202357,
+    "l4/Compute-8": 0.12583849983999368,
+    "l4/Compute-9": 0.12583849983999368,
+    "t4/Compute-10": 0.07674775349333415,
+    "t4/Compute-11": 0.07674775349333415,
+    "t4/Compute-12": 0.07674775349333415,
+    "t4/Compute-13": 0.07674775349333415,
+    "t4/Compute-2": 0.08360259050666695,
+    "t4/Compute-3": 0.08283592384000042,
+    "t4/Compute-4": 0.08283592384000042,
+    "t4/Compute-5": 0.08245259050666712,
+    "t4/Compute-6": 0.08245259050666724,
+    "t4/Compute-7": 0.0820692571733342,
+    "t4/Compute-8": 0.0820692571733342,
+    "t4/Compute-9": 0.0820692571733342
+  },
+  "gpu_seconds_per_output_token": 0.035718190904500534,
+  "solution_sha256": "a1fbc366732980ea5fd0e95e235a17decebab1bd1fa38abf9628fd8f8dfffd98",
+  "sim_cluster_sha256": "a1fbc366732980ea5fd0e95e235a17decebab1bd1fa38abf9628fd8f8dfffd98",
+  "status": "completed",
+  "job": {
+    "key": "multi/load840/HHplus/seed100",
+    "scenario": "multi",
+    "load": 840,
+    "cell": "HHplus",
+    "seed": 100,
+    "duration": 60
+  },
+  "environment": {
+    "executable": "D:\\software\\miniconda\\envs\\gllm\\python.exe",
+    "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:42:35) [MSC v.1942 64 bit (AMD64)]",
+    "env": {
+      "PYTHONHASHSEED": "0",
+      "PYTHONIOENCODING": "utf-8",
+      "MPLBACKEND": "Agg",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.15.3",
+      "networkx": "3.2.1",
+      "gurobipy": "11.0.3"
+    }
+  },
+  "manifest_sha256": "a38f6e2517d27e3b818dccb9b220c8a03316b5c60830c992ccae2efa99291a22",
+  "elapsed_wall_s": 14.690353900019545,
+  "finished_at": "2026-10-28T11:58:43.310930+00:00"
+}
