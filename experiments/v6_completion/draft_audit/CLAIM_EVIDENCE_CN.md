@@ -1,5 +1,12 @@
 # RCAPS 初稿实验主张—证据核对表
 
+## 2026-11-01 新增独立重跑与 E4 网络测量
+
+- 原先 254 个仍失败键已在真正激活的 gllm 环境下独立重跑（最多 2 worker），22 成功、232 失败；失败组分别为 E2b 5、E3b 12、E5a 39、E5b 42、V5 68、V6 66。来源与工件哈希审计 passed=true；原正式和先前重放不变，22 个新成功不能回填原正式成功率。证据：experiments/reviewer_v2/remaining_failure_retry_20261031/FINAL_AUDIT.json。剩余 232 键逐项 PowerShell 命令见 experiments/reviewer_v2/MANUAL_RERUN_COMMANDS_CN.md。
+- E4 已在 WSL2 的 netns/veth/netem 虚拟 Linux TCP 链路完成原批 150 次登记，149 成功、1 次启动后中断；FINAL_AUDIT.json passed=true。中断键 12.5 MB/s、priority、repeat0 在新独立目录复测成功，原失败保留，原 12.5 MB/s priority 组仍按 9/10 表述，不补成正式 10/10。25 和 50 MB/s 的完整十轮中，chunk4、chunk1、双连接对照的小消息 P95 均低于单连接 priority；具体均差与区间见 experiments/reviewer_v2/E4_tcp_wsl/RESULTS_CN.md。只能说明该虚拟链路的 TCP 行为，不能外推到物理 NIC 或 GPU 集群。独立复测见 E4_tcp_wsl/REPLAY_AUDIT_CN.md。
+- E6 预登记逐项叠加新增 60 窗口，原批 47 成功、13 失败，复用 H0/P1/T5 旧结果 60 项均经 SHA 核对；FINAL_AUDIT.json passed=true 仅指来源、轨迹、部署及指标可核验。13 个原失败在独立串行重放中成功 9、仍失败 4，原件均保留；重放结果不能回填原批。四负载均无完整六阶段×五种子组，不能据此断言完整链路五种子改进。P1→R2 是 MaxFlow 到 RCAPS DAG 的路由器迁移，S3→Q4 才是会话持续代价的隔离对比。证据：experiments/reviewer_v2/E6_cumulative/RESULTS_CN.md、FINAL_AUDIT.json、failure_replay/FINAL_AUDIT.json。
+- 下文较早写的“E4 待用户运行”为历史状态，以本节及 E4 审计文件为准。
+
 ## E2b Parallax 模拟器复现结案（2026-10-30）
 
 - E2b 预注册的 40 个固定窗口已全部终结：原批 29/40 成功，只有 3/8 个五种子组完整。11 个原失败包括 5 次 Windows 原生访问冲突、3 次 Python 异常、1 次 KV 容量断言、2 次电脑重启中断；原件和哈希均保留。独立重放覆盖 11/11 原失败键，5 次成功、6 次仍失败；对后者的第二轮重放 0/6 成功（4 次 Python 异常、2 次 Windows access violation）。真正激活 gllm 的相同失败键探针仍报 Duplicate requests!。各轮均未替换原批。证据：experiments/reviewer_v2/E2b_parallax/FINAL_AUDIT.json、failure_replay/FINAL_AUDIT.json、failure_replay_round2/FINAL_AUDIT.json、activated_probe/index.json、RESULTS_CN.md。
