@@ -1,0 +1,26 @@
+Online Request Feeder: avg token feeding throughput 550.0383333333333.
+progress: multi/helix, arrivals=100, sim_time=294.6
+progress: multi/helix, arrivals=200, sim_time=579.3
+progress: multi/helix, arrivals=300, sim_time=856.1
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\campaign_queue.py", line 20, in worker
+    row = evaluate(job)
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\failure_stepdown.py", line 84, in evaluate
+    row = method("multi", job["target_rate"], job["seed"], job["cell"], job["duration"])
+  File "D:\PythonProject\Helix-GREEN\experiments\v5_model30b_pools\run.py", line 59, in evaluate
+    return pooled(scenario,load,duration,0,seed,solution,cluster,cell=cell)
+  File "D:\PythonProject\Helix-GREEN\experiments\v5_model30b_pools\evaluate.py", line 82, in evaluate
+    result = run(scenario, 'helix' if cell=='HH' else 'queue_dag', offered * weights[group] / sum(weights.values()),
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1093, in handle_event
+    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 705, in handle_start_transmission
+    request.update_location(new_location=RequestLocation.Link, new_location_uid=cur_link.link_uid,
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\request.py", line 183, in update_location
+    self.location_history.append((f"{self.current_location}-{self.current_location_uid}", arrive_time))
+AttributeError: 'RequestLocation' object has no attribute 'location_history'

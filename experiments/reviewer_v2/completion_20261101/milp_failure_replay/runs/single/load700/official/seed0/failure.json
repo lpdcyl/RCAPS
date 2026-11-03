@@ -1,0 +1,17 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/official/seed0",
+    "scenario": "single",
+    "load": 700,
+    "layout": "official",
+    "seed": 0,
+    "duration_s": 1800
+  },
+  "campaign": "milp",
+  "formal_failure_sha256": "3d2dadb145c1dd5f47c1f2602fa21946909d53acc2f8b14e241a8023374bc5bd",
+  "error": "AttributeError(\"'list' object has no attribute 'inference_history'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\replay_milp_failed.py\", line 83, in worker\n    row = evaluate(\"milp\", item[\"job\"])\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 196, in evaluate\n    row = run(job[\"scenario\"], \"helix\", job[\"load\"], job[\"duration_s\"], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1229, in handle_event\n    trigger_network_send = self.handle_finish_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 972, in handle_finish_execution\n    current_inference_batch, trigger_network_send = execution_node.finish_execution(\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 78, in finish_execution\n    batch, trigger = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py\", line 638, in finish_execution\n    layer.mark_inferred(requests=current_inference_batch.requests, node_uid=self.node_uid)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\model.py\", line 191, in mark_inferred\n    request.add_inference_history(layers=[self.layer_id], node_uid=node_uid)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\request.py\", line 166, in add_inference_history\n    _last_layer_inferred = -1 if len(self.inference_history) == 0 else self.inference_history[-1].layer_id\nAttributeError: 'list' object has no attribute 'inference_history'\n",
+  "elapsed_wall_s": 363.1872835000013,
+  "finished_at": "2026-11-03T16:36:03.752553+00:00"
+}

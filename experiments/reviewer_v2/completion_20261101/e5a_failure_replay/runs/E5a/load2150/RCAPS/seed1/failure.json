@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load2150/RCAPS/seed1",
+    "load": 2150,
+    "method": "RCAPS",
+    "seed": 1,
+    "duration_s": 1800
+  },
+  "campaign": "e5a",
+  "original_failure_sha256": "70ee41ca51ffd1416db3b20312b704cf77786acdca7ba90e25112a64929d42f8",
+  "error": "AssertionError('Found incompatible inference request!')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\replay_e5a_failed.py\", line 85, in worker\n    row = evaluate(\"e5a\", item[\"job\"])\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 175, in evaluate\n    return old_evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 938, in handle_start_execution\n    inference_batch: InferenceBatch = execution_node.start_execution(requests=schedule.requests)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 66, in start_execution\n    batch = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\probe.py\", line 79, in execute\n    batch = _original(requests)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py\", line 532, in start_execution\n    assert last_layer_inferred + 1 == self.current_layer_id, f\"Found incompatible inference request!\"\nAssertionError: Found incompatible inference request!\n",
+  "elapsed_wall_s": 16.739830299999994,
+  "finished_at": "2026-11-03T03:52:17.730964+00:00"
+}

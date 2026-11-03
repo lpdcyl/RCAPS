@@ -1,0 +1,19 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5b/prompt_2.0/single/load700/RCAPS-KV/seed1",
+    "family": "prompt_2.0",
+    "scenario": "single",
+    "load": 700,
+    "method": "RCAPS-KV",
+    "seed": 1,
+    "capacity_scale": 1.0,
+    "prompt_multiplier": 2.0,
+    "duration_s": 1800
+  },
+  "error": "TypeError(\"'int' object is not callable\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\replay_e5b_boundary.py\", line 59, in worker\n    row = evaluate(job, folder)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run_e5b.py\", line 114, in evaluate\n    row=run(job['scenario'],'queue_dag',job['load'] if trace is None else job['load']/2,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 632, in handle_start_transmission\n    schedules, retransmission_node_uids = self.scheduler.schedule_transmission(node=transmission_node)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_kv_admission\\scheduler.py\", line 101, in schedule_transmission\n    pipeline=self._route(request)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_kv_admission\\scheduler.py\", line 72, in _route\n    self.snapshot=self._usage()\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_kv_admission\\scheduler.py\", line 55, in _usage\n    usage[uid]=sum(max(actual[uid].get(q,0),self.reservations.get(q,{}).get(uid,0)) for q in qids)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_kv_admission\\scheduler.py\", line 55, in <genexpr>\n    usage[uid]=sum(max(actual[uid].get(q,0),self.reservations.get(q,{}).get(uid,0)) for q in qids)\nTypeError: 'int' object is not callable\n",
+  "origin": "independent_boundary_failure_replay",
+  "elapsed_wall_s": 100.91605479999998,
+  "finished_at": "2026-10-31T07:14:00.711060+00:00"
+}

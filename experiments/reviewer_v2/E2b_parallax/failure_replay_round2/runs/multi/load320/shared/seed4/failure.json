@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "multi/load320/shared/seed4",
+    "scenario": "multi",
+    "load": 320,
+    "executor": "shared",
+    "seed": 4,
+    "duration": 1800
+  },
+  "error": "AttributeError(\"'int' object has no attribute 'node_uid'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E2b_parallax\\replay_remaining.py\", line 62, in worker\n    result = evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E2b_parallax\\run.py\", line 91, in evaluate\n    row = run(job['scenario'], 'queue_dag', job['load'], job['duration'], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 256, in finish_transmission\n    request.add_routing_history(link=self, bandwidth_usage=cur_transmission_object.bandwidth_usage)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\request.py\", line 149, in add_routing_history\n    assert self.routing_history[-1].out_node_uid == link.node_in.node_uid\nAttributeError: 'int' object has no attribute 'node_uid'\n",
+  "origin": "second_independent_failure_replay",
+  "elapsed_wall_s": 16.270617299996957,
+  "finished_at": "2026-10-31T02:33:56.386377+00:00"
+}

@@ -1,0 +1,32 @@
+Online Request Feeder: avg token feeding throughput 1457.158888888889.
+progress: single/helix, arrivals=100, sim_time=87.8
+progress: single/helix, arrivals=200, sim_time=162.0
+progress: single/helix, arrivals=300, sim_time=224.0
+progress: single/helix, arrivals=400, sim_time=292.2
+progress: single/helix, arrivals=500, sim_time=363.7
+progress: single/helix, arrivals=600, sim_time=432.8
+progress: single/helix, arrivals=700, sim_time=493.8
+progress: single/helix, arrivals=800, sim_time=570.2
+progress: single/helix, arrivals=900, sim_time=634.3
+progress: single/helix, arrivals=1000, sim_time=706.5
+progress: single/helix, arrivals=1100, sim_time=779.0
+progress: single/helix, arrivals=1200, sim_time=849.7
+Windows fatal exception: access violation
+
+Current thread 0x00003444 (most recent call first):
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\model.py", line 99 in get_inference_statistics
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 469 in get_inference_statistics
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 550 in start_execution
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 66 in start_execution
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 938 in handle_start_execution
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1209 in handle_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330 in simulate_next_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450 in simulate
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197 in run
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run.py", line 127 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\run.py", line 175 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\replay_interrupted.py", line 89 in worker
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\replay_interrupted.py", line 166 in main
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\replay_interrupted.py", line 174 in <module>
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86 in _run_code
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196 in _run_module_as_main

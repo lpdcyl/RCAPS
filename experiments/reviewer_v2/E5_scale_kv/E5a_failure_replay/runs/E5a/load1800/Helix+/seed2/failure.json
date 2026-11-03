@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1800/Helix+/seed2",
+    "load": 1800,
+    "method": "Helix+",
+    "seed": 2,
+    "duration_s": 1800
+  },
+  "error": "AttributeError(\"'int' object has no attribute 'node_uid'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\replay_e5a.py\", line 47, in worker\n    result=evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 256, in finish_transmission\n    request.add_routing_history(link=self, bandwidth_usage=cur_transmission_object.bandwidth_usage)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\request.py\", line 149, in add_routing_history\n    assert self.routing_history[-1].out_node_uid == link.node_in.node_uid\nAttributeError: 'int' object has no attribute 'node_uid'\n",
+  "origin": "independent_failure_replay",
+  "elapsed_wall_s": 130.00791759999993,
+  "finished_at": "2026-10-30T16:35:57.385737+00:00"
+}

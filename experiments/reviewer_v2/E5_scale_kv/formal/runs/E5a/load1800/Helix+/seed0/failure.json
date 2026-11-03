@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1800/Helix+/seed0",
+    "load": 1800,
+    "method": "Helix+",
+    "seed": 0,
+    "duration_s": 1800
+  },
+  "error": "AttributeError(\"'InferenceRequest' object has no attribute 'Initialization'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 156, in worker\n    row = evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 923, in handle_start_execution\n    schedule: ExecutionSchedule = self.scheduler.schedule_execution(node=execution_node,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 130, in timed\n    return _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\routing.py\", line 282, in schedule_execution\n    if request.phase == RequestPhase.Initialization:\nAttributeError: 'InferenceRequest' object has no attribute 'Initialization'\n",
+  "manifest_sha256": "4d254343300d8247664f682c65d5018d21e477da811ab27db354351972ffe2fe",
+  "elapsed_wall_s": 1447.359114500001,
+  "finished_at": "2026-10-30T13:06:35.815262+00:00"
+}

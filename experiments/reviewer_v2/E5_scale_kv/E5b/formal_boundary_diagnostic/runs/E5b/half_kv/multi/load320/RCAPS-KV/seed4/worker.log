@@ -1,0 +1,23 @@
+Online Request Feeder: avg token feeding throughput 335.3161111111111.
+progress: multi/queue_dag, arrivals=100, sim_time=323.9
+progress: multi/queue_dag, arrivals=200, sim_time=617.4
+progress: multi/queue_dag, arrivals=300, sim_time=929.5
+progress: multi/queue_dag, arrivals=400, sim_time=1244.3
+Windows fatal exception: access violation
+
+Current thread 0x00001e98 (most recent call first):
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\model.py", line 190 in mark_inferred
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 638 in finish_execution
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4\probe.py", line 99 in finish
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 78 in finish_execution
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 972 in handle_finish_execution
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1229 in handle_event
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4\chunking.py", line 156 in handle
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330 in simulate_next_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450 in simulate
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197 in run
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run_e5b.py", line 114 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run_e5b_boundary.py", line 100 in worker
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run_e5b_boundary.py", line 165 in <module>
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86 in _run_code
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196 in _run_module_as_main

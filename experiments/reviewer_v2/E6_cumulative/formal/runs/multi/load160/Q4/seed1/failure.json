@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "multi/load160/Q4/seed1",
+    "scenario": "multi",
+    "load": 160,
+    "stage": "Q4",
+    "seed": 1,
+    "duration_s": 1800
+  },
+  "error": "TypeError(\"object of type 'bool' has no len()\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E6_cumulative\\run.py\", line 140, in worker\n    row = evaluate_variant(scenario, job[\"load\"], job[\"duration_s\"], 0, job[\"seed\"],\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4_method.py\", line 30, in evaluate_variant\n    row = run(scenario, \"queue_dag\", offered, duration, warmup, seed,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 905, in handle_start_execution\n    if len(executable_requests) == 0:\nTypeError: object of type 'bool' has no len()\n",
+  "manifest_sha256": "08358dac1fa54ab5855a1eb90fcd2c0708c2c375cc1c1c5f1191d5e0775578d0",
+  "finished_at": "2026-10-31T21:49:38.031417+00:00",
+  "elapsed_wall_s": 85.23447830000077
+}

@@ -1,0 +1,24 @@
+Online Request Feeder: avg token feeding throughput 518.2172222222222.
+progress: multi/helix, arrivals=100, sim_time=304.6
+progress: multi/helix, arrivals=200, sim_time=587.6
+progress: multi/helix, arrivals=300, sim_time=867.4
+Windows fatal exception: access violation
+
+Current thread 0x000081fc (most recent call first):
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\kv_cache.py", line 136 in check_kv_cache
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 367 in receive_request
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 59 in receive_request
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\network_link.py", line 267 in finish_transmission
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 793 in handle_finish_transmission
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1169 in handle_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330 in simulate_next_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450 in simulate
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197 in run
+  File "D:\PythonProject\Helix-GREEN\experiments\v5_model30b_pools\evaluate.py", line 82 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\v5_model30b_pools\run.py", line 59 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\failure_stepdown.py", line 84 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\campaign_queue.py", line 20 in worker
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\failure_stepdown2.py", line 82 in main
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\failure_stepdown2.py", line 88 in <module>
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86 in _run_code
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196 in _run_module_as_main

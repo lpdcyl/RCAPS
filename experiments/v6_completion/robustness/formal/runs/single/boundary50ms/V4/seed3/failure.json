@@ -1,0 +1,17 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/boundary50ms/V4/seed3",
+    "scenario": "single",
+    "load": 700,
+    "condition": "boundary50ms",
+    "cell": "V4",
+    "seed": 3,
+    "duration": 1800
+  },
+  "error": "AttributeError(\"'str' object has no attribute 'entity_name'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v6_completion\\campaign_queue.py\", line 20, in worker\n    row = evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v6_completion\\robustness.py\", line 207, in evaluate\n    row = run(scenario, \"helix\" if cell == \"HH\" else \"queue_dag\", job[\"load\"],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_core_validation\\core.py\", line 60, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 695, in handle_start_transmission\n    cur_trans: TransmissionObject = cur_link.start_sending(requests=schedule.requests,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 97, in start_sending\n    transmission = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\probe.py\", line 128, in send\n    self.segment(_link, obj, now, now + obj.duration - _link.latency)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\probe.py\", line 49, in segment\n    label = f\"{link.node_in.entity_name}->{link.node_out.entity_name}\"\nAttributeError: 'str' object has no attribute 'entity_name'\n",
+  "manifest_sha256": "9b4dbc75033215c00cf51be5a358387b3a4ec22eeba17039461261b9dc74f810",
+  "elapsed_wall_s": 379.5960382000194,
+  "finished_at": "2026-10-29T00:07:03.731680+00:00"
+}

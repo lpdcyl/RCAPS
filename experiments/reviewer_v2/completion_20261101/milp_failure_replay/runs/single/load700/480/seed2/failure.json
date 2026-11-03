@@ -1,0 +1,17 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/480/seed2",
+    "scenario": "single",
+    "load": 700,
+    "layout": "480",
+    "seed": 2,
+    "duration_s": 1800
+  },
+  "campaign": "milp",
+  "formal_failure_sha256": "e2a628ae27587ccb871845398d3f9497ae14c67f4d0f7534e8e958f80c5c9c15",
+  "error": "AssertionError('No next level node meets scheduling requirement at compute 2!')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\replay_milp_failed.py\", line 83, in worker\n    row = evaluate(\"milp\", item[\"job\"])\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 196, in evaluate\n    row = run(job[\"scenario\"], \"helix\", job[\"load\"], job[\"duration_s\"], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1052, in handle_event\n    succeeded = self.handle_command_new_request(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 523, in handle_command_new_request\n    succeeded = self.scheduler.generate_schedule(request=new_request)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\global_maxflow\\global_maxflow_scheduler.py\", line 62, in generate_schedule\n    return self.core.schedule(request=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\global_maxflow\\scheduler_core.py\", line 453, in schedule\n    next_stage: PipelineStage = current_scheduler_node.schedule_initialization(reqeust=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\global_maxflow\\scheduler_core.py\", line 276, in schedule_initialization\n    assert any(mask), f\"No next level node meets scheduling requirement at compute {self.node_uid}!\"\nAssertionError: No next level node meets scheduling requirement at compute 2!\n",
+  "elapsed_wall_s": 116.97906150000017,
+  "finished_at": "2026-11-03T16:54:06.949259+00:00"
+}

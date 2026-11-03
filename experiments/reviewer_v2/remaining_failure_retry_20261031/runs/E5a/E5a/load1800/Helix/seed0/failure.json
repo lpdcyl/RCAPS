@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1800/Helix/seed0",
+    "load": 1800,
+    "method": "Helix",
+    "seed": 0,
+    "duration_s": 1800
+  },
+  "error": "TypeError(\"'TransmissionObject' object does not support item deletion\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 142, in main\n    result = evaluate(args.group, args.key, job, dest)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 110, in evaluate\n    return run(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1135, in handle_event\n    handle, link_uid, finish_transmission_time = self.handle_finish_sending(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 760, in handle_finish_sending\n    cur_transmission_object: TransmissionObject = cur_link.finish_sending(transmission_object_handle=handle)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 216, in finish_sending\n    del self.node_in.outbound_requests_on_the_fly[transmission_object_handle]\nTypeError: 'TransmissionObject' object does not support item deletion\n",
+  "origin": "user_manual_independent_rerun",
+  "elapsed_wall_s": 1895.442368,
+  "finished_at": "2026-10-31T16:42:47.447089+00:00"
+}

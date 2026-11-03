@@ -1,0 +1,24 @@
+Online Request Feeder: avg token feeding throughput 710.6338888888889.
+progress: single/helix, arrivals=100, sim_time=152.7
+progress: single/helix, arrivals=200, sim_time=294.9
+progress: single/helix, arrivals=300, sim_time=430.9
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\replay_milp_failed.py", line 83, in worker
+    row = evaluate("milp", item["job"])
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\run.py", line 196, in evaluate
+    row = run(job["scenario"], "helix", job["load"], job["duration_s"], 0,
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1169, in handle_event
+    self.handle_finish_transmission(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 793, in handle_finish_transmission
+    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\network_link.py", line 267, in finish_transmission
+    self.node_out.receive_request(request=request)
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 61, in receive_request
+    self.gpu_ready[(_node.node_uid, request.request_uid)] = simulator.current_time
+AttributeError: 'NoneType' object has no attribute 'current_time'

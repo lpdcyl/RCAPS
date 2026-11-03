@@ -1,0 +1,30 @@
+Online Request Feeder: avg token feeding throughput 693.7122222222222.
+progress: single/helix, arrivals=100, sim_time=171.9
+progress: single/helix, arrivals=200, sim_time=354.4
+progress: single/helix, arrivals=300, sim_time=531.7
+progress: single/helix, arrivals=400, sim_time=715.3
+progress: single/helix, arrivals=500, sim_time=892.4
+progress: single/helix, arrivals=600, sim_time=1075.3
+progress: single/helix, arrivals=700, sim_time=1239.7
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\generalization.py", line 141, in worker
+    row = evaluate(job)
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\generalization.py", line 77, in evaluate
+    row = run(scenario, "helix" if cell == "HH" else "queue_dag", LOADS[scenario],
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1229, in handle_event
+    trigger_network_send = self.handle_finish_execution(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 972, in handle_finish_execution
+    current_inference_batch, trigger_network_send = execution_node.finish_execution(
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 78, in finish_execution
+    batch, trigger = _original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 661, in finish_execution
+    self.kv_cache.initialize_query_kv_cache(layers=kv_update_layer_ids,
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\kv_cache.py", line 97, in initialize_query_kv_cache
+    assert self.available_capacity >= total_num_tokens, "Exceed KV-cache capacity!"
+AssertionError: Exceed KV-cache capacity!

@@ -1,0 +1,20 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5b/prompt_1.5/single/load700/RCAPS-KV/seed0",
+    "family": "prompt_1.5",
+    "scenario": "single",
+    "load": 700,
+    "method": "RCAPS-KV",
+    "seed": 0,
+    "capacity_scale": 1.0,
+    "prompt_multiplier": 1.5,
+    "duration_s": 1800
+  },
+  "error": "TypeError(\"unsupported operand type(s) for +: 'int' and 'coroutine'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run_e5b_boundary.py\", line 100, in worker\n    row = evaluate(job, folder)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run_e5b.py\", line 114, in evaluate\n    row=run(job['scenario'],'queue_dag',job['load'] if trace is None else job['load']/2,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 938, in handle_start_execution\n    inference_batch: InferenceBatch = execution_node.start_execution(requests=schedule.requests)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 66, in start_execution\n    batch = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\probe.py\", line 79, in execute\n    batch = _original(requests)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py\", line 550, in start_execution\n    inference_time, inference_vram_usage = self.get_inference_statistics(\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py\", line 469, in get_inference_statistics\n    cur_layer_time, cur_layer_vram_usage = cur_layer.get_inference_statistics(requests=requests)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\model.py\", line 134, in get_inference_statistics\n    return prompt_time + decode_time, prompt_vram + decode_vram\nTypeError: unsupported operand type(s) for +: 'int' and 'coroutine'\n",
+  "origin": "amended_boundary_diagnostic",
+  "manifest_sha256": "2c05165ed0a6ed8009d37b27e9e122a76cc2053d458832d64404bbbf231a2645",
+  "elapsed_wall_s": 3.9497469999987516,
+  "finished_at": "2026-10-31T04:46:21.916395+00:00"
+}

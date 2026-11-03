@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "multi/load320/shared/seed3",
+    "scenario": "multi",
+    "load": 320,
+    "executor": "shared",
+    "seed": 3,
+    "duration": 1800
+  },
+  "error": "AttributeError(\"'list_iterator' object has no attribute 'request_uid'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E2b_parallax\\run.py\", line 119, in worker\n    row = evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E2b_parallax\\run.py\", line 91, in evaluate\n    row = run(job['scenario'], 'queue_dag', job['load'], job['duration'], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 733, in handle_start_transmission\n    description=f\"{[schedule.get_description() for schedule in schedules]}\",\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 733, in <listcomp>\n    description=f\"{[schedule.get_description() for schedule in schedules]}\",\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\base_scheduler.py\", line 39, in get_description\n    \"request_uids\": [request.request_uid for request in self.requests]}\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\base_scheduler.py\", line 39, in <listcomp>\n    \"request_uids\": [request.request_uid for request in self.requests]}\nAttributeError: 'list_iterator' object has no attribute 'request_uid'\n",
+  "manifest_sha256": "2a8d790ac03a166da8c377613f66e5b9923d23b34bd1ea7a641aea5eac3e804a",
+  "elapsed_wall_s": 47.292410700000346,
+  "finished_at": "2026-10-30T09:25:13.813989+00:00"
+}

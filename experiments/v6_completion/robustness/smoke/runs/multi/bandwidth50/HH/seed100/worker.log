@@ -1,0 +1,19 @@
+Online Request Feeder: avg token feeding throughput 328.26666666666665.
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\campaign_queue.py", line 20, in worker
+    row = evaluate(job)
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\robustness.py", line 185, in evaluate
+    row = run(scenario, "helix" if cell == "HH" else "queue_dag", job["load"],
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\experiments\v6_completion\robustness.py", line 116, in simulate
+    return original_simulate(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1093, in handle_event
+    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 649, in handle_start_transmission
+    assert link_status == LinkStatus.Available, f"Unable to schedule send over link (status: {link_status})!"
+AssertionError: Unable to schedule send over link (status: LinkStatus.LinkBounded)!

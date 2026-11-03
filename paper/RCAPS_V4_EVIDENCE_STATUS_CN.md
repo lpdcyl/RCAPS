@@ -1,5 +1,58 @@
 # RCAPS 论文证据状态：扩展验证与核心补证已核验
 
+<!-- RCAPS_COMPLETION_20261101_BEGIN -->
+## 2026-11-03 42 节点与逐项叠加新正式补全批
+
+2026-11-01 预登记的三个新正式批次均已 terminal 且独立审计通过。下表只计新正式窗口，不使用任何重放结果填补失败种子。
+
+| 新正式批次 | 登记窗口 | 成功 | 失败 | 完整五种子组 | 可作正式五种子配对比较 |
+|---|---:|---:|---:|---:|---:|
+| E5a，42 节点规模与 KV | 60 | 15 | 45 | 0/12 | 0 |
+| E6，R2/S3/Q4 逐项叠加 | 60 | 31 | 29 | 0/12 | 0 |
+| Helix MILP 在线候选布局及官方部署 | 50 | 12 | 38 | 0/10 | 0 |
+
+E6 的 29 个正式失败键独立重放为 27 成功、2 失败；E5a 的 45 个正式失败键独立重放为 23 成功、22 失败，两批重放均已审计通过。这说明部分失败窗口在独立执行中可得到有效结果，但不改变正式批的失败计数或五种子完整性。E5a/E6 的 24 个第一轮重放失败键在第二轮有界独立重跑中 4 成功、20 失败，其中仍失败 E5a 19 键、E6 1 键；MILP 的 38 个正式失败键独立重放 16 成功、22 失败。两轮审计及原正式批互不合并，正式完整五种子组仍均为零。详见 [E5a/E6 第二轮审计](../experiments/reviewer_v2/completion_20261101/failed_replay_retry_v2/FINAL_AUDIT.json)与 [MILP 独立重放审计](../experiments/reviewer_v2/completion_20261101/milp_failure_replay/FINAL_AUDIT.json)。[E5a/E6 失败诊断](../experiments/reviewer_v2/completion_20261101/FAILURE_DIAGNOSIS_20261103_CN.md)记录了跨轮 KV 断言、重复请求和原生访问违规；这些故障仍限制高负载结论，不能将失败视为零吞吐，也不能宣称三批已经获得完整五种子效果区间。
+
+运行期间同机 Windows System 日志另记录 12 次蓝屏恢复事件（`0x0000003B` 与 `0x00000050` 各 6 次）；[系统事件证据](../experiments/reviewer_v2/completion_20261101/SYSTEM_CRASH_EVIDENCE_20261103.json)保存了事件编号、时间、代码和转储路径，转储文件读取权限不足，未取得哈希。这证明执行环境发生过系统级崩溃，但不能据此将每个 Python 原生退出或模拟器断言归因为同一根因。
+
+MILP 独立重放期间，Windows 于 2026-11-04 02:06 KST 又记录一次 `0x0000003B` 蓝屏恢复事件。旧控制器和 worker 中断后，看护任务保存原索引与工件哈希，仅续跑待运行键；中断键单列为失败。[重启与续跑证据](../experiments/reviewer_v2/completion_20261101/SYSTEM_REBOOT_RECOVERY_EVIDENCE_20261104_0206.json)保存了事件、快照和恢复修订。共计 13 次系统恢复记录仍不足以证明是实验程序导致蓝屏。
+
+E5a/E6 第二轮的 10 次 `0xC0000005` 原生退出与 Windows Application Error 事件按 worker PID 和时间窗一一匹配；4 次事件的故障模块是 `python310.dll`，6 次为 `unknown`，详见[匹配证据](../experiments/reviewer_v2/completion_20261101/NATIVE_EXIT_EVENT_MATCH_20261104.json)。这确认了进程级异常退出，不足以定位最初故障点，也不能把同机其他 Python 崩溃全部归入本实验。
+
+E5b 原 16 窗口冒烟为 13 成功、3 失败，三项 Helix+ 长 Prompt 调度断言在独立冒烟重放中复现，故原预注册正式入口没有启动。随后单列的 80 窗口边界诊断为 21 成功、59 失败、0 个完整五种子组；59 个失败键的独立重放为 4 成功、55 失败。该诊断不能冒称原预注册正式批次，详情见 [E5b 修订登记](../experiments/reviewer_v2/E5_scale_kv/E5b/AMENDMENT_CN.md)、[边界诊断审计](../experiments/reviewer_v2/E5_scale_kv/E5b/formal_boundary_diagnostic/FINAL_AUDIT.json)和[失败重放审计](../experiments/reviewer_v2/E5_scale_kv/E5b/boundary_failure_replay/FINAL_AUDIT.json)。
+
+E4 WSL2 虚拟 TCP 链路微基准 150 次登记测量为 149 成功、1 次中断失败；该键独立复测成功但不回填正式组。其适用范围仅是 netns/veth/netem 虚拟链路，见 [E4 正式审计](../experiments/reviewer_v2/E4_tcp_wsl/FINAL_AUDIT.json)和[中断键复测审计](../experiments/reviewer_v2/E4_tcp_wsl/REPLAY_AUDIT_CN.md)。
+
+原始依据：[预登记计划](../experiments/reviewer_v2/completion_20261101/PLAN_CN.md)、[E5a 正式审计](../experiments/reviewer_v2/completion_20261101/e5a/FINAL_AUDIT.json)、[E6 正式审计](../experiments/reviewer_v2/completion_20261101/e6/FINAL_AUDIT.json)、[MILP 正式审计](../experiments/reviewer_v2/completion_20261101/milp/FINAL_AUDIT.json)、[E5a 重放审计](../experiments/reviewer_v2/completion_20261101/e5a_failure_replay/FINAL_AUDIT.json)、[E6 重放审计](../experiments/reviewer_v2/completion_20261101/e6_failure_replay/FINAL_AUDIT.json)。
+<!-- RCAPS_COMPLETION_20261101_END -->
+
+<!-- RCAPS_FAIRNESS_AUDIT_BEGIN -->
+## 2026-10-28 Helix 公平性与多负载复核
+
+按用户对大幅收益和 360 异常的质疑，独立取得官方 Helix 提交 `8639497a4aaf1eb3b7594614cb0bbd376c1342b3`，本地对应的 148 个模拟器及三集群文件与上游一致（136 个仅换行符不同，12 个字节完全一致）。在线 KV 参数与官方一致。官方保存的 320/seed0 输出 token 数 106784、吞吐 59.32444444 token/s、Prompt 请求延迟 P95 9.4112459057 s、Decode 请求延迟 P95 7.7181909597 s 均与本地对应结果完全相同。该锚点未发现本地适配器压低基线的证据。
+
+相同物理图、GPU 型号、显存、NIC、链路参数及按驻留层数计算的 KV 容量逐项核对通过。完整方法存在真实配置差异：Helix 122 个层副本、24 张已加载 GPU，RCAPS 144 个层副本、23 张已加载 GPU；两者的发送聚合、带宽使用、执行顺序和部署不同，不把全部收益归给 S/T。
+
+历史 50/100/160/240/320 均有完整三种子配对。追加 160/320 两个共同负载，两方法各 seed 0/1/2，在同一 gllm CPU 环境新跑 12 个窗口：成功 12、失败 0、未完成 0；已有 12/12 个成功新窗口的逐请求样本及全部所核对指标与历史记录完全一致。原始两环境分别标识，不能把复跑作为额外独立随机种子。
+
+360/seed0 的一次原配置重放与一次关闭资源探针诊断均成功，两者逐请求与指标完全一致；旧类型异常未复现，根因仍未定位，不把它归为容量失败。两次诊断不替换原 360 正式组的失败；400 的预计 KV 准入断言与原生崩溃也分别保留。硬件校准和运行稳定性仍未由本次核查证明。
+
+报告与原始证据：[公平性核查](../experiments/v4_fairness_audit_20261028/RESULTS_CN.md)、[多负载配对](../experiments/v4_fairness_audit_20261028/multi_load_pairs.json)、[官方输出对账](../experiments/v4_fairness_audit_20261028/official_result_check.json)。
+<!-- RCAPS_FAIRNESS_AUDIT_END -->
+## 2026-10-28 新增360 token/s配对组
+
+按用户要求，在既有320与400之间预先固定360 token/s，两种方法均在同一gllm CPU环境重新执行seed 0/1/2，共6个1800秒、零预热、不排空窗口。完成5个：RCAPS三个种子、Helix的seed 1/2；Helix seed 0于仿真1500.006926秒出现 `AttributeError: 'list' object has no attribute 'inference_history'`，与400点的KV过滤断言不同，根因未定位。全部条件终态已核对，成功结果及配对、失败记录共2807项检查通过；不把记录核验通过等同于环境稳定性已证明。
+
+仅在两个有效配对种子中，RCAPS相对Helix的TPOT P95分别下降83.03%和83.55%，输出吞吐分别提高28.53%和21.94%；不计算完整三种子配对均值。所有成功窗口仍有未完成请求。360组仍不完整，暂作补充与运行异常证据，不能替换既有完整320组或宣称400已补齐。原400点与所有失败保留，未继续下降负载或自动重试。详见[360配对报告](../experiments/v4_load360_paired/RESULTS_CN.md)、[机器可读结果](../experiments/v4_load360_paired/results.json)。
+
+## 2026-10-28 gllm 环境 CPU 再次重跑
+
+按用户指定的gllm环境再次运行相同Helix三集群400 token/s、seed 0窗口。本次没有原生崩溃，但在仿真1635.225246秒复现最初节点23的调度断言；异常上下文为唯一候选下一跳被预计KV容量检查过滤（`Fail-KV`），Online模式随后终止。该诊断区分了接纳失败与此前原生访问冲突，但未定位原生崩溃根因。gllm依赖版本与冻结环境不同，且本次没有有效结果；该点仍仅seed 1、2有效。源码、参数、前次记录和既有图表数值不变。详见[gllm诊断报告](../experiments/v4_helix400_gllm_diagnostic/RESULTS_CN.md)。
+
+## 2026-10-28 Helix 三集群 400 token/s 单种子重跑
+
+用户授权对历史失败的seed 0追加一次同协议尝试。本次在Windows原生访问冲突（`0xC0000005`，`python310.dll`）后终止，无有效结果；它与历史的下一跳调度断言失败属于不同类型。该负载点仍仅有seed 1、2有效，不能改成完整三种子组。原失败、既有成功结果和冻结源码保持不变，新增尝试不计入既有正式批次的窗口数。详见[重跑记录](../experiments/v4_helix400_retry/RESULTS_CN.md)。
+
 <!-- RCAPS_CORE_SUPPLEMENT_BEGIN -->
 ## 2026-10-27 核心补证结果
 

@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1800/Helix+/seed4",
+    "load": 1800,
+    "method": "Helix+",
+    "seed": 4,
+    "duration_s": 1800
+  },
+  "campaign": "e5a",
+  "retry_campaign": "failed_replay_retry_v2",
+  "parent_failure_sha256": "06841d958f437769b7eac5a61b85f7531c6c4c76468e4922ddc8a5e84f76e079",
+  "formal_failure_sha256": "7a3b18abdc041b3b09d5d06d3109d0a86d07aed4956cfcd8eff8f14ccf8e1df7",
+  "error": "SystemError('\\\\Objects\\\\listobject.c:336: bad argument to internal function')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\retry_failed_replays.py\", line 90, in worker\n    row = evaluate(item[\"campaign\"], item[\"job\"])\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 175, in evaluate\n    return old_evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 267, in finish_transmission\n    self.node_out.receive_request(request=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\coordinator_node.py\", line 122, in receive_request\n    layers_inferred: List[int] = [entry.layer_id for entry in request.inference_history]\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\coordinator_node.py\", line 122, in <listcomp>\n    layers_inferred: List[int] = [entry.layer_id for entry in request.inference_history]\nSystemError: \\Objects\\listobject.c:336: bad argument to internal function\n",
+  "elapsed_wall_s": 941.9521630999998,
+  "finished_at": "2026-11-03T13:51:08.202991+00:00"
+}

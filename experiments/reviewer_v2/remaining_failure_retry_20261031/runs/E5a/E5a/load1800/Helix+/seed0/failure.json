@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1800/Helix+/seed0",
+    "load": 1800,
+    "method": "Helix+",
+    "seed": 0,
+    "duration_s": 1800
+  },
+  "error": "AttributeError(\"'int' object has no attribute 'inbound_available_bandwidth'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 142, in main\n    result = evaluate(args.group, args.key, job, dest)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 110, in evaluate\n    return run(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 632, in handle_start_transmission\n    schedules, retransmission_node_uids = self.scheduler.schedule_transmission(node=transmission_node)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 130, in timed\n    return _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\online_scheduler.py\", line 24, in schedule_transmission\n    free_receive = {link.node_out.node_uid: link.node_out.inbound_available_bandwidth\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\online_scheduler.py\", line 24, in <dictcomp>\n    free_receive = {link.node_out.node_uid: link.node_out.inbound_available_bandwidth\nAttributeError: 'int' object has no attribute 'inbound_available_bandwidth'\n",
+  "origin": "user_manual_independent_rerun",
+  "elapsed_wall_s": 214.29211569999825,
+  "finished_at": "2026-10-31T15:39:32.136187+00:00"
+}

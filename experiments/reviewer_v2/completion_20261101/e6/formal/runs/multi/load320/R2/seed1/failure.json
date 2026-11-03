@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "multi/load320/R2/seed1",
+    "scenario": "multi",
+    "load": 320,
+    "stage": "R2",
+    "seed": 1,
+    "duration_s": 1800
+  },
+  "error": "AttributeError(\"'int' object has no attribute 'node_uid'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 214, in worker\n    row = evaluate(campaign, job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 184, in evaluate\n    row = evaluate_variant(scenario, job[\"load\"], job[\"duration_s\"], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4_method.py\", line 30, in evaluate_variant\n    row = run(scenario, \"queue_dag\", offered, duration, warmup, seed,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 256, in finish_transmission\n    request.add_routing_history(link=self, bandwidth_usage=cur_transmission_object.bandwidth_usage)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\request.py\", line 154, in add_routing_history\n    out_node_uid=link.node_out.node_uid,\nAttributeError: 'int' object has no attribute 'node_uid'\n",
+  "elapsed_wall_s": 130.60244440000042,
+  "finished_at": "2026-11-01T12:26:50.596137+00:00"
+}

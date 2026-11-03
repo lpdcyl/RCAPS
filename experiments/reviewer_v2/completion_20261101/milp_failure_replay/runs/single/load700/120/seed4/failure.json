@@ -1,0 +1,17 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/120/seed4",
+    "scenario": "single",
+    "load": 700,
+    "layout": "120",
+    "seed": 4,
+    "duration_s": 1800
+  },
+  "campaign": "milp",
+  "formal_failure_sha256": "e93e7ab82ffd4ca3eadaa9d545069b36c04331b641a295ea9f08e8f9804ae659",
+  "error": "TypeError('sequence item 0: expected str instance, RequestLocation found')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\replay_milp_failed.py\", line 83, in worker\n    row = evaluate(\"milp\", item[\"job\"])\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 196, in evaluate\n    row = run(job[\"scenario\"], \"helix\", job[\"load\"], job[\"duration_s\"], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 263, in finish_transmission\n    request.update_location(new_location=new_location, new_location_uid=self.node_out.node_uid,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\request.py\", line 183, in update_location\n    self.location_history.append((f\"{self.current_location}-{self.current_location_uid}\", arrive_time))\nTypeError: sequence item 0: expected str instance, RequestLocation found\n",
+  "elapsed_wall_s": 55.91834849999941,
+  "finished_at": "2026-11-03T16:48:10.579696+00:00"
+}

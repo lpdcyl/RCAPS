@@ -1,0 +1,29 @@
+Online Request Feeder: avg token feeding throughput 688.4916666666667.
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\run.py", line 214, in worker
+    row = evaluate(campaign, job)
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\run.py", line 184, in evaluate
+    row = evaluate_variant(scenario, job["load"], job["duration_s"], 0,
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4_method.py", line 30, in evaluate_variant
+    row = run(scenario, "queue_dag", offered, duration, warmup, seed,
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1209, in handle_event
+    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 938, in handle_start_execution
+    inference_batch: InferenceBatch = execution_node.start_execution(requests=schedule.requests)
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 66, in start_execution
+    batch = _original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4\probe.py", line 79, in execute
+    batch = _original(requests)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 550, in start_execution
+    inference_time, inference_vram_usage = self.get_inference_statistics(
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 469, in get_inference_statistics
+    cur_layer_time, cur_layer_vram_usage = cur_layer.get_inference_statistics(requests=requests)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\model.py", line 110, in get_inference_statistics
+    if decode_left < decode_point <= decode_phase_tokens:
+TypeError: argument of type 'int' is not iterable

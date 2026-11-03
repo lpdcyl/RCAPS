@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load2150/RCAPS-KV/seed4",
+    "load": 2150,
+    "method": "RCAPS-KV",
+    "seed": 4,
+    "duration_s": 1800
+  },
+  "campaign": "e5a",
+  "retry_campaign": "failed_replay_retry_v2",
+  "parent_failure_sha256": "8d860230a7426400b17d0373ed93d9a686515ce021eb87f78fac94179b34e6e0",
+  "formal_failure_sha256": "bd9a675eb20fcdd2df0fe0e6e1e33500f97da5018654d0817f9e68f3fef44006",
+  "error": "AttributeError(\"'int' object has no attribute 'node_uid'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\retry_failed_replays.py\", line 90, in worker\n    row = evaluate(item[\"campaign\"], item[\"job\"])\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 175, in evaluate\n    return old_evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 256, in finish_transmission\n    request.add_routing_history(link=self, bandwidth_usage=cur_transmission_object.bandwidth_usage)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\request.py\", line 149, in add_routing_history\n    assert self.routing_history[-1].out_node_uid == link.node_in.node_uid\nAttributeError: 'int' object has no attribute 'node_uid'\n",
+  "elapsed_wall_s": 119.20196969999961,
+  "finished_at": "2026-11-03T14:13:54.439752+00:00"
+}

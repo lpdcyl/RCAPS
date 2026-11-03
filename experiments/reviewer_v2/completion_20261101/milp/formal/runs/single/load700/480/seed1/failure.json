@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/480/seed1",
+    "scenario": "single",
+    "load": 700,
+    "layout": "480",
+    "seed": 1,
+    "duration_s": 1800
+  },
+  "error": "AssertionError()",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 214, in worker\n    row = evaluate(campaign, job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 196, in evaluate\n    row = run(job[\"scenario\"], \"helix\", job[\"load\"], job[\"duration_s\"], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 695, in handle_start_transmission\n    cur_trans: TransmissionObject = cur_link.start_sending(requests=schedule.requests,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 97, in start_sending\n    transmission = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 184, in start_sending\n    assert transmission_object_handle not in self.requests_on_the_fly\nAssertionError\n",
+  "elapsed_wall_s": 157.8860469000001,
+  "finished_at": "2026-11-01T11:35:11.568060+00:00"
+}

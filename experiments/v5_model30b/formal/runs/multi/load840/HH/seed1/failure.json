@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "multi/load840/HH/seed1",
+    "scenario": "multi",
+    "load": 840,
+    "cell": "HH",
+    "seed": 1,
+    "duration": 1800
+  },
+  "error": "AssertionError('No next level node meets scheduling requirement at compute 17!')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_model30b\\run.py\", line 156, in worker\n    row = evaluate(job['scenario'], job['load'], job['seed'], job['cell'], job['duration'],\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_model30b\\run.py\", line 82, in evaluate\n    row = run(scenario, 'helix' if cell == 'HH' else 'queue_dag', load, duration, 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1052, in handle_event\n    succeeded = self.handle_command_new_request(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 523, in handle_command_new_request\n    succeeded = self.scheduler.generate_schedule(request=new_request)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\global_maxflow\\global_maxflow_scheduler.py\", line 62, in generate_schedule\n    return self.core.schedule(request=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\global_maxflow\\scheduler_core.py\", line 453, in schedule\n    next_stage: PipelineStage = current_scheduler_node.schedule_initialization(reqeust=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\global_maxflow\\scheduler_core.py\", line 276, in schedule_initialization\n    assert any(mask), f\"No next level node meets scheduling requirement at compute {self.node_uid}!\"\nAssertionError: No next level node meets scheduling requirement at compute 17!\n",
+  "manifest_sha256": "2bc244d9122fcf526e968aa7c0d8ebf1b6b7aafa0d7c8cbd96ea6589c3af0592",
+  "elapsed_wall_s": 700.5641361000016,
+  "finished_at": "2026-10-28T11:49:28.864791+00:00"
+}

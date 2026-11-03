@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/helix_fifo/seed3",
+    "scenario": "single",
+    "load": 700,
+    "cell": "helix_fifo",
+    "seed": 3,
+    "duration": 1800
+  },
+  "error": "AttributeError(\"'tuple' object has no attribute 'unfinished_tasks'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 142, in main\n    result = evaluate(args.group, args.key, job, dest)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 96, in evaluate\n    return run(replay_job, folder)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_failure_replay\\run.py\", line 114, in evaluate\n    return module.evaluate(original, directory / \"kv.csv.gz\")\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_parallax\\evaluate.py\", line 64, in evaluate\n    row=run(job['scenario'],'queue_dag',job['load'],job['duration'],0,job['seed'],solution,cluster,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1165, in handle_event\n    self.event_queue.put((finish_event.event_time, finish_event))\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\queue.py\", line 151, in put\n    self.unfinished_tasks += 1\nAttributeError: 'tuple' object has no attribute 'unfinished_tasks'\n",
+  "origin": "user_manual_independent_rerun",
+  "elapsed_wall_s": 223.39110570000048,
+  "finished_at": "2026-10-31T20:42:16.072259+00:00"
+}

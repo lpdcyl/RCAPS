@@ -1,0 +1,30 @@
+Online Request Feeder: avg token feeding throughput 1816.7694444444444.
+progress: single/queue_dag, arrivals=100, sim_time=87.7
+progress: single/queue_dag, arrivals=200, sim_time=149.4
+progress: single/queue_dag, arrivals=300, sim_time=199.8
+progress: single/queue_dag, arrivals=400, sim_time=254.0
+progress: single/queue_dag, arrivals=500, sim_time=312.8
+progress: single/queue_dag, arrivals=600, sim_time=366.0
+progress: single/queue_dag, arrivals=700, sim_time=424.4
+progress: single/queue_dag, arrivals=800, sim_time=484.4
+progress: single/queue_dag, arrivals=900, sim_time=533.4
+progress: single/queue_dag, arrivals=1000, sim_time=593.4
+Windows fatal exception: access violation
+
+Current thread 0x000035fc (most recent call first):
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\model.py", line 102 in get_inference_statistics
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 469 in get_inference_statistics
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 550 in start_execution
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4\probe.py", line 79 in execute
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 66 in start_execution
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 938 in handle_start_execution
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1209 in handle_event
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4\chunking.py", line 156 in handle
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330 in simulate_next_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450 in simulate
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197 in run
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run.py", line 127 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run.py", line 156 in worker
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run.py", line 239 in <module>
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86 in _run_code
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196 in _run_module_as_main

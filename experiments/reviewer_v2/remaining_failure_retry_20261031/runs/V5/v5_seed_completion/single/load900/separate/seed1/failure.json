@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load900/separate/seed1",
+    "scenario": "single",
+    "load": 900,
+    "cell": "separate",
+    "seed": 1,
+    "duration": 1800
+  },
+  "error": "AssertionError('Time discrepancy found!')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 142, in main\n    result = evaluate(args.group, args.key, job, dest)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 96, in evaluate\n    return run(replay_job, folder)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_failure_replay\\run.py\", line 114, in evaluate\n    return module.evaluate(original, directory / \"kv.csv.gz\")\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_seed_completion\\run.py\", line 30, in evaluate\n    row = external(job['scenario'], job['cell'], job['load'], job['duration'], job['seed'], ROOT)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py\", line 22, in evaluate\n    row = adapter.evaluate(scenario, offered, duration, 0, seed, solution, cluster)\n  File \"D:\\PythonProject\\Helix-GREEN\\baselines\\separate.py\", line 87, in evaluate\n    result = run(scenario, NAME, offered * weights[group] / sum(weights.values()),\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py\", line 17, in profiled\n    return original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 927, in handle_start_execution\n    assert event.event_time == self.current_time, \"Time discrepancy found!\"\nAssertionError: Time discrepancy found!\n",
+  "origin": "user_manual_independent_rerun",
+  "elapsed_wall_s": 7.00261760000285,
+  "finished_at": "2026-10-31T21:19:07.879372+00:00"
+}

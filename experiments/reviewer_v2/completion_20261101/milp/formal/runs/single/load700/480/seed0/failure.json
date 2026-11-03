@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/480/seed0",
+    "scenario": "single",
+    "load": 700,
+    "layout": "480",
+    "seed": 0,
+    "duration_s": 1800
+  },
+  "error": "TypeError(\"'dict' object is not callable\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 214, in worker\n    row = evaluate(campaign, job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 196, in evaluate\n    row = run(job[\"scenario\"], \"helix\", job[\"load\"], job[\"duration_s\"], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1205, in handle_event\n    self.handle_gather_finished(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 828, in handle_gather_finished\n    query_finished: bool = self.query_manager.collect_finished_request(current_time=self.current_time,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\query_manager.py\", line 232, in collect_finished_request\n    pipeline=copy.deepcopy(request.mini_pipeline),\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 146, in deepcopy\n    y = copier(x, memo)\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 206, in _deepcopy_list\n    append(deepcopy(a, memo))\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 172, in deepcopy\n    y = _reconstruct(x, memo, *rv)\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 271, in _reconstruct\n    state = deepcopy(state, memo)\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 146, in deepcopy\n    y = copier(x, memo)\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 231, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 138, in deepcopy\n    y = memo.get(d, _nil)\nTypeError: 'dict' object is not callable\n",
+  "elapsed_wall_s": 153.79793900000004,
+  "finished_at": "2026-11-01T11:32:33.249201+00:00"
+}

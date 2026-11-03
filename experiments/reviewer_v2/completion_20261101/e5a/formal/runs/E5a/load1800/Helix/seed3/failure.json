@@ -1,0 +1,14 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1800/Helix/seed3",
+    "load": 1800,
+    "method": "Helix",
+    "seed": 3,
+    "duration_s": 1800
+  },
+  "error": "AttributeError(\"'InferenceRequest' object has no attribute 'link_uid'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 214, in worker\n    row = evaluate(campaign, job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 175, in evaluate\n    return old_evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 632, in handle_start_transmission\n    schedules, retransmission_node_uids = self.scheduler.schedule_transmission(node=transmission_node)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 130, in timed\n    return _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\global_maxflow\\global_maxflow_scheduler.py\", line 79, in schedule_transmission\n    next_link_uid: int = next_pipeline_stage.link_uid\nAttributeError: 'InferenceRequest' object has no attribute 'link_uid'\n",
+  "elapsed_wall_s": 1110.4561240999992,
+  "finished_at": "2026-11-01T14:40:42.112495+00:00"
+}

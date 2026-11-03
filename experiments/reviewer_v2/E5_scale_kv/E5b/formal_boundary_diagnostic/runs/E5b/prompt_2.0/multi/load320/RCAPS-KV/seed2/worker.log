@@ -1,0 +1,29 @@
+Online Request Feeder: avg token feeding throughput 160.79.
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run_e5b_boundary.py", line 100, in worker
+    row = evaluate(job, folder)
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run_e5b.py", line 114, in evaluate
+    row=run(job['scenario'],'queue_dag',job['load'] if trace is None else job['load']/2,
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4\chunking.py", line 156, in handle
+    return original_handle(event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1229, in handle_event
+    trigger_network_send = self.handle_finish_execution(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 972, in handle_finish_execution
+    current_inference_batch, trigger_network_send = execution_node.finish_execution(
+  File "D:\PythonProject\Helix-GREEN\benchmarks\resource_profile.py", line 78, in finish_execution
+    batch, trigger = _original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\rcaps\v4\probe.py", line 99, in finish
+    batch, trigger = _original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 638, in finish_execution
+    layer.mark_inferred(requests=current_inference_batch.requests, node_uid=self.node_uid)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\model.py", line 191, in mark_inferred
+    request.add_inference_history(layers=[self.layer_id], node_uid=node_uid)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\request.py", line 166, in add_inference_history
+    _last_layer_inferred = -1 if len(self.inference_history) == 0 else self.inference_history[-1].layer_id
+AttributeError: 'list' object has no attribute 'inference_history'

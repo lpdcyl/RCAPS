@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1450/RCAPS/seed4",
+    "load": 1450,
+    "method": "RCAPS",
+    "seed": 4,
+    "duration_s": 1800
+  },
+  "error": "AttributeError(\"'NoneType' object has no attribute 'current_time'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 156, in worker\n    row = evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 267, in finish_transmission\n    self.node_out.receive_request(request=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 61, in receive_request\n    self.gpu_ready[(_node.node_uid, request.request_uid)] = simulator.current_time\nAttributeError: 'NoneType' object has no attribute 'current_time'\n",
+  "manifest_sha256": "4d254343300d8247664f682c65d5018d21e477da811ab27db354351972ffe2fe",
+  "elapsed_wall_s": 165.5916070000003,
+  "finished_at": "2026-10-30T10:19:02.339911+00:00"
+}

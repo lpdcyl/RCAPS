@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/fifo/seed1",
+    "scenario": "single",
+    "load": 700,
+    "executor": "fifo",
+    "seed": 1,
+    "duration": 1800
+  },
+  "error": "AttributeError(\"'bool' object has no attribute 'node_uid'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 142, in main\n    result = evaluate(args.group, args.key, job, dest)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 104, in evaluate\n    return run(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E2b_parallax\\run.py\", line 91, in evaluate\n    row = run(job['scenario'], 'queue_dag', job['load'], job['duration'], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 923, in handle_start_execution\n    schedule: ExecutionSchedule = self.scheduler.schedule_execution(node=execution_node,\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_parallax\\evaluate.py\", line 21, in schedule_execution\n    return execution_policy(node,executable_requests)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\execution_policy.py\", line 53, in execution_policy\n    assert request.get_current_pipeline_stage().node_uid == node.node_uid, \"Node uid does not match!\"\nAttributeError: 'bool' object has no attribute 'node_uid'\n",
+  "origin": "user_manual_independent_rerun",
+  "elapsed_wall_s": 28.50518589999956,
+  "finished_at": "2026-10-31T12:26:48.929206+00:00"
+}

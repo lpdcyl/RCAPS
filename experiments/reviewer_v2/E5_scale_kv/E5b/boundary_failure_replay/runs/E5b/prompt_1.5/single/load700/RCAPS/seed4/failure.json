@@ -1,0 +1,19 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5b/prompt_1.5/single/load700/RCAPS/seed4",
+    "family": "prompt_1.5",
+    "scenario": "single",
+    "load": 700,
+    "method": "RCAPS",
+    "seed": 4,
+    "capacity_scale": 1.0,
+    "prompt_multiplier": 1.5,
+    "duration_s": 1800
+  },
+  "error": "AssertionError('No kv cache found for query!')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\replay_e5b_boundary.py\", line 59, in worker\n    row = evaluate(job, folder)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run_e5b.py\", line 114, in evaluate\n    row=run(job['scenario'],'queue_dag',job['load'] if trace is None else job['load']/2,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1169, in handle_event\n    self.handle_finish_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 793, in handle_finish_transmission\n    cur_transmission_object: TransmissionObject = cur_link.finish_transmission(transmission_object_handle=handle,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\network_link.py\", line 267, in finish_transmission\n    self.node_out.receive_request(request=request)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 59, in receive_request\n    result = _original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\compute_node.py\", line 367, in receive_request\n    self.kv_cache.check_kv_cache(layers=cur_layers_to_infer,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\kv_cache.py\", line 135, in check_kv_cache\n    assert query_uid in self.kv_cache[layer_id], \"No kv cache found for query!\"\nAssertionError: No kv cache found for query!\n",
+  "origin": "independent_boundary_failure_replay",
+  "elapsed_wall_s": 262.218200299998,
+  "finished_at": "2026-10-31T06:49:31.696349+00:00"
+}

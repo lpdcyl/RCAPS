@@ -1,0 +1,49 @@
+Online Request Feeder: avg token feeding throughput 1824.4016666666666.
+progress: single/queue_dag, arrivals=100, sim_time=91.0
+progress: single/queue_dag, arrivals=200, sim_time=154.6
+progress: single/queue_dag, arrivals=300, sim_time=211.4
+progress: single/queue_dag, arrivals=400, sim_time=255.0
+progress: single/queue_dag, arrivals=500, sim_time=307.1
+progress: single/queue_dag, arrivals=600, sim_time=359.6
+progress: single/queue_dag, arrivals=700, sim_time=418.4
+progress: single/queue_dag, arrivals=800, sim_time=473.3
+progress: single/queue_dag, arrivals=900, sim_time=525.3
+progress: single/queue_dag, arrivals=1000, sim_time=575.5
+progress: single/queue_dag, arrivals=1100, sim_time=641.2
+progress: single/queue_dag, arrivals=1200, sim_time=698.8
+progress: single/queue_dag, arrivals=1300, sim_time=757.3
+progress: single/queue_dag, arrivals=1400, sim_time=819.0
+progress: single/queue_dag, arrivals=1500, sim_time=873.2
+progress: single/queue_dag, arrivals=1600, sim_time=929.4
+progress: single/queue_dag, arrivals=1700, sim_time=982.7
+progress: single/queue_dag, arrivals=1800, sim_time=1038.0
+progress: single/queue_dag, arrivals=1900, sim_time=1092.7
+progress: single/queue_dag, arrivals=2000, sim_time=1147.1
+progress: single/queue_dag, arrivals=2100, sim_time=1199.4
+progress: single/queue_dag, arrivals=2200, sim_time=1256.1
+progress: single/queue_dag, arrivals=2300, sim_time=1309.8
+progress: single/queue_dag, arrivals=2400, sim_time=1364.4
+progress: single/queue_dag, arrivals=2500, sim_time=1413.1
+progress: single/queue_dag, arrivals=2600, sim_time=1468.6
+progress: single/queue_dag, arrivals=2700, sim_time=1528.0
+progress: single/queue_dag, arrivals=2800, sim_time=1583.4
+Traceback (most recent call last):
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run.py", line 156, in worker
+    row = evaluate(job)
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run.py", line 127, in evaluate
+    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1209, in handle_event
+    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 923, in handle_start_execution
+    schedule: ExecutionSchedule = self.scheduler.schedule_execution(node=execution_node,
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 130, in timed
+    return _original(*args, **kwargs)
+  File "D:\PythonProject\Helix-GREEN\rcaps\v3\routing.py", line 282, in schedule_execution
+    if request.phase == RequestPhase.Initialization:
+AttributeError: 'InferenceRequest' object has no attribute 'Initialization'

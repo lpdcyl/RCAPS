@@ -1,0 +1,42 @@
+{
+  "recorded_at": "2026-11-04T02:09:09.8845221+09:00",
+  "interpretation": "Windows recorded a bugcheck reboot. The prior MILP controller and worker disappeared; watchdog saved a pre-resume snapshot, then a single resumed controller marked the interrupted key failed and continued pending keys. This does not establish the cause of the bugcheck.",
+  "system_events": [
+    {
+      "record_id": 141652,
+      "time_created": "2026-11-04T02:06:00.8423287+09:00",
+      "provider": "EventLog",
+      "event_id": 6008,
+      "message": "上一次系统的 1:39:10 在 ‎2026/‎11/‎4 上的关闭是意外的。"
+    },
+    {
+      "record_id": 141673,
+      "time_created": "2026-11-04T02:05:51.2072315+09:00",
+      "provider": "Microsoft-Windows-Kernel-Power",
+      "event_id": 41,
+      "message": "系统已在未先正常关机的情况下重新启动。如果系统停止响应、发生崩溃或意外断电，则可能会导致此错误。"
+    },
+    {
+      "record_id": 141761,
+      "time_created": "2026-11-04T02:06:01.7134894+09:00",
+      "provider": "Microsoft-Windows-WER-SystemErrorReporting",
+      "event_id": 1001,
+      "message": "计算机已经从检测错误后重新启动。检测错误: 0x0000003b (0x00000000c0000005, 0xfffff803aa2f6223, 0xffff9d03b61e5f80, 0x0000000000000000)。已将转储的数据保存在: C:\\WINDOWS\\Minidump\\110426-16453-01.dmp。报告 ID: 9297ac8e-27bf-47b0-9a70-f5ecfb66b5de。"
+    }
+  ],
+  "dump": {
+    "path": "C:/WINDOWS/Minidump/110426-16453-01.dmp",
+    "bytes": 7638975,
+    "sha256_status": "access_denied: Access to the path 'C:\\WINDOWS\\Minidump\\110426-16453-01.dmp' is denied."
+  },
+  "recovery": {
+    "pre_resume_index_sha256": "87613412aa1a9231332c88276d4b22987749232376b60f488da96d1452795902",
+    "pre_resume_artifacts_manifest_sha256": "0d68f39292e4aac504b5befb05de8a1b6fa205164de9e2d64f46f284d65ad7d6",
+    "recovery_index_sha256": "87613412aa1a9231332c88276d4b22987749232376b60f488da96d1452795902",
+    "recovery_amendment_sha256": "e9d315bd74daf8f60d0ec521391a567740b7f29dc4585ab6bd6f5d66eeb50ba3",
+    "interrupted_key": "multi/load160/official/seed2",
+    "interrupted_failure_source": "experiments/reviewer_v2/completion_20261101/milp_failure_replay/runs/multi/load160/official/seed2/failure.json",
+    "interrupted_failure_sha256": "bf703f4716c0317c0fafa815c370d035f77d12e030882aff1433acc18a6a032b",
+    "resumed_controller_pid": 31712
+  }
+}

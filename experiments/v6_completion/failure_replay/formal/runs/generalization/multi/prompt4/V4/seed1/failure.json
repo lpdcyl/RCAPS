@@ -1,0 +1,24 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "generalization/multi/prompt4/V4/seed1",
+    "campaign": "generalization",
+    "original_job": {
+      "key": "multi/prompt4/V4/seed1",
+      "scenario": "multi",
+      "load": 320,
+      "condition": "prompt4",
+      "cell": "V4",
+      "seed": 1,
+      "duration": 1800
+    },
+    "prior_source": "experiments/v6_completion/generalization/formal/runs/multi/prompt4/V4/seed1/failure.json",
+    "prior_sha256": "ccd741f5c1357c75e997caf5568dfce8a7ce0773f41f4799892ae61ec1dd67fd",
+    "original_manifest_sha256": "9fd22297dcdbbda2f3884fddf1b233d7d92b3dfba4ec3c24b36242e0fe3145c6"
+  },
+  "error": "ValueError('Batch size 7508 outside profile range 0..7500')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v6_completion\\campaign_queue.py\", line 20, in worker\n    row = evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v6_completion\\failure_replay.py\", line 39, in evaluate\n    return module.evaluate(job[\"original_job\"])\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v6_completion\\generalization.py\", line 77, in evaluate\n    row = run(scenario, \"helix\" if cell == \"HH\" else \"queue_dag\", LOADS[scenario],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4\\chunking.py\", line 156, in handle\n    return original_handle(event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 632, in handle_start_transmission\n    schedules, retransmission_node_uids = self.scheduler.schedule_transmission(node=transmission_node)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\online_scheduler.py\", line 34, in schedule_transmission\n    request.set_pipeline(self._route(request))\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\queue_cost.py\", line 55, in _route\n    prompt = sum(self._layer_service(node, layer,\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\queue_cost.py\", line 55, in <genexpr>\n    prompt = sum(self._layer_service(node, layer,\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\routing.py\", line 56, in _layer_service\n    self.service_cache[key] = interpolate_profile(points, tokens)\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v3\\topology.py\", line 21, in profile_at\n    raise ValueError(f\"Batch size {size} outside profile range {sizes[0]}..{sizes[-1]}\")\nValueError: Batch size 7508 outside profile range 0..7500\n",
+  "manifest_sha256": "1768821eb5f70548a04a9dc3de0ac9a65ede08e7b1a1859df1f4607cf023c8a1",
+  "elapsed_wall_s": 5.317818100040313,
+  "finished_at": "2026-10-29T03:54:05.342412+00:00"
+}

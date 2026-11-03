@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "multi/load240/separate/seed0",
+    "scenario": "multi",
+    "load": 240,
+    "cell": "separate",
+    "seed": 0,
+    "duration": 1800
+  },
+  "error": "AttributeError(\"'InferenceRequest' object has no attribute 'Initialization'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 142, in main\n    result = evaluate(args.group, args.key, job, dest)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\manual_rerun.py\", line 96, in evaluate\n    return run(replay_job, folder)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_failure_replay\\run.py\", line 114, in evaluate\n    return module.evaluate(original, directory / \"kv.csv.gz\")\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v5_seed_completion\\run.py\", line 30, in evaluate\n    row = external(job['scenario'], job['cell'], job['load'], job['duration'], job['seed'], ROOT)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py\", line 22, in evaluate\n    row = adapter.evaluate(scenario, offered, duration, 0, seed, solution, cluster)\n  File \"D:\\PythonProject\\Helix-GREEN\\baselines\\separate.py\", line 87, in evaluate\n    result = run(scenario, NAME, offered * weights[group] / sum(weights.values()),\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\v4_external\\evaluate.py\", line 17, in profiled\n    return original(*args, **kwargs)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1209, in handle_event\n    inference_batch_handle, node_uid, end_time = self.handle_start_execution(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 923, in handle_start_execution\n    schedule: ExecutionSchedule = self.scheduler.schedule_execution(node=execution_node,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\naive_scheduler.py\", line 105, in schedule_execution\n    return execution_policy(node=node, executable_requests=executable_requests)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\scheduler\\execution_policy.py\", line 30, in execution_policy\n    if request.phase == RequestPhase.Initialization:\nAttributeError: 'InferenceRequest' object has no attribute 'Initialization'\n",
+  "origin": "user_manual_independent_rerun",
+  "elapsed_wall_s": 36.633693399999174,
+  "finished_at": "2026-10-31T20:42:55.244913+00:00"
+}

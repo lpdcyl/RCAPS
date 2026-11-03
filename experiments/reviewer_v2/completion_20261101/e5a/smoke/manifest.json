@@ -1,0 +1,49 @@
+{
+  "campaign": "e5a",
+  "phase": "smoke",
+  "registered_at": "2026-11-01T09:00:53.520640+00:00",
+  "jobs": [
+    {
+      "key": "E5a/load1450/RCAPS/seed100",
+      "load": 1450,
+      "method": "RCAPS",
+      "seed": 100,
+      "duration_s": 60
+    },
+    {
+      "key": "E5a/load1450/RCAPS-KV/seed100",
+      "load": 1450,
+      "method": "RCAPS-KV",
+      "seed": 100,
+      "duration_s": 60
+    },
+    {
+      "key": "E5a/load1450/Helix/seed100",
+      "load": 1450,
+      "method": "Helix",
+      "seed": 100,
+      "duration_s": 60
+    },
+    {
+      "key": "E5a/load1450/Helix+/seed100",
+      "load": 1450,
+      "method": "Helix+",
+      "seed": 100,
+      "duration_s": 60
+    }
+  ],
+  "environment": {
+    "conda_prefix": "D:\\software\\miniconda\\envs\\gllm",
+    "python": "D:\\software\\miniconda\\envs\\gllm\\python.exe"
+  },
+  "sources_sha256": {
+    "experiments/reviewer_v2/completion_20261101/PLAN_CN.md": "58a42dc5dfa9159d3f8ea3959d2d82475bf3019a60000af95bb9347ac8dcfd09",
+    "experiments/reviewer_v2/completion_20261101/run.py": "d510cdda34bfd788d1fd69b96d8d8a17bd2ff80b3bbfff3a4ae151128221a38e",
+    "experiments/reviewer_v2/E5_scale_kv/run.py": "7fb8b11765ac0cd20d17bb478cb5178b3dfd4ce7e2a445ce4cd2f210f7b5049e",
+    "experiments/reviewer_v2/E5_scale_kv/formal/manifest.json": "4d254343300d8247664f682c65d5018d21e477da811ab27db354351972ffe2fe",
+    "experiments/reviewer_v2/E5_scale_kv/E5a_FINAL_AUDIT.json": "61cb98b48686d9473b96f7dfd770e1e92a239675c94c51758d96cc7ea112b243"
+  },
+  "max_workers": 1,
+  "timeout_wall_s": 7200,
+  "failure_policy": "one attempt per key; old formal and replay remain read-only"
+}

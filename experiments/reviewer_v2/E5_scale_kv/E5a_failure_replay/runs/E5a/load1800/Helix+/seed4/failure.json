@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "E5a/load1800/Helix+/seed4",
+    "load": 1800,
+    "method": "Helix+",
+    "seed": 4,
+    "duration_s": 1800
+  },
+  "error": "TypeError('issubclass() arg 1 must be a class')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\replay_e5a.py\", line 47, in worker\n    result=evaluate(job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\E5_scale_kv\\run.py\", line 127, in evaluate\n    row = run('single', driver, job['load'], job['duration_s'], 0, job['seed'],\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1205, in handle_event\n    self.handle_gather_finished(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 828, in handle_gather_finished\n    query_finished: bool = self.query_manager.collect_finished_request(current_time=self.current_time,\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\query_manager.py\", line 232, in collect_finished_request\n    pipeline=copy.deepcopy(request.mini_pipeline),\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 146, in deepcopy\n    y = copier(x, memo)\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 206, in _deepcopy_list\n    append(deepcopy(a, memo))\n  File \"D:\\software\\miniconda\\envs\\gllm\\lib\\copy.py\", line 148, in deepcopy\n    if issubclass(cls, type):\nTypeError: issubclass() arg 1 must be a class\n",
+  "origin": "independent_failure_replay",
+  "elapsed_wall_s": 231.43116679999997,
+  "finished_at": "2026-10-30T16:45:51.646198+00:00"
+}

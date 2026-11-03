@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "job": {
+    "key": "single/load700/Q4/seed4",
+    "scenario": "single",
+    "load": 700,
+    "stage": "Q4",
+    "seed": 4,
+    "duration_s": 1800
+  },
+  "error": "TypeError(\"'float' object is not callable\")",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 214, in worker\n    row = evaluate(campaign, job)\n  File \"D:\\PythonProject\\Helix-GREEN\\experiments\\reviewer_v2\\completion_20261101\\run.py\", line 184, in evaluate\n    row = evaluate_variant(scenario, job[\"load\"], job[\"duration_s\"], 0,\n  File \"D:\\PythonProject\\Helix-GREEN\\rcaps\\v4_method.py\", line 30, in evaluate_variant\n    row = run(scenario, \"queue_dag\", offered, duration, warmup, seed,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\fixed_window.py\", line 197, in run\n    simulator.simulate(until=arrival)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1450, in simulate\n    succeeded, event_time = self.simulate_next_event()  # type: bool, float\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1330, in simulate_next_event\n    self.handle_event(event=cur_event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 1093, in handle_event\n    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)\n  File \"D:\\PythonProject\\Helix-GREEN\\simulator\\event_simulator\\cluster_simulator.py\", line 695, in handle_start_transmission\n    cur_trans: TransmissionObject = cur_link.start_sending(requests=schedule.requests,\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 107, in start_sending\n    waited = self.overlap(ready, now - ready)\n  File \"D:\\PythonProject\\Helix-GREEN\\benchmarks\\resource_profile.py\", line 35, in overlap\n    return max(0.0, min(start + duration, self.ending) -\nTypeError: 'float' object is not callable\n",
+  "elapsed_wall_s": 13.102590599999985,
+  "finished_at": "2026-11-01T11:53:39.970758+00:00"
+}

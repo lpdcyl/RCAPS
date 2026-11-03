@@ -1,0 +1,26 @@
+Online Request Feeder: avg token feeding throughput 1760.1105555555555.
+progress: single/helix, arrivals=100, sim_time=81.0
+progress: single/helix, arrivals=200, sim_time=135.3
+progress: single/helix, arrivals=300, sim_time=189.7
+progress: single/helix, arrivals=400, sim_time=244.5
+progress: single/helix, arrivals=500, sim_time=295.1
+progress: single/helix, arrivals=600, sim_time=357.3
+progress: single/helix, arrivals=700, sim_time=425.5
+Windows fatal exception: access violation
+
+Current thread 0x00001340 (most recent call first):
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\execution_policy.py", line 52 in execution_policy
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\global_maxflow\global_maxflow_scheduler.py", line 116 in schedule_execution
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 130 in timed
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 923 in handle_start_execution
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1209 in handle_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330 in simulate_next_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450 in simulate
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197 in run
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\E5_scale_kv\run.py", line 127 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\run.py", line 175 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\retry_failed_replays.py", line 90 in worker
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\retry_failed_replays.py", line 208 in main
+  File "D:\PythonProject\Helix-GREEN\experiments\reviewer_v2\completion_20261101\retry_failed_replays.py", line 214 in <module>
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86 in _run_code
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196 in _run_module_as_main
