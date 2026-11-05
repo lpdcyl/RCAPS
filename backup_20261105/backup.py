@@ -141,6 +141,8 @@ def credential():
 def session():
     import requests
     client = requests.Session()
+    # The local HTTP proxy intermittently terminates long TLS uploads.
+    client.trust_env = False
     client.headers.update({"Authorization": "Bearer " + credential(),
                            "Accept": "application/vnd.github+json",
                            "X-GitHub-Api-Version": "2022-11-28",
