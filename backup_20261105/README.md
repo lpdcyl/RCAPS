@@ -1,20 +1,20 @@
 # RCAPS experiment backup (2026-11-05)
 
-This backup supplements Git commit `377aed8313e98d3d33318a3750ce783c490814e8` and later branch history. The GitHub Release tagged `experiment-backup-20261105` holds 12 ZIP assets containing 2,163 previously untracked local experiment files (15,546,127,406 source bytes). The [manifest](manifest.json) lists each path, size, SHA256, provenance label, and archive.
+This backup supplements Git commit `377aed8313e98d3d33318a3750ce783c490814e8` and later branch history. The [main manifest](manifest.json) lists 2,163 previously untracked local experiment files (15,546,127,406 source bytes), including each path, size, SHA256, and provenance label. The [main recovery map](shard_main_manifest.json) records the original ZIP assets verified on GitHub and smaller replacement assets for the rest.
 
 The archive includes failed and diagnostic run artifacts so that evidence is not lost. A `recorded_sidecar_sha256` label means a compressed trace matched the SHA256 in its neighboring `result.json`. An `unverified_sidecar` label means that reference was absent or differed; these files are preserved as forensic evidence and must not be counted as successful formal results. Independent replay outcomes remain separate from formal five-seed groups.
 
 To restore after reinstall:
 
-1. Clone `https://github.com/lpdcyl/RCAPS.git` and check out branch `codex/work3-upload-20261024` (or tag `experiment-backup-20261105`).
-2. Download all 12 `rcaps-experiments-*.zip` assets from the [backup Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105).
-3. Confirm each archive's SHA256 against `manifest.json` (`assets[].sha256`). Extract every archive into the repository root, preserving paths.
+1. Clone `https://github.com/lpdcyl/RCAPS.git` and check out branch `codex/work3-upload-20261024`.
+2. Download every ZIP asset listed in `shard_main_manifest.json` under `existing_assets` and `assets` from the [main Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105).
+3. Confirm each archive's SHA256 against the corresponding asset entry. Extract every archive into the repository root, preserving paths.
 4. Run `python backup_20261105/backup.py verify-local`. It checks every restored file against the manifest.
 
-The Release and this manifest are the backup pair. A Git clone by itself does not contain the large ZIP assets.
+The Release assets and the manifests are the backup pair. A Git clone by itself does not contain the large ZIP assets.
 
 ## Ignored V3 raw event streams
 
-An additional [supplemental Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105-v3-raw) holds 3,859 files (22,032,044,593 source bytes) excluded by nested `.gitignore` rules, primarily V3 `.jsonl.gz` event streams, plus run logs and seven JSON indexes. Its [separate manifest](ignored_manifest.json) lists the files and 18 ZIP assets. The `trace_sha256` field in adjacent V3 result JSON describes the **input trace**, so it is not used as a digest of the raw event stream; each stream has its own SHA256 in the supplemental manifest.
+An additional [supplemental Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105-v3-raw) holds 3,859 files (22,032,044,593 source bytes) excluded by nested `.gitignore` rules, primarily V3 `.jsonl.gz` event streams, plus run logs and seven JSON indexes. Its [separate manifest](ignored_manifest.json) lists the files; the [V3 recovery map](shard_v3_manifest.json) lists the verified original ZIP assets and smaller replacement assets. The `trace_sha256` field in adjacent V3 result JSON describes the **input trace**, so it is not used as a digest of the raw event stream; each stream has its own SHA256 in the supplemental manifest.
 
-Download and extract all `rcaps-v3-raw-*.zip` assets into the same repository root. Verify their archive SHA256 values against `ignored_manifest.json`, then run `python backup_20261105/backup_ignored.py verify-local`.
+Download and extract every ZIP asset listed in `shard_v3_manifest.json` under `existing_assets` and `assets` into the same repository root. Verify each archive SHA256 against its asset entry, then run `python backup_20261105/backup_ignored.py verify-local`.
