@@ -141,8 +141,8 @@ def credential():
 def session():
     import requests
     client = requests.Session()
-    # The local HTTP proxy intermittently terminates long TLS uploads.
-    client.trust_env = False
+    # Direct access remains the fallback when the local proxy is unavailable.
+    client.trust_env = os.environ.get("RCAPS_USE_PROXY") == "1"
     client.headers.update({"Authorization": "Bearer " + credential(),
                            "Accept": "application/vnd.github+json",
                            "X-GitHub-Api-Version": "2022-11-28",
