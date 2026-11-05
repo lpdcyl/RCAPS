@@ -162,8 +162,8 @@ def release(client):
             raise RuntimeError("Push the manifest commit before creating the release")
         return api(client, "POST", base + "/releases", json={
             "tag_name": TAG, "target_commitish": "codex/work3-upload-20261024",
-            "name": "RCAPS experiment evidence backup 2026-11-05",
-            "body": "SHA-verified local experiment artifacts. See backup_20261105/manifest.json in the tagged commit for paths, hashes, provenance labels and recovery steps.",
+            "name": "RCAPS experiment evidence backup " + TAG,
+            "body": "SHA-verified local experiment artifacts. See backup_20261105/" + MANIFEST.name + " in the tagged commit for paths, hashes, provenance labels and recovery steps.",
             "draft": False, "prerelease": True})
     response.raise_for_status()
     return response.json()

@@ -12,3 +12,9 @@ To restore after reinstall:
 4. Run `python backup_20261105/backup.py verify-local`. It checks every restored file against the manifest.
 
 The Release and this manifest are the backup pair. A Git clone by itself does not contain the large ZIP assets.
+
+## Ignored V3 raw event streams
+
+An additional [supplemental Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105-v3-raw) holds 3,859 files (22,032,044,593 source bytes) excluded by nested `.gitignore` rules, primarily V3 `.jsonl.gz` event streams, plus run logs and seven JSON indexes. Its [separate manifest](ignored_manifest.json) lists the files and 18 ZIP assets. The `trace_sha256` field in adjacent V3 result JSON describes the **input trace**, so it is not used as a digest of the raw event stream; each stream has its own SHA256 in the supplemental manifest.
+
+Download and extract all `rcaps-v3-raw-*.zip` assets into the same repository root. Verify their archive SHA256 values against `ignored_manifest.json`, then run `python backup_20261105/backup_ignored.py verify-local`.
