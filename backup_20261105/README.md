@@ -18,3 +18,7 @@ The Release assets and the manifests are the backup pair. A Git clone by itself 
 An additional [supplemental Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105-v3-raw) holds 3,859 files (22,032,044,593 source bytes) excluded by nested `.gitignore` rules, primarily V3 `.jsonl.gz` event streams, plus run logs and seven JSON indexes. Its [separate manifest](ignored_manifest.json) lists the files; the [V3 recovery map](shard_v3_manifest.json) lists the verified original ZIP assets and smaller replacement assets. The `trace_sha256` field in adjacent V3 result JSON describes the **input trace**, so it is not used as a digest of the raw event stream; each stream has its own SHA256 in the supplemental manifest.
 
 Download and extract every ZIP asset listed in `shard_v3_manifest.json` under `existing_assets` and `assets` into the same repository root. Verify each archive SHA256 against its asset entry, then run `python backup_20261105/backup_ignored.py verify-local`.
+
+## Paper and reviewer documents
+
+The three user-requested files are tracked directly under [documents](documents). Their exact byte sizes and SHA256 values are in [documents_manifest.json](documents_manifest.json). They are present in a clone of the backup branch and do not require Release downloads.
