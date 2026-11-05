@@ -191,7 +191,10 @@ def upload():
     client = session()
     item = release(client)
     base = "https://api.github.com/repos/lpdcyl/RCAPS"
+    only_asset = os.environ.get("RCAPS_ONLY_ASSET")
     for index, asset in enumerate(manifest["assets"], 1):
+        if only_asset and asset["name"] != only_asset:
+            continue
         path = HERE / asset["name"]
         if path.stat().st_size != asset["bytes"] or sha(path) != asset["sha256"]:
             raise RuntimeError("Archive changed: " + path.name)
