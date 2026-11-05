@@ -157,7 +157,8 @@ def release(client):
     base = "https://api.github.com/repos/lpdcyl/RCAPS"
     response = client.get(base + "/releases/tags/" + TAG, timeout=30)
     if response.status_code == 404:
-        if git("rev-parse", "HEAD").decode().strip() != git("rev-parse", "origin/codex/work3-upload-20261024").decode().strip():
+        remote_branch = api(client, "GET", base + "/branches/codex/work3-upload-20261024")
+        if git("rev-parse", "HEAD").decode().strip() != remote_branch["commit"]["sha"]:
             raise RuntimeError("Push the manifest commit before creating the release")
         return api(client, "POST", base + "/releases", json={
             "tag_name": TAG, "target_commitish": "codex/work3-upload-20261024",
