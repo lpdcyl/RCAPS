@@ -143,19 +143,34 @@ def session():
     client = requests.Session()
     client.headers.update({"Authorization": "Bearer " + credential(),
                            "Accept": "application/vnd.github+json",
-                           "X-GitHub-Api-Version": "2022-11-28"})
+                           "X-GitHub-Api-Version": "2022-11-28",
+                           "Connection": "close"})
     return client
 
 
 def api(client, method, url, **kwargs):
-    response = client.request(method, url, timeout=120, **kwargs)
-    response.raise_for_status()
-    return response.json()
+    import requests
+    for attempt in range(5 if method == "GET" else 1):
+        try:
+            response = client.request(method, url, timeout=120, **kwargs)
+            response.raise_for_status()
+            return response.json()
+        except requests.RequestException:
+            if method != "GET" or attempt == 4:
+                raise
+            time.sleep(2 * (attempt + 1))
 
 
 def release(client):
     base = "https://api.github.com/repos/lpdcyl/RCAPS"
-    response = client.get(base + "/releases/tags/" + TAG, timeout=30)
+    for attempt in range(5):
+        try:
+            response = client.get(base + "/releases/tags/" + TAG, timeout=30)
+            break
+        except Exception:
+            if attempt == 4:
+                raise
+            time.sleep(2 * (attempt + 1))
     if response.status_code == 404:
         remote_branch = api(client, "GET", base + "/branches/codex/work3-upload-20261024")
         if git("rev-parse", "HEAD").decode().strip() != remote_branch["commit"]["sha"]:
@@ -187,19 +202,30 @@ def upload():
                 continue
             raise RuntimeError("Remote asset conflicts: " + asset["name"])
         url = item["upload_url"].split("{", 1)[0]
-        with path.open("rb") as stream:
-            response = client.post(url, params={"name": asset["name"]}, data=stream,
-                                   headers={"Content-Type": "application/zip",
-                                            "Content-Length": str(asset["bytes"])},
-                                   timeout=(30, 3600))
-        if not response.ok:
-            raise RuntimeError("Upload failed for %s: HTTP %s %s" %
-                               (asset["name"], response.status_code, response.text[:500]))
-        found = response.json()
-        if found["size"] != asset["bytes"] or found.get("digest") != "sha256:" + asset["sha256"]:
-            raise RuntimeError("Remote digest/size mismatch: " + asset["name"])
-        print("uploaded and verified", index, "of", len(manifest["assets"]),
-              asset["name"], flush=True)
+        for attempt in range(3):
+            try:
+                with path.open("rb") as stream:
+                    response = client.post(url, params={"name": asset["name"]}, data=stream,
+                                           headers={"Content-Type": "application/zip",
+                                                    "Content-Length": str(asset["bytes"])},
+                                           timeout=(30, 3600))
+                response.raise_for_status()
+                found = response.json()
+            except Exception as error:
+                # An EOF after the request body may still mean GitHub stored it.
+                remote = api(client, "GET", base + "/releases/" + str(item["id"]))
+                found = next((x for x in remote["assets"] if x["name"] == asset["name"]), None)
+                if found is None:
+                    if attempt == 2:
+                        raise RuntimeError("Upload failed after 3 attempts: " + asset["name"]) from error
+                    print("retry upload", asset["name"], attempt + 2, "of 3", flush=True)
+                    time.sleep(5)
+                    continue
+            if found["size"] != asset["bytes"] or found.get("digest") != "sha256:" + asset["sha256"]:
+                raise RuntimeError("Remote digest/size mismatch: " + asset["name"])
+            print("uploaded and verified", index, "of", len(manifest["assets"]),
+                  asset["name"], flush=True)
+            break
     print("RELEASE_COMPLETE", item["html_url"], flush=True)
 
 
