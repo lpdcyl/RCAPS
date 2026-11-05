@@ -218,6 +218,8 @@ def upload():
                 found = response.json()
             except Exception as error:
                 # An EOF after the request body may still mean GitHub stored it.
+                print("upload attempt error", asset["name"], type(error).__name__,
+                      str(error)[:180], flush=True)
                 remote = api(client, "GET", base + "/releases/" + str(item["id"]))
                 found = next((x for x in remote["assets"] if x["name"] == asset["name"]), None)
                 if found is None:
