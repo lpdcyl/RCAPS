@@ -22,12 +22,12 @@ def inventory():
     original = json.loads(ORIGINAL.read_text(encoding="utf-8"))
     client = base.session()
     release = base.release(client)
-    remote = base.api(client, "GET", "https://api.github.com/repos/lpdcyl/RCAPS/releases/" + str(release["id"]))
-    present = {x["name"]: x for x in remote["assets"]}
+    present = {x["name"]: x for x in base.release_assets(client, release["id"])}
     existing, missing = [], []
     for asset in original["assets"]:
         found = present.get(asset["name"])
-        if found and found["size"] == asset["bytes"] and found.get("digest") == "sha256:" + asset["sha256"]:
+        if (found and found["state"] == "uploaded" and found["size"] == asset["bytes"]
+                and found.get("digest") == "sha256:" + asset["sha256"]):
             existing.append(asset)
         elif found:
             raise RuntimeError("Conflicting remote asset: " + asset["name"])
@@ -64,11 +64,11 @@ def verify_remote():
     base.verify_remote()
     client = base.session()
     release = base.release(client)
-    remote = base.api(client, "GET", "https://api.github.com/repos/lpdcyl/RCAPS/releases/" + str(release["id"]))
-    found = {x["name"]: x for x in remote["assets"]}
+    found = {x["name"]: x for x in base.release_assets(client, release["id"])}
     for asset in manifest["existing_assets"]:
         item = found.get(asset["name"])
-        if not item or item["size"] != asset["bytes"] or item.get("digest") != "sha256:" + asset["sha256"]:
+        if (not item or item["state"] != "uploaded" or item["size"] != asset["bytes"]
+                or item.get("digest") != "sha256:" + asset["sha256"]):
             raise RuntimeError("Missing original asset: " + asset["name"])
     print("COMPLETE_GROUP_VERIFIED", GROUP, len(manifest["existing_assets"]),
           "original assets", len(manifest["assets"]), "shard assets", flush=True)

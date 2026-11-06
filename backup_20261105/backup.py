@@ -163,6 +163,20 @@ def api(client, method, url, **kwargs):
             time.sleep(2 * (attempt + 1))
 
 
+def release_assets(client, release_id):
+    """Read every asset; the release object's embedded list can omit late assets."""
+    base = "https://api.github.com/repos/lpdcyl/RCAPS/releases/"
+    assets = []
+    page = 1
+    while True:
+        batch = api(client, "GET", base + str(release_id) +
+                    "/assets?per_page=100&page=" + str(page))
+        assets.extend(batch)
+        if len(batch) < 100:
+            return assets
+        page += 1
+
+
 def release(client):
     base = "https://api.github.com/repos/lpdcyl/RCAPS"
     for attempt in range(5):
@@ -198,11 +212,11 @@ def upload():
         path = HERE / asset["name"]
         if path.stat().st_size != asset["bytes"] or sha(path) != asset["sha256"]:
             raise RuntimeError("Archive changed: " + path.name)
-        remote = api(client, "GET", base + "/releases/" + str(item["id"]))
-        existing = {x["name"]: x for x in remote["assets"]}
+        existing = {x["name"]: x for x in release_assets(client, item["id"])}
         if asset["name"] in existing:
             found = existing[asset["name"]]
-            if found["size"] == asset["bytes"] and found.get("digest") == "sha256:" + asset["sha256"]:
+            if (found["state"] == "uploaded" and found["size"] == asset["bytes"]
+                    and found.get("digest") == "sha256:" + asset["sha256"]):
                 print("already verified remote", asset["name"], flush=True)
                 continue
             raise RuntimeError("Remote asset conflicts: " + asset["name"])
@@ -220,15 +234,16 @@ def upload():
                 # An EOF after the request body may still mean GitHub stored it.
                 print("upload attempt error", asset["name"], type(error).__name__,
                       str(error)[:180], flush=True)
-                remote = api(client, "GET", base + "/releases/" + str(item["id"]))
-                found = next((x for x in remote["assets"] if x["name"] == asset["name"]), None)
+                found = next((x for x in release_assets(client, item["id"])
+                              if x["name"] == asset["name"]), None)
                 if found is None:
                     if attempt == 2:
                         raise RuntimeError("Upload failed after 3 attempts: " + asset["name"]) from error
                     print("retry upload", asset["name"], attempt + 2, "of 3", flush=True)
                     time.sleep(5)
                     continue
-            if found["size"] != asset["bytes"] or found.get("digest") != "sha256:" + asset["sha256"]:
+            if (found["state"] != "uploaded" or found["size"] != asset["bytes"]
+                    or found.get("digest") != "sha256:" + asset["sha256"]):
                 raise RuntimeError("Remote digest/size mismatch: " + asset["name"])
             print("uploaded and verified", index, "of", len(manifest["assets"]),
                   asset["name"], flush=True)
@@ -240,11 +255,11 @@ def verify_remote():
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     client = session()
     item = release(client)
-    remote = api(client, "GET", "https://api.github.com/repos/lpdcyl/RCAPS/releases/" + str(item["id"]))
-    found = {x["name"]: x for x in remote["assets"]}
+    found = {x["name"]: x for x in release_assets(client, item["id"])}
     for asset in manifest["assets"]:
         item = found.get(asset["name"])
-        if not item or item["size"] != asset["bytes"] or item.get("digest") != "sha256:" + asset["sha256"]:
+        if (not item or item["state"] != "uploaded" or item["size"] != asset["bytes"]
+                or item.get("digest") != "sha256:" + asset["sha256"]):
             raise RuntimeError("Missing or mismatched remote asset: " + asset["name"])
     print("REMOTE_VERIFIED", len(manifest["assets"]), "assets", manifest["total_bytes"], "source bytes", flush=True)
 
