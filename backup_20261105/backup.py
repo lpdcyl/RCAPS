@@ -177,6 +177,27 @@ def release_assets(client, release_id):
         page += 1
 
 
+def remove_incomplete_asset(client, release_id, asset):
+    """Remove only an abandoned, digestless upload for this exact asset name."""
+    if asset["state"] != "starter" or asset.get("digest"):
+        raise RuntimeError("Refusing to remove a non-starter asset: " + asset["name"])
+    time.sleep(5)
+    current = next((x for x in release_assets(client, release_id)
+                    if x["name"] == asset["name"]), None)
+    if current is None:
+        return None
+    if current["state"] == "uploaded":
+        return current
+    if current["id"] != asset["id"] or current["state"] != "starter" or current.get("digest"):
+        raise RuntimeError("Incomplete asset changed during cleanup: " + asset["name"])
+    response = client.delete("https://api.github.com/repos/lpdcyl/RCAPS/releases/assets/" +
+                             str(current["id"]), timeout=30)
+    if response.status_code != 204:
+        raise RuntimeError("Could not remove incomplete asset: " + asset["name"])
+    print("removed incomplete upload", asset["name"], flush=True)
+    return None
+
+
 def release(client):
     base = "https://api.github.com/repos/lpdcyl/RCAPS"
     for attempt in range(5):
@@ -219,13 +240,19 @@ def upload():
                     and found.get("digest") == "sha256:" + asset["sha256"]):
                 print("already verified remote", asset["name"], flush=True)
                 continue
-            raise RuntimeError("Remote asset conflicts: " + asset["name"])
+            if found["state"] == "starter" and not found.get("digest"):
+                found = remove_incomplete_asset(client, item["id"], found)
+                if found and found["state"] == "uploaded" and found["size"] == asset["bytes"] and found.get("digest") == "sha256:" + asset["sha256"]:
+                    print("already verified remote", asset["name"], flush=True)
+                    continue
+            elif found:
+                raise RuntimeError("Remote asset conflicts: " + asset["name"])
         url = item["upload_url"].split("{", 1)[0]
         for attempt in range(3):
             try:
                 with path.open("rb") as stream:
                     response = client.post(url, params={"name": asset["name"]}, data=stream,
-                                           headers={"Content-Type": "application/zip",
+                                           headers={"Content-Type": "application/zip" if path.suffix == ".zip" else "application/octet-stream",
                                                     "Content-Length": str(asset["bytes"])},
                                            timeout=(30, 3600))
                 response.raise_for_status()
@@ -236,6 +263,8 @@ def upload():
                       str(error)[:180], flush=True)
                 found = next((x for x in release_assets(client, item["id"])
                               if x["name"] == asset["name"]), None)
+                if found and found["state"] == "starter" and not found.get("digest"):
+                    found = remove_incomplete_asset(client, item["id"], found)
                 if found is None:
                     if attempt == 2:
                         raise RuntimeError("Upload failed after 3 attempts: " + asset["name"]) from error

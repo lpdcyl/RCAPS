@@ -15,9 +15,9 @@ The Release assets and the manifests are the backup pair. A Git clone by itself 
 
 ## Ignored V3 raw event streams
 
-An additional [supplemental Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105-v3-raw) holds 3,859 files (22,032,044,593 source bytes) excluded by nested `.gitignore` rules, primarily V3 `.jsonl.gz` event streams, plus run logs and seven JSON indexes. Its [separate manifest](ignored_manifest.json) lists the files; the [V3 recovery map](shard_v3_manifest.json) lists the verified original ZIP assets and smaller replacement assets. The `trace_sha256` field in adjacent V3 result JSON describes the **input trace**, so it is not used as a digest of the raw event stream; each stream has its own SHA256 in the supplemental manifest.
+An additional [supplemental Release](https://github.com/lpdcyl/RCAPS/releases/tag/experiment-backup-20261105-v3-raw) holds 3,859 files (22,032,044,593 source bytes) excluded by nested `.gitignore` rules, primarily V3 `.jsonl.gz` event streams, plus run logs and seven JSON indexes. Its [separate manifest](ignored_manifest.json) lists the files; the [V3 recovery map](shard_v3_manifest.json) lists the original ZIP assets. The [tail recovery map](tail_v3_manifest.json) identifies complete ZIP assets and binary parts for the remaining ZIPs. The `trace_sha256` field in adjacent V3 result JSON describes the **input trace**, so it is not used as a digest of the raw event stream; each stream has its own SHA256 in the supplemental manifest.
 
-Download and extract every ZIP asset listed in `shard_v3_manifest.json` under `existing_assets` and `assets` into the same repository root. Verify each archive SHA256 against its asset entry, then run `python backup_20261105/backup_ignored.py verify-local`.
+Download all assets listed in `shard_v3_manifest.json` under `existing_assets`, plus those listed in `tail_v3_manifest.json` under `existing_shard_assets` and `assets`. Verify each downloaded asset against its listed size and SHA256. Put the binary part files in `backup_20261105/`, then run `python backup_20261105/backup_tail.py restore` to reconstruct the remaining ZIPs. Extract all ZIPs into the repository root, preserving paths. Finally run `python backup_20261105/backup_ignored.py verify-local`.
 
 ## Paper and reviewer documents
 
