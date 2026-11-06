@@ -15,6 +15,12 @@ base.TAG = "experiment-backup-20261105-v3-raw"
 PART_BYTES = 50_000_000
 
 
+def part_path(name):
+    """Use the Git-backed copy after a fresh clone when no local staging file exists."""
+    staged = HERE / name
+    return staged if staged.is_file() else HERE / "git_parts" / name
+
+
 def inventory():
     if base.MANIFEST.exists():
         raise RuntimeError("Tail manifest exists; never silently replace it")
@@ -100,7 +106,7 @@ def restore():
         total = 0
         with temp.open("wb") as output:
             for part in parts:
-                path = HERE / part["name"]
+                path = part_path(part["name"])
                 if path.stat().st_size != part["bytes"] or base.sha(path) != part["sha256"]:
                     raise RuntimeError("Missing or changed part: " + part["name"])
                 with path.open("rb") as stream:
@@ -127,7 +133,7 @@ def verify_parts():
         if not parts or [p["part_index"] for p in parts] != list(range(1, len(parts) + 1)):
             raise RuntimeError("Missing part index for " + archive["name"])
         for part in parts:
-            path = HERE / part["name"]
+            path = part_path(part["name"])
             if path.stat().st_size != part["bytes"] or base.sha(path) != part["sha256"]:
                 raise RuntimeError("Missing or changed part: " + part["name"])
             with path.open("rb") as stream:
