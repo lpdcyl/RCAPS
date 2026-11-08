@@ -1,0 +1,36 @@
+progress: single/hexgen_development, arrivals=100, sim_time=141.1
+progress: single/hexgen_development, arrivals=200, sim_time=289.0
+progress: single/hexgen_development, arrivals=300, sim_time=432.6
+progress: single/hexgen_development, arrivals=400, sim_time=581.4
+progress: single/hexgen_development, arrivals=500, sim_time=725.0
+progress: single/hexgen_development, arrivals=600, sim_time=873.2
+progress: single/hexgen_development, arrivals=700, sim_time=1006.4
+progress: single/hexgen_development, arrivals=800, sim_time=1145.5
+Traceback (most recent call last):
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v1\run_key.py", line 82, in <module>
+    main()
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v1\run_key.py", line 78, in main
+    print(json.dumps(run_key(args.key), ensure_ascii=False), flush=True)
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v1\run_key.py", line 49, in run_key
+    result = evaluate(layout, item["offered"], frozen["duration_s"],
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\evaluate.py", line 69, in evaluate
+    result = run(case, "hexgen_development", offered, duration, warmup, seed,
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1229, in handle_event
+    trigger_network_send = self.handle_finish_execution(event=event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 972, in handle_finish_execution
+    current_inference_batch, trigger_network_send = execution_node.finish_execution(
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\compute_node.py", line 661, in finish_execution
+    self.kv_cache.initialize_query_kv_cache(layers=kv_update_layer_ids,
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\kv_cache.py", line 97, in initialize_query_kv_cache
+    assert self.available_capacity >= total_num_tokens, "Exceed KV-cache capacity!"
+AssertionError: Exceed KV-cache capacity!

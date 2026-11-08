@@ -1,0 +1,26 @@
+progress: single/hexgen_development, arrivals=100, sim_time=150.7
+progress: single/hexgen_development, arrivals=200, sim_time=292.9
+progress: single/hexgen_development, arrivals=300, sim_time=428.9
+progress: single/hexgen_development, arrivals=400, sim_time=572.0
+progress: single/hexgen_development, arrivals=500, sim_time=699.5
+progress: single/hexgen_development, arrivals=600, sim_time=848.5
+progress: single/hexgen_development, arrivals=700, sim_time=1002.1
+progress: single/hexgen_development, arrivals=800, sim_time=1127.8
+progress: single/hexgen_development, arrivals=900, sim_time=1273.8
+progress: single/hexgen_development, arrivals=1000, sim_time=1412.8
+Windows fatal exception: access violation
+
+Current thread 0x0000cd8c (most recent call first):
+  File "D:\PythonProject\Helix-GREEN\simulator\scheduler\naive_scheduler.py", line 35 in schedule_transmission
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\admission_scheduler_v2.py", line 39 in schedule_transmission
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 632 in handle_start_transmission
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1093 in handle_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330 in simulate_next_event
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450 in simulate
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197 in run
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\evaluate_v2.py", line 75 in evaluate
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v3_700\run_key.py", line 52 in run_key
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v3_700\run_key.py", line 82 in main
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v3_700\run_key.py", line 86 in <module>
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86 in _run_code
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196 in _run_module_as_main

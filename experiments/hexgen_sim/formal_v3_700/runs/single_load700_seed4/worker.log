@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\software\miniconda\envs\gllm\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v3_700\run_key.py", line 86, in <module>
+    main()
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v3_700\run_key.py", line 82, in main
+    print(json.dumps(run_key(args.key), ensure_ascii=False), flush=True)
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\formal_v3_700\run_key.py", line 52, in run_key
+    result = evaluate(layout, item["offered"], frozen["duration_s"],
+  File "D:\PythonProject\Helix-GREEN\experiments\hexgen_sim\evaluate_v2.py", line 75, in evaluate
+    result = run(case, "hexgen_development", offered, duration, warmup, seed,
+  File "D:\PythonProject\Helix-GREEN\benchmarks\fixed_window.py", line 197, in run
+    simulator.simulate(until=arrival)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1450, in simulate
+    succeeded, event_time = self.simulate_next_event()  # type: bool, float
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1330, in simulate_next_event
+    self.handle_event(event=cur_event)
+  File "D:\PythonProject\Helix-GREEN\simulator\event_simulator\cluster_simulator.py", line 1093, in handle_event
+    transmission_object_end_time, retransmission_node_uids = self.handle_start_transmission(event=event)
+TypeError: cannot unpack non-iterable coroutine object
